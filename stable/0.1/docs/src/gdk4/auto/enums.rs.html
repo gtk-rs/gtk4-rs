@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/enums.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enums.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4&#x2F;src&#x2F;auto&#x2F;enums.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enums.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2397,19 +2467,19 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkAxisUse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ignore</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::X</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Y</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaX</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaY</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pressure</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Xtilt</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ytilt</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Wheel</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Distance</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Rotation</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Slider</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Last</span>,
+            <span class="ident">ffi::GDK_AXIS_IGNORE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ignore</span>,
+            <span class="ident">ffi::GDK_AXIS_X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::X</span>,
+            <span class="ident">ffi::GDK_AXIS_Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Y</span>,
+            <span class="ident">ffi::GDK_AXIS_DELTA_X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaX</span>,
+            <span class="ident">ffi::GDK_AXIS_DELTA_Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaY</span>,
+            <span class="ident">ffi::GDK_AXIS_PRESSURE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pressure</span>,
+            <span class="ident">ffi::GDK_AXIS_XTILT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Xtilt</span>,
+            <span class="ident">ffi::GDK_AXIS_YTILT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ytilt</span>,
+            <span class="ident">ffi::GDK_AXIS_WHEEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Wheel</span>,
+            <span class="ident">ffi::GDK_AXIS_DISTANCE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Distance</span>,
+            <span class="ident">ffi::GDK_AXIS_ROTATION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Rotation</span>,
+            <span class="ident">ffi::GDK_AXIS_SLIDER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Slider</span>,
+            <span class="ident">ffi::GDK_AXIS_LAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Last</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2535,15 +2605,15 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkCrossingMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Normal</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Grab</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ungrab</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkGrab</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkUngrab</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::StateChanged</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeviceSwitch</span>,
+            <span class="ident">ffi::GDK_CROSSING_NORMAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Normal</span>,
+            <span class="ident">ffi::GDK_CROSSING_GRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Grab</span>,
+            <span class="ident">ffi::GDK_CROSSING_UNGRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ungrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_GTK_GRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkGrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_GTK_UNGRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkUngrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_STATE_CHANGED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::StateChanged</span>,
+            <span class="ident">ffi::GDK_CROSSING_TOUCH_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
+            <span class="ident">ffi::GDK_CROSSING_TOUCH_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
+            <span class="ident">ffi::GDK_CROSSING_DEVICE_SWITCH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeviceSwitch</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2634,9 +2704,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDevicePadFeature</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Button</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ring</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Strip</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_BUTTON</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Button</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_RING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ring</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_STRIP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Strip</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2753,14 +2823,14 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDeviceToolType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Eraser</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Brush</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pencil</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Airbrush</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lens</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_PEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_ERASER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Eraser</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_BRUSH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Brush</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_PENCIL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pencil</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_AIRBRUSH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Airbrush</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_MOUSE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_LENS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lens</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2799,7 +2869,7 @@
     }
 }
 
-<span class="doccomment">/// Used in `GdkDrag` to the reason of a cancelled DND operation.</span>
+<span class="doccomment">/// Used in [`Drag`][crate::Drag] to the reason of a cancelled DND operation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDragCancelReason&quot;</span>)]</span>
@@ -2851,9 +2921,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDragCancelReason</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NoTarget</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UserCancelled</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Error</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_NO_TARGET</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NoTarget</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_USER_CANCELLED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UserCancelled</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_ERROR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Error</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2988,7 +3058,7 @@
     <span class="doccomment">/// A tablet pad group mode change.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PAD_GROUP_MODE&quot;</span>)]</span>
     <span class="ident">PadGroupMode</span>,
-    <span class="doccomment">/// marks the end of the `EventType` enumeration.</span>
+    <span class="doccomment">/// marks the end of the GdkEventType enumeration.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_EVENT_LAST&quot;</span>)]</span>
     <span class="ident">EventLast</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -3081,35 +3151,35 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkEventType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Delete</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::MotionNotify</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonPress</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonRelease</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyPress</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyRelease</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EnterNotify</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LeaveNotify</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::FocusChange</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityIn</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityOut</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragEnter</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragLeave</span>,
-            <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragMotion</span>,
-            <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DropStart</span>,
-            <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Scroll</span>,
-            <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GrabBroken</span>,
-            <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
-            <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchUpdate</span>,
-            <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
-            <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchCancel</span>,
-            <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadSwipe</span>,
-            <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadPinch</span>,
-            <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonPress</span>,
-            <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonRelease</span>,
-            <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadRing</span>,
-            <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadStrip</span>,
-            <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadGroupMode</span>,
-            <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EventLast</span>,
+            <span class="ident">ffi::GDK_DELETE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Delete</span>,
+            <span class="ident">ffi::GDK_MOTION_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::MotionNotify</span>,
+            <span class="ident">ffi::GDK_BUTTON_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonPress</span>,
+            <span class="ident">ffi::GDK_BUTTON_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonRelease</span>,
+            <span class="ident">ffi::GDK_KEY_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyPress</span>,
+            <span class="ident">ffi::GDK_KEY_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyRelease</span>,
+            <span class="ident">ffi::GDK_ENTER_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EnterNotify</span>,
+            <span class="ident">ffi::GDK_LEAVE_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LeaveNotify</span>,
+            <span class="ident">ffi::GDK_FOCUS_CHANGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::FocusChange</span>,
+            <span class="ident">ffi::GDK_PROXIMITY_IN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityIn</span>,
+            <span class="ident">ffi::GDK_PROXIMITY_OUT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityOut</span>,
+            <span class="ident">ffi::GDK_DRAG_ENTER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragEnter</span>,
+            <span class="ident">ffi::GDK_DRAG_LEAVE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragLeave</span>,
+            <span class="ident">ffi::GDK_DRAG_MOTION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragMotion</span>,
+            <span class="ident">ffi::GDK_DROP_START</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DropStart</span>,
+            <span class="ident">ffi::GDK_SCROLL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Scroll</span>,
+            <span class="ident">ffi::GDK_GRAB_BROKEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GrabBroken</span>,
+            <span class="ident">ffi::GDK_TOUCH_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
+            <span class="ident">ffi::GDK_TOUCH_UPDATE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchUpdate</span>,
+            <span class="ident">ffi::GDK_TOUCH_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
+            <span class="ident">ffi::GDK_TOUCH_CANCEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchCancel</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_SWIPE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadSwipe</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_PINCH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadPinch</span>,
+            <span class="ident">ffi::GDK_PAD_BUTTON_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonPress</span>,
+            <span class="ident">ffi::GDK_PAD_BUTTON_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonRelease</span>,
+            <span class="ident">ffi::GDK_PAD_RING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadRing</span>,
+            <span class="ident">ffi::GDK_PAD_STRIP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadStrip</span>,
+            <span class="ident">ffi::GDK_PAD_GROUP_MODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadGroupMode</span>,
+            <span class="ident">ffi::GDK_EVENT_LAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EventLast</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3195,8 +3265,8 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkFullscreenMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CurrentMonitor</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::AllMonitors</span>,
+            <span class="ident">ffi::GDK_FULLSCREEN_ON_CURRENT_MONITOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CurrentMonitor</span>,
+            <span class="ident">ffi::GDK_FULLSCREEN_ON_ALL_MONITORS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::AllMonitors</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3235,7 +3305,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for `GdkGLContext`.</span>
+<span class="doccomment">/// Error enumeration for [`GLContext`][crate::GLContext].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGLError&quot;</span>)]</span>
@@ -3297,11 +3367,11 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkGLError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedProfile</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CompilationFailed</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinkFailed</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedProfile</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_COMPILATION_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CompilationFailed</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_LINK_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinkFailed</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3321,11 +3391,11 @@
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedProfile</span>),
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::CompilationFailed</span>),
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::LinkFailed</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedProfile</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_COMPILATION_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::CompilationFailed</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_LINK_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::LinkFailed</span>),
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
@@ -3364,7 +3434,7 @@
     }
 }
 
-<span class="doccomment">/// Defines the reference point of a surface and is used in [`crate::PopupLayout`].</span>
+<span class="doccomment">/// Defines the reference point of a surface and is used in [`PopupLayout`][crate::PopupLayout].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGravity&quot;</span>)]</span>
@@ -3452,16 +3522,16 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkGravity</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Center</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Static</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
+            <span class="ident">ffi::GDK_GRAVITY_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
+            <span class="ident">ffi::GDK_GRAVITY_CENTER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Center</span>,
+            <span class="ident">ffi::GDK_GRAVITY_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
+            <span class="ident">ffi::GDK_GRAVITY_STATIC</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Static</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3576,13 +3646,13 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkInputSource</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Keyboard</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchscreen</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchpad</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trackpoint</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TabletPad</span>,
+            <span class="ident">ffi::GDK_SOURCE_MOUSE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
+            <span class="ident">ffi::GDK_SOURCE_PEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
+            <span class="ident">ffi::GDK_SOURCE_KEYBOARD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Keyboard</span>,
+            <span class="ident">ffi::GDK_SOURCE_TOUCHSCREEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchscreen</span>,
+            <span class="ident">ffi::GDK_SOURCE_TOUCHPAD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchpad</span>,
+            <span class="ident">ffi::GDK_SOURCE_TRACKPOINT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trackpoint</span>,
+            <span class="ident">ffi::GDK_SOURCE_TABLET_PAD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TabletPad</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3623,7 +3693,7 @@
 
 <span class="doccomment">/// Describes how well an event matches a given keyval and modifiers.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// `GdkKeyMatch` values are returned by [method`Gdk.KeyEvent`.matches].</span>
+<span class="doccomment">/// [`KeyMatch`][crate::KeyMatch] values are returned by [``KeyEvent::matches()``][crate::`KeyEvent::matches()`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkKeyMatch&quot;</span>)]</span>
@@ -3676,9 +3746,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkKeyMatch</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Partial</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exact</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_NONE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_PARTIAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Partial</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_EXACT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exact</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3717,7 +3787,7 @@
     }
 }
 
-<span class="doccomment">/// `GdkMemoryFormat` describes a format that bytes can have in memory.</span>
+<span class="doccomment">/// [`MemoryFormat`][crate::MemoryFormat] describes a format that bytes can have in memory.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// It describes formats by listing the contents of the memory passed to it.</span>
 <span class="doccomment">/// So GDK_MEMORY_A8R8G8B8 will be 1 byte (8 bits) of alpha, followed by a</span>
@@ -3818,16 +3888,16 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkMemoryFormat</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8Premultiplied</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8Premultiplied</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8Premultiplied</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8b8g8r8</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NFormats</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8A8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8R8G8B8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8A8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8B8G8R8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8b8g8r8</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8</span>,
+            <span class="ident">ffi::GDK_MEMORY_N_FORMATS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NFormats</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3943,12 +4013,12 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkNotifyType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ancestor</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Virtual</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Inferior</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nonlinear</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NonlinearVirtual</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_NOTIFY_ANCESTOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ancestor</span>,
+            <span class="ident">ffi::GDK_NOTIFY_VIRTUAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Virtual</span>,
+            <span class="ident">ffi::GDK_NOTIFY_INFERIOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Inferior</span>,
+            <span class="ident">ffi::GDK_NOTIFY_NONLINEAR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nonlinear</span>,
+            <span class="ident">ffi::GDK_NOTIFY_NONLINEAR_VIRTUAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NonlinearVirtual</span>,
+            <span class="ident">ffi::GDK_NOTIFY_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4005,7 +4075,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_RIGHT&quot;</span>)]</span>
     <span class="ident">Right</span>,
     <span class="doccomment">/// the scrolling is determined by the delta values</span>
-    <span class="doccomment">///  in scroll events. See [`crate::ScrollEvent::get_deltas()`]</span>
+    <span class="doccomment">///  in scroll events. See [`ScrollEvent::deltas()`][crate::ScrollEvent::deltas()]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_SMOOTH&quot;</span>)]</span>
     <span class="ident">Smooth</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -4050,11 +4120,11 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkScrollDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Up</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Down</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Left</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Right</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Smooth</span>,
+            <span class="ident">ffi::GDK_SCROLL_UP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Up</span>,
+            <span class="ident">ffi::GDK_SCROLL_DOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Down</span>,
+            <span class="ident">ffi::GDK_SCROLL_LEFT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Left</span>,
+            <span class="ident">ffi::GDK_SCROLL_RIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Right</span>,
+            <span class="ident">ffi::GDK_SCROLL_SMOOTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Smooth</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4161,12 +4231,12 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkSubpixelLayout</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalRgb</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalBgr</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalRgb</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalBgr</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_NONE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalRgb</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalBgr</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalRgb</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalBgr</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4282,14 +4352,14 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkSurfaceEdge</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4331,11 +4401,11 @@
 <span class="doccomment">/// Specifies the current state of a touchpad gesture.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// All gestures are guaranteed to begin with an event with phase</span>
-<span class="doccomment">/// [`Self::Begin`], followed by 0 or several events</span>
-<span class="doccomment">/// with phase [`Self::Update`].</span>
+<span class="doccomment">/// [`Begin`][Self::Begin], followed by 0 or several events</span>
+<span class="doccomment">/// with phase [`Update`][Self::Update].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// A finished gesture may have 2 possible outcomes, an event with phase</span>
-<span class="doccomment">/// [`Self::End`] will be emitted when the gesture is</span>
+<span class="doccomment">/// [`End`][Self::End] will be emitted when the gesture is</span>
 <span class="doccomment">/// considered successful, this should be used as the hint to perform any</span>
 <span class="doccomment">/// permanent changes.</span>
 <span class="doccomment">///</span>
@@ -4343,7 +4413,7 @@
 <span class="doccomment">/// or the compositor, or due to the gesture recognition layers hinting the</span>
 <span class="doccomment">/// gesture did not finish resolutely (eg. a 3rd finger being added during</span>
 <span class="doccomment">/// a pinch gesture). In these cases, the last event will report the phase</span>
-<span class="doccomment">/// [`Self::Cancel`], this should be used as a hint</span>
+<span class="doccomment">/// [`Cancel`][Self::Cancel], this should be used as a hint</span>
 <span class="doccomment">/// to undo any visible/permanent changes that were done throughout the</span>
 <span class="doccomment">/// progress of the gesture.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -4404,10 +4474,10 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkTouchpadGesturePhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Begin</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Update</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::End</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cancel</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Begin</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Update</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::End</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_CANCEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cancel</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4446,7 +4516,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for [`crate::VulkanContext`].</span>
+<span class="doccomment">/// Error enumeration for [`VulkanContext`][crate::VulkanContext].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkVulkanError&quot;</span>)]</span>
@@ -4494,8 +4564,8 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkVulkanError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unsupported</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
+            <span class="ident">ffi::GDK_VULKAN_ERROR_UNSUPPORTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unsupported</span>,
+            <span class="ident">ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4515,8 +4585,8 @@
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Unsupported</span>),
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
+            <span class="ident">ffi::GDK_VULKAN_ERROR_UNSUPPORTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Unsupported</span>),
+            <span class="ident">ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
@@ -4556,4 +4626,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

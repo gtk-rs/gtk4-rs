@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text_tag_table.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_tag_table.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;text_tag_table.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_tag_table.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -263,13 +333,6 @@
 <span id="260">260</span>
 <span id="261">261</span>
 <span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -287,16 +350,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The collection of tags in a `GtkTextBuffer`</span>
+    <span class="doccomment">/// The collection of tags in a [`TextBuffer`][crate::TextBuffer]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
     <span class="doccomment">/// [text widget conceptual overview](section-text-widget.html),</span>
     <span class="doccomment">/// which gives an overview of all the objects and data types</span>
     <span class="doccomment">/// related to the text widget and how they work together.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `GtkTextTagTables` as `Buildable`</span>
+    <span class="doccomment">/// # GtkTextTagTables as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkTextTagTable` implementation of the `GtkBuildable` interface</span>
+    <span class="doccomment">/// The [`TextTagTable`][crate::TextTagTable] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports adding tags by specifying “tag” as the “type” attribute</span>
     <span class="doccomment">/// of a `&lt;child&gt;` element.</span>
     <span class="doccomment">///</span>
@@ -311,7 +374,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkTextTagTable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextTagTable</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextTagTable</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -320,13 +384,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TextTagTable</span> {
-    <span class="doccomment">/// Creates a new `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Creates a new [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The table contains no tags by default.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkTextTagTable`</span>
+    <span class="doccomment">/// a new [`TextTagTable`][crate::TextTagTable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextTagTable</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -340,7 +404,7 @@
     <span class="doccomment">/// `tag` must not be in a tag table already, and may not have</span>
     <span class="doccomment">/// the same name as an already-added tag.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -361,8 +425,6 @@
     <span class="doccomment">/// over it (you can’t add/remove tags).</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// a function to call on each tag</span>
-    <span class="doccomment">/// ## `data`</span>
-    <span class="doccomment">/// user data</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_foreach&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">TextTag</span>)<span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">func</span>: <span class="ident">P</span>) {
         <span class="kw">let</span> <span class="ident">func_data</span>: <span class="ident">P</span> <span class="op">=</span> <span class="ident">func</span>;
@@ -416,12 +478,12 @@
 
     <span class="doccomment">/// Remove a tag from the table.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `GtkTextBuffer` has `self` as its tag table, the tag is</span>
+    <span class="doccomment">/// If a [`TextBuffer`][crate::TextBuffer] has `self` as its tag table, the tag is</span>
     <span class="doccomment">/// removed from the buffer. The table’s reference to the tag is</span>
     <span class="doccomment">/// removed, so the tag will end up destroyed if you don’t have</span>
     <span class="doccomment">/// a reference to it.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_remove&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextTag</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -429,14 +491,11 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a new tag is added in the `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Emitted every time a new tag is added in the [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the added tag.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tag-added&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_added</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TextTagTable</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_added</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tag_added_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TextTagTable</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextTagTable</span>,
             <span class="ident">tag</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextTag</span>,
@@ -458,13 +517,13 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a tag in the `GtkTextTagTable` changes.</span>
+    <span class="doccomment">/// Emitted every time a tag in the [`TextTagTable`][crate::TextTagTable] changes.</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the changed tag.</span>
     <span class="doccomment">/// ## `size_changed`</span>
-    <span class="doccomment">/// whether the change affects the `GtkTextView` layout.</span>
+    <span class="doccomment">/// whether the change affects the [`TextView`][crate::TextView] layout.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tag-changed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TextTagTable</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -496,17 +555,14 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a tag is removed from the `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Emitted every time a tag is removed from the [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `tag` is still valid by the time the signal is emitted, but</span>
     <span class="doccomment">/// it is not associated with a tag table any more.</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the removed tag.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tag-removed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_removed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TextTagTable</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_removed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tag_removed_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TextTagTable</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextTagTable</span>,
             <span class="ident">tag</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextTag</span>,
@@ -542,4 +598,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

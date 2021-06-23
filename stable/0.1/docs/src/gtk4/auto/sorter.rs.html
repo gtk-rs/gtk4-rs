@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/sorter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sorter.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;sorter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sorter.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -189,6 +259,7 @@
 <span id="186">186</span>
 <span id="187">187</span>
 <span id="188">188</span>
+<span id="189">189</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -207,30 +278,31 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSorter` is an object to describe sorting criteria.</span>
+    <span class="doccomment">/// [`Sorter`][crate::Sorter] is an object to describe sorting criteria.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Its primary user is [class`Gtk.SortListModel`]</span>
+    <span class="doccomment">/// Its primary user is [`SortListModel`][crate::SortListModel]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model will use a sorter to determine the order in which</span>
-    <span class="doccomment">/// its items should appear by calling [method`Gtk.Sorter`.compare]</span>
+    <span class="doccomment">/// its items should appear by calling `Gtk::`Sorter::compare()``</span>
     <span class="doccomment">/// for pairs of items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sorters may change their sorting behavior through their lifetime.</span>
-    <span class="doccomment">/// In that case, they will emit the [signal`Gtk.Sorter`::changed] signal</span>
+    <span class="doccomment">/// In that case, they will emit the `signal::Sorter::changed` signal</span>
     <span class="doccomment">/// to notify that the sort order is no longer valid and should be updated</span>
-    <span class="doccomment">/// by calling [`crate::prelude::SorterExt::compare()`] again.</span>
+    <span class="doccomment">/// by calling `gtk_sorter_compare()` again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various pre-made sorter implementations for common sorting</span>
-    <span class="doccomment">/// operations. [class`Gtk.ColumnView`] has built-in support for sorting lists</span>
-    <span class="doccomment">/// via the [property`Gtk.ColumnViewColumn`:sorter] property, where the user can</span>
+    <span class="doccomment">/// operations. [`ColumnView`][crate::ColumnView] has built-in support for sorting lists</span>
+    <span class="doccomment">/// via the `property::ColumnViewColumn::sorter` property, where the user can</span>
     <span class="doccomment">/// change the sorting by clicking on list headers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Of course, in particular for large lists, it is also possible to subclass</span>
-    <span class="doccomment">/// `GtkSorter` and provide one&#39;s own sorter.</span>
+    <span class="doccomment">/// [`Sorter`][crate::Sorter] and provide one&#39;s own sorter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::SorterExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`SorterExt`][trait@crate::prelude::SorterExt], [`trait@glib::ObjectExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sorter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSorter</span>, <span class="ident">ffi::GtkSorterClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -240,23 +312,23 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_SORTER</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Sorter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `Sorter` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@Sorter`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CustomSorter`], [`struct@crate::MultiSorter`], [`struct@crate::NumericSorter`], [`struct@crate::Sorter`], [`struct@crate::StringSorter`], [`struct@crate::TreeListRowSorter`]</span>
+<span class="doccomment">/// [`CustomSorter`][struct@crate::CustomSorter], [`MultiSorter`][struct@crate::MultiSorter], [`NumericSorter`][struct@crate::NumericSorter], [`Sorter`][struct@crate::Sorter], [`StringSorter`][struct@crate::StringSorter], [`TreeListRowSorter`][struct@crate::TreeListRowSorter]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SorterExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits the [signal`Gtk.Sorter`::changed] signal to notify all users</span>
+    <span class="doccomment">/// Emits the `signal::Sorter::changed` signal to notify all users</span>
     <span class="doccomment">/// of the sorter that it has changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order via</span>
-    <span class="doccomment">/// [`Self::compare()`].</span>
+    <span class="doccomment">/// `gtk_sorter_compare()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
-    <span class="doccomment">/// [enum`Gtk.SorterChange`] documentation for details.</span>
+    <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is intended for implementors of `GtkSorter`</span>
+    <span class="doccomment">/// This function is intended for implementors of [`Sorter`][crate::Sorter]</span>
     <span class="doccomment">/// subclasses and should not be called from other functions.</span>
     <span class="doccomment">/// ## `change`</span>
     <span class="doccomment">/// How the sorter changed</span>
@@ -274,7 +346,7 @@
     <span class="doccomment">///  then a ≤ c</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The sorter may signal it conforms to additional constraints</span>
-    <span class="doccomment">/// via the return value of [method`Gtk.Sorter`.get_order].</span>
+    <span class="doccomment">/// via the return value of [``order()``][`Self::order()`].</span>
     <span class="doccomment">/// ## `item1`</span>
     <span class="doccomment">/// first item to compare</span>
     <span class="doccomment">/// ## `item2`</span>
@@ -282,16 +354,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::Ordering::Equal`] if `item1` == `item2`,</span>
-    <span class="doccomment">///  [`crate::Ordering::Smaller`] if `item1` &lt; `item2`,</span>
-    <span class="doccomment">///  [`crate::Ordering::Larger`] if `item1` &gt; `item2`</span>
+    <span class="doccomment">/// [`Ordering::Equal`][crate::Ordering::Equal] if `item1` == `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Smaller`][crate::Ordering::Smaller] if `item1` &lt; `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Larger`][crate::Ordering::Larger] if `item1` &gt; `item2`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sorter_compare&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">item2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>)
         <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span>;
 
     <span class="doccomment">/// Gets the order that `self` conforms to.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [enum`Gtk.SorterOrder`] for details</span>
+    <span class="doccomment">/// See [`SorterOrder`][crate::SorterOrder] for details</span>
     <span class="doccomment">/// of the possible return values.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended to allow optimizations.</span>
@@ -306,13 +378,13 @@
     <span class="doccomment">/// Emitted whenever the sorter changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order</span>
-    <span class="doccomment">/// again via [`Self::compare()`].</span>
+    <span class="doccomment">/// again via `gtk_sorter_compare()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [class`Gtk.SortListModel`] handles this signal automatically.</span>
+    <span class="doccomment">/// [`SortListModel`][crate::SortListModel] handles this signal automatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
-    <span class="doccomment">/// [enum`Gtk.SorterChange`] documentation for details.</span>
+    <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">/// ## `change`</span>
     <span class="doccomment">/// how the sorter changed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
@@ -344,18 +416,18 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_sorter_get_order</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">SorterChange</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">SorterChange</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">changed_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">SorterChange</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkSorter</span>,
             <span class="ident">change</span>: <span class="ident">ffi::GtkSorterChange</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">Sorter::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">Sorter::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="ident">from_glib</span>(<span class="ident">change</span>),
             )
         }
@@ -380,4 +452,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

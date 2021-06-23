@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/file_filter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>file_filter.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;file_filter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>file_filter.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -241,33 +311,6 @@
 <span id="238">238</span>
 <span id="239">239</span>
 <span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
-<span id="254">254</span>
-<span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -275,46 +318,43 @@
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Buildable</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Filter</span>;
-<span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::ObjectType</span> <span class="kw">as</span> <span class="ident">ObjectType_</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::connect_raw</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::SignalHandlerId</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::StaticType</span>;
-<span class="kw">use</span> <span class="ident">glib::ToValue</span>;
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkFileFilter` filters files by name or mime type.</span>
+    <span class="doccomment">/// [`FileFilter`][crate::FileFilter] filters files by name or mime type.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFileFilter` can be used to restrict the files being shown in a</span>
-    <span class="doccomment">/// `GtkFileChooser`. Files can be filtered based on their name (with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern]) or on their mime type (with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type]).</span>
+    <span class="doccomment">/// [`FileFilter`][crate::FileFilter] can be used to restrict the files being shown in a</span>
+    <span class="doccomment">/// [`FileChooser`][crate::FileChooser]. Files can be filtered based on their name (with</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`]) or on their mime type (with</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Filtering by mime types handles aliasing and subclassing of mime</span>
     <span class="doccomment">/// types; e.g. a filter for text/plain also matches a file with mime</span>
     <span class="doccomment">/// type application/rtf, since application/rtf is a subclass of</span>
-    <span class="doccomment">/// text/plain. Note that `GtkFileFilter` allows wildcards for the</span>
+    <span class="doccomment">/// text/plain. Note that [`FileFilter`][crate::FileFilter] allows wildcards for the</span>
     <span class="doccomment">/// subtype of a mime type, so you can e.g. filter for image/\*.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Normally, file filters are used by adding them to a `GtkFileChooser`</span>
-    <span class="doccomment">/// (see [method`Gtk.FileChooser`.add_filter]), but it is also possible to</span>
-    <span class="doccomment">/// manually use a file filter on any [class`Gtk.FilterListModel`] containing</span>
+    <span class="doccomment">/// Normally, file filters are used by adding them to a [`FileChooser`][crate::FileChooser]</span>
+    <span class="doccomment">/// (see [``FileChooserExt::add_filter()``][crate::prelude::`FileChooserExt::add_filter()`]), but it is also possible to</span>
+    <span class="doccomment">/// manually use a file filter on any [`FilterListModel`][crate::FilterListModel] containing</span>
     <span class="doccomment">/// `GFileInfo` objects.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `FileFilter` as `Buildable`</span>
+    <span class="doccomment">/// # GtkFileFilter as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkFileFilter` implementation of the `GtkBuildable` interface</span>
+    <span class="doccomment">/// The [`FileFilter`][crate::FileFilter] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports adding rules using the `&lt;mime-types&gt;` and `&lt;patterns&gt;`</span>
     <span class="doccomment">/// elements and listing the rules within. Specifying a `&lt;mime-type&gt;`</span>
     <span class="doccomment">/// or `&lt;pattern&gt;` has the same effect as as calling</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type] or</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern].</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`] or</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a UI definition fragment specifying `GtkFileFilter`</span>
+    <span class="doccomment">/// An example of a UI definition fragment specifying [`FileFilter`][crate::FileFilter]</span>
     <span class="doccomment">/// rules:</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkFileFilter&quot;&gt;</span>
@@ -332,7 +372,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::FilterExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`FilterExt`][trait@crate::prelude::FilterExt], [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkFileFilter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileFilter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFileFilter</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Filter</span>, @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -341,13 +382,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FileFilter</span> {
-    <span class="doccomment">/// Creates a new `GtkFileFilter` with no rules added to it.</span>
+    <span class="doccomment">/// Creates a new [`FileFilter`][crate::FileFilter] with no rules added to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Such a filter doesn’t accept any files, so is not</span>
     <span class="doccomment">/// particularly useful until you add rules with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type],</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern], or</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pixbuf_formats].</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`],</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`], or</span>
+    <span class="doccomment">/// [``add_pixbuf_formats()``][`Self::add_pixbuf_formats()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To create a filter that accepts any file, use:</span>
     <span class="doccomment">/// ```c</span>
@@ -357,7 +398,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFileFilter`</span>
+    <span class="doccomment">/// a new [`FileFilter`][crate::FileFilter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FileFilter</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -367,13 +408,13 @@
     <span class="doccomment">/// Deserialize a file filter from a `GVariant`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variant must be in the format produced by</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.to_gvariant].</span>
+    <span class="doccomment">/// [``to_gvariant()``][`Self::to_gvariant()`].</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// an `a{sv}` `GVariant`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFileFilter` object</span>
+    <span class="doccomment">/// a new [`FileFilter`][crate::FileFilter] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_new_from_gvariant&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_gvariant</span>(<span class="ident">variant</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Variant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FileFilter</span> {
@@ -406,9 +447,9 @@
     }
 
     <span class="doccomment">/// Adds a rule allowing image files in the formats supported</span>
-    <span class="doccomment">/// by `gdk_pixbuf::Pixbuf`.</span>
+    <span class="doccomment">/// by GdkPixbuf.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is equivalent to calling [method`Gtk.FileFilter`.add_mime_type]</span>
+    <span class="doccomment">/// This is equivalent to calling [``add_mime_type()``][`Self::add_mime_type()`]</span>
     <span class="doccomment">/// for all the supported mime types.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_add_pixbuf_formats&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_pixbuf_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -422,7 +463,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will not typically be used by applications;</span>
     <span class="doccomment">/// it is intended principally for use in the implementation</span>
-    <span class="doccomment">/// of `GtkFileChooser`.</span>
+    <span class="doccomment">/// of [`FileChooser`][crate::FileChooser].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -439,7 +480,7 @@
 
     <span class="doccomment">/// Gets the human-readable name for the filter.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.FileFilter`.set_name].</span>
+    <span class="doccomment">/// See [``set_name()``][`Self::set_name()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -477,7 +518,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;name&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_name_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">FileFilter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_name_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_name_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">FileFilter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkFileFilter</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -506,31 +547,6 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileFilterBuilder</span> {
-    <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">FileFilterBuilder</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FileFilter</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">name</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">name</span> {
-            <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;name&quot;</span>, <span class="ident">name</span>));
-        }
-        <span class="ident">glib::Object::new</span>::<span class="op">&lt;</span><span class="ident">FileFilter</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of FileFilter&quot;</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
-        <span class="self">self</span>
-    }
-}
-
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">FileFilter</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;FileFilter&quot;</span>)
@@ -538,4 +554,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

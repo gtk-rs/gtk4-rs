@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/actionable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>actionable.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;actionable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>actionable.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -227,6 +297,7 @@
 <span id="224">224</span>
 <span id="225">225</span>
 <span id="226">226</span>
+<span id="227">227</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -246,23 +317,24 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GtkActionable` interface provides a convenient way of asscociating</span>
+    <span class="doccomment">/// The [`Actionable`][crate::Actionable] interface provides a convenient way of asscociating</span>
     <span class="doccomment">/// widgets with actions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It primarily consists of two properties: [property`Gtk.Actionable`:action-name]</span>
-    <span class="doccomment">/// and [property`Gtk.Actionable`:action-target]. There are also some convenience</span>
+    <span class="doccomment">/// It primarily consists of two properties: `property::Actionable::action-name`</span>
+    <span class="doccomment">/// and `property::Actionable::action-target`. There are also some convenience</span>
     <span class="doccomment">/// APIs for setting these properties.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The action will be looked up in action groups that are found among</span>
     <span class="doccomment">/// the widgets ancestors. Most commonly, these will be the actions with</span>
     <span class="doccomment">/// the “win.” or “app.” prefix that are associated with the</span>
-    <span class="doccomment">/// `GtkApplicationWindow` or `GtkApplication`, but other action groups that</span>
-    <span class="doccomment">/// are added with [method`Gtk.Widget`.insert_action_group] will be consulted</span>
+    <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] or [`Application`][crate::Application], but other action groups that</span>
+    <span class="doccomment">/// are added with [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`] will be consulted</span>
     <span class="doccomment">/// as well.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ActionableExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::ActionableExtManual`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`ActionableExt`][trait@crate::prelude::ActionableExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`ActionableExtManual`][trait@crate::prelude::ActionableExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkActionable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Actionable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkActionable</span>, <span class="ident">ffi::GtkActionableInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -272,11 +344,11 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_ACTIONABLE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Actionable</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `Actionable` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@Actionable`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Actionable`], [`struct@crate::Button`], [`struct@crate::CheckButton`], [`struct@crate::LinkButton`], [`struct@crate::ListBoxRow`], [`struct@crate::LockButton`], [`struct@crate::Switch`], [`struct@crate::ToggleButton`]</span>
+<span class="doccomment">/// [`Actionable`][struct@crate::Actionable], [`Button`][struct@crate::Button], [`CheckButton`][struct@crate::CheckButton], [`LinkButton`][struct@crate::LinkButton], [`ListBoxRow`][struct@crate::ListBoxRow], [`LockButton`][struct@crate::LockButton], [`Switch`][struct@crate::Switch], [`ToggleButton`][struct@crate::ToggleButton]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the action name for `self`.</span>
     <span class="doccomment">///</span>
@@ -303,10 +375,10 @@
     <span class="doccomment">/// any previous action.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Usually this function is used when the widget is located (or will be</span>
-    <span class="doccomment">/// located) within the hierarchy of a `GtkApplicationWindow`.</span>
+    <span class="doccomment">/// located) within the hierarchy of a [`ApplicationWindow`][crate::ApplicationWindow].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Names are of the form “win.save” or “app.quit” for actions on the</span>
-    <span class="doccomment">/// containing `GtkApplicationWindow` or its associated `GtkApplication`,</span>
+    <span class="doccomment">/// containing [`ApplicationWindow`][crate::ApplicationWindow] or its associated [`Application`][crate::Application],</span>
     <span class="doccomment">/// respectively. This is the same form used for actions in the `GMenu`</span>
     <span class="doccomment">/// associated with the window.</span>
     <span class="doccomment">/// ## `action_name`</span>
@@ -319,7 +391,7 @@
     <span class="doccomment">/// If `target_value` is [`None`] then the target value is unset.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The target value has two purposes. First, it is used as the parameter</span>
-    <span class="doccomment">/// to activation of the action associated with the `GtkActionable` widget.</span>
+    <span class="doccomment">/// to activation of the action associated with the [`Actionable`][crate::Actionable] widget.</span>
     <span class="doccomment">/// Second, it is used to determine if the widget should be rendered as</span>
     <span class="doccomment">/// “active” — the widget is active if the state is equal to the given target.</span>
     <span class="doccomment">///</span>
@@ -333,7 +405,7 @@
     <span class="doccomment">/// be rendered as active (and the other buttons, with different targets,</span>
     <span class="doccomment">/// rendered inactive).</span>
     <span class="doccomment">/// ## `target_value`</span>
-    <span class="doccomment">/// a [`crate::glib::Variant`] to set as the target value, or [`None`]</span>
+    <span class="doccomment">/// a [`glib::Variant`][crate::glib::Variant] to set as the target value, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">target_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>);
 
@@ -341,7 +413,7 @@
     <span class="doccomment">/// actionable widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `detailed_action_name` is a string in the format accepted by</span>
-    <span class="doccomment">/// [`crate::gio::Action::parse_detailed_name()`].</span>
+    <span class="doccomment">/// [`gio::Action::parse_detailed_name()`][crate::gio::Action::parse_detailed_name()].</span>
     <span class="doccomment">/// ## `detailed_action_name`</span>
     <span class="doccomment">/// the detailed action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_detailed_action_name&quot;</span>)]</span>
@@ -398,17 +470,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;action-name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_action_name_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_action_name_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_action_name_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Actionable</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkActionable</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Actionable</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">Actionable::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">Actionable::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -423,17 +495,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;action-target&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_action_target_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_action_target_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_action_target_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Actionable</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkActionable</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Actionable</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">Actionable::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">Actionable::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -456,4 +528,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

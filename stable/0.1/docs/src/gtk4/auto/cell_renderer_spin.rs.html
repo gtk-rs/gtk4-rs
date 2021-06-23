@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_spin.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_renderer_spin.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;cell_renderer_spin.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_renderer_spin.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -807,6 +877,57 @@
 <span id="804">804</span>
 <span id="805">805</span>
 <span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -831,23 +952,24 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders a spin button in a cell</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::CellRendererSpin`] renders text in a cell like [`crate::CellRendererText`] from</span>
-    <span class="doccomment">/// which it is derived. But while [`crate::CellRendererText`] offers a simple entry to</span>
-    <span class="doccomment">/// edit the text, [`crate::CellRendererSpin`] offers a [`crate::SpinButton`] widget. Of course,</span>
+    <span class="doccomment">/// [`CellRendererSpin`][crate::CellRendererSpin] renders text in a cell like [`CellRendererText`][crate::CellRendererText] from</span>
+    <span class="doccomment">/// which it is derived. But while [`CellRendererText`][crate::CellRendererText] offers a simple entry to</span>
+    <span class="doccomment">/// edit the text, [`CellRendererSpin`][crate::CellRendererSpin] offers a [`SpinButton`][crate::SpinButton] widget. Of course,</span>
     <span class="doccomment">/// that means that the text has to be parseable as a floating point number.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The range of the spinbutton is taken from the adjustment property of the</span>
     <span class="doccomment">/// cell renderer, which can be set explicitly or mapped to a column in the</span>
-    <span class="doccomment">/// tree model, like all properties of cell renders. [`crate::CellRendererSpin`]</span>
-    <span class="doccomment">/// also has properties for the [`crate::CellRendererSpin:climb-rate`] and the number</span>
-    <span class="doccomment">/// of [`crate::CellRendererSpin:digits`] to display. Other [`crate::SpinButton`] properties</span>
-    <span class="doccomment">/// can be set in a handler for the [`crate::CellRenderer::editing-started`] signal.</span>
+    <span class="doccomment">/// tree model, like all properties of cell renders. [`CellRendererSpin`][crate::CellRendererSpin]</span>
+    <span class="doccomment">/// also has properties for the `property::CellRendererSpin::climb-rate` and the number</span>
+    <span class="doccomment">/// of `property::CellRendererSpin::digits` to display. Other [`SpinButton`][crate::SpinButton] properties</span>
+    <span class="doccomment">/// can be set in a handler for the `signal::CellRenderer::editing-started` signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::CellRendererSpin`] cell renderer was added in GTK 2.10.</span>
+    <span class="doccomment">/// The [`CellRendererSpin`][crate::CellRendererSpin] cell renderer was added in GTK 2.10.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::CellRendererTextExt`], [`trait@crate::prelude::CellRendererExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::CellRendererExtManual`]</span>
+    <span class="doccomment">/// [`CellRendererTextExt`][trait@crate::prelude::CellRendererTextExt], [`CellRendererExt`][trait@crate::prelude::CellRendererExt], [`trait@glib::ObjectExt`], [`CellRendererExtManual`][trait@crate::prelude::CellRendererExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCellRendererSpin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererSpin</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererSpin</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRendererText</span>, <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -856,17 +978,27 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererSpin</span> {
-    <span class="doccomment">/// Creates a new [`crate::CellRendererSpin`].</span>
+    <span class="doccomment">/// Creates a new [`CellRendererSpin`][crate::CellRendererSpin].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`crate::CellRendererSpin`]</span>
+    <span class="doccomment">/// a new [`CellRendererSpin`][crate::CellRendererSpin]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_spin_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererSpin</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">CellRenderer::from_glib_none</span>(<span class="ident">ffi::gtk_cell_renderer_spin_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`CellRendererSpin`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`CellRendererSpinBuilder`] which can be used to create [`CellRendererSpin`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererSpinBuilder</span> {
+        <span class="ident">CellRendererSpinBuilder::default</span>()
+    }
+
+    <span class="doccomment">/// The adjustment that holds the value of the spinbutton.</span>
+    <span class="doccomment">/// This must be non-[`None`] for the cell renderer to be editable.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::from_type</span>(<span class="op">&lt;</span><span class="ident">Adjustment</span> <span class="kw">as</span> <span class="ident">StaticType</span><span class="op">&gt;</span><span class="ident">::static_type</span>());
@@ -881,6 +1013,8 @@
         }
     }
 
+    <span class="doccomment">/// The adjustment that holds the value of the spinbutton.</span>
+    <span class="doccomment">/// This must be non-[`None`] for the cell renderer to be editable.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">glib::gobject_ffi::g_object_set_property</span>(
@@ -891,6 +1025,7 @@
         }
     }
 
+    <span class="doccomment">/// The acceleration rate when you hold down a button.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;climb-rate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">climb_rate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
@@ -906,6 +1041,7 @@
         }
     }
 
+    <span class="doccomment">/// The acceleration rate when you hold down a button.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;climb-rate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_climb_rate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">climb_rate</span>: <span class="ident">f64</span>) {
         <span class="kw">unsafe</span> {
@@ -917,6 +1053,7 @@
         }
     }
 
+    <span class="doccomment">/// The number of decimal places to display.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">digits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::from_type</span>(<span class="op">&lt;</span><span class="ident">u32</span> <span class="kw">as</span> <span class="ident">StaticType</span><span class="op">&gt;</span><span class="ident">::static_type</span>());
@@ -931,6 +1068,7 @@
         }
     }
 
+    <span class="doccomment">/// The number of decimal places to display.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_digits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">digits</span>: <span class="ident">u32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">glib::gobject_ffi::g_object_set_property</span>(
@@ -942,10 +1080,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;adjustment&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_adjustment_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_adjustment_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_adjustment_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererSpin</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -968,10 +1103,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;climb-rate&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_climb_rate_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_climb_rate_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_climb_rate_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererSpin</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -994,10 +1126,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;digits&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_digits_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_digits_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_digits_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererSpin</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererSpin</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1027,6 +1156,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`CellRendererSpin`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererSpinBuilder</span> {
     <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>,
     <span class="ident">climb_rate</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
@@ -1094,10 +1227,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererSpinBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`CellRendererSpinBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`CellRendererSpin`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererSpin</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">adjustment</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">adjustment</span> {
@@ -1293,16 +1430,20 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of CellRendererSpin&quot;</span>)
     }
 
+    <span class="doccomment">/// The adjustment that holds the value of the spinbutton.</span>
+    <span class="doccomment">/// This must be non-[`None`] for the cell renderer to be editable.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">adjustment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">adjustment</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The acceleration rate when you hold down a button.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">climb_rate</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">climb_rate</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">climb_rate</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">climb_rate</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The number of decimal places to display.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">digits</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">digits</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">digits</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">digits</span>);
         <span class="self">self</span>
@@ -1313,6 +1454,11 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies how to align the lines of text with respect to each other.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this property describes how to align the lines of text in</span>
+    <span class="doccomment">/// case there are several of them. The &quot;xalign&quot; property of [`CellRenderer`][crate::CellRenderer],</span>
+    <span class="doccomment">/// on the other hand, sets the horizontal alignment of the whole text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">alignment</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">alignment</span>: <span class="ident">pango::Alignment</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">alignment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">alignment</span>);
         <span class="self">self</span>
@@ -1328,6 +1474,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Background color as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">background_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">background_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">background_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1348,6 +1495,10 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies the preferred place to ellipsize the string, if the cell renderer</span>
+    <span class="doccomment">/// does not have enough room to display the entire string. Setting it to</span>
+    <span class="doccomment">/// [`pango::EllipsizeMode::None`][crate::pango::EllipsizeMode::None] turns off ellipsizing. See the wrap-width property</span>
+    <span class="doccomment">/// for another way of making the text fit into a given width.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ellipsize</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ellipsize</span>: <span class="ident">pango::EllipsizeMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">ellipsize</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ellipsize</span>);
         <span class="self">self</span>
@@ -1383,6 +1534,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Foreground color as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foreground_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">foreground_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">foreground_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">foreground_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1408,11 +1560,21 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The desired maximum width of the cell, in characters. If this property</span>
+    <span class="doccomment">/// is set to -1, the width will be calculated automatically.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// For cell renderers that ellipsize or wrap text; this property</span>
+    <span class="doccomment">/// controls the maximum reported width of the cell. The</span>
+    <span class="doccomment">/// cell should not receive any greater allocation unless it is</span>
+    <span class="doccomment">/// set to expand in its [`CellLayout`][crate::CellLayout] and all of the cell&#39;s siblings</span>
+    <span class="doccomment">/// have received their natural width.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_width_chars</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_width_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">max_width_chars</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">max_width_chars</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
+    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">placeholder_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">placeholder_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1523,16 +1685,25 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The desired width of the cell, in characters. If this property is set to</span>
+    <span class="doccomment">/// -1, the width will be calculated automatically, otherwise the cell will</span>
+    <span class="doccomment">/// request either 3 characters or the property value, whichever is greater.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_chars</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">width_chars</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width_chars</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies how to break the string into multiple lines, if the cell</span>
+    <span class="doccomment">/// renderer does not have enough room to display the entire string.</span>
+    <span class="doccomment">/// This property has no effect unless the wrap-width property is set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap_mode</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">wrap_mode</span>: <span class="ident">pango::WrapMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">wrap_mode</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrap_mode</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies the minimum width at which the text is wrapped. The wrap-mode property can</span>
+    <span class="doccomment">/// be used to influence at what character positions the line breaks can be placed.</span>
+    <span class="doccomment">/// Setting wrap-width to -1 turns wrapping off.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">wrap_width</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">wrap_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrap_width</span>);
         <span class="self">self</span>
@@ -1543,6 +1714,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Cell background as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_background_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cell_background_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cell_background_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_background_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1616,4 +1788,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

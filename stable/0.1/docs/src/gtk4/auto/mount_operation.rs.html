@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/mount_operation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mount_operation.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;mount_operation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mount_operation.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -352,6 +422,51 @@
 <span id="349">349</span>
 <span id="350">350</span>
 <span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -370,23 +485,24 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkMountOperation` is an implementation of `GMountOperation`.</span>
+    <span class="doccomment">/// [`MountOperation`][crate::MountOperation] is an implementation of `GMountOperation`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The functions and objects described here make working with GTK and</span>
     <span class="doccomment">/// GIO more convenient.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkMountOperation` is needed when mounting volumes:</span>
+    <span class="doccomment">/// [`MountOperation`][crate::MountOperation] is needed when mounting volumes:</span>
     <span class="doccomment">/// It is an implementation of `GMountOperation` that can be used with</span>
     <span class="doccomment">/// GIO functions for mounting volumes such as</span>
-    <span class="doccomment">/// [`crate::gio::File::mount_enclosing_volume()`], [`crate::gio::File::mount_mountable()`],</span>
-    <span class="doccomment">/// [`crate::gio::Volume::mount()`], [`crate::gio::Mount::unmount_with_operation()`] and others.</span>
+    <span class="doccomment">/// [`FileExtManual::mount_enclosing_volume()`][crate::gio::prelude::FileExtManual::mount_enclosing_volume()], [`FileExtManual::mount_mountable()`][crate::gio::prelude::FileExtManual::mount_mountable()],</span>
+    <span class="doccomment">/// `g_volume_mount()`, `g_mount_unmount_with_operation()` and others.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When necessary, `GtkMountOperation` shows dialogs to let the user</span>
+    <span class="doccomment">/// When necessary, [`MountOperation`][crate::MountOperation] shows dialogs to let the user</span>
     <span class="doccomment">/// enter passwords, ask questions or show processes blocking unmount.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::MountOperationExt`], [`trait@gio::prelude::MountOperationExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`MountOperationExt`][trait@crate::prelude::MountOperationExt], [`trait@gio::prelude::MountOperationExt`], [`trait@glib::ObjectExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkMountOperation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MountOperation</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMountOperation</span>, <span class="ident">ffi::GtkMountOperationClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">gio::MountOperation</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -395,13 +511,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">MountOperation</span> {
-    <span class="doccomment">/// Creates a new `GtkMountOperation`.</span>
+    <span class="doccomment">/// Creates a new [`MountOperation`][crate::MountOperation].</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// transient parent of the window, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMountOperation`</span>
+    <span class="doccomment">/// a new [`MountOperation`][crate::MountOperation]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mount_operation_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MountOperation</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -412,9 +528,21 @@
             .<span class="ident">unsafe_cast</span>()
         }
     }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`MountOperation`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`MountOperationBuilder`] which can be used to create [`MountOperation`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MountOperationBuilder</span> {
+        <span class="ident">MountOperationBuilder::default</span>()
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`MountOperation`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MountOperationBuilder</span> {
     <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
     <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>,
@@ -424,16 +552,20 @@
     <span class="ident">is_tcrypt_hidden_volume</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">is_tcrypt_system_volume</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">password</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="comment">//password-save: /*Unknown type*/,</span>
+    <span class="ident">password_save</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::PasswordSave</span><span class="op">&gt;</span>,
     <span class="ident">pim</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
     <span class="ident">username</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">MountOperationBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`MountOperationBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`MountOperation`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MountOperation</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">display</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">display</span> {
@@ -460,6 +592,9 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">password</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">password</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;password&quot;</span>, <span class="ident">password</span>));
         }
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">password_save</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">password_save</span> {
+            <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;password-save&quot;</span>, <span class="ident">password_save</span>));
+        }
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">pim</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">pim</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;pim&quot;</span>, <span class="ident">pim</span>));
         }
@@ -470,51 +605,76 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of MountOperation&quot;</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Display</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">display</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">display</span>.<span class="ident">clone</span>());
+    <span class="doccomment">/// The display where dialogs will be shown.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">display</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">display</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The parent window.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parent</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">parent</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">parent</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use an anonymous user when authenticating.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">anonymous</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">anonymous</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">anonymous</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">anonymous</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The index of the user&#39;s choice when a question is asked during the</span>
+    <span class="doccomment">/// mount operation. See the `signal::gio::MountOperation::ask-question` signal.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">choice</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">choice</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">choice</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">choice</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The domain to use for the mount operation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">domain</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">domain</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">domain</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">domain</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the device to be unlocked is a TCRYPT hidden volume.</span>
+    <span class="doccomment">/// See [the VeraCrypt documentation](https://www.veracrypt.fr/en/Hidden`20Volume`).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_tcrypt_hidden_volume</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">is_tcrypt_hidden_volume</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">is_tcrypt_hidden_volume</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">is_tcrypt_hidden_volume</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the device to be unlocked is a TCRYPT system volume.</span>
+    <span class="doccomment">/// In this context, a system volume is a volume with a bootloader</span>
+    <span class="doccomment">/// and operating system installed. This is only supported for Windows</span>
+    <span class="doccomment">/// operating systems. For further documentation, see</span>
+    <span class="doccomment">/// [the VeraCrypt documentation](https://www.veracrypt.fr/en/System`20Encryption`).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_tcrypt_system_volume</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">is_tcrypt_system_volume</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">is_tcrypt_system_volume</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">is_tcrypt_system_volume</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The password that is used for authentication when carrying out</span>
+    <span class="doccomment">/// the mount operation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">password</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">password</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">password</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">password</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines if and how the password information should be saved.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">password_save</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">password_save</span>: <span class="ident">gio::PasswordSave</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">password_save</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">password_save</span>);
+        <span class="self">self</span>
+    }
+
+    <span class="doccomment">/// The VeraCrypt PIM value, when unlocking a VeraCrypt volume. See</span>
+    <span class="doccomment">/// [the VeraCrypt documentation](https://www.veracrypt.fr/en/Personal`20Iterations``20Multiplier``20`(PIM).html).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pim</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">pim</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">pim</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">pim</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The user name that is used for authentication when carrying out</span>
+    <span class="doccomment">/// the mount operation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">username</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">username</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">username</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">username</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -523,13 +683,13 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_MOUNT_OPERATION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">MountOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `MountOperation` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@MountOperation`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::MountOperation`]</span>
+<span class="doccomment">/// [`MountOperation`][struct@crate::MountOperation]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MountOperationExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Gets the display on which windows of the `GtkMountOperation`</span>
+    <span class="doccomment">/// Gets the display on which windows of the [`MountOperation`][crate::MountOperation]</span>
     <span class="doccomment">/// will be shown.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -539,7 +699,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the transient parent used by the `GtkMountOperation`.</span>
+    <span class="doccomment">/// Gets the transient parent used by the [`MountOperation`][crate::MountOperation].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -548,7 +708,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_parent&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">parent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns whether the `GtkMountOperation` is currently displaying</span>
+    <span class="doccomment">/// Returns whether the [`MountOperation`][crate::MountOperation] is currently displaying</span>
     <span class="doccomment">/// a window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -557,14 +717,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mount_operation_is_showing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_showing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets the display to show windows of the `GtkMountOperation` on.</span>
+    <span class="doccomment">/// Sets the display to show windows of the [`MountOperation`][crate::MountOperation] on.</span>
     <span class="doccomment">/// ## `display`</span>
-    <span class="doccomment">/// a `GdkDisplay`</span>
+    <span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mount_operation_set_display&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Display</span>);
+    <span class="kw">fn</span> <span class="ident">set_display</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Sets the transient parent for windows shown by the</span>
-    <span class="doccomment">/// `GtkMountOperation`.</span>
+    <span class="doccomment">/// [`MountOperation`][crate::MountOperation].</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// transient parent of the window, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mount_operation_set_parent&quot;</span>)]</span>
@@ -605,11 +765,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Display</span>) {
+    <span class="kw">fn</span> <span class="ident">set_display</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_mount_operation_set_display</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">display</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
     }
@@ -623,17 +783,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_display_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_display_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMountOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -648,17 +808,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;is-showing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_is_showing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_is_showing_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_is_showing_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMountOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -673,17 +833,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;parent&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_parent_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_parent_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_parent_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMountOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MountOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">MountOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -706,4 +866,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

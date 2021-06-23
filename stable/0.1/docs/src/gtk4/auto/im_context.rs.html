@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/im_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>im_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;im_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>im_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -832,11 +902,6 @@
 <span id="829">829</span>
 <span id="830">830</span>
 <span id="831">831</span>
-<span id="832">832</span>
-<span id="833">833</span>
-<span id="834">834</span>
-<span id="835">835</span>
-<span id="836">836</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -859,19 +924,19 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkIMContext` defines the interface for GTK input methods.</span>
+    <span class="doccomment">/// [`IMContext`][crate::IMContext] defines the interface for GTK input methods.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkIMContext` is used by GTK text input widgets like `GtkText`</span>
+    <span class="doccomment">/// [`IMContext`][crate::IMContext] is used by GTK text input widgets like [`Text`][crate::Text]</span>
     <span class="doccomment">/// to map from key events to Unicode character strings.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, GTK uses a platform-dependent default input method.</span>
     <span class="doccomment">/// On Windows, the default implementation is IME-based and on Wayland,</span>
     <span class="doccomment">/// it is using the Wayland text protocol. The choice can be overridden</span>
-    <span class="doccomment">/// programmatically via the [property`Gtk.Settings`:gtk-im-module] setting.</span>
+    <span class="doccomment">/// programmatically via the `property::Settings::gtk-im-module` setting.</span>
     <span class="doccomment">/// Users may set the `GTK_IM_MODULE` environment variable to override the</span>
     <span class="doccomment">/// default.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Text widgets have a :im-module property (e.g. [property`Gtk.TextView`:im-module])</span>
+    <span class="doccomment">/// Text widgets have a :im-module property (e.g. `property::TextView::im-module`)</span>
     <span class="doccomment">/// that may also be used to set input methods for specific widget instances.</span>
     <span class="doccomment">/// For instance, a certain entry widget might be expected to contain</span>
     <span class="doccomment">/// certain characters which would be easier to input with a specific</span>
@@ -882,7 +947,7 @@
     <span class="doccomment">/// method may provide feedback about this process by displaying the intermediate</span>
     <span class="doccomment">/// composition states as preedit text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For instance, the built-in GTK input method `GtkIMContextSimple` implements</span>
+    <span class="doccomment">/// For instance, the built-in GTK input method [`IMContextSimple`][crate::IMContextSimple] implements</span>
     <span class="doccomment">/// the input of arbitrary Unicode code points by holding down the</span>
     <span class="doccomment">/// `&lt;kbd&gt;`Control`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;` keys and then typing `&lt;kbd&gt;`U`&lt;/kbd&gt;`</span>
     <span class="doccomment">/// followed by the hexadecimal digits of the code point. When releasing the</span>
@@ -901,7 +966,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::IMContextExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::IMContextExtManual`]</span>
+    <span class="doccomment">/// [`IMContextExt`][trait@crate::prelude::IMContextExt], [`trait@glib::ObjectExt`], [`IMContextExtManual`][trait@crate::prelude::IMContextExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkIMContext&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IMContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkIMContext</span>, <span class="ident">ffi::GtkIMContextClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -911,21 +977,21 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_IM_CONTEXT</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `IMContext` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@IMContext`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::IMContextSimple`], [`struct@crate::IMContext`], [`struct@crate::IMMulticontext`]</span>
+<span class="doccomment">/// [`IMContextSimple`][struct@crate::IMContextSimple], [`IMContext`][struct@crate::IMContext], [`IMMulticontext`][struct@crate::IMMulticontext]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Asks the widget that the input context is attached to delete</span>
     <span class="doccomment">/// characters around the cursor position by emitting the</span>
-    <span class="doccomment">/// `IMContext`::delete_surrounding signal.</span>
+    <span class="doccomment">/// GtkIMContext::delete_surrounding signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that `offset` and `n_chars` are in characters not in bytes</span>
-    <span class="doccomment">/// which differs from the usage other places in [`crate::IMContext`].</span>
+    <span class="doccomment">/// which differs from the usage other places in [`IMContext`][crate::IMContext].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In order to use this function, you should first call</span>
-    <span class="doccomment">/// [`Self::get_surrounding()`] to get the current context, and</span>
+    <span class="doccomment">/// [`surrounding()`][Self::surrounding()] to get the current context, and</span>
     <span class="doccomment">/// call this function immediately afterwards to make sure that you</span>
     <span class="doccomment">/// know what you are deleting. You should also account for the fact</span>
     <span class="doccomment">/// that even if the signal was handled, the input context might not</span>
@@ -947,7 +1013,7 @@
     <span class="kw">fn</span> <span class="ident">delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Allow an input method to forward key press and release events</span>
-    <span class="doccomment">/// to another input methodm without necessarily having a `GdkEvent`</span>
+    <span class="doccomment">/// to another input methodm without necessarily having a [`gdk::Event`][crate::gdk::Event]</span>
     <span class="doccomment">/// available.</span>
     <span class="doccomment">/// ## `press`</span>
     <span class="doccomment">/// whether to forward a key press or release event</span>
@@ -968,10 +1034,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the input method handled the key event.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_filter_key&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">filter_key</span>(
+    <span class="kw">fn</span> <span class="ident">filter_key</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">press</span>: <span class="ident">bool</span>,
-        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>,
+        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Device</span>,
         <span class="ident">time</span>: <span class="ident">u32</span>,
         <span class="ident">keycode</span>: <span class="ident">u32</span>,
@@ -999,13 +1065,19 @@
     <span class="doccomment">/// and a list of attributes to apply to the string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This string should be displayed inserted at the insertion point.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// location to store the retrieved</span>
     <span class="doccomment">///  string. The string retrieved must be freed with `g_free()`.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `attrs`</span>
     <span class="doccomment">/// location to store the retrieved</span>
     <span class="doccomment">///  attribute list. When you are done with this list, you</span>
-    <span class="doccomment">///  must unreference it with [`crate::pango::AttrList::unref()`].</span>
+    <span class="doccomment">///  must unreference it with `pango_attr_list_unref()`.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `cursor_pos`</span>
     <span class="doccomment">/// location to store position of cursor (in characters)</span>
     <span class="doccomment">///  within the preedit string.</span>
@@ -1020,10 +1092,10 @@
     <span class="doccomment">/// where only some sequences of characters are allowed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is implemented by emitting the</span>
-    <span class="doccomment">/// [signal`Gtk.IMContext`::retrieve-surrounding] signal on the input method;</span>
+    <span class="doccomment">/// `signal::IMContext::retrieve-surrounding` signal on the input method;</span>
     <span class="doccomment">/// in response to this signal, a widget should provide as much context as</span>
     <span class="doccomment">/// is available, up to an entire paragraph, by calling</span>
-    <span class="doccomment">/// [method`Gtk.IMContext`.set_surrounding].</span>
+    <span class="doccomment">/// [``set_surrounding()``][`Self::set_surrounding()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that there is no obligation for a widget to respond to the</span>
     <span class="doccomment">/// `::retrieve-surrounding` signal, so input methods must be prepared to</span>
@@ -1031,20 +1103,22 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.2</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.IMContext`.get_surrounding_with_selection] instead.</span>
-    <span class="doccomment">/// ## `text`</span>
-    <span class="doccomment">/// location to store a UTF-8 encoded</span>
-    <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free()`.</span>
-    <span class="doccomment">/// ## `cursor_index`</span>
-    <span class="doccomment">/// location to store byte index of the insertion</span>
-    <span class="doccomment">///  cursor within `text`.</span>
+    <span class="doccomment">/// Use [``surrounding_with_selection()``][`Self::surrounding_with_selection()`] instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `TRUE` if surrounding text was provided; in this case</span>
     <span class="doccomment">///  you must free the result stored in `text`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `text`</span>
+    <span class="doccomment">/// location to store a UTF-8 encoded</span>
+    <span class="doccomment">///  string of text holding context around the insertion point.</span>
+    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///  stored in this location with `g_free()`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `cursor_index`</span>
+    <span class="doccomment">/// location to store byte index of the insertion</span>
+    <span class="doccomment">///  cursor within `text`.</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_surrounding&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surrounding&quot;</span>)]</span>
@@ -1057,30 +1131,33 @@
     <span class="doccomment">/// as Thai where only some sequences of characters are allowed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is implemented by emitting the</span>
-    <span class="doccomment">/// [signal`Gtk.IMContext`::retrieve-surrounding] signal on the input method;</span>
+    <span class="doccomment">/// `signal::IMContext::retrieve-surrounding` signal on the input method;</span>
     <span class="doccomment">/// in response to this signal, a widget should provide as much context as</span>
     <span class="doccomment">/// is available, up to an entire paragraph, by calling</span>
-    <span class="doccomment">/// [method`Gtk.IMContext`.set_surrounding_with_selection].</span>
+    <span class="doccomment">/// [``set_surrounding_with_selection()``][`Self::set_surrounding_with_selection()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that there is no obligation for a widget to respond to the</span>
     <span class="doccomment">/// `::retrieve-surrounding` signal, so input methods must be prepared to</span>
     <span class="doccomment">/// function without context.</span>
-    <span class="doccomment">/// ## `text`</span>
-    <span class="doccomment">/// location to store a UTF-8 encoded</span>
-    <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free()`.</span>
-    <span class="doccomment">/// ## `cursor_index`</span>
-    <span class="doccomment">/// location to store byte index of the insertion</span>
-    <span class="doccomment">///  cursor within `text`.</span>
-    <span class="doccomment">/// ## `anchor_index`</span>
-    <span class="doccomment">/// location to store byte index of the selection</span>
-    <span class="doccomment">///  bound within `text`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `TRUE` if surrounding text was provided; in this case</span>
     <span class="doccomment">///  you must free the result stored in `text`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `text`</span>
+    <span class="doccomment">/// location to store a UTF-8 encoded</span>
+    <span class="doccomment">///  string of text holding context around the insertion point.</span>
+    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///  stored in this location with `g_free()`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `cursor_index`</span>
+    <span class="doccomment">/// location to store byte index of the insertion</span>
+    <span class="doccomment">///  cursor within `text`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `anchor_index`</span>
+    <span class="doccomment">/// location to store byte index of the selection</span>
+    <span class="doccomment">///  bound within `text`</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_surrounding_with_selection&quot;</span>)]</span>
@@ -1096,7 +1173,7 @@
 
     <span class="doccomment">/// Set the client widget for the input context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the `GtkWidget` holding the input focus. This widget is</span>
+    <span class="doccomment">/// This is the [`Widget`][crate::Widget] holding the input focus. This widget is</span>
     <span class="doccomment">/// used in order to correctly position status windows, and may</span>
     <span class="doccomment">/// also be used for purposes internal to the input method.</span>
     <span class="doccomment">/// ## `widget`</span>
@@ -1118,12 +1195,12 @@
     <span class="doccomment">/// string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is expected to be called in response to the</span>
-    <span class="doccomment">/// [signal`Gtk.IMContext`::retrieve-surrounding] signal, and will</span>
+    <span class="doccomment">/// `signal::IMContext::retrieve-surrounding` signal, and will</span>
     <span class="doccomment">/// likely have no effect if called at other times.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.2</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.IMContext`.set_surrounding_with_selection] instead</span>
+    <span class="doccomment">/// Use [``set_surrounding_with_selection()``][`Self::set_surrounding_with_selection()`] instead</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text surrounding the insertion point, as UTF-8.</span>
     <span class="doccomment">///  the preedit string should not be included within</span>
@@ -1138,7 +1215,7 @@
 
     <span class="doccomment">/// Sets surrounding context around the insertion point and preedit</span>
     <span class="doccomment">/// string. This function is expected to be called in response to the</span>
-    <span class="doccomment">/// `IMContext`::retrieve_surrounding signal, and will likely have no</span>
+    <span class="doccomment">/// GtkIMContext::retrieve_surrounding signal, and will likely have no</span>
     <span class="doccomment">/// effect if called at other times.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text surrounding the insertion point, as UTF-8.</span>
@@ -1207,7 +1284,7 @@
     <span class="doccomment">/// The ::preedit-changed signal is emitted whenever the preedit sequence</span>
     <span class="doccomment">/// currently being entered has changed. It is also emitted at the end of</span>
     <span class="doccomment">/// a preedit sequence, in which case</span>
-    <span class="doccomment">/// [`Self::get_preedit_string()`] returns the empty string.</span>
+    <span class="doccomment">/// [`preedit_string()`][Self::preedit_string()] returns the empty string.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preedit-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -1224,7 +1301,7 @@
     <span class="doccomment">/// The ::retrieve-surrounding signal is emitted when the input method</span>
     <span class="doccomment">/// requires the context surrounding the cursor. The callback should set</span>
     <span class="doccomment">/// the input method surrounding context by calling the</span>
-    <span class="doccomment">/// [`Self::set_surrounding()`] method.</span>
+    <span class="doccomment">/// [`set_surrounding()`][Self::set_surrounding()] method.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1251,10 +1328,10 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">filter_key</span>(
+    <span class="kw">fn</span> <span class="ident">filter_key</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">press</span>: <span class="ident">bool</span>,
-        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>,
+        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Device</span>,
         <span class="ident">time</span>: <span class="ident">u32</span>,
         <span class="ident">keycode</span>: <span class="ident">u32</span>,
@@ -1265,7 +1342,7 @@
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_im_context_filter_key</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">press</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">surface</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">surface</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">device</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">time</span>,
                 <span class="ident">keycode</span>,
@@ -1452,18 +1529,15 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;commit&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_commit</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">commit_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">commit_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">str</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_char</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">glib::GString::from_glib_borrow</span>(<span class="ident">str</span>),
             )
         }
@@ -1480,26 +1554,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;delete-surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_delete_surrounding</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">delete_surrounding_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">offset</span>: <span class="ident">libc::c_int</span>,
             <span class="ident">n_chars</span>: <span class="ident">libc::c_int</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span>
-        <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="ident">offset</span>,
                 <span class="ident">n_chars</span>,
             )
@@ -1518,16 +1588,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preedit-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1542,16 +1609,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preedit-end&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_end_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_end_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1566,16 +1630,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preedit-start&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_start</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_start_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preedit_start_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1590,20 +1651,19 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;retrieve-surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_retrieve_surrounding</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">retrieve_surrounding_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">retrieve_surrounding_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span>
-        <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1618,17 +1678,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;input-hints&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_input_hints_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_input_hints_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_input_hints_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1643,17 +1703,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;input-purpose&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_input_purpose_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_input_purpose_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_input_purpose_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">IMContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1676,4 +1736,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

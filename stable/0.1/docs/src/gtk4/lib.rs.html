@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -346,24 +416,56 @@
 <span id="343">343</span>
 <span id="344">344</span>
 <span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
 <span class="doccomment">//! # Rust GTK 4 bindings</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This library contains safe Rust bindings for [GTK 4](http://www.gtk.org), a</span>
-<span class="doccomment">//! multi-platform GUI toolkit. It is a part of [Gtk-rs](http://gtk-rs.org/).</span>
+<span class="doccomment">//! multi-platform GUI toolkit. It is a part of [gtk-rs](http://gtk-rs.org/).</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Most of this documentation is generated from the C API.</span>
 <span class="doccomment">//! Until all parts of the documentation have been reviewed there will be incongruities</span>
 <span class="doccomment">//! with the actual Rust API.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! For a gentle introduction to Gtk-rs we recommend the online book</span>
+<span class="doccomment">//! For a gentle introduction to gtk-rs we recommend the online book</span>
 <span class="doccomment">//! [*GUI development with Rust and GTK 4*](../../book/).</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! See also</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! - [Gtk-rs documentation overview](https://gtk-rs.org/docs-src/)</span>
+<span class="doccomment">//! - [gtk-rs project overview](https://gtk-rs.org)</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! - [General `GLib` family types and object system overview](mod@glib)</span>
 <span class="doccomment">//!</span>
@@ -380,16 +482,16 @@
 <span class="doccomment">//! ```no_run</span>
 <span class="doccomment">//! # use gtk4 as gtk;</span>
 <span class="doccomment">//! use gtk::prelude::*;</span>
-<span class="doccomment">//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder};</span>
+<span class="doccomment">//! use gtk::{Application, ApplicationWindow};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! fn main() {</span>
-<span class="doccomment">//!     let app = ApplicationBuilder::new()</span>
+<span class="doccomment">//!     let app = Application::builder()</span>
 <span class="doccomment">//!         .application_id(&quot;org.example.HelloWorld&quot;)</span>
 <span class="doccomment">//!         .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     app.connect_activate(|app| {</span>
 <span class="doccomment">//!         // We create the main window.</span>
-<span class="doccomment">//!         let win = ApplicationWindowBuilder::new()</span>
+<span class="doccomment">//!         let window = ApplicationWindow::builder()</span>
 <span class="doccomment">//!             .application(app)</span>
 <span class="doccomment">//!             .default_width(320)</span>
 <span class="doccomment">//!             .default_height(200)</span>
@@ -397,7 +499,7 @@
 <span class="doccomment">//!             .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!         // Show the window.</span>
-<span class="doccomment">//!         win.show();</span>
+<span class="doccomment">//!         window.show();</span>
 <span class="doccomment">//!     });</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     app.run();</span>
@@ -412,15 +514,15 @@
 <span class="doccomment">//! ```no_run</span>
 <span class="doccomment">//! # use gtk4 as gtk;</span>
 <span class="doccomment">//! use gtk::prelude::*;</span>
-<span class="doccomment">//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder, Button};</span>
+<span class="doccomment">//! use gtk::{Application, ApplicationWindow, Button};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! fn main() {</span>
-<span class="doccomment">//!     let application = ApplicationBuilder::new()</span>
+<span class="doccomment">//!     let application = Application::builder()</span>
 <span class="doccomment">//!         .application_id(&quot;com.example.FirstGtkApp&quot;)</span>
 <span class="doccomment">//!         .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     application.connect_activate(|app| {</span>
-<span class="doccomment">//!         let window = ApplicationWindowBuilder::new()</span>
+<span class="doccomment">//!         let window = ApplicationWindow::builder()</span>
 <span class="doccomment">//!             .application(app)</span>
 <span class="doccomment">//!             .title(&quot;First GTK Program&quot;)</span>
 <span class="doccomment">//!             .default_width(350)</span>
@@ -494,6 +596,7 @@
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::derive_hash_xor_eq</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::wrong_self_convention</span>)]</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi</span>;
 <span class="comment">// Re-export gtk dependencies</span>
@@ -520,18 +623,41 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gtk4_macros</span>::<span class="kw-2">*</span>;
 
+<span class="doccomment">/// The priority used for default style information</span>
+<span class="doccomment">/// that is used in the absence of themes.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that this is not very useful for providing default</span>
+<span class="doccomment">/// styling for custom style classes - themes are likely to</span>
+<span class="doccomment">/// override styling provided at this priority with</span>
+<span class="doccomment">/// catch-all `* {...}` rules.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_FALLBACK&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_FALLBACK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for style information provided</span>
+<span class="doccomment">/// by themes.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_THEME&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_THEME</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for style information provided</span>
+<span class="doccomment">/// via [`Settings`][crate::Settings].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This priority is higher than `GTK_STYLE_PROVIDER_PRIORITY_THEME`</span>
+<span class="doccomment">/// to let settings override themes.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_SETTINGS&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_SETTINGS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// A priority that can be used when adding a [`StyleProvider`][crate::StyleProvider]</span>
+<span class="doccomment">/// for application-specific style information.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_APPLICATION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_APPLICATION</span>: <span class="ident">u32</span> <span class="op">=</span>
     <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for the style information from</span>
+<span class="doccomment">/// `$XDG_CONFIG_HOME/gtk-4.0/gtk.css`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// You should not use priorities higher than this, to</span>
+<span class="doccomment">/// give the user the last word.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_USER&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_USER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_USER</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
+<span class="doccomment">/// An undefined value. The accessible attribute is either unset, or its</span>
+<span class="doccomment">/// value is undefined.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_VALUE_UNDEFINED&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACCESSIBLE_VALUE_UNDEFINED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">ffi::GTK_ACCESSIBLE_VALUE_UNDEFINED</span> <span class="kw">as</span> <span class="ident">i32</span>;
 
@@ -539,8 +665,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INVALID_LIST_POSITION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVALID_LIST_POSITION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::MAX</span>;
 
+<span class="doccomment">/// Use this priority for functionality related to size allocation.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// It is used internally by GTK+ to compute the sizes of widgets.</span>
+<span class="doccomment">/// This priority is higher than `GDK_PRIORITY_REDRAW` to avoid</span>
+<span class="doccomment">/// resizing a widget which was just redrawn.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRIORITY_RESIZE&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIORITY_RESIZE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_PRIORITY_RESIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority at which the text view validates onscreen lines</span>
+<span class="doccomment">/// in an idle job in the background.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_VIEW_PRIORITY_VALIDATE&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TEXT_VIEW_PRIORITY_VALIDATE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_TEXT_VIEW_PRIORITY_VALIDATE</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
@@ -584,6 +717,7 @@
 <span class="kw">mod</span> <span class="ident">application</span>;
 <span class="kw">mod</span> <span class="ident">assistant</span>;
 <span class="kw">mod</span> <span class="ident">bitset_iter</span>;
+<span class="kw">mod</span> <span class="ident">bookmark_list</span>;
 <span class="kw">mod</span> <span class="ident">bool_filter</span>;
 <span class="kw">mod</span> <span class="ident">border</span>;
 <span class="kw">mod</span> <span class="ident">builder</span>;
@@ -601,6 +735,7 @@
 <span class="kw">mod</span> <span class="ident">custom_filter</span>;
 <span class="kw">mod</span> <span class="ident">custom_sorter</span>;
 <span class="kw">mod</span> <span class="ident">dialog</span>;
+<span class="kw">mod</span> <span class="ident">directory_list</span>;
 <span class="kw">mod</span> <span class="ident">drawing_area</span>;
 <span class="kw">mod</span> <span class="ident">drop_down</span>;
 <span class="kw">mod</span> <span class="ident">drop_target</span>;
@@ -612,7 +747,6 @@
 <span class="kw">mod</span> <span class="ident">event_controller_key</span>;
 <span class="kw">mod</span> <span class="ident">expression_watch</span>;
 <span class="kw">mod</span> <span class="ident">file_chooser_dialog</span>;
-<span class="kw">mod</span> <span class="ident">flags</span>;
 <span class="kw">mod</span> <span class="ident">flow_box</span>;
 <span class="kw">mod</span> <span class="ident">font_chooser</span>;
 <span class="kw">mod</span> <span class="ident">functions</span>;
@@ -658,7 +792,6 @@
 <span class="kw">mod</span> <span class="ident">text_view</span>;
 <span class="kw">mod</span> <span class="ident">tree_model</span>;
 <span class="kw">mod</span> <span class="ident">tree_model_filter</span>;
-<span class="kw">mod</span> <span class="ident">tree_model_sort</span>;
 <span class="kw">mod</span> <span class="ident">tree_path</span>;
 <span class="kw">mod</span> <span class="ident">tree_row_reference</span>;
 <span class="kw">mod</span> <span class="ident">tree_selection</span>;
@@ -669,15 +802,14 @@
 <span class="kw">mod</span> <span class="ident">widget</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bitset_iter::BitsetIter</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bookmark_list::BookmarkListBuilder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">border</span>::{<span class="ident">Border</span>, <span class="ident">BorderBuilder</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">closure_expression::ClosureExpression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">constant_expression::ConstantExpression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">css_location::CssLocation</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">directory_list::DirectoryListBuilder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression</span>::{<span class="ident">Expression</span>, <span class="ident">NONE_EXPRESSION</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression_watch::ExpressionWatch</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">flags::PrintCapabilities</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib::signal::Inhibit</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">keyval_trigger::KeyvalTrigger</span>;
@@ -694,4 +826,5 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">widget::TickCallbackId</span>;
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/popup_layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>popup_layout.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4&#x2F;src&#x2F;auto&#x2F;popup_layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>popup_layout.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -273,6 +343,42 @@
 <span id="270">270</span>
 <span id="271">271</span>
 <span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -287,8 +393,8 @@
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GdkPopupLayout` struct contains information that is</span>
-    <span class="doccomment">/// necessary position a [interface`Gdk.Popup`] relative to its parent.</span>
+    <span class="doccomment">/// The [`PopupLayout`][crate::PopupLayout] struct contains information that is</span>
+    <span class="doccomment">/// necessary position a [interface`Gdk`] relative to its parent.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The positioning requires a negotiation with the windowing system,</span>
     <span class="doccomment">/// since it depends on external constraints, such as the position of</span>
@@ -314,10 +420,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Ultimatively, it is up to the windowing system to determine the position</span>
     <span class="doccomment">/// and size of the popup. You can learn about the result by calling</span>
-    <span class="doccomment">/// [method`Gdk.Popup`.get_position_x], [method`Gdk.Popup`.get_position_y],</span>
-    <span class="doccomment">/// [method`Gdk.Popup`.get_rect_anchor] and [method`Gdk.Popup`.get_surface_anchor]</span>
+    <span class="doccomment">/// [``PopupExt::position_x()``][crate::prelude::`PopupExt::position_x()`], [``PopupExt::position_y()``][crate::prelude::`PopupExt::position_y()`],</span>
+    <span class="doccomment">/// [``PopupExt::rect_anchor()``][crate::prelude::`PopupExt::rect_anchor()`] and [``PopupExt::surface_anchor()``][crate::prelude::`PopupExt::surface_anchor()`]</span>
     <span class="doccomment">/// after the popup has been presented. This can be used to adjust the rendering.</span>
-    <span class="doccomment">/// For example, [class`Gtk.Popover`] changes its arrow position accordingly.</span>
+    <span class="doccomment">/// For example, `Gtk::Popover` changes its arrow position accordingly.</span>
     <span class="doccomment">/// But you have to be careful avoid changing the size of the popover, or it</span>
     <span class="doccomment">/// has to be presented again.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
@@ -333,7 +439,7 @@
 <span class="kw">impl</span> <span class="ident">PopupLayout</span> {
     <span class="doccomment">/// Create a popup layout description.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Used together with [method`Gdk.Popup`.present] to describe how a popup</span>
+    <span class="doccomment">/// Used together with [``PopupExt::present()``][crate::prelude::`PopupExt::present()`] to describe how a popup</span>
     <span class="doccomment">/// surface should be placed and behave on-screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `anchor_rect` is relative to the top-left corner of the surface&#39;s parent.</span>
@@ -341,10 +447,10 @@
     <span class="doccomment">/// and surface to pin together.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position of `anchor_rect`&#39;s anchor point can optionally be offset using</span>
-    <span class="doccomment">/// [method`Gdk.PopupLayout`.set_offset], which is equivalent to offsetting the</span>
+    <span class="doccomment">/// [``set_offset()``][`Self::set_offset()`], which is equivalent to offsetting the</span>
     <span class="doccomment">/// position of surface.</span>
     <span class="doccomment">/// ## `anchor_rect`</span>
-    <span class="doccomment">/// the anchor `GdkRectangle` to align `surface` with</span>
+    <span class="doccomment">/// the anchor [`Rectangle`][crate::Rectangle] to align `surface` with</span>
     <span class="doccomment">/// ## `rect_anchor`</span>
     <span class="doccomment">/// the point on `anchor_rect` to align with `surface`&#39;s anchor point</span>
     <span class="doccomment">/// ## `surface_anchor`</span>
@@ -352,7 +458,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// newly created instance of `GdkPopupLayout`</span>
+    <span class="doccomment">/// newly created instance of [`PopupLayout`][crate::PopupLayout]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">anchor_rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rectangle</span>,
@@ -381,7 +487,7 @@
 
     <span class="doccomment">/// Check whether `self` and `other` has identical layout properties.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// another `GdkPopupLayout`</span>
+    <span class="doccomment">/// another [`PopupLayout`][crate::PopupLayout]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -397,6 +503,11 @@
         }
     }
 
+    <span class="doccomment">/// Get the [`AnchorHints`][crate::AnchorHints].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the [`AnchorHints`][crate::AnchorHints]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_get_anchor_hints&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_anchor_hints&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">anchor_hints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AnchorHints</span> {
@@ -407,18 +518,44 @@
         }
     }
 
+    <span class="doccomment">/// Get the anchor rectangle.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The anchor rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_get_anchor_rect&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_anchor_rect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">anchor_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rectangle</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_popup_layout_get_anchor_rect</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
+    <span class="doccomment">/// Returns the anchor position on the anchor rectangle.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the anchor on the anchor rectangle.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_get_rect_anchor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_rect_anchor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Gravity</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_popup_layout_get_rect_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
+    <span class="doccomment">/// Obtains the shadow widths of this layout.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `left`</span>
+    <span class="doccomment">/// return location for the left shadow width</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `right`</span>
+    <span class="doccomment">/// return location for the right shadow width</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `top`</span>
+    <span class="doccomment">/// return location for the top shadow width</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `bottom`</span>
+    <span class="doccomment">/// return location for the bottom shadow width</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_get_shadow_width&quot;</span>)]</span>
@@ -444,6 +581,11 @@
         }
     }
 
+    <span class="doccomment">/// Returns the anchor position on the popup surface.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the anchor on the popup surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_get_surface_anchor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface_anchor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">surface_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Gravity</span> {
@@ -458,11 +600,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The set `anchor_hints` determines how `surface` will be moved</span>
     <span class="doccomment">/// if the anchor points cause it to move off-screen. For example,</span>
-    <span class="doccomment">/// [`crate::AnchorHints::FlipX`] will replace [`crate::Gravity::NorthWest`] with</span>
-    <span class="doccomment">/// [`crate::Gravity::NorthEast`] and vice versa if `surface` extends</span>
+    <span class="doccomment">/// [`AnchorHints::FLIP_X`][crate::AnchorHints::FLIP_X] will replace [`Gravity::NorthWest`][crate::Gravity::NorthWest] with</span>
+    <span class="doccomment">/// [`Gravity::NorthEast`][crate::Gravity::NorthEast] and vice versa if `surface` extends</span>
     <span class="doccomment">/// beyond the left or right edges of the monitor.</span>
     <span class="doccomment">/// ## `anchor_hints`</span>
-    <span class="doccomment">/// the new `GdkAnchorHints`</span>
+    <span class="doccomment">/// the new [`AnchorHints`][crate::AnchorHints]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_set_anchor_hints&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_anchor_hints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">anchor_hints</span>: <span class="ident">AnchorHints</span>) {
         <span class="kw">unsafe</span> {
@@ -548,4 +690,5 @@
 <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">PopupLayout</span> {}
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

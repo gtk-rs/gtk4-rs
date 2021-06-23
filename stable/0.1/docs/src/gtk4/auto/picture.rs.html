@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/picture.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>picture.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;picture.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>picture.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -866,6 +936,127 @@
 <span id="863">863</span>
 <span id="864">864</span>
 <span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
+<span id="966">966</span>
+<span id="967">967</span>
+<span id="968">968</span>
+<span id="969">969</span>
+<span id="970">970</span>
+<span id="971">971</span>
+<span id="972">972</span>
+<span id="973">973</span>
+<span id="974">974</span>
+<span id="975">975</span>
+<span id="976">976</span>
+<span id="977">977</span>
+<span id="978">978</span>
+<span id="979">979</span>
+<span id="980">980</span>
+<span id="981">981</span>
+<span id="982">982</span>
+<span id="983">983</span>
+<span id="984">984</span>
+<span id="985">985</span>
+<span id="986">986</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -892,9 +1083,9 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GtkPicture` widget displays a `GdkPaintable`.</span>
+    <span class="doccomment">/// The [`Picture`][crate::Picture] widget displays a [`gdk::Paintable`][crate::gdk::Paintable].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `Picture`](picture.png)</span>
+    <span class="doccomment">/// ![An example GtkPicture](picture.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Many convenience functions are provided to make pictures simple to use.</span>
     <span class="doccomment">/// For example, if you want to load an image from a file, and then display</span>
@@ -908,40 +1099,41 @@
     <span class="doccomment">/// “broken image” icon similar to that used in many web browsers.</span>
     <span class="doccomment">/// If you want to handle errors in loading the file yourself,</span>
     <span class="doccomment">/// for example by displaying an error message, then load the image with</span>
-    <span class="doccomment">/// [ctor`Gdk.Texture`.new_from_file], then create the `GtkPicture` with</span>
-    <span class="doccomment">/// [ctor`Gtk.Picture`.new_for_paintable].</span>
+    <span class="doccomment">/// [`gdk::`Texture::from_file()``][crate::gdk::`Texture::from_file()`], then create the [`Picture`][crate::Picture] with</span>
+    <span class="doccomment">/// [``for_paintable()``][`Self::for_paintable()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sometimes an application will want to avoid depending on external data</span>
     <span class="doccomment">/// files, such as image files. See the documentation of `GResource` for details.</span>
-    <span class="doccomment">/// In this case, [ctor`Gtk.Picture`.new_for_resource] and</span>
-    <span class="doccomment">/// [method`Gtk.Picture`.set_resource] should be used.</span>
+    <span class="doccomment">/// In this case, [``for_resource()``][`Self::for_resource()`] and</span>
+    <span class="doccomment">/// [``set_resource()``][`Self::set_resource()`] should be used.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkPicture` displays an image at its natural size. See [class`Gtk.Image`]</span>
+    <span class="doccomment">/// [`Picture`][crate::Picture] displays an image at its natural size. See [`Image`][crate::Image]</span>
     <span class="doccomment">/// if you want to display a fixed-size image, such as an icon.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Sizing the paintable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can influence how the paintable is displayed inside the `GtkPicture`.</span>
-    <span class="doccomment">/// By turning off [property`Gtk.Picture`:keep-aspect-ratio] you can allow the</span>
-    <span class="doccomment">/// paintable to get stretched. [property`Gtk.Picture`:can-shrink] can be unset</span>
+    <span class="doccomment">/// You can influence how the paintable is displayed inside the [`Picture`][crate::Picture].</span>
+    <span class="doccomment">/// By turning off `property::Picture::keep-aspect-ratio` you can allow the</span>
+    <span class="doccomment">/// paintable to get stretched. `property::Picture::can-shrink` can be unset</span>
     <span class="doccomment">/// to make sure that paintables are never made smaller than their ideal size -</span>
     <span class="doccomment">/// but be careful if you do not know the size of the paintable in use (like</span>
     <span class="doccomment">/// when displaying user-loaded images). This can easily cause the picture to</span>
-    <span class="doccomment">/// grow larger than the screen. And [property[`crate::Widget:halign`] (XXX: @-reference does not belong to Picture!)] and</span>
-    <span class="doccomment">/// [property[`crate::Widget:valign`] (XXX: @-reference does not belong to Picture!)] can be used to make sure the paintable doesn&#39;t</span>
+    <span class="doccomment">/// grow larger than the screen. And `property::GtkWidget::halign` and</span>
+    <span class="doccomment">/// `property::GtkWidget::valign` can be used to make sure the paintable doesn&#39;t</span>
     <span class="doccomment">/// fill all available space but is instead displayed at its original size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkPicture` has a single CSS node with the name `picture`.</span>
+    <span class="doccomment">/// [`Picture`][crate::Picture] has a single CSS node with the name `picture`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkPicture` uses the `GTK_ACCESSIBLE_ROLE_IMG` role.</span>
+    <span class="doccomment">/// [`Picture`][crate::Picture] uses the `GTK_ACCESSIBLE_ROLE_IMG` role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPicture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Picture</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPicture</span>, <span class="ident">ffi::GtkPictureClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -950,31 +1142,31 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Picture</span> {
-    <span class="doccomment">/// Creates a new empty `GtkPicture` widget.</span>
+    <span class="doccomment">/// Creates a new empty [`Picture`][crate::Picture] widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkPicture` widget.</span>
+    <span class="doccomment">/// a newly created [`Picture`][crate::Picture] widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_picture_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Creates a new `GtkPicture` displaying the given `file`.</span>
+    <span class="doccomment">/// Creates a new [`Picture`][crate::Picture] displaying the given `file`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file isn’t found or can’t be loaded, the resulting</span>
-    <span class="doccomment">/// `GtkPicture` is empty.</span>
+    <span class="doccomment">/// [`Picture`][crate::Picture] is empty.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you need to detect failures to load the file, use</span>
-    <span class="doccomment">/// [ctor`Gdk.Texture`.new_from_file] to load the file yourself,</span>
-    <span class="doccomment">/// then create the `GtkPicture` from the texture.</span>
+    <span class="doccomment">/// [`gdk::`Texture::from_file()``][crate::gdk::`Texture::from_file()`] to load the file yourself,</span>
+    <span class="doccomment">/// then create the [`Picture`][crate::Picture] from the texture.</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// a `GFile`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPicture`</span>
+    <span class="doccomment">/// a new [`Picture`][crate::Picture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new_for_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
@@ -987,16 +1179,16 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GtkPicture` displaying the file `filename`.</span>
+    <span class="doccomment">/// Creates a new [`Picture`][crate::Picture] displaying the file `filename`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [ctor`Gtk.Picture`.new_for_file].</span>
+    <span class="doccomment">/// This is a utility function that calls [``for_file()``][`Self::for_file()`].</span>
     <span class="doccomment">/// See that function for details.</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// a filename</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPicture`</span>
+    <span class="doccomment">/// a new [`Picture`][crate::Picture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new_for_filename&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_filename&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_filename</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">filename</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
@@ -1009,16 +1201,16 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GtkPicture` displaying `paintable`.</span>
+    <span class="doccomment">/// Creates a new [`Picture`][crate::Picture] displaying `paintable`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkPicture` will track changes to the `paintable` and update</span>
+    <span class="doccomment">/// The [`Picture`][crate::Picture] will track changes to the `paintable` and update</span>
     <span class="doccomment">/// its size and contents in response to it.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a `GdkPaintable`, or [`None`]</span>
+    <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPicture`</span>
+    <span class="doccomment">/// a new [`Picture`][crate::Picture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new_for_paintable&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">paintable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
@@ -1031,18 +1223,18 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GtkPicture` displaying `pixbuf`.</span>
+    <span class="doccomment">/// Creates a new [`Picture`][crate::Picture] displaying `pixbuf`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [ctor`Gtk.Picture`.new_for_paintable],</span>
+    <span class="doccomment">/// This is a utility function that calls [``for_paintable()``][`Self::for_paintable()`],</span>
     <span class="doccomment">/// See that function for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The pixbuf must not be modified after passing it to this function.</span>
     <span class="doccomment">/// ## `pixbuf`</span>
-    <span class="doccomment">/// a `GdkPixbuf`, or [`None`]</span>
+    <span class="doccomment">/// a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPicture`</span>
+    <span class="doccomment">/// a new [`Picture`][crate::Picture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new_for_pixbuf&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_pixbuf&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_pixbuf</span>(<span class="ident">pixbuf</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
@@ -1053,16 +1245,16 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GtkPicture` displaying the resource at `resource_path`.</span>
+    <span class="doccomment">/// Creates a new [`Picture`][crate::Picture] displaying the resource at `resource_path`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [ctor`Gtk.Picture`.new_for_file].</span>
+    <span class="doccomment">/// This is a utility function that calls [``for_file()``][`Self::for_file()`].</span>
     <span class="doccomment">/// See that function for details.</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// resource path to play back</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPicture`</span>
+    <span class="doccomment">/// a new [`Picture`][crate::Picture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_new_for_resource&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_resource</span>(<span class="ident">resource_path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
@@ -1073,6 +1265,14 @@
             ))
             .<span class="ident">unsafe_cast</span>()
         }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`Picture`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`PictureBuilder`] which can be used to create [`Picture`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PictureBuilder</span> {
+        <span class="ident">PictureBuilder::default</span>()
     }
 
     <span class="doccomment">/// Gets the alternative textual description of the picture.</span>
@@ -1088,7 +1288,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_picture_get_alternative_text</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns whether the `GtkPicture` respects its contents size.</span>
+    <span class="doccomment">/// Returns whether the [`Picture`][crate::Picture] respects its contents size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1102,7 +1302,7 @@
     <span class="doccomment">/// Gets the `GFile` currently displayed if `self` is displaying a file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `self` is not displaying a file, for example when</span>
-    <span class="doccomment">/// [method`Gtk.Picture`.set_paintable] was used, then [`None`] is returned.</span>
+    <span class="doccomment">/// [``set_paintable()``][`Self::set_paintable()`] was used, then [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1113,7 +1313,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_picture_get_file</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns whether the `GtkPicture` preserves its contents aspect ratio.</span>
+    <span class="doccomment">/// Returns whether the [`Picture`][crate::Picture] preserves its contents aspect ratio.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1128,7 +1328,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the `GdkPaintable` being displayed by the `GtkPicture`.</span>
+    <span class="doccomment">/// Gets the [`gdk::Paintable`][crate::gdk::Paintable] being displayed by the [`Picture`][crate::Picture].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1164,11 +1364,11 @@
     <span class="doccomment">/// The contents will then be scaled down when rendering.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to still force a minimum size manually, consider using</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request].</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Also of note is that a similar function for growing does not exist</span>
     <span class="doccomment">/// because the grow behavior can be controlled via</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_halign] and [method`Gtk.Widget`.set_valign].</span>
+    <span class="doccomment">/// [``WidgetExt::set_halign()``][crate::prelude::`WidgetExt::set_halign()`] and [``WidgetExt::set_valign()``][crate::prelude::`WidgetExt::set_valign()`].</span>
     <span class="doccomment">/// ## `can_shrink`</span>
     <span class="doccomment">/// if `self` can be made smaller than its contents</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_can_shrink&quot;</span>)]</span>
@@ -1180,7 +1380,7 @@
 
     <span class="doccomment">/// Makes `self` load and display `file`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [ctor`Gtk.Picture`.new_for_file] for details.</span>
+    <span class="doccomment">/// See [``for_file()``][`Self::for_file()`] for details.</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// a `GFile` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_file&quot;</span>)]</span>
@@ -1195,7 +1395,7 @@
 
     <span class="doccomment">/// Makes `self` load and display the given `filename`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [method`Gtk.Picture`.set_file].</span>
+    <span class="doccomment">/// This is a utility function that calls [``set_file()``][`Self::set_file()`].</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// the filename to play</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_filename&quot;</span>)]</span>
@@ -1229,9 +1429,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `paintable` is [`None`], nothing will be displayed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [ctor`Gtk.Picture`.new_for_paintable] for details.</span>
+    <span class="doccomment">/// See [``for_paintable()``][`Self::for_paintable()`] for details.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a `GdkPaintable` or [`None`]</span>
+    <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1242,13 +1442,13 @@
         }
     }
 
-    <span class="doccomment">/// Sets a `GtkPicture` to show a `GdkPixbuf`.</span>
+    <span class="doccomment">/// Sets a [`Picture`][crate::Picture] to show a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [ctor`Gtk.Picture`.new_for_pixbuf] for details.</span>
+    <span class="doccomment">/// See [``for_pixbuf()``][`Self::for_pixbuf()`] for details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [method`Gtk.Picture`.set_paintable].</span>
+    <span class="doccomment">/// This is a utility function that calls [``set_paintable()``][`Self::set_paintable()`].</span>
     <span class="doccomment">/// ## `pixbuf`</span>
-    <span class="doccomment">/// a `GdkPixbuf` or [`None`]</span>
+    <span class="doccomment">/// a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_pixbuf&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_pixbuf</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pixbuf</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1259,7 +1459,7 @@
     <span class="doccomment">/// Makes `self` load and display the resource at the given</span>
     <span class="doccomment">/// `resource_path`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [method`Gtk.Picture`.set_file].</span>
+    <span class="doccomment">/// This is a utility function that calls [``set_file()``][`Self::set_file()`].</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// the resource to set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_resource&quot;</span>)]</span>
@@ -1270,10 +1470,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;alternative-text&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_alternative_text_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_alternative_text_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_alternative_text_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPicture</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1296,7 +1493,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;can-shrink&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_can_shrink_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_can_shrink_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_can_shrink_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPicture</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1319,7 +1516,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;file&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_file_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_file_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_file_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPicture</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1342,7 +1539,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;keep-aspect-ratio&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_keep_aspect_ratio_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_keep_aspect_ratio_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -1368,7 +1565,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;paintable&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_paintable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_paintable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_paintable_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Picture</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPicture</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1398,6 +1595,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`Picture`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictureBuilder</span> {
     <span class="ident">alternative_text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="ident">can_shrink</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
@@ -1437,10 +1638,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PictureBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`PictureBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`Picture`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Picture</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">alternative_text</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">alternative_text</span> {
@@ -1551,176 +1756,283 @@
         <span class="ident">glib::Object::new</span>::<span class="op">&lt;</span><span class="ident">Picture</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>).<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of Picture&quot;</span>)
     }
 
+    <span class="doccomment">/// The alternative textual description for the picture.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">alternative_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">alternative_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">alternative_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">alternative_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// If the [`Picture`][crate::Picture] can be made smaller than the natural size of its contents.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_shrink</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_shrink</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_shrink</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_shrink</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The `GFile` that is displayed or [`None`] if none.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">file</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">file</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the GtkPicture will render its contents trying to preserve the aspect</span>
+    <span class="doccomment">/// ratio.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keep_aspect_ratio</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">keep_aspect_ratio</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">keep_aspect_ratio</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">keep_aspect_ratio</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`gdk::Paintable`][crate::gdk::Paintable] to be displayed by this [`Picture`][crate::Picture].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">paintable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget or any of its descendents can accept</span>
+    <span class="doccomment">/// the input focus.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_focus</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_focus</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_focus</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_focus</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget can receive pointer events.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_target</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_target</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_target</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// A list of css classes applied to this widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_classes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_classes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_classes</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_classes</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of this widget in the CSS tree.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The cursor used by `widget`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget should grab focus when it is clicked with the mouse.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is only relevant for widgets that can take focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focus_on_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focus_on_click</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focus_on_click</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focus_on_click</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether this widget itself will accept the input focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focusable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focusable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focusable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focusable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute horizontal space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">halign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">halign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">halign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">halign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
+    <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for height request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">height_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">height_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand horizontally.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `hexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
+    <span class="doccomment">/// of the widget, and allocate its children.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on bottom side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on end of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on start of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on top side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The requested opacity of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opacity</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">opacity</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">opacity</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">opacity</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How content outside the widget&#39;s content area is treated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">overflow</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">overflow</span>: <span class="ident">Overflow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">overflow</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">overflow</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget will receive the default action when it is focused.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">receives_default</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">receives_default</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">receives_default</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">receives_default</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget responds to input.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensitive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sensitive</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">sensitive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sensitive</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
+    <span class="doccomment">/// with Pango markup.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute vertical space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">valign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">valign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">valign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">valign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand vertically.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `vexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget is visible.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">visible</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">visible</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for width request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">width_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">accessible_role</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">accessible_role</span>);
         <span class="self">self</span>
@@ -1734,4 +2046,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

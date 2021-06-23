@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/enums.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enums.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gsk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4&#x2F;src&#x2F;auto&#x2F;enums.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enums.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gsk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -990,6 +1060,15 @@
 <span id="987">987</span>
 <span id="988">988</span>
 <span id="989">989</span>
+<span id="990">990</span>
+<span id="991">991</span>
+<span id="992">992</span>
+<span id="993">993</span>
+<span id="994">994</span>
+<span id="995">995</span>
+<span id="996">996</span>
+<span id="997">997</span>
+<span id="998">998</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -1130,22 +1209,22 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskBlendMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Default</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Multiply</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Screen</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Overlay</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Darken</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lighten</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorDodge</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorBurn</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HardLight</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SoftLight</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Difference</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exclusion</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Color</span>,
-            <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Hue</span>,
-            <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Saturation</span>,
-            <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Luminosity</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_DEFAULT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Default</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_MULTIPLY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Multiply</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_SCREEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Screen</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_OVERLAY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Overlay</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_DARKEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Darken</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_LIGHTEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lighten</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_COLOR_DODGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorDodge</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_COLOR_BURN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorBurn</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_HARD_LIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HardLight</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_SOFT_LIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SoftLight</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_DIFFERENCE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Difference</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_EXCLUSION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exclusion</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_COLOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Color</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_HUE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Hue</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_SATURATION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Saturation</span>,
+            <span class="ident">ffi::GSK_BLEND_MODE_LUMINOSITY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Luminosity</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1184,7 +1263,7 @@
     }
 }
 
-<span class="doccomment">/// The corner indices used by [`crate::RoundedRect`].</span>
+<span class="doccomment">/// The corner indices used by [`RoundedRect`][crate::RoundedRect].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskCorner&quot;</span>)]</span>
@@ -1241,10 +1320,10 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskCorner</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TopLeft</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TopRight</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BottomRight</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BottomLeft</span>,
+            <span class="ident">ffi::GSK_CORNER_TOP_LEFT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TopLeft</span>,
+            <span class="ident">ffi::GSK_CORNER_TOP_RIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TopRight</span>,
+            <span class="ident">ffi::GSK_CORNER_BOTTOM_RIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BottomRight</span>,
+            <span class="ident">ffi::GSK_CORNER_BOTTOM_LEFT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BottomLeft</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1364,14 +1443,14 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskGLUniformType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Float</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Int</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Uint</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Bool</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec2</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec3</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec4</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_NONE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_FLOAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Float</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_INT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Int</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_UINT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Uint</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_BOOL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Bool</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_VEC2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec2</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_VEC3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec3</span>,
+            <span class="ident">ffi::GSK_GL_UNIFORM_TYPE_VEC4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Vec4</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1421,7 +1500,7 @@
     <span class="doccomment">/// A node containing a stack of children</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_CONTAINER_NODE&quot;</span>)]</span>
     <span class="ident">ContainerNode</span>,
-    <span class="doccomment">/// A node drawing a [`crate::cairo::Surface`]</span>
+    <span class="doccomment">/// A node drawing a [`cairo::Surface`][crate::cairo::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_CAIRO_NODE&quot;</span>)]</span>
     <span class="ident">CairoNode</span>,
     <span class="doccomment">/// A node drawing a single color rectangle</span>
@@ -1445,7 +1524,7 @@
     <span class="doccomment">/// A node stroking a border around an area</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_BORDER_NODE&quot;</span>)]</span>
     <span class="ident">BorderNode</span>,
-    <span class="doccomment">/// A node drawing a [`crate::gdk::Texture`]</span>
+    <span class="doccomment">/// A node drawing a [`gdk::Texture`][crate::gdk::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TEXTURE_NODE&quot;</span>)]</span>
     <span class="ident">TextureNode</span>,
     <span class="doccomment">/// A node drawing an inset shadow</span>
@@ -1577,32 +1656,32 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskRenderNodeType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotARenderNode</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ContainerNode</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CairoNode</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorNode</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinearGradientNode</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatingLinearGradientNode</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RadialGradientNode</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatingRadialGradientNode</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ConicGradientNode</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BorderNode</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TextureNode</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::InsetShadowNode</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::OutsetShadowNode</span>,
-            <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TransformNode</span>,
-            <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::OpacityNode</span>,
-            <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorMatrixNode</span>,
-            <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatNode</span>,
-            <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ClipNode</span>,
-            <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RoundedClipNode</span>,
-            <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ShadowNode</span>,
-            <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BlendNode</span>,
-            <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CrossFadeNode</span>,
-            <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TextNode</span>,
-            <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BlurNode</span>,
-            <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DebugNode</span>,
-            <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GlShaderNode</span>,
+            <span class="ident">ffi::GSK_NOT_A_RENDER_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotARenderNode</span>,
+            <span class="ident">ffi::GSK_CONTAINER_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ContainerNode</span>,
+            <span class="ident">ffi::GSK_CAIRO_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CairoNode</span>,
+            <span class="ident">ffi::GSK_COLOR_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorNode</span>,
+            <span class="ident">ffi::GSK_LINEAR_GRADIENT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinearGradientNode</span>,
+            <span class="ident">ffi::GSK_REPEATING_LINEAR_GRADIENT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatingLinearGradientNode</span>,
+            <span class="ident">ffi::GSK_RADIAL_GRADIENT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RadialGradientNode</span>,
+            <span class="ident">ffi::GSK_REPEATING_RADIAL_GRADIENT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatingRadialGradientNode</span>,
+            <span class="ident">ffi::GSK_CONIC_GRADIENT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ConicGradientNode</span>,
+            <span class="ident">ffi::GSK_BORDER_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BorderNode</span>,
+            <span class="ident">ffi::GSK_TEXTURE_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TextureNode</span>,
+            <span class="ident">ffi::GSK_INSET_SHADOW_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::InsetShadowNode</span>,
+            <span class="ident">ffi::GSK_OUTSET_SHADOW_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::OutsetShadowNode</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TransformNode</span>,
+            <span class="ident">ffi::GSK_OPACITY_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::OpacityNode</span>,
+            <span class="ident">ffi::GSK_COLOR_MATRIX_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ColorMatrixNode</span>,
+            <span class="ident">ffi::GSK_REPEAT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RepeatNode</span>,
+            <span class="ident">ffi::GSK_CLIP_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ClipNode</span>,
+            <span class="ident">ffi::GSK_ROUNDED_CLIP_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::RoundedClipNode</span>,
+            <span class="ident">ffi::GSK_SHADOW_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ShadowNode</span>,
+            <span class="ident">ffi::GSK_BLEND_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BlendNode</span>,
+            <span class="ident">ffi::GSK_CROSS_FADE_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CrossFadeNode</span>,
+            <span class="ident">ffi::GSK_TEXT_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TextNode</span>,
+            <span class="ident">ffi::GSK_BLUR_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::BlurNode</span>,
+            <span class="ident">ffi::GSK_DEBUG_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DebugNode</span>,
+            <span class="ident">ffi::GSK_GL_SHADER_NODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GlShaderNode</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1698,9 +1777,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskScalingFilter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Linear</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nearest</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trilinear</span>,
+            <span class="ident">ffi::GSK_SCALING_FILTER_LINEAR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Linear</span>,
+            <span class="ident">ffi::GSK_SCALING_FILTER_NEAREST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nearest</span>,
+            <span class="ident">ffi::GSK_SCALING_FILTER_TRILINEAR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trilinear</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1794,9 +1873,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskSerializationError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedVersion</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::InvalidData</span>,
+            <span class="ident">ffi::GSK_SERIALIZATION_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
+            <span class="ident">ffi::GSK_SERIALIZATION_UNSUPPORTED_VERSION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedVersion</span>,
+            <span class="ident">ffi::GSK_SERIALIZATION_INVALID_DATA</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::InvalidData</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1816,9 +1895,9 @@
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedVersion</span>),
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::InvalidData</span>),
+            <span class="ident">ffi::GSK_SERIALIZATION_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
+            <span class="ident">ffi::GSK_SERIALIZATION_UNSUPPORTED_VERSION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedVersion</span>),
+            <span class="ident">ffi::GSK_SERIALIZATION_INVALID_DATA</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::InvalidData</span>),
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
@@ -1879,12 +1958,21 @@
     <span class="doccomment">///  not fit in any other category.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_ANY&quot;</span>)]</span>
     <span class="ident">Any</span>,
+    <span class="doccomment">/// The matrix is a 3D matrix. This means that</span>
+    <span class="doccomment">///  the w column (the last column) has the values (0, 0, 0, 1).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_3D&quot;</span>)]</span>
     <span class="ident">_3d</span>,
+    <span class="doccomment">/// The matrix is a 2D matrix. This is equivalent</span>
+    <span class="doccomment">///  to [`graphene::Matrix::is_2d()`][crate::graphene::Matrix::is_2d()] returning [`true`]. In particular, this</span>
+    <span class="doccomment">///  means that Cairo can deal with the matrix.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_2D&quot;</span>)]</span>
     <span class="ident">_2d</span>,
+    <span class="doccomment">/// The matrix is a combination of 2D scale</span>
+    <span class="doccomment">///  and 2D translation operations. In particular, this means that any</span>
+    <span class="doccomment">///  rectangle can be transformed exactly using this matrix.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_2D_AFFINE&quot;</span>)]</span>
     <span class="ident">_2dAffine</span>,
+    <span class="doccomment">/// The matrix is a 2D translation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_2D_TRANSLATE&quot;</span>)]</span>
     <span class="ident">_2dTranslate</span>,
     <span class="doccomment">/// The matrix is the identity matrix.</span>
@@ -1936,13 +2024,13 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GskTransformCategory</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Any</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_3d</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2d</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2dAffine</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2dTranslate</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Identity</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_ANY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Any</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_3D</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_3d</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_2D</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2d</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_2D_AFFINE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2dAffine</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_2D_TRANSLATE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::_2dTranslate</span>,
+            <span class="ident">ffi::GSK_TRANSFORM_CATEGORY_IDENTITY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Identity</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -1982,4 +2070,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gsk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

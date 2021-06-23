@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/expression.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expression.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;expression.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expression.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -477,13 +547,6 @@
 <span id="474">474</span>
 <span id="475">475</span>
 <span id="476">476</span>
-<span id="477">477</span>
-<span id="478">478</span>
-<span id="479">479</span>
-<span id="480">480</span>
-<span id="481">481</span>
-<span id="482">482</span>
-<span id="483">483</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -493,7 +556,7 @@
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkExpression` provides a way to describe references to values.</span>
+    <span class="doccomment">/// [`Expression`][crate::Expression] provides a way to describe references to values.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An important aspect of expressions is that the value can be obtained</span>
     <span class="doccomment">/// from a source that is several steps away. For example, an expression</span>
@@ -508,13 +571,13 @@
     <span class="doccomment">/// refers to. An evaluation always happens in the context of a current object</span>
     <span class="doccomment">/// called `this` (it mirrors the behavior of object-oriented languages),</span>
     <span class="doccomment">/// which may or may not influence the result of the evaluation. Use</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.evaluate] for evaluating an expression.</span>
+    <span class="doccomment">/// [``evaluate()``][`Self::evaluate()`] for evaluating an expression.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Various methods for defining expressions exist, from simple constants via</span>
-    <span class="doccomment">/// [ctor`Gtk.ConstantExpression`.new] to looking up properties in a `GObject`</span>
-    <span class="doccomment">/// (even recursively) via [ctor`Gtk.PropertyExpression`.new] or providing</span>
+    <span class="doccomment">/// [``ConstantExpression::new()``][crate::`ConstantExpression::new()`] to looking up properties in a `GObject`</span>
+    <span class="doccomment">/// (even recursively) via [``PropertyExpression::new()``][crate::`PropertyExpression::new()`] or providing</span>
     <span class="doccomment">/// custom functions to transform and combine expressions via</span>
-    <span class="doccomment">/// [ctor`Gtk.ClosureExpression`.new].</span>
+    <span class="doccomment">/// [``ClosureExpression::new()``][crate::`ClosureExpression::new()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here is an example of a complex expression:</span>
     <span class="doccomment">///</span>
@@ -525,36 +588,38 @@
     <span class="doccomment">///                                             color_expr, &quot;name&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// when evaluated with `this` being a `GtkListItem`, it will obtain the</span>
-    <span class="doccomment">/// &quot;item&quot; property from the `GtkListItem`, and then obtain the &quot;name&quot; property</span>
+    <span class="doccomment">/// when evaluated with `this` being a [`ListItem`][crate::ListItem], it will obtain the</span>
+    <span class="doccomment">/// &quot;item&quot; property from the [`ListItem`][crate::ListItem], and then obtain the &quot;name&quot; property</span>
     <span class="doccomment">/// from the resulting object (which is assumed to be of type `GTK_TYPE_COLOR`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A more concise way to describe this would be</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// **⚠️ The following code is in text ⚠️**</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   this-&gt;item-&gt;name</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The most likely place where you will encounter expressions is in the context</span>
-    <span class="doccomment">/// of list models and list widgets using them. For example, `GtkDropDown` is</span>
-    <span class="doccomment">/// evaluating a `GtkExpression` to obtain strings from the items in its model</span>
+    <span class="doccomment">/// of list models and list widgets using them. For example, [`DropDown`][crate::DropDown] is</span>
+    <span class="doccomment">/// evaluating a [`Expression`][crate::Expression] to obtain strings from the items in its model</span>
     <span class="doccomment">/// that it can then use to match against the contents of its search entry.</span>
-    <span class="doccomment">/// `GtkStringFilter` is using a `GtkExpression` for similar reasons.</span>
+    <span class="doccomment">/// [`StringFilter`][crate::StringFilter] is using a [`Expression`][crate::Expression] for similar reasons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, expressions are not paying attention to changes and evaluation is</span>
     <span class="doccomment">/// just a snapshot of the current state at a given time. To get informed about</span>
-    <span class="doccomment">/// changes, an expression needs to be &quot;watched&quot; via a [struct`Gtk.ExpressionWatch`],</span>
+    <span class="doccomment">/// changes, an expression needs to be &quot;watched&quot; via a [`ExpressionWatch`][crate::ExpressionWatch],</span>
     <span class="doccomment">/// which will cause a callback to be called whenever the value of the expression may</span>
-    <span class="doccomment">/// have changed; [method`Gtk.Expression`.watch] starts watching an expression, and</span>
-    <span class="doccomment">/// [method`Gtk.ExpressionWatch`.unwatch] stops.</span>
+    <span class="doccomment">/// have changed; [``watch()``][`Self::watch()`] starts watching an expression, and</span>
+    <span class="doccomment">/// [``ExpressionWatch::unwatch()``][crate::`ExpressionWatch::unwatch()`] stops.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Watches can be created for automatically updating the property of an object,</span>
-    <span class="doccomment">/// similar to GObject&#39;s `GBinding` mechanism, by using [method`Gtk.Expression`.bind].</span>
+    <span class="doccomment">/// similar to GObject&#39;s `GBinding` mechanism, by using [``bind()``][`Self::bind()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## `Expression` in GObject properties</span>
+    <span class="doccomment">/// ## GtkExpression in GObject properties</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In order to use a `GtkExpression` as a `GObject` property, you must use the</span>
-    <span class="doccomment">/// [id`gtk_param_spec_expression`] when creating a `GParamSpec` to install in the</span>
+    <span class="doccomment">/// In order to use a [`Expression`][crate::Expression] as a `GObject` property, you must use the</span>
+    <span class="doccomment">/// `gtk_param_spec_expression` when creating a `GParamSpec` to install in the</span>
     <span class="doccomment">/// `GObject` class being defined; for instance:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -568,9 +633,9 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When implementing the `GObjectClass.set_property` and `GObjectClass.get_property`</span>
-    <span class="doccomment">/// virtual functions, you must use [id`gtk_value_get_expression`], to retrieve the</span>
-    <span class="doccomment">/// stored `GtkExpression` from the `GValue` container, and [id`gtk_value_set_expression`],</span>
-    <span class="doccomment">/// to store the `GtkExpression` into the `GValue`; for instance:</span>
+    <span class="doccomment">/// virtual functions, you must use `gtk_value_get_expression`, to retrieve the</span>
+    <span class="doccomment">/// stored [`Expression`][crate::Expression] from the `GValue` container, and `gtk_value_set_expression`,</span>
+    <span class="doccomment">/// to store the [`Expression`][crate::Expression] into the `GValue`; for instance:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">///   // in set_property()...</span>
@@ -584,15 +649,15 @@
     <span class="doccomment">///     break;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## `Expression` in .ui files</span>
+    <span class="doccomment">/// ## GtkExpression in .ui files</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkBuilder` has support for creating expressions. The syntax here can be used where</span>
-    <span class="doccomment">/// a `GtkExpression` object is needed like in a `&lt;property&gt;` tag for an expression</span>
-    <span class="doccomment">/// property, or in a `&lt;binding&gt;` tag to bind a property to an expression.</span>
+    <span class="doccomment">/// [`Builder`][crate::Builder] has support for creating expressions. The syntax here can be used where</span>
+    <span class="doccomment">/// a [`Expression`][crate::Expression] object is needed like in a ``&lt;property&gt;`` tag for an expression</span>
+    <span class="doccomment">/// property, or in a ``&lt;binding&gt;`` tag to bind a property to an expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create an property expression, use the `&lt;lookup&gt;` element. It can have a `type`</span>
+    <span class="doccomment">/// To create an property expression, use the ``&lt;lookup&gt;`` element. It can have a `type`</span>
     <span class="doccomment">/// attribute to specify the object type, and a `name` attribute to specify the property</span>
-    <span class="doccomment">/// to look up. The content of `&lt;lookup&gt;` can either be an element specfiying the expression</span>
+    <span class="doccomment">/// to look up. The content of ``&lt;lookup&gt;`` can either be an element specfiying the expression</span>
     <span class="doccomment">/// to use the object, or a string that specifies the name of the object to use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Example:</span>
@@ -601,7 +666,7 @@
     <span class="doccomment">///   &lt;lookup name=&#39;search&#39;&gt;string_filter&lt;/lookup&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a constant expression, use the `&lt;constant&gt;` element. If the type attribute</span>
+    <span class="doccomment">/// To create a constant expression, use the ``&lt;constant&gt;`` element. If the type attribute</span>
     <span class="doccomment">/// is specified, the element content is interpreted as a value of that type. Otherwise,</span>
     <span class="doccomment">/// it is assumed to be an object. For instance:</span>
     <span class="doccomment">///</span>
@@ -610,7 +675,7 @@
     <span class="doccomment">///   &lt;constant type=&#39;gchararray&#39;&gt;Hello, world&lt;/constant&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a closure expression, use the `&lt;closure&gt;` element. The `type` and `function`</span>
+    <span class="doccomment">/// To create a closure expression, use the ``&lt;closure&gt;`` element. The `type` and `function`</span>
     <span class="doccomment">/// attributes specify what function to use for the closure, the content of the element</span>
     <span class="doccomment">/// contains the expressions for the parameters. For instance:</span>
     <span class="doccomment">///</span>
@@ -623,6 +688,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkExpression&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Expression</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkExpression</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -688,7 +754,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The type returned from [method`Gtk.Expression`.evaluate]</span>
+    <span class="doccomment">/// The type returned from [``evaluate()``][`Self::evaluate()`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_get_value_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Type</span> {
@@ -699,9 +765,9 @@
     <span class="doccomment">/// Checks if the expression is static.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A static expression will never change its result when</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.evaluate] is called on it with the same arguments.</span>
+    <span class="doccomment">/// [``evaluate()``][`Self::evaluate()`] is called on it with the same arguments.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// That means a call to [method`Gtk.Expression`.watch] is not necessary because</span>
+    <span class="doccomment">/// That means a call to [``watch()``][`Self::watch()`] is not necessary because</span>
     <span class="doccomment">/// it will never trigger a notify.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -715,7 +781,7 @@
 
     <span class="doccomment">/// Bind `target`&#39;s property named `property` to `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value that `self` evaluates to is set via `g_object_set()` on</span>
+    <span class="doccomment">/// The value that `self` evaluates to is set via ``g_object_set()`` on</span>
     <span class="doccomment">/// `target`. This is repeated whenever `self` changes to ensure that</span>
     <span class="doccomment">/// the object&#39;s property stays synchronized with `self`.</span>
     <span class="doccomment">///</span>
@@ -724,7 +790,7 @@
     <span class="doccomment">/// expression.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes ownership of `self`. If you want</span>
-    <span class="doccomment">/// to keep it around, you should [method`Gtk.Expression`.ref] it beforehand.</span>
+    <span class="doccomment">/// to keep it around, you should `Gtk::`Expression::ref()`` it beforehand.</span>
     <span class="doccomment">/// ## `target`</span>
     <span class="doccomment">/// the target object to bind to</span>
     <span class="doccomment">/// ## `property`</span>
@@ -735,7 +801,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkExpressionWatch`</span>
+    <span class="doccomment">/// a [`ExpressionWatch`][crate::ExpressionWatch]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_bind&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bind</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -758,7 +824,7 @@
     <span class="doccomment">/// in `value`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `GType` of `value` will be the type given by</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.get_value_type].</span>
+    <span class="doccomment">/// [``value_type()``][`Self::value_type()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is possible that expressions cannot be evaluated - for example</span>
     <span class="doccomment">/// when the expression references objects that have been destroyed or</span>
@@ -802,17 +868,13 @@
     <span class="doccomment">/// ## `notify`</span>
     <span class="doccomment">/// callback to invoke when the</span>
     <span class="doccomment">///  expression changes</span>
-    <span class="doccomment">/// ## `user_data`</span>
-    <span class="doccomment">/// user data to pass to the `notify` callback</span>
-    <span class="doccomment">/// ## `user_destroy`</span>
-    <span class="doccomment">/// destroy notify for `user_data`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The newly installed watch. Note that the only</span>
     <span class="doccomment">///  reference held to the watch will be released when the watch is unwatched</span>
     <span class="doccomment">///  which can happen automatically, and not just via</span>
-    <span class="doccomment">///  [method`Gtk.ExpressionWatch`.unwatch]. You should call [method`Gtk.ExpressionWatch`.ref]</span>
+    <span class="doccomment">///  [``ExpressionWatch::unwatch()``][crate::`ExpressionWatch::unwatch()`]. You should call `Gtk::`ExpressionWatch::ref()``</span>
     <span class="doccomment">///  if you want to keep the watch around.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_watch&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">watch</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Object</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>() <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
@@ -877,16 +939,6 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">define_expression</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>:<span class="ident">path</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">get_type</span>:<span class="ident">path</span>) <span class="op">=</span><span class="op">&gt;</span> {
-        <span class="macro">glib::wrapper!</span> {
-            <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span><span class="op">&gt;</span>);
-
-            <span class="kw">match</span> <span class="kw">fn</span> {
-                <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gtk_expression_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkExpression</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>,
-                <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gtk_expression_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkExpression</span>),
-            }
-        }
-
         <span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::Expression</span>;
 
@@ -920,9 +972,7 @@
 
         <span class="kw">impl</span> <span class="ident">glib::StaticType</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">fn</span> <span class="ident">static_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
-                <span class="kw">unsafe</span> {
-                    <span class="ident">glib::translate::FromGlib::from_glib</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">get_type</span>())
-                }
+                <span class="kw">unsafe</span> { <span class="ident">glib::translate::FromGlib::from_glib</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">get_type</span>()) }
             }
         }
 
@@ -945,7 +995,10 @@
             <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>();
                 <span class="kw">unsafe</span> {
-                    <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+                    <span class="ident">ffi::gtk_value_set_expression</span>(
+                        <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
+                        <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                    )
                 }
                 <span class="ident">value</span>
             }
@@ -961,7 +1014,10 @@
                 <span class="macro">skip_assert_initialized!</span>();
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>();
                 <span class="kw">unsafe</span> {
-                    <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">s</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+                    <span class="ident">ffi::gtk_value_set_expression</span>(
+                        <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
+                        <span class="ident">s</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                    )
                 }
                 <span class="ident">value</span>
             }
@@ -970,4 +1026,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

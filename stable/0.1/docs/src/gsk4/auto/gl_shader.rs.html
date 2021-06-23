@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/gl_shader.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gl_shader.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gsk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4&#x2F;src&#x2F;auto&#x2F;gl_shader.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gl_shader.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gsk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -523,6 +593,22 @@
 <span id="520">520</span>
 <span id="521">521</span>
 <span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -539,7 +625,7 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GskGLShader` is a snippet of GLSL that is meant to run in the</span>
+    <span class="doccomment">/// A [`GLShader`][crate::GLShader] is a snippet of GLSL that is meant to run in the</span>
     <span class="doccomment">/// fragment shader of the rendering pipeline.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A fragment shader gets the coordinates being rendered as input and</span>
@@ -549,8 +635,8 @@
     <span class="doccomment">/// each instance of use). A shader can also receive up to 4</span>
     <span class="doccomment">/// textures that it can use as input when producing the pixel data.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GskGLShader` is usually used with `gtk_snapshot_push_gl_shader()`</span>
-    <span class="doccomment">/// to produce a [class`Gsk.GLShaderNode`] in the rendering hierarchy,</span>
+    <span class="doccomment">/// [`GLShader`][crate::GLShader] is usually used with `gtk_snapshot_push_gl_shader()`</span>
+    <span class="doccomment">/// to produce a [`GLShaderNode`][crate::GLShaderNode] in the rendering hierarchy,</span>
     <span class="doccomment">/// and then its input textures are constructed by rendering the child</span>
     <span class="doccomment">/// nodes to textures before rendering the shader node itself. (You can</span>
     <span class="doccomment">/// pass texture nodes as children if you want to directly use a texture</span>
@@ -584,7 +670,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Where the input `fragCoord` is the coordinate of the pixel we&#39;re</span>
     <span class="doccomment">/// currently rendering, relative to the boundary rectangle that was</span>
-    <span class="doccomment">/// specified in the `GskGLShaderNode`, and `resolution` is the width and</span>
+    <span class="doccomment">/// specified in the [`GLShaderNode`][crate::GLShaderNode], and `resolution` is the width and</span>
     <span class="doccomment">/// height of that rectangle. This is in the typical GTK coordinate</span>
     <span class="doccomment">/// system with the origin in the top left. `uv` contains the u and v</span>
     <span class="doccomment">/// coordinates that can be used to index a texture at the</span>
@@ -628,7 +714,7 @@
     <span class="doccomment">/// coordinates, and containes some helper ifdefs to ensure that</span>
     <span class="doccomment">/// it works on all OpenGL versions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can compile the shader yourself using [method`Gsk.GLShader`.compile],</span>
+    <span class="doccomment">/// You can compile the shader yourself using [``compile()``][`Self::compile()`],</span>
     <span class="doccomment">/// otherwise the GSK renderer will do it when it handling the glshader</span>
     <span class="doccomment">/// node. If errors occurs, the returned `error` will include the glsl</span>
     <span class="doccomment">/// sources, so you can see what GSK was passing to the compiler. You</span>
@@ -652,6 +738,7 @@
     <span class="doccomment">///   fragColor = position * source1 + (1.0 - position) * source2;</span>
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskGLShader&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLShader</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskGLShader</span>, <span class="ident">ffi::GskGLShaderClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -660,13 +747,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GLShader</span> {
-    <span class="doccomment">/// Creates a `GskGLShader` that will render pixels using the specified code.</span>
+    <span class="doccomment">/// Creates a [`GLShader`][crate::GLShader] that will render pixels using the specified code.</span>
     <span class="doccomment">/// ## `sourcecode`</span>
     <span class="doccomment">/// GLSL sourcecode for the shader, as a `GBytes`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GskGLShader`</span>
+    <span class="doccomment">/// A new [`GLShader`][crate::GLShader]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_new_from_bytes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_bytes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">sourcecode</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GLShader</span> {
@@ -678,14 +765,14 @@
         }
     }
 
-    <span class="doccomment">/// Creates a `GskGLShader` that will render pixels using the specified code.</span>
+    <span class="doccomment">/// Creates a [`GLShader`][crate::GLShader] that will render pixels using the specified code.</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// path to a resource that contains the GLSL sourcecode for</span>
     <span class="doccomment">///  the shader</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GskGLShader`</span>
+    <span class="doccomment">/// A new [`GLShader`][crate::GLShader]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_new_from_resource&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_resource</span>(<span class="ident">resource_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GLShader</span> {
@@ -695,6 +782,14 @@
                 <span class="ident">resource_path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`GLShader`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`GLShaderBuilder`] which can be used to create [`GLShader`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GLShaderBuilder</span> {
+        <span class="ident">GLShaderBuilder::default</span>()
     }
 
     <span class="doccomment">/// Tries to compile the `self` for the given `renderer`.</span>
@@ -710,7 +805,7 @@
     <span class="doccomment">/// want to call this from the realize signal of a widget, or during</span>
     <span class="doccomment">/// widget snapshot.</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// a `GskRenderer`</span>
+    <span class="doccomment">/// a [`Renderer`][crate::Renderer]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -746,11 +841,6 @@
             <span class="ident">ffi::gsk_gl_shader_find_uniform_by_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
         }
     }
-
-    <span class="comment">//#[doc(alias = &quot;gsk_gl_shader_format_args&quot;)]</span>
-    <span class="comment">//pub fn format_args(&amp;self, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -&gt; Option&lt;glib::Bytes&gt; {</span>
-    <span class="comment">//    unsafe { TODO: call ffi:gsk_gl_shader_format_args() }</span>
-    <span class="comment">//}</span>
 
     <span class="doccomment">/// Gets the value of the uniform `idx` in the `args` block.</span>
     <span class="doccomment">///</span>
@@ -1008,16 +1098,24 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`GLShader`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLShaderBuilder</span> {
     <span class="ident">resource</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="ident">source</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GLShaderBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`GLShaderBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`GLShader`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GLShader</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">resource</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">resource</span> {
@@ -1030,6 +1128,10 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of GLShader&quot;</span>)
     }
 
+    <span class="doccomment">/// Resource containing the source code for the shader.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If the shader source is not coming from a resource, this</span>
+    <span class="doccomment">/// will be [`None`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">resource</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">resource</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">resource</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1048,4 +1150,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gsk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

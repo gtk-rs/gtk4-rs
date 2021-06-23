@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_renderer_combo.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_renderer_combo.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;cell_renderer_combo.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_renderer_combo.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -861,6 +931,84 @@
 <span id="858">858</span>
 <span id="859">859</span>
 <span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -887,20 +1035,21 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders a combobox in a cell</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::CellRendererCombo`] renders text in a cell like [`crate::CellRendererText`] from</span>
-    <span class="doccomment">/// which it is derived. But while [`crate::CellRendererText`] offers a simple entry to</span>
-    <span class="doccomment">/// edit the text, [`crate::CellRendererCombo`] offers a [`crate::ComboBox`]</span>
+    <span class="doccomment">/// [`CellRendererCombo`][crate::CellRendererCombo] renders text in a cell like [`CellRendererText`][crate::CellRendererText] from</span>
+    <span class="doccomment">/// which it is derived. But while [`CellRendererText`][crate::CellRendererText] offers a simple entry to</span>
+    <span class="doccomment">/// edit the text, [`CellRendererCombo`][crate::CellRendererCombo] offers a [`ComboBox`][crate::ComboBox]</span>
     <span class="doccomment">/// widget to edit the text. The values to display in the combo box are taken from</span>
-    <span class="doccomment">/// the tree model specified in the [`crate::CellRendererCombo:model`] property.</span>
+    <span class="doccomment">/// the tree model specified in the `property::CellRendererCombo::model` property.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The combo cell renderer takes care of adding a text cell renderer to the combo</span>
     <span class="doccomment">/// box and sets it to display the column specified by its</span>
-    <span class="doccomment">/// [`crate::CellRendererCombo:text-column`] property. Further properties of the combo box</span>
-    <span class="doccomment">/// can be set in a handler for the [`crate::CellRenderer::editing-started`] signal.</span>
+    <span class="doccomment">/// `property::CellRendererCombo::text-column` property. Further properties of the combo box</span>
+    <span class="doccomment">/// can be set in a handler for the `signal::CellRenderer::editing-started` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::CellRendererTextExt`], [`trait@crate::prelude::CellRendererExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::CellRendererExtManual`]</span>
+    <span class="doccomment">/// [`CellRendererTextExt`][trait@crate::prelude::CellRendererTextExt], [`CellRendererExt`][trait@crate::prelude::CellRendererExt], [`trait@glib::ObjectExt`], [`CellRendererExtManual`][trait@crate::prelude::CellRendererExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCellRendererCombo&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererCombo</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererCombo</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRendererText</span>, <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -909,13 +1058,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererCombo</span> {
-    <span class="doccomment">/// Creates a new [`crate::CellRendererCombo`].</span>
+    <span class="doccomment">/// Creates a new [`CellRendererCombo`][crate::CellRendererCombo].</span>
     <span class="doccomment">/// Adjust how text is drawn using object properties.</span>
-    <span class="doccomment">/// Object properties can be set globally (with [`crate::glib::object::ObjectExt::set()`]).</span>
-    <span class="doccomment">/// Also, with [`crate::TreeViewColumn`], you can bind a property to a value</span>
-    <span class="doccomment">/// in a [`crate::TreeModel`]. For example, you can bind the “text” property</span>
+    <span class="doccomment">/// Object properties can be set globally (with `g_object_set()`).</span>
+    <span class="doccomment">/// Also, with [`TreeViewColumn`][crate::TreeViewColumn], you can bind a property to a value</span>
+    <span class="doccomment">/// in a [`TreeModel`][crate::TreeModel]. For example, you can bind the “text” property</span>
     <span class="doccomment">/// on the cell renderer to a string value in the model, thus rendering</span>
-    <span class="doccomment">/// a different string in each row of the [`crate::TreeView`].</span>
+    <span class="doccomment">/// a different string in each row of the [`TreeView`][crate::TreeView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -926,6 +1075,16 @@
         <span class="kw">unsafe</span> { <span class="ident">CellRenderer::from_glib_none</span>(<span class="ident">ffi::gtk_cell_renderer_combo_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`CellRendererCombo`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create [`CellRendererCombo`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererComboBuilder</span> {
+        <span class="ident">CellRendererComboBuilder::default</span>()
+    }
+
+    <span class="doccomment">/// If [`true`], the cell renderer will include an entry and allow to enter</span>
+    <span class="doccomment">/// values other than the ones in the popup list.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;has-entry&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -941,6 +1100,8 @@
         }
     }
 
+    <span class="doccomment">/// If [`true`], the cell renderer will include an entry and allow to enter</span>
+    <span class="doccomment">/// values other than the ones in the popup list.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;has-entry&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_has_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_entry</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -952,6 +1113,8 @@
         }
     }
 
+    <span class="doccomment">/// Holds a tree model containing the possible values for the combo box.</span>
+    <span class="doccomment">/// Use the text_column property to specify the column holding the values.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::from_type</span>(<span class="op">&lt;</span><span class="ident">TreeModel</span> <span class="kw">as</span> <span class="ident">StaticType</span><span class="op">&gt;</span><span class="ident">::static_type</span>());
@@ -966,6 +1129,8 @@
         }
     }
 
+    <span class="doccomment">/// Holds a tree model containing the possible values for the combo box.</span>
+    <span class="doccomment">/// Use the text_column property to specify the column holding the values.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">glib::gobject_ffi::g_object_set_property</span>(
@@ -976,6 +1141,15 @@
         }
     }
 
+    <span class="doccomment">/// Specifies the model column which holds the possible values for the</span>
+    <span class="doccomment">/// combo box.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this refers to the model specified in the model property,</span>
+    <span class="doccomment">/// not the model backing the tree view to which</span>
+    <span class="doccomment">/// this cell renderer is attached.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`CellRendererCombo`][crate::CellRendererCombo] automatically adds a text cell renderer for</span>
+    <span class="doccomment">/// this column to its combo box.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-column&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
@@ -991,6 +1165,15 @@
         }
     }
 
+    <span class="doccomment">/// Specifies the model column which holds the possible values for the</span>
+    <span class="doccomment">/// combo box.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this refers to the model specified in the model property,</span>
+    <span class="doccomment">/// not the model backing the tree view to which</span>
+    <span class="doccomment">/// this cell renderer is attached.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`CellRendererCombo`][crate::CellRendererCombo] automatically adds a text cell renderer for</span>
+    <span class="doccomment">/// this column to its combo box.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-column&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_text_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_column</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
@@ -1004,10 +1187,10 @@
 
     <span class="doccomment">/// This signal is emitted each time after the user selected an item in</span>
     <span class="doccomment">/// the combo box, either by using the mouse or the arrow keys. Contrary</span>
-    <span class="doccomment">/// to `ComboBox`, `CellRendererCombo`::changed is not emitted for</span>
+    <span class="doccomment">/// to GtkComboBox, GtkCellRendererCombo::changed is not emitted for</span>
     <span class="doccomment">/// changes made to a selected item in the entry. The argument `new_iter`</span>
     <span class="doccomment">/// corresponds to the newly selected item in the combo box and it is relative</span>
-    <span class="doccomment">/// to the `TreeModel` set via the model property on `CellRendererCombo`.</span>
+    <span class="doccomment">/// to the GtkTreeModel set via the model property on GtkCellRendererCombo.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that as soon as you change the model displayed in the tree view,</span>
     <span class="doccomment">/// the tree view will immediately cease the editing operating. This</span>
@@ -1020,7 +1203,7 @@
     <span class="doccomment">/// the new iter selected in the combo box</span>
     <span class="doccomment">///  (relative to the combo box model)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>, <span class="ident">TreePath</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">TreePath</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -1050,10 +1233,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;has-entry&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_has_entry_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_has_entry_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_has_entry_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererCombo</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1076,10 +1256,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_model_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_model_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_model_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererCombo</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1102,10 +1279,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-column&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_text_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_text_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_text_column_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">CellRendererCombo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellRendererCombo</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -1135,6 +1309,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`CellRendererCombo`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererComboBuilder</span> {
     <span class="ident">has_entry</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span>,
@@ -1202,10 +1380,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererComboBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`CellRendererComboBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`CellRendererCombo`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellRendererCombo</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">has_entry</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">has_entry</span> {
@@ -1401,16 +1583,29 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of CellRendererCombo&quot;</span>)
     }
 
+    <span class="doccomment">/// If [`true`], the cell renderer will include an entry and allow to enter</span>
+    <span class="doccomment">/// values other than the ones in the popup list.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_entry</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_entry</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_entry</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_entry</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Holds a tree model containing the possible values for the combo box.</span>
+    <span class="doccomment">/// Use the text_column property to specify the column holding the values.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">model</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies the model column which holds the possible values for the</span>
+    <span class="doccomment">/// combo box.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this refers to the model specified in the model property,</span>
+    <span class="doccomment">/// not the model backing the tree view to which</span>
+    <span class="doccomment">/// this cell renderer is attached.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`CellRendererCombo`][crate::CellRendererCombo] automatically adds a text cell renderer for</span>
+    <span class="doccomment">/// this column to its combo box.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_column</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_column</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">text_column</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_column</span>);
         <span class="self">self</span>
@@ -1421,6 +1616,11 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies how to align the lines of text with respect to each other.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this property describes how to align the lines of text in</span>
+    <span class="doccomment">/// case there are several of them. The &quot;xalign&quot; property of [`CellRenderer`][crate::CellRenderer],</span>
+    <span class="doccomment">/// on the other hand, sets the horizontal alignment of the whole text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">alignment</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">alignment</span>: <span class="ident">pango::Alignment</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">alignment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">alignment</span>);
         <span class="self">self</span>
@@ -1436,6 +1636,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Background color as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">background_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">background_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">background_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1456,6 +1657,10 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies the preferred place to ellipsize the string, if the cell renderer</span>
+    <span class="doccomment">/// does not have enough room to display the entire string. Setting it to</span>
+    <span class="doccomment">/// [`pango::EllipsizeMode::None`][crate::pango::EllipsizeMode::None] turns off ellipsizing. See the wrap-width property</span>
+    <span class="doccomment">/// for another way of making the text fit into a given width.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ellipsize</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ellipsize</span>: <span class="ident">pango::EllipsizeMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">ellipsize</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ellipsize</span>);
         <span class="self">self</span>
@@ -1491,6 +1696,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Foreground color as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">foreground_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">foreground_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">foreground_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">foreground_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1516,11 +1722,21 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The desired maximum width of the cell, in characters. If this property</span>
+    <span class="doccomment">/// is set to -1, the width will be calculated automatically.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// For cell renderers that ellipsize or wrap text; this property</span>
+    <span class="doccomment">/// controls the maximum reported width of the cell. The</span>
+    <span class="doccomment">/// cell should not receive any greater allocation unless it is</span>
+    <span class="doccomment">/// set to expand in its [`CellLayout`][crate::CellLayout] and all of the cell&#39;s siblings</span>
+    <span class="doccomment">/// have received their natural width.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_width_chars</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_width_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">max_width_chars</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">max_width_chars</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
+    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">placeholder_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">placeholder_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1631,16 +1847,25 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The desired width of the cell, in characters. If this property is set to</span>
+    <span class="doccomment">/// -1, the width will be calculated automatically, otherwise the cell will</span>
+    <span class="doccomment">/// request either 3 characters or the property value, whichever is greater.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_chars</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">width_chars</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width_chars</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies how to break the string into multiple lines, if the cell</span>
+    <span class="doccomment">/// renderer does not have enough room to display the entire string.</span>
+    <span class="doccomment">/// This property has no effect unless the wrap-width property is set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap_mode</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">wrap_mode</span>: <span class="ident">pango::WrapMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">wrap_mode</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrap_mode</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Specifies the minimum width at which the text is wrapped. The wrap-mode property can</span>
+    <span class="doccomment">/// be used to influence at what character positions the line breaks can be placed.</span>
+    <span class="doccomment">/// Setting wrap-width to -1 turns wrapping off.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">wrap_width</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">wrap_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrap_width</span>);
         <span class="self">self</span>
@@ -1651,6 +1876,7 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Cell background as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_background_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cell_background_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cell_background_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_background_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1724,4 +1950,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

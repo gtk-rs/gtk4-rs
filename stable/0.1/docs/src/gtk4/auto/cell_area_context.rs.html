@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/cell_area_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_area_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;cell_area_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_area_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -547,6 +617,18 @@
 <span id="544">544</span>
 <span id="545">545</span>
 <span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -559,29 +641,29 @@
 <span class="kw">use</span> <span class="ident">glib::signal::SignalHandlerId</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::StaticType</span>;
-<span class="kw">use</span> <span class="ident">glib::ToValue</span>;
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// Stores geometrical information for a series of rows in a `CellArea`</span>
+    <span class="doccomment">/// Stores geometrical information for a series of rows in a GtkCellArea</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::CellAreaContext`] object is created by a given [`crate::CellArea`]</span>
-    <span class="doccomment">/// implementation via its [`crate::`CellAreaClass`.create_context()`] virtual</span>
+    <span class="doccomment">/// The [`CellAreaContext`][crate::CellAreaContext] object is created by a given [`CellArea`][crate::CellArea]</span>
+    <span class="doccomment">/// implementation via its `GtkCellAreaClass.create_context()` virtual</span>
     <span class="doccomment">/// method and is used to store cell sizes and alignments for a series of</span>
-    <span class="doccomment">/// [`crate::TreeModel`] rows that are requested and rendered in the same context.</span>
+    <span class="doccomment">/// [`TreeModel`][crate::TreeModel] rows that are requested and rendered in the same context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::CellLayout`] widgets can create any number of contexts in which to</span>
+    <span class="doccomment">/// [`CellLayout`][crate::CellLayout] widgets can create any number of contexts in which to</span>
     <span class="doccomment">/// request and render groups of data rows. However, it’s important that the</span>
-    <span class="doccomment">/// same context which was used to request sizes for a given [`crate::TreeModel`]</span>
-    <span class="doccomment">/// row also be used for the same row when calling other [`crate::CellArea`] APIs</span>
-    <span class="doccomment">/// such as `gtk_cell_area_render()` and [`crate::CellArea::event()`].</span>
+    <span class="doccomment">/// same context which was used to request sizes for a given [`TreeModel`][crate::TreeModel]</span>
+    <span class="doccomment">/// row also be used for the same row when calling other [`CellArea`][crate::CellArea] APIs</span>
+    <span class="doccomment">/// such as `gtk_cell_area_render()` and [`CellAreaExtManual::event()`][crate::prelude::CellAreaExtManual::event()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::CellAreaContextExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`CellAreaContextExt`][trait@crate::prelude::CellAreaContextExt], [`trait@glib::ObjectExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCellAreaContext&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellAreaContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellAreaContext</span>, <span class="ident">ffi::GtkCellAreaContextClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -589,38 +671,13 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellAreaContextBuilder</span> {
-    <span class="ident">area</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">CellAreaContextBuilder</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CellAreaContext</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">area</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">area</span> {
-            <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;area&quot;</span>, <span class="ident">area</span>));
-        }
-        <span class="ident">glib::Object::new</span>::<span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of CellAreaContext&quot;</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">area</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">area</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
-        <span class="self">self</span>
-    }
-}
-
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_CELL_AREA_CONTEXT</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `CellAreaContext` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@CellAreaContext`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CellAreaContext`]</span>
+<span class="doccomment">/// [`CellAreaContext`][struct@crate::CellAreaContext]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellAreaContextExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Allocates a width and/or a height for all rows which are to be</span>
     <span class="doccomment">/// rendered with `self`.</span>
@@ -630,13 +687,13 @@
     <span class="doccomment">/// side vertically or horizontally and share either the same width</span>
     <span class="doccomment">/// or the same height. Sometimes they are allocated in both horizontal</span>
     <span class="doccomment">/// and vertical orientations producing a homogeneous effect of the</span>
-    <span class="doccomment">/// rows. This is generally the case for [`crate::TreeView`] when</span>
-    <span class="doccomment">/// [`crate::TreeView:fixed-height-mode`] is enabled.</span>
+    <span class="doccomment">/// rows. This is generally the case for [`TreeView`][crate::TreeView] when</span>
+    <span class="doccomment">/// `property::TreeView::fixed-height-mode` is enabled.</span>
     <span class="doccomment">/// ## `width`</span>
-    <span class="doccomment">/// the allocated width for all [`crate::TreeModel`] rows rendered</span>
+    <span class="doccomment">/// the allocated width for all [`TreeModel`][crate::TreeModel] rows rendered</span>
     <span class="doccomment">///  with `self`, or -1.</span>
     <span class="doccomment">/// ## `height`</span>
-    <span class="doccomment">/// the allocated height for all [`crate::TreeModel`] rows rendered</span>
+    <span class="doccomment">/// the allocated height for all [`TreeModel`][crate::TreeModel] rows rendered</span>
     <span class="doccomment">///  with `self`, or -1.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_context_allocate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>);
@@ -644,30 +701,35 @@
     <span class="doccomment">/// Fetches the current allocation size for `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the context was not allocated in width or height, or if the</span>
-    <span class="doccomment">/// context was recently reset with [`Self::reset()`],</span>
+    <span class="doccomment">/// context was recently reset with [`reset()`][Self::reset()],</span>
     <span class="doccomment">/// the returned value will be -1.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// location to store the allocated width, or [`None`]</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// location to store the allocated height, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_context_get_allocation&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_allocation&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">allocation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Fetches the [`crate::CellArea`] this `self` was created by.</span>
+    <span class="doccomment">/// Fetches the [`CellArea`][crate::CellArea] this `self` was created by.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is generally unneeded by layouting widgets; however,</span>
     <span class="doccomment">/// it is important for the context implementation itself to</span>
     <span class="doccomment">/// fetch information about the area it is being used for.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For instance at [`crate::`CellAreaContextClass`.allocate()`] time</span>
+    <span class="doccomment">/// For instance at `GtkCellAreaContextClass.allocate()` time</span>
     <span class="doccomment">/// it’s important to know details about any cell spacing</span>
-    <span class="doccomment">/// that the [`crate::CellArea`] is configured with in order to</span>
+    <span class="doccomment">/// that the [`CellArea`][crate::CellArea] is configured with in order to</span>
     <span class="doccomment">/// compute a proper allocation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`crate::CellArea`] this context was created by.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea] this context was created by.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_context_get_area&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>;
@@ -675,11 +737,16 @@
     <span class="doccomment">/// Gets the accumulative preferred height for all rows which have been</span>
     <span class="doccomment">/// requested with this context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// After [`Self::reset()`] is called and/or before ever</span>
-    <span class="doccomment">/// requesting the size of a [`crate::CellArea`], the returned values are 0.</span>
+    <span class="doccomment">/// After [`reset()`][Self::reset()] is called and/or before ever</span>
+    <span class="doccomment">/// requesting the size of a [`CellArea`][crate::CellArea], the returned values are 0.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_height`</span>
     <span class="doccomment">/// location to store the minimum height,</span>
     <span class="doccomment">///  or [`None`]</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_height`</span>
     <span class="doccomment">/// location to store the natural height,</span>
     <span class="doccomment">///  or [`None`]</span>
@@ -690,13 +757,18 @@
     <span class="doccomment">/// Gets the accumulative preferred height for `width` for all rows</span>
     <span class="doccomment">/// which have been requested for the same said `width` with this context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// After [`Self::reset()`] is called and/or before ever</span>
-    <span class="doccomment">/// requesting the size of a [`crate::CellArea`], the returned values are -1.</span>
+    <span class="doccomment">/// After [`reset()`][Self::reset()] is called and/or before ever</span>
+    <span class="doccomment">/// requesting the size of a [`CellArea`][crate::CellArea], the returned values are -1.</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// a proposed width for allocation</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_height`</span>
     <span class="doccomment">/// location to store the minimum height,</span>
     <span class="doccomment">///  or [`None`]</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_height`</span>
     <span class="doccomment">/// location to store the natural height,</span>
     <span class="doccomment">///  or [`None`]</span>
@@ -707,11 +779,16 @@
     <span class="doccomment">/// Gets the accumulative preferred width for all rows which have been</span>
     <span class="doccomment">/// requested with this context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// After [`Self::reset()`] is called and/or before ever</span>
-    <span class="doccomment">/// requesting the size of a [`crate::CellArea`], the returned values are 0.</span>
+    <span class="doccomment">/// After [`reset()`][Self::reset()] is called and/or before ever</span>
+    <span class="doccomment">/// requesting the size of a [`CellArea`][crate::CellArea], the returned values are 0.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_width`</span>
     <span class="doccomment">/// location to store the minimum width,</span>
     <span class="doccomment">///  or [`None`]</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_width`</span>
     <span class="doccomment">/// location to store the natural width,</span>
     <span class="doccomment">///  or [`None`]</span>
@@ -722,13 +799,18 @@
     <span class="doccomment">/// Gets the accumulative preferred width for `height` for all rows which</span>
     <span class="doccomment">/// have been requested for the same said `height` with this context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// After [`Self::reset()`] is called and/or before ever</span>
-    <span class="doccomment">/// requesting the size of a [`crate::CellArea`], the returned values are -1.</span>
+    <span class="doccomment">/// After [`reset()`][Self::reset()] is called and/or before ever</span>
+    <span class="doccomment">/// requesting the size of a [`CellArea`][crate::CellArea], the returned values are -1.</span>
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// a proposed height for allocation</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_width`</span>
     <span class="doccomment">/// location to store the minimum width,</span>
     <span class="doccomment">///  or [`None`]</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_width`</span>
     <span class="doccomment">/// location to store the natural width,</span>
     <span class="doccomment">///  or [`None`]</span>
@@ -739,10 +821,10 @@
     <span class="doccomment">/// Causes the minimum and/or natural height to grow if the new</span>
     <span class="doccomment">/// proposed sizes exceed the current minimum and natural height.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is used by [`crate::CellAreaContext`] implementations during</span>
-    <span class="doccomment">/// the request process over a series of [`crate::TreeModel`] rows to</span>
+    <span class="doccomment">/// This is used by [`CellAreaContext`][crate::CellAreaContext] implementations during</span>
+    <span class="doccomment">/// the request process over a series of [`TreeModel`][crate::TreeModel] rows to</span>
     <span class="doccomment">/// progressively push the requested height over a series of</span>
-    <span class="doccomment">/// [`crate::prelude::CellAreaExt::get_preferred_height()`] requests.</span>
+    <span class="doccomment">/// [`CellAreaExt::preferred_height()`][crate::prelude::CellAreaExt::preferred_height()] requests.</span>
     <span class="doccomment">/// ## `minimum_height`</span>
     <span class="doccomment">/// the proposed new minimum height for `self`</span>
     <span class="doccomment">/// ## `natural_height`</span>
@@ -753,10 +835,10 @@
     <span class="doccomment">/// Causes the minimum and/or natural width to grow if the new</span>
     <span class="doccomment">/// proposed sizes exceed the current minimum and natural width.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is used by [`crate::CellAreaContext`] implementations during</span>
-    <span class="doccomment">/// the request process over a series of [`crate::TreeModel`] rows to</span>
+    <span class="doccomment">/// This is used by [`CellAreaContext`][crate::CellAreaContext] implementations during</span>
+    <span class="doccomment">/// the request process over a series of [`TreeModel`][crate::TreeModel] rows to</span>
     <span class="doccomment">/// progressively push the requested width over a series of</span>
-    <span class="doccomment">/// [`crate::prelude::CellAreaExt::get_preferred_width()`] requests.</span>
+    <span class="doccomment">/// [`CellAreaExt::preferred_width()`][crate::prelude::CellAreaExt::preferred_width()] requests.</span>
     <span class="doccomment">/// ## `minimum_width`</span>
     <span class="doccomment">/// the proposed new minimum width for `self`</span>
     <span class="doccomment">/// ## `natural_width`</span>
@@ -767,14 +849,14 @@
     <span class="doccomment">/// Resets any previously cached request and allocation</span>
     <span class="doccomment">/// data.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When underlying [`crate::TreeModel`] data changes its</span>
+    <span class="doccomment">/// When underlying [`TreeModel`][crate::TreeModel] data changes its</span>
     <span class="doccomment">/// important to reset the context if the content</span>
     <span class="doccomment">/// size is allowed to shrink. If the content size</span>
     <span class="doccomment">/// is only allowed to grow (this is usually an option</span>
     <span class="doccomment">/// for views rendering large data stores as a measure</span>
     <span class="doccomment">/// of optimization), then only the row that changed</span>
     <span class="doccomment">/// or was inserted needs to be (re)requested with</span>
-    <span class="doccomment">/// [`crate::prelude::CellAreaExt::get_preferred_width()`].</span>
+    <span class="doccomment">/// [`CellAreaExt::preferred_width()`][crate::prelude::CellAreaExt::preferred_width()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the new overall size of the context requires</span>
     <span class="doccomment">/// that the allocated size changes (or whenever this</span>
@@ -785,19 +867,31 @@
     <span class="doccomment">/// the same width from top to bottom then a change</span>
     <span class="doccomment">/// in the allocated width necessitates a recalculation</span>
     <span class="doccomment">/// of all the displayed row heights using</span>
-    <span class="doccomment">/// [`crate::prelude::CellAreaExt::get_preferred_height_for_width()`].</span>
+    <span class="doccomment">/// [`CellAreaExt::preferred_height_for_width()`][crate::prelude::CellAreaExt::preferred_height_for_width()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_context_reset&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
+    <span class="doccomment">/// The minimum height for the [`CellArea`][crate::CellArea] in this context</span>
+    <span class="doccomment">/// for all [`TreeModel`][crate::TreeModel] rows that this context was requested</span>
+    <span class="doccomment">/// for using [`CellAreaExt::preferred_height()`][crate::prelude::CellAreaExt::preferred_height()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;minimum-height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">minimum_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
+    <span class="doccomment">/// The minimum width for the [`CellArea`][crate::CellArea] in this context</span>
+    <span class="doccomment">/// for all [`TreeModel`][crate::TreeModel] rows that this context was requested</span>
+    <span class="doccomment">/// for using [`CellAreaExt::preferred_width()`][crate::prelude::CellAreaExt::preferred_width()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;minimum-width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">minimum_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
+    <span class="doccomment">/// The natural height for the [`CellArea`][crate::CellArea] in this context</span>
+    <span class="doccomment">/// for all [`TreeModel`][crate::TreeModel] rows that this context was requested</span>
+    <span class="doccomment">/// for using [`CellAreaExt::preferred_height()`][crate::prelude::CellAreaExt::preferred_height()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;natural-height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">natural_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
+    <span class="doccomment">/// The natural width for the [`CellArea`][crate::CellArea] in this context</span>
+    <span class="doccomment">/// for all [`TreeModel`][crate::TreeModel] rows that this context was requested</span>
+    <span class="doccomment">/// for using [`CellAreaExt::preferred_width()`][crate::prelude::CellAreaExt::preferred_width()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;natural-width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">natural_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
@@ -988,17 +1082,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;minimum-height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_minimum_height_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_minimum_height_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_minimum_height_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1013,17 +1107,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;minimum-width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_minimum_width_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_minimum_width_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_minimum_width_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1038,17 +1132,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;natural-height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_natural_height_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_natural_height_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_natural_height_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1063,17 +1157,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;natural-width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_natural_width_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_natural_width_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_natural_width_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">CellAreaContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1096,4 +1190,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

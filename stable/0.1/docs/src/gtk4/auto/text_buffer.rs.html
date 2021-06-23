@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text_buffer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_buffer.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;text_buffer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_buffer.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2579,6 +2649,15 @@
 <span id="2576">2576</span>
 <span id="2577">2577</span>
 <span id="2578">2578</span>
+<span id="2579">2579</span>
+<span id="2580">2580</span>
+<span id="2581">2581</span>
+<span id="2582">2582</span>
+<span id="2583">2583</span>
+<span id="2584">2584</span>
+<span id="2585">2585</span>
+<span id="2586">2586</span>
+<span id="2587">2587</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -2601,7 +2680,7 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// Stores text and attributes for display in a `GtkTextView`.</span>
+    <span class="doccomment">/// Stores text and attributes for display in a [`TextView`][crate::TextView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
     <span class="doccomment">/// [text widget conceptual overview](section-text-widget.html),</span>
@@ -2610,7 +2689,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::TextBufferExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::TextBufferExtManual`]</span>
+    <span class="doccomment">/// [`TextBufferExt`][trait@crate::prelude::TextBufferExt], [`trait@glib::ObjectExt`], [`TextBufferExtManual`][trait@crate::prelude::TextBufferExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkTextBuffer&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextBuffer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextBuffer</span>, <span class="ident">ffi::GtkTextBufferClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2631,9 +2711,21 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_text_buffer_new</span>(<span class="ident">table</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`TextBuffer`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`TextBufferBuilder`] which can be used to create [`TextBuffer`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextBufferBuilder</span> {
+        <span class="ident">TextBufferBuilder::default</span>()
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`TextBuffer`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextBufferBuilder</span> {
     <span class="ident">enable_undo</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">tag_table</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextTagTable</span><span class="op">&gt;</span>,
@@ -2641,10 +2733,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TextBufferBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`TextBufferBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`TextBuffer`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextBuffer</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">enable_undo</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">enable_undo</span> {
@@ -2660,6 +2756,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of TextBuffer&quot;</span>)
     }
 
+    <span class="doccomment">/// Denotes if support for undoing and redoing changes to the buffer is allowed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enable_undo</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">enable_undo</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">enable_undo</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">enable_undo</span>);
         <span class="self">self</span>
@@ -2670,6 +2767,10 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The text content of the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Without child widgets and images,</span>
+    <span class="doccomment">/// see [``TextBufferExt::text()``][crate::prelude::`TextBufferExt::text()`] for more information.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -2678,11 +2779,11 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_TEXT_BUFFER</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `TextBuffer` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@TextBuffer`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::TextBuffer`]</span>
+<span class="doccomment">/// [`TextBuffer`][struct@crate::TextBuffer]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextBufferExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds the mark at position `where_`.</span>
     <span class="doccomment">///</span>
@@ -2690,7 +2791,7 @@
     <span class="doccomment">/// is not [`None`] then there must not be another mark in the buffer</span>
     <span class="doccomment">/// with the same name.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Emits the `GtkTextBuffer`::mark-set signal as notification of</span>
+    <span class="doccomment">/// Emits the [`TextBuffer`][crate::TextBuffer]::mark-set signal as notification of</span>
     <span class="doccomment">/// the mark&#39;s initial placement.</span>
     <span class="doccomment">/// ## `mark`</span>
     <span class="doccomment">/// the mark to add</span>
@@ -2702,10 +2803,10 @@
     <span class="doccomment">/// Adds `clipboard` to the list of clipboards in which the selection</span>
     <span class="doccomment">/// contents of `self` are available.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In most cases, `clipboard` will be the `GdkClipboard` returned by</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.get_primary_clipboard] for a view of `self`.</span>
+    <span class="doccomment">/// In most cases, `clipboard` will be the [`gdk::Clipboard`][crate::gdk::Clipboard] returned by</span>
+    <span class="doccomment">/// [``WidgetExt::primary_clipboard()``][crate::prelude::`WidgetExt::primary_clipboard()`] for a view of `self`.</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// a `GdkClipboard`</span>
+    <span class="doccomment">/// a [`gdk::Clipboard`][crate::gdk::Clipboard]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_add_selection_clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_selection_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>);
 
@@ -2715,7 +2816,7 @@
     <span class="doccomment">/// `tag` to the given range. `start` and `end` do</span>
     <span class="doccomment">/// not have to be in order.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// one bound of range to be tagged</span>
     <span class="doccomment">/// ## `end`</span>
@@ -2725,11 +2826,11 @@
 
     <span class="doccomment">/// Emits the “apply-tag” signal on `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Calls [method`Gtk.TextTagTable`.lookup] on the buffer’s</span>
-    <span class="doccomment">/// tag table to get a `GtkTextTag`, then calls</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.apply_tag].</span>
+    <span class="doccomment">/// Calls [``TextTagTable::lookup()``][crate::`TextTagTable::lookup()`] on the buffer’s</span>
+    <span class="doccomment">/// tag table to get a [`TextTag`][crate::TextTag], then calls</span>
+    <span class="doccomment">/// [``apply_tag()``][`Self::apply_tag()`].</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// name of a named `GtkTextTag`</span>
+    <span class="doccomment">/// name of a named [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// one bound of range to be tagged</span>
     <span class="doccomment">/// ## `end`</span>
@@ -2767,29 +2868,29 @@
     <span class="doccomment">/// to be cleared.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should be paired with a call to</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.end_irreversible_action] after the irreversible</span>
+    <span class="doccomment">/// [``end_irreversible_action()``][`Self::end_irreversible_action()`] after the irreversible</span>
     <span class="doccomment">/// action has completed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You may nest calls to [`Self::begin_irreversible_action()`] and</span>
-    <span class="doccomment">/// [`Self::end_irreversible_action()`] pairs.</span>
+    <span class="doccomment">/// You may nest calls to [`begin_irreversible_action()`][Self::begin_irreversible_action()] and</span>
+    <span class="doccomment">/// [`end_irreversible_action()`][Self::end_irreversible_action()] pairs.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_begin_irreversible_action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_irreversible_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Called to indicate that the buffer operations between here and a</span>
-    <span class="doccomment">/// call to [`Self::end_user_action()`] are part of a single</span>
+    <span class="doccomment">/// call to [`end_user_action()`][Self::end_user_action()] are part of a single</span>
     <span class="doccomment">/// user-visible operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The operations between [`Self::begin_user_action()`] and</span>
-    <span class="doccomment">/// [`Self::end_user_action()`] can then be grouped when creating</span>
-    <span class="doccomment">/// an undo stack. `GtkTextBuffer` maintains a count of calls to</span>
-    <span class="doccomment">/// [`Self::begin_user_action()`] that have not been closed with</span>
-    <span class="doccomment">/// a call to [`Self::end_user_action()`], and emits the</span>
+    <span class="doccomment">/// The operations between [`begin_user_action()`][Self::begin_user_action()] and</span>
+    <span class="doccomment">/// [`end_user_action()`][Self::end_user_action()] can then be grouped when creating</span>
+    <span class="doccomment">/// an undo stack. [`TextBuffer`][crate::TextBuffer] maintains a count of calls to</span>
+    <span class="doccomment">/// [`begin_user_action()`][Self::begin_user_action()] that have not been closed with</span>
+    <span class="doccomment">/// a call to [`end_user_action()`][Self::end_user_action()], and emits the</span>
     <span class="doccomment">/// “begin-user-action” and “end-user-action” signals only for the</span>
     <span class="doccomment">/// outermost pair of calls. This allows you to build user actions</span>
     <span class="doccomment">/// from other user actions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The “interactive” buffer mutation functions, such as</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_interactive], automatically call</span>
+    <span class="doccomment">/// [``insert_interactive()``][`Self::insert_interactive()`], automatically call</span>
     <span class="doccomment">/// begin/end user action around the buffer operations they perform,</span>
     <span class="doccomment">/// so there&#39;s no need to add extra calls if you user action consists</span>
     <span class="doccomment">/// solely of a single call to one of those functions.</span>
@@ -2798,15 +2899,15 @@
 
     <span class="doccomment">/// Copies the currently-selected text to a clipboard.</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// the `GdkClipboard` object to copy to</span>
+    <span class="doccomment">/// the [`gdk::Clipboard`][crate::gdk::Clipboard] object to copy to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_copy_clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>);
 
     <span class="doccomment">/// Creates and inserts a child anchor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience function which simply creates a child anchor</span>
-    <span class="doccomment">/// with [ctor`Gtk.TextChildAnchor`.new] and inserts it into the buffer</span>
-    <span class="doccomment">/// with [method`Gtk.TextBuffer`.insert_child_anchor].</span>
+    <span class="doccomment">/// with [``TextChildAnchor::new()``][crate::`TextChildAnchor::new()`] and inserts it into the buffer</span>
+    <span class="doccomment">/// with [``insert_child_anchor()``][`Self::insert_child_anchor()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The new anchor is owned by the buffer; no reference count is</span>
     <span class="doccomment">/// returned to the caller of this function.</span>
@@ -2822,7 +2923,7 @@
     <span class="doccomment">/// Creates a mark at position `where_`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `mark_name` is [`None`], the mark is anonymous; otherwise, the mark</span>
-    <span class="doccomment">/// can be retrieved by name using [method`Gtk.TextBuffer`.get_mark].</span>
+    <span class="doccomment">/// can be retrieved by name using [``mark()``][`Self::mark()`].</span>
     <span class="doccomment">/// If a mark has left gravity, and text is inserted at the mark’s</span>
     <span class="doccomment">/// current location, the mark will be moved to the left of the</span>
     <span class="doccomment">/// newly-inserted text. If the mark has right gravity</span>
@@ -2832,11 +2933,11 @@
     <span class="doccomment">/// side of the text you’re typing).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The caller of this function does not own a</span>
-    <span class="doccomment">/// reference to the returned [`crate::TextMark`], so you can ignore the</span>
+    <span class="doccomment">/// reference to the returned [`TextMark`][crate::TextMark], so you can ignore the</span>
     <span class="doccomment">/// return value if you like. Marks are owned by the buffer and go</span>
     <span class="doccomment">/// away when the buffer does.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Emits the `GtkTextBuffer`::mark-set signal as notification of</span>
+    <span class="doccomment">/// Emits the [`TextBuffer`][crate::TextBuffer]::mark-set signal as notification of</span>
     <span class="doccomment">/// the mark&#39;s initial placement.</span>
     <span class="doccomment">/// ## `mark_name`</span>
     <span class="doccomment">/// name for mark, or [`None`]</span>
@@ -2847,7 +2948,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new [`crate::TextMark`] object</span>
+    <span class="doccomment">/// the new [`TextMark`][crate::TextMark] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_create_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_mark</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2856,13 +2957,10 @@
         <span class="ident">left_gravity</span>: <span class="ident">bool</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span>;
 
-    <span class="comment">//#[doc(alias = &quot;gtk_text_buffer_create_tag&quot;)]</span>
-    <span class="comment">//fn create_tag(&amp;self, tag_name: Option&lt;&amp;str&gt;, first_property_name: Option&lt;&amp;str&gt;, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -&gt; TextTag;</span>
-
     <span class="doccomment">/// Copies the currently-selected text to a clipboard,</span>
     <span class="doccomment">/// then deletes said text if it’s editable.</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// the `GdkClipboard` object to cut to</span>
+    <span class="doccomment">/// the [`gdk::Clipboard`][crate::gdk::Clipboard] object to cut to</span>
     <span class="doccomment">/// ## `default_editable`</span>
     <span class="doccomment">/// default editability of the buffer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_cut_clipboard&quot;</span>)]</span>
@@ -2871,7 +2969,7 @@
     <span class="doccomment">/// Deletes text between `start` and `end`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The order of `start` and `end` is not actually relevant;</span>
-    <span class="doccomment">/// [`Self::delete()`] will reorder them.</span>
+    <span class="doccomment">/// [`delete()`][Self::delete()] will reorder them.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function actually emits the “delete-range” signal, and</span>
     <span class="doccomment">/// the default handler of that signal deletes the text. Because the</span>
@@ -2887,7 +2985,7 @@
 
     <span class="doccomment">/// Deletes all editable text in the given range.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Calls [method`Gtk.TextBuffer`.delete] for each editable</span>
+    <span class="doccomment">/// Calls [``delete()``][`Self::delete()`] for each editable</span>
     <span class="doccomment">/// sub-range of [`start`,`end`). `start` and `end` are revalidated</span>
     <span class="doccomment">/// to point to the location of the last deleted range, or left</span>
     <span class="doccomment">/// untouched if no text was deleted.</span>
@@ -2913,22 +3011,22 @@
     <span class="doccomment">/// buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Removes the reference the buffer holds to the mark, so if</span>
-    <span class="doccomment">/// you haven’t called [`crate::glib::object::ObjectExt::ref()`] on the mark, it will be freed.</span>
+    <span class="doccomment">/// you haven’t called `g_object_ref()` on the mark, it will be freed.</span>
     <span class="doccomment">/// Even if the mark isn’t freed, most operations on `mark` become</span>
     <span class="doccomment">/// invalid, until it gets added to a buffer again with</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.add_mark]. Use [method`Gtk.TextMark`.get_deleted]</span>
+    <span class="doccomment">/// [``add_mark()``][`Self::add_mark()`]. Use [``TextMarkExt::is_deleted()``][crate::prelude::`TextMarkExt::is_deleted()`]</span>
     <span class="doccomment">/// to find out if a mark has been removed from its buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [signal`Gtk.TextBuffer`::mark-deleted] signal will be emitted as</span>
+    <span class="doccomment">/// The `signal::TextBuffer::mark-deleted` signal will be emitted as</span>
     <span class="doccomment">/// notification after the mark is deleted.</span>
     <span class="doccomment">/// ## `mark`</span>
-    <span class="doccomment">/// a `GtkTextMark` in `self`</span>
+    <span class="doccomment">/// a [`TextMark`][crate::TextMark] in `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_delete_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">delete_mark</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Deletes the mark named `name`; the mark must exist.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.delete_mark] for details.</span>
+    <span class="doccomment">/// See [``delete_mark()``][`Self::delete_mark()`] for details.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// name of a mark in `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_delete_mark_by_name&quot;</span>)]</span>
@@ -2956,26 +3054,31 @@
     <span class="doccomment">/// queue to be cleared.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should be called after completing modifications to the</span>
-    <span class="doccomment">/// text buffer after [`Self::begin_irreversible_action()`]</span>
+    <span class="doccomment">/// text buffer after [`begin_irreversible_action()`][Self::begin_irreversible_action()]</span>
     <span class="doccomment">/// was called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You may nest calls to [`Self::begin_irreversible_action()`] and</span>
-    <span class="doccomment">/// [`Self::end_irreversible_action()`] pairs.</span>
+    <span class="doccomment">/// You may nest calls to [`begin_irreversible_action()`][Self::begin_irreversible_action()] and</span>
+    <span class="doccomment">/// [`end_irreversible_action()`][Self::end_irreversible_action()] pairs.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_end_irreversible_action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">end_irreversible_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Ends a user-visible operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Should be paired with a call to</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.begin_user_action].</span>
+    <span class="doccomment">/// [``begin_user_action()``][`Self::begin_user_action()`].</span>
     <span class="doccomment">/// See that function for a full explanation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_end_user_action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Retrieves the first and last iterators in the buffer, i.e. the</span>
     <span class="doccomment">/// entire buffer lies within the range [`start`,`end`).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// iterator to initialize with first position in the buffer</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// iterator to initialize with the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_bounds&quot;</span>)]</span>
@@ -3018,8 +3121,8 @@
     <span class="doccomment">/// Gets whether the buffer is saving modifications to the buffer</span>
     <span class="doccomment">/// to allow for undo and redo actions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.begin_irreversible_action] and</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.end_irreversible_action] to create</span>
+    <span class="doccomment">/// See [``begin_irreversible_action()``][`Self::begin_irreversible_action()`] and</span>
+    <span class="doccomment">/// [``end_irreversible_action()``][`Self::end_irreversible_action()`] to create</span>
     <span class="doccomment">/// changes to the buffer that cannot be undone.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_enable_undo&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_enable_undo&quot;</span>)]</span>
@@ -3028,11 +3131,15 @@
     <span class="doccomment">/// Initializes `iter` with the “end iterator,” one past the last valid</span>
     <span class="doccomment">/// character in the text buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If dereferenced with [method`Gtk.TextIter`.get_char], the end</span>
+    <span class="doccomment">/// If dereferenced with [``TextIter::char()``][crate::`TextIter::char()`], the end</span>
     <span class="doccomment">/// iterator has a character value of 0.</span>
     <span class="doccomment">/// The entire buffer lies in the range from the first position in</span>
-    <span class="doccomment">/// the buffer (call [method`Gtk.TextBuffer`.get_start_iter] to get</span>
+    <span class="doccomment">/// the buffer (call [``start_iter()``][`Self::start_iter()`] to get</span>
     <span class="doccomment">/// character position 0) to the end iterator.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_end_iter&quot;</span>)]</span>
@@ -3050,7 +3157,7 @@
 
     <span class="doccomment">/// Returns the mark that represents the cursor (insertion point).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Equivalent to calling [method`Gtk.TextBuffer`.get_mark]</span>
+    <span class="doccomment">/// Equivalent to calling [``mark()``][`Self::mark()`]</span>
     <span class="doccomment">/// to get the mark named “insert”, but very slightly more</span>
     <span class="doccomment">/// efficient, and involves less typing.</span>
     <span class="doccomment">///</span>
@@ -3061,10 +3168,14 @@
     <span class="kw">fn</span> <span class="ident">get_insert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span>;
 
     <span class="doccomment">/// Obtains the location of `anchor` within `self`.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// an iterator to be initialized</span>
     <span class="doccomment">/// ## `anchor`</span>
     <span class="doccomment">/// a child anchor that appears in `self`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// an iterator to be initialized</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_child_anchor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_child_anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_child_anchor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextChildAnchor</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextIter</span>;
@@ -3073,14 +3184,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `line_number` is greater than the number of lines</span>
     <span class="doccomment">/// in the `self`, the end iterator is returned.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// iterator to initialize</span>
     <span class="doccomment">/// ## `line_number`</span>
     <span class="doccomment">/// line number counting from 0</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether the exact position has been found</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_line&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_line&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">line_number</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextIter</span><span class="op">&gt;</span>;
@@ -3093,8 +3205,6 @@
     <span class="doccomment">/// If `line_number` is greater than the number of lines in the `self`,</span>
     <span class="doccomment">/// the end iterator is returned. And if `byte_index` is off the</span>
     <span class="doccomment">/// end of the line, the iterator at the end of the line is returned.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// iterator to initialize</span>
     <span class="doccomment">/// ## `line_number`</span>
     <span class="doccomment">/// line number counting from 0</span>
     <span class="doccomment">/// ## `byte_index`</span>
@@ -3103,6 +3213,9 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether the exact position has been found</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_line_index&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_line_index&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_line_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">line_number</span>: <span class="ident">i32</span>, <span class="ident">byte_index</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextIter</span><span class="op">&gt;</span>;
@@ -3115,8 +3228,6 @@
     <span class="doccomment">/// If `line_number` is greater than the number of lines in the `self`,</span>
     <span class="doccomment">/// the end iterator is returned. And if `char_offset` is off the</span>
     <span class="doccomment">/// end of the line, the iterator at the end of the line is returned.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// iterator to initialize</span>
     <span class="doccomment">/// ## `line_number`</span>
     <span class="doccomment">/// line number counting from 0</span>
     <span class="doccomment">/// ## `char_offset`</span>
@@ -3125,15 +3236,22 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether the exact position has been found</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_line_offset&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_line_offset&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_line_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">line_number</span>: <span class="ident">i32</span>, <span class="ident">char_offset</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextIter</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Initializes `iter` with the current position of `mark`.</span>
+    <span class="doccomment">/// ## `mark`</span>
+    <span class="doccomment">/// a [`TextMark`][crate::TextMark] in `self`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// iterator to initialize</span>
-    <span class="doccomment">/// ## `mark`</span>
-    <span class="doccomment">/// a `GtkTextMark` in `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_mark&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_mark</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextIter</span>;
@@ -3144,10 +3262,14 @@
     <span class="doccomment">/// If `char_offset` is -1 or greater than the number</span>
     <span class="doccomment">/// of characters in the buffer, `iter` is initialized to the end iterator,</span>
     <span class="doccomment">/// the iterator one past the last valid character in the buffer.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// iterator to initialize</span>
     <span class="doccomment">/// ## `char_offset`</span>
     <span class="doccomment">/// char offset from start of buffer, counting from 0, or -1</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_iter_at_offset&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_offset&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">char_offset</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextIter</span>;
@@ -3170,7 +3292,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::TextMark`], or [`None`]</span>
+    <span class="doccomment">/// a [`TextMark`][crate::TextMark], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_mark&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">mark</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span>;
@@ -3185,7 +3307,7 @@
     <span class="kw">fn</span> <span class="ident">max_undo_levels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
 
     <span class="doccomment">/// Indicates whether the buffer has been modified since the last call</span>
-    <span class="doccomment">/// to [method`Gtk.TextBuffer`.set_modified] set the modification flag to</span>
+    <span class="doccomment">/// to [``set_modified()``][`Self::set_modified()`] set the modification flag to</span>
     <span class="doccomment">/// [`false`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Used for example to enable a “save” function in a text editor.</span>
@@ -3199,14 +3321,14 @@
 
     <span class="doccomment">/// Returns the mark that represents the selection bound.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Equivalent to calling [method`Gtk.TextBuffer`.get_mark]</span>
+    <span class="doccomment">/// Equivalent to calling [``mark()``][`Self::mark()`]</span>
     <span class="doccomment">/// to get the mark named “selection_bound”, but very slightly</span>
     <span class="doccomment">/// more efficient, and involves less typing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The currently-selected text in `self` is the region between the</span>
     <span class="doccomment">/// “selection_bound” and “insert” marks. If “selection_bound” and</span>
     <span class="doccomment">/// “insert” are in the same place, then there is no current selection.</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.get_selection_bounds] is another convenient</span>
+    <span class="doccomment">/// [``selection_bounds()``][`Self::selection_bounds()`] is another convenient</span>
     <span class="doccomment">/// function for handling the selection, if you just want to know whether</span>
     <span class="doccomment">/// there’s a selection and what its bounds are.</span>
     <span class="doccomment">///</span>
@@ -3224,14 +3346,16 @@
     <span class="doccomment">/// in with the same value. `start` and `end` will be in ascending order.</span>
     <span class="doccomment">/// If `start` and `end` are [`None`], then they are not filled in, but the</span>
     <span class="doccomment">/// return value still indicates whether text is selected.</span>
-    <span class="doccomment">/// ## `start`</span>
-    <span class="doccomment">/// iterator to initialize with selection start</span>
-    <span class="doccomment">/// ## `end`</span>
-    <span class="doccomment">/// iterator to initialize with selection end</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether the selection has nonzero length</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `start`</span>
+    <span class="doccomment">/// iterator to initialize with selection start</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `end`</span>
+    <span class="doccomment">/// iterator to initialize with selection end</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_selection_bounds&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_bounds&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TextIter</span>, <span class="ident">TextIter</span>)<span class="op">&gt;</span>;
@@ -3239,11 +3363,11 @@
     <span class="doccomment">/// Get a content provider for this buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can be used to make the content of `self` available</span>
-    <span class="doccomment">/// in a `GdkClipboard`, see [method`Gdk.Clipboard`.set_content].</span>
+    <span class="doccomment">/// in a [`gdk::Clipboard`][crate::gdk::Clipboard], see [``Clipboard::set_content()``][crate::gdk::`Clipboard::set_content()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentProvider`.</span>
+    <span class="doccomment">/// a new [`gdk::ContentProvider`][crate::gdk::ContentProvider].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_selection_content&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_content&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_content</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::ContentProvider</span>;
@@ -3255,7 +3379,7 @@
     <span class="doccomment">/// The returned string includes a 0xFFFC character whenever the</span>
     <span class="doccomment">/// buffer contains embedded images, so byte and character indexes</span>
     <span class="doccomment">/// into the returned string do correspond to byte and character</span>
-    <span class="doccomment">/// indexes into the buffer. Contrast with [method`Gtk.TextBuffer`.get_text].</span>
+    <span class="doccomment">/// indexes into the buffer. Contrast with [``text()``][`Self::text()`].</span>
     <span class="doccomment">/// Note that 0xFFFC can occur in normal text as well, so it is not a</span>
     <span class="doccomment">/// reliable indicator that a paintable or widget is in the buffer.</span>
     <span class="doccomment">/// ## `start`</span>
@@ -3274,15 +3398,19 @@
 
     <span class="doccomment">/// Initialized `iter` with the first position in the text buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as using [method`Gtk.TextBuffer`.get_iter_at_offset]</span>
+    <span class="doccomment">/// This is the same as using [``iter_at_offset()``][`Self::iter_at_offset()`]</span>
     <span class="doccomment">/// to get the iter at character offset 0.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// iterator to initialize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_start_iter&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_start_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">start_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextIter</span>;
 
-    <span class="doccomment">/// Get the `GtkTextTagTable` associated with this buffer.</span>
+    <span class="doccomment">/// Get the [`TextTagTable`][crate::TextTagTable] associated with this buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3298,7 +3426,7 @@
     <span class="doccomment">/// Does not include characters representing embedded images, so</span>
     <span class="doccomment">/// byte and character indexes into the returned string do not</span>
     <span class="doccomment">/// correspond to byte and character indexes into the buffer.</span>
-    <span class="doccomment">/// Contrast with [method`Gtk.TextBuffer`.get_slice].</span>
+    <span class="doccomment">/// Contrast with [``slice()``][`Self::slice()`].</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// start of a range</span>
     <span class="doccomment">/// ## `end`</span>
@@ -3332,7 +3460,7 @@
 
     <span class="doccomment">/// Inserts `text` in `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Simply calls [method`Gtk.TextBuffer`.insert],</span>
+    <span class="doccomment">/// Simply calls [``insert()``][`Self::insert()`],</span>
     <span class="doccomment">/// using the current cursor position as the insertion point.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text in UTF-8 format</span>
@@ -3348,29 +3476,29 @@
     <span class="doccomment">/// by the Unicode “object replacement character” 0xFFFC. Note that the</span>
     <span class="doccomment">/// “slice” variants for obtaining portions of the buffer as a string</span>
     <span class="doccomment">/// include this character for child anchors, but the “text” variants do</span>
-    <span class="doccomment">/// not. E.g. see [method`Gtk.TextBuffer`.get_slice] and</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.get_text].</span>
+    <span class="doccomment">/// not. E.g. see [``slice()``][`Self::slice()`] and</span>
+    <span class="doccomment">/// [``text()``][`Self::text()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Consider [method`Gtk.TextBuffer`.create_child_anchor] as a more</span>
+    <span class="doccomment">/// Consider [``create_child_anchor()``][`Self::create_child_anchor()`] as a more</span>
     <span class="doccomment">/// convenient alternative to this function. The buffer will add a</span>
     <span class="doccomment">/// reference to the anchor, so you can unref it after insertion.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// location to insert the anchor</span>
     <span class="doccomment">/// ## `anchor`</span>
-    <span class="doccomment">/// a `GtkTextChildAnchor`</span>
+    <span class="doccomment">/// a [`TextChildAnchor`][crate::TextChildAnchor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_insert_child_anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_child_anchor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextChildAnchor</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
     <span class="doccomment">/// Inserts `text` in `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Like [method`Gtk.TextBuffer`.insert], but the insertion will not occur</span>
+    <span class="doccomment">/// Like [``insert()``][`Self::insert()`], but the insertion will not occur</span>
     <span class="doccomment">/// if `iter` is at a non-editable location in the buffer. Usually you</span>
     <span class="doccomment">/// want to prevent insertions at ineditable locations if the insertion</span>
     <span class="doccomment">/// results from a user action (is interactive).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `default_editable` indicates the editability of text that doesn&#39;t</span>
     <span class="doccomment">/// have a tag affecting editability applied to it. Typically the</span>
-    <span class="doccomment">/// result of [method`Gtk.TextView`.get_editable] is appropriate here.</span>
+    <span class="doccomment">/// result of [``TextViewExt::is_editable()``][crate::prelude::`TextViewExt::is_editable()`] is appropriate here.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a position in `self`</span>
     <span class="doccomment">/// ## `text`</span>
@@ -3388,12 +3516,12 @@
 
     <span class="doccomment">/// Inserts `text` in `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Calls [method`Gtk.TextBuffer`.insert_interactive]</span>
+    <span class="doccomment">/// Calls [``insert_interactive()``][`Self::insert_interactive()`]</span>
     <span class="doccomment">/// at the cursor position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `default_editable` indicates the editability of text that doesn&#39;t</span>
     <span class="doccomment">/// have a tag affecting editability applied to it. Typically the</span>
-    <span class="doccomment">/// result of [method`Gtk.TextView`.get_editable] is appropriate here.</span>
+    <span class="doccomment">/// result of [``TextViewExt::is_editable()``][crate::prelude::`TextViewExt::is_editable()`] is appropriate here.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text in UTF-8 format</span>
     <span class="doccomment">/// ## `len`</span>
@@ -3410,7 +3538,7 @@
     <span class="doccomment">/// Inserts the text in `markup` at position `iter`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `markup` will be inserted in its entirety and must be nul-terminated</span>
-    <span class="doccomment">/// and valid UTF-8. Emits the [signal`Gtk.TextBuffer`::insert-text] signal,</span>
+    <span class="doccomment">/// and valid UTF-8. Emits the `signal::TextBuffer::insert-text` signal,</span>
     <span class="doccomment">/// possibly multiple times; insertion actually occurs in the default handler</span>
     <span class="doccomment">/// for the signal. `iter` will point to the end of the inserted text on return.</span>
     <span class="doccomment">/// ## `iter`</span>
@@ -3429,12 +3557,12 @@
     <span class="doccomment">/// represented by the Unicode “object replacement character” 0xFFFC.</span>
     <span class="doccomment">/// Note that the “slice” variants for obtaining portions of the buffer</span>
     <span class="doccomment">/// as a string include this character for paintable, but the “text”</span>
-    <span class="doccomment">/// variants do not. e.g. see [method`Gtk.TextBuffer`.get_slice] and</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.get_text].</span>
+    <span class="doccomment">/// variants do not. e.g. see [``slice()``][`Self::slice()`] and</span>
+    <span class="doccomment">/// [``text()``][`Self::text()`].</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// location to insert the paintable</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a `GdkPaintable`</span>
+    <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_insert_paintable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
@@ -3452,7 +3580,7 @@
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a position in `self`</span>
     <span class="doccomment">/// ## `start`</span>
-    <span class="doccomment">/// a position in a `GtkTextBuffer`</span>
+    <span class="doccomment">/// a position in a [`TextBuffer`][crate::TextBuffer]</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// another position in the same buffer as `start`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_insert_range&quot;</span>)]</span>
@@ -3461,15 +3589,15 @@
     <span class="doccomment">/// Copies text, tags, and paintables between `start` and `end`</span>
     <span class="doccomment">/// and inserts the copy at `iter`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Same as [method`Gtk.TextBuffer`.insert_range], but does nothing</span>
+    <span class="doccomment">/// Same as [``insert_range()``][`Self::insert_range()`], but does nothing</span>
     <span class="doccomment">/// if the insertion point isn’t editable. The `default_editable`</span>
     <span class="doccomment">/// parameter indicates whether the text is editable at `iter` if</span>
     <span class="doccomment">/// no tags enclosing `iter` affect editability. Typically the result</span>
-    <span class="doccomment">/// of [method`Gtk.TextView`.get_editable] is appropriate here.</span>
+    <span class="doccomment">/// of [``TextViewExt::is_editable()``][crate::prelude::`TextViewExt::is_editable()`] is appropriate here.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a position in `self`</span>
     <span class="doccomment">/// ## `start`</span>
-    <span class="doccomment">/// a position in a `GtkTextBuffer`</span>
+    <span class="doccomment">/// a position in a [`TextBuffer`][crate::TextBuffer]</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// another position in the same buffer as `start`</span>
     <span class="doccomment">/// ## `default_editable`</span>
@@ -3487,18 +3615,15 @@
         <span class="ident">default_editable</span>: <span class="ident">bool</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="comment">//#[doc(alias = &quot;gtk_text_buffer_insert_with_tags&quot;)]</span>
-    <span class="comment">//fn insert_with_tags&lt;P: IsA&lt;TextTag&gt;&gt;(&amp;self, iter: &amp;mut TextIter, text: &amp;str, first_tag: &amp;P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);</span>
-
     <span class="comment">//#[doc(alias = &quot;gtk_text_buffer_insert_with_tags_by_name&quot;)]</span>
     <span class="comment">//fn insert_with_tags_by_name(&amp;self, iter: &amp;mut TextIter, text: &amp;str, first_tag_name: &amp;str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);</span>
 
     <span class="doccomment">/// Moves `mark` to the new location `where_`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Emits the `GtkTextBuffer`::mark-set</span>
+    <span class="doccomment">/// Emits the [`TextBuffer`][crate::TextBuffer]::mark-set</span>
     <span class="doccomment">/// signal as notification of the move.</span>
     <span class="doccomment">/// ## `mark`</span>
-    <span class="doccomment">/// a `GtkTextMark`</span>
+    <span class="doccomment">/// a [`TextMark`][crate::TextMark]</span>
     <span class="doccomment">/// ## `where_`</span>
     <span class="doccomment">/// new location for `mark` in `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_move_mark&quot;</span>)]</span>
@@ -3506,7 +3631,7 @@
 
     <span class="doccomment">/// Moves the mark named `name` (which must exist) to location `where_`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.move_mark] for details.</span>
+    <span class="doccomment">/// See [``move_mark()``][`Self::move_mark()`] for details.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// name of a mark</span>
     <span class="doccomment">/// ## `where_`</span>
@@ -3524,7 +3649,7 @@
     <span class="doccomment">/// and return, and at some point later after the main loop runs, the paste</span>
     <span class="doccomment">/// data will be inserted.</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// the `GdkClipboard` to paste from</span>
+    <span class="doccomment">/// the [`gdk::Clipboard`][crate::gdk::Clipboard] to paste from</span>
     <span class="doccomment">/// ## `override_location`</span>
     <span class="doccomment">/// location to insert pasted text, or [`None`]</span>
     <span class="doccomment">/// ## `default_editable`</span>
@@ -3541,7 +3666,7 @@
     <span class="doccomment">/// simultaneously.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you move them to the same place in two steps with</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.move_mark], you will temporarily select a</span>
+    <span class="doccomment">/// [``move_mark()``][`Self::move_mark()`], you will temporarily select a</span>
     <span class="doccomment">/// region in between their old and new locations, which can be pretty</span>
     <span class="doccomment">/// inefficient since the temporarily-selected region will force stuff</span>
     <span class="doccomment">/// to be recalculated. This function moves them as a unit, which can</span>
@@ -3568,11 +3693,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_remove_all_tags&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_all_tags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>);
 
-    <span class="doccomment">/// Removes a `GdkClipboard` added with</span>
-    <span class="doccomment">/// [`Self::add_selection_clipboard()`].</span>
+    <span class="doccomment">/// Removes a [`gdk::Clipboard`][crate::gdk::Clipboard] added with</span>
+    <span class="doccomment">/// [`add_selection_clipboard()`][Self::add_selection_clipboard()].</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// a `GdkClipboard` added to `self` by</span>
-    <span class="doccomment">///  [method`Gtk.TextBuffer`.add_selection_clipboard]</span>
+    <span class="doccomment">/// a [`gdk::Clipboard`][crate::gdk::Clipboard] added to `self` by</span>
+    <span class="doccomment">///  [``add_selection_clipboard()``][`Self::add_selection_clipboard()`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_remove_selection_clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_selection_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>);
 
@@ -3582,7 +3707,7 @@
     <span class="doccomment">/// of `tag` from the given range. `start` and `end` don’t have</span>
     <span class="doccomment">/// to be in order.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// one bound of range to be untagged</span>
     <span class="doccomment">/// ## `end`</span>
@@ -3592,11 +3717,11 @@
 
     <span class="doccomment">/// Emits the “remove-tag” signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Calls [method`Gtk.TextTagTable`.lookup] on the buffer’s</span>
-    <span class="doccomment">/// tag table to get a `GtkTextTag`, then calls</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.remove_tag].</span>
+    <span class="doccomment">/// Calls [``TextTagTable::lookup()``][crate::`TextTagTable::lookup()`] on the buffer’s</span>
+    <span class="doccomment">/// tag table to get a [`TextTag`][crate::TextTag], then calls</span>
+    <span class="doccomment">/// [``remove_tag()``][`Self::remove_tag()`].</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// name of a `GtkTextTag`</span>
+    <span class="doccomment">/// name of a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// one bound of range to be untagged</span>
     <span class="doccomment">/// ## `end`</span>
@@ -3608,7 +3733,7 @@
     <span class="doccomment">/// simultaneously.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you move them in two steps with</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.move_mark], you will temporarily select a</span>
+    <span class="doccomment">/// [``move_mark()``][`Self::move_mark()`], you will temporarily select a</span>
     <span class="doccomment">/// region in between their old and new locations, which can be pretty</span>
     <span class="doccomment">/// inefficient since the temporarily-selected region will force stuff</span>
     <span class="doccomment">/// to be recalculated. This function moves them as a unit, which can</span>
@@ -3623,10 +3748,10 @@
     <span class="doccomment">/// Sets whether or not to enable undoable actions in the text buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If enabled, the user will be able to undo the last number of actions</span>
-    <span class="doccomment">/// up to [method`Gtk.TextBuffer`.get_max_undo_levels].</span>
+    <span class="doccomment">/// up to [``max_undo_levels()``][`Self::max_undo_levels()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.begin_irreversible_action] and</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.end_irreversible_action] to create</span>
+    <span class="doccomment">/// See [``begin_irreversible_action()``][`Self::begin_irreversible_action()`] and</span>
+    <span class="doccomment">/// [``end_irreversible_action()``][`Self::end_irreversible_action()`] to create</span>
     <span class="doccomment">/// changes to the buffer that cannot be undone.</span>
     <span class="doccomment">/// ## `enable_undo`</span>
     <span class="doccomment">/// [`true`] to enable undo</span>
@@ -3647,11 +3772,11 @@
     <span class="doccomment">/// modified since the last time it was saved.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whenever the buffer is saved to disk, call</span>
-    <span class="doccomment">/// `gtk_text_buffer_set_modified (@self, FALSE)`.</span>
+    <span class="doccomment">/// `gtk_text_buffer_set_modified (`self`, FALSE)`.</span>
     <span class="doccomment">/// When the buffer is modified, it will automatically</span>
     <span class="doccomment">/// toggled on the modified bit again. When the modified</span>
     <span class="doccomment">/// bit flips, the buffer emits the</span>
-    <span class="doccomment">/// [signal`Gtk.TextBuffer`::modified-changed] signal.</span>
+    <span class="doccomment">/// `signal::TextBuffer::modified-changed` signal.</span>
     <span class="doccomment">/// ## `setting`</span>
     <span class="doccomment">/// modification flag setting</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_set_modified&quot;</span>)]</span>
@@ -3672,10 +3797,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
+    <span class="doccomment">/// The position of the insert mark.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is an offset from the beginning of the buffer.</span>
+    <span class="doccomment">/// It is useful for getting notified when the cursor moves.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cursor-position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cursor_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Emitted to apply a tag to a range of text in a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// Emitted to apply a tag to a range of text in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applying actually occurs in the default handler.</span>
     <span class="doccomment">///</span>
@@ -3684,9 +3813,9 @@
     <span class="doccomment">/// revalidate them).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also:</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.apply_tag],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_with_tags],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_range].</span>
+    <span class="doccomment">/// [``apply_tag()``][`Self::apply_tag()`],</span>
+    <span class="doccomment">/// `Gtk::`TextBuffer::insert_with_tags()``,</span>
+    <span class="doccomment">/// [``insert_range()``][`Self::insert_range()`].</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the applied tag</span>
     <span class="doccomment">/// ## `start`</span>
@@ -3700,23 +3829,23 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted at the beginning of a single user-visible</span>
-    <span class="doccomment">/// operation on a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// operation on a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also:</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.begin_user_action],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_range_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.delete_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.backspace],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.delete_selection].</span>
+    <span class="doccomment">/// [``begin_user_action()``][`Self::begin_user_action()`],</span>
+    <span class="doccomment">/// [``insert_interactive()``][`Self::insert_interactive()`],</span>
+    <span class="doccomment">/// [``insert_range_interactive()``][`Self::insert_range_interactive()`],</span>
+    <span class="doccomment">/// [``delete_interactive()``][`Self::delete_interactive()`],</span>
+    <span class="doccomment">/// [``backspace()``][`Self::backspace()`],</span>
+    <span class="doccomment">/// [``delete_selection()``][`Self::delete_selection()`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;begin-user-action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_begin_user_action</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when the content of a `GtkTextBuffer` has changed.</span>
+    <span class="doccomment">/// Emitted when the content of a [`TextBuffer`][crate::TextBuffer] has changed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted to delete a range from a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// Emitted to delete a range from a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that if your handler runs before the default handler</span>
     <span class="doccomment">/// it must not invalidate the `start` and `end` iters (or has</span>
@@ -3726,7 +3855,7 @@
     <span class="doccomment">/// handler (see `g_signal_connect_after()`) do not have access to</span>
     <span class="doccomment">/// the deleted text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.delete].</span>
+    <span class="doccomment">/// See also: [``delete()``][`Self::delete()`].</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// the start of the range to be deleted</span>
     <span class="doccomment">/// ## `end`</span>
@@ -3738,20 +3867,20 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted at the end of a single user-visible</span>
-    <span class="doccomment">/// operation on the `GtkTextBuffer`.</span>
+    <span class="doccomment">/// operation on the [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also:</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.end_user_action],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_range_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.delete_interactive],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.backspace],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.delete_selection],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.backspace].</span>
+    <span class="doccomment">/// [``end_user_action()``][`Self::end_user_action()`],</span>
+    <span class="doccomment">/// [``insert_interactive()``][`Self::insert_interactive()`],</span>
+    <span class="doccomment">/// [``insert_range_interactive()``][`Self::insert_range_interactive()`],</span>
+    <span class="doccomment">/// [``delete_interactive()``][`Self::delete_interactive()`],</span>
+    <span class="doccomment">/// [``backspace()``][`Self::backspace()`],</span>
+    <span class="doccomment">/// [``delete_selection()``][`Self::delete_selection()`],</span>
+    <span class="doccomment">/// [``backspace()``][`Self::backspace()`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;end-user-action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_end_user_action</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted to insert a `GtkTextChildAnchor` in a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// Emitted to insert a [`TextChildAnchor`][crate::TextChildAnchor] in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Insertion actually occurs in the default handler.</span>
     <span class="doccomment">///</span>
@@ -3760,18 +3889,18 @@
     <span class="doccomment">/// revalidate it). The default signal handler revalidates</span>
     <span class="doccomment">/// it to be placed after the inserted `anchor`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.insert_child_anchor].</span>
+    <span class="doccomment">/// See also: [``insert_child_anchor()``][`Self::insert_child_anchor()`].</span>
     <span class="doccomment">/// ## `location`</span>
     <span class="doccomment">/// position to insert `anchor` in `textbuffer`</span>
     <span class="doccomment">/// ## `anchor`</span>
-    <span class="doccomment">/// the `GtkTextChildAnchor` to be inserted</span>
+    <span class="doccomment">/// the [`TextChildAnchor`][crate::TextChildAnchor] to be inserted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;insert-child-anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_insert_child_anchor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted to insert a `GdkPaintable` in a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// Emitted to insert a [`gdk::Paintable`][crate::gdk::Paintable] in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Insertion actually occurs in the default handler.</span>
     <span class="doccomment">///</span>
@@ -3780,30 +3909,30 @@
     <span class="doccomment">/// revalidate it). The default signal handler revalidates</span>
     <span class="doccomment">/// it to be placed after the inserted `paintable`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.insert_paintable].</span>
+    <span class="doccomment">/// See also: [``insert_paintable()``][`Self::insert_paintable()`].</span>
     <span class="doccomment">/// ## `location`</span>
     <span class="doccomment">/// position to insert `paintable` in `textbuffer`</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// the `GdkPaintable` to be inserted</span>
+    <span class="doccomment">/// the [`gdk::Paintable`][crate::gdk::Paintable] to be inserted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;insert-paintable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_insert_paintable</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted as notification after a `GtkTextMark` is deleted.</span>
+    <span class="doccomment">/// Emitted as notification after a [`TextMark`][crate::TextMark] is deleted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.delete_mark].</span>
+    <span class="doccomment">/// See also: [``delete_mark()``][`Self::delete_mark()`].</span>
     <span class="doccomment">/// ## `mark`</span>
     <span class="doccomment">/// The mark that was deleted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mark-deleted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_mark_deleted</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted as notification after a `GtkTextMark` is set.</span>
+    <span class="doccomment">/// Emitted as notification after a [`TextMark`][crate::TextMark] is set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also:</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.create_mark],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.move_mark].</span>
+    <span class="doccomment">/// [``create_mark()``][`Self::create_mark()`],</span>
+    <span class="doccomment">/// [``move_mark()``][`Self::move_mark()`].</span>
     <span class="doccomment">/// ## `location`</span>
     <span class="doccomment">/// The location of `mark` in `textbuffer`</span>
     <span class="doccomment">/// ## `mark`</span>
@@ -3814,19 +3943,19 @@
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when the modified bit of a `GtkTextBuffer` flips.</span>
+    <span class="doccomment">/// Emitted when the modified bit of a [`TextBuffer`][crate::TextBuffer] flips.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.set_modified].</span>
+    <span class="doccomment">/// See also: [``set_modified()``][`Self::set_modified()`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;modified-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_modified_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted after paste operation has been completed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is useful to properly scroll the view to the end</span>
-    <span class="doccomment">/// of the pasted text. See [method`Gtk.TextBuffer`.paste_clipboard]</span>
+    <span class="doccomment">/// of the pasted text. See [``paste_clipboard()``][`Self::paste_clipboard()`]</span>
     <span class="doccomment">/// for more details.</span>
     <span class="doccomment">/// ## `clipboard`</span>
-    <span class="doccomment">/// the `GdkClipboard` pasted from</span>
+    <span class="doccomment">/// the [`gdk::Clipboard`][crate::gdk::Clipboard] pasted from</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;paste-done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_paste_done</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -3836,7 +3965,7 @@
     <span class="kw">fn</span> <span class="ident">connect_redo</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted to remove all occurrences of `tag` from a range</span>
-    <span class="doccomment">/// of text in a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// of text in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Removal actually occurs in the default handler.</span>
     <span class="doccomment">///</span>
@@ -3844,7 +3973,7 @@
     <span class="doccomment">/// it must not invalidate the `start` and `end` iters (or has</span>
     <span class="doccomment">/// to revalidate them).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.remove_tag].</span>
+    <span class="doccomment">/// See also: [``remove_tag()``][`Self::remove_tag()`].</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the tag to be removed</span>
     <span class="doccomment">/// ## `start`</span>
@@ -3980,10 +4109,6 @@
             ))
         }
     }
-
-    <span class="comment">//fn create_tag(&amp;self, tag_name: Option&lt;&amp;str&gt;, first_property_name: Option&lt;&amp;str&gt;, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -&gt; TextTag {</span>
-    <span class="comment">//    unsafe { TODO: call ffi:gtk_text_buffer_create_tag() }</span>
-    <span class="comment">//}</span>
 
     <span class="kw">fn</span> <span class="ident">cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>, <span class="ident">default_editable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -4423,10 +4548,6 @@
         }
     }
 
-    <span class="comment">//fn insert_with_tags&lt;P: IsA&lt;TextTag&gt;&gt;(&amp;self, iter: &amp;mut TextIter, text: &amp;str, first_tag: &amp;P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {</span>
-    <span class="comment">//    unsafe { TODO: call ffi:gtk_text_buffer_insert_with_tags() }</span>
-    <span class="comment">//}</span>
-
     <span class="comment">//fn insert_with_tags_by_name(&amp;self, iter: &amp;mut TextIter, text: &amp;str, first_tag_name: &amp;str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {</span>
     <span class="comment">//    unsafe { TODO: call ffi:gtk_text_buffer_insert_with_tags_by_name() }</span>
     <span class="comment">//}</span>
@@ -4588,13 +4709,12 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;apply-tag&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_apply_tag</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">apply_tag_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
@@ -4602,12 +4722,10 @@
             <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">tag</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">start</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">end</span>),
@@ -4626,16 +4744,16 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;begin-user-action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_begin_user_action</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">begin_user_action_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">begin_user_action_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4650,16 +4768,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4674,22 +4789,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;delete-range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_delete_range</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">delete_range_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">delete_range_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">start</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">end</span>),
             )
@@ -4707,16 +4822,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;end-user-action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_end_user_action</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">end_user_action_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">end_user_action_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4731,25 +4843,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;insert-child-anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_insert_child_anchor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">insert_child_anchor_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">location</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">anchor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextChildAnchor</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">location</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">anchor</span>),
             )
@@ -4767,25 +4876,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;insert-paintable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_insert_paintable</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">insert_paintable_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">location</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkPaintable</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">location</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">paintable</span>),
             )
@@ -4803,18 +4909,18 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mark-deleted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_mark_deleted</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">mark_deleted_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">mark_deleted_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">mark</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextMark</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">mark</span>),
             )
         }
@@ -4831,22 +4937,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mark-set&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_mark_set</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">mark_set_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">mark_set_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">location</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">mark</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextMark</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">location</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">mark</span>),
             )
@@ -4864,16 +4970,16 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;modified-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_modified_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">modified_changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">modified_changed_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4888,18 +4994,18 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;paste-done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_paste_done</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paste_done_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paste_done_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">clipboard</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkClipboard</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">clipboard</span>),
             )
         }
@@ -4916,16 +5022,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;redo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_redo</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">redo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">redo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4940,13 +5043,12 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;remove-tag&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_remove_tag</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">remove_tag_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
@@ -4954,12 +5056,10 @@
             <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextIter</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">tag</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">start</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">end</span>),
@@ -4978,16 +5078,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_undo</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">undo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">undo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5002,17 +5099,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;can-redo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_can_redo_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_can_redo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_can_redo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5027,17 +5121,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;can-undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_can_undo_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_can_undo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_can_undo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5052,17 +5143,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cursor-position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_cursor_position_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_cursor_position_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_cursor_position_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5077,17 +5168,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;enable-undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_enable_undo_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_enable_undo_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_enable_undo_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5102,17 +5193,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;has-selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_has_selection_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_has_selection_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_has_selection_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5127,17 +5218,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_text_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_text_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_text_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBuffer</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">TextBuffer::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -5160,4 +5248,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

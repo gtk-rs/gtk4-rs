@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/list_box_row.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>list_box_row.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;list_box_row.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>list_box_row.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -726,6 +796,122 @@
 <span id="723">723</span>
 <span id="724">724</span>
 <span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+<span id="731">731</span>
+<span id="732">732</span>
+<span id="733">733</span>
+<span id="734">734</span>
+<span id="735">735</span>
+<span id="736">736</span>
+<span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
+<span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
+<span id="759">759</span>
+<span id="760">760</span>
+<span id="761">761</span>
+<span id="762">762</span>
+<span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -753,11 +939,12 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkListBoxRow` is the kind of widget that can be added to a `GtkListBox`.</span>
+    <span class="doccomment">/// [`ListBoxRow`][crate::ListBoxRow] is the kind of widget that can be added to a [`ListBox`][crate::ListBox].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ListBoxRowExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::ActionableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`], [`trait@crate::prelude::ActionableExtManual`]</span>
+    <span class="doccomment">/// [`ListBoxRowExt`][trait@crate::prelude::ListBoxRowExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`ActionableExt`][trait@crate::prelude::ActionableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual], [`ActionableExtManual`][trait@crate::prelude::ActionableExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkListBoxRow&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListBoxRow</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListBoxRow</span>, <span class="ident">ffi::GtkListBoxRowClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Actionable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -766,15 +953,23 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ListBoxRow</span> {
-    <span class="doccomment">/// Creates a new `GtkListBoxRow`.</span>
+    <span class="doccomment">/// Creates a new [`ListBoxRow`][crate::ListBoxRow].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkListBoxRow`</span>
+    <span class="doccomment">/// a new [`ListBoxRow`][crate::ListBoxRow]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_row_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ListBoxRow</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_list_box_row_new</span>()).<span class="ident">unsafe_cast</span>() }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`ListBoxRow`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`ListBoxRowBuilder`] which can be used to create [`ListBoxRow`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ListBoxRowBuilder</span> {
+        <span class="ident">ListBoxRowBuilder::default</span>()
     }
 }
 
@@ -785,6 +980,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`ListBoxRow`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListBoxRowBuilder</span> {
     <span class="ident">activatable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
@@ -824,10 +1023,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ListBoxRowBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`ListBoxRowBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`ListBoxRow`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ListBoxRow</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">activatable</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">activatable</span> {
@@ -939,166 +1142,271 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of ListBoxRow&quot;</span>)
     }
 
+    <span class="doccomment">/// Determines whether the ::row-activated</span>
+    <span class="doccomment">/// signal will be emitted for this row.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activatable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">activatable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">activatable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">activatable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The child widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">child</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">child</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines whether this row can be selected.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selectable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selectable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">selectable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">selectable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget or any of its descendents can accept</span>
+    <span class="doccomment">/// the input focus.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_focus</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_focus</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_focus</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_focus</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget can receive pointer events.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_target</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_target</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_target</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// A list of css classes applied to this widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_classes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_classes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_classes</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_classes</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of this widget in the CSS tree.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The cursor used by `widget`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget should grab focus when it is clicked with the mouse.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is only relevant for widgets that can take focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focus_on_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focus_on_click</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focus_on_click</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focus_on_click</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether this widget itself will accept the input focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focusable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focusable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focusable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focusable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute horizontal space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">halign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">halign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">halign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">halign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
+    <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for height request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">height_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">height_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand horizontally.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `hexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
+    <span class="doccomment">/// of the widget, and allocate its children.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on bottom side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on end of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on start of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on top side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The requested opacity of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opacity</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">opacity</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">opacity</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">opacity</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How content outside the widget&#39;s content area is treated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">overflow</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">overflow</span>: <span class="ident">Overflow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">overflow</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">overflow</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget will receive the default action when it is focused.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">receives_default</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">receives_default</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">receives_default</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">receives_default</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget responds to input.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensitive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sensitive</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">sensitive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sensitive</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
+    <span class="doccomment">/// with Pango markup.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute vertical space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">valign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">valign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">valign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">valign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand vertically.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `vexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget is visible.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">visible</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">visible</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for width request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">width_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">accessible_role</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">accessible_role</span>);
         <span class="self">self</span>
@@ -1117,11 +1425,11 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_LIST_BOX_ROW</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `ListBoxRow` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@ListBoxRow`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ListBoxRow`]</span>
+<span class="doccomment">/// [`ListBoxRow`][struct@crate::ListBoxRow]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ListBoxRowExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Marks `self` as changed, causing any state that depends on this</span>
     <span class="doccomment">/// to be updated.</span>
@@ -1131,7 +1439,7 @@
     <span class="doccomment">/// Note that calls to this method must be in sync with the data</span>
     <span class="doccomment">/// used for the row functions. For instance, if the list is</span>
     <span class="doccomment">/// mirroring some external data set, and *two* rows changed in the</span>
-    <span class="doccomment">/// external data set then when you call [`Self::changed()`]</span>
+    <span class="doccomment">/// external data set then when you call [`changed()`][Self::changed()]</span>
     <span class="doccomment">/// on the first row the sort function must only read the new data</span>
     <span class="doccomment">/// for the first of the two changed rows, otherwise the resorting</span>
     <span class="doccomment">/// of the rows will be wrong.</span>
@@ -1139,7 +1447,7 @@
     <span class="doccomment">/// This generally means that if you don’t fully control the data</span>
     <span class="doccomment">/// model you have to duplicate the data that affects the listbox</span>
     <span class="doccomment">/// row functions into the row widgets themselves. Another alternative</span>
-    <span class="doccomment">/// is to call [method`Gtk.ListBox`.invalidate_sort] on any model change,</span>
+    <span class="doccomment">/// is to call [``ListBox::invalidate_sort()``][crate::`ListBox::invalidate_sort()`] on any model change,</span>
     <span class="doccomment">/// but that is more expensive.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_row_changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -1165,7 +1473,7 @@
     <span class="doccomment">/// Returns the current header of the `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be used</span>
-    <span class="doccomment">/// in a [callback`Gtk.ListBoxUpdateHeaderFunc`] to see if</span>
+    <span class="doccomment">/// in a `callback::Gtk::ListBoxUpdateHeaderFunc to see if</span>
     <span class="doccomment">/// there is a header set already, and if so to update</span>
     <span class="doccomment">/// the state of it.</span>
     <span class="doccomment">///</span>
@@ -1176,7 +1484,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_header&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">header</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the current index of the `self` in its `GtkListBox` container.</span>
+    <span class="doccomment">/// Gets the current index of the `self` in its [`ListBox`][crate::ListBox] container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1195,7 +1503,7 @@
     <span class="kw">fn</span> <span class="ident">is_selectable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Returns whether the child is currently selected in its</span>
-    <span class="doccomment">/// `GtkListBox` container.</span>
+    <span class="doccomment">/// [`ListBox`][crate::ListBox] container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1218,7 +1526,7 @@
     <span class="doccomment">/// Sets the current header of the `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is only allowed to be called</span>
-    <span class="doccomment">/// from a [callback`Gtk.ListBoxUpdateHeaderFunc`].</span>
+    <span class="doccomment">/// from a `callback::Gtk::ListBoxUpdateHeaderFunc.</span>
     <span class="doccomment">/// It will replace any existing header in the row,</span>
     <span class="doccomment">/// and be shown in front of the row in the listbox.</span>
     <span class="doccomment">/// ## `header`</span>
@@ -1235,8 +1543,8 @@
     <span class="doccomment">/// This is a keybinding signal, which will cause this row to be activated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to be notified when the user activates a row (by key or not),</span>
-    <span class="doccomment">/// use the [signal`Gtk.ListBox`::row-activated] signal on the row’s parent</span>
-    <span class="doccomment">/// `GtkListBox`.</span>
+    <span class="doccomment">/// use the `signal::ListBox::row-activated` signal on the row’s parent</span>
+    <span class="doccomment">/// [`ListBox`][crate::ListBox].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_activate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -1339,16 +1647,13 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_activate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">activate_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">activate_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkListBoxRow</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1371,17 +1676,17 @@
         };
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activatable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_activatable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_activatable_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_activatable_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkListBoxRow</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1396,17 +1701,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_child_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_child_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_child_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkListBoxRow</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1421,17 +1723,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;selectable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_selectable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_selectable_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_selectable_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkListBoxRow</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">ListBoxRow::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -1454,4 +1756,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

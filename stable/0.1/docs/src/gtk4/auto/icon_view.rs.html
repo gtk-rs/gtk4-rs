@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/icon_view.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>icon_view.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;icon_view.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>icon_view.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2409,6 +2479,176 @@
 <span id="2406">2406</span>
 <span id="2407">2407</span>
 <span id="2408">2408</span>
+<span id="2409">2409</span>
+<span id="2410">2410</span>
+<span id="2411">2411</span>
+<span id="2412">2412</span>
+<span id="2413">2413</span>
+<span id="2414">2414</span>
+<span id="2415">2415</span>
+<span id="2416">2416</span>
+<span id="2417">2417</span>
+<span id="2418">2418</span>
+<span id="2419">2419</span>
+<span id="2420">2420</span>
+<span id="2421">2421</span>
+<span id="2422">2422</span>
+<span id="2423">2423</span>
+<span id="2424">2424</span>
+<span id="2425">2425</span>
+<span id="2426">2426</span>
+<span id="2427">2427</span>
+<span id="2428">2428</span>
+<span id="2429">2429</span>
+<span id="2430">2430</span>
+<span id="2431">2431</span>
+<span id="2432">2432</span>
+<span id="2433">2433</span>
+<span id="2434">2434</span>
+<span id="2435">2435</span>
+<span id="2436">2436</span>
+<span id="2437">2437</span>
+<span id="2438">2438</span>
+<span id="2439">2439</span>
+<span id="2440">2440</span>
+<span id="2441">2441</span>
+<span id="2442">2442</span>
+<span id="2443">2443</span>
+<span id="2444">2444</span>
+<span id="2445">2445</span>
+<span id="2446">2446</span>
+<span id="2447">2447</span>
+<span id="2448">2448</span>
+<span id="2449">2449</span>
+<span id="2450">2450</span>
+<span id="2451">2451</span>
+<span id="2452">2452</span>
+<span id="2453">2453</span>
+<span id="2454">2454</span>
+<span id="2455">2455</span>
+<span id="2456">2456</span>
+<span id="2457">2457</span>
+<span id="2458">2458</span>
+<span id="2459">2459</span>
+<span id="2460">2460</span>
+<span id="2461">2461</span>
+<span id="2462">2462</span>
+<span id="2463">2463</span>
+<span id="2464">2464</span>
+<span id="2465">2465</span>
+<span id="2466">2466</span>
+<span id="2467">2467</span>
+<span id="2468">2468</span>
+<span id="2469">2469</span>
+<span id="2470">2470</span>
+<span id="2471">2471</span>
+<span id="2472">2472</span>
+<span id="2473">2473</span>
+<span id="2474">2474</span>
+<span id="2475">2475</span>
+<span id="2476">2476</span>
+<span id="2477">2477</span>
+<span id="2478">2478</span>
+<span id="2479">2479</span>
+<span id="2480">2480</span>
+<span id="2481">2481</span>
+<span id="2482">2482</span>
+<span id="2483">2483</span>
+<span id="2484">2484</span>
+<span id="2485">2485</span>
+<span id="2486">2486</span>
+<span id="2487">2487</span>
+<span id="2488">2488</span>
+<span id="2489">2489</span>
+<span id="2490">2490</span>
+<span id="2491">2491</span>
+<span id="2492">2492</span>
+<span id="2493">2493</span>
+<span id="2494">2494</span>
+<span id="2495">2495</span>
+<span id="2496">2496</span>
+<span id="2497">2497</span>
+<span id="2498">2498</span>
+<span id="2499">2499</span>
+<span id="2500">2500</span>
+<span id="2501">2501</span>
+<span id="2502">2502</span>
+<span id="2503">2503</span>
+<span id="2504">2504</span>
+<span id="2505">2505</span>
+<span id="2506">2506</span>
+<span id="2507">2507</span>
+<span id="2508">2508</span>
+<span id="2509">2509</span>
+<span id="2510">2510</span>
+<span id="2511">2511</span>
+<span id="2512">2512</span>
+<span id="2513">2513</span>
+<span id="2514">2514</span>
+<span id="2515">2515</span>
+<span id="2516">2516</span>
+<span id="2517">2517</span>
+<span id="2518">2518</span>
+<span id="2519">2519</span>
+<span id="2520">2520</span>
+<span id="2521">2521</span>
+<span id="2522">2522</span>
+<span id="2523">2523</span>
+<span id="2524">2524</span>
+<span id="2525">2525</span>
+<span id="2526">2526</span>
+<span id="2527">2527</span>
+<span id="2528">2528</span>
+<span id="2529">2529</span>
+<span id="2530">2530</span>
+<span id="2531">2531</span>
+<span id="2532">2532</span>
+<span id="2533">2533</span>
+<span id="2534">2534</span>
+<span id="2535">2535</span>
+<span id="2536">2536</span>
+<span id="2537">2537</span>
+<span id="2538">2538</span>
+<span id="2539">2539</span>
+<span id="2540">2540</span>
+<span id="2541">2541</span>
+<span id="2542">2542</span>
+<span id="2543">2543</span>
+<span id="2544">2544</span>
+<span id="2545">2545</span>
+<span id="2546">2546</span>
+<span id="2547">2547</span>
+<span id="2548">2548</span>
+<span id="2549">2549</span>
+<span id="2550">2550</span>
+<span id="2551">2551</span>
+<span id="2552">2552</span>
+<span id="2553">2553</span>
+<span id="2554">2554</span>
+<span id="2555">2555</span>
+<span id="2556">2556</span>
+<span id="2557">2557</span>
+<span id="2558">2558</span>
+<span id="2559">2559</span>
+<span id="2560">2560</span>
+<span id="2561">2561</span>
+<span id="2562">2562</span>
+<span id="2563">2563</span>
+<span id="2564">2564</span>
+<span id="2565">2565</span>
+<span id="2566">2566</span>
+<span id="2567">2567</span>
+<span id="2568">2568</span>
+<span id="2569">2569</span>
+<span id="2570">2570</span>
+<span id="2571">2571</span>
+<span id="2572">2572</span>
+<span id="2573">2573</span>
+<span id="2574">2574</span>
+<span id="2575">2575</span>
+<span id="2576">2576</span>
+<span id="2577">2577</span>
+<span id="2578">2578</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -2452,33 +2692,36 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkIconView` is a widget which displays data in a grid of icons.</span>
+    <span class="doccomment">/// [`IconView`][crate::IconView] is a widget which displays data in a grid of icons.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkIconView` provides an alternative view on a `GtkTreeModel`.</span>
+    <span class="doccomment">/// [`IconView`][crate::IconView] provides an alternative view on a [`TreeModel`][crate::TreeModel].</span>
     <span class="doccomment">/// It displays the model as a grid of icons with labels. Like</span>
-    <span class="doccomment">/// [class`Gtk.TreeView`], it allows to select one or multiple items</span>
-    <span class="doccomment">/// (depending on the selection mode, see [method`Gtk.IconView`.set_selection_mode]).</span>
-    <span class="doccomment">/// In addition to selection with the arrow keys, `GtkIconView` supports</span>
+    <span class="doccomment">/// [`TreeView`][crate::TreeView], it allows to select one or multiple items</span>
+    <span class="doccomment">/// (depending on the selection mode, see [``set_selection_mode()``][`Self::set_selection_mode()`]).</span>
+    <span class="doccomment">/// In addition to selection with the arrow keys, [`IconView`][crate::IconView] supports</span>
     <span class="doccomment">/// rubberband selection, which is controlled by dragging the pointer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that if the tree model is backed by an actual tree store (as</span>
     <span class="doccomment">/// opposed to a flat list where the mapping to icons is obvious),</span>
-    <span class="doccomment">/// [`crate::IconView`] will only display the first level of the tree and</span>
+    <span class="doccomment">/// [`IconView`][crate::IconView] will only display the first level of the tree and</span>
     <span class="doccomment">/// ignore the tree’s branches.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// **⚠️ The following code is in text ⚠️**</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// iconview.view</span>
     <span class="doccomment">/// ╰── [rubberband]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkIconView` has a single CSS node with name iconview and style class .view.</span>
+    <span class="doccomment">/// [`IconView`][crate::IconView] has a single CSS node with name iconview and style class .view.</span>
     <span class="doccomment">/// For rubberband selection, a subnode with name rubberband is used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::CellLayoutExt`], [`trait@crate::prelude::ScrollableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`], [`trait@crate::prelude::CellLayoutExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`CellLayoutExt`][trait@crate::prelude::CellLayoutExt], [`ScrollableExt`][trait@crate::prelude::ScrollableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual], [`CellLayoutExtManual`][trait@crate::prelude::CellLayoutExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkIconView&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconView</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkIconView</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">CellLayout</span>, <span class="ident">Scrollable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2487,25 +2730,25 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IconView</span> {
-    <span class="doccomment">/// Creates a new [`crate::IconView`] widget</span>
+    <span class="doccomment">/// Creates a new [`IconView`][crate::IconView] widget</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly created [`crate::IconView`] widget</span>
+    <span class="doccomment">/// A newly created [`IconView`][crate::IconView] widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconView</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_icon_view_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Creates a new [`crate::IconView`] widget using the</span>
+    <span class="doccomment">/// Creates a new [`IconView`][crate::IconView] widget using the</span>
     <span class="doccomment">/// specified `area` to layout cells inside the icons.</span>
     <span class="doccomment">/// ## `area`</span>
-    <span class="doccomment">/// the [`crate::CellArea`] to use to layout cells</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea] to use to layout cells</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly created [`crate::IconView`] widget</span>
+    <span class="doccomment">/// A newly created [`IconView`][crate::IconView] widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_new_with_area&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_area&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconView</span> {
@@ -2518,13 +2761,13 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new [`crate::IconView`] widget with the model `model`.</span>
+    <span class="doccomment">/// Creates a new [`IconView`][crate::IconView] widget with the model `model`.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// The model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly created [`crate::IconView`] widget.</span>
+    <span class="doccomment">/// A newly created [`IconView`][crate::IconView] widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_new_with_model&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconView</span> {
@@ -2537,10 +2780,18 @@
         }
     }
 
-    <span class="doccomment">/// Creates a [`crate::cairo::Surface`] representation of the item at `path`.</span>
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`IconView`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`IconViewBuilder`] which can be used to create [`IconView`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconViewBuilder</span> {
+        <span class="ident">IconViewBuilder::default</span>()
+    }
+
+    <span class="doccomment">/// Creates a [`cairo::Surface`][crate::cairo::Surface] representation of the item at `path`.</span>
     <span class="doccomment">/// This image is used for a drag icon.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a [`crate::TreePath`] in `self`</span>
+    <span class="doccomment">/// a [`TreePath`][crate::TreePath] in `self`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2556,7 +2807,7 @@
     }
 
     <span class="doccomment">/// Turns `self` into a drop destination for automatic DND. Calling this</span>
-    <span class="doccomment">/// method sets [`crate::IconView:reorderable`] to [`false`].</span>
+    <span class="doccomment">/// method sets `property::IconView::reorderable` to [`false`].</span>
     <span class="doccomment">/// ## `formats`</span>
     <span class="doccomment">/// the formats that the drag will support</span>
     <span class="doccomment">/// ## `actions`</span>
@@ -2574,7 +2825,7 @@
     }
 
     <span class="doccomment">/// Turns `self` into a drag source for automatic DND. Calling this</span>
-    <span class="doccomment">/// method sets [`crate::IconView:reorderable`] to [`false`].</span>
+    <span class="doccomment">/// method sets `property::IconView::reorderable` to [`false`].</span>
     <span class="doccomment">/// ## `start_button_mask`</span>
     <span class="doccomment">/// Mask of allowed buttons to start drag</span>
     <span class="doccomment">/// ## `formats`</span>
@@ -2599,7 +2850,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the setting set by [`Self::set_activate_on_single_click()`].</span>
+    <span class="doccomment">/// Gets the setting set by [`set_activate_on_single_click()`][Self::set_activate_on_single_click()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2619,15 +2870,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is only valid if `self` is realized.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a [`crate::TreePath`]</span>
+    <span class="doccomment">/// a [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a [`crate::CellRenderer`] or [`None`]</span>
-    <span class="doccomment">/// ## `rect`</span>
-    <span class="doccomment">/// rectangle to fill with cell rect</span>
+    <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`false`] if there is no such item, [`true`] otherwise</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `rect`</span>
+    <span class="doccomment">/// rectangle to fill with cell rect</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_cell_rect&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cell_rect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_rect</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2677,17 +2929,19 @@
     <span class="doccomment">/// If the cursor isn’t currently set, then *`path` will be [`None`].</span>
     <span class="doccomment">/// If no cell currently has focus, then *`cell` will be [`None`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The returned [`crate::TreePath`] must be freed with [`crate::TreePath::free()`].</span>
-    <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// Return location for the current</span>
-    <span class="doccomment">///  cursor path, or [`None`]</span>
-    <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// Return location the current</span>
-    <span class="doccomment">///  focus cell, or [`None`]</span>
+    <span class="doccomment">/// The returned [`TreePath`][crate::TreePath] must be freed with `gtk_tree_path_free()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the cursor is set.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `path`</span>
+    <span class="doccomment">/// Return location for the current</span>
+    <span class="doccomment">///  cursor path, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `cell`</span>
+    <span class="doccomment">/// Return location the current</span>
+    <span class="doccomment">///  focus cell, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_cursor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cursor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TreePath</span>, <span class="ident">CellRenderer</span>)<span class="op">&gt;</span> {
@@ -2712,15 +2966,17 @@
     <span class="doccomment">/// the position to determine the destination item for</span>
     <span class="doccomment">/// ## `drag_y`</span>
     <span class="doccomment">/// the position to determine the destination item for</span>
-    <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// Return location for the path of the item,</span>
-    <span class="doccomment">///  or [`None`].</span>
-    <span class="doccomment">/// ## `pos`</span>
-    <span class="doccomment">/// Return location for the drop position, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether there is an item at the given position.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `path`</span>
+    <span class="doccomment">/// Return location for the path of the item,</span>
+    <span class="doccomment">///  or [`None`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `pos`</span>
+    <span class="doccomment">/// Return location for the drop position, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_dest_item_at_pos&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_dest_item_at_pos&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dest_item_at_pos</span>(
@@ -2748,9 +3004,14 @@
     }
 
     <span class="doccomment">/// Gets information about the item that is highlighted for feedback.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// Return location for the path of</span>
     <span class="doccomment">///  the highlighted item, or [`None`].</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `pos`</span>
     <span class="doccomment">/// Return location for the drop position, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_drag_dest_item&quot;</span>)]</span>
@@ -2774,15 +3035,17 @@
     <span class="doccomment">/// The x position to be identified</span>
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// The y position to be identified</span>
-    <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// Return location for the path, or [`None`]</span>
-    <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// Return location for the renderer</span>
-    <span class="doccomment">///  responsible for the cell at (`x`, `y`), or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if an item exists at the specified position</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `path`</span>
+    <span class="doccomment">/// Return location for the path, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `cell`</span>
+    <span class="doccomment">/// Return location for the renderer</span>
+    <span class="doccomment">///  responsible for the cell at (`x`, `y`), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_item_at_pos&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_item_at_pos&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item_at_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TreePath</span>, <span class="ident">CellRenderer</span>)<span class="op">&gt;</span> {
@@ -2807,7 +3070,7 @@
     <span class="doccomment">/// Gets the column in which the item `path` is currently</span>
     <span class="doccomment">/// displayed. Column numbers start at 0.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// the [`crate::TreePath`] of the item</span>
+    <span class="doccomment">/// the [`TreePath`][crate::TreePath] of the item</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2853,7 +3116,7 @@
     <span class="doccomment">/// Gets the row in which the item `path` is currently</span>
     <span class="doccomment">/// displayed. Row numbers start at 0.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// the [`crate::TreePath`] of the item</span>
+    <span class="doccomment">/// the [`TreePath`][crate::TreePath] of the item</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2902,12 +3165,12 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_icon_view_get_markup_column</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the model the [`crate::IconView`] is based on. Returns [`None`] if the</span>
+    <span class="doccomment">/// Returns the model the [`IconView`][crate::IconView] is based on. Returns [`None`] if the</span>
     <span class="doccomment">/// model is unset.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A [`crate::TreeModel`], or [`None`] if none is</span>
+    <span class="doccomment">/// A [`TreeModel`][crate::TreeModel], or [`None`] if none is</span>
     <span class="doccomment">///  currently being used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_model&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_model&quot;</span>)]</span>
@@ -2923,7 +3186,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::TreePath`] corresponding</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] corresponding</span>
     <span class="doccomment">/// to the icon or [`None`] if no icon exists at that position.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_path_at_pos&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_path_at_pos&quot;</span>)]</span>
@@ -2949,7 +3212,7 @@
     }
 
     <span class="doccomment">/// Retrieves whether the user can reorder the list via drag-and-drop.</span>
-    <span class="doccomment">/// See [`Self::set_reorderable()`].</span>
+    <span class="doccomment">/// See [`set_reorderable()`][Self::set_reorderable()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2973,10 +3236,11 @@
 
     <span class="doccomment">/// Creates a list of paths of all selected items. Additionally, if you are</span>
     <span class="doccomment">/// planning on modifying the model after calling this function, you may</span>
-    <span class="doccomment">/// want to convert the returned list into a list of ``GtkTreeRowReferences``.</span>
-    <span class="doccomment">/// To do this, you can use [`crate::TreeRowReference::new()`].</span>
+    <span class="doccomment">/// want to convert the returned list into a list of `GtkTreeRowReferences`.</span>
+    <span class="doccomment">/// To do this, you can use [`TreeRowReference::new()`][crate::TreeRowReference::new()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To free the return value, use:</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</span>
@@ -2984,7 +3248,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A [`crate::glib::List`] containing a [`crate::TreePath`] for each selected row.</span>
+    <span class="doccomment">/// A `GList` containing a [`TreePath`][crate::TreePath] for each selected row.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_selected_items&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected_items&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_items</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> {
@@ -3041,8 +3305,8 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_icon_view_get_tooltip_column</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// This function is supposed to be used in a [`crate::Widget::query-tooltip`]</span>
-    <span class="doccomment">/// signal handler for [`crate::IconView`]. The `x`, `y` and `keyboard_tip` values</span>
+    <span class="doccomment">/// This function is supposed to be used in a `signal::Widget::query-tooltip`</span>
+    <span class="doccomment">/// signal handler for [`IconView`][crate::IconView]. The `x`, `y` and `keyboard_tip` values</span>
     <span class="doccomment">/// which are received in the signal handler, should be passed to this</span>
     <span class="doccomment">/// function without modification.</span>
     <span class="doccomment">///</span>
@@ -3057,17 +3321,20 @@
     <span class="doccomment">/// the y coordinate (relative to widget coordinates)</span>
     <span class="doccomment">/// ## `keyboard_tip`</span>
     <span class="doccomment">/// whether this is a keyboard tooltip or not</span>
-    <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// a pointer to receive a</span>
-    <span class="doccomment">///  [`crate::TreeModel`] or [`None`]</span>
-    <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a pointer to receive a [`crate::TreePath`] or [`None`]</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// a pointer to receive a [`crate::TreeIter`] or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether or not the given tooltip context points to an item</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `model`</span>
+    <span class="doccomment">/// a pointer to receive a</span>
+    <span class="doccomment">///  [`TreeModel`][crate::TreeModel] or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `path`</span>
+    <span class="doccomment">/// a pointer to receive a [`TreePath`][crate::TreePath] or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// a pointer to receive a [`TreeIter`][crate::TreeIter] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_tooltip_context&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tooltip_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_context</span>(
@@ -3100,16 +3367,18 @@
     <span class="doccomment">/// Sets `start_path` and `end_path` to be the first and last visible path.</span>
     <span class="doccomment">/// Note that there may be invisible paths in between.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Both paths should be freed with [`crate::TreePath::free()`] after use.</span>
-    <span class="doccomment">/// ## `start_path`</span>
-    <span class="doccomment">/// Return location for start of region,</span>
-    <span class="doccomment">///  or [`None`]</span>
-    <span class="doccomment">/// ## `end_path`</span>
-    <span class="doccomment">/// Return location for end of region, or [`None`]</span>
+    <span class="doccomment">/// Both paths should be freed with `gtk_tree_path_free()` after use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`], if valid paths were placed in `start_path` and `end_path`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `start_path`</span>
+    <span class="doccomment">/// Return location for start of region,</span>
+    <span class="doccomment">///  or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `end_path`</span>
+    <span class="doccomment">/// Return location for end of region, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_get_visible_range&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visible_range&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TreePath</span>, <span class="ident">TreePath</span>)<span class="op">&gt;</span> {
@@ -3131,7 +3400,7 @@
 
     <span class="doccomment">/// Activates the item determined by `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// The [`crate::TreePath`] to be activated</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] to be activated</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_item_activated&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item_activated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {
@@ -3145,7 +3414,7 @@
     <span class="doccomment">/// Returns [`true`] if the icon pointed to by `path` is currently</span>
     <span class="doccomment">/// selected. If `path` does not point to a valid location, [`false`] is returned.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// A [`crate::TreePath`] to check selection on.</span>
+    <span class="doccomment">/// A [`TreePath`][crate::TreePath] to check selection on.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3196,7 +3465,7 @@
     }
 
     <span class="doccomment">/// Selects all the icons. `self` must has its selection mode set</span>
-    <span class="doccomment">/// to [`crate::SelectionMode::Multiple`].</span>
+    <span class="doccomment">/// to [`SelectionMode::Multiple`][crate::SelectionMode::Multiple].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_select_all&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -3206,7 +3475,7 @@
 
     <span class="doccomment">/// Selects the row at `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// The [`crate::TreePath`] to be selected.</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] to be selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_select_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {
@@ -3221,8 +3490,6 @@
     <span class="doccomment">/// selection cannot be modified from within this function.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// The function to call for each selected icon.</span>
-    <span class="doccomment">/// ## `data`</span>
-    <span class="doccomment">/// User data to pass to the function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_selected_foreach&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>, <span class="kw-2">&amp;</span><span class="ident">TreePath</span>)<span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">func</span>: <span class="ident">P</span>) {
         <span class="kw">let</span> <span class="ident">func_data</span>: <span class="ident">P</span> <span class="op">=</span> <span class="ident">func</span>;
@@ -3247,7 +3514,7 @@
         }
     }
 
-    <span class="doccomment">/// Causes the [`crate::IconView::item-activated`] signal to be emitted on</span>
+    <span class="doccomment">/// Causes the `signal::IconView::item-activated` signal to be emitted on</span>
     <span class="doccomment">/// a single click instead of a double click.</span>
     <span class="doccomment">/// ## `single`</span>
     <span class="doccomment">/// [`true`] to emit item-activated on a single click</span>
@@ -3295,7 +3562,7 @@
     <span class="doccomment">/// (icon_view)` in order to give keyboard focus to the widget.</span>
     <span class="doccomment">/// Please note that editing can only happen when the widget is realized.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// A [`crate::TreePath`]</span>
+    <span class="doccomment">/// A [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">/// ## `cell`</span>
     <span class="doccomment">/// One of the cell renderers of `self`, or [`None`]</span>
     <span class="doccomment">/// ## `start_editing`</span>
@@ -3344,7 +3611,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the [`crate::IconView:item-padding`] property which specifies the padding</span>
+    <span class="doccomment">/// Sets the `property::IconView::item-padding` property which specifies the padding</span>
     <span class="doccomment">/// around each of the icon view’s items.</span>
     <span class="doccomment">/// ## `item_padding`</span>
     <span class="doccomment">/// the item padding</span>
@@ -3382,7 +3649,7 @@
     <span class="doccomment">/// Sets the column with markup information for `self` to be</span>
     <span class="doccomment">/// `column`. The markup column must be of type `G_TYPE_STRING`.</span>
     <span class="doccomment">/// If the markup column is set to something, it overrides</span>
-    <span class="doccomment">/// the text column set by [`Self::set_text_column()`].</span>
+    <span class="doccomment">/// the text column set by [`set_text_column()`][Self::set_text_column()].</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// A column in the currently used model, or -1 to display no text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_markup_column&quot;</span>)]</span>
@@ -3392,7 +3659,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the model for a [`crate::IconView`].</span>
+    <span class="doccomment">/// Sets the model for a [`IconView`][crate::IconView].</span>
     <span class="doccomment">/// If the `self` already has a model set, it will remove</span>
     <span class="doccomment">/// it before setting the new model. If `model` is [`None`], then</span>
     <span class="doccomment">/// it will unset the old model.</span>
@@ -3420,8 +3687,8 @@
     }
 
     <span class="doccomment">/// This function is a convenience function to allow you to reorder models that</span>
-    <span class="doccomment">/// support the [`crate::TreeDragSourceIface`] and the [`crate::TreeDragDestIface`]. Both</span>
-    <span class="doccomment">/// [`crate::TreeStore`] and [`crate::ListStore`] support these. If `reorderable` is [`true`], then</span>
+    <span class="doccomment">/// support the `GtkTreeDragSourceIface` and the `GtkTreeDragDestIface`. Both</span>
+    <span class="doccomment">/// [`TreeStore`][crate::TreeStore] and [`ListStore`][crate::ListStore] support these. If `reorderable` is [`true`], then</span>
     <span class="doccomment">/// the user can reorder the model by dragging and dropping rows. The</span>
     <span class="doccomment">/// developer can listen to these changes by connecting to the model&#39;s</span>
     <span class="doccomment">/// row_inserted and row_deleted signals. The reordering is implemented by setting up</span>
@@ -3485,15 +3752,15 @@
     }
 
     <span class="doccomment">/// Sets the tip area of `tooltip` to the area which `cell` occupies in</span>
-    <span class="doccomment">/// the item pointed to by `path`. See also [`crate::Tooltip::set_tip_area()`].</span>
+    <span class="doccomment">/// the item pointed to by `path`. See also [`Tooltip::set_tip_area()`][crate::Tooltip::set_tip_area()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also [`Self::set_tooltip_column()`] for a simpler alternative.</span>
+    <span class="doccomment">/// See also [`set_tooltip_column()`][Self::set_tooltip_column()] for a simpler alternative.</span>
     <span class="doccomment">/// ## `tooltip`</span>
-    <span class="doccomment">/// a [`crate::Tooltip`]</span>
+    <span class="doccomment">/// a [`Tooltip`][crate::Tooltip]</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a [`crate::TreePath`]</span>
+    <span class="doccomment">/// a [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a [`crate::CellRenderer`] or [`None`]</span>
+    <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_tooltip_cell&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_tooltip_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -3512,14 +3779,14 @@
     }
 
     <span class="doccomment">/// If you only plan to have simple (text-only) tooltips on full items, you</span>
-    <span class="doccomment">/// can use this function to have [`crate::IconView`] handle these automatically</span>
+    <span class="doccomment">/// can use this function to have [`IconView`][crate::IconView] handle these automatically</span>
     <span class="doccomment">/// for you. `column` should be set to the column in `self`’s model</span>
     <span class="doccomment">/// containing the tooltip texts, or -1 to disable this feature.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When enabled, [`crate::Widget:has-tooltip`] will be set to [`true`] and</span>
-    <span class="doccomment">/// `self` will connect a [`crate::Widget::query-tooltip`] signal handler.</span>
+    <span class="doccomment">/// When enabled, `property::Widget::has-tooltip` will be set to [`true`] and</span>
+    <span class="doccomment">/// `self` will connect a `signal::Widget::query-tooltip` signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the signal handler sets the text with [`crate::Tooltip::set_markup()`],</span>
+    <span class="doccomment">/// Note that the signal handler sets the text with [`Tooltip::set_markup()`][crate::Tooltip::set_markup()],</span>
     <span class="doccomment">/// so &amp;, &lt;, etc have to be escaped in the text.</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// an integer, which is a valid column number for `self`’s model</span>
@@ -3531,12 +3798,12 @@
     }
 
     <span class="doccomment">/// Sets the tip area of `tooltip` to be the area covered by the item at `path`.</span>
-    <span class="doccomment">/// See also [`Self::set_tooltip_column()`] for a simpler alternative.</span>
-    <span class="doccomment">/// See also [`crate::Tooltip::set_tip_area()`].</span>
+    <span class="doccomment">/// See also [`set_tooltip_column()`][Self::set_tooltip_column()] for a simpler alternative.</span>
+    <span class="doccomment">/// See also [`Tooltip::set_tip_area()`][crate::Tooltip::set_tip_area()].</span>
     <span class="doccomment">/// ## `tooltip`</span>
-    <span class="doccomment">/// a [`crate::Tooltip`]</span>
+    <span class="doccomment">/// a [`Tooltip`][crate::Tooltip]</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a [`crate::TreePath`]</span>
+    <span class="doccomment">/// a [`TreePath`][crate::TreePath]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_tooltip_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_tooltip_item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tooltip</span>: <span class="kw-2">&amp;</span><span class="ident">Tooltip</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {
@@ -3558,7 +3825,7 @@
 
     <span class="doccomment">/// Unselects the row at `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// The [`crate::TreePath`] to be unselected.</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] to be unselected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_unselect_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unselect_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {
@@ -3569,8 +3836,8 @@
         }
     }
 
-    <span class="doccomment">/// Undoes the effect of [`Self::enable_model_drag_dest()`]. Calling this</span>
-    <span class="doccomment">/// method sets [`crate::IconView:reorderable`] to [`false`].</span>
+    <span class="doccomment">/// Undoes the effect of [`enable_model_drag_dest()`][Self::enable_model_drag_dest()]. Calling this</span>
+    <span class="doccomment">/// method sets `property::IconView::reorderable` to [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_unset_model_drag_dest&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unset_model_drag_dest</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -3578,8 +3845,8 @@
         }
     }
 
-    <span class="doccomment">/// Undoes the effect of [`Self::enable_model_drag_source()`]. Calling this</span>
-    <span class="doccomment">/// method sets [`crate::IconView:reorderable`] to [`false`].</span>
+    <span class="doccomment">/// Undoes the effect of [`enable_model_drag_source()`][Self::enable_model_drag_source()]. Calling this</span>
+    <span class="doccomment">/// method sets `property::IconView::reorderable` to [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_unset_model_drag_source&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unset_model_drag_source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -3587,6 +3854,10 @@
         }
     }
 
+    <span class="doccomment">/// The [`CellArea`][crate::CellArea] used to layout cell renderers for this view.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If no area is specified when creating the icon view with [`with_area()`][Self::with_area()]</span>
+    <span class="doccomment">/// a [`CellAreaBox`][crate::CellAreaBox] will be used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cell-area&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -3602,7 +3873,7 @@
         }
     }
 
-    <span class="doccomment">/// A [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// A [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user activates the currently</span>
     <span class="doccomment">/// focused item.</span>
     <span class="doccomment">///</span>
@@ -3612,7 +3883,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are Space, Return and Enter.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate-cursor-item&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -3648,16 +3919,16 @@
     }
 
     <span class="doccomment">/// The ::item-activated signal is emitted when the method</span>
-    <span class="doccomment">/// [`Self::item_activated()`] is called, when the user double</span>
+    <span class="doccomment">/// [`item_activated()`][Self::item_activated()] is called, when the user double</span>
     <span class="doccomment">/// clicks an item with the &quot;activate-on-single-click&quot; property set</span>
     <span class="doccomment">/// to [`false`], or when the user single clicks an item when the</span>
     <span class="doccomment">/// &quot;activate-on-single-click&quot; property set to [`true`]. It is also</span>
     <span class="doccomment">/// emitted when a non-editable item is selected and one of the keys:</span>
     <span class="doccomment">/// Space, Return or Enter is pressed.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// the [`crate::TreePath`] for the activated item</span>
+    <span class="doccomment">/// the [`TreePath`][crate::TreePath] for the activated item</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;item-activated&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_activated</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>, <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_activated</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -3683,7 +3954,7 @@
     }
 
     <span class="doccomment">/// The ::move-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user initiates a cursor movement.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
@@ -3697,7 +3968,7 @@
     <span class="doccomment">/// All of these will extend the selection when combined with</span>
     <span class="doccomment">/// the Shift modifier.</span>
     <span class="doccomment">/// ## `step`</span>
-    <span class="doccomment">/// the granularity of the move, as a [`crate::MovementStep`]</span>
+    <span class="doccomment">/// the granularity of the move, as a [`MovementStep`][crate::MovementStep]</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// the number of `step` units to move</span>
     <span class="doccomment">/// ## `extend`</span>
@@ -3705,9 +3976,7 @@
     <span class="doccomment">/// ## `modify`</span>
     <span class="doccomment">/// whether to modify the selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;move-cursor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_move_cursor</span><span class="op">&lt;</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>, <span class="ident">MovementStep</span>, <span class="ident">i32</span>, <span class="ident">bool</span>, <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-    <span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_move_cursor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">MovementStep</span>, <span class="ident">i32</span>, <span class="ident">bool</span>, <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -3761,7 +4030,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Return Value for `emit_move_cursor`&quot;</span>)
     }
 
-    <span class="doccomment">/// A [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// A [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user selects all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
@@ -3770,7 +4039,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default binding for this signal is Ctrl-a.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;select-all&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_select_all</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_select_all</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">select_all_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3799,7 +4068,7 @@
         };
     }
 
-    <span class="doccomment">/// A [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// A [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user selects the item that is currently</span>
     <span class="doccomment">/// focused.</span>
     <span class="doccomment">///</span>
@@ -3809,7 +4078,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There is no default binding for this signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;select-cursor-item&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_select_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_select_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">select_cursor_item_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3841,7 +4110,7 @@
     <span class="doccomment">/// The ::selection-changed signal is emitted when the selection</span>
     <span class="doccomment">/// (i.e. the set of selected items) changes.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;selection-changed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_selection_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_selection_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">selection_changed_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3862,7 +4131,7 @@
         }
     }
 
-    <span class="doccomment">/// A [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// A [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user toggles whether the currently</span>
     <span class="doccomment">/// focused item is selected or not. The exact effect of this</span>
     <span class="doccomment">/// depend on the selection mode.</span>
@@ -3873,7 +4142,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There is no default binding for this signal is Ctrl-Space.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;toggle-cursor-item&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_toggle_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_toggle_cursor_item</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">toggle_cursor_item_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3902,7 +4171,7 @@
         };
     }
 
-    <span class="doccomment">/// A [keybinding signal][`SignalAction`]</span>
+    <span class="doccomment">/// A [keybinding signal][GtkSignalAction]</span>
     <span class="doccomment">/// which gets emitted when the user unselects all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
@@ -3911,7 +4180,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default binding for this signal is Ctrl-Shift-a.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;unselect-all&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_unselect_all</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_unselect_all</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">unselect_all_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3941,7 +4210,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate-on-single-click&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_on_single_click_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_on_single_click_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -3969,10 +4238,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;column-spacing&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_column_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_column_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_column_spacing_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -3995,7 +4261,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;columns&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_columns_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_columns_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_columns_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4018,10 +4284,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;item-orientation&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_orientation_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_orientation_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_item_orientation_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4044,7 +4307,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;item-padding&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_padding_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_padding_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_item_padding_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4067,7 +4330,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;item-width&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_width_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_item_width_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_item_width_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4090,7 +4353,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;margin&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_margin_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_margin_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_margin_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4113,10 +4376,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;markup-column&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_markup_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_markup_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_markup_column_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4139,7 +4399,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_model_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_model_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_model_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4162,10 +4422,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;pixbuf-column&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_pixbuf_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_pixbuf_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_pixbuf_column_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4188,7 +4445,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;reorderable&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_reorderable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_reorderable_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_reorderable_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4211,7 +4468,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;row-spacing&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_row_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_row_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_row_spacing_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4234,10 +4491,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;selection-mode&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_selection_mode_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_selection_mode_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_selection_mode_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4260,7 +4514,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;spacing&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_spacing_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_spacing_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4283,7 +4537,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-column&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_text_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_text_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_text_column_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4306,10 +4560,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tooltip-column&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tooltip_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tooltip_column_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_tooltip_column_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">IconView</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIconView</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -4339,6 +4590,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`IconView`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconViewBuilder</span> {
     <span class="ident">activate_on_single_click</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">cell_area</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>,
@@ -4394,10 +4649,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IconViewBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`IconViewBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`IconView`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconView</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">activate_on_single_click</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">activate_on_single_click</span> {
@@ -4557,46 +4816,71 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of IconView&quot;</span>)
     }
 
+    <span class="doccomment">/// The activate-on-single-click property specifies whether the &quot;item-activated&quot; signal</span>
+    <span class="doccomment">/// will be emitted after a single click.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activate_on_single_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">activate_on_single_click</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">activate_on_single_click</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">activate_on_single_click</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`CellArea`][crate::CellArea] used to layout cell renderers for this view.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If no area is specified when creating the icon view with [`IconView::with_area()`][crate::IconView::with_area()]</span>
+    <span class="doccomment">/// a [`CellAreaBox`][crate::CellAreaBox] will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cell_area</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_area</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The column-spacing property specifies the space which is inserted between</span>
+    <span class="doccomment">/// the columns of the icon view.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_spacing</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">column_spacing</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">column_spacing</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">column_spacing</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The columns property contains the number of the columns in which the</span>
+    <span class="doccomment">/// items should be displayed. If it is -1, the number of columns will</span>
+    <span class="doccomment">/// be chosen automatically to fill the available area.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">columns</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">columns</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">columns</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">columns</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The item-orientation property specifies how the cells (i.e. the icon and</span>
+    <span class="doccomment">/// the text) of the item are positioned relative to each other.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item_orientation</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item_orientation</span>: <span class="ident">Orientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">item_orientation</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">item_orientation</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The item-padding property specifies the padding around each</span>
+    <span class="doccomment">/// of the icon view&#39;s item.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item_padding</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item_padding</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">item_padding</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">item_padding</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The item-width property specifies the width to use for each item.</span>
+    <span class="doccomment">/// If it is set to -1, the icon view will automatically determine a</span>
+    <span class="doccomment">/// suitable item size.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">item_width</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">item_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">item_width</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The margin property specifies the space which is inserted</span>
+    <span class="doccomment">/// at the edges of the icon view.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The ::markup-column property contains the number of the model column</span>
+    <span class="doccomment">/// containing markup information to be displayed. The markup column must be</span>
+    <span class="doccomment">/// of type `G_TYPE_STRING`. If this property and the :text-column property</span>
+    <span class="doccomment">/// are both set to column numbers, it overrides the text column.</span>
+    <span class="doccomment">/// If both are set to -1, no texts are displayed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">markup_column</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">markup_column</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">markup_column</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">markup_column</span>);
         <span class="self">self</span>
@@ -4607,31 +4891,48 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The ::pixbuf-column property contains the number of the model column</span>
+    <span class="doccomment">/// containing the pixbufs which are displayed. The pixbuf column must be</span>
+    <span class="doccomment">/// of type `GDK_TYPE_PIXBUF`. Setting this property to -1 turns off the</span>
+    <span class="doccomment">/// display of pixbufs.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_column</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">pixbuf_column</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">pixbuf_column</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">pixbuf_column</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The reorderable property specifies if the items can be reordered</span>
+    <span class="doccomment">/// by DND.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reorderable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">reorderable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">reorderable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">reorderable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The row-spacing property specifies the space which is inserted between</span>
+    <span class="doccomment">/// the rows of the icon view.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">row_spacing</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">row_spacing</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">row_spacing</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">row_spacing</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The ::selection-mode property specifies the selection mode of</span>
+    <span class="doccomment">/// icon view. If the mode is [`SelectionMode::Multiple`][crate::SelectionMode::Multiple], rubberband selection</span>
+    <span class="doccomment">/// is enabled, for the other modes, only keyboard selection is possible.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selection_mode</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selection_mode</span>: <span class="ident">SelectionMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">selection_mode</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">selection_mode</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The spacing property specifies the space which is inserted between</span>
+    <span class="doccomment">/// the cells (i.e. the icon and the text) of an item.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spacing</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">spacing</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">spacing</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">spacing</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The ::text-column property contains the number of the model column</span>
+    <span class="doccomment">/// containing the texts which are displayed. The text column must be</span>
+    <span class="doccomment">/// of type `G_TYPE_STRING`. If this property and the :markup-column</span>
+    <span class="doccomment">/// property are both set to -1, no texts are displayed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_column</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_column</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">text_column</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_column</span>);
         <span class="self">self</span>
@@ -4642,171 +4943,280 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget or any of its descendents can accept</span>
+    <span class="doccomment">/// the input focus.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_focus</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_focus</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_focus</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_focus</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget can receive pointer events.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_target</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">can_target</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">can_target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">can_target</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// A list of css classes applied to this widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_classes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_classes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_classes</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_classes</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of this widget in the CSS tree.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">css_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">css_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The cursor used by `widget`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget should grab focus when it is clicked with the mouse.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is only relevant for widgets that can take focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focus_on_click</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focus_on_click</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focus_on_click</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focus_on_click</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether this widget itself will accept the input focus.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focusable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">focusable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">focusable</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">focusable</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute horizontal space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">halign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">halign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">halign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">halign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
+    <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for height request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">height_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">height_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand horizontally.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `hexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
+    <span class="doccomment">/// of the widget, and allocate its children.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on bottom side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on end of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on start of widget, horizontally.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property supports left-to-right and right-to-left text</span>
+    <span class="doccomment">/// directions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Margin on top side of widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
+    <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The requested opacity of the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opacity</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">opacity</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">opacity</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">opacity</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How content outside the widget&#39;s content area is treated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
+    <span class="doccomment">/// typically in their instance init function.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">overflow</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">overflow</span>: <span class="ident">Overflow</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">overflow</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">overflow</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget will receive the default action when it is focused.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">receives_default</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">receives_default</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">receives_default</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">receives_default</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget responds to input.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensitive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sensitive</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">sensitive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sensitive</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
+    <span class="doccomment">/// with Pango markup.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
+    <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
+    <span class="doccomment">/// the default signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// How to distribute vertical space if widget gets extra space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">valign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">valign</span>: <span class="ident">Align</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">valign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">valign</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to expand vertically.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether to use the `vexpand` property.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vexpand_set</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vexpand_set</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vexpand_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vexpand_set</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the widget is visible.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">visible</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">visible</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Override for width request of the widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is -1, the natural request will be used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_request</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_request</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">width_request</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width_request</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">accessible_role</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">accessible_role</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Horizontal [`Adjustment`][crate::Adjustment] of the scrollable widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This adjustment is shared between the scrollable widget and its parent.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hadjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hadjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hadjustment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hadjustment</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines when horizontal scrolling should start.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hscroll_policy</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hscroll_policy</span>: <span class="ident">ScrollablePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hscroll_policy</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hscroll_policy</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Vertical [`Adjustment`][crate::Adjustment] of the scrollable widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This adjustment is shared between the scrollable widget and its parent.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vadjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vadjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vadjustment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vadjustment</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines when vertical scrolling should start.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vscroll_policy</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vscroll_policy</span>: <span class="ident">ScrollablePolicy</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">vscroll_policy</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vscroll_policy</span>);
         <span class="self">self</span>
@@ -4820,4 +5230,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

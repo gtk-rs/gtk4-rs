@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/selection_model.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>selection_model.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;selection_model.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>selection_model.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -398,6 +468,7 @@
 <span id="395">395</span>
 <span id="396">396</span>
 <span id="397">397</span>
+<span id="398">398</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -414,20 +485,20 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSelectionModel` is an interface that add support for selection to list models.</span>
+    <span class="doccomment">/// [`SelectionModel`][crate::SelectionModel] is an interface that add support for selection to list models.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This support is then used by widgets using list models to add the ability</span>
     <span class="doccomment">/// to select and unselect various items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides default implementations of the most common selection modes such</span>
-    <span class="doccomment">/// as [class`Gtk.SingleSelection`], so you will only need to implement this</span>
+    <span class="doccomment">/// as [`SingleSelection`][crate::SingleSelection], so you will only need to implement this</span>
     <span class="doccomment">/// interface if you want detailed control about how selections should be handled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkSelectionModel` supports a single boolean per item indicating if an item is</span>
-    <span class="doccomment">/// selected or not. This can be queried via [method`Gtk.SelectionModel`.is_selected].</span>
+    <span class="doccomment">/// A [`SelectionModel`][crate::SelectionModel] supports a single boolean per item indicating if an item is</span>
+    <span class="doccomment">/// selected or not. This can be queried via [``SelectionModelExt::is_selected()``][crate::prelude::`SelectionModelExt::is_selected()`].</span>
     <span class="doccomment">/// When the selected state of one or more items changes, the model will emit the</span>
-    <span class="doccomment">/// [signal`Gtk.SelectionModel`::selection-changed] signal by calling the</span>
-    <span class="doccomment">/// [method`Gtk.SelectionModel`.selection_changed] function. The positions given</span>
+    <span class="doccomment">/// `signal::SelectionModel::selection-changed` signal by calling the</span>
+    <span class="doccomment">/// [``SelectionModelExt::selection_changed()``][crate::prelude::`SelectionModelExt::selection_changed()`] function. The positions given</span>
     <span class="doccomment">/// in that signal may have their selection state changed, though that is not a</span>
     <span class="doccomment">/// requirement. If new items added to the model via the ::items-changed signal</span>
     <span class="doccomment">/// are selected or not is up to the implementation.</span>
@@ -438,7 +509,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, the interface can expose functionality to select and unselect</span>
     <span class="doccomment">/// items. If these functions are implemented, GTK&#39;s list widgets will allow users</span>
-    <span class="doccomment">/// to select and unselect items. However, `GtkSelectionModel`s are free to only</span>
+    <span class="doccomment">/// to select and unselect items. However, [`SelectionModel`][crate::SelectionModel]s are free to only</span>
     <span class="doccomment">/// implement them partially or not at all. In that case the widgets will not</span>
     <span class="doccomment">/// support the unimplemented operations.</span>
     <span class="doccomment">///</span>
@@ -452,7 +523,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::SelectionModelExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`SelectionModelExt`][trait@crate::prelude::SelectionModelExt], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSelectionModel&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionModel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkSelectionModel</span>, <span class="ident">ffi::GtkSelectionModelInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -462,21 +534,21 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_SELECTION_MODEL</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `SelectionModel` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@SelectionModel`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::MultiSelection`], [`struct@crate::NoSelection`], [`struct@crate::SelectionModel`], [`struct@crate::SingleSelection`]</span>
+<span class="doccomment">/// [`MultiSelection`][struct@crate::MultiSelection], [`NoSelection`][struct@crate::NoSelection], [`SelectionModel`][struct@crate::SelectionModel], [`SingleSelection`][struct@crate::SingleSelection]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SelectionModelExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the set containing all currently selected items in the model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function may be slow, so if you are only interested in single item,</span>
-    <span class="doccomment">/// consider using [method`Gtk.SelectionModel`.is_selected] or if you are only</span>
-    <span class="doccomment">/// interested in a few, consider [method`Gtk.SelectionModel`.get_selection_in_range].</span>
+    <span class="doccomment">/// consider using [``is_selected()``][`Self::is_selected()`] or if you are only</span>
+    <span class="doccomment">/// interested in a few, consider [``selection_in_range()``][`Self::selection_in_range()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkBitset` containing all the values currently</span>
+    <span class="doccomment">/// a [`Bitset`][crate::Bitset] containing all the values currently</span>
     <span class="doccomment">///  selected in `self`. If no items are selected, the bitset is empty.</span>
     <span class="doccomment">///  The bitset must not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_get_selection&quot;</span>)]</span>
@@ -486,9 +558,9 @@
     <span class="doccomment">/// Gets the set of selected items in a range.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is an optimization for</span>
-    <span class="doccomment">/// [method`Gtk.SelectionModel`.get_selection] when you are only</span>
+    <span class="doccomment">/// [``selection()``][`Self::selection()`] when you are only</span>
     <span class="doccomment">/// interested in part of the model&#39;s selected state. A common use</span>
-    <span class="doccomment">/// case is in response to the [signal`Gtk.SelectionModel`::selection-changed]</span>
+    <span class="doccomment">/// case is in response to the `signal::SelectionModel::selection-changed`</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// start of the queired range</span>
@@ -497,7 +569,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkBitset` that matches the selection state</span>
+    <span class="doccomment">/// A [`Bitset`][crate::Bitset] that matches the selection state</span>
     <span class="doccomment">///  for the given range with all other values being undefined.</span>
     <span class="doccomment">///  The bitset must not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_get_selection_in_range&quot;</span>)]</span>
@@ -551,10 +623,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_select_range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">select_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_items</span>: <span class="ident">u32</span>, <span class="ident">unselect_rest</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Helper function for implementations of `GtkSelectionModel`.</span>
+    <span class="doccomment">/// Helper function for implementations of [`SelectionModel`][crate::SelectionModel].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Call this when a the selection changes to emit the</span>
-    <span class="doccomment">/// [signal`Gtk.SelectionModel`::selection-changed] signal.</span>
+    <span class="doccomment">/// `signal::SelectionModel::selection-changed` signal.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the first changed item</span>
     <span class="doccomment">/// ## `n_items`</span>
@@ -760,19 +832,19 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;selection-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_selection_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">selection_changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">selection_changed_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkSelectionModel</span>,
             <span class="ident">position</span>: <span class="ident">libc::c_uint</span>,
             <span class="ident">n_items</span>: <span class="ident">libc::c_uint</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">SelectionModel::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">SelectionModel::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="ident">position</span>,
                 <span class="ident">n_items</span>,
             )
@@ -798,4 +870,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

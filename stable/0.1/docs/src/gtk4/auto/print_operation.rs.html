@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/print_operation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>print_operation.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;print_operation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>print_operation.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2175,6 +2245,158 @@
 <span id="2172">2172</span>
 <span id="2173">2173</span>
 <span id="2174">2174</span>
+<span id="2175">2175</span>
+<span id="2176">2176</span>
+<span id="2177">2177</span>
+<span id="2178">2178</span>
+<span id="2179">2179</span>
+<span id="2180">2180</span>
+<span id="2181">2181</span>
+<span id="2182">2182</span>
+<span id="2183">2183</span>
+<span id="2184">2184</span>
+<span id="2185">2185</span>
+<span id="2186">2186</span>
+<span id="2187">2187</span>
+<span id="2188">2188</span>
+<span id="2189">2189</span>
+<span id="2190">2190</span>
+<span id="2191">2191</span>
+<span id="2192">2192</span>
+<span id="2193">2193</span>
+<span id="2194">2194</span>
+<span id="2195">2195</span>
+<span id="2196">2196</span>
+<span id="2197">2197</span>
+<span id="2198">2198</span>
+<span id="2199">2199</span>
+<span id="2200">2200</span>
+<span id="2201">2201</span>
+<span id="2202">2202</span>
+<span id="2203">2203</span>
+<span id="2204">2204</span>
+<span id="2205">2205</span>
+<span id="2206">2206</span>
+<span id="2207">2207</span>
+<span id="2208">2208</span>
+<span id="2209">2209</span>
+<span id="2210">2210</span>
+<span id="2211">2211</span>
+<span id="2212">2212</span>
+<span id="2213">2213</span>
+<span id="2214">2214</span>
+<span id="2215">2215</span>
+<span id="2216">2216</span>
+<span id="2217">2217</span>
+<span id="2218">2218</span>
+<span id="2219">2219</span>
+<span id="2220">2220</span>
+<span id="2221">2221</span>
+<span id="2222">2222</span>
+<span id="2223">2223</span>
+<span id="2224">2224</span>
+<span id="2225">2225</span>
+<span id="2226">2226</span>
+<span id="2227">2227</span>
+<span id="2228">2228</span>
+<span id="2229">2229</span>
+<span id="2230">2230</span>
+<span id="2231">2231</span>
+<span id="2232">2232</span>
+<span id="2233">2233</span>
+<span id="2234">2234</span>
+<span id="2235">2235</span>
+<span id="2236">2236</span>
+<span id="2237">2237</span>
+<span id="2238">2238</span>
+<span id="2239">2239</span>
+<span id="2240">2240</span>
+<span id="2241">2241</span>
+<span id="2242">2242</span>
+<span id="2243">2243</span>
+<span id="2244">2244</span>
+<span id="2245">2245</span>
+<span id="2246">2246</span>
+<span id="2247">2247</span>
+<span id="2248">2248</span>
+<span id="2249">2249</span>
+<span id="2250">2250</span>
+<span id="2251">2251</span>
+<span id="2252">2252</span>
+<span id="2253">2253</span>
+<span id="2254">2254</span>
+<span id="2255">2255</span>
+<span id="2256">2256</span>
+<span id="2257">2257</span>
+<span id="2258">2258</span>
+<span id="2259">2259</span>
+<span id="2260">2260</span>
+<span id="2261">2261</span>
+<span id="2262">2262</span>
+<span id="2263">2263</span>
+<span id="2264">2264</span>
+<span id="2265">2265</span>
+<span id="2266">2266</span>
+<span id="2267">2267</span>
+<span id="2268">2268</span>
+<span id="2269">2269</span>
+<span id="2270">2270</span>
+<span id="2271">2271</span>
+<span id="2272">2272</span>
+<span id="2273">2273</span>
+<span id="2274">2274</span>
+<span id="2275">2275</span>
+<span id="2276">2276</span>
+<span id="2277">2277</span>
+<span id="2278">2278</span>
+<span id="2279">2279</span>
+<span id="2280">2280</span>
+<span id="2281">2281</span>
+<span id="2282">2282</span>
+<span id="2283">2283</span>
+<span id="2284">2284</span>
+<span id="2285">2285</span>
+<span id="2286">2286</span>
+<span id="2287">2287</span>
+<span id="2288">2288</span>
+<span id="2289">2289</span>
+<span id="2290">2290</span>
+<span id="2291">2291</span>
+<span id="2292">2292</span>
+<span id="2293">2293</span>
+<span id="2294">2294</span>
+<span id="2295">2295</span>
+<span id="2296">2296</span>
+<span id="2297">2297</span>
+<span id="2298">2298</span>
+<span id="2299">2299</span>
+<span id="2300">2300</span>
+<span id="2301">2301</span>
+<span id="2302">2302</span>
+<span id="2303">2303</span>
+<span id="2304">2304</span>
+<span id="2305">2305</span>
+<span id="2306">2306</span>
+<span id="2307">2307</span>
+<span id="2308">2308</span>
+<span id="2309">2309</span>
+<span id="2310">2310</span>
+<span id="2311">2311</span>
+<span id="2312">2312</span>
+<span id="2313">2313</span>
+<span id="2314">2314</span>
+<span id="2315">2315</span>
+<span id="2316">2316</span>
+<span id="2317">2317</span>
+<span id="2318">2318</span>
+<span id="2319">2319</span>
+<span id="2320">2320</span>
+<span id="2321">2321</span>
+<span id="2322">2322</span>
+<span id="2323">2323</span>
+<span id="2324">2324</span>
+<span id="2325">2325</span>
+<span id="2326">2326</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -2203,27 +2425,27 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkPrintOperation` is the high-level, portable printing API.</span>
+    <span class="doccomment">/// [`PrintOperation`][crate::PrintOperation] is the high-level, portable printing API.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It looks a bit different than other GTK dialogs such as the</span>
-    <span class="doccomment">/// `GtkFileChooser`, since some platforms don’t expose enough</span>
+    <span class="doccomment">/// [`FileChooser`][crate::FileChooser], since some platforms don’t expose enough</span>
     <span class="doccomment">/// infrastructure to implement a good print dialog. On such</span>
-    <span class="doccomment">/// platforms, `GtkPrintOperation` uses the native print dialog.</span>
+    <span class="doccomment">/// platforms, [`PrintOperation`][crate::PrintOperation] uses the native print dialog.</span>
     <span class="doccomment">/// On platforms which do not provide a native print dialog, GTK</span>
-    <span class="doccomment">/// uses its own, see [class`Gtk.PrintUnixDialog`].</span>
+    <span class="doccomment">/// uses its own, see [`PrintUnixDialog`][crate::PrintUnixDialog].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The typical way to use the high-level printing API is to create</span>
-    <span class="doccomment">/// a `GtkPrintOperation` object with [ctor`Gtk.PrintOperation`.new]</span>
+    <span class="doccomment">/// a [`PrintOperation`][crate::PrintOperation] object with [``new()``][`Self::new()`]</span>
     <span class="doccomment">/// when the user selects to print. Then you set some properties on it,</span>
-    <span class="doccomment">/// e.g. the page size, any [class`Gtk.PrintSettings`] from previous print</span>
+    <span class="doccomment">/// e.g. the page size, any [`PrintSettings`][crate::PrintSettings] from previous print</span>
     <span class="doccomment">/// operations, the number of pages, the current page, etc.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Then you start the print operation by calling [method`Gtk.PrintOperation`.run].</span>
+    <span class="doccomment">/// Then you start the print operation by calling [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`].</span>
     <span class="doccomment">/// It will then show a dialog, let the user select a printer and options.</span>
     <span class="doccomment">/// When the user finished the dialog, various signals will be emitted on</span>
-    <span class="doccomment">/// the `GtkPrintOperation`, the main one being</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::draw-page], which you are supposed to handle</span>
-    <span class="doccomment">/// and render the page on the provided [class`Gtk.PrintContext`] using Cairo.</span>
+    <span class="doccomment">/// the [`PrintOperation`][crate::PrintOperation], the main one being</span>
+    <span class="doccomment">/// `signal::PrintOperation::draw-page`, which you are supposed to handle</span>
+    <span class="doccomment">/// and render the page on the provided [`PrintContext`][crate::PrintContext] using Cairo.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # The high-level printing API</span>
     <span class="doccomment">///</span>
@@ -2258,17 +2480,18 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// By default `GtkPrintOperation` uses an external application to do</span>
+    <span class="doccomment">/// By default [`PrintOperation`][crate::PrintOperation] uses an external application to do</span>
     <span class="doccomment">/// print preview. To implement a custom print preview, an application</span>
     <span class="doccomment">/// must connect to the preview signal. The functions</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperationPreview`.render_page],</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperationPreview`.end_preview] and</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperationPreview`.is_selected]</span>
+    <span class="doccomment">/// [``PrintOperationPreviewExt::render_page()``][crate::prelude::`PrintOperationPreviewExt::render_page()`],</span>
+    <span class="doccomment">/// [``PrintOperationPreviewExt::end_preview()``][crate::prelude::`PrintOperationPreviewExt::end_preview()`] and</span>
+    <span class="doccomment">/// [``PrintOperationPreviewExt::is_selected()``][crate::prelude::`PrintOperationPreviewExt::is_selected()`]</span>
     <span class="doccomment">/// are useful when implementing a print preview.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::PrintOperationExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::PrintOperationPreviewExt`]</span>
+    <span class="doccomment">/// [`PrintOperationExt`][trait@crate::prelude::PrintOperationExt], [`trait@glib::ObjectExt`], [`PrintOperationPreviewExt`][trait@crate::prelude::PrintOperationPreviewExt]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintOperation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintOperation</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPrintOperation</span>, <span class="ident">ffi::GtkPrintOperationClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">PrintOperationPreview</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2277,15 +2500,23 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PrintOperation</span> {
-    <span class="doccomment">/// Creates a new `GtkPrintOperation`.</span>
+    <span class="doccomment">/// Creates a new [`PrintOperation`][crate::PrintOperation].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPrintOperation`</span>
+    <span class="doccomment">/// a new [`PrintOperation`][crate::PrintOperation]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrintOperation</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_print_operation_new</span>()) }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`PrintOperation`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`PrintOperationBuilder`] which can be used to create [`PrintOperation`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrintOperationBuilder</span> {
+        <span class="ident">PrintOperationBuilder::default</span>()
     }
 }
 
@@ -2296,6 +2527,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`PrintOperation`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintOperationBuilder</span> {
     <span class="ident">allow_async</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">current_page</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
@@ -2315,10 +2550,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PrintOperationBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`PrintOperationBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`PrintOperation`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrintOperation</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">allow_async</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">allow_async</span> {
@@ -2370,76 +2609,162 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of PrintOperation&quot;</span>)
     }
 
+    <span class="doccomment">/// Determines whether the print operation may run asynchronously or not.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Some systems don&#39;t support asynchronous printing, but those that do</span>
+    <span class="doccomment">/// will return [`PrintOperationResult::InProgress`][crate::PrintOperationResult::InProgress] as the status, and</span>
+    <span class="doccomment">/// emit the `signal::PrintOperation::done` signal when the operation</span>
+    <span class="doccomment">/// is actually done.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The Windows port does not support asynchronous operation at all (this</span>
+    <span class="doccomment">/// is unlikely to change). On other platforms, all actions except for</span>
+    <span class="doccomment">/// [`PrintOperationAction::Export`][crate::PrintOperationAction::Export] support asynchronous operation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allow_async</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">allow_async</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">allow_async</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">allow_async</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The current page in the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is set before [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`],</span>
+    <span class="doccomment">/// the user will be able to select to print only the current page.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this only makes sense for pre-paginated documents.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_page</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">current_page</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">current_page</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">current_page</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Used as the label of the tab containing custom widgets.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this property may be ignored on some platforms.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is [`None`], GTK uses a default label.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">custom_tab_label</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">custom_tab_label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">custom_tab_label</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">custom_tab_label</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`PageSetup`][crate::PageSetup] used by default.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This page setup will be used by [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`],</span>
+    <span class="doccomment">/// but it can be overridden on a per-page basis by connecting</span>
+    <span class="doccomment">/// to the `signal::PrintOperation::request-page-setup` signal.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_page_setup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">default_page_setup</span>: <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">default_page_setup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">default_page_setup</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// If [`true`], page size combo box and orientation combo box</span>
+    <span class="doccomment">/// are embedded into page setup page.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">embed_page_setup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">embed_page_setup</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">embed_page_setup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">embed_page_setup</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of a file to generate instead of showing the print dialog.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Currently, PDF is the only supported format.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The intended use of this property is for implementing</span>
+    <span class="doccomment">/// “Export to PDF” actions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// “Print to PDF” support is independent of this and is done</span>
+    <span class="doccomment">/// by letting the user pick the “Print to PDF” item from the</span>
+    <span class="doccomment">/// list of printers in the print dialog.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">export_filename</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">export_filename</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">export_filename</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">export_filename</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines whether there is a selection in your application.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This can allow your application to print the selection.</span>
+    <span class="doccomment">/// This is typically used to make a &quot;Selection&quot; button sensitive.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_selection</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_selection</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_selection</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_selection</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// A string used to identify the job (e.g. in monitoring</span>
+    <span class="doccomment">/// applications like eggcups).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If you don&#39;t set a job name, GTK picks a default one</span>
+    <span class="doccomment">/// by numbering successive print jobs.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">job_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">job_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">job_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">job_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The number of pages in the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This must be set to a positive number before the rendering</span>
+    <span class="doccomment">/// starts. It may be set in a `signal::PrintOperation::begin-print`</span>
+    <span class="doccomment">/// signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the page numbers passed to the</span>
+    <span class="doccomment">/// `signal::PrintOperation::request-page-setup` and</span>
+    <span class="doccomment">/// `signal::PrintOperation::draw-page` signals are 0-based, i.e.</span>
+    <span class="doccomment">/// if the user chooses to print all pages, the last ::draw-page signal</span>
+    <span class="doccomment">/// will be for page `n_pages` - 1.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_pages</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_pages</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">n_pages</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">n_pages</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The [`PrintSettings`][crate::PrintSettings] used for initializing the dialog.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Setting this property is typically used to re-establish</span>
+    <span class="doccomment">/// print settings from a previous print operation, see</span>
+    <span class="doccomment">/// [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">print_settings</span>: <span class="kw-2">&amp;</span><span class="ident">PrintSettings</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">print_settings</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">print_settings</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Determines whether to show a progress dialog during the</span>
+    <span class="doccomment">/// print operation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_progress</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_progress</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">show_progress</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">show_progress</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// If [`true`], the print operation will support print of selection.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This allows the print dialog to show a &quot;Selection&quot; button.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">support_selection</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">support_selection</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">support_selection</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">support_selection</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// If [`true`], the print operation will try to continue report on</span>
+    <span class="doccomment">/// the status of the print job in the printer queues and printer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This can allow your application to show things like “out of paper”</span>
+    <span class="doccomment">/// issues, and when the print job actually reaches the printer.</span>
+    <span class="doccomment">/// However, this is often implemented using polling, and should</span>
+    <span class="doccomment">/// not be enabled unless needed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">track_print_status</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">track_print_status</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">track_print_status</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">track_print_status</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The transformation for the cairo context obtained from</span>
+    <span class="doccomment">/// [`PrintContext`][crate::PrintContext] is set up in such a way that distances</span>
+    <span class="doccomment">/// are measured in units of `unit`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">unit</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">unit</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// If [`true`], the transformation for the cairo context obtained</span>
+    <span class="doccomment">/// from [`PrintContext`][crate::PrintContext] puts the origin at the top left corner</span>
+    <span class="doccomment">/// of the page.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This may not be the top left corner of the sheet, depending on</span>
+    <span class="doccomment">/// page orientation and the number of pages per sheet. Otherwise,</span>
+    <span class="doccomment">/// the origin is at the top left corner of the imageable area (i.e.</span>
+    <span class="doccomment">/// inside the margins).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">use_full_page</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">use_full_page</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">use_full_page</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">use_full_page</span>);
         <span class="self">self</span>
@@ -2448,16 +2773,16 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_PRINT_OPERATION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `PrintOperation` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@PrintOperation`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::PrintOperation`]</span>
+<span class="doccomment">/// [`PrintOperation`][struct@crate::PrintOperation]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PrintOperationExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Cancels a running print operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function may be called from a [signal`Gtk.PrintOperation`::begin-print],</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::paginate] or [signal`Gtk.PrintOperation`::draw-page]</span>
+    <span class="doccomment">/// This function may be called from a `signal::PrintOperation::begin-print`,</span>
+    <span class="doccomment">/// `signal::PrintOperation::paginate` or `signal::PrintOperation::draw-page`</span>
     <span class="doccomment">/// signal handler to stop the currently running print operation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_cancel&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cancel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -2465,7 +2790,7 @@
     <span class="doccomment">/// Signal that drawing of particular page is complete.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is called after completion of page drawing (e.g. drawing</span>
-    <span class="doccomment">/// in another thread). If [method`Gtk.PrintOperation`.set_defer_drawing]</span>
+    <span class="doccomment">/// in another thread). If [``set_defer_drawing()``][`Self::set_defer_drawing()`]</span>
     <span class="doccomment">/// was called before, then this function has to be called by application.</span>
     <span class="doccomment">/// Otherwise it is called by GTK itself.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_draw_page_finish&quot;</span>)]</span>
@@ -2490,10 +2815,10 @@
     <span class="kw">fn</span> <span class="ident">embeds_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Call this when the result of a print operation is</span>
-    <span class="doccomment">/// [`crate::PrintOperationResult::Error`].</span>
+    <span class="doccomment">/// [`PrintOperationResult::Error`][crate::PrintOperationResult::Error].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It can be called either after [method`Gtk.PrintOperation`.run]</span>
-    <span class="doccomment">/// returns, or in the [signal`Gtk.PrintOperation`::done] signal</span>
+    <span class="doccomment">/// It can be called either after [``run()``][`Self::run()`]</span>
+    <span class="doccomment">/// returns, or in the `signal::PrintOperation::done` signal</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned `GError` will contain more details on what went wrong.</span>
@@ -2513,11 +2838,11 @@
     <span class="doccomment">/// Returns the number of pages that will be printed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this value is set during print preparation phase</span>
-    <span class="doccomment">/// ([`crate::PrintStatus::Preparing`]), so this function should never be</span>
-    <span class="doccomment">/// called before the data generation phase ([`crate::PrintStatus::GeneratingData`]).</span>
-    <span class="doccomment">/// You can connect to the [signal`Gtk.PrintOperation`::status-changed]</span>
-    <span class="doccomment">/// signal and call [`Self::get_n_pages_to_print()`] when</span>
-    <span class="doccomment">/// print status is [`crate::PrintStatus::GeneratingData`].</span>
+    <span class="doccomment">/// ([`PrintStatus::Preparing`][crate::PrintStatus::Preparing]), so this function should never be</span>
+    <span class="doccomment">/// called before the data generation phase ([`PrintStatus::GeneratingData`][crate::PrintStatus::GeneratingData]).</span>
+    <span class="doccomment">/// You can connect to the `signal::PrintOperation::status-changed`</span>
+    <span class="doccomment">/// signal and call [`n_pages_to_print()`][Self::n_pages_to_print()] when</span>
+    <span class="doccomment">/// print status is [`PrintStatus::GeneratingData`][crate::PrintStatus::GeneratingData].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is typically used to track the progress of print operation.</span>
     <span class="doccomment">///</span>
@@ -2531,8 +2856,8 @@
     <span class="doccomment">/// Returns the current print settings.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the return value is [`None`] until either</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_print_settings] or</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.run] have been called.</span>
+    <span class="doccomment">/// [``set_print_settings()``][`Self::set_print_settings()`] or</span>
+    <span class="doccomment">/// [``run()``][`Self::run()`] have been called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2543,7 +2868,7 @@
 
     <span class="doccomment">/// Returns the status of the print operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.PrintOperation`.get_status_string].</span>
+    <span class="doccomment">/// Also see [``status_string()``][`Self::status_string()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2556,9 +2881,9 @@
     <span class="doccomment">/// print operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The string is translated and suitable for displaying</span>
-    <span class="doccomment">/// the print status e.g. in a `GtkStatusbar`.</span>
+    <span class="doccomment">/// the print status e.g. in a [`Statusbar`][crate::Statusbar].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.PrintOperation`.get_status] to obtain</span>
+    <span class="doccomment">/// Use [``status()``][`Self::status()`] to obtain</span>
     <span class="doccomment">/// a status value that is suitable for programmatic use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -2582,7 +2907,7 @@
     <span class="doccomment">/// is finished.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a print operation is finished if its status is either</span>
-    <span class="doccomment">/// [`crate::PrintStatus::Finished`] or [`crate::PrintStatus::FinishedAborted`].</span>
+    <span class="doccomment">/// [`PrintStatus::Finished`][crate::PrintStatus::Finished] or [`PrintStatus::FinishedAborted`][crate::PrintStatus::FinishedAborted].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: when you enable print status tracking the print operation</span>
     <span class="doccomment">/// can be in a non-finished state even after done has been called, as</span>
@@ -2598,14 +2923,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally that this function does not return until the rendering</span>
     <span class="doccomment">/// of all pages is complete. You can connect to the</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::status-changed] signal on `self` to obtain</span>
+    <span class="doccomment">/// `signal::PrintOperation::status-changed` signal on `self` to obtain</span>
     <span class="doccomment">/// some information about the progress of the print operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Furthermore, it may use a recursive mainloop to show the print dialog.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you set the [Gtk.PrintOperation:allow-async] property, the operation</span>
     <span class="doccomment">/// will run asynchronously if this is supported on the platform. The</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::done] signal will be emitted with the result</span>
+    <span class="doccomment">/// `signal::PrintOperation::done` signal will be emitted with the result</span>
     <span class="doccomment">/// of the operation when the it is done (i.e. when the dialog is canceled,</span>
     <span class="doccomment">/// or when the print succeeds or fails).</span>
     <span class="doccomment">///</span>
@@ -2647,8 +2972,8 @@
     <span class="doccomment">///  }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [`Self::run()`] can only be called once on a</span>
-    <span class="doccomment">/// given `GtkPrintOperation`.</span>
+    <span class="doccomment">/// Note that [`run()`][Self::run()] can only be called once on a</span>
+    <span class="doccomment">/// given [`PrintOperation`][crate::PrintOperation].</span>
     <span class="doccomment">/// ## `action`</span>
     <span class="doccomment">/// the action to start</span>
     <span class="doccomment">/// ## `parent`</span>
@@ -2657,13 +2982,13 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the result of the print operation. A return value of</span>
-    <span class="doccomment">///  [`crate::PrintOperationResult::Apply`] indicates that the printing was</span>
+    <span class="doccomment">///  [`PrintOperationResult::Apply`][crate::PrintOperationResult::Apply] indicates that the printing was</span>
     <span class="doccomment">///  completed successfully. In this case, it is a good idea to obtain</span>
     <span class="doccomment">///  the used print settings with</span>
-    <span class="doccomment">///  [method`Gtk.PrintOperation`.get_print_settings]</span>
+    <span class="doccomment">///  [``print_settings()``][`Self::print_settings()`]</span>
     <span class="doccomment">///  and store them for reuse with the next print operation. A value of</span>
-    <span class="doccomment">///  [`crate::PrintOperationResult::InProgress`] means the operation is running</span>
-    <span class="doccomment">///  asynchronously, and will emit the [signal`Gtk.PrintOperation`::done]</span>
+    <span class="doccomment">///  [`PrintOperationResult::InProgress`][crate::PrintOperationResult::InProgress] means the operation is running</span>
+    <span class="doccomment">///  asynchronously, and will emit the `signal::PrintOperation::done`</span>
     <span class="doccomment">///  signal when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_run&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2672,7 +2997,7 @@
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PrintOperationResult</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets whether [`Self::run()`] may return</span>
+    <span class="doccomment">/// Sets whether [`run()`][Self::run()] may return</span>
     <span class="doccomment">/// before the print operation is completed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that some platforms may not allow asynchronous</span>
@@ -2684,7 +3009,7 @@
 
     <span class="doccomment">/// Sets the current page.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If this is called before [method`Gtk.PrintOperation`.run],</span>
+    <span class="doccomment">/// If this is called before [``run()``][`Self::run()`],</span>
     <span class="doccomment">/// the user will be able to select to print only the current page.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this only makes sense for pre-paginated documents.</span>
@@ -2701,33 +3026,33 @@
 
     <span class="doccomment">/// Makes `default_page_setup` the default page setup for `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This page setup will be used by [method`Gtk.PrintOperation`.run],</span>
+    <span class="doccomment">/// This page setup will be used by [``run()``][`Self::run()`],</span>
     <span class="doccomment">/// but it can be overridden on a per-page basis by connecting</span>
-    <span class="doccomment">/// to the [signal`Gtk.PrintOperation`::request-page-setup] signal.</span>
+    <span class="doccomment">/// to the `signal::PrintOperation::request-page-setup` signal.</span>
     <span class="doccomment">/// ## `default_page_setup`</span>
-    <span class="doccomment">/// a `GtkPageSetup`, or [`None`]</span>
+    <span class="doccomment">/// a [`PageSetup`][crate::PageSetup], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_default_page_setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_page_setup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PageSetup</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets up the `GtkPrintOperation` to wait for calling of</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.draw_page_finish from application.</span>
+    <span class="doccomment">/// Sets up the [`PrintOperation`][crate::PrintOperation] to wait for calling of</span>
+    <span class="doccomment">/// [``draw_page_finish()``][`Self::draw_page_finish()`] from application.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be used for drawing page in another thread.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function must be called in the callback of the</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::draw-page] signal.</span>
+    <span class="doccomment">/// `signal::PrintOperation::draw-page` signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_defer_drawing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_defer_drawing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Embed page size combo box and orientation combo box into page setup page.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Selected page setup is stored as default page setup in `GtkPrintOperation`.</span>
+    <span class="doccomment">/// Selected page setup is stored as default page setup in [`PrintOperation`][crate::PrintOperation].</span>
     <span class="doccomment">/// ## `embed`</span>
-    <span class="doccomment">/// [`true`] to embed page setup selection in the `GtkPrintUnixDialog`</span>
+    <span class="doccomment">/// [`true`] to embed page setup selection in the [`PrintUnixDialog`][crate::PrintUnixDialog]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_embed_page_setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_embed_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">embed</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets up the `GtkPrintOperation` to generate a file instead</span>
+    <span class="doccomment">/// Sets up the [`PrintOperation`][crate::PrintOperation] to generate a file instead</span>
     <span class="doccomment">/// of showing the print dialog.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The intended use of this function is for implementing</span>
@@ -2745,8 +3070,8 @@
     <span class="doccomment">/// Sets whether there is a selection to print.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Application has to set number of pages to which the selection</span>
-    <span class="doccomment">/// will draw by [method`Gtk.PrintOperation`.set_n_pages] in a handler</span>
-    <span class="doccomment">/// for the [signal`Gtk.PrintOperation`::begin-print] signal.</span>
+    <span class="doccomment">/// will draw by [``set_n_pages()``][`Self::set_n_pages()`] in a handler</span>
+    <span class="doccomment">/// for the `signal::PrintOperation::begin-print` signal.</span>
     <span class="doccomment">/// ## `has_selection`</span>
     <span class="doccomment">/// [`true`] indicates that a selection exists</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_has_selection&quot;</span>)]</span>
@@ -2767,12 +3092,12 @@
     <span class="doccomment">/// Sets the number of pages in the document.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be set to a positive number before the rendering</span>
-    <span class="doccomment">/// starts. It may be set in a [signal`Gtk.PrintOperation`::begin-print]</span>
+    <span class="doccomment">/// starts. It may be set in a `signal::PrintOperation::begin-print`</span>
     <span class="doccomment">/// signal handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the page numbers passed to the</span>
-    <span class="doccomment">/// [signal`Gtk.PrintOperation`::request-page-setup]</span>
-    <span class="doccomment">/// and [signal`Gtk.PrintOperation`::draw-page] signals are 0-based, i.e.</span>
+    <span class="doccomment">/// `signal::PrintOperation::request-page-setup`</span>
+    <span class="doccomment">/// and `signal::PrintOperation::draw-page` signals are 0-based, i.e.</span>
     <span class="doccomment">/// if the user chooses to print all pages, the last ::draw-page signal</span>
     <span class="doccomment">/// will be for page `n_pages` - 1.</span>
     <span class="doccomment">/// ## `n_pages`</span>
@@ -2783,9 +3108,9 @@
     <span class="doccomment">/// Sets the print settings for `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is typically used to re-establish print settings</span>
-    <span class="doccomment">/// from a previous print operation, see [method`Gtk.PrintOperation`.run].</span>
+    <span class="doccomment">/// from a previous print operation, see [``run()``][`Self::run()`].</span>
     <span class="doccomment">/// ## `print_settings`</span>
-    <span class="doccomment">/// `GtkPrintSettings`</span>
+    <span class="doccomment">/// [`PrintSettings`][crate::PrintSettings]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_print_settings&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span>);
 
@@ -2796,7 +3121,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_show_progress&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_show_progress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_progress</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets whether selection is supported by `GtkPrintOperation`.</span>
+    <span class="doccomment">/// Sets whether selection is supported by [`PrintOperation`][crate::PrintOperation].</span>
     <span class="doccomment">/// ## `support_selection`</span>
     <span class="doccomment">/// [`true`] to support selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_support_selection&quot;</span>)]</span>
@@ -2816,7 +3141,7 @@
     <span class="kw">fn</span> <span class="ident">set_track_print_status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">track_status</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets up the transformation for the cairo context obtained from</span>
-    <span class="doccomment">/// `GtkPrintContext` in such a way that distances are measured in</span>
+    <span class="doccomment">/// [`PrintContext`][crate::PrintContext] in such a way that distances are measured in</span>
     <span class="doccomment">/// units of `unit`.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit to use</span>
@@ -2824,43 +3149,110 @@
     <span class="kw">fn</span> <span class="ident">set_unit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>);
 
     <span class="doccomment">/// If `full_page` is [`true`], the transformation for the cairo context</span>
-    <span class="doccomment">/// obtained from `GtkPrintContext` puts the origin at the top left</span>
+    <span class="doccomment">/// obtained from [`PrintContext`][crate::PrintContext] puts the origin at the top left</span>
     <span class="doccomment">/// corner of the page.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This may not be the top left corner of the sheet, depending on page</span>
     <span class="doccomment">/// orientation and the number of pages per sheet). Otherwise, the origin</span>
     <span class="doccomment">/// is at the top left corner of the imageable area (i.e. inside the margins).</span>
     <span class="doccomment">/// ## `full_page`</span>
-    <span class="doccomment">/// [`true`] to set up the `GtkPrintContext` for the full page</span>
+    <span class="doccomment">/// [`true`] to set up the [`PrintContext`][crate::PrintContext] for the full page</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_use_full_page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_use_full_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">full_page</span>: <span class="ident">bool</span>);
 
+    <span class="doccomment">/// Determines whether the print operation may run asynchronously or not.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Some systems don&#39;t support asynchronous printing, but those that do</span>
+    <span class="doccomment">/// will return [`PrintOperationResult::InProgress`][crate::PrintOperationResult::InProgress] as the status, and</span>
+    <span class="doccomment">/// emit the `signal::PrintOperation::done` signal when the operation</span>
+    <span class="doccomment">/// is actually done.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The Windows port does not support asynchronous operation at all (this</span>
+    <span class="doccomment">/// is unlikely to change). On other platforms, all actions except for</span>
+    <span class="doccomment">/// [`PrintOperationAction::Export`][crate::PrintOperationAction::Export] support asynchronous operation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;allow-async&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">allows_async</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
+    <span class="doccomment">/// The current page in the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is set before [``run()``][`Self::run()`],</span>
+    <span class="doccomment">/// the user will be able to select to print only the current page.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this only makes sense for pre-paginated documents.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;current-page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
+    <span class="doccomment">/// Used as the label of the tab containing custom widgets.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that this property may be ignored on some platforms.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this is [`None`], GTK uses a default label.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;custom-tab-label&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">custom_tab_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
+    <span class="doccomment">/// The name of a file to generate instead of showing the print dialog.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Currently, PDF is the only supported format.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The intended use of this property is for implementing</span>
+    <span class="doccomment">/// “Export to PDF” actions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// “Print to PDF” support is independent of this and is done</span>
+    <span class="doccomment">/// by letting the user pick the “Print to PDF” item from the</span>
+    <span class="doccomment">/// list of printers in the print dialog.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;export-filename&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">export_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
+    <span class="doccomment">/// A string used to identify the job (e.g. in monitoring</span>
+    <span class="doccomment">/// applications like eggcups).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If you don&#39;t set a job name, GTK picks a default one</span>
+    <span class="doccomment">/// by numbering successive print jobs.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;job-name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">job_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
+    <span class="doccomment">/// The number of pages in the document.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This must be set to a positive number before the rendering</span>
+    <span class="doccomment">/// starts. It may be set in a `signal::PrintOperation::begin-print`</span>
+    <span class="doccomment">/// signal handler.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the page numbers passed to the</span>
+    <span class="doccomment">/// `signal::PrintOperation::request-page-setup` and</span>
+    <span class="doccomment">/// `signal::PrintOperation::draw-page` signals are 0-based, i.e.</span>
+    <span class="doccomment">/// if the user chooses to print all pages, the last ::draw-page signal</span>
+    <span class="doccomment">/// will be for page `n_pages` - 1.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;n-pages&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">n_pages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
+    <span class="doccomment">/// Determines whether to show a progress dialog during the</span>
+    <span class="doccomment">/// print operation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;show-progress&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_progress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
+    <span class="doccomment">/// If [`true`], the print operation will try to continue report on</span>
+    <span class="doccomment">/// the status of the print job in the printer queues and printer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This can allow your application to show things like “out of paper”</span>
+    <span class="doccomment">/// issues, and when the print job actually reaches the printer.</span>
+    <span class="doccomment">/// However, this is often implemented using polling, and should</span>
+    <span class="doccomment">/// not be enabled unless needed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;track-print-status&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">tracks_print_status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
+    <span class="doccomment">/// The transformation for the cairo context obtained from</span>
+    <span class="doccomment">/// [`PrintContext`][crate::PrintContext] is set up in such a way that distances</span>
+    <span class="doccomment">/// are measured in units of `unit`.</span>
     <span class="kw">fn</span> <span class="ident">unit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Unit</span>;
 
+    <span class="doccomment">/// If [`true`], the transformation for the cairo context obtained</span>
+    <span class="doccomment">/// from [`PrintContext`][crate::PrintContext] puts the origin at the top left corner</span>
+    <span class="doccomment">/// of the page.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This may not be the top left corner of the sheet, depending on</span>
+    <span class="doccomment">/// page orientation and the number of pages per sheet. Otherwise,</span>
+    <span class="doccomment">/// the origin is at the top left corner of the imageable area (i.e.</span>
+    <span class="doccomment">/// inside the margins).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;use-full-page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_full_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2868,11 +3260,11 @@
     <span class="doccomment">/// in the dialog, before the actual rendering starts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A typical use for ::begin-print is to use the parameters from the</span>
-    <span class="doccomment">/// [class`Gtk.PrintContext`] and paginate the document accordingly,</span>
+    <span class="doccomment">/// [`PrintContext`][crate::PrintContext] and paginate the document accordingly,</span>
     <span class="doccomment">/// and then set the number of pages with</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_n_pages].</span>
+    <span class="doccomment">/// [``set_n_pages()``][`Self::set_n_pages()`].</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` for the current operation</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] for the current operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;begin-print&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_begin_print</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -2884,7 +3276,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The print dialog owns the returned widget, and its lifetime is not</span>
     <span class="doccomment">/// controlled by the application. However, the widget is guaranteed</span>
-    <span class="doccomment">/// to stay around until the [signal`Gtk.PrintOperation`::custom-widget-apply]</span>
+    <span class="doccomment">/// to stay around until the `signal::PrintOperation::custom-widget-apply`</span>
     <span class="doccomment">/// signal is emitted on the operation. Then you can read out any</span>
     <span class="doccomment">/// information you need from the widgets.</span>
     <span class="doccomment">///</span>
@@ -2914,11 +3306,11 @@
     <span class="doccomment">/// everything required for printing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `result` gives you information about what happened during the run.</span>
-    <span class="doccomment">/// If `result` is [`crate::PrintOperationResult::Error`] then you can call</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.get_error] for more information.</span>
+    <span class="doccomment">/// If `result` is [`PrintOperationResult::Error`][crate::PrintOperationResult::Error] then you can call</span>
+    <span class="doccomment">/// [``error()``][`Self::error()`] for more information.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you enabled print status tracking then</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.is_finished] may still return [`false`]</span>
+    <span class="doccomment">/// [``is_finished()``][`Self::is_finished()`] may still return [`false`]</span>
     <span class="doccomment">/// after the ::done signal was emitted.</span>
     <span class="doccomment">/// ## `result`</span>
     <span class="doccomment">/// the result of the print operation</span>
@@ -2929,7 +3321,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal handler must render the `page_nr`&#39;s page onto the cairo</span>
     <span class="doccomment">/// context obtained from `context` using</span>
-    <span class="doccomment">/// [method`Gtk.PrintContext`.get_cairo_context].</span>
+    <span class="doccomment">/// [``PrintContext::cairo_context()``][crate::`PrintContext::cairo_context()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static void</span>
@@ -2972,12 +3364,12 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.PrintOperation`.set_use_full_page] and</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_unit] before starting the print</span>
+    <span class="doccomment">/// Use [``set_use_full_page()``][`Self::set_use_full_page()`] and</span>
+    <span class="doccomment">/// [``set_unit()``][`Self::set_unit()`] before starting the print</span>
     <span class="doccomment">/// operation to set up the transformation of the cairo context</span>
     <span class="doccomment">/// according to your needs.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` for the current operation</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] for the current operation</span>
     <span class="doccomment">/// ## `page_nr`</span>
     <span class="doccomment">/// the number of the currently printed page (0-based)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;draw-page&quot;</span>)]</span>
@@ -2989,9 +3381,9 @@
     <span class="doccomment">/// Emitted after all pages have been rendered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A handler for this signal can clean up any resources that have</span>
-    <span class="doccomment">/// been allocated in the [signal`Gtk.PrintOperation`::begin-print] handler.</span>
+    <span class="doccomment">/// been allocated in the `signal::PrintOperation::begin-print` handler.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` for the current operation</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] for the current operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;end-print&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_end_print</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -3003,14 +3395,14 @@
     <span class="doccomment">/// The ::paginate signal is intended to be used for paginating a document</span>
     <span class="doccomment">/// in small chunks, to avoid blocking the user interface for a long</span>
     <span class="doccomment">/// time. The signal handler should update the number of pages using</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_n_pages], and return [`true`] if the document</span>
+    <span class="doccomment">/// [``set_n_pages()``][`Self::set_n_pages()`], and return [`true`] if the document</span>
     <span class="doccomment">/// has been completely paginated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you don&#39;t need to do pagination in chunks, you can simply do</span>
     <span class="doccomment">/// it all in the ::begin-print handler, and set the number of pages</span>
     <span class="doccomment">/// from there.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` for the current operation</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] for the current operation</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3030,20 +3422,20 @@
     <span class="doccomment">/// [`true`] from its handler for this signal. In order to use the</span>
     <span class="doccomment">/// provided `context` for the preview implementation, it must be</span>
     <span class="doccomment">/// given a suitable cairo context with</span>
-    <span class="doccomment">/// [method`Gtk.PrintContext`.set_cairo_context].</span>
+    <span class="doccomment">/// [``PrintContext::set_cairo_context()``][crate::`PrintContext::set_cairo_context()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The custom preview implementation can use</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperationPreview`.is_selected] and</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperationPreview`.render_page] to find pages which</span>
+    <span class="doccomment">/// [``PrintOperationPreviewExt::is_selected()``][crate::prelude::`PrintOperationPreviewExt::is_selected()`] and</span>
+    <span class="doccomment">/// [``PrintOperationPreviewExt::render_page()``][crate::prelude::`PrintOperationPreviewExt::render_page()`] to find pages which</span>
     <span class="doccomment">/// are selected for print and render them. The preview must be</span>
-    <span class="doccomment">/// finished by calling [method`Gtk.PrintOperationPreview`.end_preview]</span>
+    <span class="doccomment">/// finished by calling [``PrintOperationPreviewExt::end_preview()``][crate::prelude::`PrintOperationPreviewExt::end_preview()`]</span>
     <span class="doccomment">/// (typically in response to the user clicking a close button).</span>
     <span class="doccomment">/// ## `preview`</span>
-    <span class="doccomment">/// the `GtkPrintOperationPreview` for the current operation</span>
+    <span class="doccomment">/// the [`PrintOperationPreview`][crate::PrintOperationPreview] for the current operation</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` that will be used</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] that will be used</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// the `GtkWindow` to use as window parent, or [`None`]</span>
+    <span class="doccomment">/// the [`Window`][crate::Window] to use as window parent, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3062,11 +3454,11 @@
     <span class="doccomment">/// Any changes done to `setup` will be in force only for printing</span>
     <span class="doccomment">/// this page.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkPrintContext` for the current operation</span>
+    <span class="doccomment">/// the [`PrintContext`][crate::PrintContext] for the current operation</span>
     <span class="doccomment">/// ## `page_nr`</span>
     <span class="doccomment">/// the number of the currently printed page (0-based)</span>
     <span class="doccomment">/// ## `setup`</span>
-    <span class="doccomment">/// the `GtkPageSetup`</span>
+    <span class="doccomment">/// the [`PageSetup`][crate::PageSetup]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;request-page-setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_request_page_setup</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>, <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -3075,8 +3467,8 @@
 
     <span class="doccomment">/// Emitted at between the various phases of the print operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [enum`Gtk.PrintStatus`] for the phases that are being discriminated.</span>
-    <span class="doccomment">/// Use [method`Gtk.PrintOperation`.get_status] to find out the current</span>
+    <span class="doccomment">/// See [`PrintStatus`][crate::PrintStatus] for the phases that are being discriminated.</span>
+    <span class="doccomment">/// Use [``status()``][`Self::status()`] to find out the current</span>
     <span class="doccomment">/// status.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;status-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_status_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
@@ -3538,18 +3930,18 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;begin-print&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_begin_print</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">begin_print_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">begin_print_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
             )
         }
@@ -3566,23 +3958,19 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;create-custom-widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_create_custom_widget</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Object</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">create_custom_widget_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Object</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>
-        <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()) <span class="comment">/*Not checked*/</span>
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()) <span class="comment">/*Not checked*/</span>
                 .<span class="ident">to_glib_none</span>()
                 .<span class="number">0</span>
         }
@@ -3599,21 +3987,21 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;custom-widget-apply&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_custom_widget_apply</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">custom_widget_apply_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">custom_widget_apply_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">widget</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">widget</span>),
             )
         }
@@ -3630,18 +4018,18 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_done</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">PrintOperationResult</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">done_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">PrintOperationResult</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">done_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">PrintOperationResult</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">result</span>: <span class="ident">ffi::GtkPrintOperationResult</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="ident">from_glib</span>(<span class="ident">result</span>),
             )
         }
@@ -3658,22 +4046,22 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;draw-page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_draw_page</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">draw_page_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">draw_page_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
             <span class="ident">page_nr</span>: <span class="ident">libc::c_int</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
                 <span class="ident">page_nr</span>,
             )
@@ -3691,18 +4079,18 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;end-print&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_end_print</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">end_print_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">end_print_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
             )
         }
@@ -3719,22 +4107,21 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;paginate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_paginate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paginate_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paginate_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span>
-        <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
             )
             .<span class="ident">into_glib</span>()
@@ -3752,7 +4139,6 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preview&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preview</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
@@ -3760,7 +4146,7 @@
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">preview_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
@@ -3768,13 +4154,10 @@
             <span class="ident">context</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
             <span class="ident">parent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindow</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span>
-        <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">preview</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
                 <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="ident">::from_glib_borrow</span>(<span class="ident">parent</span>).<span class="ident">as_ref</span>().<span class="ident">as_ref</span>(),
@@ -3794,13 +4177,12 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;request-page-setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_request_page_setup</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>, <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">request_page_setup_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">i32</span>, <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
@@ -3808,12 +4190,10 @@
             <span class="ident">page_nr</span>: <span class="ident">libc::c_int</span>,
             <span class="ident">setup</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPageSetup</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
                 <span class="ident">page_nr</span>,
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">setup</span>),
@@ -3832,16 +4212,16 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;status-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_status_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">status_changed_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">status_changed_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3856,13 +4236,12 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;update-custom-widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_update_custom_widget</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>, <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>, <span class="kw-2">&amp;</span><span class="ident">PrintSettings</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">update_custom_widget_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">P</span>,
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>, <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>, <span class="kw-2">&amp;</span><span class="ident">PrintSettings</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
@@ -3870,12 +4249,10 @@
             <span class="ident">setup</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPageSetup</span>,
             <span class="ident">settings</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintSettings</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
-                <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
+                <span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">widget</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">setup</span>),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">settings</span>),
@@ -3894,17 +4271,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;allow-async&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_allow_async_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_allow_async_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_allow_async_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3919,17 +4296,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;current-page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_current_page_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_current_page_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_current_page_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3944,17 +4321,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;custom-tab-label&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_custom_tab_label_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_custom_tab_label_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_custom_tab_label_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3969,17 +4346,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;default-page-setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_default_page_setup_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_default_page_setup_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_default_page_setup_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3994,17 +4371,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;embed-page-setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_embed_page_setup_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_embed_page_setup_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_embed_page_setup_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4019,17 +4396,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;export-filename&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_export_filename_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_export_filename_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_export_filename_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4044,17 +4421,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;has-selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_has_selection_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_has_selection_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_has_selection_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4069,17 +4446,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;job-name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_job_name_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_job_name_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_job_name_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4094,17 +4471,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;n-pages&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_n_pages_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_n_pages_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_n_pages_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4119,17 +4496,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;n-pages-to-print&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_n_pages_to_print_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_n_pages_to_print_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_n_pages_to_print_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4144,17 +4521,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;print-settings&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_print_settings_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_print_settings_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_print_settings_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4169,17 +4546,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;show-progress&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_show_progress_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_show_progress_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_show_progress_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4194,17 +4571,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;status&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_status_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_status_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_status_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4219,17 +4596,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;status-string&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_status_string_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_status_string_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_status_string_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4244,17 +4621,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;support-selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_support_selection_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_support_selection_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_support_selection_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4269,17 +4646,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;track-print-status&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_track_print_status_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_track_print_status_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_track_print_status_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4294,17 +4671,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;unit&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_unit_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_unit_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_unit_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4319,17 +4693,17 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;use-full-page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_use_full_page_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_use_full_page_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_use_full_page_trampoline</span><span class="op">&lt;</span>
+            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4352,4 +4726,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

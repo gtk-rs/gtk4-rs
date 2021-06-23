@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/list_store.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>list_store.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;list_store.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>list_store.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -383,19 +453,6 @@
 <span id="380">380</span>
 <span id="381">381</span>
 <span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -407,32 +464,32 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeIter</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeModel</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeSortable</span>;
-<span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A list-like data structure that can be used with the `TreeView`</span>
+    <span class="doccomment">/// A list-like data structure that can be used with the GtkTreeView</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::ListStore`] object is a list model for use with a [`crate::TreeView`]</span>
-    <span class="doccomment">/// widget. It implements the [`crate::TreeModel`] interface, and consequentialy,</span>
+    <span class="doccomment">/// The [`ListStore`][crate::ListStore] object is a list model for use with a [`TreeView`][crate::TreeView]</span>
+    <span class="doccomment">/// widget. It implements the [`TreeModel`][crate::TreeModel] interface, and consequentialy,</span>
     <span class="doccomment">/// can use all of the methods available there. It also implements the</span>
-    <span class="doccomment">/// [`crate::TreeSortable`] interface so it can be sorted by the view.</span>
+    <span class="doccomment">/// [`TreeSortable`][crate::TreeSortable] interface so it can be sorted by the view.</span>
     <span class="doccomment">/// Finally, it also implements the tree</span>
-    <span class="doccomment">/// [drag and drop][gtk4-`TreeView`-drag-and-drop]</span>
+    <span class="doccomment">/// [drag and drop][gtk4-GtkTreeView-drag-and-drop]</span>
     <span class="doccomment">/// interfaces.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::ListStore`] can accept most GObject types as a column type, though</span>
+    <span class="doccomment">/// The [`ListStore`][crate::ListStore] can accept most GObject types as a column type, though</span>
     <span class="doccomment">/// it can’t accept all custom types. Internally, it will keep a copy of</span>
     <span class="doccomment">/// data passed in (such as a string or a boxed pointer). Columns that</span>
     <span class="doccomment">/// accept `GObjects` are handled a little differently. The</span>
-    <span class="doccomment">/// [`crate::ListStore`] will keep a reference to the object instead of copying the</span>
+    <span class="doccomment">/// [`ListStore`][crate::ListStore] will keep a reference to the object instead of copying the</span>
     <span class="doccomment">/// value. As a result, if the object is modified, it is up to the</span>
-    <span class="doccomment">/// application writer to call [`crate::TreeModel::row_changed()`] to emit the</span>
-    <span class="doccomment">/// [`crate::TreeModel::row_changed`] signal. This most commonly affects lists with</span>
-    <span class="doccomment">/// ``GdkTextures`` stored.</span>
+    <span class="doccomment">/// application writer to call [`TreeModelExt::row_changed()`][crate::prelude::TreeModelExt::row_changed()] to emit the</span>
+    <span class="doccomment">/// `signal::TreeModel::row_changed` signal. This most commonly affects lists with</span>
+    <span class="doccomment">/// `GdkTextures` stored.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example for creating a simple list store:</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// enum {</span>
@@ -486,10 +543,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Performance Considerations</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Internally, the [`crate::ListStore`] was originally implemented with a linked list</span>
+    <span class="doccomment">/// Internally, the [`ListStore`][crate::ListStore] was originally implemented with a linked list</span>
     <span class="doccomment">/// with a tail pointer. As a result, it was fast at data insertion and deletion,</span>
-    <span class="doccomment">/// and not fast at random data access. The [`crate::ListStore`] sets the</span>
-    <span class="doccomment">/// [`crate::TreeModelFlags::ItersPersist`] flag, which means that ``GtkTreeIters`` can be</span>
+    <span class="doccomment">/// and not fast at random data access. The [`ListStore`][crate::ListStore] sets the</span>
+    <span class="doccomment">/// [`TreeModelFlags::ITERS_PERSIST`][crate::TreeModelFlags::ITERS_PERSIST] flag, which means that `GtkTreeIters` can be</span>
     <span class="doccomment">/// cached while the row exists. Thus, if access to a particular row is needed</span>
     <span class="doccomment">/// often and your code is expected to run on older versions of GTK, it is worth</span>
     <span class="doccomment">/// keeping the iter around.</span>
@@ -497,23 +554,23 @@
     <span class="doccomment">/// # Atomic Operations</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is important to note that only the methods</span>
-    <span class="doccomment">/// [`Self::insert_with_values()`] and [`Self::insert_with_valuesv()`]</span>
+    <span class="doccomment">/// `gtk_list_store_insert_with_values()` and [`insert_with_values()`][Self::insert_with_values()]</span>
     <span class="doccomment">/// are atomic, in the sense that the row is being appended to the store and the</span>
-    <span class="doccomment">/// values filled in in a single operation with regard to [`crate::TreeModel`] signaling.</span>
-    <span class="doccomment">/// In contrast, using e.g. [`crate::prelude::`GtkListStoreExt`::append()`] and then [`Self::set()`]</span>
-    <span class="doccomment">/// will first create a row, which triggers the [`crate::TreeModel::row-inserted`] signal</span>
-    <span class="doccomment">/// on [`crate::ListStore`]. The row, however, is still empty, and any signal handler</span>
-    <span class="doccomment">/// connecting to [`crate::TreeModel::row-inserted`] on this particular store should be prepared</span>
+    <span class="doccomment">/// values filled in in a single operation with regard to [`TreeModel`][crate::TreeModel] signaling.</span>
+    <span class="doccomment">/// In contrast, using e.g. [`append()`][Self::append()] and then [`set()`][Self::set()]</span>
+    <span class="doccomment">/// will first create a row, which triggers the `signal::TreeModel::row-inserted` signal</span>
+    <span class="doccomment">/// on [`ListStore`][crate::ListStore]. The row, however, is still empty, and any signal handler</span>
+    <span class="doccomment">/// connecting to `signal::TreeModel::row-inserted` on this particular store should be prepared</span>
     <span class="doccomment">/// for the situation that the row might be empty. This is especially important</span>
-    <span class="doccomment">/// if you are wrapping the [`crate::ListStore`] inside a [`crate::TreeModelFilter`] and are</span>
-    <span class="doccomment">/// using a ``GtkTreeModelFilterVisibleFunc``. Using any of the non-atomic operations</span>
-    <span class="doccomment">/// to append rows to the [`crate::ListStore`] will cause the</span>
-    <span class="doccomment">/// ``GtkTreeModelFilterVisibleFunc`` to be visited with an empty row first; the</span>
+    <span class="doccomment">/// if you are wrapping the [`ListStore`][crate::ListStore] inside a [`TreeModelFilter`][crate::TreeModelFilter] and are</span>
+    <span class="doccomment">/// using a `GtkTreeModelFilterVisibleFunc`. Using any of the non-atomic operations</span>
+    <span class="doccomment">/// to append rows to the [`ListStore`][crate::ListStore] will cause the</span>
+    <span class="doccomment">/// `GtkTreeModelFilterVisibleFunc` to be visited with an empty row first; the</span>
     <span class="doccomment">/// function must be prepared for that.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `ListStore` as `Buildable`</span>
+    <span class="doccomment">/// # GtkListStore as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `ListStore` implementation of the `Buildable` interface allows</span>
+    <span class="doccomment">/// The GtkListStore implementation of the GtkBuildable interface allows</span>
     <span class="doccomment">/// to specify the model columns with a `&lt;columns&gt;` element that may contain</span>
     <span class="doccomment">/// multiple `&lt;column&gt;` elements, each specifying one model column. The “type”</span>
     <span class="doccomment">/// attribute specifies the data type for the column.</span>
@@ -529,6 +586,7 @@
     <span class="doccomment">/// is to separate the two, as far as possible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI Definition fragment for a list store:</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkListStore&quot;&gt;</span>
@@ -554,7 +612,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GtkListStoreExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::TreeDragDestExt`], [`trait@crate::prelude::TreeDragSourceExt`], [`trait@crate::prelude::TreeModelExt`], [`trait@crate::prelude::TreeSortableExt`], [`trait@crate::prelude::GtkListStoreExtManual`], [`trait@crate::prelude::TreeModelExtManual`], [`trait@crate::prelude::TreeSortableExtManual`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`TreeDragDestExt`][trait@crate::prelude::TreeDragDestExt], [`TreeDragSourceExt`][trait@crate::prelude::TreeDragSourceExt], [`TreeModelExt`][trait@crate::prelude::TreeModelExt], [`TreeSortableExt`][trait@crate::prelude::TreeSortableExt], [`TreeModelExtManual`][trait@crate::prelude::TreeModelExtManual], [`TreeSortableExtManual`][trait@crate::prelude::TreeSortableExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkListStore&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListStore</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListStore</span>, <span class="ident">ffi::GtkListStoreClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>, <span class="ident">TreeDragDest</span>, <span class="ident">TreeDragSource</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeSortable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -562,224 +621,209 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_LIST_STORE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ListStore</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-
-<span class="doccomment">/// Trait containing all `ListStore` methods.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Implementors</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ListStore`]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GtkListStoreExt</span>: <span class="lifetime">&#39;static</span> {
+<span class="kw">impl</span> <span class="ident">ListStore</span> {
     <span class="doccomment">/// Appends a new row to `self`. `iter` will be changed to point to this new</span>
     <span class="doccomment">/// row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`crate::ListStore::set()`] or [`crate::ListStore::set_value()`].</span>
+    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the appended row</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the appended row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_append&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
+            <span class="ident">ffi::gtk_list_store_append</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
+            <span class="ident">iter</span>
+        }
+    }
 
     <span class="doccomment">/// Removes all rows from the list store.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_clear&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe</span> {
+            <span class="ident">ffi::gtk_list_store_clear</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
+        }
+    }
 
     <span class="doccomment">/// Creates a new row at `position`. `iter` will be changed to point to this new</span>
     <span class="doccomment">/// row. If `position` is -1 or is larger than the number of rows on the list,</span>
     <span class="doccomment">/// then the new row will be appended to the list. The row will be empty after</span>
     <span class="doccomment">/// this function is called. To fill in values, you need to call</span>
-    <span class="doccomment">/// [`crate::ListStore::set()`] or [`crate::ListStore::set_value()`].</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
+    <span class="doccomment">/// [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position to insert the new row, or -1 for last</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
+            <span class="ident">ffi::gtk_list_store_insert</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">position</span>);
+            <span class="ident">iter</span>
+        }
+    }
 
     <span class="doccomment">/// Inserts a new row after `sibling`. If `sibling` is [`None`], then the row will be</span>
     <span class="doccomment">/// prepended to the beginning of the list. `iter` will be changed to point to</span>
     <span class="doccomment">/// this new row. The row will be empty after this function is called. To fill</span>
-    <span class="doccomment">/// in values, you need to call [`crate::ListStore::set()`] or [`crate::ListStore::set_value()`].</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
+    <span class="doccomment">/// in values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// A valid [`crate::TreeIter`], or [`None`]</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter], or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_after&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">insert_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
+            <span class="ident">ffi::gtk_list_store_insert_after</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">sibling</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            );
+            <span class="ident">iter</span>
+        }
+    }
 
     <span class="doccomment">/// Inserts a new row before `sibling`. If `sibling` is [`None`], then the row will</span>
     <span class="doccomment">/// be appended to the end of the list. `iter` will be changed to point to this</span>
     <span class="doccomment">/// new row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`crate::ListStore::set()`] or [`crate::ListStore::set_value()`].</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
+    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// A valid [`crate::TreeIter`], or [`None`]</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter], or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_before&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">insert_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
+            <span class="ident">ffi::gtk_list_store_insert_before</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">sibling</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            );
+            <span class="ident">iter</span>
+        }
+    }
 
     <span class="doccomment">/// &gt; This function is slow. Only use it for debugging and/or testing</span>
     <span class="doccomment">/// &gt; purposes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Checks if the given iter is a valid iter for this [`crate::ListStore`].</span>
+    <span class="doccomment">/// Checks if the given iter is a valid iter for this [`ListStore`][crate::ListStore].</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the iter is valid, [`false`] if the iter is invalid.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_iter_is_valid&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">iter_is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_store_iter_is_valid</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            ))
+        }
+    }
 
     <span class="doccomment">/// Moves `iter` in `self` to the position after `position`. Note that this</span>
     <span class="doccomment">/// function only works with unsorted stores. If `position` is [`None`], `iter`</span>
     <span class="doccomment">/// will be moved to the start of the list.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter].</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`] or [`None`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter] or [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_move_after&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">move_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">move_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) {
+        <span class="kw">unsafe</span> {
+            <span class="ident">ffi::gtk_list_store_move_after</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+                <span class="ident">mut_override</span>(<span class="ident">position</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            );
+        }
+    }
 
     <span class="doccomment">/// Moves `iter` in `self` to the position before `position`. Note that this</span>
     <span class="doccomment">/// function only works with unsorted stores. If `position` is [`None`], `iter`</span>
     <span class="doccomment">/// will be moved to the end of the list.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter].</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`], or [`None`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter], or [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_move_before&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">move_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">move_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) {
+        <span class="kw">unsafe</span> {
+            <span class="ident">ffi::gtk_list_store_move_before</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+                <span class="ident">mut_override</span>(<span class="ident">position</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            );
+        }
+    }
 
     <span class="doccomment">/// Prepends a new row to `self`. `iter` will be changed to point to this new</span>
     <span class="doccomment">/// row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`crate::ListStore::set()`] or [`crate::ListStore::set_value()`].</span>
+    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the prepend row</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the prepend row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_prepend&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
+            <span class="ident">ffi::gtk_list_store_prepend</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
+            <span class="ident">iter</span>
+        }
+    }
 
     <span class="doccomment">/// Removes the given row from the list store. After being removed,</span>
     <span class="doccomment">/// `iter` is set to be the next valid row, or invalidated if it pointed</span>
     <span class="doccomment">/// to the last row in `self`.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid [`crate::TreeIter`]</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if `iter` is valid, [`false`] if not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_remove&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_store_remove</span>(
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
+            ))
+        }
+    }
 
     <span class="doccomment">/// Swaps `a` and `b` in `self`. Note that this function only works with</span>
     <span class="doccomment">/// unsorted stores.</span>
     <span class="doccomment">/// ## `a`</span>
-    <span class="doccomment">/// A [`crate::TreeIter`].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter].</span>
     <span class="doccomment">/// ## `b`</span>
-    <span class="doccomment">/// Another [`crate::TreeIter`].</span>
+    <span class="doccomment">/// Another [`TreeIter`][crate::TreeIter].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_swap&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">swap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>);
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListStore</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">GtkListStoreExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
-            <span class="ident">ffi::gtk_list_store_append</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
-            <span class="ident">iter</span>
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_list_store_clear</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
-            <span class="ident">ffi::gtk_list_store_insert</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
-                <span class="ident">position</span>,
-            );
-            <span class="ident">iter</span>
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">insert_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
-            <span class="ident">ffi::gtk_list_store_insert_after</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">sibling</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            );
-            <span class="ident">iter</span>
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">insert_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
-            <span class="ident">ffi::gtk_list_store_insert_before</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">sibling</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            );
-            <span class="ident">iter</span>
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">iter_is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_store_iter_is_valid</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            ))
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">move_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_list_store_move_after</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                <span class="ident">mut_override</span>(<span class="ident">position</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            );
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">move_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_list_store_move_before</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                <span class="ident">mut_override</span>(<span class="ident">position</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            );
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">TreeIter::uninitialized</span>();
-            <span class="ident">ffi::gtk_list_store_prepend</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
-            <span class="ident">iter</span>
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_store_remove</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-            ))
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">swap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">swap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_list_store_swap</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">a</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">mut_override</span>(<span class="ident">b</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             );
@@ -794,4 +838,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

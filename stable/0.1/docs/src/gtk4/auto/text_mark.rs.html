@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/text_mark.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_mark.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;text_mark.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_mark.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -239,6 +309,29 @@
 <span id="236">236</span>
 <span id="237">237</span>
 <span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -253,7 +346,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkTextMark` is a position in a `GtkTextbuffer` that is preserved</span>
+    <span class="doccomment">/// A [`TextMark`][crate::TextMark] is a position in a `GtkTextbuffer` that is preserved</span>
     <span class="doccomment">/// across modifications.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
@@ -261,9 +354,9 @@
     <span class="doccomment">/// which gives an overview of all the objects and data types</span>
     <span class="doccomment">/// related to the text widget and how they work together.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkTextMark` is like a bookmark in a text buffer; it preserves</span>
+    <span class="doccomment">/// A [`TextMark`][crate::TextMark] is like a bookmark in a text buffer; it preserves</span>
     <span class="doccomment">/// a position in the text. You can convert the mark to an iterator using</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.get_iter_at_mark]. Unlike iterators, marks remain</span>
+    <span class="doccomment">/// [``TextBufferExt::iter_at_mark()``][crate::prelude::`TextBufferExt::iter_at_mark()`]. Unlike iterators, marks remain</span>
     <span class="doccomment">/// valid across buffer mutations, because their behavior is defined when</span>
     <span class="doccomment">/// text is inserted or deleted. When text containing a mark is deleted,</span>
     <span class="doccomment">/// the mark remains in the position originally occupied by the deleted</span>
@@ -278,18 +371,19 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks are reference counted, but the reference count only controls</span>
     <span class="doccomment">/// the validity of the memory; marks can be deleted from the buffer at</span>
-    <span class="doccomment">/// any time with [method`Gtk.TextBuffer`.delete_mark]. Once deleted from</span>
+    <span class="doccomment">/// any time with [``TextBufferExt::delete_mark()``][crate::prelude::`TextBufferExt::delete_mark()`]. Once deleted from</span>
     <span class="doccomment">/// the buffer, a mark is essentially useless.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks optionally have names; these can be convenient to avoid passing</span>
-    <span class="doccomment">/// the `GtkTextMark` object around.</span>
+    <span class="doccomment">/// the [`TextMark`][crate::TextMark] object around.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Marks are typically created using the [method`Gtk.TextBuffer`.create_mark]</span>
+    <span class="doccomment">/// Marks are typically created using the [``TextBufferExt::create_mark()``][crate::prelude::`TextBufferExt::create_mark()`]</span>
     <span class="doccomment">/// function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::TextMarkExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`TextMarkExt`][trait@crate::prelude::TextMarkExt], [`trait@glib::ObjectExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkTextMark&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextMark</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextMark</span>, <span class="ident">ffi::GtkTextMarkClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -300,9 +394,9 @@
 <span class="kw">impl</span> <span class="ident">TextMark</span> {
     <span class="doccomment">/// Creates a text mark.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Add it to a buffer using [method`Gtk.TextBuffer`.add_mark].</span>
+    <span class="doccomment">/// Add it to a buffer using [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`].</span>
     <span class="doccomment">/// If `name` is [`None`], the mark is anonymous; otherwise, the mark can be</span>
-    <span class="doccomment">/// retrieved by name using [method`Gtk.TextBuffer`.get_mark]. If a mark</span>
+    <span class="doccomment">/// retrieved by name using [``TextBufferExt::mark()``][crate::prelude::`TextBufferExt::mark()`]. If a mark</span>
     <span class="doccomment">/// has left gravity, and text is inserted at the mark’s current location,</span>
     <span class="doccomment">/// the mark will be moved to the left of the newly-inserted text. If the</span>
     <span class="doccomment">/// mark has right gravity (`left_gravity` = [`false`]), the mark will end up</span>
@@ -316,7 +410,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// new `GtkTextMark`</span>
+    <span class="doccomment">/// new [`TextMark`][crate::TextMark]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">left_gravity</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -327,19 +421,35 @@
             ))
         }
     }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`TextMark`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`TextMarkBuilder`] which can be used to create [`TextMark`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMarkBuilder</span> {
+        <span class="ident">TextMarkBuilder::default</span>()
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`TextMark`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextMarkBuilder</span> {
     <span class="ident">left_gravity</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
     <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">TextMarkBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`TextMarkBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`TextMark`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">left_gravity</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">left_gravity</span> {
@@ -352,11 +462,17 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of TextMark&quot;</span>)
     }
 
+    <span class="doccomment">/// Whether the mark has left gravity.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// When text is inserted at the mark’s current location, if the mark</span>
+    <span class="doccomment">/// has left gravity it will be moved to the left of the newly-inserted</span>
+    <span class="doccomment">/// text, otherwise to the right.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_gravity</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">left_gravity</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">left_gravity</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">left_gravity</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name of the mark or [`None`] if the mark is anonymous.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -365,11 +481,11 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_TEXT_MARK</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TextMark</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `TextMark` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@TextMark`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::TextMark`]</span>
+<span class="doccomment">/// [`TextMark`][struct@crate::TextMark]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextMarkExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the buffer this mark is located inside.</span>
     <span class="doccomment">///</span>
@@ -377,14 +493,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the mark’s `GtkTextBuffer`</span>
+    <span class="doccomment">/// the mark’s [`TextBuffer`][crate::TextBuffer]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_buffer&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns [`true`] if the mark has been removed from its buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.add_mark] for a way to add it</span>
+    <span class="doccomment">/// See [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`] for a way to add it</span>
     <span class="doccomment">/// to a buffer again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -480,4 +596,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

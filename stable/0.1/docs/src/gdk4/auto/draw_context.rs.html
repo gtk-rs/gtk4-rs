@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/draw_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>draw_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4&#x2F;src&#x2F;auto&#x2F;draw_context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>draw_context.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -191,8 +261,6 @@
 <span id="188">188</span>
 <span id="189">189</span>
 <span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -212,19 +280,20 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Base class for objects implementing different rendering methods.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkDrawContext` is the base object used by contexts implementing different</span>
-    <span class="doccomment">/// rendering methods, such as [class`Gdk.CairoContext`] or [class`Gdk.GLContext`].</span>
+    <span class="doccomment">/// [`DrawContext`][crate::DrawContext] is the base object used by contexts implementing different</span>
+    <span class="doccomment">/// rendering methods, such as [`CairoContext`][crate::CairoContext] or [`GLContext`][crate::GLContext].</span>
     <span class="doccomment">/// It provides shared functionality between those contexts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You will always interact with one of those subclasses.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkDrawContext` is always associated with a single toplevel surface.</span>
+    <span class="doccomment">/// A [`DrawContext`][crate::DrawContext] is always associated with a single toplevel surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::DrawContextExt`], [`trait@crate::prelude::DrawContextExtManual`]</span>
+    <span class="doccomment">/// [`DrawContextExt`][trait@crate::prelude::DrawContextExt], [`DrawContextExtManual`][trait@crate::prelude::DrawContextExtManual]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDrawContext&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DrawContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkDrawContext</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -234,11 +303,11 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_DRAW_CONTEXT</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">DrawContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `DrawContext` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@DrawContext`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CairoContext`], [`struct@crate::DrawContext`], [`struct@crate::GLContext`], [`struct@crate::VulkanContext`]</span>
+<span class="doccomment">/// [`CairoContext`][struct@crate::CairoContext], [`DrawContext`][struct@crate::DrawContext], [`GLContext`][struct@crate::GLContext], [`VulkanContext`][struct@crate::VulkanContext]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DrawContextExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Indicates that you are beginning the process of redrawing `region`</span>
     <span class="doccomment">/// on the `self`&#39;s surface.</span>
@@ -246,45 +315,45 @@
     <span class="doccomment">/// Calling this function begins a drawing operation using `self` on the</span>
     <span class="doccomment">/// surface that `self` was created from. The actual requirements and</span>
     <span class="doccomment">/// guarantees for the drawing operation vary for different implementations</span>
-    <span class="doccomment">/// of drawing, so a [class`Gdk.CairoContext`] and a [class`Gdk.GLContext`]</span>
+    <span class="doccomment">/// of drawing, so a [`CairoContext`][crate::CairoContext] and a [`GLContext`][crate::GLContext]</span>
     <span class="doccomment">/// need to be treated differently.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A call to this function is a requirement for drawing and must be</span>
-    <span class="doccomment">/// followed by a call to [method`Gdk.DrawContext`.end_frame], which will</span>
+    <span class="doccomment">/// followed by a call to [``end_frame()``][`Self::end_frame()`], which will</span>
     <span class="doccomment">/// complete the drawing operation and ensure the contents become visible</span>
     <span class="doccomment">/// on screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the `region` passed to this function is the minimum region that</span>
     <span class="doccomment">/// needs to be drawn and depending on implementation, windowing system and</span>
     <span class="doccomment">/// hardware in use, it might be necessary to draw a larger region. Drawing</span>
-    <span class="doccomment">/// implementation must use [method`Gdk`.[`crate::DrawContext.get_frame_region()`] to</span>
+    <span class="doccomment">/// implementation must use [``DrawContextExtManual::frame_region()``][crate::prelude::`DrawContextExtManual::frame_region()`]() to</span>
     <span class="doccomment">/// query the region that must be drawn.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When using GTK, the widget system automatically places calls to</span>
-    <span class="doccomment">/// [`Self::begin_frame()`] and [`Self::end_frame()`] via the</span>
-    <span class="doccomment">/// use of [class`Gsk.Renderer`]s, so application code does not need to call</span>
+    <span class="doccomment">/// [`begin_frame()`][Self::begin_frame()] and [`end_frame()`][Self::end_frame()] via the</span>
+    <span class="doccomment">/// use of `Gsk::Renderer`s, so application code does not need to call</span>
     <span class="doccomment">/// these functions explicitly.</span>
     <span class="doccomment">/// ## `region`</span>
     <span class="doccomment">/// minimum region that should be drawn</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_begin_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Region</span>);
 
-    <span class="doccomment">/// Ends a drawing operation started with [`Self::begin_frame()`].</span>
+    <span class="doccomment">/// Ends a drawing operation started with [`begin_frame()`][Self::begin_frame()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This makes the drawing available on screen.</span>
-    <span class="doccomment">/// See [method`Gdk.DrawContext`.begin_frame] for more details about drawing.</span>
+    <span class="doccomment">/// See [``begin_frame()``][`Self::begin_frame()`] for more details about drawing.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When using a [class`Gdk.GLContext`], this function may call `glFlush()`</span>
+    <span class="doccomment">/// When using a [`GLContext`][crate::GLContext], this function may call `glFlush()`</span>
     <span class="doccomment">/// implicitly before returning; it is not recommended to call `glFlush()`</span>
     <span class="doccomment">/// explicitly before calling this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_end_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Retrieves the `GdkDisplay` the `self` is created for</span>
+    <span class="doccomment">/// Retrieves the [`Display`][crate::Display] the `self` is created for</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkDisplay` or [`None`]</span>
+    <span class="doccomment">/// a [`Display`][crate::Display] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span>;
@@ -293,21 +362,21 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::Surface`] or [`None`]</span>
+    <span class="doccomment">/// a [`Surface`][crate::Surface] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_get_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns [`true`] if `self` is in the process of drawing to its surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the case between calls to [method`Gdk.DrawContext`.begin_frame]</span>
-    <span class="doccomment">/// and [method`Gdk.DrawContext`.end_frame]. In this situation, drawing commands</span>
+    <span class="doccomment">/// This is the case between calls to [``begin_frame()``][`Self::begin_frame()`]</span>
+    <span class="doccomment">/// and [``end_frame()``][`Self::end_frame()`]. In this situation, drawing commands</span>
     <span class="doccomment">/// may be effecting the contents of the `self`&#39;s surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the context is between [method`Gdk.DrawContext`.begin_frame]</span>
-    <span class="doccomment">///  and [method`Gdk.DrawContext`.end_frame] calls.</span>
+    <span class="doccomment">/// [`true`] if the context is between [``begin_frame()``][`Self::begin_frame()`]</span>
+    <span class="doccomment">///  and [``end_frame()``][`Self::end_frame()`] calls.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_is_in_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_in_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -355,17 +424,14 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
-        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_display_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_display_trampoline</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">DrawContext</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkDrawContext</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="kw">where</span>
-            <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">DrawContext</span><span class="op">&gt;</span>,
-        {
+        ) {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">DrawContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
+            <span class="ident">f</span>(<span class="ident">DrawContext::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>())
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -388,4 +454,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

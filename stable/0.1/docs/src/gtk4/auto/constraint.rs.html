@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/constraint.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constraint.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;constraint.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constraint.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -359,6 +429,47 @@
 <span id="356">356</span>
 <span id="357">357</span>
 <span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -375,25 +486,28 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkConstraint` describes a constraint between attributes of two widgets,</span>
+    <span class="doccomment">/// [`Constraint`][crate::Constraint] describes a constraint between attributes of two widgets,</span>
     <span class="doccomment">///  expressed as a linear equation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The typical equation for a constraint is:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// **⚠️ The following code is in text ⚠️**</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   target.target_attr = source.source_attr × multiplier + constant</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each `GtkConstraint` is part of a system that will be solved by a</span>
-    <span class="doccomment">/// [class`Gtk.ConstraintLayout`] in order to allocate and position each</span>
+    <span class="doccomment">/// Each [`Constraint`][crate::Constraint] is part of a system that will be solved by a</span>
+    <span class="doccomment">/// [`ConstraintLayout`][crate::ConstraintLayout] in order to allocate and position each</span>
     <span class="doccomment">/// child widget or guide.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The source and target, as well as their attributes, of a `GtkConstraint`</span>
+    <span class="doccomment">/// The source and target, as well as their attributes, of a [`Constraint`][crate::Constraint]</span>
     <span class="doccomment">/// instance are immutable after creation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkConstraint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Constraint</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkConstraint</span>, <span class="ident">ffi::GtkConstraintClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -486,6 +600,14 @@
         }
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`Constraint`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`ConstraintBuilder`] which can be used to create [`Constraint`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConstraintBuilder</span> {
+        <span class="ident">ConstraintBuilder::default</span>()
+    }
+
     <span class="doccomment">/// Retrieves the constant factor added to the source attributes&#39; value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -520,11 +642,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_constraint_get_relation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the [iface`Gtk.ConstraintTarget`] used as the source for the</span>
+    <span class="doccomment">/// Retrieves the [`ConstraintTarget`][crate::ConstraintTarget] used as the source for the</span>
     <span class="doccomment">/// constraint.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the source is set to `NULL` at creation, the constraint will use</span>
-    <span class="doccomment">/// the widget using the [class`Gtk.ConstraintLayout`] as the source.</span>
+    <span class="doccomment">/// the widget using the [`ConstraintLayout`][crate::ConstraintLayout] as the source.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -561,15 +683,15 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_constraint_get_strength</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Retrieves the [iface`Gtk.ConstraintTarget`] used as the target for</span>
+    <span class="doccomment">/// Retrieves the [`ConstraintTarget`][crate::ConstraintTarget] used as the target for</span>
     <span class="doccomment">/// the constraint.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the targe is set to `NULL` at creation, the constraint will use</span>
-    <span class="doccomment">/// the widget using the [class`Gtk.ConstraintLayout`] as the target.</span>
+    <span class="doccomment">/// the widget using the [`ConstraintLayout`][crate::ConstraintLayout] as the target.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::ConstraintTarget`]</span>
+    <span class="doccomment">/// a [`ConstraintTarget`][crate::ConstraintTarget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_get_target&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_target&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">target</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span> {
@@ -591,7 +713,7 @@
         }
     }
 
-    <span class="doccomment">/// Checks whether the constraint is attached to a [class`Gtk.ConstraintLayout`],</span>
+    <span class="doccomment">/// Checks whether the constraint is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
     <span class="doccomment">/// and it is contributing to the layout.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -603,7 +725,7 @@
     }
 
     <span class="doccomment">/// Checks whether the constraint describes a relation between an attribute</span>
-    <span class="doccomment">/// on the [property`Gtk.Constraint`:target] and a constant value.</span>
+    <span class="doccomment">/// on the `property::Constraint::target` and a constant value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -626,6 +748,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`Constraint`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConstraintBuilder</span> {
     <span class="ident">constant</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
     <span class="ident">multiplier</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
@@ -638,10 +764,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ConstraintBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`ConstraintBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`Constraint`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Constraint</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">constant</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">constant</span> {
@@ -672,41 +802,63 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of Constraint&quot;</span>)
     }
 
+    <span class="doccomment">/// The constant value to be added to the `property::Constraint::source-attribute`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">constant</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">constant</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">constant</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">constant</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The multiplication factor to be applied to</span>
+    <span class="doccomment">/// the `property::Constraint::source-attribute`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">multiplier</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">multiplier</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">multiplier</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">multiplier</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The order relation between the terms of the constraint.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">relation</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">relation</span>: <span class="ident">ConstraintRelation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">relation</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">relation</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The source of the constraint.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The constraint will set the `property::Constraint::target-attribute`</span>
+    <span class="doccomment">/// of the target using the `property::Constraint::source-attribute`</span>
+    <span class="doccomment">/// of the source.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">source</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">source</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">source</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">source</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The attribute of the `property::Constraint::source` read by the</span>
+    <span class="doccomment">/// constraint.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">source_attribute</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">source_attribute</span>: <span class="ident">ConstraintAttribute</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">source_attribute</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">source_attribute</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The strength of the constraint.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The strength can be expressed either using one of the symbolic values</span>
+    <span class="doccomment">/// of the [`ConstraintStrength`][crate::ConstraintStrength] enumeration, or any positive integer</span>
+    <span class="doccomment">/// value.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strength</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">strength</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">strength</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">strength</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The target of the constraint.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The constraint will set the `property::Constraint::target-attribute` of the</span>
+    <span class="doccomment">/// target using the `property::Constraint::source-attribute` of the source</span>
+    <span class="doccomment">/// widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">target</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">target</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The attribute of the `property::Constraint::target` set by the constraint.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">target_attribute</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target_attribute</span>: <span class="ident">ConstraintAttribute</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">target_attribute</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">target_attribute</span>);
         <span class="self">self</span>
@@ -720,4 +872,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

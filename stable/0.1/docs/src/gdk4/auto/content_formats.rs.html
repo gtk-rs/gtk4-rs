@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/auto/content_formats.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>content_formats.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4&#x2F;src&#x2F;auto&#x2F;content_formats.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>content_formats.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -251,6 +321,40 @@
 <span id="248">248</span>
 <span id="249">249</span>
 <span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -260,37 +364,37 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GdkContentFormats` structure is used to advertise and negotiate the</span>
+    <span class="doccomment">/// The [`ContentFormats`][crate::ContentFormats] structure is used to advertise and negotiate the</span>
     <span class="doccomment">/// format of content.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You will encounter `GdkContentFormats` when interacting with objects</span>
+    <span class="doccomment">/// You will encounter [`ContentFormats`][crate::ContentFormats] when interacting with objects</span>
     <span class="doccomment">/// controlling operations that pass data between different widgets, window</span>
-    <span class="doccomment">/// or application, like [class`Gdk.Drag`], [class`Gdk.Drop`],</span>
-    <span class="doccomment">/// [class`Gdk.Clipboard`] or [class`Gdk.ContentProvider`].</span>
+    <span class="doccomment">/// or application, like [`Drag`][crate::Drag], [`Drop`][crate::Drop],</span>
+    <span class="doccomment">/// [`Clipboard`][crate::Clipboard] or [`ContentProvider`][crate::ContentProvider].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GDK supports content in 2 forms: `GType` and mime type.</span>
     <span class="doccomment">/// Using `GTypes` is meant only for in-process content transfers. Mime types</span>
     <span class="doccomment">/// are meant to be used for data passing both in-process and out-of-process.</span>
     <span class="doccomment">/// The details of how data is passed is described in the documentation of</span>
     <span class="doccomment">/// the actual implementations. To transform between the two forms,</span>
-    <span class="doccomment">/// [class`Gdk.ContentSerializer`] and [class`Gdk.ContentDeserializer`] are used.</span>
+    <span class="doccomment">/// [`ContentSerializer`][crate::ContentSerializer] and [`ContentDeserializer`][crate::ContentDeserializer] are used.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkContentFormats` describes a set of possible formats content can be</span>
+    <span class="doccomment">/// A [`ContentFormats`][crate::ContentFormats] describes a set of possible formats content can be</span>
     <span class="doccomment">/// exchanged in. It is assumed that this set is ordered. `GTypes` are more</span>
     <span class="doccomment">/// important than mime types. Order between different `GTypes` or mime types</span>
     <span class="doccomment">/// is the order they were added in, most important first. Functions that</span>
-    <span class="doccomment">/// care about order, such as [method`Gdk.ContentFormats`.union], will describe</span>
+    <span class="doccomment">/// care about order, such as [``union()``][`Self::union()`], will describe</span>
     <span class="doccomment">/// in their documentation how they interpret that order, though in general the</span>
     <span class="doccomment">/// order of the first argument is considered the primary order of the result,</span>
     <span class="doccomment">/// followed by the order of further arguments.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For debugging purposes, the function [method`Gdk.ContentFormats`.to_string]</span>
+    <span class="doccomment">/// For debugging purposes, the function `Gdk::`ContentFormats::to_string()``</span>
     <span class="doccomment">/// exists. It will print a comma-separated list of formats from most important</span>
     <span class="doccomment">/// to least important.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkContentFormats` is an immutable struct. After creation, you cannot change</span>
-    <span class="doccomment">/// the types it represents. Instead, new `GdkContentFormats` have to be created.</span>
-    <span class="doccomment">/// The [struct`Gdk.ContentFormatsBuilder`]` structure is meant to help in this</span>
+    <span class="doccomment">/// [`ContentFormats`][crate::ContentFormats] is an immutable struct. After creation, you cannot change</span>
+    <span class="doccomment">/// the types it represents. Instead, new [`ContentFormats`][crate::ContentFormats] have to be created.</span>
+    <span class="doccomment">/// The [`ContentFormatsBuilder`][crate::ContentFormatsBuilder]` structure is meant to help in this</span>
     <span class="doccomment">/// endeavor.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentFormats</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentFormats</span><span class="op">&gt;</span>);
@@ -303,20 +407,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ContentFormats</span> {
-    <span class="doccomment">/// Creates a new `GdkContentFormats` from an array of mime types.</span>
+    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] from an array of mime types.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The mime types must be valid and different from each other or the</span>
     <span class="doccomment">/// behavior of the return value is undefined. If you cannot guarantee</span>
-    <span class="doccomment">/// this, use `GdkContentFormatsBuilder` instead.</span>
+    <span class="doccomment">/// this, use [`ContentFormatsBuilder`][crate::ContentFormatsBuilder] instead.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">/// Pointer to an</span>
     <span class="doccomment">///  array of mime types</span>
-    <span class="doccomment">/// ## `n_mime_types`</span>
-    <span class="doccomment">/// number of entries in `mime_types`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `GdkContentFormats`.</span>
+    <span class="doccomment">/// the new [`ContentFormats`][crate::ContentFormats].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mime_types</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -329,6 +431,13 @@
         }
     }
 
+    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] for a given `GType`.</span>
+    <span class="doccomment">/// ## `type_`</span>
+    <span class="doccomment">/// a `GType`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_new_for_gtype&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_gtype&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_type</span>(<span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
@@ -336,6 +445,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_new_for_gtype</span>(<span class="ident">type_</span>.<span class="ident">into_glib</span>())) }
     }
 
+    <span class="doccomment">/// Checks if a given `GType` is part of the given `self`.</span>
+    <span class="doccomment">/// ## `type_`</span>
+    <span class="doccomment">/// the `GType` to search for</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if the `GType` was found</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_contain_gtype&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;contain_gtype&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -375,6 +491,16 @@
         }
     }
 
+    <span class="doccomment">/// Finds the first `GType` from `self` that is also contained</span>
+    <span class="doccomment">/// in `second`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If no matching `GType` is found, `G_TYPE_INVALID` is returned.</span>
+    <span class="doccomment">/// ## `second`</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to intersect with</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The first common `GType` or `G_TYPE_INVALID` if none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_match_gtype&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;match_gtype&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::types::Type</span> {
@@ -391,7 +517,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching mime type is found, [`None`] is returned.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// the `GdkContentFormats` to intersect with</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to intersect with</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -430,11 +556,11 @@
     <span class="doccomment">/// Append all missing types from `second` to `self`, in the order</span>
     <span class="doccomment">/// they had in `second`.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// the `GdkContentFormats` to merge from</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to merge from</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -445,6 +571,12 @@
         }
     }
 
+    <span class="doccomment">/// Add GTypes for mime types in `self` for which deserializers are</span>
+    <span class="doccomment">/// registered.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;union_deserialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
@@ -460,7 +592,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -470,6 +602,12 @@
         }
     }
 
+    <span class="doccomment">/// Add GTypes for the mime types in `self` for which serializers are</span>
+    <span class="doccomment">/// registered.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;union_serialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
@@ -485,7 +623,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -504,4 +642,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/icon_paintable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>icon_paintable.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;icon_paintable.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>icon_paintable.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -154,6 +224,26 @@
 <span id="151">151</span>
 <span id="152">152</span>
 <span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -167,13 +257,14 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// Contains information found when looking up an icon in `GtkIconTheme`.</span>
+    <span class="doccomment">/// Contains information found when looking up an icon in [`IconTheme`][crate::IconTheme].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkIconPaintable` implements `GdkPaintable`.</span>
+    <span class="doccomment">/// [`IconPaintable`][crate::IconPaintable] implements [`gdk::Paintable`][crate::gdk::Paintable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkIconPaintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconPaintable</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkIconPaintable</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -182,9 +273,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IconPaintable</span> {
-    <span class="doccomment">/// Creates a `GtkIconPaintable` for a file with a given size and scale.</span>
+    <span class="doccomment">/// Creates a [`IconPaintable`][crate::IconPaintable] for a file with a given size and scale.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The icon can then be rendered by using it as a `GdkPaintable`.</span>
+    <span class="doccomment">/// The icon can then be rendered by using it as a [`gdk::Paintable`][crate::gdk::Paintable].</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// a `GFile`</span>
     <span class="doccomment">/// ## `size`</span>
@@ -194,8 +285,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkIconPaintable` containing</span>
-    <span class="doccomment">///  for the icon. Unref with [`crate::glib::object::ObjectExt::unref()`]</span>
+    <span class="doccomment">/// a [`IconPaintable`][crate::IconPaintable] containing</span>
+    <span class="doccomment">///  for the icon. Unref with `g_object_unref()`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_new_for_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">size</span>: <span class="ident">i32</span>, <span class="ident">scale</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconPaintable</span> {
@@ -209,14 +300,22 @@
         }
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`IconPaintable`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`IconPaintableBuilder`] which can be used to create [`IconPaintable`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconPaintableBuilder</span> {
+        <span class="ident">IconPaintableBuilder::default</span>()
+    }
+
     <span class="doccomment">/// Gets the `GFile` that was used to load the icon.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns [`None`] if the icon was not loaded from a file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`crate::gio::File`] for the icon, or [`None`].</span>
-    <span class="doccomment">///  Free with [`crate::glib::object::ObjectExt::unref()`].</span>
+    <span class="doccomment">/// the [`gio::File`][crate::gio::File] for the icon, or [`None`].</span>
+    <span class="doccomment">///  Free with `g_object_unref()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_get_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span> {
@@ -227,7 +326,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When an icon looked up in the icon theme was not available, the</span>
     <span class="doccomment">/// icon theme may use fallback icons - either those specified to</span>
-    <span class="doccomment">/// [`crate::IconTheme::lookup_icon()`] or the always-available</span>
+    <span class="doccomment">/// [`IconTheme::lookup_icon()`][crate::IconTheme::lookup_icon()] or the always-available</span>
     <span class="doccomment">/// &quot;image-missing&quot;. The icon chosen is returned by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the icon was created without an icon theme, this function</span>
@@ -248,8 +347,8 @@
     <span class="doccomment">/// This currently uses only the file name and not the file contents</span>
     <span class="doccomment">/// for determining this. This behaviour may change in the future.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that to render a symbolic `GtkIconPaintable` properly (with</span>
-    <span class="doccomment">/// recoloring), you have to set its icon name on a `GtkImage`.</span>
+    <span class="doccomment">/// Note that to render a symbolic [`IconPaintable`][crate::IconPaintable] properly (with</span>
+    <span class="doccomment">/// recoloring), you have to set its icon name on a [`Image`][crate::Image].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -261,6 +360,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`IconPaintable`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconPaintableBuilder</span> {
     <span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>,
     <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
@@ -268,10 +371,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IconPaintableBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`IconPaintableBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`IconPaintable`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconPaintable</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">file</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">file</span> {
@@ -287,16 +394,19 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of IconPaintable&quot;</span>)
     }
 
+    <span class="doccomment">/// The file representing the icon, if any.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">file</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">file</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The icon name that was chosen during lookup.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">icon_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">icon_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Whether the icon is symbolic or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_symbolic</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">is_symbolic</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">is_symbolic</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">is_symbolic</span>);
         <span class="self">self</span>
@@ -310,4 +420,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>

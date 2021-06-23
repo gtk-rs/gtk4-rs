@@ -1,7 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/shortcut_controller.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>shortcut_controller.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;auto&#x2F;shortcut_controller.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>shortcut_controller.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -380,6 +450,28 @@
 <span id="377">377</span>
 <span id="378">378</span>
 <span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
 </pre><pre class="rust">
 <span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)</span>
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
@@ -404,25 +496,25 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkShortcutController` is an event controller that manages shortcuts.</span>
+    <span class="doccomment">/// [`ShortcutController`][crate::ShortcutController] is an event controller that manages shortcuts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Most common shortcuts are using this controller implicitly, e.g. by</span>
-    <span class="doccomment">/// adding a mnemonic underline to a `GtkLabel`, or by installing a key</span>
-    <span class="doccomment">/// binding using [`crate::WidgetClass::add_binding()`], or by adding accelerators</span>
-    <span class="doccomment">/// to global actions using [`crate::prelude::`GtkApplicationExt`::set_accels_for_action()`].</span>
+    <span class="doccomment">/// adding a mnemonic underline to a [`Label`][crate::Label], or by installing a key</span>
+    <span class="doccomment">/// binding using `gtk_widget_class_add_binding()`, or by adding accelerators</span>
+    <span class="doccomment">/// to global actions using [`GtkApplicationExt::set_accels_for_action()`][crate::prelude::GtkApplicationExt::set_accels_for_action()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// But it is possible to create your own shortcut controller, and add</span>
     <span class="doccomment">/// shortcuts to it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkShortcutController` implements `GListModel` for querying the</span>
+    <span class="doccomment">/// [`ShortcutController`][crate::ShortcutController] implements `GListModel` for querying the</span>
     <span class="doccomment">/// shortcuts that have been added to it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `ShortcutController` as a `Buildable`</span>
+    <span class="doccomment">/// # GtkShortcutController as a GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkShortcutControllers` can be creates in ui files to set up</span>
     <span class="doccomment">/// shortcuts in the same place as the widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a UI definition fragment with `GtkShortcutController`:</span>
+    <span class="doccomment">/// An example of a UI definition fragment with [`ShortcutController`][crate::ShortcutController]:</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">///   &lt;object class=&#39;GtkButton&#39;&gt;</span>
     <span class="doccomment">///     &lt;child&gt;</span>
@@ -439,15 +531,16 @@
     <span class="doccomment">///   &lt;/object&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This example creates a [class`Gtk.ActivateAction`] for triggering the</span>
-    <span class="doccomment">/// `activate` signal of the `GtkButton`. See [ctor`Gtk.ShortcutAction`.parse_string]</span>
-    <span class="doccomment">/// for the syntax for other kinds of `GtkShortcutAction`. See</span>
-    <span class="doccomment">/// [ctor`Gtk.ShortcutTrigger`.parse_string] to learn more about the syntax</span>
+    <span class="doccomment">/// This example creates a [`ActivateAction`][crate::ActivateAction] for triggering the</span>
+    <span class="doccomment">/// `activate` signal of the [`Button`][crate::Button]. See [``ShortcutAction::parse_string()``][crate::`ShortcutAction::parse_string()`]</span>
+    <span class="doccomment">/// for the syntax for other kinds of [`ShortcutAction`][crate::ShortcutAction]. See</span>
+    <span class="doccomment">/// [``ShortcutTrigger::parse_string()``][crate::`ShortcutTrigger::parse_string()`] to learn more about the syntax</span>
     <span class="doccomment">/// for triggers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkShortcutController&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutController</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutController</span>, <span class="ident">ffi::GtkShortcutControllerClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>, @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -491,12 +584,20 @@
         }
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`ShortcutController`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`ShortcutControllerBuilder`] which can be used to create [`ShortcutController`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShortcutControllerBuilder</span> {
+        <span class="ident">ShortcutControllerBuilder::default</span>()
+    }
+
     <span class="doccomment">/// Adds `shortcut` to the list of shortcuts handled by `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this controller uses an external shortcut list, this</span>
     <span class="doccomment">/// function does nothing.</span>
     <span class="doccomment">/// ## `shortcut`</span>
-    <span class="doccomment">/// a `GtkShortcut`</span>
+    <span class="doccomment">/// a [`Shortcut`][crate::Shortcut]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_controller_add_shortcut&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_shortcut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shortcut</span>: <span class="kw-2">&amp;</span><span class="ident">Shortcut</span>) {
         <span class="kw">unsafe</span> {
@@ -523,7 +624,7 @@
     }
 
     <span class="doccomment">/// Gets the scope for when this controller activates its shortcuts. See</span>
-    <span class="doccomment">/// [`Self::set_scope()`] for details.</span>
+    <span class="doccomment">/// [`set_scope()`][Self::set_scope()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -543,7 +644,7 @@
     <span class="doccomment">/// If `shortcut` had not been added to `controller` or this controller</span>
     <span class="doccomment">/// uses an external shortcut list, this function does nothing.</span>
     <span class="doccomment">/// ## `shortcut`</span>
-    <span class="doccomment">/// a `GtkShortcut`</span>
+    <span class="doccomment">/// a [`Shortcut`][crate::Shortcut]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_controller_remove_shortcut&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_shortcut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shortcut</span>: <span class="kw-2">&amp;</span><span class="ident">Shortcut</span>) {
         <span class="kw">unsafe</span> {
@@ -559,7 +660,7 @@
     <span class="doccomment">/// The mnemonics modifiers determines which modifiers need to be pressed to allow</span>
     <span class="doccomment">/// activation of shortcuts with mnemonics triggers.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK normally uses the Alt modifier for mnemonics, except in ``GtkPopoverMenus``,</span>
+    <span class="doccomment">/// GTK normally uses the Alt modifier for mnemonics, except in `GtkPopoverMenus`,</span>
     <span class="doccomment">/// where mnemonics can be triggered without any modifiers. It should be very</span>
     <span class="doccomment">/// rarely necessary to change this, and doing so is likely to interfere with</span>
     <span class="doccomment">/// other shortcuts.</span>
@@ -586,7 +687,7 @@
     <span class="doccomment">/// keyboard shortcuts that can be activated even when a widget does</span>
     <span class="doccomment">/// not have focus.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// With [`crate::ShortcutScope::Local`], shortcuts will only be activated</span>
+    <span class="doccomment">/// With [`ShortcutScope::Local`][crate::ShortcutScope::Local], shortcuts will only be activated</span>
     <span class="doccomment">/// when the widget has focus.</span>
     <span class="doccomment">/// ## `scope`</span>
     <span class="doccomment">/// the new scope to use</span>
@@ -597,6 +698,7 @@
         }
     }
 
+    <span class="doccomment">/// The modifiers that need to be pressed to allow mnemonics activation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mnemonic-modifiers&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mnemonic_modifiers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::ModifierType</span> {
         <span class="kw">unsafe</span> {
@@ -613,6 +715,7 @@
         }
     }
 
+    <span class="doccomment">/// The modifiers that need to be pressed to allow mnemonics activation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mnemonic-modifiers&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_mnemonic_modifiers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mnemonic_modifiers</span>: <span class="ident">gdk::ModifierType</span>) {
         <span class="kw">unsafe</span> {
@@ -625,7 +728,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;mnemonic-modifiers&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_mnemonic_modifiers_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ShortcutController</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_mnemonic_modifiers_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -653,10 +756,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;scope&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scope_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ShortcutController</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scope_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_scope_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ShortcutController</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkShortcutController</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -686,6 +786,10 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A [builder-pattern] type to construct [`ShortcutController`] objects.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutControllerBuilder</span> {
     <span class="ident">mnemonic_modifiers</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::ModifierType</span><span class="op">&gt;</span>,
     <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>,
@@ -696,10 +800,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ShortcutControllerBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`ShortcutControllerBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`ShortcutController`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShortcutController</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">mnemonic_modifiers</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">mnemonic_modifiers</span> {
@@ -724,31 +832,37 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of ShortcutController&quot;</span>)
     }
 
+    <span class="doccomment">/// The modifiers that need to be pressed to allow mnemonics activation.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mnemonic_modifiers</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">mnemonic_modifiers</span>: <span class="ident">gdk::ModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">mnemonic_modifiers</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">mnemonic_modifiers</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// A list model to take shortcuts from.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">model</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// What scope the shortcuts will be handled in.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scope</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">scope</span>: <span class="ident">ShortcutScope</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">scope</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">scope</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The name for this controller, typically used for debugging purposes.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The limit for which events this controller will handle.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_limit</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_limit</span>);
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// The propagation phase at which this controller will handle events.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_phase</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_phase</span>);
         <span class="self">self</span>
@@ -762,4 +876,5 @@
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
+</body></html>
