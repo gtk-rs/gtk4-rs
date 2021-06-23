@@ -1,15 +1,11 @@
 mod todo_object;
 mod todo_row;
 
-use glib::BindingFlags;
+use gtk::gio;
 use gtk::prelude::*;
 use gtk::Application;
 use gtk::ApplicationWindow;
-use gtk::{gio, glib};
-use gtk::{
-    CheckButton, ConstantExpression, Label, ListView, NoSelection, PolicyType, PropertyExpression,
-    ScrolledWindow, SignalListItemFactory,
-};
+use gtk::{ListView, NoSelection, PolicyType, ScrolledWindow, SignalListItemFactory};
 
 use todo_object::TodoObject;
 use todo_row::TodoRow;
@@ -17,7 +13,7 @@ use todo_row::TodoRow;
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_startup(|app| {
+    app.connect_startup(|_| {
         // The CSS "magic" happens here.
         let provider = gtk::CssProvider::new();
         provider.load_from_data(include_bytes!("style.css"));
