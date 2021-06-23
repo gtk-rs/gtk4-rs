@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -86,7 +86,7 @@ into a string parseable by <code>gtk_accelerator_parse_with_keycode()</code>.</p
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.check_version.html" title="gtk4::functions::check_version fn">check_version</a></td><td class="docblock-short"><p>Checks that the GTK library in use is compatible with the
 given version.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.debug_flags.html" title="gtk4::functions::debug_flags fn">debug_flags</a></td><td class="docblock-short"><p>Returns the GTK debug flags that are currently active.</p>
-</td></tr><tr class="module-item"><td><a class="fn" href="fn.default_language.html" title="gtk4::functions::default_language fn">default_language</a></td><td class="docblock-short"><p>Returns the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/language/struct.Language.html" title="crate::pango::Language"><code>pango::Language</code></a> for the default language currently in
+</td></tr><tr class="module-item"><td><a class="fn" href="fn.default_language.html" title="gtk4::functions::default_language fn">default_language</a></td><td class="docblock-short"><p>Returns the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/pango/language/struct.Language.html" title="crate::pango::Language"><code>pango::Language</code></a> for the default language currently in
 effect. (Note that this can change over the life of an
 application.) The default language is derived from the current
 locale. It determines, for example, whether GTK uses the

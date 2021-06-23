@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -78,7 +78,7 @@
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.multiplier" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#340-343" title="goto source code">[src]</a></div><a href="#method.multiplier" class="anchor"></a><code>pub fn <a href="#method.multiplier" class="fnname">multiplier</a>(self, multiplier: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; Self</code></div></summary><div class="docblock"><p>The multiplication factor to be applied to
 the <code>property::Constraint::source-attribute</code>.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.relation" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#346-349" title="goto source code">[src]</a></div><a href="#method.relation" class="anchor"></a><code>pub fn <a href="#method.relation" class="fnname">relation</a>(self, relation: <a class="enum" href="enum.ConstraintRelation.html" title="enum gtk4::ConstraintRelation">ConstraintRelation</a>) -&gt; Self</code></div></summary><div class="docblock"><p>The order relation between the terms of the constraint.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.source" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#356-359" title="goto source code">[src]</a></div><a href="#method.source" class="anchor"></a><code>pub fn <a href="#method.source" class="fnname">source</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.ConstraintTarget.html" title="struct gtk4::ConstraintTarget">ConstraintTarget</a>&gt;&gt;(self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The source of the constraint.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.source" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#356-359" title="goto source code">[src]</a></div><a href="#method.source" class="anchor"></a><code>pub fn <a href="#method.source" class="fnname">source</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.ConstraintTarget.html" title="struct gtk4::ConstraintTarget">ConstraintTarget</a>&gt;&gt;(self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The source of the constraint.</p>
 <p>The constraint will set the <code>property::Constraint::target-attribute</code>
 of the target using the <code>property::Constraint::source-attribute</code>
 of the source.</p>
@@ -88,7 +88,7 @@ constraint.</p>
 <p>The strength can be expressed either using one of the symbolic values
 of the <a href="enum.ConstraintStrength.html" title="crate::ConstraintStrength"><code>ConstraintStrength</code></a> enumeration, or any positive integer
 value.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.target" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#383-386" title="goto source code">[src]</a></div><a href="#method.target" class="anchor"></a><code>pub fn <a href="#method.target" class="fnname">target</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.ConstraintTarget.html" title="struct gtk4::ConstraintTarget">ConstraintTarget</a>&gt;&gt;(self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The target of the constraint.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.target" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/constraint.rs.html#383-386" title="goto source code">[src]</a></div><a href="#method.target" class="anchor"></a><code>pub fn <a href="#method.target" class="fnname">target</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.ConstraintTarget.html" title="struct gtk4::ConstraintTarget">ConstraintTarget</a>&gt;&gt;(self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The target of the constraint.</p>
 <p>The constraint will set the <code>property::Constraint::target-attribute</code> of the
 target using the <code>property::Constraint::source-attribute</code> of the source
 widget.</p>

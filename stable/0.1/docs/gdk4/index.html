@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -75,7 +75,7 @@
 <p>This library contains safe Rust bindings for <a href="https://docs.gtk.org/gdk4/">GDK 4</a>.</p>
 <p>GDK is an intermediate layer that isolates GTK from the details of the windowing system.</p>
 </div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
-<table><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_sys/index.html" title="mod gdk4_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/index.html" title="mod pango">pango</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_sys/index.html" title="mod gdk4_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/pango/index.html" title="mod pango">pango</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
 <table><tr class="module-item"><td><a class="mod" href="functions/index.html" title="gdk4::functions mod">functions</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="keys/index.html" title="gdk4::keys mod">keys</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="prelude/index.html" title="gdk4::prelude mod">prelude</a></td><td class="docblock-short"><p>Traits intended for blanket imports.</p>
 </td></tr><tr class="module-item"><td><a class="mod" href="subclass/index.html" title="gdk4::subclass mod">subclass</a></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
 <table><tr class="module-item"><td><a class="struct" href="struct.AnchorHints.html" title="gdk4::AnchorHints struct">AnchorHints</a></td><td class="docblock-short"><p>Positioning hints for aligning a surface relative to a rectangle.</p>
@@ -215,7 +215,7 @@ of text would be drawn.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.pango_layout_line_get_clip_region.html" title="gdk4::pango_layout_line_get_clip_region fn">pango_layout_line_get_clip_region</a></td><td class="docblock-short"><p>Obtains a clip region which contains the areas where the given
 ranges of text would be drawn.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.pixbuf_get_from_surface.html" title="gdk4::pixbuf_get_from_surface fn">pixbuf_get_from_surface</a></td><td class="docblock-short"><p>Transfers image data from a <code>cairo_surface_t</code> and converts it
-to a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="crate::gdk_pixbuf::Pixbuf"><code>gdk_pixbuf::Pixbuf</code></a>.</p>
+to a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="crate::gdk_pixbuf::Pixbuf"><code>gdk_pixbuf::Pixbuf</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.pixbuf_get_from_texture.html" title="gdk4::pixbuf_get_from_texture fn">pixbuf_get_from_texture</a></td><td class="docblock-short"><p>Creates a new pixbuf from <code>texture</code>.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.set_allowed_backends.html" title="gdk4::set_allowed_backends fn">set_allowed_backends</a></td><td class="docblock-short"><p>Sets a list of backends that GDK should try to use.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.unicode_to_keyval.html" title="gdk4::unicode_to_keyval fn">unicode_to_keyval</a></td><td class="docblock-short"><p>Convert from a Unicode character to a key symbol.</p>

@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -76,7 +76,7 @@
 <p>GDK is an intermediate layer that isolates GTK from the details of the windowing system.
 GDK X11 contains functions specific to the X11 backend.</p>
 </div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
-<table><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_x11_sys/index.html" title="mod gdk4_x11_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://docs.rs/x11/latest/x11/index.html" title="mod x11">x11</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<table><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_x11_sys/index.html" title="mod gdk4_x11_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://docs.rs/x11/latest/x11/index.html" title="mod x11">x11</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
 <table><tr class="module-item"><td><a class="struct" href="struct.X11AppLaunchContext.html" title="gdk4_x11::X11AppLaunchContext struct">X11AppLaunchContext</a></td><td class="docblock-short"><p>Implements</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.X11DeviceManagerXI2.html" title="gdk4_x11::X11DeviceManagerXI2 struct">X11DeviceManagerXI2</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.X11DeviceManagerXI2Builder.html" title="gdk4_x11::X11DeviceManagerXI2Builder struct">X11DeviceManagerXI2Builder</a></td><td class="docblock-short"><p>A <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder-pattern</a> type to construct <a href="struct.X11DeviceManagerXI2.html" title="X11DeviceManagerXI2"><code>X11DeviceManagerXI2</code></a> objects.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.X11DeviceXI2.html" title="gdk4_x11::X11DeviceXI2 struct">X11DeviceXI2</a></td><td class="docblock-short"><p>Implements</p>

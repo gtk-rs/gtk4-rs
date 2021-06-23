@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -77,7 +77,7 @@
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.actions" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drag_source.rs.html#519-522" title="goto source code">[src]</a></div><a href="#method.actions" class="anchor"></a><code>pub fn <a href="#method.actions" class="fnname">actions</a>(self, actions: <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a>) -&gt; Self</code></div></summary><div class="docblock"><p>The actions that are supported by drag operations from the source.</p>
 <p>Note that you must handle the <code>signal::DragSource::drag-end</code> signal
 if the actions include <a href="../gdk4/auto/flags/struct.DragAction.html#associatedconstant.MOVE" title="crate::gdk::DragAction::MOVE"><code>gdk::DragAction::MOVE</code></a>.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.content" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drag_source.rs.html#525-528" title="goto source code">[src]</a></div><a href="#method.content" class="anchor"></a><code>pub fn <a href="#method.content" class="fnname">content</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../gdk4/auto/content_provider/struct.ContentProvider.html" title="struct gdk4::auto::content_provider::ContentProvider">ContentProvider</a>&gt;&gt;(self, content: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The data that is offered by drag operations from this source.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.content" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drag_source.rs.html#525-528" title="goto source code">[src]</a></div><a href="#method.content" class="anchor"></a><code>pub fn <a href="#method.content" class="fnname">content</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../gdk4/auto/content_provider/struct.ContentProvider.html" title="struct gdk4::auto::content_provider::ContentProvider">ContentProvider</a>&gt;&gt;(self, content: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; Self</code></div></summary><div class="docblock"><p>The data that is offered by drag operations from this source.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drag_source.rs.html#531-534" title="goto source code">[src]</a></div><a href="#method.button" class="anchor"></a><code>pub fn <a href="#method.button" class="fnname">button</a>(self, button: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; Self</code></div></summary><div class="docblock"><p>Mouse button number to listen to, or 0 to listen for any button.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.exclusive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drag_source.rs.html#539-542" title="goto source code">[src]</a></div><a href="#method.exclusive" class="anchor"></a><code>pub fn <a href="#method.exclusive" class="fnname">exclusive</a>(self, exclusive: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; Self</code></div></summary><div class="docblock"><p>Whether the gesture is exclusive.</p>
 <p>Exclusive gestures only listen to pointer and pointer emulated events.</p>

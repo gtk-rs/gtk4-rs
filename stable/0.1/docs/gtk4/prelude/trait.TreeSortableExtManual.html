@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -122,6 +122,6 @@ will be used, if it is set</p>
 <p>the sort column id to set</p>
 <h2 id="order-1" class="section-header"><a href="#order-1"><code>order</code></a></h2>
 <p>The sort order of the column</p>
-</div></details><div id="tymethod.set_unsorted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#123" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.set_unsorted" class="fnname">set_unsorted</a>(&amp;self)</code></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-TreeSortableExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#159-228" title="goto source code">[src]</a></div><a href="#impl-TreeSortableExtManual" class="anchor"></a><code class="in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeSortable.html" title="struct gtk4::TreeSortable">TreeSortable</a>&gt;&gt; <a class="trait" href="trait.TreeSortableExtManual.html" title="trait gtk4::prelude::TreeSortableExtManual">TreeSortableExtManual</a> for O</code></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.TreeSortableExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</div></details><div id="tymethod.set_unsorted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#123" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.set_unsorted" class="fnname">set_unsorted</a>(&amp;self)</code></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-TreeSortableExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#159-228" title="goto source code">[src]</a></div><a href="#impl-TreeSortableExtManual" class="anchor"></a><code class="in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeSortable.html" title="struct gtk4::TreeSortable">TreeSortable</a>&gt;&gt; <a class="trait" href="trait.TreeSortableExtManual.html" title="trait gtk4::prelude::TreeSortableExtManual">TreeSortableExtManual</a> for O</code></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.TreeSortableExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>
 </body></html>

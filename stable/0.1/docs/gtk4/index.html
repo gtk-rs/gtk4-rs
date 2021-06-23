@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("0.1" == "master") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "0.1") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -85,7 +85,7 @@ with the actual Rust API.</p>
 <p><a href="https://gtk-rs.org">gtk-rs project overview</a></p>
 </li>
 <li>
-<p><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/index.html">General <code>GLib</code> family types and object system overview</a></p>
+<p><a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/index.html">General <code>GLib</code> family types and object system overview</a></p>
 </li>
 <li>
 <p><a href="https://www.gtk.org/docs/">GTK documentation</a></p>
@@ -161,9 +161,9 @@ its own notion of the main thread and <a href="fn.init.html" title="init()"><cod
 After successful initialization, calling any <a href="index.html"><code>gtk</code></a> or <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> functions
 (including <a href="fn.init.html" title="init()"><code>init()</code></a>) from other threads will <code>panic</code>.</p>
 <p>Any thread can schedule a closure to be run by the main loop on the main
-thread via <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add.html" title="glib::idle_add()"><code>glib::idle_add()</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add()"><code>glib::timeout_add()</code></a>. While
-working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local()"><code>glib::idle_add_local()</code></a>
-or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local()"><code>glib::timeout_add_local()</code></a> version without the
+thread via <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/source/fn.idle_add.html" title="glib::idle_add()"><code>glib::idle_add()</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add()"><code>glib::timeout_add()</code></a>. While
+working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local()"><code>glib::idle_add_local()</code></a>
+or <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local()"><code>glib::timeout_add_local()</code></a> version without the
 <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> bound. Those may only be called from the main thread.</p>
 <h1 id="panics" class="section-header"><a href="#panics">Panics</a></h1>
 <p>The <a href="index.html"><code>gtk</code></a> and <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> crates have some run-time safety and contract checks.</p>
@@ -198,7 +198,7 @@ features = [&quot;v4_2&quot;]
 not have easy access to the latest ones. The higher the version, the fewer
 users will have it installed.</p>
 </div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
-<table><tr class="import-item"><td><code>pub use <a class="mod" href="../gtk4_sys/index.html" title="mod gtk4_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/index.html" title="mod graphene">graphene</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gsk4/index.html" title="mod gsk4">gsk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/index.html" title="mod pango">pango</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="import-item"><td><code>pub use <a class="mod" href="../gtk4_sys/index.html" title="mod gtk4_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/graphene/index.html" title="mod graphene">graphene</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gsk4/index.html" title="mod gsk4">gsk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/pango/index.html" title="mod pango">pango</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
 <table><tr class="module-item"><td><a class="mod" href="functions/index.html" title="gtk4::functions mod">functions</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="prelude/index.html" title="gtk4::prelude mod">prelude</a></td><td class="docblock-short"><p>Traits intended for blanket imports.</p>
 </td></tr><tr class="module-item"><td><a class="mod" href="subclass/index.html" title="gtk4::subclass mod">subclass</a></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
 <table><tr class="module-item"><td><a class="struct" href="struct.ATContext.html" title="gtk4::ATContext struct">ATContext</a></td><td class="docblock-short"><p><a href="struct.ATContext.html" title="crate::ATContext"><code>ATContext</code></a> is an abstract class provided by GTK to communicate to
@@ -346,7 +346,7 @@ function.</p>
 of input.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DialogBuilder.html" title="gtk4::DialogBuilder struct">DialogBuilder</a></td><td class="docblock-short"><p>A <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder-pattern</a> type to construct <a href="struct.Dialog.html" title="Dialog"><code>Dialog</code></a> objects.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DialogFlags.html" title="gtk4::DialogFlags struct">DialogFlags</a></td><td class="docblock-short"><p>Flags used to influence dialog construction.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.DirectoryList.html" title="gtk4::DirectoryList struct">DirectoryList</a></td><td class="docblock-short"><p><a href="struct.DirectoryList.html" title="crate::DirectoryList"><code>DirectoryList</code></a> is a list model that wraps <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/file/trait.FileExtManual.html#tymethod.enumerate_children_async" title="crate::gio::prelude::FileExtManual::enumerate_children_async()"><code>FileExtManual::enumerate_children_async()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.DirectoryList.html" title="gtk4::DirectoryList struct">DirectoryList</a></td><td class="docblock-short"><p><a href="struct.DirectoryList.html" title="crate::DirectoryList"><code>DirectoryList</code></a> is a list model that wraps <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/file/trait.FileExtManual.html#tymethod.enumerate_children_async" title="crate::gio::prelude::FileExtManual::enumerate_children_async()"><code>FileExtManual::enumerate_children_async()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DirectoryListBuilder.html" title="gtk4::DirectoryListBuilder struct">DirectoryListBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.DragIcon.html" title="gtk4::DragIcon struct">DragIcon</a></td><td class="docblock-short"><p><a href="struct.DragIcon.html" title="crate::DragIcon"><code>DragIcon</code></a> is a <a href="struct.Root.html" title="crate::Root"><code>Root</code></a> implementation for drag icons.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DragIconBuilder.html" title="gtk4::DragIconBuilder struct">DragIconBuilder</a></td><td class="docblock-short"><p>A <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder-pattern</a> type to construct <a href="struct.DragIcon.html" title="DragIcon"><code>DragIcon</code></a> objects.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DragSource.html" title="gtk4::DragSource struct">DragSource</a></td><td class="docblock-short"><p><a href="struct.DragSource.html" title="crate::DragSource"><code>DragSource</code></a> is an event controller to initiate Drag-And-Drop operations.</p>
@@ -960,7 +960,7 @@ a valid keyboard accelerator.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.check_version.html" title="gtk4::check_version fn">check_version</a></td><td class="docblock-short"><p>Checks that the GTK library in use is compatible with the
 given version.</p>
 </td></tr><tr class="module-item"><td><a class="fn" href="fn.debug_flags.html" title="gtk4::debug_flags fn">debug_flags</a></td><td class="docblock-short"><p>Returns the GTK debug flags that are currently active.</p>
-</td></tr><tr class="module-item"><td><a class="fn" href="fn.default_language.html" title="gtk4::default_language fn">default_language</a></td><td class="docblock-short"><p>Returns the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/language/struct.Language.html" title="crate::pango::Language"><code>pango::Language</code></a> for the default language currently in
+</td></tr><tr class="module-item"><td><a class="fn" href="fn.default_language.html" title="gtk4::default_language fn">default_language</a></td><td class="docblock-short"><p>Returns the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/pango/language/struct.Language.html" title="crate::pango::Language"><code>pango::Language</code></a> for the default language currently in
 effect. (Note that this can change over the life of an
 application.) The default language is derived from the current
 locale. It determines, for example, whether GTK uses the
