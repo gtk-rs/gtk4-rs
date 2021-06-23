@@ -3,6 +3,7 @@ use gtk::prelude::*;
 use gtk::{self, ApplicationWindow, Button, Orientation};
 use gtk::{glib, Application};
 use std::{cell::Cell, rc::Rc};
+
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
@@ -11,10 +12,10 @@ fn main() {
     // Run the application
     app.run();
 }
-fn build_ui(application: &Application) {
+fn build_ui(app: &Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(application)
+        .application(app)
         .title("My GTK App")
         .build();
 

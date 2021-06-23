@@ -11,9 +11,9 @@ fn main() {
 }
 
 // ANCHOR: build_ui
-fn build_ui(application: &Application) {
+fn build_ui(app: &Application) {
     // Create a window
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindow::new(app);
 
     // Set the window title
     window.set_title(Some("My GTK App"));

@@ -5,10 +5,19 @@ use gtk::prelude::*;
 use gtk::{self, ApplicationWindow, Button, Orientation};
 use gtk::{glib, Application};
 
-fn build_ui(application: &Application) {
+fn main() {
+    // Create a new application
+    let app = Application::new(Some("org.gtk.example"), Default::default());
+    app.connect_activate(build_ui);
+
+    // Run the application
+    app.run();
+}
+
+fn build_ui(app: &Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(application)
+        .application(app)
         .title("My GTK App")
         .build();
 
@@ -50,13 +59,4 @@ fn build_ui(application: &Application) {
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
     window.present();
-}
-
-fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_activate(build_ui);
-
-    // Run the application
-    app.run();
 }

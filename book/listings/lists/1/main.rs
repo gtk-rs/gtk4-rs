@@ -10,10 +10,10 @@ fn main() {
     app.run();
 }
 
-fn build_ui(application: &Application) {
+fn build_ui(app: &Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(application)
+        .application(app)
         .title("My GTK App")
         .default_width(600)
         .default_height(300)
