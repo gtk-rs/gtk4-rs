@@ -244,10 +244,10 @@ fn main() {
     app.run();
 }
 
-fn build_ui(app: &amp;Application) {
+fn build_ui(application: &amp;Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(app)
+        .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 
@@ -334,11 +334,10 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
 </span><span class="boring">}
-</span><span class="boring">
-</span>fn build_ui(app: &amp;Application) {
+</span>fn build_ui(application: &amp;Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(app)
+        .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 
