@@ -165,9 +165,9 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(application);
+</span><span class="boring">    let window = ApplicationWindow::new(app);
 </span><span class="boring">
 </span><span class="boring">    // Set the window title
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
@@ -207,9 +207,9 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(application);
+</span><span class="boring">    let window = ApplicationWindow::new(app);
 </span><span class="boring">
 </span><span class="boring">    // Set the window title
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
@@ -502,10 +502,10 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
 </span><span class="boring">}
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">

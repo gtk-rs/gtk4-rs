@@ -178,9 +178,9 @@ fn main() {
     app.run();
 }
 
-fn build_ui(application: &amp;Application) {
+fn build_ui(app: &amp;Application) {
     // Create a window
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindow::new(app);
 
     // Set the window title
     window.set_title(Some(&quot;My GTK App&quot;));
@@ -205,9 +205,9 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span>fn build_ui(application: &amp;Application) {
+</span>fn build_ui(app: &amp;Application) {
     // Create a window
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindow::new(app);
 
     // Set the window title
     window.set_title(Some(&quot;My GTK App&quot;));

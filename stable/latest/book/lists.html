@@ -165,10 +165,10 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -206,10 +206,10 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -297,10 +297,10 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -380,10 +380,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -460,10 +460,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -542,10 +542,10 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -622,10 +622,10 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -739,10 +739,10 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -832,10 +832,10 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -929,10 +929,10 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -1028,10 +1028,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -1161,10 +1161,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
@@ -1294,10 +1294,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
