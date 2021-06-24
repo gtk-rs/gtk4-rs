@@ -238,6 +238,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">use gtk::Application;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use std::{cell::Cell, rc::Rc};
+</span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
@@ -246,10 +247,10 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
 </span><span class="boring">}
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // … create a new window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -293,6 +294,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">use std::{cell::Cell, rc::Rc};
+</span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
@@ -301,10 +303,10 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
 </span><span class="boring">}
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -353,10 +355,19 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -397,15 +408,6 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
-</span><span class="boring">    app.connect_activate(build_ui);
-</span><span class="boring">
-</span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
-</span><span class="boring">}
 </span></code></pre></pre>
 <p>If we now click on one button, the other button's label gets changed.</p>
 <p>But whoops!
@@ -433,10 +435,10 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -507,10 +509,10 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -572,10 +574,10 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(application)
+</span><span class="boring">        .application(app)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -637,10 +639,10 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span>    let window = ApplicationWindow::builder()
-        .application(application)
+        .application(app)
         .title(&quot;My GTK App&quot;)
         .build();
 <span class="boring">
