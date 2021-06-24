@@ -173,10 +173,10 @@ fn main() {
     app.run();
 }
 
-fn build_ui(app: &amp;Application) {
+fn build_ui(application: &amp;Application) {
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(app)
+        .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 
@@ -221,10 +221,10 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
+</span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -275,10 +275,10 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
+</span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -341,10 +341,10 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
+</span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -403,10 +403,10 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
+</span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
