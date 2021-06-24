@@ -95,7 +95,6 @@ If <code>resize</code> is false for both children, then this is treated as if
 <p>The application can set the position of the slider as if it were set
 by the user, by calling <a href="struct.Paned.html#method.set_position" title="Self::set_position()"><code>set_position()</code></a>.</p>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<p><strong>⚠️ The following code is in text ⚠️</strong></p>
 <pre><code class="language-text">paned
 ├── &lt;child&gt;
 ├── separator[.wide]
@@ -109,6 +108,7 @@ direction, so in left-to-right mode, :first-child will select the
 leftmost child, while it will select the rightmost child in
 RTL layouts.</p>
 <h2 id="creating-a-paned-widget-with-minimum-sizes" class="section-header"><a href="#creating-a-paned-widget-with-minimum-sizes">Creating a paned widget with minimum sizes.</a></h2>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <pre><code class="language-c">GtkWidget *hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 GtkWidget *frame1 = gtk_frame_new (NULL);
 GtkWidget *frame2 = gtk_frame_new (NULL);

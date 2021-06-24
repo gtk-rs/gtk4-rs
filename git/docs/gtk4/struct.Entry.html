@@ -102,7 +102,6 @@ able to use a mouse or other pointing device. It is therefore recommended
 that any such functionality should also be available by other means, e.g.
 via the context menu of the entry.</p>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<p><strong>⚠️ The following code is in text ⚠️</strong></p>
 <pre><code class="language-text">entry[.flat][.warning][.error]
 ├── text[.readonly]
 ├── image.left
@@ -124,7 +123,8 @@ custom <code>&lt;attributes&gt;</code> element, which supports any number of <co
 elements. The <code>&lt;attribute&gt;</code> element has attributes named “name“, “value“,
 “start“ and “end“ and allows you to specify <code>PangoAttribute</code> values for
 this label.</p>
-<p>An example of a UI definition fragment specifying Pango attributes:</p>
+<p>An example of a UI definition fragment specifying Pango attributes:
+<strong>⚠️ The following code is in xml ⚠️</strong></p>
 <pre><code class="language-xml">&lt;object class=&quot;GtkEnry&quot;&gt;
   &lt;attributes&gt;
     &lt;attribute name=&quot;weight&quot; value=&quot;PANGO_WEIGHT_BOLD&quot;/&gt;

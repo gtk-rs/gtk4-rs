@@ -85,6 +85,7 @@ values 0.25, 0.75 and 1.0 respectively.</p>
 when changing the minimum or maximum value. GTK will simply clamp
 them to the new range.</p>
 <h2 id="adding-a-custom-offset-on-the-bar" class="section-header"><a href="#adding-a-custom-offset-on-the-bar">Adding a custom offset on the bar</a></h2>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <pre><code class="language-c">static GtkWidget *
 create_level_bar (void)
 {
@@ -132,7 +133,6 @@ indicator mode to discrete.</p>
 custom <code>&lt;offsets&gt;</code> element, which can contain any number of <code>&lt;offset&gt;</code> elements,
 each of which must have name and value attributes.</p>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<p><strong>⚠️ The following code is in text ⚠️</strong></p>
 <pre><code class="language-text">levelbar[.discrete]
 ╰── trough
     ├── block.filled.level-name

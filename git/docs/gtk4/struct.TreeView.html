@@ -103,6 +103,7 @@ former you can use <a href="prelude/trait.TreeViewExt.html#tymethod.convert_widg
 <a href="struct.TreeViewColumn.html" title="crate::TreeViewColumn"><code>TreeViewColumn</code></a> objects as <code>&lt;child&gt;</code> elements and exposes the
 internal <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>TreeSelection</code></a> in UI definitions.</p>
 <p>An example of a UI definition fragment with <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a>:</p>
+<p><strong>⚠️ The following code is in xml ⚠️</strong></p>
 <pre><code class="language-xml">&lt;object class=&quot;GtkTreeView&quot; id=&quot;treeview&quot;&gt;
   &lt;property name=&quot;model&quot;&gt;liststore1&lt;/property&gt;
   &lt;child&gt;
@@ -124,7 +125,6 @@ internal <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>
 &lt;/object&gt;
 </code></pre>
 <h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
-<p><strong>⚠️ The following code is in text ⚠️</strong></p>
 <pre><code class="language-text">treeview.view
 ├── header
 │   ├── button

@@ -94,7 +94,8 @@ adding items directly using the <code>&lt;items&gt;</code> element and specifyin
 elements for each item. Each <code>&lt;item&gt;</code> element can specify the “id”
 corresponding to the appended text and also supports the regular
 translation attributes “translatable”, “context” and “comments”.</p>
-<p>Here is a UI definition fragment specifying <a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> items:</p>
+<p>Here is a UI definition fragment specifying <a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> items:
+<strong>⚠️ The following code is in xml ⚠️</strong></p>
 <pre><code class="language-xml">&lt;object class=&quot;GtkComboBoxText&quot;&gt;
   &lt;items&gt;
     &lt;item translatable=&quot;yes&quot; id=&quot;factory&quot;&gt;Factory&lt;/item&gt;
@@ -104,7 +105,6 @@ translation attributes “translatable”, “context” and “comments”.</p>
 &lt;/object&gt;
 </code></pre>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<p><strong>⚠️ The following code is in text ⚠️</strong></p>
 <pre><code class="language-text">combobox
 ╰── box.linked
     ├── entry.combo
