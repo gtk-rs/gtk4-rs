@@ -1,75 +1,4 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4&#x2F;src&#x2F;expression.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expression.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
-
-    function checkDocsLatestStable() {
-        function popup(msg, url) { return `
-            <style scoped="scoped">
-                .popup {
-                    max-width: 16em;
-                    background-color: #fff;
-                    position: fixed;
-                    z-index: 1;
-                    margin-left: auto;
-                    bottom: 1em;
-                    right: 1em;
-                    border-radius: 5px;
-                    box-shadow: 1px 1px 4px #777;
-                }
-
-                .popup a.version {
-                    color: #e57300;
-                    padding: 0.6em 1em;
-                    display: block;
-                }
-                .popup a.version:hover {
-                    color: #b25900;
-                }
-
-                .popup a.close {
-                    color: white;
-                    background: grey;
-                    border-radius: 99px;
-                    display: inline-block;
-                    width: 19px;
-                    line-height: 19px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin: 0.6em;
-                    float: right;
-                }
-                .popup a.close:hover {
-                    background: black;
-                }
-            </style>
-            <section class="popup" id="gir_docs_popup">
-                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
-                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
-                    ⚠ ${msg}
-                </a>
-            </section>
-        ` };
-
-        if ("0.1" == "master") {
-            document.body.insertAdjacentHTML(
-                'beforeend',
-                popup("This is the development version. Go to latest stable version.", "stable/latest")
-            );
-        } else {
-            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
-                .then(response => response.text())
-                .then(latest_branch => {
-                    if (latest_branch.trim() != "0.1") {
-                        document.body.insertAdjacentHTML(
-                            'beforeend',
-                            popup("This version is outdated. Go to latest version.", "stable/latest")
-                        );
-                    }
-                });
-        }
-    }
-</script>
-
 
 <nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
@@ -547,6 +476,16 @@
 <span id="474">474</span>
 <span id="475">475</span>
 <span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -581,6 +520,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here is an example of a complex expression:</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in c ⚠️**</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">///   color_expr = gtk_property_expression_new (GTK_TYPE_LIST_ITEM,</span>
     <span class="doccomment">///                                             NULL, &quot;item&quot;);</span>
@@ -593,8 +534,6 @@
     <span class="doccomment">/// from the resulting object (which is assumed to be of type `GTK_TYPE_COLOR`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A more concise way to describe this would be</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// **⚠️ The following code is in text ⚠️**</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   this-&gt;item-&gt;name</span>
@@ -622,6 +561,8 @@
     <span class="doccomment">/// `gtk_param_spec_expression` when creating a `GParamSpec` to install in the</span>
     <span class="doccomment">/// `GObject` class being defined; for instance:</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in c ⚠️**</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// obj_props[PROP_EXPRESSION] =</span>
     <span class="doccomment">///   gtk_param_spec_expression (&quot;expression&quot;,</span>
@@ -636,6 +577,8 @@
     <span class="doccomment">/// virtual functions, you must use `gtk_value_get_expression`, to retrieve the</span>
     <span class="doccomment">/// stored [`Expression`][crate::Expression] from the `GValue` container, and `gtk_value_set_expression`,</span>
     <span class="doccomment">/// to store the [`Expression`][crate::Expression] into the `GValue`; for instance:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in c ⚠️**</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">///   // in set_property()...</span>
@@ -662,6 +605,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Example:</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in xml ⚠️**</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">///   &lt;lookup name=&#39;search&#39;&gt;string_filter&lt;/lookup&gt;</span>
     <span class="doccomment">/// ```</span>
@@ -669,6 +614,8 @@
     <span class="doccomment">/// To create a constant expression, use the ``&lt;constant&gt;`` element. If the type attribute</span>
     <span class="doccomment">/// is specified, the element content is interpreted as a value of that type. Otherwise,</span>
     <span class="doccomment">/// it is assumed to be an object. For instance:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in xml ⚠️**</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">///   &lt;constant&gt;string_filter&lt;/constant&gt;</span>
@@ -678,6 +625,8 @@
     <span class="doccomment">/// To create a closure expression, use the ``&lt;closure&gt;`` element. The `type` and `function`</span>
     <span class="doccomment">/// attributes specify what function to use for the closure, the content of the element</span>
     <span class="doccomment">/// contains the expressions for the parameters. For instance:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// **⚠️ The following code is in xml ⚠️**</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">///   &lt;closure type=&#39;gchararray&#39; function=&#39;combine_args_somehow&#39;&gt;</span>
