@@ -92,8 +92,8 @@ with the actual Rust API.</p>
 </li>
 </ul>
 <h1 id="hello-world-example-program" class="section-header"><a href="#hello-world-example-program">“Hello, World!” example program</a></h1>
-<p>GTK needs to be initialized before use by calling <a href="fn.init.html" title="init()"><code>init()</code></a>. Creating an
-<a href="struct.Application.html" title="Application"><code>Application</code></a> will call <a href="fn.init.html" title="init()"><code>init()</code></a> for you.</p>
+<p>GTK needs to be initialized before use by calling <a href="fn.init.html" title="init"><code>init</code></a>. Creating an
+<a href="struct.Application.html" title="Application"><code>Application</code></a> will call <a href="fn.init.html" title="init"><code>init</code></a> for you.</p>
 <p>The <a href="index.html"><code>gtk4</code></a> crate is usually renamed to <code>gtk</code>. You can find an example in
 the <a href="#features">features</a> section for how to do this globally in your <code>Cargo.toml</code>.</p>
 
@@ -156,20 +156,20 @@ and run the main event loop.</p>
 <h1 id="threads" class="section-header"><a href="#threads">Threads</a></h1>
 <p>GTK is not thread-safe. Accordingly, none of this crate’s structs implement
 <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> or <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="Sync"><code>Sync</code></a>.</p>
-<p>The thread where <a href="fn.init.html" title="init()"><code>init()</code></a> was called is considered the main thread. OS X has
-its own notion of the main thread and <a href="fn.init.html" title="init()"><code>init()</code></a> must be called on that thread.
+<p>The thread where <a href="fn.init.html" title="init"><code>init</code></a> was called is considered the main thread. OS X has
+its own notion of the main thread and <a href="fn.init.html" title="init"><code>init</code></a> must be called on that thread.
 After successful initialization, calling any <a href="index.html"><code>gtk</code></a> or <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> functions
-(including <a href="fn.init.html" title="init()"><code>init()</code></a>) from other threads will <code>panic</code>.</p>
+(including <a href="fn.init.html" title="init"><code>init</code></a>) from other threads will <code>panic</code>.</p>
 <p>Any thread can schedule a closure to be run by the main loop on the main
-thread via <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add.html" title="glib::idle_add()"><code>glib::idle_add()</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add()"><code>glib::timeout_add()</code></a>. While
-working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local()"><code>glib::idle_add_local()</code></a>
-or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local()"><code>glib::timeout_add_local()</code></a> version without the
+thread via <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add.html" title="glib::idle_add"><code>glib::idle_add</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add"><code>glib::timeout_add</code></a>. While
+working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local"><code>glib::idle_add_local</code></a>
+or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local"><code>glib::timeout_add_local</code></a> version without the
 <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> bound. Those may only be called from the main thread.</p>
 <h1 id="panics" class="section-header"><a href="#panics">Panics</a></h1>
 <p>The <a href="index.html"><code>gtk</code></a> and <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> crates have some run-time safety and contract checks.</p>
 <ul>
 <li>
-<p>Any constructor or free function will panic if called before <a href="fn.init.html" title="init()"><code>init()</code></a> or on
+<p>Any constructor or free function will panic if called before <a href="fn.init.html" title="init"><code>init</code></a> or on
 a non-main thread.</p>
 </li>
 <li>
