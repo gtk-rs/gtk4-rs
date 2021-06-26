@@ -10,9 +10,9 @@ pub struct Window {
     #[template_child]
     pub entry: TemplateChild<gtk::Entry>,
     #[template_child]
-    pub scrolled_window: TemplateChild<gtk::ScrolledWindow>,
+    pub menu_button: TemplateChild<gtk::MenuButton>,
     #[template_child]
-    pub combo_box: TemplateChild<gtk::ComboBoxText>,
+    pub scrolled_window: TemplateChild<gtk::ScrolledWindow>,
 }
 
 // The central trait for subclassing a GObject

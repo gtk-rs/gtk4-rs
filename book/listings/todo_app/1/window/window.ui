@@ -13,7 +13,20 @@
         <property name="margin-end">12</property>
         <property name="spacing">6</property>
         <child>
-          <object class="GtkEntry" id="entry">
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkEntry" id="entry">
+              <property name="hexpand">True</property>
+              </object>
+            </child>            
+            <child>
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="icon_name">open-menu-symbolic</property>
+                <property name="menu_model">main-menu</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -23,17 +36,26 @@
             <property name="min-content-height">360</property>
           </object>
         </child>
-        <child>
-          <object class="GtkComboBoxText" id="combo_box">
-            <property name="active-id">all</property>
-            <items>
-              <item translatable="yes" id="all">All</item>
-              <item translatable="yes" id="open">Open</item>
-              <item translatable="yes" id="done">Done</item>
-            </items>
-          </object>
-        </child>
       </object>
     </child>
   </template>
+  <menu id="main-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_All</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">All</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Open</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Open</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Done</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Done</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

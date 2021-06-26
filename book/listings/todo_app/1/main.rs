@@ -35,12 +35,6 @@ fn main() {
 
 fn build_ui(app: &Application) {
     let model = gio::ListStore::new(TodoObject::static_type());
-    for i in 0..1000 {
-        model.append(&TodoObject::new(
-            format!("My important todo entry number {}", i),
-            true,
-        ));
-    }
 
     let factory = SignalListItemFactory::new();
     factory.connect_setup(move |_, list_item| {
@@ -80,6 +74,6 @@ fn build_ui(app: &Application) {
 
     let selection_model = NoSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
-    let window = Window::new(app, &list_view);
+    let window = Window::new(app, &list_view, model);
     window.show();
 }
