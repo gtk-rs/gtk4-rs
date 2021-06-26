@@ -11,7 +11,7 @@ glib::wrapper! {
 // ANCHOR: integer_object
 impl IntegerObject {
     pub fn new(number: i32) -> Self {
-        Object::new(&[("number", &number)]).unwrap()
+        Object::new(&[("number", &number)]).expect("Could not create `IntegerObject`.")
     }
 
     pub fn increase_number(self) {
@@ -21,7 +21,8 @@ impl IntegerObject {
             .get::<i32>()
             .expect("The property needs to be of type `i32`.");
 
-        self.set_property("number", old_number + 1).unwrap();
+        self.set_property("number", old_number + 1)
+            .expect("Could not set property.");
     }
 }
 // ANCHOR_END: integer_object

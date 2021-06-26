@@ -24,7 +24,9 @@ fn build_ui(application: &Application) {
     let switch = Switch::new();
 
     // Set and then immediately obtain state
-    switch.set_property("state", &true).unwrap();
+    switch
+        .set_property("state", &true)
+        .expect("Could not set property.");
     let current_state = switch
         .property("state")
         .expect("The property needs to exist and be readable.")

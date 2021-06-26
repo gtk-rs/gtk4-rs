@@ -47,7 +47,7 @@ fn build_ui(application: &Application) {
         // Save changed switch state in the settings
         settings
             .set_boolean("is-switch-enabled", is_enabled)
-            .unwrap();
+            .expect("Could not set setting.");
         // Do not inhibit the the default handler
         Inhibit(false)
     });

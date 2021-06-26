@@ -36,10 +36,10 @@ fn build_ui(application: &Application) {
         // The main loop executes the asynchronous block
         main_context.spawn_local(clone!(@strong sender => async move {
             // Deactivate the button until the operation is done
-            sender.send(false).unwrap();
+            sender.send(false).expect("Could not send through channel");
             timeout_future_seconds(5).await;
             // Activate the button again
-            sender.send(true).unwrap();
+            sender.send(true).expect("Could not send through channel");
         }));
     });
 

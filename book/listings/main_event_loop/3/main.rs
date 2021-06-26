@@ -38,11 +38,11 @@ fn build_ui(application: &Application) {
         // The long running operation runs now in a separate thread
         thread::spawn(move || {
             // Deactivate the button until the operation is done
-            sender.send(false).unwrap();
+            sender.send(false).expect("Could not send through channel");
             let ten_seconds = Duration::from_secs(10);
             thread::sleep(ten_seconds);
             // Activate the button again
-            sender.send(true).unwrap();
+            sender.send(true).expect("Could not send through channel");
         });
     });
 
