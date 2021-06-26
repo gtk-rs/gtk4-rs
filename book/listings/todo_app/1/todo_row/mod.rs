@@ -14,7 +14,7 @@ glib::wrapper! {
 
 impl TodoRow {
     pub fn new() -> Self {
-        let obj: Self = Object::new(&[]).unwrap();
+        let obj: Self = Object::new(&[]).expect("Failed to create `TodoRow`.");
         obj.add_css_class("tile");
         obj
     }
@@ -25,14 +25,14 @@ impl TodoRow {
             .bind_property("completed", &imp.completed_button.get(), "active")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
-            .unwrap();
+            .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(completed_button_binding);
 
         let content_label_binding = item
             .bind_property("content", &imp.content_label.get(), "label")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
-            .unwrap();
+            .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(content_label_binding);
 
         let completed_label_binding = item
@@ -50,7 +50,7 @@ impl TodoRow {
                 Some(attribute_list.to_value())
             })
             .build()
-            .unwrap();
+            .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(completed_label_binding);
     }
 

@@ -59,11 +59,13 @@ impl ObjectImpl for TodoObject {
     fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "completed" => {
-                let input_value = value.get().unwrap();
+                let input_value = value.get().expect("The value needs to be of type `bool`.");
                 self.completed.replace(input_value);
             }
             "content" => {
-                let input_value = value.get().unwrap();
+                let input_value = value
+                    .get()
+                    .expect("The value needs to be of type `String`.");
                 self.content.replace(input_value);
             }
             _ => unimplemented!(),
