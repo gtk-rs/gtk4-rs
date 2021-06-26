@@ -1,18 +1,34 @@
-use gtk::glib;
+use gio::{ListStore, Settings};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
+use gtk::{gio, glib};
+use once_cell::sync::OnceCell;
 
 // Object holding the state
-#[derive(Default, CompositeTemplate)]
+#[derive(CompositeTemplate)]
 #[template(file = "window.ui")]
 pub struct Window {
+    // Template childs
     #[template_child]
     pub entry: TemplateChild<gtk::Entry>,
     #[template_child]
     pub menu_button: TemplateChild<gtk::MenuButton>,
     #[template_child]
     pub scrolled_window: TemplateChild<gtk::ScrolledWindow>,
+    // Other state
+    pub model: OnceCell<ListStore>,
+    pub settings: Settings,
+}
+
+impl Default for Window {
+    fn default() -> Self {
+        Window {
+            model: OnceCell::new(),
+            settings: Settings::new("org.gtk.TodoApp"),
+            ..Default::default()
+        }
+    }
 }
 
 // The central trait for subclassing a GObject

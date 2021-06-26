@@ -75,5 +75,6 @@ fn build_ui(app: &Application) {
     let selection_model = NoSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
     let window = Window::new(app, &list_view, model);
+
     window.show();
 }
