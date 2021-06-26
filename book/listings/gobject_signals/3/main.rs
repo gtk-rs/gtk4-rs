@@ -38,7 +38,7 @@ fn build_ui(app: &Application) {
             println!("The maximum number {} has been reached", number);
             None
         })
-        .unwrap();
+        .expect("Could not connect to signal.");
     // ANCHOR_END: signal_handling
 
     window.set_child(Some(&button));

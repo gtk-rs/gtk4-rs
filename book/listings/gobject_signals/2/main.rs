@@ -38,7 +38,7 @@ fn build_ui(app: &Application) {
             button.set_label("Hello World!");
             None
         })
-        .unwrap();
+        .expect("Could not connect to signal.");
     // ANCHOR_END: callback
 
     // Add button

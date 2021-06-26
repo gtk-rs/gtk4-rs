@@ -10,7 +10,7 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -> Self {
-        Object::new(&[]).expect("Failed to create Button")
+        Object::new(&[]).expect("Failed to create `CustomButton`")
     }
 }
 
