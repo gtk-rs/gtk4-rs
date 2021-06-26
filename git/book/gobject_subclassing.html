@@ -205,11 +205,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -&gt; Self {
-        Object::new(&amp;[]).expect(&quot;Failed to create Button&quot;)
+        Object::new(&amp;[]).expect(&quot;Failed to create `CustomButton`&quot;)
     }
 
     pub fn with_label(label: &amp;str) -&gt; Self {
-        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create Button&quot;)
+        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`&quot;)
     }
 }
 

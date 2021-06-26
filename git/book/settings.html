@@ -207,7 +207,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .unwrap();
+</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
 </span><span class="boring">        // Do not inhibit the the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
@@ -272,7 +272,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .unwrap();
+</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
 </span><span class="boring">        // Do not inhibit the the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
@@ -326,7 +326,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .unwrap();
+</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
 </span><span class="boring">        // Do not inhibit the the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
@@ -380,7 +380,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
         // Save changed switch state in the settings
         settings
             .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-            .unwrap();
+            .expect(&quot;Could not set setting.&quot;);
         // Do not inhibit the the default handler
         Inhibit(false)
     });

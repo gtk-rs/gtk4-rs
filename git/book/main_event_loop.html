@@ -298,11 +298,11 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
         // The long running operation runs now in a separate thread
         thread::spawn(move || {
             // Deactivate the button until the operation is done
-            sender.send(false).unwrap();
+            sender.send(false).expect(&quot;Could not send through channel&quot;);
             let ten_seconds = Duration::from_secs(10);
             thread::sleep(ten_seconds);
             // Activate the button again
-            sender.send(true).unwrap();
+            sender.send(true).expect(&quot;Could not send through channel&quot;);
         });
     });
 
@@ -364,10 +364,10 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
         // The main loop executes the asynchronous block
         main_context.spawn_local(clone!(@strong sender =&gt; async move {
             // Deactivate the button until the operation is done
-            sender.send(false).unwrap();
+            sender.send(false).expect(&quot;Could not send through channel&quot;);
             timeout_future_seconds(5).await;
             // Activate the button again
-            sender.send(true).unwrap();
+            sender.send(true).expect(&quot;Could not send through channel&quot;);
         }));
     });
 

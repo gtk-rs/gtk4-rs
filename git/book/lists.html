@@ -266,7 +266,7 @@ We only need to let it inherit from GObject instead of <code>Button</code> and l
 
 impl IntegerObject {
     pub fn new(number: i32) -&gt; Self {
-        Object::new(&amp;[(&quot;number&quot;, &amp;number)]).unwrap()
+        Object::new(&amp;[(&quot;number&quot;, &amp;number)]).expect(&quot;Could not create `IntegerObject`.&quot;)
     }
 }
 <span class="boring">
@@ -702,7 +702,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">
 </span>impl IntegerObject {
     pub fn new(number: i32) -&gt; Self {
-        Object::new(&amp;[(&quot;number&quot;, &amp;number)]).unwrap()
+        Object::new(&amp;[(&quot;number&quot;, &amp;number)]).expect(&quot;Could not create `IntegerObject`.&quot;)
     }
 
     pub fn increase_number(self) {
@@ -712,7 +712,8 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
             .get::&lt;i32&gt;()
             .expect(&quot;The property needs to be of type `i32`.&quot;);
 
-        self.set_property(&quot;number&quot;, old_number + 1).unwrap();
+        self.set_property(&quot;number&quot;, old_number + 1)
+            .expect(&quot;Could not set property.&quot;);
     }
 }
 <span class="boring">}
