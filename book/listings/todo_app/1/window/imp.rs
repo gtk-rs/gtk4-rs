@@ -9,15 +9,12 @@ use once_cell::sync::OnceCell;
 #[derive(CompositeTemplate)]
 #[template(file = "window.ui")]
 pub struct Window {
-    // Template childs
     #[template_child]
     pub entry: TemplateChild<gtk::Entry>,
     #[template_child]
     pub menu_button: TemplateChild<gtk::MenuButton>,
     #[template_child]
-    pub scrolled_window: TemplateChild<gtk::ScrolledWindow>,
-    // Other state
-    pub model: OnceCell<ListStore>,
+    pub list_view: TemplateChild<gtk::ListView>,
     pub settings: Settings,
 }
 
@@ -26,8 +23,7 @@ impl Default for Window {
         Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
-            scrolled_window: TemplateChild::default(),
-            model: OnceCell::new(),
+            list_view: TemplateChild::default(),
             settings: Settings::new("org.gtk.example"),
         }
     }

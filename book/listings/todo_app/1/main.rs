@@ -72,10 +72,7 @@ fn build_ui(app: &Application) {
         todo_row.unbind_item();
     });
 
-    let selection_model = NoSelection::new(Some(&model));
-    let list_view = ListView::new(Some(&selection_model), Some(&factory));
-
-    let window = Window::new(app, &list_view, model);
+    let window = Window::new(app, model, factory);
 
     window.show();
 }

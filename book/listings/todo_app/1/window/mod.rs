@@ -4,8 +4,9 @@ use crate::todo_object::TodoObject;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use gtk::SignalListItemFactory;
 use gtk::{gio, glib};
-use gtk::{Application, ListView};
+use gtk::{Application, CustomFilter, FilterListModel};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -14,24 +15,18 @@ glib::wrapper! {
 }
 
 impl Window {
-    pub fn new(app: &Application, list_view: &ListView, model: gio::ListStore) -> Self {
-        let window: Self = Object::new(&[]).expect("Failed to create Window");
+    pub fn new(app: &Application, model: gio::ListStore, factory: SignalListItemFactory) -> Self {
+        let window = Object::new(&[]).expect("Failed to create Window");
 
         let imp = imp::Window::from_instance(&window);
 
         // Set objects
         window.set_application(Some(app));
-        imp.scrolled_window.set_child(Some(list_view));
-        imp.model.set(model).expect("Could not set model.");
+        let filter_model = FilterListModel::new(Some(&model), None::<&gtk::CustomFilter>);
+        let selection_model = gtk::NoSelection::new(Some(&filter_model));
+        imp.list_view.set_model(Some(&selection_model));
+        imp.list_view.set_factory(Some(&factory));
 
-        window.connect_signals(app);
-
-        window
-    }
-
-    fn connect_signals(&self, app: &Application) {
-        let imp = imp::Window::from_instance(&self);
-        let model = imp.model.get().expect("The model has to be set.");
         imp.entry
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
@@ -43,38 +38,76 @@ impl Window {
             }));
 
         let filter_action = imp.settings.create_action("filter");
-        self.add_action(&filter_action);
+        window.add_action(&filter_action);
         app.set_accels_for_action("win.filter::All", &["<primary>a"]);
         app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
         app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
 
         // Initial filtering
-        self.set_filter();
+        window.set_filter(&filter_model);
 
         // Filter whenever the settings key changes
         imp.settings.connect_changed(
             None,
-            clone!(@weak self as self_ => move |_, key| {
+            clone!(@weak window, @weak filter_model => move |_, key| {
                 if key == "filter" {
-                    self_.set_filter();
+                    window.set_filter(&filter_model);
                 }
             }),
         );
+
+        window
     }
 
-    fn set_filter(&self) {
+    fn set_filter(&self, filter_model: &FilterListModel) {
         let imp = imp::Window::from_instance(&self);
-        let model = imp.model.get().expect("The model has to be set.");
 
         // Get value from settings
         let value: String = imp.settings.get("filter");
 
+        let filter_all = CustomFilter::new(|_| true);
+        let filter_open = CustomFilter::new(|obj: &Object| {
+            // Get `TodoObject` from `glib::Object`
+            let todo_object = obj
+                .downcast_ref::<TodoObject>()
+                .expect("The object needs to be of type `TodoObject`.");
+
+            // Get property "number" from `IntegerObject`
+            let completed = todo_object
+                .property("completed")
+                .expect("The property needs to exist and be readable.")
+                .get::<bool>()
+                .expect("The property needs to be of type `bool`.");
+
+            // Only allow open tasks
+            !completed
+        });
+        let filter_done = CustomFilter::new(|obj| {
+            // Get `TodoObject` from `glib::Object`
+            let todo_object = obj
+                .downcast_ref::<TodoObject>()
+                .expect("The object needs to be of type `TodoObject`.");
+
+            // Get property "number" from `IntegerObject`
+            let completed = todo_object
+                .property("completed")
+                .expect("The property needs to exist and be readable.")
+                .get::<bool>()
+                .expect("The property needs to be of type `bool`.");
+
+            // Only allow done tasks
+            completed
+        });
+
         // Set filter model accordingly
-        let filter_model = match value.as_str() {
-            "All" => todo!(),
-            "Open" => todo!(),
-            "Done" => todo!(),
+        let filter = match value.as_str() {
+            "All" => filter_all,
+            "Open" => filter_open,
+            "Done" => filter_done,
             _ => unimplemented!(),
         };
+
+        // Set filter model
+        filter_model.set_filter(Some(&filter));
     }
 }
