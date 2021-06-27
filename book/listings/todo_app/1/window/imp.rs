@@ -24,9 +24,11 @@ pub struct Window {
 impl Default for Window {
     fn default() -> Self {
         Window {
+            entry: TemplateChild::default(),
+            menu_button: TemplateChild::default(),
+            scrolled_window: TemplateChild::default(),
             model: OnceCell::new(),
             settings: Settings::new("org.gtk.example"),
-            ..Default::default()
         }
     }
 }
