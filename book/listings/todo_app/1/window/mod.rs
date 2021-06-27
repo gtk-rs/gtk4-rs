@@ -24,12 +24,12 @@ impl Window {
         imp.scrolled_window.set_child(Some(list_view));
         imp.model.set(model).expect("Could not set model.");
 
-        window.connect_signals();
+        window.connect_signals(app);
 
         window
     }
 
-    fn connect_signals(&self) {
+    fn connect_signals(&self, app: &Application) {
         let imp = imp::Window::from_instance(&self);
         let model = imp.model.get().expect("The model has to be set.");
         imp.entry
@@ -42,13 +42,22 @@ impl Window {
                 buffer.set_text("");
             }));
 
+        let filter_action = imp.settings.create_action("filter");
+        self.add_action(&filter_action);
+        app.set_accels_for_action("win.filter::All", &["<primary>a"]);
+        app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
+        app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+
+        // Initial filtering
+        self.set_filter("filter");
+
+        // Filter whenever the settings key changes
         imp.settings.connect_changed(
             None,
             clone!(@weak self as self_ => move |_, key| {
                 self_.set_filter(key);
             }),
         );
-        self.set_filter("filter");
     }
 
     fn set_filter(&self, key: &str) {
