@@ -25,7 +25,7 @@ impl Default for Window {
     fn default() -> Self {
         Window {
             model: OnceCell::new(),
-            settings: Settings::new("org.gtk.TodoApp"),
+            settings: Settings::new("org.gtk.example"),
             ..Default::default()
         }
     }

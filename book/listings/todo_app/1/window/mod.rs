@@ -16,6 +16,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application, list_view: &ListView, model: gio::ListStore) -> Self {
         let window: Self = Object::new(&[]).expect("Failed to create Window");
+
         let imp = imp::Window::from_instance(&window);
 
         // Set objects
