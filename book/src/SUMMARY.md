@@ -18,7 +18,7 @@
 - [Interface Builder]()
     - [GtkBuilder]()
     - [Templates]()
-- [Resources]()
+- [Resources](resources.md)
 - [Actions]()
 - [Shortcuts]()
 - [Media Support]()
