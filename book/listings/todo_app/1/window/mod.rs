@@ -49,19 +49,32 @@ impl Window {
         app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
 
         // Initial filtering
-        self.set_filter("filter");
+        self.set_filter();
 
         // Filter whenever the settings key changes
         imp.settings.connect_changed(
             None,
             clone!(@weak self as self_ => move |_, key| {
-                self_.set_filter(key);
+                if key == "filter" {
+                    self_.set_filter();
+                }
             }),
         );
     }
 
-    fn set_filter(&self, key: &str) {
-        // 1. Gets value from settings
-        // 2. Sets model accordingly
+    fn set_filter(&self) {
+        let imp = imp::Window::from_instance(&self);
+        let model = imp.model.get().expect("The model has to be set.");
+
+        // Get value from settings
+        let value: String = imp.settings.get("filter");
+
+        // Set filter model accordingly
+        let filter_model = match value.as_str() {
+            "All" => todo!(),
+            "Open" => todo!(),
+            "Done" => todo!(),
+            _ => unimplemented!(),
+        };
     }
 }
