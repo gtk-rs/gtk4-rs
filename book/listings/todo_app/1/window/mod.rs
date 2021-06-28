@@ -37,6 +37,30 @@ impl Window {
                 buffer.set_text("");
             }));
 
+        imp.clear_button
+            .connect_clicked(clone!(@weak model => move |_| {
+                let mut position = 0;
+                while let Some(item) = model.item(position) {
+                    // Get `TodoObject` from `glib::Object`
+                    let todo_object = item
+                        .downcast_ref::<TodoObject>()
+                        .expect("The object needs to be of type `TodoObject`.");
+
+                    // Get property "number" from `IntegerObject`
+                    let completed = todo_object
+                        .property("completed")
+                        .expect("The property needs to exist and be readable.")
+                        .get::<bool>()
+                        .expect("The property needs to be of type `bool`.");
+
+                    if completed {
+                        model.remove(position);
+                    } else {
+                        position += 1;
+                    }
+                }
+            }));
+
         let filter_action = imp.settings.create_action("filter");
         window.add_action(&filter_action);
         app.set_accels_for_action("win.filter::All", &["<primary>a"]);

@@ -6,8 +6,7 @@
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type="start">
-          <object class="GtkButton">
-            <property name="action-name">win.clear</property>
+          <object class="GtkButton" id="clear_button">
             <property name="label">Clear</property>
           </object>
         </child>

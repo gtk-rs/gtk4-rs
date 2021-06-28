@@ -6,7 +6,7 @@ use gdk::Display;
 use gtk::prelude::*;
 use gtk::Application;
 use gtk::{gdk, gio};
-use gtk::{CssProvider, ListView, NoSelection, SignalListItemFactory, StyleContext};
+use gtk::{CssProvider, SignalListItemFactory, StyleContext};
 
 use todo_object::TodoObject;
 use todo_row::TodoRow;

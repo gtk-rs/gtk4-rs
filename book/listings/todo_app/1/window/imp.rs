@@ -1,9 +1,8 @@
-use gio::{ListStore, Settings};
+use gio::Settings;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
-use once_cell::sync::OnceCell;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
@@ -15,6 +14,8 @@ pub struct Window {
     pub menu_button: TemplateChild<gtk::MenuButton>,
     #[template_child]
     pub list_view: TemplateChild<gtk::ListView>,
+    #[template_child]
+    pub clear_button: TemplateChild<gtk::Button>,
     pub settings: Settings,
 }
 
@@ -24,6 +25,7 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
+            clear_button: TemplateChild::default(),
             settings: Settings::new("org.gtk.example"),
         }
     }
