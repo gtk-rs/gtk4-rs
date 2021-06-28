@@ -4,10 +4,11 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
 
+use serde::{Deserialize, Serialize};
 use std::cell::{Cell, RefCell};
 
 // Object holding the state
-#[derive(Default)]
+#[derive(Default, Serialize, Deserialize)]
 pub struct TodoObject {
     completed: Cell<bool>,
     content: RefCell<String>,
