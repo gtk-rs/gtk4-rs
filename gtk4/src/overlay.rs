@@ -35,7 +35,7 @@ unsafe extern "C" fn get_child_position_trampoline<
 ) -> glib::ffi::gboolean {
     let f: &F = &*(f as *const F);
     match f(
-        &Overlay::from_glib_borrow(this).unsafe_cast_ref(),
+        Overlay::from_glib_borrow(this).unsafe_cast_ref(),
         &from_glib_borrow(widget),
     ) {
         Some(rect) => {

@@ -999,7 +999,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
                 let f: &F = &*(activate_callback as *const F);
                 f(
-                    &widget.unsafe_cast_ref(),
+                    widget.unsafe_cast_ref(),
                     &action_name,
                     Option::<Variant>::from_glib_borrow(parameter)
                         .as_ref()
