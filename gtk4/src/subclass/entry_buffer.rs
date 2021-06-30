@@ -275,7 +275,7 @@ unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
     let chars = text_n_chars(&text, length);
-    imp.inserted_text(wrap.unsafe_cast_ref(), position, &chars)
+    imp.inserted_text(wrap.unsafe_cast_ref(), position, chars)
 }
 
 #[doc(alias = "get_text_n_chars")]

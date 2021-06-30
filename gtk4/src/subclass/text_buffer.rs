@@ -372,7 +372,7 @@ unsafe extern "C" fn text_buffer_apply_tag<T: TextBufferImpl>(
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
     imp.apply_tag(
-        &wrap.unsafe_cast_ref(),
+        wrap.unsafe_cast_ref(),
         &from_glib_borrow(tag_ptr),
         &from_glib_borrow(start_ptr),
         &from_glib_borrow(end_ptr),
@@ -386,7 +386,7 @@ unsafe extern "C" fn text_buffer_begin_user_action<T: TextBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.begin_user_action(&wrap.unsafe_cast_ref())
+    imp.begin_user_action(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn text_buffer_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
@@ -394,7 +394,7 @@ unsafe extern "C" fn text_buffer_changed<T: TextBufferImpl>(ptr: *mut ffi::GtkTe
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.changed(&wrap.unsafe_cast_ref())
+    imp.changed(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn text_buffer_delete_range<T: TextBufferImpl>(
@@ -409,7 +409,7 @@ unsafe extern "C" fn text_buffer_delete_range<T: TextBufferImpl>(
     let mut start_copy = from_glib_none(start_ptr);
     let mut end_copy = from_glib_none(end_ptr);
 
-    imp.delete_range(&wrap.unsafe_cast_ref(), &mut start_copy, &mut end_copy);
+    imp.delete_range(wrap.unsafe_cast_ref(), &mut start_copy, &mut end_copy);
 
     *start_ptr = *start_copy.to_glib_none().0;
     *end_ptr = *end_copy.to_glib_none().0;
@@ -420,7 +420,7 @@ unsafe extern "C" fn text_buffer_end_user_action<T: TextBufferImpl>(ptr: *mut ff
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.end_user_action(&wrap.unsafe_cast_ref())
+    imp.end_user_action(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn text_buffer_insert_child_anchor<T: TextBufferImpl>(
@@ -435,7 +435,7 @@ unsafe extern "C" fn text_buffer_insert_child_anchor<T: TextBufferImpl>(
     let mut iter = from_glib_none(iter_ptr);
 
     imp.insert_child_anchor(
-        &wrap.unsafe_cast_ref(),
+        wrap.unsafe_cast_ref(),
         &mut iter,
         &from_glib_borrow(anchor_ptr),
     );
@@ -454,7 +454,7 @@ unsafe extern "C" fn text_buffer_insert_paintable<T: TextBufferImpl>(
     let mut iter = from_glib_none(iter_ptr);
 
     imp.insert_paintable(
-        &wrap.unsafe_cast_ref(),
+        wrap.unsafe_cast_ref(),
         &mut iter,
         &from_glib_borrow(paintable_ptr),
     );
@@ -474,7 +474,7 @@ unsafe extern "C" fn text_buffer_insert_text<T: TextBufferImpl>(
 
     let mut iter = from_glib_none(iter_ptr);
 
-    imp.insert_text(&wrap.unsafe_cast_ref(), &mut iter, text.as_str());
+    imp.insert_text(wrap.unsafe_cast_ref(), &mut iter, text.as_str());
     *iter_ptr = *iter.to_glib_none().0;
 }
 
@@ -483,7 +483,7 @@ unsafe extern "C" fn text_buffer_modified_changed<T: TextBufferImpl>(ptr: *mut f
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.modified_changed(&wrap.unsafe_cast_ref())
+    imp.modified_changed(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn text_buffer_mark_deleted<T: TextBufferImpl>(
@@ -494,7 +494,7 @@ unsafe extern "C" fn text_buffer_mark_deleted<T: TextBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.mark_deleted(&wrap.unsafe_cast_ref(), &from_glib_borrow(mark))
+    imp.mark_deleted(wrap.unsafe_cast_ref(), &from_glib_borrow(mark))
 }
 
 unsafe extern "C" fn text_buffer_mark_set<T: TextBufferImpl>(
@@ -507,7 +507,7 @@ unsafe extern "C" fn text_buffer_mark_set<T: TextBufferImpl>(
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
     imp.mark_set(
-        &wrap.unsafe_cast_ref(),
+        wrap.unsafe_cast_ref(),
         &from_glib_borrow(iter),
         &from_glib_borrow(mark),
     )
@@ -521,7 +521,7 @@ unsafe extern "C" fn text_buffer_paste_done<T: TextBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.paste_done(&wrap.unsafe_cast_ref(), &from_glib_borrow(clipboard_ptr))
+    imp.paste_done(wrap.unsafe_cast_ref(), &from_glib_borrow(clipboard_ptr))
 }
 
 unsafe extern "C" fn text_buffer_redo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextBuffer) {
@@ -529,7 +529,7 @@ unsafe extern "C" fn text_buffer_redo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextB
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.redo(&wrap.unsafe_cast_ref())
+    imp.redo(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn text_buffer_remove_tag<T: TextBufferImpl>(
@@ -543,7 +543,7 @@ unsafe extern "C" fn text_buffer_remove_tag<T: TextBufferImpl>(
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
     imp.remove_tag(
-        &wrap.unsafe_cast_ref(),
+        wrap.unsafe_cast_ref(),
         &from_glib_borrow(tag),
         &from_glib_borrow(start),
         &from_glib_borrow(end),
@@ -555,5 +555,5 @@ unsafe extern "C" fn text_buffer_undo<T: TextBufferImpl>(ptr: *mut ffi::GtkTextB
     let imp = instance.impl_();
     let wrap: Borrowed<TextBuffer> = from_glib_borrow(ptr);
 
-    imp.undo(&wrap.unsafe_cast_ref())
+    imp.undo(wrap.unsafe_cast_ref())
 }

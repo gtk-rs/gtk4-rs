@@ -26,7 +26,7 @@ impl glib::StaticType for Expression {
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
     fn as_ref(&self) -> &Expression {
-        &self
+        self
     }
 }
 

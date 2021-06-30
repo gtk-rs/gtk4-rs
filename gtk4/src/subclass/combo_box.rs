@@ -77,6 +77,6 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
 
     let path: Borrowed<GString> = from_glib_borrow(pathptr);
 
-    imp.format_entry_text(wrap.unsafe_cast_ref(), &path.as_str())
+    imp.format_entry_text(wrap.unsafe_cast_ref(), path.as_str())
         .to_glib_full()
 }

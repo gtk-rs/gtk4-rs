@@ -236,7 +236,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         Box::pin(gio::GioFuture::new(
             provider,
             move |obj, cancellable, send| {
-                let self_ = Self::from_instance(&obj);
+                let self_ = Self::from_instance(obj);
 
                 self_.parent_write_mime_type_async(
                     &self_.instance(),
@@ -377,7 +377,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     };
 
     let t = gio::Task::new(
-        Some(&wrap.upcast_ref::<glib::Object>()),
+        Some(wrap.upcast_ref::<glib::Object>()),
         cancellable.as_ref(),
         closure,
     );

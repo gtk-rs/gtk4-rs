@@ -735,7 +735,7 @@ unsafe extern "C" fn cell_area_set_cell_property<T: CellAreaImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.impl_();
     imp.set_cell_property(
-        &from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
+        from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
         &*from_glib_borrow::<_, CellRenderer>(rendererptr),
         id as usize,
         &*(valueptr as *mut Value),
@@ -754,7 +754,7 @@ unsafe extern "C" fn cell_area_get_cell_property<T: CellAreaImpl>(
     let imp = instance.impl_();
 
     let value = imp.cell_property(
-        &from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
+        from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
         &*from_glib_borrow::<_, CellRenderer>(rendererptr),
         id as usize,
         &from_glib_borrow(pspecptr),
