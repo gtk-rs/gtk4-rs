@@ -27,52 +27,11 @@ fn main() {
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
         );
     });
-    app.connect_activate(build_ui);
+    app.connect_activate(|app| {
+        let window = Window::new(app);
+        window.show();
+    });
 
     // Run the application
     app.run();
-}
-
-fn build_ui(app: &Application) {
-    let model = gio::ListStore::new(TodoObject::static_type());
-
-    let factory = SignalListItemFactory::new();
-    factory.connect_setup(move |_, list_item| {
-        // Create todo row
-        let todo_row = TodoRow::new();
-        list_item.set_child(Some(&todo_row));
-    });
-
-    factory.connect_bind(move |_, list_item| {
-        // Get `TodoObject` from `ListItem`
-        let todo_object = list_item
-            .item()
-            .expect("The item has to exist.")
-            .downcast::<TodoObject>()
-            .expect("The item has to be an `TodoObject`.");
-
-        // Get `TodoRow` from `ListItem`
-        let todo_row = list_item
-            .child()
-            .expect("The child has to exist.")
-            .downcast::<TodoRow>()
-            .expect("The child has to be a `TodoRow`.");
-
-        todo_row.bind_item(&todo_object);
-    });
-
-    factory.connect_unbind(move |_, list_item| {
-        // Get `TodoRow` from `ListItem`
-        let todo_row = list_item
-            .child()
-            .expect("The child has to exist.")
-            .downcast::<TodoRow>()
-            .expect("The child has to be a `TodoRow`.");
-
-        todo_row.unbind_item();
-    });
-
-    let window = Window::new(app, model, factory);
-
-    window.show();
 }

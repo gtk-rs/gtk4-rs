@@ -1,8 +1,10 @@
+use crate::todo_object::TodoObject;
 use gio::Settings;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 use gtk::{gio, glib};
+use once_cell::sync::OnceCell;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
@@ -17,6 +19,7 @@ pub struct Window {
     #[template_child]
     pub clear_button: TemplateChild<gtk::Button>,
     pub settings: Settings,
+    pub model: OnceCell<gio::ListStore>,
 }
 
 impl Default for Window {
@@ -27,6 +30,7 @@ impl Default for Window {
             list_view: TemplateChild::default(),
             clear_button: TemplateChild::default(),
             settings: Settings::new("org.gtk.example"),
+            model: OnceCell::new(),
         }
     }
 }
@@ -54,7 +58,30 @@ impl ObjectImpl for Window {}
 impl WidgetImpl for Window {}
 
 // Trait shared by all windows
-impl WindowImpl for Window {}
+impl WindowImpl for Window {
+    fn close_request(&self, window: &Self::Type) -> glib::signal::Inhibit {
+        let model = self.model.get().expect("Could not get model");
+        let mut position = 0;
+
+        let mut backup_data = Vec::new();
+        while let Some(item) = model.item(position) {
+            // Get `TodoObject` from `glib::Object`
+            let todo_data = item
+                .downcast_ref::<TodoObject>()
+                .expect("The object needs to be of type `TodoObject`.")
+                .todo_data();
+
+            backup_data.push(todo_data);
+            position += 1;
+        }
+        let file = std::fs::File::create(super::data_path()).expect("Could not create json file.");
+
+        serde_json::ser::to_writer_pretty(file, &backup_data)
+            .expect("Could not write data to json file");
+
+        self.parent_close_request(window)
+    }
+}
 
 // Trait shared by all application
 impl ApplicationWindowImpl for Window {}

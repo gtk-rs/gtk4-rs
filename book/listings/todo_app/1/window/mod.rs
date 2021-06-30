@@ -1,6 +1,7 @@
 mod imp;
 
-use crate::todo_object::TodoObject;
+use crate::todo_object::{TodoData, TodoObject};
+use crate::todo_row::TodoRow;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -15,9 +16,55 @@ glib::wrapper! {
 }
 
 impl Window {
-    pub fn new(app: &Application, model: gio::ListStore, factory: SignalListItemFactory) -> Self {
-        let window = Object::new(&[]).expect("Failed to create Window");
+    pub fn new(app: &Application) -> Self {
+        let model = gio::ListStore::new(TodoObject::static_type());
 
+        let file = std::fs::File::open(data_path()).expect("Could not open json file.");
+
+        let backup_data: Vec<TodoData> =
+            serde_json::from_reader(file).expect("Could not get backup data from json file.");
+
+        for todo_data in backup_data {
+            let todo_object = TodoObject::new(todo_data.content, todo_data.completed);
+            model.append(&todo_object);
+        }
+
+        let factory = SignalListItemFactory::new();
+        factory.connect_setup(move |_, list_item| {
+            // Create todo row
+            let todo_row = TodoRow::new();
+            list_item.set_child(Some(&todo_row));
+        });
+
+        factory.connect_bind(move |_, list_item| {
+            // Get `TodoObject` from `ListItem`
+            let todo_object = list_item
+                .item()
+                .expect("The item has to exist.")
+                .downcast::<TodoObject>()
+                .expect("The item has to be an `TodoObject`.");
+
+            // Get `TodoRow` from `ListItem`
+            let todo_row = list_item
+                .child()
+                .expect("The child has to exist.")
+                .downcast::<TodoRow>()
+                .expect("The child has to be a `TodoRow`.");
+
+            todo_row.bind_item(&todo_object);
+        });
+
+        factory.connect_unbind(move |_, list_item| {
+            // Get `TodoRow` from `ListItem`
+            let todo_row = list_item
+                .child()
+                .expect("The child has to exist.")
+                .downcast::<TodoRow>()
+                .expect("The child has to be a `TodoRow`.");
+
+            todo_row.unbind_item();
+        });
+        let window = Object::new(&[]).expect("Failed to create Window");
         let imp = imp::Window::from_instance(&window);
 
         // Set objects
@@ -46,14 +93,7 @@ impl Window {
                         .downcast_ref::<TodoObject>()
                         .expect("The object needs to be of type `TodoObject`.");
 
-                    // Get property "number" from `IntegerObject`
-                    let completed = todo_object
-                        .property("completed")
-                        .expect("The property needs to exist and be readable.")
-                        .get::<bool>()
-                        .expect("The property needs to be of type `bool`.");
-
-                    if completed {
+                    if todo_object.completed() {
                         model.remove(position);
                     } else {
                         position += 1;
@@ -80,6 +120,7 @@ impl Window {
             }),
         );
 
+        imp.model.set(model).expect("Could not set model");
         window
     }
 
@@ -96,15 +137,8 @@ impl Window {
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.");
 
-            // Get property "number" from `IntegerObject`
-            let completed = todo_object
-                .property("completed")
-                .expect("The property needs to exist and be readable.")
-                .get::<bool>()
-                .expect("The property needs to be of type `bool`.");
-
             // Only allow open tasks
-            !completed
+            !todo_object.completed()
         });
         let filter_done = CustomFilter::new(|obj| {
             // Get `TodoObject` from `glib::Object`
@@ -112,15 +146,8 @@ impl Window {
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.");
 
-            // Get property "number" from `IntegerObject`
-            let completed = todo_object
-                .property("completed")
-                .expect("The property needs to exist and be readable.")
-                .get::<bool>()
-                .expect("The property needs to be of type `bool`.");
-
             // Only allow done tasks
-            completed
+            todo_object.completed()
         });
 
         // Set filter model accordingly
@@ -134,4 +161,12 @@ impl Window {
         // Set filter model
         filter_model.set_filter(Some(&filter));
     }
+}
+
+fn data_path() -> std::path::PathBuf {
+    let mut path = glib::user_config_dir();
+    path.push("MyGtkApp");
+    std::fs::create_dir_all(&path).expect("Could not create directory.");
+    path.push("data.json");
+    path
 }

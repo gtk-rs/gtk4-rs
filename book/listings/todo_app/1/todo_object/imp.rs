@@ -2,16 +2,14 @@ use glib::{ParamFlags, ParamSpec, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 
-use serde::{Deserialize, Serialize};
-use std::cell::{Cell, RefCell};
+use once_cell::sync::Lazy;
+use std::cell::RefCell;
 
 // Object holding the state
-#[derive(Default, Serialize, Deserialize)]
+#[derive(Default)]
 pub struct TodoObject {
-    completed: Cell<bool>,
-    content: RefCell<String>,
+    pub data: RefCell<super::TodoData>,
 }
 
 // The central trait for subclassing a GObject
@@ -61,13 +59,13 @@ impl ObjectImpl for TodoObject {
         match pspec.name() {
             "completed" => {
                 let input_value = value.get().expect("The value needs to be of type `bool`.");
-                self.completed.replace(input_value);
+                self.data.borrow_mut().completed = input_value;
             }
             "content" => {
                 let input_value = value
                     .get()
                     .expect("The value needs to be of type `String`.");
-                self.content.replace(input_value);
+                self.data.borrow_mut().content = input_value;
             }
             _ => unimplemented!(),
         }
@@ -75,8 +73,8 @@ impl ObjectImpl for TodoObject {
 
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
-            "completed" => self.completed.get().to_value(),
-            "content" => self.content.borrow().to_value(),
+            "completed" => self.data.borrow().completed.to_value(),
+            "content" => self.data.borrow().content.to_value(),
             _ => unimplemented!(),
         }
     }
