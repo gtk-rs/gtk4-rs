@@ -17,7 +17,7 @@ Currently, the minimum supported Rust version is `1.51.0`.
 ## Using
 
 We recommend using [crates from crates.io](https://crates.io/keywords/gtk-rs),
-as [demonstrated here](https://gtk-rs.org/#using).
+as [demonstrated here](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions).
 
 If you want to track the bleeding edge, use the git dependency instead:
 
