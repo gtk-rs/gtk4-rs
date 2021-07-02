@@ -1,26 +1,25 @@
 use super::BaseButtonExt;
 use gtk::{
     gio,
-    glib::{self, translate::from_glib_borrow, Error},
+    glib::{self, Error},
     prelude::*,
     subclass::prelude::*,
 };
 use std::{future::Future, pin::Pin};
 
-pub type BaseButtonInstance = <BaseButton as super::ObjectSubclass>::Instance;
+pub type BaseButtonInstance = super::BaseButton;
 pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>;
 
 /// GObject glue code for our BaseButtonClass which holds the function pointers to our virtual functions.
 #[repr(C)]
 pub struct BaseButtonClass {
     pub parent_class: gtk::ffi::GtkButtonClass,
-    pub sync_method:
-        Option<unsafe extern "C" fn(*mut BaseButtonInstance, extra_text: *mut Option<String>)>,
-    pub async_method: Option<unsafe extern "C" fn(*mut BaseButtonInstance) -> PinnedFuture>,
+    pub sync_method: Option<unsafe fn(&BaseButtonInstance, extra_text: Option<String>)>,
+    pub async_method: Option<unsafe fn(&BaseButtonInstance) -> PinnedFuture>,
 }
 
 unsafe impl ClassStruct for BaseButtonClass {
-    type Type = super::imp::BaseButton;
+    type Type = BaseButton;
 }
 
 impl std::ops::Deref for BaseButtonClass {
@@ -38,42 +37,31 @@ impl std::ops::DerefMut for BaseButtonClass {
 }
 
 #[derive(Debug, Default)]
-pub struct BaseButton {}
+pub struct BaseButton;
 
 // Virtual method default implementation trampolines
-unsafe extern "C" fn sync_method_default_trampoline(
-    this: *mut BaseButtonInstance,
-    extra_text: *mut Option<String>,
-) {
-    let imp = (*this).impl_();
-    imp.sync_method(&from_glib_borrow(this), Box::from_raw(extra_text))
+unsafe fn sync_method_default_trampoline(this: &BaseButtonInstance, extra_text: Option<String>) {
+    BaseButton::from_instance(this).sync_method(this, extra_text)
 }
 
-unsafe extern "C" fn async_method_default_trampoline(
-    this: *mut BaseButtonInstance,
-) -> PinnedFuture {
-    let imp = (*this).impl_();
-    imp.async_method(&from_glib_borrow(this))
+unsafe fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
+    BaseButton::from_instance(this).async_method(this)
 }
 
-pub unsafe extern "C" fn base_button_sync_method(
-    this: *mut BaseButtonInstance,
-    extra_text: *mut Option<String>,
-) {
-    let klass = glib::subclass::types::InstanceStruct::class(&*this);
-
+pub unsafe fn base_button_sync_method(this: &BaseButtonInstance, extra_text: Option<String>) {
+    let klass = &*(this.class() as *const _ as *const BaseButtonClass);
     (klass.sync_method.unwrap())(this, extra_text)
 }
 
-pub unsafe extern "C" fn base_button_async_method(this: *mut BaseButtonInstance) -> PinnedFuture {
-    let klass = glib::subclass::types::InstanceStruct::class(&*this);
+pub unsafe fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
+    let klass = &*(this.class() as *const _ as *const BaseButtonClass);
     klass.async_method.unwrap()(this)
 }
 
 /// Default implementations of our sync_method and async_method.
 impl BaseButton {
-    fn sync_method(&self, obj: &super::BaseButton, extra_text: Box<Option<String>>) {
-        if let Some(text) = *extra_text {
+    fn sync_method(&self, obj: &super::BaseButton, extra_text: Option<String>) {
+        if let Some(text) = extra_text {
             obj.set_label(&format!("BaseButton sync: {}", text));
         } else {
             obj.set_label("BaseButton sync");
@@ -107,7 +95,7 @@ impl ObjectSubclass for BaseButton {
 impl ObjectImpl for BaseButton {
     fn constructed(&self, obj: &Self::Type) {
         // For demo purposes, call the sync_method during construction to set the button label
-        obj.sync_method(Box::new(Some(String::from("Sync extra text"))));
+        obj.sync_method(Some(String::from("Sync extra text")));
     }
 }
 
