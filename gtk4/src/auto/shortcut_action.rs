@@ -74,10 +74,7 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
 
     fn print(&self, string: &glib::String) {
         unsafe {
-            ffi::gtk_shortcut_action_print(
-                self.as_ref().to_glib_none().0,
-                string.to_glib_none().0,
-            );
+            ffi::gtk_shortcut_action_print(self.as_ref().to_glib_none().0, string.to_glib_none().0);
         }
     }
 

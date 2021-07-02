@@ -361,6 +361,7 @@ final_type = false
 manual_traits = ["DisplayExtManual"]
     [[object.function]]
     name = "get_setting"
+    manual = true
     # Actually retrieves the setting in the provided argument
     bypass_auto_rename = true
     [[object.function]]
