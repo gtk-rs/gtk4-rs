@@ -112,39 +112,39 @@ impl GLShader {
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec2")]
     #[doc(alias = "get_arg_vec2")]
-    pub fn arg_vec2(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec2) {
+    pub fn arg_vec2(&self, args: &glib::Bytes, idx: i32, out_value: &graphene::Vec2) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec2(
                 self.to_glib_none().0,
                 args.to_glib_none().0,
                 idx,
-                out_value.to_glib_none_mut().0,
+                out_value.to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec3")]
     #[doc(alias = "get_arg_vec3")]
-    pub fn arg_vec3(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec3) {
+    pub fn arg_vec3(&self, args: &glib::Bytes, idx: i32, out_value: &graphene::Vec3) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec3(
                 self.to_glib_none().0,
                 args.to_glib_none().0,
                 idx,
-                out_value.to_glib_none_mut().0,
+                out_value.to_glib_none().0,
             );
         }
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec4")]
     #[doc(alias = "get_arg_vec4")]
-    pub fn arg_vec4(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec4) {
+    pub fn arg_vec4(&self, args: &glib::Bytes, idx: i32, out_value: &graphene::Vec4) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec4(
                 self.to_glib_none().0,
                 args.to_glib_none().0,
                 idx,
-                out_value.to_glib_none_mut().0,
+                out_value.to_glib_none().0,
             );
         }
     }

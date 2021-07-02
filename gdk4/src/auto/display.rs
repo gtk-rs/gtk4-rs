@@ -93,7 +93,7 @@ pub trait DisplayExt: 'static {
     fn primary_clipboard(&self) -> Clipboard;
 
     #[doc(alias = "gdk_display_get_setting")]
-    fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool;
+    fn get_setting(&self, name: &str, value: &glib::Value) -> bool;
 
     #[doc(alias = "gdk_display_get_startup_notification_id")]
     #[doc(alias = "get_startup_notification_id")]
@@ -229,12 +229,12 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool {
+    fn get_setting(&self, name: &str, value: &glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_get_setting(
                 self.as_ref().to_glib_none().0,
                 name.to_glib_none().0,
-                value.to_glib_none_mut().0,
+                value.to_glib_none().0,
             ))
         }
     }

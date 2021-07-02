@@ -90,9 +90,9 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_print")]
-    pub fn print(&self, string: &mut glib::String) {
+    pub fn print(&self, string: &glib::String) {
         unsafe {
-            ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+            ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none().0);
         }
     }
 
