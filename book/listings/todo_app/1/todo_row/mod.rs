@@ -12,6 +12,12 @@ glib::wrapper! {
     @extends gtk::Box, gtk::Widget;
 }
 
+impl Default for TodoRow {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl TodoRow {
     pub fn new() -> Self {
         let obj: Self = Object::new(&[]).expect("Failed to create `TodoRow`.");
