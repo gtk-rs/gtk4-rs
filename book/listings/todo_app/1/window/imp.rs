@@ -1,23 +1,27 @@
-use crate::todo_object::TodoObject;
+use std::fs::File;
+
 use gio::Settings;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::CompositeTemplate;
 use gtk::{gio, glib};
+use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
+
+use super::data_path;
+use crate::todo_object::TodoObject;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
 #[template(file = "window.ui")]
 pub struct Window {
     #[template_child]
-    pub entry: TemplateChild<gtk::Entry>,
+    pub entry: TemplateChild<Entry>,
     #[template_child]
-    pub menu_button: TemplateChild<gtk::MenuButton>,
+    pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
-    pub list_view: TemplateChild<gtk::ListView>,
+    pub list_view: TemplateChild<ListView>,
     #[template_child]
-    pub clear_button: TemplateChild<gtk::Button>,
+    pub clear_button: TemplateChild<Button>,
     pub settings: Settings,
     pub model: OnceCell<gio::ListStore>,
 }
@@ -60,10 +64,12 @@ impl WidgetImpl for Window {}
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> glib::signal::Inhibit {
+        // Get model
         let model = self.model.get().expect("Could not get model");
-        let mut position = 0;
 
+        // Store todo data in vector
         let mut backup_data = Vec::new();
+        let mut position = 0;
         while let Some(item) = model.item(position) {
             // Get `TodoObject` from `glib::Object`
             let todo_data = item
@@ -74,11 +80,13 @@ impl WindowImpl for Window {
             backup_data.push(todo_data);
             position += 1;
         }
-        let file = std::fs::File::create(super::data_path()).expect("Could not create json file.");
 
-        serde_json::ser::to_writer_pretty(file, &backup_data)
+        // Save state in file
+        let file = File::create(data_path()).expect("Could not create json file.");
+        serde_json::to_writer_pretty(file, &backup_data)
             .expect("Could not write data to json file");
 
+        // Pass close request on to the parent
         self.parent_close_request(window)
     }
 }

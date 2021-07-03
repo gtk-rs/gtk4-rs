@@ -1,13 +1,16 @@
 mod imp;
 
-use crate::todo_object::{TodoData, TodoObject};
-use crate::todo_row::TodoRow;
+use std::fs::File;
+use std::path::PathBuf;
+
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::SignalListItemFactory;
 use gtk::{gio, glib};
-use gtk::{Application, CustomFilter, FilterListModel};
+use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+
+use crate::todo_object::{TodoData, TodoObject};
+use crate::todo_row::TodoRow;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -19,7 +22,7 @@ impl Window {
     pub fn new(app: &Application) -> Self {
         let model = gio::ListStore::new(TodoObject::static_type());
 
-        let file = std::fs::File::open(data_path()).expect("Could not open json file.");
+        let file = File::open(data_path()).expect("Could not open json file.");
 
         let backup_data: Vec<TodoData> =
             serde_json::from_reader(file).expect("Could not get backup data from json file.");
@@ -31,7 +34,7 @@ impl Window {
 
         let factory = SignalListItemFactory::new();
         factory.connect_setup(move |_, list_item| {
-            // Create todo row
+            // Create `TodoRow`
             let todo_row = TodoRow::new();
             list_item.set_child(Some(&todo_row));
         });
@@ -69,8 +72,8 @@ impl Window {
 
         // Set objects
         window.set_application(Some(app));
-        let filter_model = FilterListModel::new(Some(&model), None::<&gtk::CustomFilter>);
-        let selection_model = gtk::NoSelection::new(Some(&filter_model));
+        let filter_model = FilterListModel::new(Some(&model), None::<&CustomFilter>);
+        let selection_model = NoSelection::new(Some(&filter_model));
         imp.list_view.set_model(Some(&selection_model));
         imp.list_view.set_factory(Some(&factory));
 
@@ -163,7 +166,7 @@ impl Window {
     }
 }
 
-fn data_path() -> std::path::PathBuf {
+fn data_path() -> PathBuf {
     let mut path = glib::user_config_dir();
     path.push("MyGtkApp");
     std::fs::create_dir_all(&path).expect("Could not create directory.");

@@ -13,6 +13,8 @@ use window::Window;
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
+
+    // Connect signals
     app.connect_startup(load_css);
     app.connect_activate(build_ui);
 
@@ -21,11 +23,11 @@ fn main() {
 }
 
 fn load_css(_app: &Application) {
-    // The CSS "magic" happens here.
+    // Load the css file and add it to the provider
     let provider = CssProvider::new();
     provider.load_from_data(include_bytes!("style.css"));
-    // We give the CssProvided to the default screen so the CSS rules we added
-    // can be applied to our window.
+
+    // Add the provider to the default screen
     StyleContext::add_provider_for_display(
         &Display::default().expect("Error initializing GTK CSS provider."),
         &provider,

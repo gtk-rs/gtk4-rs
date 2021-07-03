@@ -20,7 +20,6 @@ impl ObjectSubclass for TodoObject {
     type ParentType = glib::Object;
 }
 
-// ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for TodoObject {
     fn properties() -> &'static [ParamSpec] {
@@ -79,4 +78,3 @@ impl ObjectImpl for TodoObject {
         }
     }
 }
-// ANCHOR_END: object_impl
