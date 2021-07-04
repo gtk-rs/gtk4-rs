@@ -148,12 +148,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_append_node")]
-    pub fn append_node<P: gsk::IsRenderNode>(&self, node: &P) {
+    pub fn append_node<P: AsRef<gsk::RenderNode>>(&self, node: &P) {
         unsafe {
-            ffi::gtk_snapshot_append_node(
-                self.to_glib_none().0,
-                node.upcast_ref().to_glib_none().0,
-            );
+            ffi::gtk_snapshot_append_node(self.to_glib_none().0, node.as_ref().to_glib_none().0);
         }
     }
 }

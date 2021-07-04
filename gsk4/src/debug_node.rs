@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType};
+use crate::{RenderNode, RenderNodeType};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl DebugNode {
     #[doc(alias = "gsk_debug_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, message: &str) -> Self {
+    pub fn new<P: AsRef<RenderNode>>(child: &P, message: &str) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_debug_node_new(

@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{BlendMode, IsRenderNode, RenderNode, RenderNodeType};
+use crate::{BlendMode, RenderNode, RenderNodeType};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl BlendNode {
     #[doc(alias = "gsk_blend_node_new")]
-    pub fn new<P: IsRenderNode, Q: IsRenderNode>(
+    pub fn new<P: AsRef<RenderNode>, Q: AsRef<RenderNode>>(
         bottom: &P,
         top: &Q,
         blend_mode: BlendMode,

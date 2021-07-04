@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType, RoundedRect};
+use crate::{RenderNode, RenderNodeType, RoundedRect};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl RoundedClipNode {
     #[doc(alias = "gsk_rounded_clip_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, clip: &RoundedRect) -> Self {
+    pub fn new<P: AsRef<RenderNode>>(child: &P, clip: &RoundedRect) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_none(ffi::gsk_rounded_clip_node_new(

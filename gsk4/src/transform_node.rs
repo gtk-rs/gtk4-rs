@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType, Transform};
+use crate::{RenderNode, RenderNodeType, Transform};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl TransformNode {
     #[doc(alias = "gsk_transform_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, transform: &Transform) -> Self {
+    pub fn new<P: AsRef<RenderNode>>(child: &P, transform: &Transform) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_transform_node_new(
