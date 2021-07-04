@@ -236,6 +236,13 @@ impl fmt::Debug for Event {
     }
 }
 
+#[doc(hidden)]
+impl AsRef<Event> for Event {
+    fn as_ref(&self) -> &Self {
+        self
+    }
+}
+
 pub unsafe trait EventKind:
     StaticType + FromGlibPtrFull<*mut ffi::GdkEvent> + 'static
 {
