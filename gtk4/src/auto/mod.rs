@@ -990,9 +990,6 @@ pub use self::recent_info::RecentInfo;
 mod text_iter;
 pub use self::text_iter::TextIter;
 
-mod tree_iter;
-pub use self::tree_iter::TreeIter;
-
 mod tree_path;
 pub use self::tree_path::TreePath;
 
