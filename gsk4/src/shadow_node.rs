@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType, Shadow};
+use crate::{RenderNode, RenderNodeType, Shadow};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, shadows: &[Shadow]) -> Self {
+    pub fn new<P: AsRef<RenderNode>>(child: &P, shadows: &[Shadow]) -> Self {
         skip_assert_initialized!();
         let n_shadows = shadows.len() as usize;
         unsafe {

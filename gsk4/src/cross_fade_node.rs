@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType};
+use crate::{RenderNode, RenderNodeType};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,11 @@ define_render_node!(
 
 impl CrossFadeNode {
     #[doc(alias = "gsk_cross_fade_node_new")]
-    pub fn new<P: IsRenderNode, Q: IsRenderNode>(start: &P, end: &Q, progress: f32) -> Self {
+    pub fn new<P: AsRef<RenderNode>, Q: AsRef<RenderNode>>(
+        start: &P,
+        end: &Q,
+        progress: f32,
+    ) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_cross_fade_node_new(

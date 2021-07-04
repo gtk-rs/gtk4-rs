@@ -156,6 +156,13 @@ impl fmt::Display for RenderNode {
     }
 }
 
+#[doc(hidden)]
+impl AsRef<RenderNode> for RenderNode {
+    fn as_ref(&self) -> &Self {
+        self
+    }
+}
+
 macro_rules! define_render_node {
     ($rust_type:ident, $ffi_type:path, $get_type:path, $node_type:path) => {
         impl ::glib::StaticType for $rust_type {

@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, RenderNode, RenderNodeType};
+use crate::{RenderNode, RenderNodeType};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -23,7 +23,7 @@ define_render_node!(
 
 impl RepeatNode {
     #[doc(alias = "gsk_repeat_node_new")]
-    pub fn new<P: IsRenderNode>(
+    pub fn new<P: AsRef<RenderNode>>(
         bounds: &graphene::Rect,
         child: &P,
         child_bounds: Option<&graphene::Rect>,

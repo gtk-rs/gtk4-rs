@@ -1885,7 +1885,7 @@ trust_return_value_nullability = false
     manual = true # ignore format args
     [[object.function]]
     name = "append_node"
-    # use IsRenderNode instead of IsA<RenderNode>
+    # use AsRef<RenderNode> instead of IsA<RenderNode>
     manual = true
 
 [[object]]

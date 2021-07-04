@@ -1,15 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{IsRenderNode, Renderer};
+use crate::{RenderNode, Renderer};
 use glib::object::IsA;
 use glib::translate::*;
 
 pub trait RendererExtManual: 'static {
     #[doc(alias = "gsk_renderer_render")]
-    fn render<P: IsRenderNode>(&self, root: &P, region: Option<&cairo::Region>);
+    fn render<P: AsRef<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);
 
     #[doc(alias = "gsk_renderer_render_texture")]
-    fn render_texture<P: IsRenderNode>(
+    fn render_texture<P: AsRef<RenderNode>>(
         &self,
         root: &P,
         viewport: Option<&graphene::Rect>,
@@ -17,7 +17,7 @@ pub trait RendererExtManual: 'static {
 }
 
 impl<O: IsA<Renderer>> RendererExtManual for O {
-    fn render<P: IsRenderNode>(&self, root: &P, region: Option<&cairo::Region>) {
+    fn render<P: AsRef<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gsk_renderer_render(
                 self.as_ref().to_glib_none().0,
@@ -27,7 +27,7 @@ impl<O: IsA<Renderer>> RendererExtManual for O {
         }
     }
 
-    fn render_texture<P: IsRenderNode>(
+    fn render_texture<P: AsRef<RenderNode>>(
         &self,
         root: &P,
         viewport: Option<&graphene::Rect>,
