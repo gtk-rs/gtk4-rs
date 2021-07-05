@@ -160,7 +160,7 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">BlendMode</span>, <span class="ident">IsRenderNode</span>, <span class="ident">RenderNode</span>, <span class="ident">RenderNodeType</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">BlendMode</span>, <span class="ident">RenderNode</span>, <span class="ident">RenderNodeType</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
@@ -196,7 +196,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A new [`RenderNode`][crate::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_blend_node_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsRenderNode</span>, <span class="ident">Q</span>: <span class="ident">IsRenderNode</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">bottom</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">top</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
         <span class="ident">blend_mode</span>: <span class="ident">BlendMode</span>,
