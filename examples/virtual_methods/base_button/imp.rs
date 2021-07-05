@@ -14,6 +14,8 @@ pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static
 #[repr(C)]
 pub struct BaseButtonClass {
     pub parent_class: gtk::ffi::GtkButtonClass,
+    // If these functions are meant to be called from C, you need to make these functions
+    // `extern "C"` & use FFI-safe types (usually raw pointers).
     pub sync_method: Option<unsafe fn(&BaseButtonInstance, extra_text: Option<String>)>,
     pub async_method: Option<unsafe fn(&BaseButtonInstance) -> PinnedFuture>,
 }
@@ -22,38 +24,27 @@ unsafe impl ClassStruct for BaseButtonClass {
     type Type = BaseButton;
 }
 
-impl std::ops::Deref for BaseButtonClass {
-    type Target = glib::Class<glib::Object>;
-
-    fn deref(&self) -> &Self::Target {
-        unsafe { &*(self as *const _ as *const Self::Target) }
-    }
-}
-
-impl std::ops::DerefMut for BaseButtonClass {
-    fn deref_mut(&mut self) -> &mut glib::Class<glib::Object> {
-        unsafe { &mut *(self as *mut _ as *mut glib::Class<glib::Object>) }
-    }
-}
-
 #[derive(Debug, Default)]
 pub struct BaseButton;
 
 // Virtual method default implementation trampolines
-unsafe fn sync_method_default_trampoline(this: &BaseButtonInstance, extra_text: Option<String>) {
+fn sync_method_default_trampoline(this: &BaseButtonInstance, extra_text: Option<String>) {
     BaseButton::from_instance(this).sync_method(this, extra_text)
 }
 
-unsafe fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
+fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
     BaseButton::from_instance(this).async_method(this)
 }
 
-pub unsafe fn base_button_sync_method(this: &BaseButtonInstance, extra_text: Option<String>) {
+pub(super) unsafe fn base_button_sync_method(
+    this: &BaseButtonInstance,
+    extra_text: Option<String>,
+) {
     let klass = &*(this.class() as *const _ as *const BaseButtonClass);
     (klass.sync_method.unwrap())(this, extra_text)
 }
 
-pub unsafe fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
+pub(super) unsafe fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
     let klass = &*(this.class() as *const _ as *const BaseButtonClass);
     klass.async_method.unwrap()(this)
 }
