@@ -13,7 +13,7 @@ impl Drop {
     #[doc(alias = "gdk_drop_read_async")]
     pub fn read_async<
         P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
+        Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static,
     >(
         &self,
         mime_types: &[&str],
@@ -23,7 +23,7 @@ impl Drop {
     ) {
         let user_data: Box<Q> = Box::new(callback);
         unsafe extern "C" fn read_async_trampoline<
-            Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + Send + 'static,
+            Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
