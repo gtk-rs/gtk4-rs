@@ -27,4 +27,12 @@ impl ContentFormats {
             FromGlibContainer::from_glib_none_num(mime_types, n_mime_types.assume_init() as usize)
         }
     }
+
+    #[doc(alias = "gdk_content_formats_print")]
+    pub fn print(&self) {
+        unsafe {
+            let mut string = String::uninitialized();
+            ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+        }
+    }
 }

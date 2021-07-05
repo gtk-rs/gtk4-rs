@@ -249,6 +249,9 @@ status = "generate"
     [[object.function]]
     name = "get_mime_types"
     manual = true # remove once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3488 gets merged
+    [[object.function]]
+    name = "print"
+    manual = true #mutability issue
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
@@ -475,6 +478,10 @@ manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "create_similar_surface"
     manual = true
+    doc_trait_name = "SurfaceExtManual"
+    [[object.function]]
+    name = "set_input_region"
+    manual = true #mutability issue
     doc_trait_name = "SurfaceExtManual"
     [[object.function]]
     name = "set_opaque_region"
