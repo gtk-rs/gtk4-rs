@@ -104,4 +104,7 @@ path = "text_viewer/main.rs"
 name = "video_player"
 path = "video_player/main.rs"
 
+[[bin]]
+name = "virtual_methods"
+path = "virtual_methods/main.rs"
 
