@@ -1120,7 +1120,7 @@ impl Default for CustomButton {
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
-<p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.glib_wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
+<p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
 We only have to point to the implementation struct and which ancestor GObjects we extend.
 Please note that the list of ancestor GObjects does not mention <code>glib::Object</code>.
 This is because <code>glib::Object</code> is <em>always</em> the base class in the object hierarchy and therefore already implied.</p>
