@@ -21,7 +21,6 @@ fn main() {
 
         base_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();
-            let b = b.clone();
             ctx.spawn_local(clone!(@weak b => async move {
                 b.async_method().await.unwrap();
             }));
