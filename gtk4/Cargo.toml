@@ -18,6 +18,7 @@ name = "gtk4"
 [features]
 dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
+v4_4 = ["ffi/v4_4", "gdk/v4_4", "v4_2"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
