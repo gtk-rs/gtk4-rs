@@ -54,14 +54,6 @@ impl X11Display {
         }
     }
 
-    //#[cfg(any(feature = "v4_4", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-    //#[doc(alias = "gdk_x11_display_get_egl_display")]
-    //#[doc(alias = "get_egl_display")]
-    //pub fn egl_display(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi:gdk_x11_display_get_egl_display() }
-    //}
-
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_x11_display_get_egl_version")]

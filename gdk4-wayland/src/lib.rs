@@ -10,6 +10,9 @@ pub use glib;
 pub use wayland_client;
 
 #[cfg(any(feature = "v4_4", feature = "dox"))]
+pub use khronos_egl;
+
+#[cfg(any(feature = "v4_4", feature = "dox"))]
 pub use xkb;
 
 mod auto;
