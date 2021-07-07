@@ -39,6 +39,12 @@ gdk-x11 = {version = "0.1", package = "gdk4-x11"}
 gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-wayland" }
 ```
 
+### Features
+
+| Feature | Description |
+| ---     | ----------- |
+| `v4_4` | Enable the new APIs part of GTK 4.4 |
+
 ### See Also
 
 - [glib](https://crates.io/crates/glib)
