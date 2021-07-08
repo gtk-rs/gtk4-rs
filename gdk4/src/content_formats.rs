@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::ContentFormats;
-use glib::translate::*;
+use std::fmt;
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_get_gtypes")]
@@ -27,12 +27,20 @@ impl ContentFormats {
             FromGlibContainer::from_glib_none_num(mime_types, n_mime_types.assume_init() as usize)
         }
     }
+}
 
+impl fmt::Debug for ContentFormats {
     #[doc(alias = "gdk_content_formats_print")]
-    pub fn print(&self) {
+    pub fn print(&self) -> Option<String> {
         unsafe {
             let mut string = String::uninitialized();
-            ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+            let ret =
+                ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
+            if from_glib(ret) {
+                Some(string)
+            } else {
+                None
+            }
         }
     }
 }

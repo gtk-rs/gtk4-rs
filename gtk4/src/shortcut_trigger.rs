@@ -3,6 +3,43 @@
 use crate::ShortcutTrigger;
 use glib::translate::*;
 use glib::IsA;
+use std::fmt;
+
+impl fmt::Debug for ShortcutTrigger {
+    #[doc(alias = "gtk_shortcut_trigger_print")]
+    fn print(&self) -> Option<String> {
+        unsafe {
+            let mut string = String::uninitialized();
+            let ret = ffi::gtk_shortcut_trigger_print(
+                self.as_ref().to_glib_none().0,
+                string.to_glib_none().0,
+            );
+            if from_glib(ret) {
+                Some(string)
+            } else {
+                None
+            }
+        }
+    }
+}
+
+impl fmt::Display for ShortcutTrigger {
+    fn print_label<P: IsA<gdk::Display>>(&self, display: &P) -> Option<String> {
+        unsafe {
+            let mut string = String::uninitialized();
+            let ret = ffi::gtk_shortcut_trigger_print_label(
+                self.as_ref().to_glib_none().0,
+                display.as_ref().to_glib_none().0,
+                string.to_glib_none().0,
+            );
+            if from_glib(ret) {
+                Some(string)
+            } else {
+                None
+            }
+        }
+    }
+}
 
 pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]

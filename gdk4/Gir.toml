@@ -227,6 +227,7 @@ status = "generate"
 [[object]]
 name = "Gdk.ContentFormats"
 status = "generate"
+generate_display_trait = false
     [[object.function]]
     name = "new_for_gtype"
     rename = "for_type"

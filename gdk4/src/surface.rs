@@ -37,7 +37,7 @@ impl<O: IsA<Surface>> SurfaceExtManual for O {
         }
     }
 
-    fn set_input_region(&self) {
+    fn set_input_region(&self, region: &cairo::Region) {
         unsafe {
             let mut region = std::ptr::null_mut();
             ffi::gdk_surface_set_input_region(

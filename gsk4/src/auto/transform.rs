@@ -63,9 +63,9 @@ impl Transform {
     }
 
     #[doc(alias = "gsk_transform_print")]
-    pub fn print(&self, string: &glib::String) {
+    pub fn print(&self, string: &mut glib::String) {
         unsafe {
-            ffi::gsk_transform_print(self.to_glib_none().0, string.to_glib_none().0);
+            ffi::gsk_transform_print(self.to_glib_none().0, string.to_glib_none_mut().0);
         }
     }
 

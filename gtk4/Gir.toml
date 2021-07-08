@@ -884,6 +884,7 @@ status = "generate"
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
+generate_display_trait = false
 
 [[object]]
 name = "Gtk.CustomFilter"
@@ -1825,6 +1826,7 @@ status = "generate"
 [[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
+generate_display_trait = false
 manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "equal"
