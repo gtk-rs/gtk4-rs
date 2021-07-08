@@ -104,11 +104,16 @@ impl Window {
                 }
             }));
 
+        let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
+        let shortcuts = builder.object("shortcuts").unwrap();
+        window.set_help_overlay(Some(&shortcuts));
+
         let filter_action = imp.settings.create_action("filter");
         window.add_action(&filter_action);
         app.set_accels_for_action("win.filter::All", &["<primary>a"]);
         app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
         app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+        app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 
         // Initial filtering
         window.set_filter(&filter_model);

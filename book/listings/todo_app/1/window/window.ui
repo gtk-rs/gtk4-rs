@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
+  <menu id="main-menu">
+    <submenu>
+      <attribute name="label" translatable="yes">_Filtering</attribute>
+      <item>
+        <attribute name="label" translatable="yes">_All</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">All</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Open</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Open</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Done</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Done</attribute>
+      </item>
+    </submenu>
+    <item>
+      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+      <attribute name="action">win.show-help-overlay</attribute>
+    </item>
+  </menu>
   <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
     <property name="width_request">360</property>
     <property name="title" translatable="yes">My GTK App</property>
@@ -41,23 +65,4 @@
       </object>
     </child>
   </template>
-  <menu id="main-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_All</attribute>
-        <attribute name="action">win.filter</attribute>
-        <attribute name="target">All</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Open</attribute>
-        <attribute name="action">win.filter</attribute>
-        <attribute name="target">Open</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Done</attribute>
-        <attribute name="action">win.filter</attribute>
-        <attribute name="target">Done</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>

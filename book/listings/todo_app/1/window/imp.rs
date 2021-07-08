@@ -1,6 +1,8 @@
 use std::fs::File;
 
 use gio::Settings;
+use glib::signal::Inhibit;
+use glib::subclass::InitializingObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
@@ -50,7 +52,7 @@ impl ObjectSubclass for Window {
         Self::bind_template(klass);
     }
 
-    fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+    fn instance_init(obj: &InitializingObject<Self>) {
         obj.init_template();
     }
 }
@@ -63,7 +65,7 @@ impl WidgetImpl for Window {}
 
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self, window: &Self::Type) -> glib::signal::Inhibit {
+    fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Get model
         let model = self.model.get().expect("Could not get model");
 
