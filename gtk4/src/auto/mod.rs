@@ -630,6 +630,16 @@ mod password_entry;
 pub use self::password_entry::PasswordEntry;
 pub use self::password_entry::PasswordEntryBuilder;
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+mod password_entry_buffer;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+pub use self::password_entry_buffer::PasswordEntryBuffer;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+pub use self::password_entry_buffer::PasswordEntryBufferBuilder;
+
 mod picture;
 pub use self::picture::Picture;
 pub use self::picture::PictureBuilder;

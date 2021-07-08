@@ -152,6 +152,7 @@ generate = [
     "Gtk.PageSet",
     "Gtk.PanDirection",
     "Gtk.Paned",
+    "Gtk.PasswordEntryBuffer",
     "Gtk.PickFlags",
     "Gtk.Picture",
     "Gtk.PolicyType",
