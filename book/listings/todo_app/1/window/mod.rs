@@ -20,64 +20,15 @@ glib::wrapper! {
 
 impl Window {
     pub fn new(app: &Application) -> Self {
-        let model = gio::ListStore::new(TodoObject::static_type());
-        let window = Object::new(&[("application", app)]).expect("Failed to create Window");
+        let window: Window = Object::new(&[("application", app)]).expect("Failed to create Window");
 
-        let imp = imp::Window::from_instance(&window);
-        window.set_model(model);
+        window.setup_model();
         window.restore_data();
-
         window.setup_factory();
-
-        let filter_model = FilterListModel::new(Some(window.model()), None::<&CustomFilter>);
-        let selection_model = NoSelection::new(Some(&filter_model));
-        imp.list_view.set_model(Some(&selection_model));
-
-        let model = window.model();
-        imp.entry
-            .connect_activate(clone!(@weak model => move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(content, false);
-                model
-                    .append(&todo_object);
-                buffer.set_text("");
-            }));
-
-        imp.clear_button
-            .connect_clicked(clone!(@weak model => move |_| {
-                let mut position = 0;
-                while let Some(item) = model.item(position) {
-                    // Get `TodoObject` from `glib::Object`
-                    let todo_object = item
-                        .downcast_ref::<TodoObject>()
-                        .expect("The object needs to be of type `TodoObject`.");
-
-                    if todo_object.completed() {
-                        model.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            }));
-
+        window.setup_callbacks();
         window.set_shortcut_window();
-
         window.setup_filter_action();
         setup_shortcuts(app);
-
-        // Initial filtering
-        window.set_filter(&filter_model);
-
-        // Filter whenever the settings key changes
-        imp.settings.connect_changed(
-            None,
-            clone!(@weak window, @weak filter_model => move |_, key| {
-                if key == "filter" {
-                    window.set_filter(&filter_model);
-                }
-            }),
-        );
 
         window
     }
@@ -85,13 +36,31 @@ impl Window {
     fn model(&self) -> &gio::ListStore {
         // Get state
         let imp = imp::Window::from_instance(&self);
-
         imp.model.get().expect("Could not get model")
     }
 
-    fn set_model(&self, model: gio::ListStore) {
+    fn setup_model(&self) {
+        // Create new model
+        let model = gio::ListStore::new(TodoObject::static_type());
+
+        // Get state and set model
         let imp = imp::Window::from_instance(self);
         imp.model.set(model).expect("Could not set model");
+
+        // Wrap model with filter and selection and pass it to the list view
+        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+        let selection_model = NoSelection::new(Some(&filter_model));
+        imp.list_view.set_model(Some(&selection_model));
+
+        // Filter model whenever the value of the key "filter" changes
+        imp.settings.connect_changed(
+            None,
+            clone!(@weak self as window, @weak filter_model => move |_, key| {
+                if key == "filter" {
+                    filter_model.set_filter(window.filter().as_ref());
+                }
+            }),
+        );
     }
 
     fn restore_data(&self) {
@@ -107,13 +76,17 @@ impl Window {
     }
 
     fn setup_factory(&self) {
+        // Create a new factory
         let factory = SignalListItemFactory::new();
+
+        // Create an empty `TodoRow` during setup
         factory.connect_setup(move |_, list_item| {
             // Create `TodoRow`
             let todo_row = TodoRow::new();
             list_item.set_child(Some(&todo_row));
         });
 
+        // Tell factory how to bind `TodoRow` to a `TodoObject`
         factory.connect_bind(move |_, list_item| {
             // Get `TodoObject` from `ListItem`
             let todo_object = list_item
@@ -132,6 +105,7 @@ impl Window {
             todo_row.bind_item(&todo_object);
         });
 
+        // Tell factory how to unbind `TodoRow` from `TodoObject`
         factory.connect_unbind(move |_, list_item| {
             // Get `TodoRow` from `ListItem`
             let todo_row = list_item
@@ -146,6 +120,43 @@ impl Window {
         // Set the factory of the list view
         let imp = imp::Window::from_instance(&self);
         imp.list_view.set_factory(Some(&factory));
+    }
+
+    fn setup_callbacks(&self) {
+        // Get state
+        let imp = imp::Window::from_instance(&self);
+        let model = self.model();
+
+        // Setup callback so that activation of the entry
+        // creates a new todo object and clears the entry
+        imp.entry
+            .connect_activate(clone!(@weak model => move |entry| {
+                let buffer = entry.buffer();
+                let content = buffer.text();
+                let todo_object = TodoObject::new(content, false);
+                model
+                    .append(&todo_object);
+                buffer.set_text("");
+            }));
+
+        // Setup callback so that click on the clear_button
+        // removes all done tasks
+        imp.clear_button
+            .connect_clicked(clone!(@weak model => move |_| {
+                let mut position = 0;
+                while let Some(item) = model.item(position) {
+                    // Get `TodoObject` from `glib::Object`
+                    let todo_object = item
+                        .downcast_ref::<TodoObject>()
+                        .expect("The object needs to be of type `TodoObject`.");
+
+                    if todo_object.completed() {
+                        model.remove(position);
+                    } else {
+                        position += 1;
+                    }
+                }
+            }));
     }
 
     fn set_shortcut_window(&self) {
@@ -165,7 +176,7 @@ impl Window {
         self.add_action(&filter_action);
     }
 
-    fn set_filter(&self, filter_model: &FilterListModel) {
+    fn filter(&self) -> Option<CustomFilter> {
         // Get state
         let imp = imp::Window::from_instance(&self);
 
@@ -192,16 +203,13 @@ impl Window {
             todo_object.completed()
         });
 
-        // Set filter model accordingly
-        let filter = match value.as_str() {
-            "All" => filter_all,
-            "Open" => filter_open,
-            "Done" => filter_done,
-            _ => unimplemented!(),
-        };
-
-        // Set filter model
-        filter_model.set_filter(Some(&filter));
+        // Return correct filter
+        match value.as_str() {
+            "All" => Some(filter_all),
+            "Open" => Some(filter_open),
+            "Done" => Some(filter_done),
+            _ => None,
+        }
     }
 }
 
