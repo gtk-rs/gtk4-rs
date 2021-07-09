@@ -1,7 +1,6 @@
 mod imp;
 
 use std::fs::File;
-use std::path::PathBuf;
 
 use glib::{clone, Object};
 use gtk::prelude::*;
@@ -11,6 +10,7 @@ use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListIte
 
 use crate::todo_object::{TodoData, TodoObject};
 use crate::todo_row::TodoRow;
+use crate::utils::data_path;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -21,16 +21,11 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         let model = gio::ListStore::new(TodoObject::static_type());
+        let window = Object::new(&[("application", app)]).expect("Failed to create Window");
 
-        let file = File::open(data_path()).expect("Could not open json file.");
-
-        let backup_data: Vec<TodoData> =
-            serde_json::from_reader(file).expect("Could not get backup data from json file.");
-
-        for todo_data in backup_data {
-            let todo_object = TodoObject::new(todo_data.content, todo_data.completed);
-            model.append(&todo_object);
-        }
+        let imp = imp::Window::from_instance(&window);
+        window.set_model(model);
+        window.restore_data();
 
         let factory = SignalListItemFactory::new();
         factory.connect_setup(move |_, list_item| {
@@ -67,16 +62,14 @@ impl Window {
 
             todo_row.unbind_item();
         });
-        let window = Object::new(&[]).expect("Failed to create Window");
-        let imp = imp::Window::from_instance(&window);
 
         // Set objects
-        window.set_application(Some(app));
-        let filter_model = FilterListModel::new(Some(&model), None::<&CustomFilter>);
+        let filter_model = FilterListModel::new(Some(window.model()), None::<&CustomFilter>);
         let selection_model = NoSelection::new(Some(&filter_model));
         imp.list_view.set_model(Some(&selection_model));
         imp.list_view.set_factory(Some(&factory));
 
+        let model = window.model();
         imp.entry
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
@@ -128,11 +121,35 @@ impl Window {
             }),
         );
 
-        imp.model.set(model).expect("Could not set model");
         window
     }
 
+    fn model(&self) -> &gio::ListStore {
+        // Get state
+        let imp = imp::Window::from_instance(&self);
+
+        imp.model.get().expect("Could not get model")
+    }
+
+    fn set_model(&self, model: gio::ListStore) {
+        let imp = imp::Window::from_instance(self);
+        imp.model.set(model).expect("Could not set model");
+    }
+
+    fn restore_data(&self) {
+        // Deserialize data from file to vector
+        let file = File::open(data_path()).expect("Could not open json file.");
+        let backup_data: Vec<TodoData> =
+            serde_json::from_reader(file).expect("Could not get backup data from json file.");
+
+        for todo_data in backup_data {
+            let todo_object = TodoObject::new(todo_data.content, todo_data.completed);
+            self.model().append(&todo_object);
+        }
+    }
+
     fn set_filter(&self, filter_model: &FilterListModel) {
+        // Get state
         let imp = imp::Window::from_instance(&self);
 
         // Get value from settings
@@ -169,12 +186,4 @@ impl Window {
         // Set filter model
         filter_model.set_filter(Some(&filter));
     }
-}
-
-fn data_path() -> PathBuf {
-    let mut path = glib::user_config_dir();
-    path.push("MyGtkApp");
-    std::fs::create_dir_all(&path).expect("Could not create directory.");
-    path.push("data.json");
-    path
 }

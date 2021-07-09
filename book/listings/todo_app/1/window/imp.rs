@@ -9,8 +9,8 @@ use gtk::{gio, glib};
 use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
 
-use super::data_path;
 use crate::todo_object::TodoObject;
+use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
@@ -24,8 +24,8 @@ pub struct Window {
     pub list_view: TemplateChild<ListView>,
     #[template_child]
     pub clear_button: TemplateChild<Button>,
-    pub settings: Settings,
     pub model: OnceCell<gio::ListStore>,
+    pub settings: Settings,
 }
 
 impl Default for Window {
@@ -35,8 +35,8 @@ impl Default for Window {
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
             clear_button: TemplateChild::default(),
+            model: OnceCell::default(),
             settings: Settings::new("org.gtk.example"),
-            model: OnceCell::new(),
         }
     }
 }
@@ -79,6 +79,7 @@ impl WindowImpl for Window {
                 .expect("The object needs to be of type `TodoObject`.")
                 .todo_data();
 
+            // Add todo data to vector and increase position
             backup_data.push(todo_data);
             position += 1;
         }

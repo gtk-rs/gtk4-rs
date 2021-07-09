@@ -1,5 +1,6 @@
 mod todo_object;
 mod todo_row;
+mod utils;
 mod window;
 
 use gdk::Display;
@@ -36,6 +37,7 @@ fn load_css(_app: &Application) {
 }
 
 fn build_ui(app: &Application) {
+    // Create a new custom window and show it
     let window = Window::new(app);
     window.show();
 }
