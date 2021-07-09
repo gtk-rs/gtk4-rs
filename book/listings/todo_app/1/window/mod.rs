@@ -27,47 +27,11 @@ impl Window {
         window.set_model(model);
         window.restore_data();
 
-        let factory = SignalListItemFactory::new();
-        factory.connect_setup(move |_, list_item| {
-            // Create `TodoRow`
-            let todo_row = TodoRow::new();
-            list_item.set_child(Some(&todo_row));
-        });
+        window.setup_factory();
 
-        factory.connect_bind(move |_, list_item| {
-            // Get `TodoObject` from `ListItem`
-            let todo_object = list_item
-                .item()
-                .expect("The item has to exist.")
-                .downcast::<TodoObject>()
-                .expect("The item has to be an `TodoObject`.");
-
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
-                .child()
-                .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
-
-            todo_row.bind_item(&todo_object);
-        });
-
-        factory.connect_unbind(move |_, list_item| {
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
-                .child()
-                .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
-
-            todo_row.unbind_item();
-        });
-
-        // Set objects
         let filter_model = FilterListModel::new(Some(window.model()), None::<&CustomFilter>);
         let selection_model = NoSelection::new(Some(&filter_model));
         imp.list_view.set_model(Some(&selection_model));
-        imp.list_view.set_factory(Some(&factory));
 
         let model = window.model();
         imp.entry
@@ -97,16 +61,10 @@ impl Window {
                 }
             }));
 
-        let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
-        let shortcuts = builder.object("shortcuts").unwrap();
-        window.set_help_overlay(Some(&shortcuts));
+        window.set_shortcut_window();
 
-        let filter_action = imp.settings.create_action("filter");
-        window.add_action(&filter_action);
-        app.set_accels_for_action("win.filter::All", &["<primary>a"]);
-        app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
-        app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
-        app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
+        window.setup_filter_action();
+        setup_shortcuts(app);
 
         // Initial filtering
         window.set_filter(&filter_model);
@@ -148,6 +106,65 @@ impl Window {
         }
     }
 
+    fn setup_factory(&self) {
+        let factory = SignalListItemFactory::new();
+        factory.connect_setup(move |_, list_item| {
+            // Create `TodoRow`
+            let todo_row = TodoRow::new();
+            list_item.set_child(Some(&todo_row));
+        });
+
+        factory.connect_bind(move |_, list_item| {
+            // Get `TodoObject` from `ListItem`
+            let todo_object = list_item
+                .item()
+                .expect("The item has to exist.")
+                .downcast::<TodoObject>()
+                .expect("The item has to be an `TodoObject`.");
+
+            // Get `TodoRow` from `ListItem`
+            let todo_row = list_item
+                .child()
+                .expect("The child has to exist.")
+                .downcast::<TodoRow>()
+                .expect("The child has to be a `TodoRow`.");
+
+            todo_row.bind_item(&todo_object);
+        });
+
+        factory.connect_unbind(move |_, list_item| {
+            // Get `TodoRow` from `ListItem`
+            let todo_row = list_item
+                .child()
+                .expect("The child has to exist.")
+                .downcast::<TodoRow>()
+                .expect("The child has to be a `TodoRow`.");
+
+            todo_row.unbind_item();
+        });
+
+        // Set the factory of the list view
+        let imp = imp::Window::from_instance(&self);
+        imp.list_view.set_factory(Some(&factory));
+    }
+
+    fn set_shortcut_window(&self) {
+        let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
+        let shortcuts = builder.object("shortcuts").unwrap();
+        self.set_help_overlay(Some(&shortcuts));
+    }
+
+    fn setup_filter_action(&self) {
+        // Get state
+        let imp = imp::Window::from_instance(&self);
+
+        // Create action from key "filter"
+        let filter_action = imp.settings.create_action("filter");
+
+        // Add action "filter" to action group "win"
+        self.add_action(&filter_action);
+    }
+
     fn set_filter(&self, filter_model: &FilterListModel) {
         // Get state
         let imp = imp::Window::from_instance(&self);
@@ -186,4 +203,11 @@ impl Window {
         // Set filter model
         filter_model.set_filter(Some(&filter));
     }
+}
+
+fn setup_shortcuts(app: &Application) {
+    app.set_accels_for_action("win.filter::All", &["<primary>a"]);
+    app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
+    app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+    app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 }
