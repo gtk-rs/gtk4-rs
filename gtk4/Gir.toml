@@ -1826,8 +1826,13 @@ status = "generate"
 [[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
-generate_display_trait = false
 manual_traits = ["ShortcutTriggerExtManual"]
+    [[object.function]]
+    name = "print"
+    ignore = true
+    [[object.function]]
+    name = "print_label"
+    ignore = true
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic

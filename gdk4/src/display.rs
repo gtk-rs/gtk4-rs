@@ -15,7 +15,7 @@ pub trait DisplayExtManual: 'static {
     ) -> Option<(Key, i32, i32, ModifierType)>;
 
     #[doc(alias = "gdk_display_get_setting")]
-    fn get_setting(&self, name: &str) -> Option<Value>;
+    fn get_setting(&self, name: &str) -> Option<glib::Value>;
 
     #[doc(alias = "gdk_display_map_keyval")]
     fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>>;

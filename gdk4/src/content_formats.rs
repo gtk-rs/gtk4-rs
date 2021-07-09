@@ -27,9 +27,7 @@ impl ContentFormats {
             FromGlibContainer::from_glib_none_num(mime_types, n_mime_types.assume_init() as usize)
         }
     }
-}
 
-impl fmt::Debug for ContentFormats {
     #[doc(alias = "gdk_content_formats_print")]
     pub fn print(&self) -> Option<String> {
         unsafe {
@@ -42,5 +40,12 @@ impl fmt::Debug for ContentFormats {
                 None
             }
         }
+    }
+}
+
+impl fmt::Debug for ContentFormats {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&ContentFormats::print(self))
     }
 }
