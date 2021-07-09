@@ -78,7 +78,6 @@ impl WindowImpl for Window {
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.")
                 .todo_data();
-
             // Add todo data to vector and increase position
             backup_data.push(todo_data);
             position += 1;

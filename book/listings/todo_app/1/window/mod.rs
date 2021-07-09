@@ -20,15 +20,29 @@ glib::wrapper! {
 
 impl Window {
     pub fn new(app: &Application) -> Self {
+        // Create new window
         let window: Window = Object::new(&[("application", app)]).expect("Failed to create Window");
 
+        // Setup model
         window.setup_model();
+
+        // Restore data from backup
         window.restore_data();
+
+        // Setup factory
         window.setup_factory();
+
+        // Setup callbacks
         window.setup_callbacks();
-        window.set_shortcut_window();
+
+        // Setup shortcut window
+        window.setup_shortcut_window();
+
+        // Setup filter action
         window.setup_filter_action();
-        setup_shortcuts(app);
+
+        // Setup shortcuts
+        Self::setup_shortcuts(app);
 
         window
     }
@@ -159,9 +173,12 @@ impl Window {
             }));
     }
 
-    fn set_shortcut_window(&self) {
+    fn setup_shortcut_window(&self) {
+        // Get `ShortcutsWindow` via `gtk::Builder`
         let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
         let shortcuts = builder.object("shortcuts").unwrap();
+
+        // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
     }
 
@@ -174,6 +191,13 @@ impl Window {
 
         // Add action "filter" to action group "win"
         self.add_action(&filter_action);
+    }
+
+    fn setup_shortcuts(app: &Application) {
+        app.set_accels_for_action("win.filter::All", &["<primary>a"]);
+        app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
+        app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+        app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
     }
 
     fn filter(&self) -> Option<CustomFilter> {
@@ -211,11 +235,4 @@ impl Window {
             _ => None,
         }
     }
-}
-
-fn setup_shortcuts(app: &Application) {
-    app.set_accels_for_action("win.filter::All", &["<primary>a"]);
-    app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
-    app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
-    app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 }

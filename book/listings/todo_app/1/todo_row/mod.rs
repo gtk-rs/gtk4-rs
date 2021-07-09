@@ -29,8 +29,8 @@ impl TodoRow {
         // Get state
         let imp = imp::TodoRow::from_instance(self);
 
-        // Bind `todo_object.completed` to `todo_row.completed_button.active` and save binding.
-        // The binding is bidirectional so changes on both sides will be mirrored by the other side.
+        // Bind `todo_object.completed` to `todo_row.completed_button.active` and save binding
+        // The binding is bidirectional so changes on both sides will be mirrored by the other side
         let completed_button_binding = item
             .bind_property("completed", &imp.completed_button.get(), "active")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
@@ -38,8 +38,8 @@ impl TodoRow {
             .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(completed_button_binding);
 
-        // Bind `todo_object.content` to `todo_row.content_label.label` and save binding.
-        // The binding is bidirectional so changes on both sides will be mirrored by the other side.
+        // Bind `todo_object.content` to `todo_row.content_label.label` and save binding
+        // The binding is bidirectional so changes on both sides will be mirrored by the other side
         let content_label_binding = item
             .bind_property("content", &imp.content_label.get(), "label")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
@@ -47,9 +47,9 @@ impl TodoRow {
             .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(content_label_binding);
 
-        // Bind `todo_object.completed` to `todo_row.content_label.attributed` and save binding.
+        // Bind `todo_object.completed` to `todo_row.content_label.attributed` and save binding
         // We transform the boolean `completed` so that whenever completed is true
-        // the content of the label will be strikethrough.
+        // the content of the label will be strikethrough
         let completed_label_binding = item
             .bind_property("completed", &imp.content_label.get(), "attributes")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::DEFAULT)
