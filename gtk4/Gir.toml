@@ -109,7 +109,6 @@ generate = [
     "Gtk.GestureLongPress",
     "Gtk.GesturePan",
     "Gtk.GestureRotate",
-    "Gtk.GestureSingle",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.Grid",
@@ -1206,6 +1205,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "sequence"
         const = true
+
+[[object]]
+name = "Gtk.GestureSingle"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.GestureStylus"

@@ -414,7 +414,6 @@ pub use self::gesture_rotate::GestureRotate;
 pub use self::gesture_rotate::GestureRotateBuilder;
 
 mod gesture_single;
-pub use self::gesture_single::GestureSingleBuilder;
 pub use self::gesture_single::{GestureSingle, NONE_GESTURE_SINGLE};
 
 mod gesture_stylus;
