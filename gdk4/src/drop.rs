@@ -38,7 +38,7 @@ impl Drop {
                 &mut error,
             );
             let result = if error.is_null() {
-                Ok((from_glib_full(ret), from_glib_full(out_mime_type)))
+                Ok((from_glib_full(ret), from_glib_none(out_mime_type)))
             } else {
                 Err(from_glib_full(error))
             };
