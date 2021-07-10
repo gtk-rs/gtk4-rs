@@ -46,6 +46,6 @@ impl ContentFormats {
 impl fmt::Debug for ContentFormats {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&ContentFormats::print(self))
+        f.write_str(&self.print())
     }
 }

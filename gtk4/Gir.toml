@@ -185,7 +185,6 @@ generate = [
     "Gtk.Separator",
     "Gtk.Settings",
     "Gtk.Shortcut",
-    "Gtk.ShortcutAction",
     "Gtk.ShortcutActionFlags",
     "Gtk.ShortcutController",
     "Gtk.ShortcutLabel",
@@ -884,7 +883,9 @@ status = "generate"
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
-generate_display_trait = false
+    [[object.function]]
+    name = "print"
+    ignore = true
 
 [[object]]
 name = "Gtk.CustomFilter"
@@ -1815,6 +1816,14 @@ status = "generate"
 name = "Gtk.SelectionFilterModel"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.ShortcutAction"
+status = "generate"
+    [[object.function]]
+    name = "print"
+    ignore = true
+
 
 [[object]]
 name = "Gtk.ShortcutsSection"

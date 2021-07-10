@@ -8,7 +8,7 @@ use std::fmt;
 impl fmt::Debug for ShortcutTrigger {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&ShortcutTriggerExt::to_str(self))
+        f.write_str(&self.to_str())
     }
 }
 

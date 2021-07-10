@@ -126,12 +126,14 @@ final_type = true # avoids the usage of RenderNodeExt trait
 [[object]]
 name = "Gsk.Transform"
 status = "generate"
-generate_display_trait = false
     [[object.function]]
     name = "equal"
         [[object.function.parameter]]
             name = "second"
             nullable = false
+    [[object.function]]
+    name = "print"
+    ignore = true
 
 [[object]]
 name = "Gsk.VulkanRenderer"
