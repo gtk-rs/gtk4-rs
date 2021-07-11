@@ -15,7 +15,7 @@
 - [Saving Window State](saving_window_state.md)
 - [Lists](lists.md)
 - [Interface Builder]()
-- [Building a Simple To-Do App](todo_app.md)
+- [Building a Simple To-Do App]()
 - [CSS]()
 - [Actions & Keybindings]()
 - [Resources]()
