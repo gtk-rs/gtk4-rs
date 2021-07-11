@@ -1,14 +1,18 @@
+use super::bindings::Bindings;
+use crate::todo_object::TodoObject;
 use glib::{ParamFlags, ParamSpec, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{CheckButton, Label};
 use once_cell::sync::Lazy;
+use std::cell::RefCell;
 
 // Object holding the state
 pub struct TodoRow {
     completed_button: CheckButton,
     content_label: Label,
+    bindings: RefCell<Option<Bindings>>,
 }
 
 impl Default for TodoRow {
@@ -26,6 +30,7 @@ impl Default for TodoRow {
                 .margin_start(12)
                 .margin_end(12)
                 .build(),
+            bindings: RefCell::default(),
         }
     }
 }
@@ -95,3 +100,14 @@ impl WidgetImpl for TodoRow {}
 
 // Trait shared by all boxes
 impl BoxImpl for TodoRow {}
+
+impl TodoRow {
+    pub fn set_item(&self, item: Option<&TodoObject>) {
+        if let Some(item) = item {
+            todo!("Bind");
+        } else {
+            todo!("Unbind");
+            self.bindings.replace(None);
+        }
+    }
+}
