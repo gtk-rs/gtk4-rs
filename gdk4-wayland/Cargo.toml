@@ -18,8 +18,8 @@ dox = ["ffi/dox"]
 features = ["dox"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-wayland-sys"}
-gdk = {path = "../gdk4", package = "gdk4"}
+ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.2.0"}
+gdk = {path = "../gdk4", package = "gdk4", version = "0.2.0"}
 gio = {version = "0.14", features = ["v2_66"]}
 glib = {version = "0.14", features = ["v2_66"]}
 libc = "0.2"

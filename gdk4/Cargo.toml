@@ -24,7 +24,7 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = "0.14"
-ffi = {package = "gdk4-sys", path = "./sys"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.2.0"}
 gdk-pixbuf = "0.14"
 gio = {version = "0.14", features = ["v2_66"]}
 glib = {version = "0.14", features = ["v2_66"]}

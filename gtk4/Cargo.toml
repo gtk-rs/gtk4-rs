@@ -25,16 +25,16 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = "0.14"
-ffi = {package = "gtk4-sys", path = "./sys"}
+ffi = {package = "gtk4-sys", path = "./sys", version = "0.2.0"}
 field-offset = "0.3"
 futures-channel = "0.3"
-gdk = {package = "gdk4", path = "../gdk4"}
+gdk = {package = "gdk4", path = "../gdk4", version = "0.2.0"}
 gdk-pixbuf = "0.14"
 gio = {version = "0.14", features = ["v2_66"]}
 glib = {version = "0.14", features = ["v2_66"]}
 graphene = {package = "graphene-rs", version = "0.14"}
-gsk = {package = "gsk4", path = "../gsk4"}
-gtk4-macros = {path = "../gtk4-macros"}
+gsk = {package = "gsk4", path = "../gsk4", version = "0.2.0"}
+gtk4-macros = {path = "../gtk4-macros", version = "0.2.0"}
 libc = "0.2"
 once_cell = "1.0"
 pango = {version = "0.14", features = ["v1_46"]}
