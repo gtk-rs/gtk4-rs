@@ -34,6 +34,7 @@ version = "0.14"
 
 [dependencies.gdk4-sys]
 path = "../../gdk4/sys"
+version = "0.2.0"
 
 [dependencies.glib-sys]
 version = "0.14"
