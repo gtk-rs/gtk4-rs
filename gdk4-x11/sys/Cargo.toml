@@ -30,7 +30,7 @@ x11 = "2.18"
 path = "../../gdk4/sys"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
+version = "0.14"
 
 [build-dependencies]
 system-deps = "3"

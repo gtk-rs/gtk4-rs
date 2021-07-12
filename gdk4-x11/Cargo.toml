@@ -20,8 +20,8 @@ features = ["dox"]
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-x11-sys"}
 gdk = {path = "../gdk4", package = "gdk4"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
+gio = {version = "0.14", features = ["v2_66"]}
+glib = {version = "0.14", features = ["v2_66"]}
 libc = "0.2"
 x11 = "2.18"
 

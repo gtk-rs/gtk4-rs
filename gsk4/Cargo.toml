@@ -25,13 +25,13 @@ features = ["dox"]
 
 [dependencies]
 bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core"}
+cairo-rs = "0.14"
 ffi = {package = "gsk4-sys", path = "./sys"}
 gdk = {package = "gdk4", path = "../gdk4"}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
-graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core"}
+glib = {version = "0.14", features = ["v2_66"]}
+graphene = {package = "graphene-rs", version = "0.14"}
 libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v1_46"]}
+pango = {version = "0.14", features = ["v1_46"]}
 
 [dev-dependencies]
 gir-format-check = "^0.1"
