@@ -429,7 +429,10 @@ name = "Gdk.Drop"
 status = "generate"
     [[object.function]]
     name = "read_async"
-    manual = true # const ptr
+    manual = true # don't require Send
+    [[object.function]]
+    name = "read_value_async"
+    manual = true # don't require Send
 
 [[object]]
 name = "Gdk.Event"
