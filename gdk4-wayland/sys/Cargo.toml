@@ -2,7 +2,7 @@
 authors = ["The gtk-rs Project Developers"]
 build = "build.rs"
 description = "FFI bindings of GDK4 Wayland"
-documentation = "https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland_sys/"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_wayland_sys/"
 edition = "2018"
 homepage = "http://gtk-rs.org/"
 keywords = ["gdk4", "gdk4-wayland", "ffi", "gtk-rs", "gnome"]
