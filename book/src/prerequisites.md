@@ -17,11 +17,9 @@ Now create a new project by executing:
 cargo new my-gtk-app
 ```
 
-Add the following lines to your `Cargo.toml`.
+Add the following lines to your dependencies in `Cargo.toml`.
 ```toml
-[dependencies.gtk]
-version = "0.1"
-package = "gtk4"
+gtk = { version = "0.1", package = "gtk4" }
 ```
 
 Now you can run your application by executing:

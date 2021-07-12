@@ -4,13 +4,12 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-once_cell = "1"
+gtk = { path = "../../gtk4", package = "gtk4" }
 log = "0.4"
+once_cell = "1.0"
 pretty_env_logger = "0.4"
-
-[dependencies.gtk]
-path = "../../gtk4"
-package = "gtk4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 
 # gobject_memory_management
 [[bin]]
@@ -142,6 +141,11 @@ path = "settings/1/main.rs"
 name = "settings_2"
 path = "settings/2/main.rs"
 
+# todo_app
+[[bin]]
+name = "todo_app_1"
+path = "todo_app/1/main.rs"
+
 # widgets
 [[bin]]
 name = "widgets_1"
@@ -150,4 +154,3 @@ path = "widgets/1/main.rs"
 [[bin]]
 name = "widgets_2"
 path = "widgets/2/main.rs"
-
