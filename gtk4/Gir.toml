@@ -1238,10 +1238,6 @@ trust_return_value_nullability = false
     name = "get_icon_sizes"
     ignore = true # TODO: implement me
     # TODO gtk3 ignored some more array functions
-    [[object.function]]
-    name = "set_resource_path"
-    # ToGlibPtr<'_, *const *const i8>` is not implemented for `str`
-    manual = true
 
 [[object]]
 name = "Gtk.IconView"
