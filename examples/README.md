@@ -9,6 +9,7 @@ Consists of various examples to get familiar with writing GTK 4 applications usi
 - [Clipboard](./clipboard/)
 - [CSS](./css/)
 - [Custom Application](./custom_application/)
+- [Custom Buildable](./custom_buildable/)
 - [Custom Editable](./custom_editable/)
 - [Custom Layout Manager](./custom_layout_manager/)
 - [Custom Orientable](./custom_orientable/)
