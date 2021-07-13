@@ -1376,6 +1376,15 @@
 <span id="1303">1303</span>
 <span id="1304">1304</span>
 <span id="1305">1305</span>
+<span id="1306">1306</span>
+<span id="1307">1307</span>
+<span id="1308">1308</span>
+<span id="1309">1309</span>
+<span id="1310">1310</span>
+<span id="1311">1311</span>
+<span id="1312">1312</span>
+<span id="1313">1313</span>
+<span id="1314">1314</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -2672,10 +2681,19 @@
 {
     <span class="attribute">#[<span class="ident">track_caller</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
-        <span class="kw">unsafe</span> {
-            <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::from_glib_none</span>(<span class="self">self</span>.<span class="ident">ptr</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;Failed to retrieve template child. Please check that it has been bound.&quot;</span>)
-        }
+        <span class="self">self</span>.<span class="ident">try_get</span>()
+            .<span class="ident">expect</span>(<span class="string">&quot;Failed to retrieve template child. Please check that it has been bound.&quot;</span>)
+    }
+
+    <span class="doccomment">/// Determines if the child has been bound. This is primarily</span>
+    <span class="doccomment">/// useful for implementing the [`Buildable`][`crate::Buildable`] interface.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_bound</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="op">!</span><span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">is_null</span>()
+    }
+
+    <span class="doccomment">/// Returns Some(child) if the widget has been bound.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> { <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::from_glib_none</span>(<span class="self">self</span>.<span class="ident">ptr</span>) }
     }
 }
 
