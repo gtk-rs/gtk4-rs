@@ -68,10 +68,16 @@ status = "generate"
     [[object.function]]
     name = "get_wl_seat"
     manual = true
+    [[object.function]]
+    name = "get_xkb_keymap"
+    manual = true
 
 [[object]]
 name = "GdkWayland.WaylandDisplay"
 status = "generate"
+    [[object.function]]
+    name = "get_egl_display"
+    manual = true
     [[object.function]]
     name = "get_wl_compositor"
     manual = true

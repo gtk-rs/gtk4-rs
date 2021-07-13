@@ -1457,6 +1457,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkPasswordEntryBufferClass",
+        Layout {
+            size: size_of::<GtkPasswordEntryBufferClass>(),
+            alignment: align_of::<GtkPasswordEntryBufferClass>(),
+        },
+    ),
+    (
         "GtkPickFlags",
         Layout {
             size: size_of::<GtkPickFlags>(),
@@ -2585,6 +2592,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_BUILDER_OBJECTS", "65536"),
     ("(guint) GTK_DEBUG_CONSTRAINTS", "32768"),
     ("(guint) GTK_DEBUG_GEOMETRY", "16"),
+    ("(guint) GTK_DEBUG_ICONFALLBACK", "262144"),
     ("(guint) GTK_DEBUG_ICONTHEME", "32"),
     ("(guint) GTK_DEBUG_INTERACTIVE", "1024"),
     ("(guint) GTK_DEBUG_KEYBINDINGS", "4"),
@@ -2696,6 +2704,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_INPUT_PURPOSE_PIN", "9"),
     ("(gint) GTK_INPUT_PURPOSE_TERMINAL", "10"),
     ("(gint) GTK_INPUT_PURPOSE_URL", "5"),
+    ("GTK_INVALID_LIST_POSITION", "4294967295"),
     ("(gint) GTK_JUSTIFY_CENTER", "2"),
     ("(gint) GTK_JUSTIFY_FILL", "3"),
     ("(gint) GTK_JUSTIFY_LEFT", "0"),

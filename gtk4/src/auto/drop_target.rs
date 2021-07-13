@@ -51,6 +51,15 @@ impl DropTarget {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_drop_target_get_current_drop")]
+    #[doc(alias = "get_current_drop")]
+    pub fn current_drop(&self) -> Option<gdk::Drop> {
+        unsafe { from_glib_none(ffi::gtk_drop_target_get_current_drop(self.to_glib_none().0)) }
+    }
+
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gtk_drop_target_get_drop")]
     #[doc(alias = "get_drop")]
     pub fn drop(&self) -> Option<gdk::Drop> {
@@ -225,6 +234,32 @@ impl DropTarget {
         }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "current-drop")]
+    pub fn connect_current_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_current_drop_trampoline<F: Fn(&DropTarget) + 'static>(
+            this: *mut ffi::GtkDropTarget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::current-drop\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_current_drop_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "drop")]
     pub fn connect_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_drop_trampoline<F: Fn(&DropTarget) + 'static>(

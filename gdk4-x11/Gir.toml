@@ -103,6 +103,9 @@ generate_builder = true
 name = "GdkX11.X11Display"
 status = "generate"
     [[object.function]]
+    name = "get_egl_display"
+    manual = true
+    [[object.function]]
     name = "get_xdisplay"
     manual = true
     [[object.function]]

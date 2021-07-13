@@ -14,6 +14,9 @@ use crate::Popover;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+use glib::object::ObjectExt;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -46,6 +49,18 @@ impl MenuButton {
     /// This method returns an instance of [`MenuButtonBuilder`] which can be used to create [`MenuButton`] objects.
     pub fn builder() -> MenuButtonBuilder {
         MenuButtonBuilder::default()
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_menu_button_get_always_show_arrow")]
+    #[doc(alias = "get_always_show_arrow")]
+    pub fn must_always_show_arrow(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_menu_button_get_always_show_arrow(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "gtk_menu_button_get_direction")]
@@ -84,6 +99,14 @@ impl MenuButton {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_menu_button_get_primary")]
+    #[doc(alias = "get_primary")]
+    pub fn is_primary(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_menu_button_get_primary(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_menu_button_get_use_underline")]
     #[doc(alias = "get_use_underline")]
     pub fn uses_underline(&self) -> bool {
@@ -105,6 +128,18 @@ impl MenuButton {
     pub fn popup(&self) {
         unsafe {
             ffi::gtk_menu_button_popup(self.to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_menu_button_set_always_show_arrow")]
+    pub fn set_always_show_arrow(&self, always_show_arrow: bool) {
+        unsafe {
+            ffi::gtk_menu_button_set_always_show_arrow(
+                self.to_glib_none().0,
+                always_show_arrow.into_glib(),
+            );
         }
     }
 
@@ -185,6 +220,15 @@ impl MenuButton {
         }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_menu_button_set_primary")]
+    pub fn set_primary(&self, primary: bool) {
+        unsafe {
+            ffi::gtk_menu_button_set_primary(self.to_glib_none().0, primary.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_menu_button_set_use_underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
@@ -192,6 +236,68 @@ impl MenuButton {
                 self.to_glib_none().0,
                 use_underline.into_glib(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "activate")]
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn emit_activate(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
+                .emit_by_name("activate", &[])
+                .unwrap()
+        };
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "always-show-arrow")]
+    pub fn connect_always_show_arrow_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_always_show_arrow_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::always-show-arrow\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_always_show_arrow_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -333,6 +439,31 @@ impl MenuButton {
         }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "primary")]
+    pub fn connect_primary_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_primary_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::primary\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_primary_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "use-underline")]
     pub fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -369,12 +500,18 @@ impl Default for MenuButton {
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct MenuButtonBuilder {
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    always_show_arrow: Option<bool>,
     direction: Option<ArrowType>,
     has_frame: Option<bool>,
     icon_name: Option<String>,
     label: Option<String>,
     menu_model: Option<gio::MenuModel>,
     popover: Option<Popover>,
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    primary: Option<bool>,
     use_underline: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -419,6 +556,10 @@ impl MenuButtonBuilder {
     /// Build the [`MenuButton`].
     pub fn build(self) -> MenuButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v4_4", feature = "dox"))]
+        if let Some(ref always_show_arrow) = self.always_show_arrow {
+            properties.push(("always-show-arrow", always_show_arrow));
+        }
         if let Some(ref direction) = self.direction {
             properties.push(("direction", direction));
         }
@@ -436,6 +577,10 @@ impl MenuButtonBuilder {
         }
         if let Some(ref popover) = self.popover {
             properties.push(("popover", popover));
+        }
+        #[cfg(any(feature = "v4_4", feature = "dox"))]
+        if let Some(ref primary) = self.primary {
+            properties.push(("primary", primary));
         }
         if let Some(ref use_underline) = self.use_underline {
             properties.push(("use-underline", use_underline));
@@ -534,6 +679,13 @@ impl MenuButtonBuilder {
             .expect("Failed to create an instance of MenuButton")
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn always_show_arrow(mut self, always_show_arrow: bool) -> Self {
+        self.always_show_arrow = Some(always_show_arrow);
+        self
+    }
+
     pub fn direction(mut self, direction: ArrowType) -> Self {
         self.direction = Some(direction);
         self
@@ -561,6 +713,13 @@ impl MenuButtonBuilder {
 
     pub fn popover<P: IsA<Popover>>(mut self, popover: &P) -> Self {
         self.popover = Some(popover.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn primary(mut self, primary: bool) -> Self {
+        self.primary = Some(primary);
         self
     }
 

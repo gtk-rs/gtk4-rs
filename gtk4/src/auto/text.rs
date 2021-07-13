@@ -62,6 +62,23 @@ impl Text {
         TextBuilder::default()
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_text_compute_cursor_extents")]
+    pub fn compute_cursor_extents(&self, position: usize) -> (graphene::Rect, graphene::Rect) {
+        unsafe {
+            let mut strong = graphene::Rect::uninitialized();
+            let mut weak = graphene::Rect::uninitialized();
+            ffi::gtk_text_compute_cursor_extents(
+                self.to_glib_none().0,
+                position,
+                strong.to_glib_none_mut().0,
+                weak.to_glib_none_mut().0,
+            );
+            (strong, weak)
+        }
+    }
+
     #[doc(alias = "gtk_text_get_activates_default")]
     #[doc(alias = "get_activates_default")]
     pub fn activates_default(&self) -> bool {

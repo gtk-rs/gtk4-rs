@@ -41,11 +41,11 @@ impl MediaFile {
 
     #[doc(alias = "gtk_media_file_new_for_filename")]
     #[doc(alias = "new_for_filename")]
-    pub fn for_filename(filename: &str) -> MediaFile {
+    pub fn for_filename<P: AsRef<std::path::Path>>(filename: P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_media_file_new_for_filename(
-                filename.to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
             ))
         }
     }
@@ -97,7 +97,7 @@ pub trait MediaFileExt: 'static {
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
 
     #[doc(alias = "gtk_media_file_set_filename")]
-    fn set_filename(&self, filename: Option<&str>);
+    fn set_filename<P: AsRef<std::path::Path>>(&self, filename: P);
 
     #[doc(alias = "gtk_media_file_set_input_stream")]
     fn set_input_stream<P: IsA<gio::InputStream>>(&self, stream: Option<&P>);
@@ -140,11 +140,11 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    fn set_filename(&self, filename: Option<&str>) {
+    fn set_filename<P: AsRef<std::path::Path>>(&self, filename: P) {
         unsafe {
             ffi::gtk_media_file_set_filename(
                 self.as_ref().to_glib_none().0,
-                filename.to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
             );
         }
     }

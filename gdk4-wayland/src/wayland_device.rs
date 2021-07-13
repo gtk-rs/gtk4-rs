@@ -5,6 +5,8 @@ use glib::translate::ToGlibPtr;
 use wayland_client::protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat};
 use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+use xkb::Keymap;
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
@@ -31,6 +33,21 @@ impl WaylandDevice {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_wayland_device_get_xkb_keymap")]
+    #[doc(alias = "get_xkb_keymap")]
+    pub fn xkb_keymap(&self) -> Option<Keymap> {
+        unsafe {
+            let ptr = ffi::gdk_wayland_device_get_xkb_keymap(self.to_glib_none().0);
+            if ptr.is_null() {
+                None
+            } else {
+                Some(Keymap::from_ptr(ptr))
+            }
         }
     }
 }

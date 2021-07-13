@@ -802,6 +802,7 @@ pub const GTK_ACCESSIBLE_VALUE_UNDEFINED: c_int = -1;
 pub const GTK_IM_MODULE_EXTENSION_POINT_NAME: *const c_char =
     b"gtk-im-module\0" as *const u8 as *const c_char;
 pub const GTK_INPUT_ERROR: c_int = -1;
+pub const GTK_INVALID_LIST_POSITION: c_int = 4294967295;
 pub const GTK_LEVEL_BAR_OFFSET_FULL: *const c_char = b"full\0" as *const u8 as *const c_char;
 pub const GTK_LEVEL_BAR_OFFSET_HIGH: *const c_char = b"high\0" as *const u8 as *const c_char;
 pub const GTK_LEVEL_BAR_OFFSET_LOW: *const c_char = b"low\0" as *const u8 as *const c_char;
@@ -918,6 +919,7 @@ pub const GTK_DEBUG_SNAPSHOT: GtkDebugFlags = 16384;
 pub const GTK_DEBUG_CONSTRAINTS: GtkDebugFlags = 32768;
 pub const GTK_DEBUG_BUILDER_OBJECTS: GtkDebugFlags = 65536;
 pub const GTK_DEBUG_A11Y: GtkDebugFlags = 131072;
+pub const GTK_DEBUG_ICONFALLBACK: GtkDebugFlags = 262144;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -3382,6 +3384,20 @@ pub struct GtkPaperSize(c_void);
 impl ::std::fmt::Debug for GtkPaperSize {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPaperSize @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GtkPasswordEntryBufferClass {
+    pub parent_class: GtkEntryBufferClass,
+}
+
+impl ::std::fmt::Debug for GtkPasswordEntryBufferClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPasswordEntryBufferClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -6651,6 +6667,16 @@ pub struct GtkPasswordEntry(c_void);
 impl ::std::fmt::Debug for GtkPasswordEntry {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPasswordEntry @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkPasswordEntryBuffer(c_void);
+
+impl ::std::fmt::Debug for GtkPasswordEntryBuffer {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPasswordEntryBuffer @ {:p}", self))
             .finish()
     }
 }
@@ -10804,6 +10830,9 @@ extern "C" {
     pub fn gtk_drop_target_get_type() -> GType;
     pub fn gtk_drop_target_new(type_: GType, actions: gdk::GdkDragAction) -> *mut GtkDropTarget;
     pub fn gtk_drop_target_get_actions(self_: *mut GtkDropTarget) -> gdk::GdkDragAction;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_drop_target_get_current_drop(self_: *mut GtkDropTarget) -> *mut gdk::GdkDrop;
     pub fn gtk_drop_target_get_drop(self_: *mut GtkDropTarget) -> *mut gdk::GdkDrop;
     pub fn gtk_drop_target_get_formats(self_: *mut GtkDropTarget) -> *mut gdk::GdkContentFormats;
     pub fn gtk_drop_target_get_gtypes(
@@ -11301,6 +11330,9 @@ extern "C" {
     pub fn gtk_file_filter_add_mime_type(filter: *mut GtkFileFilter, mime_type: *const c_char);
     pub fn gtk_file_filter_add_pattern(filter: *mut GtkFileFilter, pattern: *const c_char);
     pub fn gtk_file_filter_add_pixbuf_formats(filter: *mut GtkFileFilter);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_file_filter_add_suffix(filter: *mut GtkFileFilter, suffix: *const c_char);
     pub fn gtk_file_filter_get_attributes(filter: *mut GtkFileFilter) -> *mut *const c_char;
     pub fn gtk_file_filter_get_name(filter: *mut GtkFileFilter) -> *const c_char;
     pub fn gtk_file_filter_set_name(filter: *mut GtkFileFilter, name: *const c_char);
@@ -11879,6 +11911,8 @@ extern "C" {
         text: *mut *mut c_char,
         cursor_index: *mut c_int,
     ) -> gboolean;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gtk_im_context_get_surrounding_with_selection(
         context: *mut GtkIMContext,
         text: *mut *mut c_char,
@@ -11897,6 +11931,8 @@ extern "C" {
         len: c_int,
         cursor_index: c_int,
     );
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gtk_im_context_set_surrounding_with_selection(
         context: *mut GtkIMContext,
         text: *const c_char,
@@ -11963,6 +11999,9 @@ extern "C" {
     pub fn gtk_icon_theme_get_resource_path(self_: *mut GtkIconTheme) -> *mut *mut c_char;
     pub fn gtk_icon_theme_get_search_path(self_: *mut GtkIconTheme) -> *mut *mut c_char;
     pub fn gtk_icon_theme_get_theme_name(self_: *mut GtkIconTheme) -> *mut c_char;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gtk_icon_theme_has_gicon(self_: *mut GtkIconTheme, gicon: *mut gio::GIcon) -> gboolean;
     pub fn gtk_icon_theme_has_icon(self_: *mut GtkIconTheme, icon_name: *const c_char) -> gboolean;
     pub fn gtk_icon_theme_lookup_by_gicon(
         self_: *mut GtkIconTheme,
@@ -12684,6 +12723,21 @@ extern "C" {
     pub fn gtk_media_stream_set_muted(self_: *mut GtkMediaStream, muted: gboolean);
     pub fn gtk_media_stream_set_playing(self_: *mut GtkMediaStream, playing: gboolean);
     pub fn gtk_media_stream_set_volume(self_: *mut GtkMediaStream, volume: c_double);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_media_stream_stream_ended(self_: *mut GtkMediaStream);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_media_stream_stream_prepared(
+        self_: *mut GtkMediaStream,
+        has_audio: gboolean,
+        has_video: gboolean,
+        seekable: gboolean,
+        duration: i64,
+    );
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_media_stream_stream_unprepared(self_: *mut GtkMediaStream);
     pub fn gtk_media_stream_unprepared(self_: *mut GtkMediaStream);
     pub fn gtk_media_stream_unrealize(self_: *mut GtkMediaStream, surface: *mut gdk::GdkSurface);
     pub fn gtk_media_stream_update(self_: *mut GtkMediaStream, timestamp: i64);
@@ -12693,15 +12747,27 @@ extern "C" {
     //=========================================================================
     pub fn gtk_menu_button_get_type() -> GType;
     pub fn gtk_menu_button_new() -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_menu_button_get_always_show_arrow(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_get_direction(menu_button: *mut GtkMenuButton) -> GtkArrowType;
     pub fn gtk_menu_button_get_has_frame(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_get_icon_name(menu_button: *mut GtkMenuButton) -> *const c_char;
     pub fn gtk_menu_button_get_label(menu_button: *mut GtkMenuButton) -> *const c_char;
     pub fn gtk_menu_button_get_menu_model(menu_button: *mut GtkMenuButton) -> *mut gio::GMenuModel;
     pub fn gtk_menu_button_get_popover(menu_button: *mut GtkMenuButton) -> *mut GtkPopover;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_menu_button_get_primary(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_get_use_underline(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_popdown(menu_button: *mut GtkMenuButton);
     pub fn gtk_menu_button_popup(menu_button: *mut GtkMenuButton);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_menu_button_set_always_show_arrow(
+        menu_button: *mut GtkMenuButton,
+        always_show_arrow: gboolean,
+    );
     pub fn gtk_menu_button_set_create_popup_func(
         menu_button: *mut GtkMenuButton,
         func: GtkMenuButtonCreatePopupFunc,
@@ -12717,6 +12783,9 @@ extern "C" {
         menu_model: *mut gio::GMenuModel,
     );
     pub fn gtk_menu_button_set_popover(menu_button: *mut GtkMenuButton, popover: *mut GtkWidget);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_menu_button_set_primary(menu_button: *mut GtkMenuButton, primary: gboolean);
     pub fn gtk_menu_button_set_use_underline(
         menu_button: *mut GtkMenuButton,
         use_underline: gboolean,
@@ -13227,6 +13296,16 @@ extern "C" {
         entry: *mut GtkPasswordEntry,
         show_peek_icon: gboolean,
     );
+
+    //=========================================================================
+    // GtkPasswordEntryBuffer
+    //=========================================================================
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_password_entry_buffer_get_type() -> GType;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_password_entry_buffer_new() -> *mut GtkEntryBuffer;
 
     //=========================================================================
     // GtkPicture
@@ -14935,6 +15014,14 @@ extern "C" {
     pub fn gtk_text_get_type() -> GType;
     pub fn gtk_text_new() -> *mut GtkWidget;
     pub fn gtk_text_new_with_buffer(buffer: *mut GtkEntryBuffer) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_text_compute_cursor_extents(
+        self_: *mut GtkText,
+        position: size_t,
+        strong: *mut graphene::graphene_rect_t,
+        weak: *mut graphene::graphene_rect_t,
+    );
     pub fn gtk_text_get_activates_default(self_: *mut GtkText) -> gboolean;
     pub fn gtk_text_get_attributes(self_: *mut GtkText) -> *mut pango::PangoAttrList;
     pub fn gtk_text_get_buffer(self_: *mut GtkText) -> *mut GtkEntryBuffer;
@@ -15386,12 +15473,18 @@ extern "C" {
         y: *mut c_int,
         height: *mut c_int,
     );
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_text_view_get_ltr_context(text_view: *mut GtkTextView) -> *mut pango::PangoContext;
     pub fn gtk_text_view_get_monospace(text_view: *mut GtkTextView) -> gboolean;
     pub fn gtk_text_view_get_overwrite(text_view: *mut GtkTextView) -> gboolean;
     pub fn gtk_text_view_get_pixels_above_lines(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_pixels_below_lines(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_pixels_inside_wrap(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_right_margin(text_view: *mut GtkTextView) -> c_int;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gtk_text_view_get_rtl_context(text_view: *mut GtkTextView) -> *mut pango::PangoContext;
     pub fn gtk_text_view_get_tabs(text_view: *mut GtkTextView) -> *mut pango::PangoTabArray;
     pub fn gtk_text_view_get_top_margin(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_visible_rect(

@@ -259,6 +259,8 @@ bitflags! {
         const BUILDER_OBJECTS = ffi::GTK_DEBUG_BUILDER_OBJECTS as u32;
         #[doc(alias = "GTK_DEBUG_A11Y")]
         const A11Y = ffi::GTK_DEBUG_A11Y as u32;
+        #[doc(alias = "GTK_DEBUG_ICONFALLBACK")]
+        const ICONFALLBACK = ffi::GTK_DEBUG_ICONFALLBACK as u32;
     }
 }
 

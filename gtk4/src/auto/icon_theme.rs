@@ -100,6 +100,18 @@ impl IconTheme {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "gtk_icon_theme_has_gicon")]
+    pub fn has_gicon<P: IsA<gio::Icon>>(&self, gicon: &P) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_icon_theme_has_gicon(
+                self.to_glib_none().0,
+                gicon.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_icon_theme_has_icon")]
     pub fn has_icon(&self, icon_name: &str) -> bool {
         unsafe {
@@ -151,6 +163,13 @@ impl IconTheme {
                 direction.into_glib(),
                 flags.into_glib(),
             ))
+        }
+    }
+
+    #[doc(alias = "gtk_icon_theme_set_resource_path")]
+    pub fn set_resource_path(&self, path: &[&str]) {
+        unsafe {
+            ffi::gtk_icon_theme_set_resource_path(self.to_glib_none().0, path.to_glib_none().0);
         }
     }
 

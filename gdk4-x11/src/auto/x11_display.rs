@@ -54,6 +54,29 @@ impl X11Display {
         }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_x11_display_get_egl_version")]
+    #[doc(alias = "get_egl_version")]
+    pub fn egl_version(&self) -> Option<(i32, i32)> {
+        unsafe {
+            let mut major = mem::MaybeUninit::uninit();
+            let mut minor = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gdk_x11_display_get_egl_version(
+                self.to_glib_none().0,
+                major.as_mut_ptr(),
+                minor.as_mut_ptr(),
+            ));
+            let major = major.assume_init();
+            let minor = minor.assume_init();
+            if ret {
+                Some((major, minor))
+            } else {
+                None
+            }
+        }
+    }
+
     #[doc(alias = "gdk_x11_display_get_glx_version")]
     #[doc(alias = "get_glx_version")]
     pub fn glx_version(&self) -> Option<(i32, i32)> {

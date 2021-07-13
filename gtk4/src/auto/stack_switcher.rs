@@ -8,6 +8,8 @@ use crate::Align;
 use crate::Buildable;
 use crate::ConstraintTarget;
 use crate::LayoutManager;
+use crate::Orientable;
+use crate::Orientation;
 use crate::Overflow;
 use crate::Stack;
 use crate::Widget;
@@ -25,7 +27,7 @@ use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "GtkStackSwitcher")]
-    pub struct StackSwitcher(Object<ffi::GtkStackSwitcher>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
+    pub struct StackSwitcher(Object<ffi::GtkStackSwitcher>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
         type_ => || ffi::gtk_stack_switcher_get_type(),
@@ -127,6 +129,7 @@ pub struct StackSwitcherBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    orientation: Option<Orientation>,
 }
 
 impl StackSwitcherBuilder {
@@ -232,6 +235,9 @@ impl StackSwitcherBuilder {
         }
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
+        }
+        if let Some(ref orientation) = self.orientation {
+            properties.push(("orientation", orientation));
         }
         glib::Object::new::<StackSwitcher>(&properties)
             .expect("Failed to create an instance of StackSwitcher")
@@ -389,6 +395,11 @@ impl StackSwitcherBuilder {
 
     pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
         self.accessible_role = Some(accessible_role);
+        self
+    }
+
+    pub fn orientation(mut self, orientation: Orientation) -> Self {
+        self.orientation = Some(orientation);
         self
     }
 }

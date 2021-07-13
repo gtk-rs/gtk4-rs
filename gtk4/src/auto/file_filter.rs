@@ -60,6 +60,15 @@ impl FileFilter {
         }
     }
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_file_filter_add_suffix")]
+    pub fn add_suffix(&self, suffix: &str) {
+        unsafe {
+            ffi::gtk_file_filter_add_suffix(self.to_glib_none().0, suffix.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_file_filter_get_attributes")]
     #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Vec<glib::GString> {

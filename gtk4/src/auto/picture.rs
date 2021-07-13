@@ -166,9 +166,12 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_filename")]
-    pub fn set_filename(&self, filename: Option<&str>) {
+    pub fn set_filename<P: AsRef<std::path::Path>>(&self, filename: P) {
         unsafe {
-            ffi::gtk_picture_set_filename(self.to_glib_none().0, filename.to_glib_none().0);
+            ffi::gtk_picture_set_filename(
+                self.to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
+            );
         }
     }
 

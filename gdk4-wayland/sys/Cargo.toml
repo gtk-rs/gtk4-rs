@@ -13,6 +13,9 @@ version = "0.2.0"
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "4.0.0"
+
+[package.metadata.system-deps.gtk4_wayland.v4_4]
+version = "4.4"
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -21,9 +24,14 @@ name = "gdk4_wayland_sys"
 
 [features]
 dox = []
+v4_4 = ["xkbcommon-sys"]
 
 [dependencies]
 libc = "0.2"
+
+[dependencies.xkbcommon-sys]
+version = "0.7"
+optional = true
 
 [dependencies.glib-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core.git"

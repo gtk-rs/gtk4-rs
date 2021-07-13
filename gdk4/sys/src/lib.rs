@@ -3944,6 +3944,9 @@ extern "C" {
         win_x: *mut c_double,
         win_y: *mut c_double,
     ) -> *mut GdkSurface;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gdk_device_get_timestamp(device: *mut GdkDevice) -> u32;
     pub fn gdk_device_get_vendor_id(device: *mut GdkDevice) -> *const c_char;
     pub fn gdk_device_has_bidi_layouts(device: *mut GdkDevice) -> gboolean;
 
