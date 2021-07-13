@@ -885,7 +885,7 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
     name = "print"
-    ignore = true
+    ignore = true # Same as CssSection::to_str
 
 [[object]]
 name = "Gtk.CustomFilter"
@@ -1822,8 +1822,7 @@ name = "Gtk.ShortcutAction"
 status = "generate"
     [[object.function]]
     name = "print"
-    ignore = true
-
+    ignore = true # Same as ShortcutAction::to_str
 
 [[object]]
 name = "Gtk.ShortcutsSection"
@@ -1838,10 +1837,10 @@ status = "generate"
 manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "print"
-    ignore = true
+    ignore = true # Same as ShortcutTrigger::to_str
     [[object.function]]
     name = "print_label"
-    ignore = true
+    ignore = true # Same as ShortcutTrigger::to_label
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic

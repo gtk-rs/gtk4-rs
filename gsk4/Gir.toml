@@ -142,7 +142,7 @@ status = "generate"
             nullable = false
     [[object.function]]
     name = "print"
-    ignore = true
+    ignore = true # Same as Transform::to_string
 
 [[object]]
 name = "Gsk.VulkanRenderer"

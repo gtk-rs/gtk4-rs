@@ -13,9 +13,6 @@ pub trait SurfaceExtManual: 'static {
         height: i32,
     ) -> Option<cairo::Surface>;
 
-    #[doc(alias = "gdk_surface_set_input_region")]
-    fn set_input_region(&self, region: &cairo::Region);
-
     #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool;
 }
@@ -34,15 +31,6 @@ impl<O: IsA<Surface>> SurfaceExtManual for O {
                 width,
                 height,
             ))
-        }
-    }
-
-    fn set_input_region(&self, region: &cairo::Region) {
-        unsafe {
-            ffi::gdk_surface_set_input_region(
-                self.as_ref().to_glib_none().0,
-                mut_override(region.to_glib_none().0),
-            );
         }
     }
 

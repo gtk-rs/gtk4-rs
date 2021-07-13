@@ -251,7 +251,7 @@ status = "generate"
     manual = true # remove once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3488 gets merged
     [[object.function]]
     name = "print"
-    ignore = true #mutability issue
+    ignore = true # Same as ContentFormats::to_string
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
@@ -364,7 +364,7 @@ final_type = false
 manual_traits = ["DisplayExtManual"]
     [[object.function]]
     name = "get_setting"
-    manual = true
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
     # Actually retrieves the setting in the provided argument
     bypass_auto_rename = true
     [[object.function]]
@@ -481,8 +481,9 @@ manual_traits = ["SurfaceExtManual"]
     doc_trait_name = "SurfaceExtManual"
     [[object.function]]
     name = "set_input_region"
-    manual = true #mutability issue
-    doc_trait_name = "SurfaceExtManual"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
     [[object.function]]
     name = "set_opaque_region"
         [[object.function.parameter]]

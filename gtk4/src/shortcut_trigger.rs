@@ -4,7 +4,6 @@ use crate::ShortcutTrigger;
 use glib::translate::*;
 use glib::IsA;
 
-
 pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
     fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering;
