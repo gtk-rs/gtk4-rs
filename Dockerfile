@@ -10,5 +10,4 @@ RUN tar -xf /tmp/gtk-4.2.1.tar.xz --directory /tmp
 WORKDIR /tmp/gtk-4.2.1
 RUN meson _build --prefix=/usr
 RUN ninja -C _build
-
 RUN ninja -C _build install
