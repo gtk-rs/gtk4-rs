@@ -14,7 +14,7 @@ pub trait SurfaceExtManual: 'static {
     ) -> Option<cairo::Surface>;
 
     #[doc(alias = "gdk_surface_set_input_region")]
-    fn set_input_region(&self);
+    fn set_input_region(&self, region: &cairo::Region);
 
     #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool;

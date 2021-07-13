@@ -2,7 +2,6 @@
 
 use crate::ContentFormats;
 use glib::translate::*;
-use std::fmt;
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_get_gtypes")]
@@ -27,26 +26,5 @@ impl ContentFormats {
             );
             FromGlibContainer::from_glib_none_num(mime_types, n_mime_types.assume_init() as usize)
         }
-    }
-
-    #[doc(alias = "gdk_content_formats_print")]
-    pub fn print(&self) -> Option<String> {
-        unsafe {
-            let mut string = String::uninitialized();
-            let ret =
-                ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
-            if from_glib(ret) {
-                Some(string)
-            } else {
-                None
-            }
-        }
-    }
-}
-
-impl fmt::Debug for ContentFormats {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.print())
     }
 }

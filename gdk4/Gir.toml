@@ -227,7 +227,6 @@ status = "generate"
 [[object]]
 name = "Gdk.ContentFormats"
 status = "generate"
-generate_display_trait = false
     [[object.function]]
     name = "new_for_gtype"
     rename = "for_type"
@@ -252,7 +251,7 @@ generate_display_trait = false
     manual = true # remove once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3488 gets merged
     [[object.function]]
     name = "print"
-    manual = true #mutability issue
+    ignore = true #mutability issue
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"

@@ -56,6 +56,7 @@ mod conic_gradient_node;
 mod container_node;
 mod cross_fade_node;
 mod debug_node;
+mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
 mod linear_gradient_node;

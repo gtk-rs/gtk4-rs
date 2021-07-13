@@ -3,14 +3,7 @@
 use crate::ShortcutTrigger;
 use glib::translate::*;
 use glib::IsA;
-use std::fmt;
 
-impl fmt::Debug for ShortcutTrigger {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.to_str())
-    }
-}
 
 pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
