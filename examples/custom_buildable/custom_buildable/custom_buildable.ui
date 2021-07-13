@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="CustomBuildable">
+    <child>
+      <object class="GtkBox" id="box_">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkBox" id="prefixes">
+            <property name="visible">False</property>
+            <property name="spacing">6</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Some Text</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="suffixes">
+            <property name="visible">False</property>
+            <property name="spacing">6</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

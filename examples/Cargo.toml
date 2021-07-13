@@ -45,6 +45,10 @@ name = "custom_application"
 path = "custom_application/main.rs"
 
 [[bin]]
+name = "custom_buildable"
+path = "custom_buildable/main.rs"
+
+[[bin]]
 name = "custom_editable"
 path = "custom_editable/main.rs"
 

@@ -1,0 +1,65 @@
+use gtk::prelude::*;
+use gtk::subclass::prelude::*;
+use gtk::{glib, CompositeTemplate};
+
+#[derive(Debug, Default, CompositeTemplate)]
+#[template(file = "custom_buildable.ui")]
+pub struct CustomBuildable {
+    #[template_child]
+    pub prefixes: TemplateChild<gtk::Box>,
+    #[template_child]
+    pub suffixes: TemplateChild<gtk::Box>,
+}
+
+#[glib::object_subclass]
+impl ObjectSubclass for CustomBuildable {
+    const NAME: &'static str = "CustomBuildable";
+    type Type = super::CustomBuildable;
+    type ParentType = gtk::Widget;
+    type Interfaces = (gtk::Buildable,);
+
+    fn class_init(klass: &mut Self::Class) {
+        Self::bind_template(klass);
+
+        // The layout manager determines how child widgets are laid out.
+        klass.set_layout_manager_type::<gtk::BinLayout>();
+    }
+
+    fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+        obj.init_template();
+    }
+}
+
+impl ObjectImpl for CustomBuildable {
+    // Needed for direct subclasses of GtkWidget;
+    // Here you need to unparent all direct children
+    // of your template.
+    fn dispose(&self, buildable: &Self::Type) {
+        while let Some(child) = buildable.first_child() {
+            child.unparent();
+        }
+    }
+}
+
+impl WidgetImpl for CustomBuildable {}
+
+impl BuildableImpl for CustomBuildable {
+    fn add_child(
+        &self,
+        buildable: &Self::Type,
+        builder: &gtk::Builder,
+        child: &glib::Object,
+        type_: Option<&str>,
+    ) {
+        // We first check if the main child `box_` has already been bound.
+        if buildable.first_child().is_none() {
+            self.parent_add_child(buildable, builder, child, type_);
+        } else if Some("prefix") == type_ {
+            // Check if the child was added using `<child type="prefix">`
+            buildable.add_prefix(child.downcast_ref::<gtk::Widget>().unwrap());
+        } else if None == type_ {
+            // Normal children
+            buildable.add_suffix(child.downcast_ref::<gtk::Widget>().unwrap());
+        };
+    }
+}
