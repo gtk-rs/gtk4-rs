@@ -89,13 +89,6 @@ impl ContentFormats {
         }
     }
 
-    #[doc(alias = "gdk_content_formats_print")]
-    pub fn print(&self, string: &mut glib::String) {
-        unsafe {
-            ffi::gdk_content_formats_print(self.to_glib_none().0, string.to_glib_none_mut().0);
-        }
-    }
-
     #[doc(alias = "gdk_content_formats_to_string")]
     #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {

@@ -63,13 +63,6 @@ impl CssSection {
         }
     }
 
-    #[doc(alias = "gtk_css_section_print")]
-    pub fn print(&self, string: &mut glib::String) {
-        unsafe {
-            ffi::gtk_css_section_print(self.to_glib_none().0, string.to_glib_none_mut().0);
-        }
-    }
-
     #[doc(alias = "gtk_css_section_to_string")]
     #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {

@@ -101,6 +101,15 @@ generate_builder = true
     [[object.function]]
     name = "format_args"
     ignore = true # TODO: fix me once varargs are supported
+    [[object.function]]
+    name = "get_arg_vec2"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+    [[object.function]]
+    name = "get_arg_vec3"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+    [[object.function]]
+    name = "get_arg_vec4"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
 
 
 [[object]]
@@ -131,6 +140,9 @@ status = "generate"
         [[object.function.parameter]]
             name = "second"
             nullable = false
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as Transform::to_string
 
 [[object]]
 name = "Gsk.VulkanRenderer"

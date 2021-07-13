@@ -47,9 +47,6 @@ pub trait ShortcutActionExt: 'static {
         args: Option<&glib::Variant>,
     ) -> bool;
 
-    #[doc(alias = "gtk_shortcut_action_print")]
-    fn print(&self, string: &mut glib::String);
-
     #[doc(alias = "gtk_shortcut_action_to_string")]
     #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString;
@@ -69,15 +66,6 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
                 widget.as_ref().to_glib_none().0,
                 args.to_glib_none().0,
             ))
-        }
-    }
-
-    fn print(&self, string: &mut glib::String) {
-        unsafe {
-            ffi::gtk_shortcut_action_print(
-                self.as_ref().to_glib_none().0,
-                string.to_glib_none_mut().0,
-            );
         }
     }
 

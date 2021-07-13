@@ -128,7 +128,7 @@ pub trait SurfaceExt: 'static {
     fn set_device_cursor<P: IsA<Device>>(&self, device: &P, cursor: &Cursor);
 
     #[doc(alias = "gdk_surface_set_input_region")]
-    fn set_input_region(&self, region: &mut cairo::Region);
+    fn set_input_region(&self, region: &cairo::Region);
 
     #[doc(alias = "gdk_surface_set_opaque_region")]
     fn set_opaque_region(&self, region: Option<&cairo::Region>);
@@ -320,11 +320,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn set_input_region(&self, region: &mut cairo::Region) {
+    fn set_input_region(&self, region: &cairo::Region) {
         unsafe {
             ffi::gdk_surface_set_input_region(
                 self.as_ref().to_glib_none().0,
-                region.to_glib_none_mut().0,
+                mut_override(region.to_glib_none().0),
             );
         }
     }

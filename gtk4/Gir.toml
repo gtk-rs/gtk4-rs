@@ -184,7 +184,6 @@ generate = [
     "Gtk.Separator",
     "Gtk.Settings",
     "Gtk.Shortcut",
-    "Gtk.ShortcutAction",
     "Gtk.ShortcutActionFlags",
     "Gtk.ShortcutController",
     "Gtk.ShortcutLabel",
@@ -883,6 +882,9 @@ status = "generate"
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as CssSection::to_str
 
 [[object]]
 name = "Gtk.CustomFilter"
@@ -1820,6 +1822,13 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.ShortcutAction"
+status = "generate"
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as ShortcutAction::to_str
+
+[[object]]
 name = "Gtk.ShortcutsSection"
 status = "generate"
     [[object.signal]]
@@ -1830,6 +1839,12 @@ status = "generate"
 name = "Gtk.ShortcutTrigger"
 status = "generate"
 manual_traits = ["ShortcutTriggerExtManual"]
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as ShortcutTrigger::to_str
+    [[object.function]]
+    name = "print_label"
+    ignore = true # Same as ShortcutTrigger::to_label
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic

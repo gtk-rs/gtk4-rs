@@ -14,6 +14,9 @@ pub trait DisplayExtManual: 'static {
         group: i32,
     ) -> Option<(Key, i32, i32, ModifierType)>;
 
+    #[doc(alias = "gdk_display_get_setting")]
+    fn get_setting(&self, name: &str) -> Option<glib::Value>;
+
     #[doc(alias = "gdk_display_map_keyval")]
     fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>>;
 
@@ -52,6 +55,22 @@ impl<O: IsA<Display>> DisplayExtManual for O {
                 let level = level.assume_init();
                 let consumed = consumed.assume_init();
                 Some((keyval, effective_group, level, from_glib(consumed)))
+            } else {
+                None
+            }
+        }
+    }
+
+    fn get_setting(&self, name: &str) -> Option<glib::Value> {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            let ret = ffi::gdk_display_get_setting(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                value.to_glib_none_mut().0,
+            );
+            if from_glib(ret) {
+                Some(value)
             } else {
                 None
             }

@@ -249,6 +249,9 @@ status = "generate"
     [[object.function]]
     name = "get_mime_types"
     manual = true # remove once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3488 gets merged
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as ContentFormats::to_string
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
@@ -361,6 +364,7 @@ final_type = false
 manual_traits = ["DisplayExtManual"]
     [[object.function]]
     name = "get_setting"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
     # Actually retrieves the setting in the provided argument
     bypass_auto_rename = true
     [[object.function]]
@@ -478,6 +482,11 @@ manual_traits = ["SurfaceExtManual"]
     name = "create_similar_surface"
     manual = true
     doc_trait_name = "SurfaceExtManual"
+    [[object.function]]
+    name = "set_input_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
     [[object.function]]
     name = "set_opaque_region"
         [[object.function.parameter]]

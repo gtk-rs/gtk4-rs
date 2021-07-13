@@ -62,13 +62,6 @@ impl Transform {
         unsafe { from_glib_full(ffi::gsk_transform_perspective(self.to_glib_full(), depth)) }
     }
 
-    #[doc(alias = "gsk_transform_print")]
-    pub fn print(&self, string: &mut glib::String) {
-        unsafe {
-            ffi::gsk_transform_print(self.to_glib_none().0, string.to_glib_none_mut().0);
-        }
-    }
-
     #[doc(alias = "gsk_transform_rotate")]
     pub fn rotate(&self, angle: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_rotate(self.to_glib_full(), angle)) }
