@@ -1298,6 +1298,12 @@ where
                 .expect("Failed to retrieve template child. Please check that it has been bound.")
         }
     }
+
+    /// Determines if the child has been bound. This is primarily
+    /// useful for implementing the [`Buildable`][`crate::Buildable`] interface.
+    pub fn is_bound(&self) -> bool {
+        !self.ptr.is_null()
+    }
 }
 
 pub trait CompositeTemplate: WidgetImpl {
