@@ -20,10 +20,15 @@ features = ["dox"]
 name = "gdk4_wayland_sys"
 
 [features]
-dox = []
+dox = ["xkbcommon-sys"]
+v4_4 = ["xkbcommon-sys"]
 
 [dependencies]
 libc = "0.2"
+
+[dependencies.xkbcommon-sys]
+version = "0.7"
+optional = true
 
 [dependencies.glib-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
