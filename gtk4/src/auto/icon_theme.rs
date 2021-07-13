@@ -166,6 +166,13 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "gtk_icon_theme_set_resource_path")]
+    pub fn set_resource_path(&self, path: &[&str]) {
+        unsafe {
+            ffi::gtk_icon_theme_set_resource_path(self.to_glib_none().0, path.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_icon_theme_set_search_path")]
     pub fn set_search_path(&self, path: &[&std::path::Path]) {
         unsafe {
