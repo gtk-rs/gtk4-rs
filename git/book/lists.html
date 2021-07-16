@@ -274,6 +274,76 @@ impl IntegerObject {
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
+<p>The <code>imp</code> module can stay the same apart from the rename from <code>CustomButton</code> to <code>IntegerObject</code>.</p>
+<p><span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+</span><span class="boring">use gtk::glib;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use once_cell::sync::Lazy;
+</span><span class="boring">
+</span><span class="boring">use std::cell::Cell;
+</span><span class="boring">
+</span>// Object holding the state
+#[derive(Default)]
+pub struct IntegerObject {
+    number: Cell&lt;i32&gt;,
+}
+<span class="boring">
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for IntegerObject {
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppIntegerObject&quot;;
+</span><span class="boring">    type Type = super::IntegerObject;
+</span><span class="boring">    type ParentType = glib::Object;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all GObjects
+</span><span class="boring">impl ObjectImpl for IntegerObject {
+</span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
+</span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
+</span><span class="boring">            vec![ParamSpec::new_int(
+</span><span class="boring">                // Name
+</span><span class="boring">                &quot;number&quot;,
+</span><span class="boring">                // Nickname
+</span><span class="boring">                &quot;number&quot;,
+</span><span class="boring">                // Short description
+</span><span class="boring">                &quot;number&quot;,
+</span><span class="boring">                // Minimum value
+</span><span class="boring">                i32::MIN,
+</span><span class="boring">                // Maximum value
+</span><span class="boring">                i32::MAX,
+</span><span class="boring">                // Default value
+</span><span class="boring">                0,
+</span><span class="boring">                // The property can be read and written to
+</span><span class="boring">                ParamFlags::READWRITE,
+</span><span class="boring">            )]
+</span><span class="boring">        });
+</span><span class="boring">        PROPERTIES.as_ref()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
+</span><span class="boring">        match pspec.name() {
+</span><span class="boring">            &quot;number&quot; =&gt; {
+</span><span class="boring">                let input_number = value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">                self.number.replace(input_number);
+</span><span class="boring">            }
+</span><span class="boring">            _ =&gt; unimplemented!(),
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn property(&amp;self, _obj: &amp;Self::Type, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
+</span><span class="boring">        match pspec.name() {
+</span><span class="boring">            &quot;number&quot; =&gt; self.number.get().to_value(),
+</span><span class="boring">            _ =&gt; unimplemented!(),
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// Please ignore this line
+</span><span class="boring">// It is only there to make mdbook happy
+</span><span class="boring">fn main() {}
+</span></code></pre></pre>
 <p>We now fill the model with integers from 0 to 100 000.
 Please note that the models only takes care of the data.
 Neither <code>Label</code> nor any other widget is mentioned here.</p>
