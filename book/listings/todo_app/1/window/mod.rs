@@ -23,27 +23,16 @@ impl Window {
         // Create new window
         let window: Window = Object::new(&[("application", app)]).expect("Failed to create Window");
 
-        // Setup model
+        // Setup
         window.setup_model();
-
-        // Restore data from backup
         window.restore_data();
-
-        // Setup factory
         window.setup_factory();
-
-        // Setup callbacks
         window.setup_callbacks();
-
-        // Setup shortcut window
         window.setup_shortcut_window();
-
-        // Setup filter action
         window.setup_filter_action();
-
-        // Setup shortcuts
         Self::setup_shortcuts(app);
 
+        // Return window
         window
     }
 
@@ -176,7 +165,9 @@ impl Window {
     fn setup_shortcut_window(&self) {
         // Get `ShortcutsWindow` via `gtk::Builder`
         let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
-        let shortcuts = builder.object("shortcuts").unwrap();
+        let shortcuts = builder
+            .object("shortcuts")
+            .expect("Could not get object `shortcuts` from builder.");
 
         // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
