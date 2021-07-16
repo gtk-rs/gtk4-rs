@@ -6,11 +6,13 @@ use once_cell::sync::Lazy;
 
 use std::cell::Cell;
 
+// ANCHOR: integer_object
 // Object holding the state
 #[derive(Default)]
 pub struct IntegerObject {
     number: Cell<i32>,
 }
+// ANCHOR_END: integer_object
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]

@@ -62,6 +62,18 @@ We only need to let it inherit from GObject instead of `Button` and let the `new
 # fn main() {}
 ```
 
+The `imp` module can stay the same apart from the rename from `CustomButton` to `IntegerObject`.
+
+<span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/lists/2/integer_object/imp.rs:integer_object}}
+#
+# // Please ignore this line
+# // It is only there to make mdbook happy
+# fn main() {}
+```
+
 We now fill the model with integers from 0 to 100 000.
 Please note that the models only takes care of the data.
 Neither `Label` nor any other widget is mentioned here.
