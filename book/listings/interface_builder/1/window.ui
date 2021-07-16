@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="title">My GTK App</property>
+    <child>
+      <object class="GtkButton" id ="button">
+        <property name="label">Press me!</property>
+        <property name="margin_top">12</property>
+        <property name="margin_bottom">12</property>
+        <property name="margin_start">12</property>
+        <property name="margin_end">12</property>  
+      </object>
+    </child>
+  </object>
+</interface>
