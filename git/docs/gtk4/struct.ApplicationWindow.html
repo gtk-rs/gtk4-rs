@@ -104,20 +104,20 @@ used by <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code
 <p>The code sample below shows how to set up a <a href="struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a>
 with a menu bar defined on the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/application/struct.Application.html" title="crate::gio::Application"><code>gio::Application</code></a>:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkApplication *app = gtk_application_new (&quot;org.gtk.test&quot;, 0);
+<div class="example-wrap"><pre class="language-c">GtkApplication *app = gtk_application_new (&quot;org.gtk.test&quot;, 0);
 
 GtkBuilder *builder = gtk_builder_new_from_string (
     &quot;&lt;interface&gt;&quot;
-    &quot;  &lt;menu id='menubar'&gt;&quot;
+    &quot;  &lt;menu id=&#39;menubar&#39;&gt;&quot;
     &quot;    &lt;submenu&gt;&quot;
-    &quot;      &lt;attribute name='label' translatable='yes'&gt;_Edit&lt;/attribute&gt;&quot;
+    &quot;      &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_Edit&lt;/attribute&gt;&quot;
     &quot;      &lt;item&gt;&quot;
-    &quot;        &lt;attribute name='label' translatable='yes'&gt;_Copy&lt;/attribute&gt;&quot;
-    &quot;        &lt;attribute name='action'&gt;win.copy&lt;/attribute&gt;&quot;
+    &quot;        &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_Copy&lt;/attribute&gt;&quot;
+    &quot;        &lt;attribute name=&#39;action&#39;&gt;win.copy&lt;/attribute&gt;&quot;
     &quot;      &lt;/item&gt;&quot;
     &quot;      &lt;item&gt;&quot;
-    &quot;        &lt;attribute name='label' translatable='yes'&gt;_Paste&lt;/attribute&gt;&quot;
-    &quot;        &lt;attribute name='action'&gt;win.paste&lt;/attribute&gt;&quot;
+    &quot;        &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_Paste&lt;/attribute&gt;&quot;
+    &quot;        &lt;attribute name=&#39;action&#39;&gt;win.paste&lt;/attribute&gt;&quot;
     &quot;      &lt;/item&gt;&quot;
     &quot;    &lt;/submenu&gt;&quot;
     &quot;  &lt;/menu&gt;&quot;
@@ -130,9 +130,7 @@ g_object_unref (builder);
 
 // ...
 
-GtkWidget *window = gtk_application_window_new (app);
-</code></pre>
-<h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
+GtkWidget *window = gtk_application_window_new (app);</pre></div><h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="prelude/trait.ApplicationWindowExt.html" title="crate::prelude::ApplicationWindowExt"><code>ApplicationWindowExt</code></a>, <a href="prelude/trait.GtkWindowExt.html" title="crate::prelude::GtkWindowExt"><code>GtkWindowExt</code></a>, <a href="prelude/trait.WidgetExt.html" title="crate::prelude::WidgetExt"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html" title="crate::prelude::AccessibleExt"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html" title="crate::prelude::ConstraintTargetExt"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.NativeExt.html" title="crate::prelude::NativeExt"><code>NativeExt</code></a>, <a href="prelude/trait.RootExt.html" title="crate::prelude::RootExt"><code>RootExt</code></a>, <a href="prelude/trait.ShortcutManagerExt.html" title="crate::prelude::ShortcutManagerExt"><code>ShortcutManagerExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action_group/trait.ActionGroupExt.html" title="gio::prelude::ActionGroupExt"><code>gio::prelude::ActionGroupExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action_map/trait.ActionMapExt.html" title="gio::prelude::ActionMapExt"><code>gio::prelude::ActionMapExt</code></a>, <a href="prelude/trait.WidgetExtManual.html" title="crate::prelude::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html" title="crate::prelude::AccessibleExtManual"><code>AccessibleExtManual</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/application_window.rs.html#116-142" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><code class="in-band">impl <a class="struct" href="struct.ApplicationWindow.html" title="struct gtk4::ApplicationWindow">ApplicationWindow</a></code></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/application_window.rs.html#125-133" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><code>pub fn <a href="#method.new" class="fnname">new</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Application.html" title="struct gtk4::Application">Application</a>&gt;&gt;(application: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="struct" href="struct.ApplicationWindow.html" title="struct gtk4::ApplicationWindow">ApplicationWindow</a></code></div></summary><div class="docblock"><p>Creates a new <a href="struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a>.</p>
 <h2 id="application" class="section-header"><a href="#application"><code>application</code></a></h2>

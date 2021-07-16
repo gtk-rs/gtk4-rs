@@ -87,8 +87,7 @@ marks can be cleared with <a href="struct.Calendar.html#method.clear_marks" titl
 legal calendar in most countries, it was adopted progressively
 between 1582 and 1929. Display before these dates is likely to be
 historically incorrect.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">calendar.view
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">calendar.view
 ├── header
 │   ├── button
 │   ├── stack.month
@@ -97,8 +96,7 @@ historically incorrect.</p>
 │   ├── label.year
 │   ╰── button
 ╰── grid
-    ╰── label[.day-name][.week-number][.day-number][.other-month][.today]
-</code></pre>
+    ╰── label[.day-name][.week-number][.day-number][.other-month][.today]</pre></div>
 <p><a href="struct.Calendar.html" title="crate::Calendar"><code>Calendar</code></a> has a main node with name calendar. It contains a subnode
 called header containing the widgets for switching between years and months.</p>
 <p>The grid subnode contains all day labels, including week numbers on the left

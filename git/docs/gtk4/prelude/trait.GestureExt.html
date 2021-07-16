@@ -218,7 +218,7 @@ state on another gesture within a <code>signal::Gesture::begin</code> signal
 handler, as the callback might be executed before the other gesture
 knows about the sequence. A safe way to perform this could be:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 first_gesture_begin_cb (GtkGesture       *first_gesture,
                         GdkEventSequence *sequence,
                         gpointer          user_data)
@@ -234,8 +234,7 @@ second_gesture_begin_cb (GtkGesture       *second_gesture,
 {
   if (gtk_gesture_get_sequence_state (first_gesture, sequence) == GTK_EVENT_SEQUENCE_CLAIMED)
     gtk_gesture_set_sequence_state (second_gesture, sequence, GTK_EVENT_SEQUENCE_DENIED);
-}
-</code></pre>
+}</pre></div>
 <p>If both gestures are in the same group, just set the state on
 the gesture emitting the event, the sequence will be already
 be initialized to the group’s global state when the second

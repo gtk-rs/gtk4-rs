@@ -95,8 +95,7 @@ a property of the cell renderer; the content of the element is the
 attribute value.</p>
 <p>This is an example of a UI definition fragment specifying attributes:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">combo = g_object_new (GTK_TYPE_COMBO_BOX, &quot;cell-area&quot;, my_cell_area, NULL);
-</code></pre>
+<div class="example-wrap"><pre class="language-C">combo = g_object_new (GTK_TYPE_COMBO_BOX, &quot;cell-area&quot;, my_cell_area, NULL);</pre></div>
 <p>to use a custom cell area with a combo box. But construct properties
 are only initialized after instance <code>init()</code>
 functions have run, which means that using functions which rely on
@@ -105,7 +104,7 @@ cause the default cell area to be instantiated. In this case, a provided
 construct property value will be ignored (with a warning, to alert
 you to the problem).</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">static void
+<div class="example-wrap"><pre class="language-C">static void
 my_combo_box_init (MyComboBox *b)
 {
   GtkCellRenderer *cell;
@@ -122,8 +121,7 @@ my_combo_box_new (GtkCellArea *area)
 {
   // This call is going to cause a warning about area being ignored
   return g_object_new (MY_TYPE_COMBO_BOX, &quot;cell-area&quot;, area, NULL);
-}
-</code></pre>
+}</pre></div>
 <p>If supporting alternative cell areas with your derived widget is
 not important, then this does not have to concern you. If you want
 to support alternative cell areas, you can do so by moving the

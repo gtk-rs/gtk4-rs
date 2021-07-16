@@ -76,15 +76,13 @@
 <p><img src="emojichooser.png" alt="An example GtkEmojiChooser" /></p>
 <p><a href="struct.EmojiChooser.html" title="crate::EmojiChooser"><code>EmojiChooser</code></a> emits the <code>signal::EmojiChooser::emoji-picked</code>
 signal when an Emoji is selected.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">popover
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">popover
 ├── box.emoji-searchbar
 │   ╰── entry.search
 ╰── box.emoji-toolbar
     ├── button.image-button.emoji-section
     ├── ...
-    ╰── button.image-button.emoji-section
-</code></pre>
+    ╰── button.image-button.emoji-section</pre></div>
 <p>Every <a href="struct.EmojiChooser.html" title="crate::EmojiChooser"><code>EmojiChooser</code></a> consists of a main node called popover.
 The contents of the popover are largely implementation defined
 and supposed to inherit general styles.

@@ -91,26 +91,23 @@ contain a <a href="struct.Entry.html" title="crate::Entry"><code>Entry</code></a
 can be a bit overwhelming. In this case, <a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> offers
 a simple alternative. Both <a href="struct.ComboBox.html" title="crate::ComboBox"><code>ComboBox</code></a> and <a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> can contain
 an entry.</p>
-<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
-<pre><code class="language-text">combobox
+<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text">combobox
 ├── box.linked
 │   ╰── button.combo
 │       ╰── box
 │           ├── cellview
 │           ╰── arrow
-╰── window.popup
-</code></pre>
+╰── window.popup</pre></div>
 <p>A normal combobox contains a box with the .linked class, a button
 with the .combo class and inside those buttons, there are a cellview and
 an arrow.</p>
-<pre><code class="language-text">combobox
+<div class="example-wrap"><pre class="language-text">combobox
 ├── box.linked
 │   ├── entry.combo
 │   ╰── button.combo
 │       ╰── box
 │           ╰── arrow
-╰── window.popup
-</code></pre>
+╰── window.popup</pre></div>
 <p>A <a href="struct.ComboBox.html" title="crate::ComboBox"><code>ComboBox</code></a> with an entry has a single CSS node with name combobox.
 It contains a box with the .linked class. That box contains an entry and
 a button, both with the .combo class added. The button also contains another

@@ -90,15 +90,13 @@ can add any kind of widget to it via <a href="struct.FlowBox.html#method.insert"
 <a href="struct.FlowBoxChild.html" title="crate::FlowBoxChild"><code>FlowBoxChild</code></a> widget will automatically be inserted between the box
 and the widget.</p>
 <p>Also see <a href="struct.ListBox.html" title="crate::ListBox"><code>ListBox</code></a>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">flowbox
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">flowbox
 ├── flowboxchild
 │   ╰── &lt;child&gt;
 ├── flowboxchild
 │   ╰── &lt;child&gt;
 ┊
-╰── [rubberband]
-</code></pre>
+╰── [rubberband]</pre></div>
 <p><a href="struct.FlowBox.html" title="crate::FlowBox"><code>FlowBox</code></a> uses a single CSS node with name flowbox. <a href="struct.FlowBoxChild.html" title="crate::FlowBoxChild"><code>FlowBoxChild</code></a>
 uses a single CSS node with name flowboxchild. For rubberband selection,
 a subnode with name rubberband is used.</p>

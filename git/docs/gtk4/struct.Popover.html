@@ -89,7 +89,7 @@ tweak its behavior.</p>
 <p><a href="struct.Popover.html" title="crate::Popover"><code>Popover</code></a> is often used to replace menus. The best was to do this
 is to use the <a href="struct.PopoverMenu.html" title="crate::PopoverMenu"><code>PopoverMenu</code></a> subclass which supports being
 populated from a <code>GMenuModel</code> with <a href="struct.PopoverMenu.html#method.from_model" title="crate::PopoverMenu::from_model()"><code>PopoverMenu::from_model()</code></a>.</p>
-<pre><code class="language-xml">&lt;section&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;section&gt;
   &lt;attribute name=&quot;display-hint&quot;&gt;horizontal-buttons&lt;/attribute&gt;
   &lt;item&gt;
     &lt;attribute name=&quot;label&quot;&gt;Cut&lt;/attribute&gt;
@@ -106,14 +106,10 @@ populated from a <code>GMenuModel</code> with <a href="struct.PopoverMenu.html#m
     &lt;attribute name=&quot;action&quot;&gt;app.paste&lt;/attribute&gt;
     &lt;attribute name=&quot;verb-icon&quot;&gt;edit-paste-symbolic&lt;/attribute&gt;
   &lt;/item&gt;
-&lt;/section&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">popover[.menu]
+&lt;/section&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">popover[.menu]
 ├── arrow
 ╰── contents.background
-    ╰── &lt;child&gt;
-</code></pre>
+    ╰── &lt;child&gt;</pre></div>
 <p>The contents child node always gets the .background style class
 and the popover itself gets the .menu style class if the popover
 is menu-like (i.e. <a href="struct.PopoverMenu.html" title="crate::PopoverMenu"><code>PopoverMenu</code></a>).</p>

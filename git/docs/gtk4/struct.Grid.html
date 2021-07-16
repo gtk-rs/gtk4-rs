@@ -88,7 +88,7 @@ grid and optionally spans. All properties that can be used in the ´<code>&lt;la
 element are implemented by <a href="struct.GridLayoutChild.html" title="crate::GridLayoutChild"><code>GridLayoutChild</code></a>.</p>
 <p>It is implemented by <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> using <a href="struct.LayoutManager.html" title="crate::LayoutManager"><code>LayoutManager</code></a>.</p>
 <p>To showcase it, here is a simple example:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkGrid&quot; id=&quot;my_grid&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkGrid&quot; id=&quot;my_grid&quot;&gt;
   &lt;child&gt;
     &lt;object class=&quot;GtkButton&quot; id=&quot;button1&quot;&gt;
       &lt;property name=&quot;label&quot;&gt;Button 1&lt;/property&gt;
@@ -127,8 +127,7 @@ element are implemented by <a href="struct.GridLayoutChild.html" title="crate::G
       &lt;/layout&gt;
     &lt;/object&gt;
   &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
+&lt;/object&gt;</pre></div>
 <p>It organizes the first two buttons side-by-side in one cell each.
 The third button is in the last column but spans across two rows.
 This is defined by the ´row-span´ property. The last button is

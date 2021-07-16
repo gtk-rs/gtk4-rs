@@ -148,7 +148,7 @@ of the model up-to-date.</p>
 be empty. The visible function should therefore take special care of empty
 rows, like in the example below.</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">static gboolean
+<div class="example-wrap"><pre class="language-C">static gboolean
 visible_func (GtkTreeModel *model,
               GtkTreeIter  *iter,
               gpointer      data)
@@ -163,8 +163,7 @@ visible_func (GtkTreeModel *model,
   g_free (str);
 
   return visible;
-}
-</code></pre>
+}</pre></div>
 <p>Note that <a href="trait.TreeModelFilterExt.html#tymethod.set_visible_func" title="Self::set_visible_func()"><code>set_visible_func()</code></a> or
 <a href="trait.TreeModelFilterExt.html#tymethod.set_visible_column" title="Self::set_visible_column()"><code>set_visible_column()</code></a> can only be called
 once for a given filter model.</p>

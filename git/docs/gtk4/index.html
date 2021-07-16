@@ -189,11 +189,10 @@ to a <a href="index.html"><code>gtk</code></a> function will abort the process.<
 <p>By default this crate provides only GTK 4.0 APIs. You can access additional
 functionality by selecting one of the <code>v4_2</code>, <code>v4_4</code>, etc. features.</p>
 <p><code>Cargo.toml</code> example:</p>
-<pre><code class="language-toml">[dependencies.gtk]
+<div class="example-wrap"><pre class="language-toml">[dependencies.gtk]
 package = &quot;gtk4&quot;
 version = &quot;0.x.y&quot;
-features = [&quot;v4_2&quot;]
-</code></pre>
+features = [&quot;v4_2&quot;]</pre></div>
 <p>Take care when choosing the version to target: some of your users might
 not have easy access to the latest ones. The higher the version, the fewer
 users will have it installed.</p>

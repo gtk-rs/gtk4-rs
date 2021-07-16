@@ -84,17 +84,16 @@ used files. You can create new <a href="struct.RecentManager.html" title="crate:
 it is more efficient to use the default manager created by GTK.</p>
 <p>Adding a new recently used file is as simple as:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkRecentManager *manager;
+<div class="example-wrap"><pre class="language-c">GtkRecentManager *manager;
 
 manager = gtk_recent_manager_get_default ();
-gtk_recent_manager_add_item (manager, file_uri);
-</code></pre>
+gtk_recent_manager_add_item (manager, file_uri);</pre></div>
 <p>The <a href="struct.RecentManager.html" title="crate::RecentManager"><code>RecentManager</code></a> will try to gather all the needed information
 from the file itself through GIO.</p>
 <p>Looking up the meta-data associated with a recently used file
 given its URI requires calling <a href="prelude/trait.RecentManagerExt.html#tymethod.lookup_item" title="crate::prelude::RecentManagerExt::lookup_item()"><code>RecentManagerExt::lookup_item()</code></a>:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkRecentManager *manager;
+<div class="example-wrap"><pre class="language-c">GtkRecentManager *manager;
 GtkRecentInfo *info;
 GError *error = NULL;
 
@@ -109,8 +108,7 @@ else
  {
    // Use the info object
    gtk_recent_info_unref (info);
- }
-</code></pre>
+ }</pre></div>
 <p>In order to retrieve the list of recently used files, you can use
 <a href="prelude/trait.RecentManagerExt.html#tymethod.items" title="crate::prelude::RecentManagerExt::items()"><code>RecentManagerExt::items()</code></a>, which returns a list of
 <a href="struct.RecentInfo.html" title="crate::RecentInfo"><code>RecentInfo</code></a>.</p>

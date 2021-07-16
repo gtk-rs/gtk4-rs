@@ -95,8 +95,7 @@ disabled with the <code>property::ColumnView::reorderable</code> and
 <code>property::ColumnViewColumn::resizable</code> properties.</p>
 <p>To learn more about the list widget framework, see the
 <a href="section-list-widget.html">overview</a>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">columnview[.column-separators][.rich-list][.navigation-sidebar][.data-table]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">columnview[.column-separators][.rich-list][.navigation-sidebar][.data-table]
 ├── header
 │   ├── &lt;column header&gt;
 ┊   ┊
@@ -105,8 +104,7 @@ disabled with the <code>property::ColumnView::reorderable</code> and
 ├── listview
 │
 ┊
-╰── [rubberband]
-</code></pre>
+╰── [rubberband]</pre></div>
 <p><a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a> uses a single CSS node named columnview. It may carry the
 .column-separators style class, when <code>property::ColumnView::show-column-separators</code>
 property is set. Header widgets appear below a node with name header.
@@ -174,14 +172,12 @@ the model that is displayed by the view.</p>
 per-column sorting.</p>
 <p>Here is an example:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">gtk_column_view_column_set_sorter (column, sorter);
+<div class="example-wrap"><pre class="language-c">gtk_column_view_column_set_sorter (column, sorter);
 gtk_column_view_append_column (view, column);
 sorter = g_object_ref (gtk_column_view_get_sorter (view)));
 model = gtk_sort_list_model_new (store, sorter);
 selection = gtk_no_selection_new (model);
-gtk_column_view_set_model (view, selection);
-</code></pre>
-<h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
+gtk_column_view_set_model (view, selection);</pre></div><h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
 <p>the <a href="struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a> of <code>self</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.insert_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#290-298" title="goto source code">[src]</a></div><a href="#method.insert_column" class="anchor"></a><code>pub fn <a href="#method.insert_column" class="fnname">insert_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</code></div></summary><div class="docblock"><p>Inserts a column at the given position in the columns of <code>self</code>.</p>
 <p>If <code>column</code> is already a column of <code>self</code>, it will be repositioned.</p>

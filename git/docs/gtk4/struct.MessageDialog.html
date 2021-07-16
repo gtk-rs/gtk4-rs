@@ -83,7 +83,7 @@ You can use the <code>signal::Dialog::response</code> signal to know when the us
 dismissed the dialog.</p>
 <p>An example for using a modal dialog:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL;
+<div class="example-wrap"><pre class="language-c">GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL;
 dialog = gtk_message_dialog_new (parent_window,
                                  flags,
                                  GTK_MESSAGE_ERROR,
@@ -96,12 +96,11 @@ dialog = gtk_message_dialog_new (parent_window,
 
 g_signal_connect (dialog, &quot;response&quot;,
                   G_CALLBACK (gtk_window_destroy),
-                  NULL);
-</code></pre>
+                  NULL);</pre></div>
 <p>You might do a non-modal <a href="struct.MessageDialog.html" title="crate::MessageDialog"><code>MessageDialog</code></a> simply by omitting the
 <a href="struct.DialogFlags.html#associatedconstant.MODAL" title="crate::DialogFlags::MODAL"><code>DialogFlags::MODAL</code></a> flag:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;
+<div class="example-wrap"><pre class="language-c">GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;
 dialog = gtk_message_dialog_new (parent_window,
                                  flags,
                                  GTK_MESSAGE_ERROR,
@@ -114,9 +113,7 @@ dialog = gtk_message_dialog_new (parent_window,
 // (e.g. clicks a button)
 g_signal_connect (dialog, &quot;response&quot;,
                   G_CALLBACK (gtk_window_destroy),
-                  NULL);
-</code></pre>
-<h1 id="gtkmessagedialog-as-gtkbuildable" class="section-header"><a href="#gtkmessagedialog-as-gtkbuildable">GtkMessageDialog as GtkBuildable</a></h1>
+                  NULL);</pre></div><h1 id="gtkmessagedialog-as-gtkbuildable" class="section-header"><a href="#gtkmessagedialog-as-gtkbuildable">GtkMessageDialog as GtkBuildable</a></h1>
 <p>The <a href="struct.MessageDialog.html" title="crate::MessageDialog"><code>MessageDialog</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface exposes
 the message area as an internal child with the name “message_area”.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
@@ -182,7 +179,7 @@ instead, since you can’t pass the markup string either
 as the format (it might contain “%” characters) or as a string
 argument.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *dialog;
+<div class="example-wrap"><pre class="language-c">GtkWidget *dialog;
 GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;
 dialog = gtk_message_dialog_new (parent_window,
                                  flags,
@@ -190,9 +187,7 @@ dialog = gtk_message_dialog_new (parent_window,
                                  GTK_BUTTONS_CLOSE,
                                  NULL);
 gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
-                               markup);
-</code></pre>
-<h2 id="parent-1" class="section-header"><a href="#parent-1"><code>parent</code></a></h2>
+                               markup);</pre></div><h2 id="parent-1" class="section-header"><a href="#parent-1"><code>parent</code></a></h2>
 <p>transient parent, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
 <h2 id="flags-1" class="section-header"><a href="#flags-1"><code>flags</code></a></h2>
 <p>flags</p>
@@ -211,14 +206,12 @@ XML characters like <a href="struct.MessageDialog.html#method.with_markup" title
 does. Thus, if the arguments may contain special XML characters,
 you should use <code>g_markup_printf_escaped()</code> to escape it.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">char *msg;
+<div class="example-wrap"><pre class="language-c">char *msg;
 
 msg = g_markup_printf_escaped (message_format, ...);
 gtk_message_dialog_format_secondary_markup (message_dialog,
                                             &quot;%s&quot;, msg);
-g_free (msg);
-</code></pre>
-<h2 id="message_format-2" class="section-header"><a href="#message_format-2"><code>message_format</code></a></h2>
+g_free (msg);</pre></div><h2 id="message_format-2" class="section-header"><a href="#message_format-2"><code>message_format</code></a></h2>
 <p><code>printf()</code>-style string with Pango markup</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.format_secondary_text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/message_dialog.rs.html#156-163" title="goto source code">[src]</a></div><a href="#method.format_secondary_text" class="anchor"></a><code>pub fn <a href="#method.format_secondary_text" class="fnname">format_secondary_text</a>(&amp;self, message: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</code></div></summary><div class="docblock"><p>Sets the secondary text of the message dialog.</p>
 <h2 id="message_format-3" class="section-header"><a href="#message_format-3"><code>message_format</code></a></h2>

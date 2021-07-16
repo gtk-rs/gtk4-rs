@@ -96,9 +96,8 @@ attribute of a <code>&lt;child&gt;</code> element. See <a href="struct.ListBox.h
 for info.</p>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
 <p><strong>⚠️ The following code is in plain ⚠️</strong></p>
-<pre><code class="language-plain">list[.separators][.rich-list][.navigation-sidebar]
-╰── row[.activatable]
-</code></pre>
+<div class="example-wrap"><pre class="language-plain">list[.separators][.rich-list][.navigation-sidebar]
+╰── row[.activatable]</pre></div>
 <p><a href="struct.ListBox.html" title="crate::ListBox"><code>ListBox</code></a> uses a single CSS node named list. It may carry the .separators
 style class, when the <code>property::ListBox::show-separators</code> property is set.
 Each <a href="struct.ListBoxRow.html" title="crate::ListBoxRow"><code>ListBoxRow</code></a> uses a single CSS node named row. The row nodes get the

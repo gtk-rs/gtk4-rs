@@ -119,9 +119,7 @@ want to convert the returned list into a list of <code>GtkTreeRowReferences</cod
 To do this, you can use <a href="struct.TreeRowReference.html#method.new" title="crate::TreeRowReference::new()"><code>TreeRowReference::new()</code></a>.</p>
 <p>To free the return value, use:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
-</code></pre>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<div class="example-wrap"><pre class="language-C">g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</pre></div><h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>A <code>GList</code> containing a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> for each selected row.</p>
 <h2 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h2>
 <p>A pointer to set to the <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>

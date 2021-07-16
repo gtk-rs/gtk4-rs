@@ -176,7 +176,7 @@ in the font chooser.</p>
 <p>A custom font map can be used to present application-specific
 fonts instead of or in addition to the normal system fonts.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">FcConfig *config;
+<div class="example-wrap"><pre class="language-c">FcConfig *config;
 PangoFontMap *fontmap;
 
 config = FcInitLoadConfigAndFonts ();
@@ -185,15 +185,12 @@ FcConfigAppFontAddFile (config, my_app_font_file);
 fontmap = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
 pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (fontmap), config);
 
-gtk_font_chooser_set_font_map (font_chooser, fontmap);
-</code></pre>
+gtk_font_chooser_set_font_map (font_chooser, fontmap);</pre></div>
 <p>Note that other GTK widgets will only be able to use the
 application-specific font if it is present in the font map they use:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">context = gtk_widget_get_pango_context (label);
-pango_context_set_font_map (context, fontmap);
-</code></pre>
-<h2 id="fontmap" class="section-header"><a href="#fontmap"><code>fontmap</code></a></h2>
+<div class="example-wrap"><pre class="language-c">context = gtk_widget_get_pango_context (label);
+pango_context_set_font_map (context, fontmap);</pre></div><h2 id="fontmap" class="section-header"><a href="#fontmap"><code>fontmap</code></a></h2>
 <p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_map/struct.FontMap.html" title="crate::pango::FontMap"><code>pango::FontMap</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_language" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#235" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.set_language" class="fnname">set_language</a>(&amp;self, language: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code></div></summary><div class="docblock"><p>Sets the language to use for font features.</p>
 <h2 id="language" class="section-header"><a href="#language"><code>language</code></a></h2>

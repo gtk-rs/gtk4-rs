@@ -220,7 +220,7 @@ will run asynchronously if this is supported on the platform. The
 of the operation when the it is done (i.e. when the dialog is canceled,
 or when the print succeeds or fails).</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">if (settings != NULL)
+<div class="example-wrap"><pre class="language-c">if (settings != NULL)
   gtk_print_operation_set_print_settings (print, settings);
 
 if (page_setup != NULL)
@@ -254,8 +254,7 @@ else if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
    if (settings != NULL)
 g_object_unref (settings);
    settings = g_object_ref (gtk_print_operation_get_print_settings (print));
- }
-</code></pre>
+ }</pre></div>
 <p>Note that <a href="trait.PrintOperationExt.html#tymethod.run" title="Self::run()"><code>run()</code></a> can only be called once on a
 given <a href="../struct.PrintOperation.html" title="crate::PrintOperation"><code>PrintOperation</code></a>.</p>
 <h2 id="action" class="section-header"><a href="#action"><code>action</code></a></h2>
@@ -464,7 +463,7 @@ after the ::done signal was emitted.</p>
 context obtained from <code>context</code> using
 <a href="../struct.PrintContext.html#method.cairo_context" title="crate::PrintContext::cairo_context()"><code>PrintContext::cairo_context()</code></a>.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 draw_page (GtkPrintOperation *operation,
            GtkPrintContext   *context,
            int                page_nr,
@@ -501,8 +500,7 @@ draw_page (GtkPrintOperation *operation,
   pango_cairo_show_layout (cr, layout);
 
   g_object_unref (layout);
-}
-</code></pre>
+}</pre></div>
 <p>Use <a href="trait.PrintOperationExt.html#tymethod.set_use_full_page" title="Self::set_use_full_page()"><code>set_use_full_page()</code></a> and
 <a href="trait.PrintOperationExt.html#tymethod.set_unit" title="Self::set_unit()"><code>set_unit()</code></a> before starting the print
 operation to set up the transformation of the cairo context

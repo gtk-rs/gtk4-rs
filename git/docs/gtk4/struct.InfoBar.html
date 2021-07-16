@@ -88,7 +88,7 @@ by using <a href="struct.InfoBar.html#method.set_message_type" title="Self::set_
 type to determine how the message is displayed.</p>
 <p>A simple example for using a <a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a>:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *message_label;
+<div class="example-wrap"><pre class="language-c">GtkWidget *message_label;
 GtkWidget *widget;
 GtkWidget *grid;
 GtkInfoBar *bar;
@@ -116,9 +116,7 @@ gtk_grid_attach (GTK_GRID (grid),
 // show an error message
 gtk_label_set_text (GTK_LABEL (message_label), &quot;An error occurred!&quot;);
 gtk_info_bar_set_message_type (bar, GTK_MESSAGE_ERROR);
-gtk_widget_show (bar);
-</code></pre>
-<h1 id="gtkinfobar-as-gtkbuildable" class="section-header"><a href="#gtkinfobar-as-gtkbuildable">GtkInfoBar as GtkBuildable</a></h1>
+gtk_widget_show (bar);</pre></div><h1 id="gtkinfobar-as-gtkbuildable" class="section-header"><a href="#gtkinfobar-as-gtkbuildable">GtkInfoBar as GtkBuildable</a></h1>
 <p>The <a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface exposes
 the content area and action area as internal children with the names
 “content_area” and “action_area”.</p>

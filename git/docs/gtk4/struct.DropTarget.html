@@ -77,7 +77,7 @@ widget is to create it via <a href="struct.DropTarget.html#method.new" title="Se
 <code>GType</code> of the data you want to receive and connect to the
 <code>signal::DropTarget::drop</code> signal to receive the data:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static gboolean
+<div class="example-wrap"><pre class="language-c">static gboolean
 on_drop (GtkDropTarget *target,
          const GValue  *value,
          double         x,
@@ -112,8 +112,7 @@ my_widget_init (MyWidget *self)
   }, 2);
 
   gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (target));
-}
-</code></pre>
+}</pre></div>
 <p><a href="struct.DropTarget.html" title="crate::DropTarget"><code>DropTarget</code></a> supports more options, such as:</p>
 <ul>
 <li>rejecting potential drops via the <code>signal::DropTarget::accept</code> signal

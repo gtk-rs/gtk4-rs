@@ -110,7 +110,7 @@ would save some effort. But you’d need to create the dialog contents manually
 if you had more than a simple message in the dialog.</p>
 <p>An example for simple <a href="struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> usage:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">// Function to open a dialog box with a message
+<div class="example-wrap"><pre class="language-c">// Function to open a dialog box with a message
 void
 quick_message (GtkWindow *parent, char *message)
 {
@@ -139,9 +139,7 @@ quick_message (GtkWindow *parent, char *message)
 
  gtk_box_append (GTK_BOX (content_area), label);
  gtk_widget_show (dialog);
-}
-</code></pre>
-<h1 id="gtkdialog-as-gtkbuildable" class="section-header"><a href="#gtkdialog-as-gtkbuildable">GtkDialog as GtkBuildable</a></h1>
+}</pre></div><h1 id="gtkdialog-as-gtkbuildable" class="section-header"><a href="#gtkdialog-as-gtkbuildable">GtkDialog as GtkBuildable</a></h1>
 <p>The <a href="struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface exposes the
 <code>content_area</code> as an internal child with the name “content_area”.</p>
 <p><a href="struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> supports a custom <code>&lt;action-widgets&gt;</code> element, which can contain
@@ -156,7 +154,7 @@ either to the action area or the headerbar of the dialog, depending
 on the “use-header-bar“ property. The response id has to be associated
 with the action widget using the <code>&lt;action-widgets&gt;</code> element.</p>
 <p>An example of a <a href="struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> UI definition fragment:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkDialog&quot; id=&quot;dialog1&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkDialog&quot; id=&quot;dialog1&quot;&gt;
   &lt;child type=&quot;action&quot;&gt;
     &lt;object class=&quot;GtkButton&quot; id=&quot;button_cancel&quot;/&gt;
   &lt;/child&gt;
@@ -168,9 +166,7 @@ with the action widget using the <code>&lt;action-widgets&gt;</code> element.</p
     &lt;action-widget response=&quot;cancel&quot;&gt;button_cancel&lt;/action-widget&gt;
     &lt;action-widget response=&quot;ok&quot; default=&quot;true&quot;&gt;button_ok&lt;/action-widget&gt;
   &lt;/action-widgets&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>
+&lt;/object&gt;</pre></div><h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>
 <p><a href="struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> uses the <a href="enum.AccessibleRole.html#variant.Dialog" title="crate::AccessibleRole::Dialog"><code>AccessibleRole::Dialog</code></a> role.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="prelude/trait.DialogExt.html" title="crate::prelude::DialogExt"><code>DialogExt</code></a>, <a href="prelude/trait.GtkWindowExt.html" title="crate::prelude::GtkWindowExt"><code>GtkWindowExt</code></a>, <a href="prelude/trait.WidgetExt.html" title="crate::prelude::WidgetExt"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html" title="crate::prelude::AccessibleExt"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html" title="crate::prelude::ConstraintTargetExt"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.NativeExt.html" title="crate::prelude::NativeExt"><code>NativeExt</code></a>, <a href="prelude/trait.RootExt.html" title="crate::prelude::RootExt"><code>RootExt</code></a>, <a href="prelude/trait.ShortcutManagerExt.html" title="crate::prelude::ShortcutManagerExt"><code>ShortcutManagerExt</code></a>, <a href="prelude/trait.DialogExtManual.html" title="crate::prelude::DialogExtManual"><code>DialogExtManual</code></a>, <a href="prelude/trait.WidgetExtManual.html" title="crate::prelude::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html" title="crate::prelude::AccessibleExtManual"><code>AccessibleExtManual</code></a></p>
@@ -198,7 +194,7 @@ so be careful relying on ::response when using the
 <a href="struct.DialogFlags.html#associatedconstant.DESTROY_WITH_PARENT" title="crate::DialogFlags::DESTROY_WITH_PARENT"><code>DialogFlags::DESTROY_WITH_PARENT</code></a> flag.</p>
 <p>Here’s a simple example:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWindow *main_app_window; // Window the dialog should show up on
+<div class="example-wrap"><pre class="language-c">GtkWindow *main_app_window; // Window the dialog should show up on
 GtkWidget *dialog;
 GtkDialogFlags flags = GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT;
 dialog = gtk_dialog_new_with_buttons (&quot;My dialog&quot;,
@@ -208,9 +204,7 @@ dialog = gtk_dialog_new_with_buttons (&quot;My dialog&quot;,
                                       GTK_RESPONSE_ACCEPT,
                                       _(&quot;_Cancel&quot;),
                                       GTK_RESPONSE_REJECT,
-                                      NULL);
-</code></pre>
-<h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
+                                      NULL);</pre></div><h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
 <p>Title of the dialog, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h2>
 <p>Transient parent of the dialog, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>

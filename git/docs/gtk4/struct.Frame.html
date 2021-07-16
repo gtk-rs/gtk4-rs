@@ -85,20 +85,16 @@ placing a child in the label position by specifying “label” as the
 “type” attribute of a <code>&lt;child&gt;</code> element. A normal content child can
 be specified without specifying a <code>&lt;child&gt;</code> type attribute.</p>
 <p>An example of a UI definition fragment with GtkFrame:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkFrame&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkFrame&quot;&gt;
   &lt;child type=&quot;label&quot;&gt;
     &lt;object class=&quot;GtkLabel&quot; id=&quot;frame_label&quot;/&gt;
   &lt;/child&gt;
   &lt;child&gt;
     &lt;object class=&quot;GtkEntry&quot; id=&quot;frame_content&quot;/&gt;
   &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">frame
+&lt;/object&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">frame
 ├── &lt;label widget&gt;
-╰── &lt;child&gt;
-</code></pre>
+╰── &lt;child&gt;</pre></div>
 <p><a href="struct.Frame.html" title="crate::Frame"><code>Frame</code></a> has a main CSS node with name “frame”, which is used to draw the
 visible border. You can set the appearance of the border using CSS properties
 like “border-style” on this node.</p>

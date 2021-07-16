@@ -107,10 +107,9 @@ comparing the return value to 0 or you can compute the percentage
 of the filter remaining by dividing the return value by the total
 number of items in the underlying model:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">pending = gtk_filter_list_model_get_pending (self);
+<div class="example-wrap"><pre class="language-c">pending = gtk_filter_list_model_get_pending (self);
 model = gtk_filter_list_model_get_model (self);
-percentage = pending / (double) g_list_model_get_n_items (model);
-</code></pre>
+percentage = pending / (double) g_list_model_get_n_items (model);</pre></div>
 <p>If no filter operation is ongoing - in particular when
 <code>property::FilterListModel::incremental</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> - this
 function returns 0.</p>

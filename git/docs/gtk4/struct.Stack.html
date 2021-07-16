@@ -89,7 +89,7 @@ with <a href="struct.Stack.html#method.pages" title="Self::pages()"><code>pages(
 <h1 id="gtkstack-as-gtkbuildable" class="section-header"><a href="#gtkstack-as-gtkbuildable">GtkStack as GtkBuildable</a></h1>
 <p>To set child-specific properties in a .ui file, create <a href="struct.StackPage.html" title="crate::StackPage"><code>StackPage</code></a>
 objects explicitly, and set the child widget as a property on it:</p>
-<pre><code class="language-xml">  &lt;object class=&quot;GtkStack&quot; id=&quot;stack&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">  &lt;object class=&quot;GtkStack&quot; id=&quot;stack&quot;&gt;
     &lt;child&gt;
       &lt;object class=&quot;GtkStackPage&quot;&gt;
         &lt;property name=&quot;name&quot;&gt;page1&lt;/property&gt;
@@ -100,9 +100,7 @@ objects explicitly, and set the child widget as a property on it:</p>
           &lt;/object&gt;
         &lt;/property&gt;
       &lt;/object&gt;
-    &lt;/child&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
+    &lt;/child&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
 <p><a href="struct.Stack.html" title="crate::Stack"><code>Stack</code></a> has a single CSS node named stack.</p>
 <h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>
 <p><a href="struct.Stack.html" title="crate::Stack"><code>Stack</code></a> uses the <a href="enum.AccessibleRole.html#variant.TabPanel" title="crate::AccessibleRole::TabPanel"><code>AccessibleRole::TabPanel</code></a> for the stack

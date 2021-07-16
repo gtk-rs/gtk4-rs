@@ -101,12 +101,10 @@ be chosen to provide it.</p>
 For example, an image may be provided by its file and by the image
 contents with a call such as
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">gdk_content_provider_new_union ((GdkContentProvider *[2]) {
+<div class="example-wrap"><pre class="language-c">gdk_content_provider_new_union ((GdkContentProvider *[2]) {
                                   gdk_content_provider_new_typed (G_TYPE_FILE, file),
                                   gdk_content_provider_new_typed (G_TYPE_TEXTURE, texture)
-                                }, 2);
-</code></pre>
-<h2 id="providers" class="section-header"><a href="#providers"><code>providers</code></a></h2>
+                                }, 2);</pre></div><h2 id="providers" class="section-header"><a href="#providers"><code>providers</code></a></h2>
 <p>The <code>GdkContentProviders</code> to present the union of</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>a new <a href="struct.ContentProvider.html" title="crate::ContentProvider"><code>ContentProvider</code></a></p>

@@ -95,21 +95,17 @@ elements for each item. Each <code>&lt;item&gt;</code> element can specify the �
 corresponding to the appended text and also supports the regular
 translation attributes “translatable”, “context” and “comments”.</p>
 <p>Here is a UI definition fragment specifying <a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> items:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkComboBoxText&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkComboBoxText&quot;&gt;
   &lt;items&gt;
     &lt;item translatable=&quot;yes&quot; id=&quot;factory&quot;&gt;Factory&lt;/item&gt;
     &lt;item translatable=&quot;yes&quot; id=&quot;home&quot;&gt;Home&lt;/item&gt;
     &lt;item translatable=&quot;yes&quot; id=&quot;subway&quot;&gt;Subway&lt;/item&gt;
   &lt;/items&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">combobox
+&lt;/object&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">combobox
 ╰── box.linked
     ├── entry.combo
     ├── button.combo
-    ╰── window.popup
-</code></pre>
+    ╰── window.popup</pre></div>
 <p><a href="struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a> has a single CSS node with name combobox. It adds
 the style class .combo to the main CSS nodes of its entry and button
 children, and the .linked class to the node of its internal box.</p>

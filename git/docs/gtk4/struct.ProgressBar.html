@@ -91,12 +91,10 @@ periodically to update the progress bar.</p>
 of the <a href="struct.ProgressBar.html" title="crate::ProgressBar"><code>ProgressBar</code></a>. Functions are provided to control the orientation
 of the bar, optional text can be displayed along with the bar, and the
 step size used in activity mode can be set.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">progressbar[.osd]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">progressbar[.osd]
 ├── [text]
 ╰── trough[.empty][.full]
-    ╰── progress[.pulse]
-</code></pre>
+    ╰── progress[.pulse]</pre></div>
 <p><a href="struct.ProgressBar.html" title="crate::ProgressBar"><code>ProgressBar</code></a> has a main CSS node with name progressbar and subnodes with
 names text and trough, of which the latter has a subnode named progress. The
 text subnode is only present if text is shown. The progress subnode has the

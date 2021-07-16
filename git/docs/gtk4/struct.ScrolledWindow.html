@@ -85,7 +85,7 @@ just add any child widget and not worry about the details.</p>
 you can remove both your added child widget from the <a href="struct.Viewport.html" title="crate::Viewport"><code>Viewport</code></a>, and the
 <a href="struct.Viewport.html" title="crate::Viewport"><code>Viewport</code></a> from the <a href="struct.ScrolledWindow.html" title="crate::ScrolledWindow"><code>ScrolledWindow</code></a>, like this:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *scrolled_window = gtk_scrolled_window_new ();
+<div class="example-wrap"><pre class="language-c">GtkWidget *scrolled_window = gtk_scrolled_window_new ();
 GtkWidget *child_widget = gtk_button_new ();
 
 // GtkButton is not a GtkScrollable, so GtkScrolledWindow will automatically
@@ -96,8 +96,7 @@ gtk_box_append (GTK_BOX (scrolled_window), child_widget);
 gtk_box_remove (GTK_BOX (scrolled_window), child_widget);
 // or
 gtk_box_remove (GTK_BOX (scrolled_window),
-                      gtk_bin_get_child (GTK_BIN (scrolled_window)));
-</code></pre>
+                      gtk_bin_get_child (GTK_BIN (scrolled_window)));</pre></div>
 <p>Unless <code>property::ScrolledWindow::hscrollbar-policy</code> and
 <code>property::ScrolledWindow::vscrollbar-policy</code> are <a href="enum.PolicyType.html#variant.Never" title="crate::PolicyType::Never"><code>PolicyType::Never</code></a> or
 <a href="enum.PolicyType.html#variant.External" title="crate::PolicyType::External"><code>PolicyType::External</code></a>, <a href="struct.ScrolledWindow.html" title="crate::ScrolledWindow"><code>ScrolledWindow</code></a> adds internal <a href="struct.Scrollbar.html" title="crate::Scrollbar"><code>Scrollbar</code></a> widgets

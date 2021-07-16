@@ -89,13 +89,11 @@ are using as your search entry using <a href="struct.SearchBar.html#method.conne
 <p>The following example shows you how to create a more complex search
 entry.</p>
 <p><a href="https://gitlab.gnome.org/GNOME/gtk/tree/master/examples/search-bar.c">A simple example</a></p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">searchbar
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">searchbar
 ╰── revealer
     ╰── box
          ├── [child]
-         ╰── [button.close]
-</code></pre>
+         ╰── [button.close]</pre></div>
 <p><a href="struct.SearchBar.html" title="crate::SearchBar"><code>SearchBar</code></a> has a main CSS node with name searchbar. It has a child
 node with name revealer that contains a node with name box. The box node
 contains both the CSS node of the child widget as well as an optional button

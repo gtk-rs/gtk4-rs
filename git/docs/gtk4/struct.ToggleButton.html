@@ -93,7 +93,7 @@ another one will switch the currently toggled one off.</p>
 it from a plain <a href="struct.Button.html" title="crate::Button"><code>Button</code></a>, it gets the .toggle style class.</p>
 <h2 id="creating-two-togglebutton-widgets" class="section-header"><a href="#creating-two-togglebutton-widgets">Creating two <code>ToggleButton</code> widgets.</a></h2>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void output_state (GtkToggleButton *source, gpointer user_data)
+<div class="example-wrap"><pre class="language-c">static void output_state (GtkToggleButton *source, gpointer user_data)
 {
   printf (&quot;Active: %d\n&quot;, gtk_toggle_button_get_active (source));
 }
@@ -124,9 +124,7 @@ void make_toggles (void)
 
   gtk_window_set_child (GTK_WINDOW (window), box);
   gtk_widget_show (window);
-}
-</code></pre>
-<h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
+}</pre></div><h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="prelude/trait.ToggleButtonExt.html" title="crate::prelude::ToggleButtonExt"><code>ToggleButtonExt</code></a>, <a href="prelude/trait.ButtonExt.html" title="crate::prelude::ButtonExt"><code>ButtonExt</code></a>, <a href="prelude/trait.WidgetExt.html" title="crate::prelude::WidgetExt"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html" title="crate::prelude::AccessibleExt"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html" title="crate::prelude::ConstraintTargetExt"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.ActionableExt.html" title="crate::prelude::ActionableExt"><code>ActionableExt</code></a>, <a href="prelude/trait.WidgetExtManual.html" title="crate::prelude::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html" title="crate::prelude::AccessibleExtManual"><code>AccessibleExtManual</code></a>, <a href="prelude/trait.ActionableExtManual.html" title="crate::prelude::ActionableExtManual"><code>ActionableExtManual</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/toggle_button.rs.html#107-170" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><code class="in-band">impl <a class="struct" href="struct.ToggleButton.html" title="struct gtk4::ToggleButton">ToggleButton</a></code></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/toggle_button.rs.html#116-119" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.ToggleButton.html" title="struct gtk4::ToggleButton">ToggleButton</a></code></div></summary><div class="docblock"><p>Creates a new toggle button.</p>
 <p>A widget should be packed into the button, as in <a href="struct.Button.html#method.new" title="crate::Button::new()"><code>Button::new()</code></a>.</p>

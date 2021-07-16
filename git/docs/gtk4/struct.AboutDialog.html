@@ -95,7 +95,7 @@ order to ensure proper translation of the title, applications should
 set the title property explicitly when constructing a <a href="struct.AboutDialog.html" title="crate::AboutDialog"><code>AboutDialog</code></a>,
 as shown in the following example:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GFile *logo_file = g_file_new_for_path (&quot;./logo.png&quot;);
+<div class="example-wrap"><pre class="language-c">GFile *logo_file = g_file_new_for_path (&quot;./logo.png&quot;);
 GdkTexture *example_logo = gdk_texture_new_from_file (logo_file, NULL);
 g_object_unref (logo_file);
 
@@ -103,9 +103,7 @@ gtk_show_about_dialog (NULL,
                        &quot;program-name&quot;, &quot;ExampleCode&quot;,
                        &quot;logo&quot;, example_logo,
                        &quot;title&quot;, _(&quot;About ExampleCode&quot;),
-                       NULL);
-</code></pre>
-<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
+                       NULL);</pre></div><h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
 <p><a href="struct.AboutDialog.html" title="crate::AboutDialog"><code>AboutDialog</code></a> has a single CSS node with the name <code>window</code> and style
 class <code>.aboutdialog</code>.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
@@ -246,10 +244,9 @@ of the language which is currently used in the user interface.
 Using <code>gettext()</code>, a simple way to achieve that is to mark the
 string for translation:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *about = gtk_about_dialog_new ();
+<div class="example-wrap"><pre class="language-c">GtkWidget *about = gtk_about_dialog_new ();
  gtk_about_dialog_set_translator_credits (GTK_ABOUT_DIALOG (about),
-                                          _(&quot;translator-credits&quot;));
-</code></pre>
+                                          _(&quot;translator-credits&quot;));</pre></div>
 <p>It is a good idea to use the customary <code>msgid</code> “translator-credits” for this
 purpose, since translators will already know the purpose of that <code>msgid</code>, and
 since <a href="struct.AboutDialog.html" title="crate::AboutDialog"><code>AboutDialog</code></a> will detect if “translator-credits” is untranslated

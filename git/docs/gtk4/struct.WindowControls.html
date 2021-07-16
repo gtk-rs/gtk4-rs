@@ -78,7 +78,7 @@ and the window icon.</p>
 <p><a href="struct.WindowControls.html" title="crate::WindowControls"><code>WindowControls</code></a> only displays start or end side of the controls (see
 <code>property::WindowControls::side</code>), so it’s intended to be always used
 in pair with another <a href="struct.WindowControls.html" title="crate::WindowControls"><code>WindowControls</code></a> for the opposite side, for example:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkBox&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkBox&quot;&gt;
   &lt;child&gt;
     &lt;object class=&quot;GtkWindowControls&quot;&gt;
       &lt;property name=&quot;side&quot;&gt;start&lt;/property&gt;
@@ -92,15 +92,11 @@ in pair with another <a href="struct.WindowControls.html" title="crate::WindowCo
       &lt;property name=&quot;side&quot;&gt;end&lt;/property&gt;
     &lt;/object&gt;
   &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">windowcontrols
+&lt;/object&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">windowcontrols
 ├── [image.icon]
 ├── [button.minimize]
 ├── [button.maximize]
-╰── [button.close]
-</code></pre>
+╰── [button.close]</pre></div>
 <p>A <a href="struct.WindowControls.html" title="crate::WindowControls"><code>WindowControls</code></a>’ CSS node is called windowcontrols. It contains
 subnodes corresponding to each title button. Which of the title buttons
 exist and where they are placed exactly depends on the desktop environment

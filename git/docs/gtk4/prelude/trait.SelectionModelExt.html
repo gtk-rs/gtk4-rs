@@ -152,9 +152,9 @@ likely to implement support for those.</p>
 be updated to the respective value in the <code>selected</code> bitmask.</p>
 <p>In pseudocode, it would look something like this:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">for (i = 0; i &lt; n_items; i++)
+<div class="example-wrap"><pre class="language-c">for (i = 0; i &lt; n_items; i++)
   {
-    // don't change values not in the mask
+    // don&#39;t change values not in the mask
     if (!gtk_bitset_contains (mask, i))
       continue;
 
@@ -166,8 +166,7 @@ be updated to the respective value in the <code>selected</code> bitmask.</p>
 
 gtk_selection_model_selection_changed (model,
                                        first_changed_item,
-                                       n_changed_items);
-</code></pre>
+                                       n_changed_items);</pre></div>
 <p><code>mask</code> and <code>selected</code> must not be modified. They may refer to the
 same bitset, which would mean that every item in the set should
 be selected.</p>

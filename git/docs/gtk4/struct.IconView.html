@@ -82,10 +82,8 @@ rubberband selection, which is controlled by dragging the pointer.</p>
 opposed to a flat list where the mapping to icons is obvious),
 <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> will only display the first level of the tree and
 ignore the tree’s branches.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">iconview.view
-╰── [rubberband]
-</code></pre>
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">iconview.view
+╰── [rubberband]</pre></div>
 <p><a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> has a single CSS node with name iconview and style class .view.
 For rubberband selection, a subnode with name rubberband is used.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
@@ -247,9 +245,7 @@ want to convert the returned list into a list of <code>GtkTreeRowReferences</cod
 To do this, you can use <a href="struct.TreeRowReference.html#method.new" title="crate::TreeRowReference::new()"><code>TreeRowReference::new()</code></a>.</p>
 <p>To free the return value, use:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
-</code></pre>
-<h1 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h1>
+<div class="example-wrap"><pre class="language-C">g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</pre></div><h1 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h1>
 <p>A <code>GList</code> containing a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> for each selected row.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.selection_mode" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#617-619" title="goto source code">[src]</a></div><a href="#method.selection_mode" class="anchor"></a><code>pub fn <a href="#method.selection_mode" class="fnname">selection_mode</a>(&amp;self) -&gt; <a class="enum" href="enum.SelectionMode.html" title="enum gtk4::SelectionMode">SelectionMode</a></code></div></summary><div class="docblock"><p>Gets the selection mode of the <code>self</code>.</p>
 <h1 id="returns-25" class="section-header"><a href="#returns-25">Returns</a></h1>

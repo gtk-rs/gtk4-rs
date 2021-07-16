@@ -303,7 +303,7 @@ continue to use the same kind of widget for editing in future
 releases, therefore you should check the type of <code>editable</code>
 before doing any specific setup, as in the following example:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">static void
+<div class="example-wrap"><pre class="language-C">static void
 text_editing_started (GtkCellRenderer *cell,
                       GtkCellEditable *editable,
                       const char      *path,
@@ -317,9 +317,7 @@ text_editing_started (GtkCellRenderer *cell,
 
       gtk_entry_set_completion (entry, completion);
     }
-}
-</code></pre>
-<h2 id="editable" class="section-header"><a href="#editable"><code>editable</code></a></h2>
+}</pre></div><h2 id="editable" class="section-header"><a href="#editable"><code>editable</code></a></h2>
 <p>the <a href="../struct.CellEditable.html" title="crate::CellEditable"><code>CellEditable</code></a></p>
 <h2 id="path" class="section-header"><a href="#path"><code>path</code></a></h2>
 <p>the path identifying the edited cell</p>

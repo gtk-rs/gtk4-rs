@@ -76,13 +76,11 @@ up popover menus when clicked.</p>
 <p><img src="menubar.png" alt="An example GtkPopoverMenuBar" /></p>
 <p>The only way to create instances of <a href="struct.PopoverMenuBar.html" title="crate::PopoverMenuBar"><code>PopoverMenuBar</code></a> is
 from a <code>GMenuModel</code>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">menubar
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">menubar
 ├── item[.active]
 ┊   ╰── popover
 ╰── item
-    ╰── popover
-</code></pre>
+    ╰── popover</pre></div>
 <p><a href="struct.PopoverMenuBar.html" title="crate::PopoverMenuBar"><code>PopoverMenuBar</code></a> has a single CSS node with name menubar, below which
 each item has its CSS node, and below that the corresponding popover.</p>
 <p>The item whose popover is currently open gets the .active

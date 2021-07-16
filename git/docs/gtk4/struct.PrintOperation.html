@@ -91,7 +91,7 @@ the <a href="struct.PrintOperation.html" title="crate::PrintOperation"><code>Pri
 and render the page on the provided <a href="struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a> using Cairo.</p>
 <h1 id="the-high-level-printing-api" class="section-header"><a href="#the-high-level-printing-api">The high-level printing API</a></h1>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static GtkPrintSettings *settings = NULL;
+<div class="example-wrap"><pre class="language-c">static GtkPrintSettings *settings = NULL;
 
 static void
 do_print (void)
@@ -118,8 +118,7 @@ do_print (void)
     }
 
   g_object_unref (print);
-}
-</code></pre>
+}</pre></div>
 <p>By default <a href="struct.PrintOperation.html" title="crate::PrintOperation"><code>PrintOperation</code></a> uses an external application to do
 print preview. To implement a custom print preview, an application
 must connect to the preview signal. The functions

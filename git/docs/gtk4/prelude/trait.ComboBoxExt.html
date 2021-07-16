@@ -254,7 +254,7 @@ entry. The default signal handler uses the text from the
 <p>Here’s an example signal handler which fetches data from the model and
 displays it in the entry.
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static char *
+<div class="example-wrap"><pre class="language-c">static char *
 format_entry_text_callback (GtkComboBox *combo,
                             const char *path,
                             gpointer     user_data)
@@ -271,9 +271,7 @@ format_entry_text_callback (GtkComboBox *combo,
                       -1);
 
   return g_strdup_printf (&quot;%g&quot;, value);
-}
-</code></pre>
-<h2 id="path" class="section-header"><a href="#path"><code>path</code></a></h2>
+}</pre></div><h2 id="path" class="section-header"><a href="#path"><code>path</code></a></h2>
 <p>the <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> string from the combo box’s current model
 to format text for</p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>

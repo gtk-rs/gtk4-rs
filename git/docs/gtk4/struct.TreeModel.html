@@ -143,7 +143,7 @@ easier, the second is much more common, as you often get paths from
 callbacks.</p>
 <h2 id="acquiring-a-treeiter" class="section-header"><a href="#acquiring-a-treeiter">Acquiring a <code>TreeIter</code></a></h2>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">// Three ways of getting the iter pointing to the location
+<div class="example-wrap"><pre class="language-c">// Three ways of getting the iter pointing to the location
 GtkTreePath *path;
 GtkTreeIter iter;
 GtkTreeIter parent_iter;
@@ -166,8 +166,7 @@ gtk_tree_model_iter_nth_child (model, &amp;iter,
                                &amp;parent_iter, 2);
 parent_iter = iter;
 gtk_tree_model_iter_nth_child (model, &amp;iter,
-                               &amp;parent_iter, 5);
-</code></pre>
+                               &amp;parent_iter, 5);</pre></div>
 <p>This second example shows a quick way of iterating through a list
 and getting a string and an integer from each row. The
 <code>populate_model()</code> function used below is not
@@ -175,7 +174,7 @@ shown, as it is specific to the <a href="struct.ListStore.html" title="crate::Li
 how to write such a function, see the <a href="struct.ListStore.html" title="crate::ListStore"><code>ListStore</code></a> documentation.</p>
 <h2 id="reading-data-from-a-treemodel" class="section-header"><a href="#reading-data-from-a-treemodel">Reading data from a <code>TreeModel</code></a></h2>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">enum
+<div class="example-wrap"><pre class="language-c">enum
 {
   STRING_COLUMN,
   INT_COLUMN,
@@ -221,8 +220,7 @@ while (valid)
    valid = gtk_tree_model_iter_next (list_store,
                                      &amp;iter);
    row_count++;
- }
-</code></pre>
+ }</pre></div>
 <p>The <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> interface contains two methods for reference
 counting: <code>gtk_tree_model_ref_node()</code> and <code>gtk_tree_model_unref_node()</code>.
 These two methods are optional to implement. The reference counting

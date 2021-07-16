@@ -85,12 +85,10 @@ scrollable area.</p>
 from the <code>property::Adjustment::value</code> when the user asks to move by a step
 (using e.g. the cursor arrow keys) or by a page (using e.g. the Page Down/Up
 keys).</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">scrollbar
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">scrollbar
 ╰── range[.fine-tune]
     ╰── trough
-        ╰── slider
-</code></pre>
+        ╰── slider</pre></div>
 <p><a href="struct.Scrollbar.html" title="crate::Scrollbar"><code>Scrollbar</code></a> has a main CSS node with name scrollbar and a subnode for its
 contents. The main node gets the .horizontal or .vertical style classes applied,
 depending on the scrollbar’s orientation.</p>

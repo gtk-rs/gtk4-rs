@@ -106,10 +106,9 @@ algorithm. So this number is not related to how many items are
 already correctly sorted.</p>
 <p>If you want to estimate the progress, you can use code like this:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">pending = gtk_sort_list_model_get_pending (self);
+<div class="example-wrap"><pre class="language-c">pending = gtk_sort_list_model_get_pending (self);
 model = gtk_sort_list_model_get_model (self);
-progress = 1.0 - pending / (double) MAX (1, g_list_model_get_n_items (model));
-</code></pre>
+progress = 1.0 - pending / (double) MAX (1, g_list_model_get_n_items (model));</pre></div>
 <p>If no sort operation is ongoing - in particular when
 <code>property::SortListModel::incremental</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> - this
 function returns 0.</p>

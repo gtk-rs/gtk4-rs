@@ -89,8 +89,7 @@ meaning as <a href="prelude/trait.ScaleExt.html#tymethod.add_mark" title="crate:
 the element is not empty, its content is taken as the markup to show at
 the mark. It can be translated with the usual ”translatable” and
 “context” attributes.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">scale[.fine-tune][.marks-before][.marks-after]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">scale[.fine-tune][.marks-before][.marks-after]
 ├── [value][.top][.right][.bottom][.left]
 ├── marks.top
 │   ├── mark
@@ -107,8 +106,7 @@ the mark. It can be translated with the usual ”translatable” and
 ╰── trough
     ├── [fill]
     ├── [highlight]
-    ╰── slider
-</code></pre>
+    ╰── slider</pre></div>
 <p><a href="struct.Scale.html" title="crate::Scale"><code>Scale</code></a> has a main CSS node with name scale and a subnode for its contents,
 with subnodes named trough and slider.</p>
 <p>The main node gets the style class .fine-tune added when the scale is in

@@ -101,13 +101,11 @@ on an icon in an entry may not be accessible at all to users which are not
 able to use a mouse or other pointing device. It is therefore recommended
 that any such functionality should also be available by other means, e.g.
 via the context menu of the entry.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">entry[.flat][.warning][.error]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">entry[.flat][.warning][.error]
 ├── text[.readonly]
 ├── image.left
 ├── image.right
-╰── [progress[.pulse]]
-</code></pre>
+╰── [progress[.pulse]]</pre></div>
 <p><a href="struct.Entry.html" title="crate::Entry"><code>Entry</code></a> has a main node with the name entry. Depending on the properties
 of the entry, the style classes .read-only and .flat may appear. The style
 classes .warning and .error may also be used with entries.</p>
@@ -124,13 +122,12 @@ elements. The <code>&lt;attribute&gt;</code> element has attributes named “nam
 “start“ and “end“ and allows you to specify <code>PangoAttribute</code> values for
 this label.</p>
 <p>An example of a UI definition fragment specifying Pango attributes:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkEnry&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkEnry&quot;&gt;
   &lt;attributes&gt;
     &lt;attribute name=&quot;weight&quot; value=&quot;PANGO_WEIGHT_BOLD&quot;/&gt;
     &lt;attribute name=&quot;background&quot; value=&quot;red&quot; start=&quot;5&quot; end=&quot;10&quot;/&gt;
   &lt;/attributes&gt;
-&lt;/object&gt;
-</code></pre>
+&lt;/object&gt;</pre></div>
 <p>The start and end attributes specify the range of characters to which the
 Pango attribute applies. If start and end are not specified, the attribute
 is applied to the whole text. Note that specifying ranges does not make much

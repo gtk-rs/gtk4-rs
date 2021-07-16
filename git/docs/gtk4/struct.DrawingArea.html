@@ -95,7 +95,7 @@ area to display a circle in the normal widget foreground
 color.</p>
 <h2 id="simple-gtkdrawingarea-usage" class="section-header"><a href="#simple-gtkdrawingarea-usage">Simple GtkDrawingArea usage</a></h2>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 draw_function (GtkDrawingArea *area,
                cairo_t        *cr,
                int             width,
@@ -131,8 +131,7 @@ main (int argc, char **argv)
                                   draw_function,
                                   NULL, NULL);
   return 0;
-}
-</code></pre>
+}</pre></div>
 <p>The draw function is normally called when a drawing area first comes
 onscreen, or when it’s covered by another window and then uncovered.
 You can also force a redraw by adding to the “damage region” of the

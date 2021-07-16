@@ -85,7 +85,7 @@ it is possible to turn on <em>rubberband selection</em>, using
 <a href="section-list-widget.html">overview</a>.</p>
 <p>An example of using <a href="struct.ListView.html" title="crate::ListView"><code>ListView</code></a>:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 setup_listitem_cb (GtkListItemFactory *factory,
                    GtkListItem        *list_item)
 {
@@ -132,17 +132,13 @@ activate_cb (GtkListView  *list,
 
   g_signal_connect (list, &quot;activate&quot;, G_CALLBACK (activate_cb), NULL);
 
-  gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (sw), list);
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">listview[.separators][.rich-list][.navigation-sidebar][.data-table]
+  gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (sw), list);</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">listview[.separators][.rich-list][.navigation-sidebar][.data-table]
 ├── row
 │
 ├── row
 │
 ┊
-╰── [rubberband]
-</code></pre>
+╰── [rubberband]</pre></div>
 <p><a href="struct.ListView.html" title="crate::ListView"><code>ListView</code></a> uses a single CSS node named listview. It may carry the
 .separators style class, when <a href="struct.ListView.html" title="crate::ListView"><code>ListView</code></a>:show-separators property
 is set. Each child widget uses a single CSS node named row. For
@@ -160,10 +156,8 @@ mapping items to widgets.</p>
 <p>The function takes ownership of the
 arguments, so you can write code like
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">list_view = gtk_list_view_new (create_model (),
-  gtk_builder_list_item_factory_new_from_resource (&quot;/resource.ui&quot;));
-</code></pre>
-<h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
+<div class="example-wrap"><pre class="language-c">list_view = gtk_list_view_new (create_model (),
+  gtk_builder_list_item_factory_new_from_resource (&quot;/resource.ui&quot;));</pre></div><h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
 <p>the model to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="factory" class="section-header"><a href="#factory"><code>factory</code></a></h2>
 <p>The factory to populate items with, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>

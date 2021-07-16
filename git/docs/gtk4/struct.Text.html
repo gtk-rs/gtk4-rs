@@ -87,15 +87,13 @@ in the current font, but it can be changed with
 at <a href="struct.Entry.html" title="crate::Entry"><code>Entry</code></a>. There other alternatives for more specialized use cases,
 such as <a href="struct.SearchEntry.html" title="crate::SearchEntry"><code>SearchEntry</code></a>.</p>
 <p>If you need multi-line editable text, look at <a href="struct.TextView.html" title="crate::TextView"><code>TextView</code></a>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">text[.read-only]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">text[.read-only]
 ├── placeholder
 ├── undershoot.left
 ├── undershoot.right
 ├── [selection]
 ├── [block-cursor]
-╰── [window.popup]
-</code></pre>
+╰── [window.popup]</pre></div>
 <p><a href="struct.Text.html" title="crate::Text"><code>Text</code></a> has a main node with the name text. Depending on the properties
 of the widget, the .read-only style class may appear.</p>
 <p>When the entry has a selection, it adds a subnode with the name selection.</p>

@@ -193,8 +193,7 @@ with <code>G_MODULE_EXPORT</code>, or they will not be put in the symbol table.
 On Linux and Unix, this is not necessary; applications should instead
 be compiled with the -Wl,–export-dynamic <code>CFLAGS</code>, and linked against
 <code>gmodule-export-2.0</code>.</p>
-<h1 id="a-gtkbuilder-ui-definition" class="section-header"><a href="#a-gtkbuilder-ui-definition">A GtkBuilder UI Definition</a></h1>
-<pre><code class="language-xml">&lt;interface&gt;
+<h1 id="a-gtkbuilder-ui-definition" class="section-header"><a href="#a-gtkbuilder-ui-definition">A GtkBuilder UI Definition</a></h1><div class="example-wrap"><pre class="language-xml">&lt;interface&gt;
   &lt;object class=&quot;GtkDialog&quot; id=&quot;dialog1&quot;&gt;
     &lt;child internal-child=&quot;vbox&quot;&gt;
       &lt;object class=&quot;GtkBox&quot; id=&quot;vbox1&quot;&gt;
@@ -211,8 +210,7 @@ be compiled with the -Wl,–export-dynamic <code>CFLAGS</code>, and linked again
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/object&gt;
-&lt;/interface&gt;
-</code></pre>
+&lt;/interface&gt;</pre></div>
 <p>Beyond this general structure, several object classes define their
 own XML DTD fragments for filling in the ANY placeholders in the DTD
 above. Note that a custom element in a <code>&lt;child&gt;</code> element gets parsed by

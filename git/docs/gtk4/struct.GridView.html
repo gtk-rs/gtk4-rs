@@ -81,15 +81,13 @@ it is possible to turn on <em>rubberband selection</em>, using
 <code>property::GridView::enable-rubberband</code>.</p>
 <p>To learn more about the list widget framework, see the
 <a href="section-list-widget.html">overview</a>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">gridview
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">gridview
 ├── child
 │
 ├── child
 │
 ┊
-╰── [rubberband]
-</code></pre>
+╰── [rubberband]</pre></div>
 <p><a href="struct.GridView.html" title="crate::GridView"><code>GridView</code></a> uses a single CSS node with name gridview. Each child
 uses a single CSS node with name child. For rubberband selection,
 a subnode with name rubberband is used.</p>
@@ -103,10 +101,8 @@ mapping items to widgets.</p>
 <p>The function takes ownership of the
 arguments, so you can write code like
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">grid_view = gtk_grid_view_new (create_model (),
-  gtk_builder_list_item_factory_new_from_resource (&quot;/resource.ui&quot;));
-</code></pre>
-<h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
+<div class="example-wrap"><pre class="language-c">grid_view = gtk_grid_view_new (create_model (),
+  gtk_builder_list_item_factory_new_from_resource (&quot;/resource.ui&quot;));</pre></div><h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
 <p>the model to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="factory" class="section-header"><a href="#factory"><code>factory</code></a></h2>
 <p>The factory to populate items with, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>

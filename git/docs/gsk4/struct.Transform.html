@@ -141,10 +141,9 @@ perspective effect.</p>
 sure, use <a href="struct.Transform.html#method.category" title="Self::category()"><code>category()</code></a> &gt;=
 <a href="enum.TransformCategory.html#variant._2d" title="crate::TransformCategory::_2d"><code>TransformCategory::_2d</code></a> to check.</p>
 <p>The returned values have the following layout:</p>
-<pre><code class="language-text">  | xx yx |   |  a  b  0 |
+<div class="example-wrap"><pre class="language-text">  | xx yx |   |  a  b  0 |
   | xy yy | = |  c  d  0 |
-  | dx dy |   | tx ty  1 |
-</code></pre>
+  | dx dy |   | tx ty  1 |</pre></div>
 <p>This function can be used to convert between a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a>
 and a matrix type from other 2D drawing libraries, in particular
 Cairo.</p>

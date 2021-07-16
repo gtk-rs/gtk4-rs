@@ -90,23 +90,22 @@ elements with a mandatory name attribute. <code>&lt;link&gt;</code> elements hav
 same content model as <code>&lt;menu&gt;</code>. Instead of <code>&lt;link name=&quot;submenu&gt;</code> or
 <code>&lt;link name=&quot;section&quot;&gt;</code>, you can use <code>&lt;submenu&gt;</code> or <code>&lt;section&gt;</code>
 elements.</p>
-<pre><code class="language-xml">&lt;menu id='app-menu'&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;menu id=&#39;app-menu&#39;&gt;
   &lt;section&gt;
     &lt;item&gt;
-      &lt;attribute name='label' translatable='yes'&gt;_New Window&lt;/attribute&gt;
-      &lt;attribute name='action'&gt;app.new&lt;/attribute&gt;
+      &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_New Window&lt;/attribute&gt;
+      &lt;attribute name=&#39;action&#39;&gt;app.new&lt;/attribute&gt;
     &lt;/item&gt;
     &lt;item&gt;
-      &lt;attribute name='label' translatable='yes'&gt;_About Sunny&lt;/attribute&gt;
-      &lt;attribute name='action'&gt;app.about&lt;/attribute&gt;
+      &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_About Sunny&lt;/attribute&gt;
+      &lt;attribute name=&#39;action&#39;&gt;app.about&lt;/attribute&gt;
     &lt;/item&gt;
     &lt;item&gt;
-      &lt;attribute name='label' translatable='yes'&gt;_Quit&lt;/attribute&gt;
-      &lt;attribute name='action'&gt;app.quit&lt;/attribute&gt;
+      &lt;attribute name=&#39;label&#39; translatable=&#39;yes&#39;&gt;_Quit&lt;/attribute&gt;
+      &lt;attribute name=&#39;action&#39;&gt;app.quit&lt;/attribute&gt;
     &lt;/item&gt;
   &lt;/section&gt;
-&lt;/menu&gt;
-</code></pre>
+&lt;/menu&gt;</pre></div>
 <p>Attribute values can be translated using gettext, like other <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a>
 content. <code>&lt;attribute&gt;</code> elements can be marked for translation with a
 <code>translatable=&quot;yes&quot;</code> attribute. It is also possible to specify message

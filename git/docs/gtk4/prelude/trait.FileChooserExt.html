@@ -241,7 +241,7 @@ don’t have a file name already — for example, if the user just created
 a new file and is saving it for the first time, do not call this function.</p>
 <p>Instead, use something similar to this:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 prepare_file_chooser (GtkFileChooser *chooser,
                       GFile          *existing_file)
 {
@@ -260,9 +260,7 @@ prepare_file_chooser (GtkFileChooser *chooser,
       // the user edited an existing document
       gtk_file_chooser_set_file (chooser, existing_file, NULL);
     }
-}
-</code></pre>
-<h2 id="file-1" class="section-header"><a href="#file-1"><code>file</code></a></h2>
+}</pre></div><h2 id="file-1" class="section-header"><a href="#file-1"><code>file</code></a></h2>
 <p>the <code>GFile</code> to set as current</p>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
 <p>Not useful</p>

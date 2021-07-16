@@ -80,11 +80,9 @@ of the windowing system and allow the user to manipulate the window
 <p>The <a href="struct.Window.html" title="crate::Window"><code>Window</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface supports
 setting a child as the titlebar by specifying “titlebar” as the “type”
 attribute of a <code>&lt;child&gt;</code> element.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">window.background [.csd / .solid-csd / .ssd] [.maximized / .fullscreen / .tiled]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">window.background [.csd / .solid-csd / .ssd] [.maximized / .fullscreen / .tiled]
 ├── &lt;child&gt;
-╰── &lt;titlebar child&gt;.titlebar [.default-decoration]
-</code></pre>
+╰── &lt;titlebar child&gt;.titlebar [.default-decoration]</pre></div>
 <p><a href="struct.Window.html" title="crate::Window"><code>Window</code></a> has a main CSS node with name window and style class .background.</p>
 <p>Style classes that are typically used with the main CSS node are .csd (when
 client-side decorations are in use), .solid-csd (for client-side decorations

@@ -116,15 +116,13 @@ widgets that belong to the size group are specified by a <code>&lt;widgets&gt;</
 that may contain multiple <code>&lt;widget&gt;</code> elements, one for each member of the
 size group. The ”name” attribute gives the id of the widget.</p>
 <p>An example of a UI definition fragment with <a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code></a>:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkSizeGroup&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkSizeGroup&quot;&gt;
   &lt;property name=&quot;mode&quot;&gt;horizontal&lt;/property&gt;
   &lt;widgets&gt;
     &lt;widget name=&quot;radio1&quot;/&gt;
     &lt;widget name=&quot;radio2&quot;/&gt;
   &lt;/widgets&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
+&lt;/object&gt;</pre></div><h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/size_group.rs.html#94-206" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><code class="in-band">impl <a class="struct" href="struct.SizeGroup.html" title="struct gtk4::SizeGroup">SizeGroup</a></code></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/size_group.rs.html#103-106" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><code>pub fn <a href="#method.new" class="fnname">new</a>(mode: <a class="enum" href="enum.SizeGroupMode.html" title="enum gtk4::SizeGroupMode">SizeGroupMode</a>) -&gt; <a class="struct" href="struct.SizeGroup.html" title="struct gtk4::SizeGroup">SizeGroup</a></code></div></summary><div class="docblock"><p>Create a new <a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code></a>.</p>
 <h2 id="mode" class="section-header"><a href="#mode"><code>mode</code></a></h2>

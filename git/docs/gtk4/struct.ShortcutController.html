@@ -84,20 +84,19 @@ shortcuts that have been added to it.</p>
 <p><code>GtkShortcutControllers</code> can be creates in ui files to set up
 shortcuts in the same place as the widgets.</p>
 <p>An example of a UI definition fragment with <a href="struct.ShortcutController.html" title="crate::ShortcutController"><code>ShortcutController</code></a>:</p>
-<pre><code class="language-xml">  &lt;object class='GtkButton'&gt;
+<div class="example-wrap"><pre class="language-xml">  &lt;object class=&#39;GtkButton&#39;&gt;
     &lt;child&gt;
-      &lt;object class='GtkShortcutController'&gt;
-        &lt;property name='scope'&gt;managed&lt;/property&gt;
+      &lt;object class=&#39;GtkShortcutController&#39;&gt;
+        &lt;property name=&#39;scope&#39;&gt;managed&lt;/property&gt;
         &lt;child&gt;
-          &lt;object class='GtkShortcut'&gt;
-            &lt;property name='trigger'&gt;&amp;amp;lt;Control&amp;amp;gt;k&lt;/property&gt;
-            &lt;property name='action'&gt;activate&lt;/property&gt;
+          &lt;object class=&#39;GtkShortcut&#39;&gt;
+            &lt;property name=&#39;trigger&#39;&gt;&amp;amp;lt;Control&amp;amp;gt;k&lt;/property&gt;
+            &lt;property name=&#39;action&#39;&gt;activate&lt;/property&gt;
           &lt;/object&gt;
         &lt;/child&gt;
       &lt;/object&gt;
     &lt;/child&gt;
-  &lt;/object&gt;
-</code></pre>
+  &lt;/object&gt;</pre></div>
 <p>This example creates a <a href="struct.ActivateAction.html" title="crate::ActivateAction"><code>ActivateAction</code></a> for triggering the
 <code>activate</code> signal of the <a href="struct.Button.html" title="crate::Button"><code>Button</code></a>. See <a href="struct.ShortcutAction.html#method.parse_string" title="crate::ShortcutAction::parse_string()"><code>ShortcutAction::parse_string()</code></a>
 for the syntax for other kinds of <a href="struct.ShortcutAction.html" title="crate::ShortcutAction"><code>ShortcutAction</code></a>. See

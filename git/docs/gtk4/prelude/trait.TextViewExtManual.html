@@ -82,7 +82,7 @@ when overriding key event handling. This is needed in the case when
 you need to insert your own key handling between the input method
 and the default key event handling of the <a href="../struct.TextView.html" title="crate::TextView"><code>TextView</code></a>.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static gboolean
+<div class="example-wrap"><pre class="language-c">static gboolean
 gtk_foo_bar_key_press_event (GtkWidget *widget,
                              GdkEvent  *event)
 {
@@ -99,9 +99,7 @@ gtk_foo_bar_key_press_event (GtkWidget *widget,
   // Do some stuff
 
   return GTK_WIDGET_CLASS (gtk_foo_bar_parent_class)-&gt;key_press_event (widget, event);
-}
-</code></pre>
-<h2 id="event" class="section-header"><a href="#event"><code>event</code></a></h2>
+}</pre></div><h2 id="event" class="section-header"><a href="#event"><code>event</code></a></h2>
 <p>the key event</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the input method handled the key event.</p>

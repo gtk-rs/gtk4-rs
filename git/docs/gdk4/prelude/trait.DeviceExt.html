@@ -176,7 +176,7 @@ relative to the surface origin, or <a href="https://doc.rust-lang.org/nightly/co
 can be used to eg. compose <code>GSettings</code> paths to store settings
 for this device.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c"> static GSettings *
+<div class="example-wrap"><pre class="language-c"> static GSettings *
  get_device_settings (GdkDevice *device)
  {
    const char *vendor, *product;
@@ -192,9 +192,7 @@ for this device.</p>
    g_free (path);
 
    return settings;
- }
-</code></pre>
-<h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
+ }</pre></div><h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
 <p>the vendor ID, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.has_bidi_layouts" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/device.rs.html#258" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.has_bidi_layouts" class="fnname">has_bidi_layouts</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></div></summary><div class="docblock"><p>Determines if layouts for both right-to-left and
 left-to-right languages are in use on the keyboard.</p>

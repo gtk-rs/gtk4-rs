@@ -87,10 +87,8 @@ mapping items to widgets.</p>
 <p>You most likely want to call <a href="struct.ColumnView.html#method.append_column" title="crate::ColumnView::append_column()"><code>ColumnView::append_column()</code></a> next.</p>
 <p>The function takes ownership of the argument, so you can write code like:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">column = gtk_column_view_column_new (_(&quot;Name&quot;),
-  gtk_builder_list_item_factory_new_from_resource (&quot;/name.ui&quot;));
-</code></pre>
-<h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
+<div class="example-wrap"><pre class="language-c">column = gtk_column_view_column_new (_(&quot;Name&quot;),
+  gtk_builder_list_item_factory_new_from_resource (&quot;/name.ui&quot;));</pre></div><h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
 <p>Title to use for this column</p>
 <h2 id="factory" class="section-header"><a href="#factory"><code>factory</code></a></h2>
 <p>The factory to populate items with</p>

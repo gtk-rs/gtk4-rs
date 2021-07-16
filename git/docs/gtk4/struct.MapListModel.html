@@ -75,7 +75,7 @@
 <p><a href="struct.MapListModel.html" title="crate::MapListModel"><code>MapListModel</code></a> uses a `callback::Gtk::MapListModelMapFunc.</p>
 <p>Example: Create a list of <code>GtkEventControllers</code>
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static gpointer
+<div class="example-wrap"><pre class="language-c">static gpointer
 map_to_controllers (gpointer widget,
                     gpointer data)
 {
@@ -92,8 +92,7 @@ controllers = gtk_map_list_model_new (G_TYPE_LIST_MODEL,
                                       NULL, NULL);
 
 model = gtk_flatten_list_model_new (GTK_TYPE_EVENT_CONTROLLER,
-                                    controllers);
-</code></pre>
+                                    controllers);</pre></div>
 <p><a href="struct.MapListModel.html" title="crate::MapListModel"><code>MapListModel</code></a> will attempt to discard the mapped objects as soon as
 they are no longer needed and recreate them if necessary.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>

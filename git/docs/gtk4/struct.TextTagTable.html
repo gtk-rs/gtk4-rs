@@ -81,13 +81,11 @@ related to the text widget and how they work together.</p>
 supports adding tags by specifying “tag” as the “type” attribute
 of a <code>&lt;child&gt;</code> element.</p>
 <p>An example of a UI definition fragment specifying tags:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkTextTagTable&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkTextTagTable&quot;&gt;
  &lt;child type=&quot;tag&quot;&gt;
    &lt;object class=&quot;GtkTextTag&quot;/&gt;
  &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
+&lt;/object&gt;</pre></div><h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_tag_table.rs.html#50-250" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><code class="in-band">impl <a class="struct" href="struct.TextTagTable.html" title="struct gtk4::TextTagTable">TextTagTable</a></code></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_tag_table.rs.html#59-62" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.TextTagTable.html" title="struct gtk4::TextTagTable">TextTagTable</a></code></div></summary><div class="docblock"><p>Creates a new <a href="struct.TextTagTable.html" title="crate::TextTagTable"><code>TextTagTable</code></a>.</p>
 <p>The table contains no tags by default.</p>

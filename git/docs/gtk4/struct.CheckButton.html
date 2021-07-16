@@ -94,11 +94,9 @@ another one will switch the currently toggled one off.</p>
 to as <em>radio buttons</em>.</p>
 <p><img src="radio-button.png" alt="Example GtkCheckButtons" /></p>
 <p>To add a <a href="struct.CheckButton.html" title="crate::CheckButton"><code>CheckButton</code></a> to a group, use <a href="prelude/trait.CheckButtonExt.html#tymethod.set_group" title="crate::prelude::CheckButtonExt::set_group()"><code>CheckButtonExt::set_group()</code></a>.</p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">checkbutton[.text-button]
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">checkbutton[.text-button]
 ├── check
-╰── [label]
-</code></pre>
+╰── [label]</pre></div>
 <p>A <a href="struct.CheckButton.html" title="crate::CheckButton"><code>CheckButton</code></a> has a main node with name checkbutton. If the
 <code>property::CheckButton::label</code> property is set, it contains a label
 child. The indicator node is named check when no group is set, and

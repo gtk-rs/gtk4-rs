@@ -75,13 +75,11 @@
 <p>As the name implies, most labels are used to label another widget
 such as a <a href="struct.Button.html" title="crate::Button"><code>Button</code></a>.</p>
 <p><img src="label.png" alt="An example GtkLabel" /></p>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">label
+<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">label
 ├── [selection]
 ├── [link]
 ┊
-╰── [link]
-</code></pre>
+╰── [link]</pre></div>
 <p><a href="struct.Label.html" title="crate::Label"><code>Label</code></a> has a single CSS node with the name label. A wide variety
 of style classes may be applied to labels, such as .title, .subtitle,
 .dim-label, etc. In the <a href="struct.ShortcutsWindow.html" title="crate::ShortcutsWindow"><code>ShortcutsWindow</code></a>, labels are used with the
@@ -97,13 +95,12 @@ elements. The <code>&lt;attribute&gt;</code> element has attributes named “nam
 “start“ and “end“ and allows you to specify <code>Pango::Attribute</code>
 values for this label.</p>
 <p>An example of a UI definition fragment specifying Pango attributes:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkLabel&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkLabel&quot;&gt;
   &lt;attributes&gt;
     &lt;attribute name=&quot;weight&quot; value=&quot;PANGO_WEIGHT_BOLD&quot;/&gt;
     &lt;attribute name=&quot;background&quot; value=&quot;red&quot; start=&quot;5&quot; end=&quot;10&quot;/&gt;
   &lt;/attributes&gt;
-&lt;/object&gt;
-</code></pre>
+&lt;/object&gt;</pre></div>
 <p>The start and end attributes specify the range of characters to which the
 Pango attribute applies. If start and end are not specified, the attribute is
 applied to the whole text. Note that specifying ranges does not make much
@@ -123,35 +120,30 @@ mnemonic’s target widget, you have to tell the label about the target
 using [class<code>Gtk</code>.set_mnemonic_widget]. Here’s a simple example where
 the label is inside a button:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">// Pressing Alt+H will activate this button
+<div class="example-wrap"><pre class="language-c">// Pressing Alt+H will activate this button
 GtkWidget *button = gtk_button_new ();
 GtkWidget *label = gtk_label_new_with_mnemonic (&quot;_Hello&quot;);
-gtk_button_set_child (GTK_BUTTON (button), label);
-</code></pre>
+gtk_button_set_child (GTK_BUTTON (button), label);</pre></div>
 <p>There’s a convenience function to create buttons with a mnemonic label
 already inside:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">// Pressing Alt+H will activate this button
-GtkWidget *button = gtk_button_new_with_mnemonic (&quot;_Hello&quot;);
-</code></pre>
+<div class="example-wrap"><pre class="language-c">// Pressing Alt+H will activate this button
+GtkWidget *button = gtk_button_new_with_mnemonic (&quot;_Hello&quot;);</pre></div>
 <p>To create a mnemonic for a widget alongside the label, such as a
 <a href="struct.Entry.html" title="crate::Entry"><code>Entry</code></a>, you have to point the label at the entry with
 <a href="struct.Label.html#method.set_mnemonic_widget" title="Self::set_mnemonic_widget()"><code>set_mnemonic_widget()</code></a>:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">// Pressing Alt+H will focus the entry
+<div class="example-wrap"><pre class="language-c">// Pressing Alt+H will focus the entry
 GtkWidget *entry = gtk_entry_new ();
 GtkWidget *label = gtk_label_new_with_mnemonic (&quot;_Hello&quot;);
-gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-</code></pre>
-<h1 id="markup-styled-text" class="section-header"><a href="#markup-styled-text">Markup (styled text)</a></h1>
+gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);</pre></div><h1 id="markup-styled-text" class="section-header"><a href="#markup-styled-text">Markup (styled text)</a></h1>
 <p>To make it easy to format text in a label (changing colors,
 fonts, etc.), label text can be provided in a simple
 markup format:</p>
 <p>Here’s how to create a label with a small font:
 <strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *label = gtk_label_new (NULL);
-gtk_label_set_markup (GTK_LABEL (label), &quot;&lt;small&gt;Small text&lt;/small&gt;&quot;);
-</code></pre>
+<div class="example-wrap"><pre class="language-c">GtkWidget *label = gtk_label_new (NULL);
+gtk_label_set_markup (GTK_LABEL (label), &quot;&lt;small&gt;Small text&lt;/small&gt;&quot;);</pre></div>
 <p>(See the Pango manual for complete documentation] of available
 tags, <code>parse_markup()</code>)</p>
 <p>The markup passed to <a href="struct.Label.html#method.set_markup" title="Self::set_markup()"><code>set_markup()</code></a> must be valid; for example,
@@ -199,13 +191,12 @@ attribute is displayed as a tooltip on the link. The “class“ attribute is
 used as style class on the CSS node for the link.</p>
 <p>An example looks like this:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">const char *text =
+<div class="example-wrap"><pre class="language-c">const char *text =
 &quot;Go to the&quot;
 &quot;&lt;a href=\&quot;http://www.gtk.org title=\&quot;&amp;lt;i&amp;gt;Our&amp;lt;/i&amp;gt; website\&quot;&gt;&quot;
 &quot;GTK website&lt;/a&gt; for more...&quot;;
 GtkWidget *label = gtk_label_new (NULL);
-gtk_label_set_markup (GTK_LABEL (label), text);
-</code></pre>
+gtk_label_set_markup (GTK_LABEL (label), text);</pre></div>
 <p>It is possible to implement custom handling for links and their tooltips
 with the <code>signal::Label::activate-link</code> signal and the
 <a href="struct.Label.html#method.current_uri" title="Self::current_uri()"><code>current_uri()</code></a> function.</p>
@@ -408,15 +399,14 @@ Set this to -1 if you don’t want to limit the number of lines.</p>
 <p>If the <code>str</code> is external data, you may need to escape it
 with <code>g_markup_escape_text()</code> or <code>g_markup_printf_escaped()</code>:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">GtkWidget *self = gtk_label_new (NULL);
+<div class="example-wrap"><pre class="language-c">GtkWidget *self = gtk_label_new (NULL);
 const char *str = &quot;...&quot;;
 const char *format = &quot;&lt;span style=\&quot;italic\&quot;&gt;\%s&lt;/span&gt;&quot;;
 char *markup;
 
 markup = g_markup_printf_escaped (format, str);
 gtk_label_set_markup (GTK_LABEL (self), markup);
-g_free (markup);
-</code></pre>
+g_free (markup);</pre></div>
 <p>This function will set the <code>property::Label::use-markup</code> property
 to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> as a side effect.</p>
 <p>If you set the label contents using the <code>property::Label::label</code>

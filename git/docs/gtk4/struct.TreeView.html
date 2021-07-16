@@ -103,7 +103,7 @@ former you can use <a href="prelude/trait.TreeViewExt.html#tymethod.convert_widg
 <a href="struct.TreeViewColumn.html" title="crate::TreeViewColumn"><code>TreeViewColumn</code></a> objects as <code>&lt;child&gt;</code> elements and exposes the
 internal <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>TreeSelection</code></a> in UI definitions.</p>
 <p>An example of a UI definition fragment with <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a>:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkTreeView&quot; id=&quot;treeview&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkTreeView&quot; id=&quot;treeview&quot;&gt;
   &lt;property name=&quot;model&quot;&gt;liststore1&lt;/property&gt;
   &lt;child&gt;
     &lt;object class=&quot;GtkTreeViewColumn&quot; id=&quot;test-column&quot;&gt;
@@ -121,10 +121,7 @@ internal <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>
       &lt;signal name=&quot;changed&quot; handler=&quot;on_treeview_selection_changed&quot;/&gt;
     &lt;/object&gt;
   &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
-<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
-<pre><code class="language-text">treeview.view
+&lt;/object&gt;</pre></div><h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text">treeview.view
 ├── header
 │   ├── button
 │   │   ╰── [sort-indicator]
@@ -133,8 +130,7 @@ internal <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>
 │       ╰── [sort-indicator]
 │
 ├── [rubberband]
-╰── [dndtarget]
-</code></pre>
+╰── [dndtarget]</pre></div>
 <p><a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a> has a main CSS node with name <code>treeview</code> and style class <code>.view</code>.
 It has a subnode with name <code>header</code>, which is the parent for all the column
 header widgets’ CSS nodes.</p>

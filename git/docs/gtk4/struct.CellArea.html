@@ -113,7 +113,7 @@ used when rendering or processing events for that row.</p>
 <p>In order to request the width of all the rows at the root level
 of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> one would do the following:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">GtkTreeIter iter;
+<div class="example-wrap"><pre class="language-C">GtkTreeIter iter;
 int         minimum_width;
 int         natural_width;
 
@@ -125,8 +125,7 @@ while (valid)
 
     valid = gtk_tree_model_iter_next (model, &amp;iter);
   }
-gtk_cell_area_context_get_preferred_width (context, &amp;minimum_width, &amp;natural_width);
-</code></pre>
+gtk_cell_area_context_get_preferred_width (context, &amp;minimum_width, &amp;natural_width);</pre></div>
 <p>Note that in this example it’s not important to observe the
 returned minimum and natural width of the area for each row
 unless the cell-layouting object is actually interested in the
@@ -144,7 +143,7 @@ it can simply consult the width accumulated so far in the
 <p>A simple example where rows are rendered from top to bottom and
 take up the full width of the layouting widget would look like:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">static void
+<div class="example-wrap"><pre class="language-C">static void
 foo_get_preferred_width (GtkWidget       *widget,
                          int             *minimum_size,
                          int             *natural_size)
@@ -155,8 +154,7 @@ foo_get_preferred_width (GtkWidget       *widget,
   foo_ensure_at_least_one_handfull_of_rows_have_been_requested (foo);
 
   gtk_cell_area_context_get_preferred_width (priv-&gt;context, minimum_size, natural_size);
-}
-</code></pre>
+}</pre></div>
 <p>In the above example the Foo widget has to make sure that some
 row sizes have been calculated (the amount of rows that Foo judged
 was appropriate to request space for in a single timeout iteration)
@@ -171,7 +169,7 @@ width which was requested by the <a href="struct.CellArea.html" title="crate::Ce
 <p>In order to request the height for width of all the rows at the
 root level of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> one would do the following:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">GtkTreeIter iter;
+<div class="example-wrap"><pre class="language-C">GtkTreeIter iter;
 int         minimum_height;
 int         natural_height;
 int         full_minimum_height = 0;
@@ -191,8 +189,7 @@ while (valid)
     full_natural_height += natural_height;
 
     valid = gtk_tree_model_iter_next (model, &amp;iter);
-  }
-</code></pre>
+  }</pre></div>
 <p>Note that in the above example we would need to cache the heights
 returned for each row so that we would know what sizes to render the
 areas for each row. However we would only want to really cache the
@@ -219,7 +216,7 @@ visible area of the layouting widget they can be rendered at
 <p>A crude example of how to render all the rows at the root level
 runs as follows:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">GtkAllocation allocation;
+<div class="example-wrap"><pre class="language-C">GtkAllocation allocation;
 GdkRectangle  cell_area = { 0, };
 GtkTreeIter   iter;
 int           minimum_width;
@@ -240,8 +237,7 @@ while (valid)
     cell_area.y += cell_area.height;
 
     valid = gtk_tree_model_iter_next (model, &amp;iter);
-  }
-</code></pre>
+  }</pre></div>
 <p>Note that the cached height in this example really depends on how
 the layouting widget works. The layouting widget might decide to
 give every row its minimum or natural height or, if the model content
@@ -274,7 +270,7 @@ rows and areas.</p>
 <p>A basic example of how the <code>GtkWidgetClass.focus()</code> virtual method
 should be implemented:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
-<pre><code class="language-C">static gboolean
+<div class="example-wrap"><pre class="language-C">static gboolean
 foo_focus (GtkWidget       *widget,
            GtkDirectionType direction)
 {
@@ -328,8 +324,7 @@ foo_focus (GtkWidget       *widget,
         }
     }
     return have_focus;
-}
-</code></pre>
+}</pre></div>
 <p>Note that the layouting widget is responsible for matching the
 GtkDirectionType values to the way it lays out its cells.</p>
 <h1 id="cell-properties" class="section-header"><a href="#cell-properties">Cell Properties</a></h1>

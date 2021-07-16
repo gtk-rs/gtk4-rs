@@ -92,7 +92,7 @@ specifying “title” value.</p>
 <p>By default the <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a> uses a <a href="struct.Label.html" title="crate::Label"><code>Label</code></a> displaying the title of the
 window it is contained in as the title widget, equivalent to the following
 UI definition:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkHeaderBar&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkHeaderBar&quot;&gt;
   &lt;property name=&quot;title-widget&quot;&gt;
     &lt;object class=&quot;GtkLabel&quot;&gt;
       &lt;property name=&quot;label&quot; translatable=&quot;yes&quot;&gt;Label&lt;/property&gt;
@@ -104,10 +104,7 @@ UI definition:</p>
       &lt;/style&gt;
     &lt;/object&gt;
   &lt;/property&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">headerbar
+&lt;/object&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">headerbar
 ╰── windowhandle
     ╰── box
         ├── box.start
@@ -116,8 +113,7 @@ UI definition:</p>
         ├── [Title Widget]
         ╰── box.end
             ├── [other children]
-            ╰── windowcontrols.end
-</code></pre>
+            ╰── windowcontrols.end</pre></div>
 <p>A <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a>’s CSS node is called <code>headerbar</code>. It contains a <code>windowhandle</code>
 subnode, which contains a <code>box</code> subnode, which contains two <code>box</code> subnodes at
 the start and end of the header bar, as well as a center node that represents

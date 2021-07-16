@@ -76,16 +76,14 @@
 <p>You may wish to begin by reading the <a href="section-text-widget.html">conceptual overview</a>,
 which gives an overview of all the objects and data types related to the
 text widget and how they work together.</p>
-<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2>
-<pre><code class="language-text">textview.view
+<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text">textview.view
 ├── border.top
 ├── border.left
 ├── text
 │   ╰── [selection]
 ├── border.right
 ├── border.bottom
-╰── [window.popup]
-</code></pre>
+╰── [window.popup]</pre></div>
 <p><a href="struct.TextView.html" title="crate::TextView"><code>TextView</code></a> has a main css node with name textview and style class .view,
 and subnodes for each of the border windows, and the main text area,
 with names border and text, respectively. The border nodes each get

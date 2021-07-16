@@ -88,7 +88,7 @@ but do not add a child to it. The expander widget has an
 monitor its expansion state. You should watch this property with
 a signal connection as follows:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
-<pre><code class="language-c">static void
+<div class="example-wrap"><pre class="language-c">static void
 expander_callback (GObject    *object,
                    GParamSpec *param_spec,
                    gpointer    user_data)
@@ -115,31 +115,25 @@ create_expander (void)
                     G_CALLBACK (expander_callback), NULL);
 
   // ...
-}
-</code></pre>
-<h1 id="gtkexpander-as-gtkbuildable" class="section-header"><a href="#gtkexpander-as-gtkbuildable">GtkExpander as GtkBuildable</a></h1>
+}</pre></div><h1 id="gtkexpander-as-gtkbuildable" class="section-header"><a href="#gtkexpander-as-gtkbuildable">GtkExpander as GtkBuildable</a></h1>
 <p>The <a href="struct.Expander.html" title="crate::Expander"><code>Expander</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface supports
 placing a child in the label position by specifying “label” as the
 “type” attribute of a <code>&lt;child&gt;</code> element. A normal content child can be
 specified without specifying a <code>&lt;child&gt;</code> type attribute.</p>
 <p>An example of a UI definition fragment with GtkExpander:</p>
-<pre><code class="language-xml">&lt;object class=&quot;GtkExpander&quot;&gt;
+<div class="example-wrap"><pre class="language-xml">&lt;object class=&quot;GtkExpander&quot;&gt;
   &lt;child type=&quot;label&quot;&gt;
     &lt;object class=&quot;GtkLabel&quot; id=&quot;expander-label&quot;/&gt;
   &lt;/child&gt;
   &lt;child&gt;
     &lt;object class=&quot;GtkEntry&quot; id=&quot;expander-content&quot;/&gt;
   &lt;/child&gt;
-&lt;/object&gt;
-</code></pre>
-<h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
-<pre><code class="language-text">expander
+&lt;/object&gt;</pre></div><h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1><div class="example-wrap"><pre class="language-text">expander
 ╰── box
     ├── title
     │   ├── arrow
     │   ╰── &lt;label widget&gt;
-    ╰── &lt;child&gt;
-</code></pre>
+    ╰── &lt;child&gt;</pre></div>
 <p><a href="struct.Expander.html" title="crate::Expander"><code>Expander</code></a> has three CSS nodes, the main node with the name expander,
 a subnode with name title and node below it with name arrow. The arrow of an
 expander that is showing its child gets the :checked pseudoclass added to it.</p>
