@@ -20,7 +20,7 @@ cargo new my-gtk-app
 Add the following lines to your `Cargo.toml`.
 ```toml
 [dependencies.gtk]
-version = "0.1"
+version = "0.2"
 package = "gtk4"
 ```
 
