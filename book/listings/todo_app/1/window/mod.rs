@@ -21,19 +21,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         // Create new window
-        let window: Window = Object::new(&[("application", app)]).expect("Failed to create Window");
-
-        // Setup
-        window.setup_model();
-        window.restore_data();
-        window.setup_factory();
-        window.setup_callbacks();
-        window.setup_shortcut_window();
-        window.setup_filter_action();
-        Self::setup_shortcuts(app);
-
-        // Return window
-        window
+        Object::new(&[("application", app)]).expect("Failed to create Window")
     }
 
     fn model(&self) -> &gio::ListStore {
@@ -72,10 +60,13 @@ impl Window {
         let backup_data: Vec<TodoData> =
             serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
-        for todo_data in backup_data {
-            let todo_object = TodoObject::new(todo_data.content, todo_data.completed);
-            self.model().append(&todo_object);
-        }
+        let todo_objects: Vec<Object> = backup_data
+            .into_iter()
+            .map(|todo_data| TodoObject::new(todo_data.content, todo_data.completed))
+            .map(|todo_object| todo_object.upcast())
+            .collect();
+
+        self.model().splice(0, 0, &todo_objects);
     }
 
     fn setup_factory(&self) {
@@ -153,7 +144,7 @@ impl Window {
                         .downcast_ref::<TodoObject>()
                         .expect("The object needs to be of type `TodoObject`.");
 
-                    if todo_object.completed() {
+                    if todo_object.is_completed() {
                         model.remove(position);
                     } else {
                         position += 1;
@@ -184,7 +175,8 @@ impl Window {
         self.add_action(&filter_action);
     }
 
-    fn setup_shortcuts(app: &Application) {
+    fn setup_shortcuts(&self) {
+        let app = self.application().expect("Could not get application");
         app.set_accels_for_action("win.filter::All", &["<primary>a"]);
         app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
         app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
@@ -206,7 +198,7 @@ impl Window {
                 .expect("The object needs to be of type `TodoObject`.");
 
             // Only allow open tasks
-            !todo_object.completed()
+            !todo_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
             // Get `TodoObject` from `glib::Object`
@@ -215,7 +207,7 @@ impl Window {
                 .expect("The object needs to be of type `TodoObject`.");
 
             // Only allow done tasks
-            todo_object.completed()
+            todo_object.is_completed()
         });
 
         // Return correct filter

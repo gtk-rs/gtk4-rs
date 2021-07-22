@@ -16,7 +16,7 @@ impl TodoObject {
             .expect("Failed to create `TodoObject`.")
     }
 
-    pub fn completed(&self) -> bool {
+    pub fn is_completed(&self) -> bool {
         self.property("completed")
             .expect("The property needs to exist and be readable.")
             .get()

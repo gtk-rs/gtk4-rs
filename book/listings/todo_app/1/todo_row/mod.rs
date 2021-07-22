@@ -20,9 +20,7 @@ impl Default for TodoRow {
 
 impl TodoRow {
     pub fn new() -> Self {
-        let obj: Self = Object::new(&[]).expect("Failed to create `TodoRow`.");
-        obj.add_css_class("tile");
-        obj
+        Object::new(&[]).expect("Failed to create `TodoRow`.")
     }
 
     pub fn bind_item(&self, item: &TodoObject) {

@@ -58,7 +58,18 @@ impl ObjectSubclass for Window {
 }
 
 // Trait shared by all GObjects
-impl ObjectImpl for Window {}
+impl ObjectImpl for Window {
+    fn constructed(&self, obj: &Self::Type) {
+        // Setup
+        obj.setup_model();
+        obj.restore_data();
+        obj.setup_factory();
+        obj.setup_callbacks();
+        obj.setup_shortcut_window();
+        obj.setup_filter_action();
+        obj.setup_shortcuts();
+    }
+}
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
