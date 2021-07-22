@@ -67,7 +67,6 @@ impl ObjectImpl for Window {
         obj.setup_callbacks();
         obj.setup_shortcut_window();
         obj.setup_filter_action();
-        obj.setup_shortcuts();
     }
 }
 

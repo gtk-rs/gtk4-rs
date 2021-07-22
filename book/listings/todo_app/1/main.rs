@@ -16,14 +16,24 @@ fn main() {
     let app = Application::new(Some("org.gtk.example"), Default::default());
 
     // Connect signals
-    app.connect_startup(load_css);
+    app.connect_startup(|app| {
+        setup_shortcuts(app);
+        load_css()
+    });
     app.connect_activate(build_ui);
 
     // Run the application
     app.run();
 }
 
-fn load_css(_app: &Application) {
+fn setup_shortcuts(app: &Application) {
+    app.set_accels_for_action("win.filter::All", &["<primary>a"]);
+    app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
+    app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+    app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
+}
+
+fn load_css() {
     // Load the css file and add it to the provider
     let provider = CssProvider::new();
     provider.load_from_data(include_bytes!("style.css"));

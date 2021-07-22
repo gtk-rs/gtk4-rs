@@ -175,14 +175,6 @@ impl Window {
         self.add_action(&filter_action);
     }
 
-    fn setup_shortcuts(&self) {
-        let app = self.application().expect("Could not get application");
-        app.set_accels_for_action("win.filter::All", &["<primary>a"]);
-        app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
-        app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
-        app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
-    }
-
     fn filter(&self) -> Option<CustomFilter> {
         // Get state
         let imp = imp::Window::from_instance(&self);
