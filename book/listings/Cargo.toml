@@ -4,15 +4,12 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-once_cell = "1.0"
+gtk = { path = "../../gtk4", package = "gtk4" }
 log = "0.4"
+once_cell = "1.0"
 pretty_env_logger = "0.4"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-
-[dependencies.gtk]
-path = "../../gtk4"
-package = "gtk4"
 
 # gobject_memory_management
 [[bin]]
