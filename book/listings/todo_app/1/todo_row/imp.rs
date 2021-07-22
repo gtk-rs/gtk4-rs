@@ -32,11 +32,7 @@ impl ObjectSubclass for TodoRow {
 }
 
 // Trait shared by all GObjects
-impl ObjectImpl for TodoRow {
-    fn constructed(&self, obj: &Self::Type) {
-        obj.add_css_class("tile");
-    }
-}
+impl ObjectImpl for TodoRow {}
 
 // Trait shared by all widgets
 impl WidgetImpl for TodoRow {}

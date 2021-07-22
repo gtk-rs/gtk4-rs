@@ -60,6 +60,9 @@ impl ObjectSubclass for Window {
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
+        // Call constructed on parent
+        self.parent_constructed(obj);
+
         // Setup
         obj.setup_model();
         obj.restore_data();
