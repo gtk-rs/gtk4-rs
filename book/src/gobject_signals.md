@@ -38,7 +38,7 @@ First we override the necessary methods in `ObjectImpl`.
 # fn main() {}
 ```
 
-The `signal` method is responsible for defining a set of signals.
+The `signals` method is responsible for defining a set of signals.
 In our case, we only create a single signal named "max-number-reached".
 When naming our signal, we make sure to do that in [kebab-case](https://wiki.c2.com/?KebabCase).
 When emitted, it sends a single `i32` value and expects nothing in return.
