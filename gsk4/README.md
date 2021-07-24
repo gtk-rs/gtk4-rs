@@ -6,7 +6,7 @@ Rust bindings of __GSK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.51.0`.
+Currently, the minimum supported Rust version is `1.53.0`.
 
 ## Documentation
 
