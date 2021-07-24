@@ -13,9 +13,11 @@ use window::Window;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
+    let app = Application::builder()
+        .application_id("org.gtk.example")
+        .build();
 
-    // Connect signals
+    // Connect to signals
     app.connect_startup(|app| {
         setup_shortcuts(app);
         load_css()
