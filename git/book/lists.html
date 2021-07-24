@@ -158,7 +158,11 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -199,7 +203,11 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -360,7 +368,11 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -443,7 +455,11 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -523,7 +539,11 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -605,7 +625,11 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -685,7 +709,11 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -803,7 +831,11 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -896,7 +928,11 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -993,7 +1029,11 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1092,7 +1132,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1225,7 +1269,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1358,7 +1406,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

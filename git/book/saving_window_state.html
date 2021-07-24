@@ -308,7 +308,11 @@ pretty_env_logger = &quot;0.4&quot;
     pretty_env_logger::init();
 
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
+
+    // Connect to &quot;activate&quot; signal
     app.connect_activate(build_ui);
 
     // Run the application
@@ -328,7 +332,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect callback
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);

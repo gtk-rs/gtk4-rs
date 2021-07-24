@@ -172,8 +172,12 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
-<span class="boring">    app.connect_activate(build_ui);
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
+<span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
@@ -237,7 +241,11 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -291,7 +299,11 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -345,7 +357,11 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -405,7 +421,11 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

@@ -159,7 +159,11 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -208,7 +212,11 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -266,7 +274,11 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -316,7 +328,11 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -483,7 +499,11 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -563,7 +583,11 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -645,7 +669,11 @@ We can do this like this:</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

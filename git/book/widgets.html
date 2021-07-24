@@ -197,7 +197,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
     button.set_margin_start(18);
     button.set_margin_end(18);
 
-    // Connect callback
+    // Connect to &quot;clicked&quot; signal
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -238,7 +238,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">    button.set_margin_start(18);
 </span><span class="boring">    button.set_margin_end(18);
 </span><span class="boring">
-</span><span class="boring">    // Connect callback
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
@@ -250,7 +250,7 @@ In our example we did that by adding the following line:</p>
 </span></code></pre></pre>
 <p>With it, we import all necessary traits for dealing with widgets.
 You probably want to bring the prelude into scope in most of your source files.</p>
-<p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">the builder pattern</a>.
+<p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support the <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>.
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
 We can then make the construction of our button neater, by creating a <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>ButtonBuilder</code></a> with the <a href="../docs/gtk4/struct.Button.html#method.builder"><code>Button::builder</code></a> method.</p>
 <p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
@@ -259,7 +259,11 @@ We can then make the construction of our button neater, by creating a <a href=".
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -282,7 +286,7 @@ We can then make the construction of our button neater, by creating a <a href=".
         .margin_end(12)
         .build();
 <span class="boring">
-</span><span class="boring">    // Connect callback
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
