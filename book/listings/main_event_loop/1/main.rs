@@ -5,7 +5,11 @@ use gtk::{self, Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
+    let app = Application::builder()
+        .application_id("org.gtk.example")
+        .build();
+
+    // Connect to "activate" signal
     app.connect_activate(build_ui);
 
     // Run the application
@@ -28,7 +32,7 @@ fn build_ui(app: &Application) {
         .margin_end(12)
         .build();
 
-    // Connect callback
+    // Connect to "clicked" signal
     button.connect_clicked(move |_| {
         // GUI is blocked for 5 seconds after the button is pressed
         let five_seconds = Duration::from_secs(5);

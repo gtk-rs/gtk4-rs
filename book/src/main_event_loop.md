@@ -80,7 +80,11 @@ But why did we not do the same thing with our multi-threaded example?
 # 
 # fn main() {
 #     // Create a new application
-#     let app = Application::new(Some("org.gtk.example"), Default::default());
+#     let app = Application::builder()
+#        .application_id("org.gtk.example")
+#        .build();
+#
+#     // Connect to "activate" signal
 #     app.connect_activate(build_ui);
 # 
 #     // Get command-line arguments
@@ -108,7 +112,7 @@ But why did we not do the same thing with our multi-threaded example?
 # 
     // DOES NOT COMPILE
     
-    // Connect callback
+    // Connect to "clicked" signal
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread

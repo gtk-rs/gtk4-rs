@@ -11,7 +11,11 @@ use integer_object::IntegerObject;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
+    let app = Application::builder()
+        .application_id("org.gtk.example")
+        .build();
+
+    // Connect to "activate" signal
     app.connect_activate(build_ui);
 
     // Run the application

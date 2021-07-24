@@ -29,7 +29,7 @@ fn build_ui(app: &Application) {
     button.set_margin_start(18);
     button.set_margin_end(18);
 
-    // Connect callback
+    // Connect to "clicked" signal
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
