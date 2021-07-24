@@ -46,7 +46,7 @@ In our example we did that by adding the following line:
 With it, we import all necessary traits for dealing with widgets.
 You probably want to bring the prelude into scope in most of your source files.
 
-This is also a good moment to mention that all `gtk-rs` widgets support [the builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html).
+This is also a good moment to mention that all `gtk-rs` widgets support the [builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html).
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
 We can then make the construction of our button neater, by creating a [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html) with the [`Button::builder`](../docs/gtk4/struct.Button.html#method.builder) method.
 
