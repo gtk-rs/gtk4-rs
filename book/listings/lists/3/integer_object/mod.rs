@@ -11,7 +11,7 @@ glib::wrapper! {
 // ANCHOR: integer_object
 impl IntegerObject {
     pub fn new(number: i32) -> Self {
-        Object::new(&[("number", &number)]).expect("Could not create `IntegerObject`.")
+        Object::new(&[("number", &number)]).expect("Failed to create `IntegerObject`.")
     }
 
     pub fn increase_number(self) {
