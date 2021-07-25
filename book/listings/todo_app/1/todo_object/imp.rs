@@ -5,11 +5,14 @@ use gtk::subclass::prelude::*;
 
 use once_cell::sync::Lazy;
 use std::cell::RefCell;
+use std::rc::Rc;
+
+use super::TodoData;
 
 // Object holding the state
 #[derive(Default)]
 pub struct TodoObject {
-    pub data: RefCell<super::TodoData>,
+    pub data: Rc<RefCell<TodoData>>,
 }
 
 // The central trait for subclassing a GObject

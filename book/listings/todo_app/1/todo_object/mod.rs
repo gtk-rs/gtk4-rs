@@ -6,6 +6,9 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use serde::{Deserialize, Serialize};
 
+use std::cell::RefCell;
+use std::rc::Rc;
+
 glib::wrapper! {
     pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
 }
@@ -23,9 +26,9 @@ impl TodoObject {
             .expect("The property needs to be of type `bool`.")
     }
 
-    pub fn todo_data(&self) -> TodoData {
+    pub fn todo_data(&self) -> Rc<RefCell<TodoData>> {
         let imp = imp::TodoObject::from_instance(self);
-        imp.data.borrow().clone()
+        imp.data.clone()
     }
 }
 
