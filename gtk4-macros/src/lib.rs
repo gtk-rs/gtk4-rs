@@ -20,6 +20,10 @@ use syn::{parse_macro_input, DeriveInput};
 /// The `template_child` attribute is used to mark all internal widgets
 /// we need to have programmatic access to.
 ///
+/// The `template_child` attribute can take two parameters:
+///     - `id` which defaults to the item name if not defined
+///     - `internal_child` whether the child should be accessible as an “internal-child”, defaults to `false`
+///
 /// # Example
 ///
 /// Specify that `MyWidget` is using a composite template and load the

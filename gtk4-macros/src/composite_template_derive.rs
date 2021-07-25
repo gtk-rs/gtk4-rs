@@ -36,15 +36,20 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
         FieldAttributeType::TemplateChild => {
             let mut value_id = &field.ident.to_string();
             let ident = &field.ident;
+            let mut value_internal = false;
             field.attr.args.iter().for_each(|arg| match arg {
                 FieldAttributeArg::Id(value) => {
                     value_id = value;
+                }
+                FieldAttributeArg::Internal(internal) => {
+                    value_internal = *internal;
                 }
             });
 
             quote! {
                 klass.bind_template_child_with_offset(
                     &#value_id,
+                    #value_internal,
                     #crate_ident::offset_of!(Self => #ident),
                 );
             }

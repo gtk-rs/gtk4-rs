@@ -1223,6 +1223,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     unsafe fn bind_template_child_with_offset<T>(
         &mut self,
         name: &str,
+        internal: bool,
         offset: field_offset::FieldOffset<Self::Type, TemplateChild<T>>,
     ) where
         T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
@@ -1234,7 +1235,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         ffi::gtk_widget_class_bind_template_child_full(
             widget_class,
             name.to_glib_none().0,
-            false as glib::ffi::gboolean,
+            internal.into_glib(),
             private_offset + (offset.get_byte_offset() as isize),
         )
     }
