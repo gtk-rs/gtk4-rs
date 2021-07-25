@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
+  <object class="GtkApplicationWindow" id="window">
     <property name="title">My GTK App</property>
     <child>
       <object class="GtkButton" id ="button">
@@ -11,5 +11,5 @@
         <property name="margin_end">12</property>  
       </object>
     </child>
-  </template>
+  </object>
 </interface>

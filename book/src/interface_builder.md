@@ -39,6 +39,7 @@ We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWi
 The real reason why we talk about the interface builder at all is the existence of composite templates.
 
 
+
 [^1]: Puh, yet another builder? Let us summarize what we have so far:
 - [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
 - [builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html), a design pattern used to create objects with many optional parameters and
