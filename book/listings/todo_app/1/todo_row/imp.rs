@@ -18,7 +18,7 @@ pub struct TodoRow {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for TodoRow {
-    const NAME: &'static str = "MyGtkAppTodoRow";
+    const NAME: &'static str = "TodoRow";
     type Type = super::TodoRow;
     type ParentType = gtk::Box;
 

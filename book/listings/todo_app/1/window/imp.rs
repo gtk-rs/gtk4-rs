@@ -36,7 +36,7 @@ impl Default for Window {
             list_view: TemplateChild::default(),
             clear_button: TemplateChild::default(),
             model: OnceCell::default(),
-            settings: Settings::new("org.gtk.example"),
+            settings: Settings::new("org.gtk.Todo"),
         }
     }
 }
@@ -44,7 +44,7 @@ impl Default for Window {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
-    const NAME: &'static str = "MyGtkAppWindow";
+    const NAME: &'static str = "TodoWindow";
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
 

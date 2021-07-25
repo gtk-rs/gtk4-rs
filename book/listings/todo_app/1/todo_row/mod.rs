@@ -23,14 +23,16 @@ impl TodoRow {
         Object::new(&[]).expect("Failed to create `TodoRow`.")
     }
 
-    pub fn bind_item(&self, item: &TodoObject) {
+    pub fn bind(&self, todo_object: &TodoObject) {
         // Get state
         let imp = imp::TodoRow::from_instance(self);
+        let completed_button = imp.completed_button.get();
+        let content_label = imp.content_label.get();
 
         // Bind `todo_object.completed` to `todo_row.completed_button.active` and save binding
         // The binding is bidirectional so changes on both sides will be mirrored by the other side
-        let completed_button_binding = item
-            .bind_property("completed", &imp.completed_button.get(), "active")
+        let completed_button_binding = todo_object
+            .bind_property("completed", &completed_button, "active")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
             .expect("Could not bind properties");
@@ -38,18 +40,18 @@ impl TodoRow {
 
         // Bind `todo_object.content` to `todo_row.content_label.label` and save binding
         // The binding is bidirectional so changes on both sides will be mirrored by the other side
-        let content_label_binding = item
-            .bind_property("content", &imp.content_label.get(), "label")
+        let content_label_binding = todo_object
+            .bind_property("content", &content_label, "label")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
             .expect("Could not bind properties");
         imp.bindings.borrow_mut().push(content_label_binding);
 
-        // Bind `todo_object.completed` to `todo_row.content_label.attributed` and save binding
-        // We transform the boolean `completed` so that whenever completed is true
+        // Bind `todo_row.completed_button.active` to `todo_row.content_label.attributed` and save binding
+        // We transform the boolean "active" so that whenever "active" is true
         // the content of the label will be strikethrough
-        let completed_label_binding = item
-            .bind_property("completed", &imp.content_label.get(), "attributes")
+        let completed_label_binding = completed_button
+            .bind_property("active", &content_label, "attributes")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::DEFAULT)
             .transform_to(|_, completed_value| {
                 let attribute_list = AttrList::new();
@@ -67,7 +69,7 @@ impl TodoRow {
         imp.bindings.borrow_mut().push(completed_label_binding);
     }
 
-    pub fn unbind_item(&self) {
+    pub fn unbind(&self) {
         // Get state
         let imp = imp::TodoRow::from_instance(self);
 

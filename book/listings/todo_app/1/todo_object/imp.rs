@@ -15,7 +15,7 @@ pub struct TodoObject {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for TodoObject {
-    const NAME: &'static str = "MyGtkAppTodoObject";
+    const NAME: &'static str = "TodoObject";
     type Type = super::TodoObject;
     type ParentType = glib::Object;
 }

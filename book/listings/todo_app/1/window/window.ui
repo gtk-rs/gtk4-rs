@@ -24,9 +24,9 @@
       <attribute name="action">win.show-help-overlay</attribute>
     </item>
   </menu>
-  <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
+  <template class="TodoWindow" parent="GtkApplicationWindow">
     <property name="width_request">360</property>
-    <property name="title" translatable="yes">My GTK App</property>
+    <property name="title" translatable="yes">Todo</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type="start">

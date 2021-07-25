@@ -2,15 +2,15 @@ mod imp;
 
 use std::fs::File;
 
+use crate::todo_object::{TodoData, TodoObject};
+use crate::todo_row::TodoRow;
+use crate::utils::data_path;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
-
-use crate::todo_object::{TodoData, TodoObject};
-use crate::todo_row::TodoRow;
-use crate::utils::data_path;
+use log::info;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -56,17 +56,20 @@ impl Window {
 
     fn restore_data(&self) {
         // Deserialize data from file to vector
-        let file = File::open(data_path()).expect("Could not open json file.");
-        let backup_data: Vec<TodoData> =
-            serde_json::from_reader(file).expect("Could not get backup data from json file.");
+        if let Ok(file) = File::open(data_path()) {
+            let backup_data: Vec<TodoData> =
+                serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
-        let todo_objects: Vec<Object> = backup_data
-            .into_iter()
-            .map(|todo_data| TodoObject::new(todo_data.content, todo_data.completed))
-            .map(|todo_object| todo_object.upcast())
-            .collect();
+            let todo_objects: Vec<Object> = backup_data
+                .into_iter()
+                .map(|todo_data| TodoObject::new(todo_data.content, todo_data.completed))
+                .map(|todo_object| todo_object.upcast())
+                .collect();
 
-        self.model().splice(0, 0, &todo_objects);
+            self.model().splice(0, 0, &todo_objects);
+        } else {
+            info!("Backup file does not exist yet {:?}", data_path());
+        }
     }
 
     fn setup_factory(&self) {
@@ -96,7 +99,7 @@ impl Window {
                 .downcast::<TodoRow>()
                 .expect("The child has to be a `TodoRow`.");
 
-            todo_row.bind_item(&todo_object);
+            todo_row.bind(&todo_object);
         });
 
         // Tell factory how to unbind `TodoRow` from `TodoObject`
@@ -108,7 +111,7 @@ impl Window {
                 .downcast::<TodoRow>()
                 .expect("The child has to be a `TodoRow`.");
 
-            todo_row.unbind_item();
+            todo_row.unbind();
         });
 
         // Set the factory of the list view
@@ -182,7 +185,7 @@ impl Window {
         // Get value from settings
         let value: String = imp.settings.get("filter");
 
-        let filter_all = CustomFilter::new(|_| true);
+        // Create custom filters
         let filter_open = CustomFilter::new(|obj: &Object| {
             // Get `TodoObject` from `glib::Object`
             let todo_object = obj
@@ -204,7 +207,6 @@ impl Window {
 
         // Return correct filter
         match value.as_str() {
-            "All" => Some(filter_all),
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
             _ => None,
