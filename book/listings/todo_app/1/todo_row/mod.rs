@@ -50,7 +50,7 @@ impl TodoRow {
         // Bind `todo_row.completed_button.active` to `todo_row.content_label.attributed` and save binding
         // We transform the boolean "active" so that whenever "active" is true
         // the content of the label will be strikethrough
-        let completed_label_binding = completed_button
+        completed_button
             .bind_property("active", &content_label, "attributes")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::DEFAULT)
             .transform_to(|_, completed_value| {
@@ -66,7 +66,6 @@ impl TodoRow {
             })
             .build()
             .expect("Could not bind properties");
-        imp.bindings.borrow_mut().push(completed_label_binding);
     }
 
     pub fn unbind(&self) {
