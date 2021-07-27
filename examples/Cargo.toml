@@ -156,6 +156,10 @@ name = "rotation_bin"
 path = "rotation_bin/main.rs"
 
 [[bin]]
+name = "scale"
+path = "scale/main.rs"
+
+[[bin]]
 name = "scale_bin"
 path = "scale_bin/main.rs"
 
@@ -187,4 +191,3 @@ path = "video_player/main.rs"
 [[bin]]
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
-
