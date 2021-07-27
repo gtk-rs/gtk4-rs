@@ -20,7 +20,7 @@ jobs:
           - "1.54.0"
         conf:
           - { name: "gtk4", features: "v4_2", test_sys: false }
-          - { name: "gsk4", features: "v4_2,broadway,vulkan", test_sys: true }
+          - { name: "gsk4", features: "v4_2,broadway", test_sys: true }
           - { name: "gdk4", features: "v4_2", test_sys: true }
           - { name: "gdk4-wayland", features: "", test_sys: true }
           - { name: "gdk4-x11", features: "", test_sys: false }

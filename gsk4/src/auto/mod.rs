@@ -29,13 +29,6 @@ pub use self::ngl_renderer::NglRenderer;
 mod renderer;
 pub use self::renderer::{Renderer, NONE_RENDERER};
 
-#[cfg(any(feature = "vulkan", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "vulkan")))]
-mod vulkan_renderer;
-#[cfg(any(feature = "vulkan", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "vulkan")))]
-pub use self::vulkan_renderer::VulkanRenderer;
-
 mod shader_args_builder;
 pub use self::shader_args_builder::ShaderArgsBuilder;
 

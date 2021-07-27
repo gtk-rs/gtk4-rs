@@ -18,7 +18,6 @@ name = "gsk4"
 broadway = []
 dox = ["ffi/dox", "gdk/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2"]
-vulkan = []
 
 [package.metadata.docs.rs]
 features = ["dox"]
