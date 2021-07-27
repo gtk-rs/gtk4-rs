@@ -208,6 +208,7 @@ generate = [
     "Gtk.Spinner",
     "Gtk.SpinType",
     "Gtk.StackSidebar",
+    # implements Orientable since 4.4, not gated
     "Gtk.StackSwitcher",
     "Gtk.StackTransitionType",
     "Gtk.StateFlags",
