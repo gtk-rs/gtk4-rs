@@ -112,3 +112,6 @@ path = "video_player/main.rs"
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
 
+[[bin]]
+name = "scale"
+path = "scale/main.rs"
