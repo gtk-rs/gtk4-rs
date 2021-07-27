@@ -153,7 +153,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {

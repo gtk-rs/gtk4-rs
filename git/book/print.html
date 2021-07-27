@@ -242,7 +242,7 @@ With GNOME Builder, you only have to press the run button for that.</p>
 <p>At the very least, we need to create an <code>Application</code> instance, with an application id and the default application flags.
 <a href="https://wiki.gnome.org/HowDoI/ChooseApplicationID">This guide</a> helps you find a suitable application id for your app.</p>
 <p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
 use gtk::Application;
 
 fn main() {
@@ -257,7 +257,7 @@ fn main() {
 GTK warns us, that it would have expected that something would be called in its <code>activate</code> step.
 So let us create a window there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
 fn main() {
@@ -284,7 +284,7 @@ fn build_ui(app: &amp;Application) {
 <p>Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -494,7 +494,7 @@ In this chapter we will additionally find out:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="memory-management-of-gobjects"><a class="header" href="#memory-management-of-gobjects">Memory management of GObjects</a></h1>
 <p>A GObject (or <code>glib::Object</code> in Rust terms) is a reference-counted, mutable object.
 Let us see in a set of real life examples which consequences this has.</p>
-<pre><pre class="playground"><code class="language-rust no_run compile_fail">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run compile_fail">use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
 fn main() {
@@ -1468,7 +1468,7 @@ One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.
 According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
@@ -1521,7 +1521,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 <p>Alternatively, we can use the general <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
@@ -1582,7 +1582,7 @@ This is why you only want to use the generic methods for accessing properties yo
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
 Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, Box};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -1636,7 +1636,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p>In our case, we want to bind the &quot;state&quot; property of <code>switch_1</code> to the &quot;state&quot; property of <code>switch_2</code>.
 We also want the binding to be bidirectional, so we specify this with the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html"><code>BindingFlags</code></a>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, Box};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -1804,7 +1804,7 @@ It even converts the integer value of &quot;number&quot; to the string of &quot;
 Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
 <p>Let us see what we can do with this by creating two custom buttons.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -1888,7 +1888,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 <p>We have already seen that bound properties do not necessarily have to be of the same type.
 By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -1974,7 +1974,7 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 <p>The final nice feature of properties is, that you can connect a callback to the event when a property gets changed.
 We can do this like this:</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -2069,7 +2069,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -2486,7 +2486,7 @@ That is why you can move the window at the same time as a progress bar is growin
 That happens when a single task takes too long.
 Let us look at one example.</p>
 <p><span class="filename">Filename: listings/main_event_loop/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use std::time::Duration;
+<pre><pre class="playground"><code class="language-rust  no_run">use std::time::Duration;
 
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button};
@@ -2538,7 +2538,7 @@ The <code>sleep</code> call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.</p>
 <p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button};
@@ -2594,7 +2594,7 @@ In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.</p>
 <p><span class="filename">Filename: listings/main_event_loop/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
@@ -2666,7 +2666,7 @@ You can also let the main loop take care of running <code>async</code> functions
 If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
 <p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -2732,7 +2732,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span></code></pre></pre>
 <p>Since we are single-threaded again, we could even get rid of the channels while achieving the same result.</p>
 <p><span class="filename">Filename: listings/main_event_loop/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
+<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -2785,7 +2785,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>But why did we not do the same thing with our multi-threaded example?</p>
-<pre><pre class="playground"><code class="language-rust no_run compile_fail"><span class="boring">use std::{thread, time::Duration};
+<pre><pre class="playground"><code class="language-rust  no_run compile_fail"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;

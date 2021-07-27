@@ -149,7 +149,7 @@
                         <h1 id="memory-management-of-gobjects"><a class="header" href="#memory-management-of-gobjects">Memory management of GObjects</a></h1>
 <p>A GObject (or <code>glib::Object</code> in Rust terms) is a reference-counted, mutable object.
 Let us see in a set of real life examples which consequences this has.</p>
-<pre><pre class="playground"><code class="language-rust no_run compile_fail">use gtk::prelude::*;
+<pre><pre class="playground"><code class="language-rust  no_run compile_fail">use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
 fn main() {
