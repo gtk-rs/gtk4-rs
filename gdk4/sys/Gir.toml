@@ -14,3 +14,12 @@ external_libraries = [
     "Pango",
     "Cairo",
 ]
+
+[[object]]
+name = "Gdk.GLContext"
+status = "generate"
+    # TODO: remove me after >4.3.2
+    # https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3790
+    [[object.function]]
+    name = "is_shared"
+    version = "4.4"

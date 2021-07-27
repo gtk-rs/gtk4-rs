@@ -4218,6 +4218,8 @@ extern "C" {
         minor: *mut c_int,
     );
     pub fn gdk_gl_context_is_legacy(context: *mut GdkGLContext) -> gboolean;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gdk_gl_context_is_shared(self_: *mut GdkGLContext, other: *mut GdkGLContext)
         -> gboolean;
     pub fn gdk_gl_context_make_current(context: *mut GdkGLContext);
