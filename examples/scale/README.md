@@ -1,5 +1,5 @@
-# Basics
+# Scale
 
-This example demonstrates how to create `scales` and place them in the `window` using a grid. It also shows how to implement `callbacks`.
+This example demonstrates how to create `gtk::Scale` and place them in the `gtk::Window` using a grid.
 
 ![Screenshot](screenshot.png)

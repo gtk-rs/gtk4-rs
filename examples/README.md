@@ -22,6 +22,7 @@ Consists of various examples to get familiar with writing GTK 4 applications usi
 - [Grid Packing](./grid_packing)
 - [GtkBuilder example](./gtk_builder/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
+- [Scale example](./scale/)
 - [Search Bar](./search_bar/)
 - [TextView](./text_viewer/)
 - [Video Player](./video_player/)
