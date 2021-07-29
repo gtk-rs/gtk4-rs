@@ -1,5 +1,9 @@
+mod window;
+
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::Application;
+
+use window::Window;
 
 fn main() {
     // Create a new application
@@ -7,7 +11,7 @@ fn main() {
         .application_id("org.gtk.example")
         .build();
 
-    // Connect to "activate" signal
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -15,27 +19,7 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Init `gtk::Builder` from file
-    let builder = gtk::Builder::from_string(include_str!("window.ui"));
-
-    // Get window and button from `gtk::Builder`
-    let window: ApplicationWindow = builder
-        .object("window")
-        .expect("Could not get object `window` from builder.");
-    let button: Button = builder
-        .object("button")
-        .expect("Could not get object `button` from builder.");
-
-    // Set application
-    window.set_application(Some(app));
-
-    // Connect to "clicked" signal
-    button.connect_clicked(move |button| {
-        // Set the label to "Hello World!" after the button has been clicked on
-        button.set_label("Hello World!");
-    });
-
-    // Add button
-    window.set_child(Some(&button));
+    // Create new window and present it
+    let window = Window::new(app);
     window.present();
 }
