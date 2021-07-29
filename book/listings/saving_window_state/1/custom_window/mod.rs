@@ -8,21 +8,20 @@ use gtk::{gio, glib};
 
 // ANCHOR: mod
 glib::wrapper! {
-    pub struct CustomWindow(ObjectSubclass<imp::CustomWindow>)
+    pub struct Window(ObjectSubclass<imp::Window>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl CustomWindow {
+impl Window {
     pub fn new(app: &Application) -> Self {
-        let window: Self = Object::new(&[]).expect("Failed to create CustomWindow");
-        window.set_application(Some(app));
-        window
+        // Create new window
+        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &imp::Window::from_instance(self).settings;
 
         // Get the size of the window
         let size = self.default_size();
@@ -36,8 +35,8 @@ impl CustomWindow {
     }
 
     fn load_window_size(&self) {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &imp::Window::from_instance(self).settings;
 
         // Get the window state from `settings`
         let width = settings.int("window-width");

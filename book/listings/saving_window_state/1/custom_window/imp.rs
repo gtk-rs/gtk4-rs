@@ -4,14 +4,14 @@ use gtk::{gio, glib};
 use gtk::{subclass::prelude::*, ApplicationWindow};
 
 // ANCHOR: imp
-pub struct CustomWindow {
+pub struct Window {
     pub settings: Settings,
 }
 
 #[glib::object_subclass]
-impl ObjectSubclass for CustomWindow {
-    const NAME: &'static str = "CustomWindow";
-    type Type = super::CustomWindow;
+impl ObjectSubclass for Window {
+    const NAME: &'static str = "MyGtkAppWindow";
+    type Type = super::Window;
     type ParentType = ApplicationWindow;
 
     fn new() -> Self {
@@ -20,15 +20,15 @@ impl ObjectSubclass for CustomWindow {
         }
     }
 }
-impl ObjectImpl for CustomWindow {
+impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
         self.parent_constructed(obj);
         // Load latest window state
         obj.load_window_size();
     }
 }
-impl WidgetImpl for CustomWindow {}
-impl WindowImpl for CustomWindow {
+impl WidgetImpl for Window {}
+impl WindowImpl for Window {
     // Save window state right before the window will be closed
     fn close_request(&self, obj: &Self::Type) -> Inhibit {
         if let Err(err) = obj.save_window_size() {
@@ -38,5 +38,5 @@ impl WindowImpl for CustomWindow {
         Inhibit(false)
     }
 }
-impl ApplicationWindowImpl for CustomWindow {}
+impl ApplicationWindowImpl for Window {}
 // ANCHOR_END: imp
