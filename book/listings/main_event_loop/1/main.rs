@@ -9,7 +9,7 @@ fn main() {
         .application_id("org.gtk.example")
         .build();
 
-    // Connect to "activate" signal
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -32,7 +32,7 @@ fn build_ui(app: &Application) {
         .margin_end(12)
         .build();
 
-    // Connect to "clicked" signal
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         // GUI is blocked for 5 seconds after the button is pressed
         let five_seconds = Duration::from_secs(5);
