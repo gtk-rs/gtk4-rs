@@ -1,6 +1,6 @@
 mod custom_window;
 
-use custom_window::CustomWindow;
+use custom_window::Window;
 use gtk::prelude::*;
 use gtk::{Application, Button};
 
@@ -24,7 +24,7 @@ fn main() {
 
 fn build_ui(app: &Application) {
     // Create a window
-    let window = CustomWindow::new(app);
+    let window = Window::new(app);
 
     // ANCHOR: button
     // Create a button
