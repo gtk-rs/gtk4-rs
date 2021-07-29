@@ -112,7 +112,7 @@ But why did we not do the same thing with our multi-threaded example?
 # 
     // DOES NOT COMPILE
     
-    // Connect to "clicked" signal
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread

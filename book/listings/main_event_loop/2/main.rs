@@ -9,7 +9,7 @@ fn main() {
         .application_id("org.gtk.example")
         .build();
 
-    // Connect to "activate" signal
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -33,7 +33,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    // Connect to "clicked" signal
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         // The long running operation runs now in a separate thread
         thread::spawn(move || {

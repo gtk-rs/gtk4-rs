@@ -11,7 +11,7 @@ fn main() {
         .build();
     // ANCHOR_END: application
 
-    // Connect to "activate" signal
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application

@@ -9,7 +9,7 @@ fn main() {
         .application_id("org.gtk.example")
         .build();
 
-    // Connect to "activate" signal
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application

@@ -27,7 +27,7 @@ fn build_ui(app: &Application) {
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Connect to "clicked" signal
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
