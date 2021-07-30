@@ -113,10 +113,10 @@ impl<O: IsA<Display>> DisplayExtManual for O {
             if ret {
                 let n_keys = n_entries.assume_init() as usize;
                 let keyvals: Vec<u32> = FromGlibContainer::from_glib_full_num(keyvals, n_keys);
-                let keyvals: Vec<Key> = keyvals.into_iter().map(|k| k.into()).collect();
+                let keyvals = keyvals.into_iter().map(|k| k.into());
                 let keys: Vec<KeymapKey> = FromGlibContainer::from_glib_full_num(keys, n_keys);
 
-                Some(keys.into_iter().zip(keyvals.into_iter()).collect())
+                Some(keys.into_iter().zip(keyvals).collect())
             } else {
                 None
             }

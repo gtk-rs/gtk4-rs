@@ -48,7 +48,7 @@ impl ObjectSubclass for VideoPlayerWindow {
             "win.open",
             None,
             move |win, _action_name, _action_target| {
-                let self_ = VideoPlayerWindow::from_instance(&win);
+                let self_ = VideoPlayerWindow::from_instance(win);
                 self_.dialog.set_transient_for(Some(win));
                 self_
                     .dialog
