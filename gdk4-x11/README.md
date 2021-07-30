@@ -1,8 +1,12 @@
-# gdk4-x11
+# Rust GDK 4 X11 bindings
 
-[Project site](https://gtk-rs.org/)
+The project website is [here](https://gtk-rs.org/).
 
-Rust bindings of __GDK 4's X11 backend__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+Rust bindings of [GDK 4's X11 backend](https://docs.gtk.org/gdk4-x11/),
+part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+
+GDK is an intermediate layer that isolates GTK from the details of the windowing system.
+GDK X11 contains functions specific to the X11 backend.
 
 ## Minimum supported Rust version
 

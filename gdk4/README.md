@@ -1,8 +1,9 @@
-# gdk4
+# Rust GDK 4 bindings
 
-[Project site](https://gtk-rs.org/)
+The project website is [here](https://gtk-rs.org/).
 
-Rust bindings of __GDK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+Rust bindings of [GDK 4](https://docs.gtk.org/gdk4/), part
+of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
 ## Minimum supported Rust version
 
