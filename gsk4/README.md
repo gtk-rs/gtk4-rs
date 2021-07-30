@@ -1,8 +1,12 @@
-# gsk4
+# Rust GSK 4 bindings
 
-[Project site](https://gtk-rs.org/)
+The project website is [here](https://gtk-rs.org/).
 
-Rust bindings of __GSK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+Rust bindings of [GSK 4](https://docs.gtk.org/gsk4/), part
+of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+
+GSK is an intermediate layer that isolates GTK from the details of the OpenGL or
+Vulkan implementation.
 
 ## Minimum supported Rust version
 

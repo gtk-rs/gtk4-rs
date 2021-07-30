@@ -1,8 +1,12 @@
-# gdk4-wayland
+# Rust GDK 4 Wayland bindings
 
-[Project site](https://gtk-rs.org/)
+The project website is [here](https://gtk-rs.org/).
 
-Rust bindings of __GDK 4's Wayland backend__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+Rust bindings of [GDK 4's Wayland backend](https://docs.gtk.org/gdk4-wayland/),
+part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
+
+GDK is an intermediate layer that isolates GTK from the details of the windowing system.
+GDK Wayland contains functions specific to the Wayland backend.
 
 ## Minimum supported Rust version
 
