@@ -114,6 +114,10 @@ name = "search_bar"
 path = "search_bar/main.rs"
 
 [[bin]]
+name = "squares"
+path = "squares/main.rs"
+
+[[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
 
