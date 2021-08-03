@@ -101,6 +101,15 @@ pub fn init() -> Result<(), glib::BoolError> {
     }
     unsafe {
         if from_glib(ffi::gtk_init_check()) {
+            // See https://github.com/gtk-rs/gtk-rs-core/issues/186 for reasoning behind
+            // acquiring and leaking the main context here.
+            let result: bool = from_glib(glib::ffi::g_main_context_acquire(
+                glib::ffi::g_main_context_default(),
+            ));
+            if !result {
+                return Err(glib::bool_error!("Failed to acquire default main context"));
+            }
+
             if !from_glib::<glib::ffi::gboolean, bool>(ffi::gtk_is_initialized()) {
                 return Err(glib::bool_error!("GTK was not actually initialized"));
             }
@@ -110,5 +119,20 @@ pub fn init() -> Result<(), glib::BoolError> {
         } else {
             Err(glib::bool_error!("Failed to initialize GTK"))
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::TEST_THREAD_WORKER;
+
+    #[test]
+    fn init_should_acquire_default_main_context() {
+        TEST_THREAD_WORKER
+            .push(move || {
+                let context = glib::MainContext::ref_thread_default();
+                assert!(context.is_owner());
+            })
+            .expect("Failed to schedule a test call");
     }
 }
