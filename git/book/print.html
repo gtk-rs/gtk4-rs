@@ -2922,7 +2922,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the the default handler
+</span><span class="boring">        // Do not inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -2991,7 +2991,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the the default handler
+</span><span class="boring">        // Do not inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -3049,7 +3049,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the the default handler
+</span><span class="boring">        // Do not inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -3107,7 +3107,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
         settings
             .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
             .expect(&quot;Could not set setting.&quot;);
-        // Do not inhibit the the default handler
+        // Do not inhibit the default handler
         Inhibit(false)
     });
 <span class="boring">
@@ -3300,7 +3300,7 @@ impl WindowImpl for CustomWindow {
         if let Err(err) = obj.save_window_size() {
             log::error!(&quot;Failed to save window state, {}&quot;, &amp;err);
         }
-        // Do not inhibit the the default handler
+        // Do not inhibit the default handler
         Inhibit(false)
     }
 }
