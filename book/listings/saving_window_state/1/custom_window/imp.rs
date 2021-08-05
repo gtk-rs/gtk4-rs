@@ -34,7 +34,7 @@ impl WindowImpl for CustomWindow {
         if let Err(err) = obj.save_window_size() {
             log::error!("Failed to save window state, {}", &err);
         }
-        // Do not inhibit the the default handler
+        // Do not inhibit the default handler
         Inhibit(false)
     }
 }
