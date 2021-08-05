@@ -203,7 +203,7 @@ impl CustomWindow {
         // Get the size of the window
         let size = self.default_size();
 
-        // Get the window state from `settings`
+        // Set the window state in `settings`
         settings.set_int(&quot;window-width&quot;, size.0)?;
         settings.set_int(&quot;window-height&quot;, size.1)?;
         settings.set_boolean(&quot;is-maximized&quot;, self.is_maximized())?;
@@ -215,7 +215,7 @@ impl CustomWindow {
         // Get `settings` from `imp::CustomWindow`
         let settings = &amp;imp::CustomWindow::from_instance(self).settings;
 
-        // Set the window state in `settings`
+        // Get the window state from `settings`
         let width = settings.int(&quot;window-width&quot;);
         let height = settings.int(&quot;window-height&quot;);
         let is_maximized = settings.boolean(&quot;is-maximized&quot;);
