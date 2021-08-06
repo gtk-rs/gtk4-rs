@@ -14,6 +14,7 @@ fn main() {
     app.run();
 }
 
+// ANCHOR: build_ui
 fn build_ui(app: &Application) {
     // Init `gtk::Builder` from file
     let builder = gtk::Builder::from_string(include_str!("window.ui"));
@@ -39,3 +40,4 @@ fn build_ui(app: &Application) {
     window.set_child(Some(&button));
     window.present();
 }
+// ANCHOR_END: build_ui

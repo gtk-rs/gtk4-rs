@@ -4,6 +4,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{Button, CompositeTemplate};
 
+// ANCHOR: object
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(file = "window.ui")]
@@ -11,7 +12,9 @@ pub struct Window {
     #[template_child]
     pub button: TemplateChild<Button>,
 }
+// ANCHOR_END: object
 
+// ANCHOR: subclass
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
@@ -27,7 +30,9 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+// ANCHOR_END: subclass
 
+// ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
@@ -41,6 +46,7 @@ impl ObjectImpl for Window {
         });
     }
 }
+// ANCHOR_END: object_impl
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}

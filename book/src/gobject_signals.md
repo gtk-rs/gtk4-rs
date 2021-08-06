@@ -70,5 +70,6 @@ Whenever we now receive the "max-number-reached" signal, the accompanying number
 You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.
 
+-------------------------------------------------
 
 [^1]: If you want to connect from a different thread than the main thread, make sure to use [`connect`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect) instead of `connect_local`. However, that also means that your connected closure has to implement [`Send`](https://doc.rust-lang.org/stable/core/marker/trait.Send.html) + [`Sync`](https://doc.rust-lang.org/stable/core/marker/trait.Sync.html).
