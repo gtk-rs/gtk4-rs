@@ -197,7 +197,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
     button.set_margin_start(18);
     button.set_margin_end(18);
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -238,7 +238,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">    button.set_margin_start(18);
 </span><span class="boring">    button.set_margin_end(18);
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
@@ -263,7 +263,7 @@ We can then make the construction of our button neater, by creating a <a href=".
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -286,7 +286,7 @@ We can then make the construction of our button neater, by creating a <a href=".
         .margin_end(12)
         .build();
 <span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);

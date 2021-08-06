@@ -162,7 +162,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -185,7 +185,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -208,7 +208,7 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -516,7 +516,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

@@ -170,7 +170,7 @@ fn main() {
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -193,7 +193,7 @@ fn build_ui(app: &amp;Application) {
         .margin_end(12)
         .build();
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         // GUI is blocked for 5 seconds after the button is pressed
         let five_seconds = Duration::from_secs(5);
@@ -222,7 +222,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -245,7 +245,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         // The long running operation runs now in a separate thread
         thread::spawn(move || {
@@ -280,7 +280,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -304,7 +304,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
@@ -350,7 +350,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -374,7 +374,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
@@ -416,7 +416,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -439,7 +439,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
@@ -499,7 +499,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span>    // DOES NOT COMPILE
     
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread

@@ -205,11 +205,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -&gt; Self {
-        Object::new(&amp;[]).expect(&quot;Failed to create `CustomButton`&quot;)
+        Object::new(&amp;[]).expect(&quot;Failed to create `CustomButton`.&quot;)
     }
 
     pub fn with_label(label: &amp;str) -&gt; Self {
-        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`&quot;)
+        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`.&quot;)
     }
 }
 
@@ -241,7 +241,7 @@ fn main() {
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -262,7 +262,7 @@ fn build_ui(app: &amp;Application) {
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -336,7 +336,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

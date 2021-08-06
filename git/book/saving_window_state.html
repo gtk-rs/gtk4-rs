@@ -184,21 +184,20 @@ First, we create one and add methods for getting and setting the window state.</
 </span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">
 </span>glib::wrapper! {
-    pub struct CustomWindow(ObjectSubclass&lt;imp::CustomWindow&gt;)
+    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl CustomWindow {
+impl Window {
     pub fn new(app: &amp;Application) -&gt; Self {
-        let window: Self = Object::new(&amp;[]).expect(&quot;Failed to create CustomWindow&quot;);
-        window.set_application(Some(app));
-        window
+        // Create new window
+        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
     }
 
     pub fn save_window_size(&amp;self) -&gt; Result&lt;(), glib::BoolError&gt; {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &amp;imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &amp;imp::Window::from_instance(self).settings;
 
         // Get the size of the window
         let size = self.default_size();
@@ -212,8 +211,8 @@ impl CustomWindow {
     }
 
     fn load_window_size(&amp;self) {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &amp;imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &amp;imp::Window::from_instance(self).settings;
 
         // Get the window state from `settings`
         let width = settings.int(&quot;window-width&quot;);
@@ -242,14 +241,14 @@ We also overload the <code>constructed</code> and <code>close_request</code> met
 </span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{subclass::prelude::*, ApplicationWindow};
 </span><span class="boring">
-</span>pub struct CustomWindow {
+</span>pub struct Window {
     pub settings: Settings,
 }
 
 #[glib::object_subclass]
-impl ObjectSubclass for CustomWindow {
-    const NAME: &amp;'static str = &quot;CustomWindow&quot;;
-    type Type = super::CustomWindow;
+impl ObjectSubclass for Window {
+    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+    type Type = super::Window;
     type ParentType = ApplicationWindow;
 
     fn new() -&gt; Self {
@@ -258,15 +257,15 @@ impl ObjectSubclass for CustomWindow {
         }
     }
 }
-impl ObjectImpl for CustomWindow {
+impl ObjectImpl for Window {
     fn constructed(&amp;self, obj: &amp;Self::Type) {
         self.parent_constructed(obj);
         // Load latest window state
         obj.load_window_size();
     }
 }
-impl WidgetImpl for CustomWindow {}
-impl WindowImpl for CustomWindow {
+impl WidgetImpl for Window {}
+impl WindowImpl for Window {
     // Save window state right before the window will be closed
     fn close_request(&amp;self, obj: &amp;Self::Type) -&gt; Inhibit {
         if let Err(err) = obj.save_window_size() {
@@ -276,7 +275,7 @@ impl WindowImpl for CustomWindow {
         Inhibit(false)
     }
 }
-impl ApplicationWindowImpl for CustomWindow {}
+impl ApplicationWindowImpl for Window {}
 
 <span class="boring">// Please ignore this line
 </span><span class="boring">// It is only there to make mdbook happy
@@ -299,7 +298,7 @@ pretty_env_logger = &quot;0.4&quot;
 <p><span class="filename">Filename: listings/saving_window_state/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_window;
 </span><span class="boring">
-</span><span class="boring">use custom_window::CustomWindow;
+</span><span class="boring">use custom_window::Window;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, Button};
 </span><span class="boring">
@@ -312,7 +311,7 @@ pretty_env_logger = &quot;0.4&quot;
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -321,7 +320,7 @@ pretty_env_logger = &quot;0.4&quot;
 <span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = CustomWindow::new(app);
+</span><span class="boring">    let window = Window::new(app);
 </span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
@@ -332,7 +331,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);

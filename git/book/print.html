@@ -312,7 +312,7 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -378,7 +378,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
     button.set_margin_start(18);
     button.set_margin_end(18);
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -419,7 +419,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">    button.set_margin_start(18);
 </span><span class="boring">    button.set_margin_end(18);
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
@@ -444,7 +444,7 @@ We can then make the construction of our button neater, by creating a <a href=".
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -467,7 +467,7 @@ We can then make the construction of our button neater, by creating a <a href=".
         .margin_end(12)
         .build();
 <span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
@@ -503,7 +503,7 @@ fn main() {
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
     
     // Run the application
@@ -594,7 +594,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -654,7 +654,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -718,7 +718,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -793,7 +793,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -871,7 +871,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -940,7 +940,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1009,7 +1009,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1136,11 +1136,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -&gt; Self {
-        Object::new(&amp;[]).expect(&quot;Failed to create `CustomButton`&quot;)
+        Object::new(&amp;[]).expect(&quot;Failed to create `CustomButton`.&quot;)
     }
 
     pub fn with_label(label: &amp;str) -&gt; Self {
-        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`&quot;)
+        Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`.&quot;)
     }
 }
 
@@ -1172,7 +1172,7 @@ fn main() {
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -1193,7 +1193,7 @@ fn build_ui(app: &amp;Application) {
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -1267,7 +1267,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1478,7 +1478,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1531,7 +1531,7 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1593,7 +1593,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1647,7 +1647,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1818,7 +1818,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1902,7 +1902,7 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1988,7 +1988,7 @@ We can do this like this:</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2078,7 +2078,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2101,7 +2101,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
@@ -2124,7 +2124,7 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2432,7 +2432,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2497,7 +2497,7 @@ fn main() {
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -2520,7 +2520,7 @@ fn build_ui(app: &amp;Application) {
         .margin_end(12)
         .build();
 
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         // GUI is blocked for 5 seconds after the button is pressed
         let five_seconds = Duration::from_secs(5);
@@ -2549,7 +2549,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2572,7 +2572,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         // The long running operation runs now in a separate thread
         thread::spawn(move || {
@@ -2607,7 +2607,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2631,7 +2631,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
@@ -2677,7 +2677,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2701,7 +2701,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |_| {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
@@ -2743,7 +2743,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2766,7 +2766,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal
+</span>    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
@@ -2826,7 +2826,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span>    // DOES NOT COMPILE
     
-    // Connect to &quot;clicked&quot; signal
+    // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread
@@ -2886,7 +2886,7 @@ The <code>id</code> is the same application id we used when we created our appli
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 <span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2955,7 +2955,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3013,7 +3013,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3071,7 +3071,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3135,7 +3135,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3212,21 +3212,20 @@ First, we create one and add methods for getting and setting the window state.</
 </span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">
 </span>glib::wrapper! {
-    pub struct CustomWindow(ObjectSubclass&lt;imp::CustomWindow&gt;)
+    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
         @implements gio::ActionMap, gio::ActionGroup;
 }
 
-impl CustomWindow {
+impl Window {
     pub fn new(app: &amp;Application) -&gt; Self {
-        let window: Self = Object::new(&amp;[]).expect(&quot;Failed to create CustomWindow&quot;);
-        window.set_application(Some(app));
-        window
+        // Create new window
+        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
     }
 
     pub fn save_window_size(&amp;self) -&gt; Result&lt;(), glib::BoolError&gt; {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &amp;imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &amp;imp::Window::from_instance(self).settings;
 
         // Get the size of the window
         let size = self.default_size();
@@ -3240,8 +3239,8 @@ impl CustomWindow {
     }
 
     fn load_window_size(&amp;self) {
-        // Get `settings` from `imp::CustomWindow`
-        let settings = &amp;imp::CustomWindow::from_instance(self).settings;
+        // Get `settings` from `imp::Window`
+        let settings = &amp;imp::Window::from_instance(self).settings;
 
         // Get the window state from `settings`
         let width = settings.int(&quot;window-width&quot;);
@@ -3270,14 +3269,14 @@ We also overload the <code>constructed</code> and <code>close_request</code> met
 </span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{subclass::prelude::*, ApplicationWindow};
 </span><span class="boring">
-</span>pub struct CustomWindow {
+</span>pub struct Window {
     pub settings: Settings,
 }
 
 #[glib::object_subclass]
-impl ObjectSubclass for CustomWindow {
-    const NAME: &amp;'static str = &quot;CustomWindow&quot;;
-    type Type = super::CustomWindow;
+impl ObjectSubclass for Window {
+    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+    type Type = super::Window;
     type ParentType = ApplicationWindow;
 
     fn new() -&gt; Self {
@@ -3286,15 +3285,15 @@ impl ObjectSubclass for CustomWindow {
         }
     }
 }
-impl ObjectImpl for CustomWindow {
+impl ObjectImpl for Window {
     fn constructed(&amp;self, obj: &amp;Self::Type) {
         self.parent_constructed(obj);
         // Load latest window state
         obj.load_window_size();
     }
 }
-impl WidgetImpl for CustomWindow {}
-impl WindowImpl for CustomWindow {
+impl WidgetImpl for Window {}
+impl WindowImpl for Window {
     // Save window state right before the window will be closed
     fn close_request(&amp;self, obj: &amp;Self::Type) -&gt; Inhibit {
         if let Err(err) = obj.save_window_size() {
@@ -3304,7 +3303,7 @@ impl WindowImpl for CustomWindow {
         Inhibit(false)
     }
 }
-impl ApplicationWindowImpl for CustomWindow {}
+impl ApplicationWindowImpl for Window {}
 
 <span class="boring">// Please ignore this line
 </span><span class="boring">// It is only there to make mdbook happy
@@ -3327,7 +3326,7 @@ pretty_env_logger = &quot;0.4&quot;
 <p><span class="filename">Filename: listings/saving_window_state/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_window;
 </span><span class="boring">
-</span><span class="boring">use custom_window::CustomWindow;
+</span><span class="boring">use custom_window::Window;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, Button};
 </span><span class="boring">
@@ -3340,7 +3339,7 @@ pretty_env_logger = &quot;0.4&quot;
         .application_id(&quot;org.gtk.example&quot;)
         .build();
 
-    // Connect to &quot;activate&quot; signal
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -3349,7 +3348,7 @@ pretty_env_logger = &quot;0.4&quot;
 <span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = CustomWindow::new(app);
+</span><span class="boring">    let window = Window::new(app);
 </span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
@@ -3360,7 +3359,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
 </span><span class="boring">    button.connect_clicked(move |button| {
 </span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
@@ -3388,7 +3387,7 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3433,7 +3432,7 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3598,7 +3597,7 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3685,7 +3684,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3769,7 +3768,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3855,7 +3854,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -3939,7 +3938,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4061,7 +4060,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4158,7 +4157,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4259,7 +4258,7 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4362,7 +4361,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4499,7 +4498,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -4636,7 +4635,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
