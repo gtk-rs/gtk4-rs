@@ -178,6 +178,8 @@ Because of that, `application` holds a strong reference to `window`.
 As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.
 
+---------------------------------------------------
+
 [^1]: Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
 For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
 You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.

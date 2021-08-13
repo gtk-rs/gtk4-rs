@@ -85,6 +85,15 @@ path = "hello_world/2/main.rs"
 name = "hello_world_3"
 path = "hello_world/3/main.rs"
 
+# interface_builder
+[[bin]]
+name = "interface_builder_1"
+path = "interface_builder/1/main.rs"
+
+[[bin]]
+name = "interface_builder_2"
+path = "interface_builder/2/main.rs"
+
 # main_event_loop
 [[bin]]
 name = "main_event_loop_1"

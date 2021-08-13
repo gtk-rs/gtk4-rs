@@ -21,7 +21,6 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .build();
 
-    // ANCHOR: button
     // Create a button
     let button = Button::builder()
         .label("Press me!")
@@ -30,7 +29,6 @@ fn build_ui(app: &Application) {
         .margin_start(12)
         .margin_end(12)
         .build();
-    // ANCHOR_END: button
 
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {

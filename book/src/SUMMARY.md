@@ -14,19 +14,17 @@
 - [Settings](settings.md)
 - [Saving Window State](saving_window_state.md)
 - [Lists](lists.md)
-- [Interface Builder]()
+- [Interface Builder](interface_builder.md)
 - [Building a Simple To-Do App]()
-- [Store the state of the To-Do App]()
-- [CSS]()
 - [Actions & Keybindings]()
+- [Manipulate State of To-Do App]()
+- [CSS]()
 - [Resources]()
 - [Accessibility]()
 - [Internationalization]()
 
 # Useful Libraries
 
-- [GtkSourceView]()
 - [GStreamer]()
-- [Libadwaita]()
-- [Webkit2Gtk]()
+- [Adwaita]()
 - [Zbus and Ashpd]()
