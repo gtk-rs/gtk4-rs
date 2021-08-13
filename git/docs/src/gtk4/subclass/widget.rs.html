@@ -1388,8 +1388,8 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">AccessibleRole</span>, <span class="ident">BuilderScope</span>, <span class="ident">DirectionType</span>, <span class="ident">LayoutManager</span>, <span class="ident">Orientation</span>, <span class="ident">Shortcut</span>,
     <span class="ident">SizeRequestMode</span>, <span class="ident">Snapshot</span>, <span class="ident">StateFlags</span>, <span class="ident">SystemSetting</span>, <span class="ident">TextDirection</span>, <span class="ident">Tooltip</span>, <span class="ident">Widget</span>,
@@ -1455,7 +1455,7 @@
 <span class="kw">impl</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">WidgetActionIter</span> {
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">WidgetAction</span>;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Item</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">owner</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">action_name_ptr</span> <span class="op">=</span> <span class="ident">std::ptr::null</span>();
@@ -1488,63 +1488,63 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetImpl</span>: <span class="ident">WidgetImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) {
+    <span class="kw">fn</span> <span class="ident">compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) {
         <span class="self">self</span>.<span class="ident">parent_compute_expand</span>(<span class="ident">widget</span>, <span class="ident">hexpand</span>, <span class="ident">vexpand</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_contains</span>(<span class="ident">widget</span>, <span class="ident">x</span>, <span class="ident">y</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>) {
+    <span class="kw">fn</span> <span class="ident">direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>) {
         <span class="self">self</span>.<span class="ident">parent_direction_changed</span>(<span class="ident">widget</span>, <span class="ident">previous_direction</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_focus</span>(<span class="ident">widget</span>, <span class="ident">direction_type</span>)
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_request_mode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
+    <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
         <span class="self">self</span>.<span class="ident">parent_request_mode</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_grab_focus</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_hide</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_keynav_failed</span>(<span class="ident">widget</span>, <span class="ident">direction_type</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_map</span>(<span class="ident">widget</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">measure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_measure</span>(<span class="ident">widget</span>, <span class="ident">orientation</span>, <span class="ident">for_size</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_mnemonic_activate</span>(<span class="ident">widget</span>, <span class="ident">group_cycling</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) {
+    <span class="kw">fn</span> <span class="ident">move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) {
         <span class="self">self</span>.<span class="ident">parent_move_focus</span>(<span class="ident">widget</span>, <span class="ident">direction_type</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">query_tooltip</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">x</span>: <span class="ident">i32</span>,
         <span class="ident">y</span>: <span class="ident">i32</span>,
         <span class="ident">keyboard_tooltip</span>: <span class="ident">bool</span>,
@@ -1553,92 +1553,92 @@
         <span class="self">self</span>.<span class="ident">parent_query_tooltip</span>(<span class="ident">widget</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">keyboard_tooltip</span>, <span class="ident">tooltip</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_realize</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_root</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_focus_child</span>(<span class="ident">widget</span>, <span class="ident">child</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_show</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_size_allocate</span>(<span class="ident">widget</span>, <span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">baseline</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>) {
+    <span class="kw">fn</span> <span class="ident">snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>) {
         <span class="self">self</span>.<span class="ident">parent_snapshot</span>(<span class="ident">widget</span>, <span class="ident">snapshot</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>) {
+    <span class="kw">fn</span> <span class="ident">state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>) {
         <span class="self">self</span>.<span class="ident">parent_state_flags_changed</span>(<span class="ident">widget</span>, <span class="ident">state_flags</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>) {
+    <span class="kw">fn</span> <span class="ident">system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>) {
         <span class="self">self</span>.<span class="ident">parent_system_setting_changed</span>(<span class="ident">widget</span>, <span class="ident">settings</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_unmap</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_unrealize</span>(<span class="ident">widget</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_unroot</span>(<span class="ident">widget</span>)
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>);
-    <span class="kw">fn</span> <span class="ident">parent_contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>);
-    <span class="kw">fn</span> <span class="ident">parent_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>;
-    <span class="kw">fn</span> <span class="ident">parent_grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>);
+    <span class="kw">fn</span> <span class="ident">parent_contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>);
+    <span class="kw">fn</span> <span class="ident">parent_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>;
+    <span class="kw">fn</span> <span class="ident">parent_grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_measure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>);
+    <span class="kw">fn</span> <span class="ident">parent_mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>);
     <span class="kw">fn</span> <span class="ident">parent_query_tooltip</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">x</span>: <span class="ident">i32</span>,
         <span class="ident">y</span>: <span class="ident">i32</span>,
         <span class="ident">keyboard_tooltip</span>: <span class="ident">bool</span>,
         <span class="ident">tooltip</span>: <span class="kw-2">&amp;</span><span class="ident">Tooltip</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>);
-    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>);
-    <span class="kw">fn</span> <span class="ident">parent_state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>);
-    <span class="kw">fn</span> <span class="ident">parent_system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>);
-    <span class="kw">fn</span> <span class="ident">parent_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>);
+    <span class="kw">fn</span> <span class="ident">parent_state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>);
+    <span class="kw">fn</span> <span class="ident">parent_system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>);
+    <span class="kw">fn</span> <span class="ident">parent_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span> <span class="ident">WidgetImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_compute_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">hexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">vexpand</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1657,7 +1657,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1669,7 +1669,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_direction_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">previous_direction</span>: <span class="ident">TextDirection</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1682,7 +1682,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1697,7 +1697,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
+    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1708,7 +1708,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_grab_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1720,7 +1720,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1730,7 +1730,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_keynav_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1745,7 +1745,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1757,7 +1757,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_measure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
@@ -1786,7 +1786,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_mnemonic_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">group_cycling</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1801,7 +1801,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_move_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">direction_type</span>: <span class="ident">DirectionType</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1816,7 +1816,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_query_tooltip</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">x</span>: <span class="ident">i32</span>,
         <span class="ident">y</span>: <span class="ident">i32</span>,
         <span class="ident">keyboard_tooltip</span>: <span class="ident">bool</span>,
@@ -1839,7 +1839,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1849,7 +1849,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1859,7 +1859,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_set_focus_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Widget</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1872,7 +1872,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1882,7 +1882,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_size_allocate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1897,7 +1897,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1910,7 +1910,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_state_flags_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">state_flags</span>: <span class="kw-2">&amp;</span><span class="ident">StateFlags</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1923,7 +1923,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_system_setting_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">SystemSetting</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1936,7 +1936,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1946,7 +1946,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1956,7 +1956,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
@@ -1971,7 +1971,7 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 
@@ -2350,13 +2350,13 @@
         <span class="kw">unsafe</span> {
             <span class="comment">// We store the activate callbacks in a HashMap&lt;action_name, activate&gt;</span>
             <span class="comment">// so that we can retrieve f later on the activate_trampoline call</span>
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_data</span>();
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_mut</span>();
 
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">activate</span>);
 
             <span class="kw">let</span> <span class="ident">actions</span> <span class="op">=</span> <span class="ident">data</span>
-                .<span class="ident">class_data_mut</span>::<span class="op">&lt;</span><span class="ident">Actions</span><span class="op">&gt;</span>(<span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>())
+                .<span class="ident">class_data_mut</span>::<span class="op">&lt;</span><span class="ident">Actions</span><span class="op">&gt;</span>(<span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>())
                 .<span class="ident">expect</span>(<span class="string">&quot;Something bad happened at class_init, the actions class_data is missing&quot;</span>);
             <span class="kw">let</span> <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">Box_::into_raw</span>(<span class="ident">f</span>) <span class="kw">as</span> <span class="ident">glib::ffi::gpointer</span>;
             <span class="ident">actions</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="ident">action_name</span>.<span class="ident">to_string</span>(), <span class="ident">callback_ptr</span>);
@@ -2443,9 +2443,9 @@
         <span class="ident">callback</span>: <span class="ident">F</span>,
         <span class="ident">arguments</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::Shortcut::new</span>(
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::CallbackAction::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">widget</span>, <span class="ident">args</span><span class="op">|</span> <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::Shortcut::new</span>(
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::CallbackAction::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">widget</span>, <span class="ident">args</span><span class="op">|</span> <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
                 <span class="kw">unsafe</span> { <span class="ident">callback</span>(<span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">args</span>) }
             })),
         );
@@ -2461,9 +2461,9 @@
         <span class="ident">action_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">arguments</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::Shortcut::new</span>(
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::NamedAction::new</span>(<span class="ident">action_name</span>)),
+        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::Shortcut::new</span>(
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::NamedAction::new</span>(<span class="ident">action_name</span>)),
         );
         <span class="ident">shortcut</span>.<span class="ident">set_arguments</span>(<span class="ident">arguments</span>);
         <span class="self">self</span>.<span class="ident">add_shortcut</span>(<span class="kw-2">&amp;</span><span class="ident">shortcut</span>);
@@ -2477,7 +2477,7 @@
         <span class="ident">signal_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">arguments</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
+        <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
         <span class="kw">if</span> <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_none</span>() {
             <span class="macro">panic!</span>(
                 <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
@@ -2485,9 +2485,9 @@
             );
         }
 
-        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::Shortcut::new</span>(
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
-            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::SignalAction::new</span>(<span class="ident">signal_name</span>)),
+        <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::Shortcut::new</span>(
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::SignalAction::new</span>(<span class="ident">signal_name</span>)),
         );
         <span class="ident">shortcut</span>.<span class="ident">set_arguments</span>(<span class="ident">arguments</span>);
         <span class="self">self</span>.<span class="ident">add_shortcut</span>(<span class="kw-2">&amp;</span><span class="ident">shortcut</span>);
@@ -2537,7 +2537,7 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_class_set_activate_signal_from_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_activate_signal_from_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">signal_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-        <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
+        <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
         <span class="kw">if</span> <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_none</span>() {
             <span class="macro">panic!</span>(
                 <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
@@ -2612,12 +2612,12 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">bind_template_child_with_offset</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">offset</span>: <span class="ident">field_offset::FieldOffset</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">TemplateChild</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">offset</span>: <span class="ident">field_offset::FieldOffset</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">TemplateChild</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">ObjectType</span> <span class="op">+</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">ObjectType</span><span class="op">&gt;</span><span class="ident">::GlibType</span><span class="op">&gt;</span>,
     {
         <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
-        <span class="kw">let</span> <span class="ident">private_offset</span> <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_data</span>()
+        <span class="kw">let</span> <span class="ident">private_offset</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_data</span>()
             .<span class="ident">as_ref</span>()
             .<span class="ident">private_offset</span>;
         <span class="ident">ffi::gtk_widget_class_bind_template_child_full</span>(
@@ -2667,7 +2667,7 @@
     <span class="doccomment">/// the template child isn&#39;t bound or is of the wrong type.</span>
     <span class="doccomment">/// The caller is responsible for ensuring that the template</span>
     <span class="doccomment">/// child is bound and of the right type.</span>
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
         <span class="kw">unsafe</span> {
             <span class="macro">assert!</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">is_null</span>());
             <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>)
@@ -2698,7 +2698,7 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CompositeTemplate</span>: <span class="ident">WidgetImpl</span> {
-    <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="ident">::Class</span>);
+    <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="self">Self</span>::Class</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

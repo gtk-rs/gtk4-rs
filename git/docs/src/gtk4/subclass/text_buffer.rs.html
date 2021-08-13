@@ -633,30 +633,30 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">TextBuffer</span>, <span class="ident">TextChildAnchor</span>, <span class="ident">TextIter</span>, <span class="ident">TextMark</span>, <span class="ident">TextTag</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">Object</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextBufferImpl</span>: <span class="ident">TextBufferImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">apply_tag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) {
+    <span class="kw">fn</span> <span class="ident">apply_tag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) {
         <span class="self">self</span>.<span class="ident">parent_apply_tag</span>(<span class="ident">text_buffer</span>, <span class="ident">tag</span>, <span class="ident">start</span>, <span class="ident">end</span>)
     }
-    <span class="kw">fn</span> <span class="ident">begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_begin_user_action</span>(<span class="ident">text_buffer</span>)
     }
-    <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_changed</span>(<span class="ident">text_buffer</span>)
     }
-    <span class="kw">fn</span> <span class="ident">delete_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>) {
+    <span class="kw">fn</span> <span class="ident">delete_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>) {
         <span class="self">self</span>.<span class="ident">parent_delete_range</span>(<span class="ident">text_buffer</span>, <span class="ident">start</span>, <span class="ident">end</span>)
     }
-    <span class="kw">fn</span> <span class="ident">end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_end_user_action</span>(<span class="ident">text_buffer</span>)
     }
     <span class="kw">fn</span> <span class="ident">insert_child_anchor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>,
     ) {
@@ -664,40 +664,40 @@
     }
     <span class="kw">fn</span> <span class="ident">insert_paintable</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>,
     ) {
         <span class="self">self</span>.<span class="ident">parent_insert_paintable</span>(<span class="ident">text_buffer</span>, <span class="ident">iter</span>, <span class="ident">paintable</span>)
     }
-    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="self">self</span>.<span class="ident">parent_insert_text</span>(<span class="ident">text_buffer</span>, <span class="ident">iter</span>, <span class="ident">new_text</span>)
     }
-    <span class="kw">fn</span> <span class="ident">mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
+    <span class="kw">fn</span> <span class="ident">mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
         <span class="self">self</span>.<span class="ident">parent_mark_deleted</span>(<span class="ident">text_buffer</span>, <span class="ident">mark</span>);
     }
-    <span class="kw">fn</span> <span class="ident">mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
+    <span class="kw">fn</span> <span class="ident">mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
         <span class="self">self</span>.<span class="ident">parent_mark_set</span>(<span class="ident">text_buffer</span>, <span class="ident">location</span>, <span class="ident">mark</span>)
     }
-    <span class="kw">fn</span> <span class="ident">modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_modified_changed</span>(<span class="ident">text_buffer</span>);
     }
-    <span class="kw">fn</span> <span class="ident">paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) {
+    <span class="kw">fn</span> <span class="ident">paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) {
         <span class="self">self</span>.<span class="ident">parent_paste_done</span>(<span class="ident">text_buffer</span>, <span class="ident">clipboard</span>)
     }
-    <span class="kw">fn</span> <span class="ident">redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_redo</span>(<span class="ident">text_buffer</span>)
     }
     <span class="kw">fn</span> <span class="ident">remove_tag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
     ) {
         <span class="self">self</span>.<span class="ident">parent_remove_tag</span>(<span class="ident">text_buffer</span>, <span class="ident">tag</span>, <span class="ident">start</span>, <span class="ident">end</span>)
     }
-    <span class="kw">fn</span> <span class="ident">undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_undo</span>(<span class="ident">text_buffer</span>)
     }
 }
@@ -705,52 +705,52 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextBufferImplExt</span>: <span class="ident">ObjectSubclass</span> {
     <span class="kw">fn</span> <span class="ident">parent_apply_tag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_delete_range</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_insert_child_anchor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>,
     );
     <span class="kw">fn</span> <span class="ident">parent_insert_paintable</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
-    <span class="kw">fn</span> <span class="ident">parent_mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>);
-    <span class="kw">fn</span> <span class="ident">parent_mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>);
-    <span class="kw">fn</span> <span class="ident">parent_modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>);
-    <span class="kw">fn</span> <span class="ident">parent_redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
+    <span class="kw">fn</span> <span class="ident">parent_mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>);
+    <span class="kw">fn</span> <span class="ident">parent_mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>);
+    <span class="kw">fn</span> <span class="ident">parent_modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>);
+    <span class="kw">fn</span> <span class="ident">parent_redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_remove_tag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TextBufferImpl</span><span class="op">&gt;</span> <span class="ident">TextBufferImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
     <span class="kw">fn</span> <span class="ident">parent_apply_tag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
@@ -769,7 +769,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_begin_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -779,7 +779,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -791,7 +791,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_delete_range</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
     ) {
@@ -808,7 +808,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_end_user_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -820,7 +820,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_insert_child_anchor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span>,
     ) {
@@ -839,7 +839,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_insert_paintable</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Paintable</span>,
     ) {
@@ -856,7 +856,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">new_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -871,7 +871,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_mark_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -884,7 +884,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_mark_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="ident">TextMark</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -898,7 +898,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_modified_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -908,7 +908,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_paste_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Clipboard</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -921,7 +921,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -933,7 +933,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_remove_tag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">TextTag</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
@@ -952,7 +952,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextBufferClass</span>;
@@ -967,7 +967,7 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 

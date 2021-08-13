@@ -161,9 +161,9 @@
             <span class="ident">f</span>,
             <span class="string">&quot;X11DeviceType::{}&quot;</span>,
             <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-                <span class="self">Self</span><span class="ident">::Logical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Logical&quot;</span>,
-                <span class="self">Self</span><span class="ident">::Physical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Physical&quot;</span>,
-                <span class="self">Self</span><span class="ident">::Floating</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Floating&quot;</span>,
+                <span class="ident"><span class="self">Self</span>::Logical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Logical&quot;</span>,
+                <span class="ident"><span class="self">Self</span>::Physical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Physical&quot;</span>,
+                <span class="ident"><span class="self">Self</span>::Floating</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Floating&quot;</span>,
                 <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Unknown&quot;</span>,
             }
         )
@@ -176,10 +176,10 @@
 
     <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkX11DeviceType</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Logical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_LOGICAL</span>,
-            <span class="self">Self</span><span class="ident">::Physical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_PHYSICAL</span>,
-            <span class="self">Self</span><span class="ident">::Floating</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_FLOATING</span>,
-            <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
+            <span class="ident"><span class="self">Self</span>::Logical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_LOGICAL</span>,
+            <span class="ident"><span class="self">Self</span>::Physical</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_PHYSICAL</span>,
+            <span class="ident"><span class="self">Self</span>::Floating</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_X11_DEVICE_TYPE_FLOATING</span>,
+            <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
         }
     }
 }
@@ -189,10 +189,10 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkX11DeviceType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_LOGICAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Logical</span>,
-            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_PHYSICAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Physical</span>,
-            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_FLOATING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Floating</span>,
-            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
+            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_LOGICAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Logical</span>,
+            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_PHYSICAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Physical</span>,
+            <span class="ident">ffi::GDK_X11_DEVICE_TYPE_FLOATING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Floating</span>,
+            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>),
         }
     }
 }

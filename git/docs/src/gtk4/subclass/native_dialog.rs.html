@@ -184,33 +184,33 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">NativeDialog</span>, <span class="ident">ResponseType</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">Object</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">NativeDialogImpl</span>: <span class="ident">NativeDialogImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>) {
+    <span class="kw">fn</span> <span class="ident">response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>) {
         <span class="self">self</span>.<span class="ident">parent_response</span>(<span class="ident">dialog</span>, <span class="ident">response</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_show</span>(<span class="ident">dialog</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_hide</span>(<span class="ident">dialog</span>)
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">NativeDialogImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>);
-    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>);
+    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">NativeDialogImpl</span><span class="op">&gt;</span> <span class="ident">NativeDialogImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkNativeDialogClass</span>;
@@ -223,7 +223,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_show</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkNativeDialogClass</span>;
@@ -234,7 +234,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkNativeDialogClass</span>;
@@ -250,7 +250,7 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 

@@ -2663,11 +2663,11 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextChildAnchor</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextIter</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextMark</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextTag</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextTagTable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextChildAnchor</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextIter</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextMark</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextTag</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextTagTable</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::connect_raw</span>;
@@ -2736,7 +2736,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`TextBufferBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

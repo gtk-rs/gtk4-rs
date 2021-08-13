@@ -1018,20 +1018,20 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Accessible</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleRole</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Align</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Application</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Buildable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ConstraintTarget</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::LayoutManager</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Native</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Overflow</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Root</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ShortcutManager</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ShortcutsWindow</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Widget</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Window</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Accessible</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AccessibleRole</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Align</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Application</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Buildable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ConstraintTarget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::LayoutManager</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Native</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Overflow</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Root</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ShortcutManager</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ShortcutsWindow</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Widget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Window</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::connect_raw</span>;
@@ -1224,7 +1224,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`ApplicationWindowBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

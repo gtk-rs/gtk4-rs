@@ -172,8 +172,8 @@
 
 <span class="kw">use</span> <span class="ident">std::string::ToString</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::attribute_parser</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::attribute_parser</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util</span>::<span class="kw-2">*</span>;
 
 <span class="kw">fn</span> <span class="ident">gen_set_template</span>(<span class="ident">source</span>: <span class="ident">TemplateSource</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
     <span class="kw">match</span> <span class="ident">source</span> {
@@ -244,7 +244,7 @@
 
     <span class="macro">quote!</span> {
         <span class="kw">impl</span> #<span class="ident">crate_ident::subclass::widget::CompositeTemplate</span> <span class="kw">for</span> #<span class="ident">name</span> {
-            <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="ident">::Class</span>) {
+            <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="self">Self</span>::Class</span>) {
                 #<span class="ident">set_template</span>
 
                 <span class="kw">unsafe</span> {

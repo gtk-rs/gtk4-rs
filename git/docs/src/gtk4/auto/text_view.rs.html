@@ -3777,30 +3777,30 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Accessible</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleRole</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Adjustment</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Align</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Buildable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ConstraintTarget</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::DeleteType</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::InputHints</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::InputPurpose</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Justification</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::LayoutManager</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::MovementStep</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Overflow</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ScrollStep</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scrollable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ScrollablePolicy</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextBuffer</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextChildAnchor</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextExtendSelection</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextIter</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextMark</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextWindowType</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Widget</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::WrapMode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Accessible</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AccessibleRole</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Adjustment</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Align</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Buildable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ConstraintTarget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeleteType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::InputHints</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::InputPurpose</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Justification</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::LayoutManager</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::MovementStep</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Overflow</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ScrollStep</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Scrollable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ScrollablePolicy</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextBuffer</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextChildAnchor</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextExtendSelection</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextIter</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextMark</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextWindowType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Widget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::WrapMode</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::object::ObjectExt</span>;
@@ -3913,7 +3913,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">TextView</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>()
+        <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
 
@@ -3984,7 +3984,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`TextViewBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

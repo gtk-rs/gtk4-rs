@@ -4852,7 +4852,7 @@
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_upper_case_globals</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">constants</span> {
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::Key</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Key</span>;
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_KEY_0&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">_0</span>: <span class="ident">Key</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="ident">ffi::GDK_KEY_0</span> <span class="kw">as</span> <span class="ident">u32</span>);

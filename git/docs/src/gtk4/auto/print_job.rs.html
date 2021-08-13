@@ -687,14 +687,14 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::NumberUpLayout</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageRange</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageSet</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageSetup</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintPages</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintSettings</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintStatus</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Printer</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::NumberUpLayout</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageRange</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageSet</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageSetup</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintPages</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintSettings</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintStatus</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Printer</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::ObjectType</span> <span class="kw">as</span> <span class="ident">ObjectType_</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::connect_raw</span>;
@@ -1231,7 +1231,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`PrintJobBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

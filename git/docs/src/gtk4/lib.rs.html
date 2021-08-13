@@ -402,7 +402,7 @@
     <span class="ident">once_cell::sync::Lazy::new</span>(<span class="op">|</span><span class="op">|</span> {
         <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">glib::ThreadPool::new_exclusive</span>(<span class="number">1</span>).<span class="ident">unwrap</span>();
         <span class="ident">pool</span>.<span class="ident">push</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-            <span class="kw">crate</span><span class="ident">::init</span>().<span class="ident">expect</span>(<span class="string">&quot;Tests failed to initialize gtk&quot;</span>);
+            <span class="ident"><span class="kw">crate</span>::init</span>().<span class="ident">expect</span>(<span class="string">&quot;Tests failed to initialize gtk&quot;</span>);
         })
         .<span class="ident">expect</span>(<span class="string">&quot;Failed to schedule a test call&quot;</span>);
         <span class="ident">pool</span>

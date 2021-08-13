@@ -219,7 +219,7 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::expression::Expression</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression::Expression</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Type</span>, <span class="ident">Value</span>};
 
@@ -354,7 +354,7 @@
         <span class="ident">TEST_THREAD_WORKER</span>
             .<span class="ident">push</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">_prop_expr</span> <span class="op">=</span> <span class="ident">PropertyExpression::new</span>(
-                    <span class="kw">crate</span><span class="ident">::StringObject::static_type</span>(),
+                    <span class="ident"><span class="kw">crate</span>::StringObject::static_type</span>(),
                     <span class="ident">NONE_EXPRESSION</span>,
                     <span class="string">&quot;string&quot;</span>,
                 );

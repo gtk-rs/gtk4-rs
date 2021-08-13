@@ -200,9 +200,9 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::IMContext</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::InputHints</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::InputPurpose</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IMContext</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::InputHints</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::InputPurpose</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::StaticType</span>;
@@ -267,7 +267,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">IMContextSimple</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>()
+        <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
 
@@ -285,7 +285,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`IMContextSimpleBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

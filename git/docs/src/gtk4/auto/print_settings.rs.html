@@ -1250,15 +1250,15 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::NumberUpLayout</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageOrientation</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageRange</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageSet</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PaperSize</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintDuplex</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintPages</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintQuality</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Unit</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::NumberUpLayout</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageOrientation</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageRange</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PageSet</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PaperSize</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintDuplex</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintPages</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PrintQuality</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Unit</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
@@ -2411,7 +2411,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">PrintSettings</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>()
+        <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
 

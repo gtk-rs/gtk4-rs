@@ -607,7 +607,7 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">IMContext</span>, <span class="ident">Widget</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>, <span class="ident">IsA</span>, <span class="ident">Object</span>};
@@ -615,81 +615,81 @@
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextImpl</span>: <span class="ident">IMContextImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="self">self</span>.<span class="ident">parent_commit</span>(<span class="ident">im_context</span>, <span class="ident">string</span>)
     }
-    <span class="kw">fn</span> <span class="ident">delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_delete_surrounding</span>(<span class="ident">im_context</span>, <span class="ident">offset</span>, <span class="ident">n_chars</span>)
     }
-    <span class="kw">fn</span> <span class="ident">filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_filter_keypress</span>(<span class="ident">im_context</span>, <span class="ident">event</span>)
     }
-    <span class="kw">fn</span> <span class="ident">focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_focus_in</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_focus_out</span>(<span class="ident">im_context</span>)
     }
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preedit_string&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_preedit_string</span>(<span class="ident">im_context</span>)
     }
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surrounding&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_surrounding</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_preedit_changed</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_preedit_end</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_preedit_start</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_reset</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_retrieve_surrounding</span>(<span class="ident">im_context</span>)
     }
-    <span class="kw">fn</span> <span class="ident">set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_client_widget</span>(<span class="ident">im_context</span>, <span class="ident">widget</span>)
     }
-    <span class="kw">fn</span> <span class="ident">set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>) {
+    <span class="kw">fn</span> <span class="ident">set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_cursor_location</span>(<span class="ident">im_context</span>, <span class="ident">area</span>)
     }
-    <span class="kw">fn</span> <span class="ident">set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_surrounding</span>(<span class="ident">im_context</span>, <span class="ident">text</span>, <span class="ident">cursor_index</span>)
     }
-    <span class="kw">fn</span> <span class="ident">set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>) {
+    <span class="kw">fn</span> <span class="ident">set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_use_preedit</span>(<span class="ident">im_context</span>, <span class="ident">use_preedit</span>)
     }
 }
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
-    <span class="kw">fn</span> <span class="ident">parent_delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>)
+    <span class="kw">fn</span> <span class="ident">parent_commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
+    <span class="kw">fn</span> <span class="ident">parent_delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>)
         <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">parent_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
-    <span class="kw">fn</span> <span class="ident">parent_set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>);
-    <span class="kw">fn</span> <span class="ident">parent_set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>);
+    <span class="kw">fn</span> <span class="ident">parent_filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">parent_set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>);
+    <span class="kw">fn</span> <span class="ident">parent_set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span> <span class="ident">IMContextImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -704,7 +704,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_delete_surrounding</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">offset</span>: <span class="ident">i32</span>,
         <span class="ident">n_chars</span>: <span class="ident">i32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -724,7 +724,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -740,7 +740,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -750,7 +750,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -760,7 +760,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -780,7 +780,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -804,7 +804,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -814,7 +814,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -824,7 +824,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -834,7 +834,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -844,7 +844,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -862,7 +862,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">unsafe</span> {
@@ -877,7 +877,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -890,7 +890,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -905,7 +905,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
@@ -923,7 +923,7 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 

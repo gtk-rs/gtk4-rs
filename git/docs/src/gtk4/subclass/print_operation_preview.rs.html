@@ -308,47 +308,47 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">PageSetup</span>, <span class="ident">PrintContext</span>, <span class="ident">PrintOperationPreview</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PrintOperationPreviewImpl</span>: <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
+    <span class="kw">fn</span> <span class="ident">ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
         <span class="self">self</span>.<span class="ident">parent_ready</span>(<span class="ident">print_operation_preview</span>, <span class="ident">context</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">got_page_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">page_setup</span>: <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>,
     ) {
         <span class="self">self</span>.<span class="ident">parent_got_page_size</span>(<span class="ident">print_operation_preview</span>, <span class="ident">context</span>, <span class="ident">page_setup</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PrintOperationPreviewImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>);
+    <span class="kw">fn</span> <span class="ident">parent_ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>);
     <span class="kw">fn</span> <span class="ident">parent_got_page_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">page_setup</span>: <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrintOperationPreviewImpl</span><span class="op">&gt;</span> <span class="ident">PrintOperationPreviewImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_ready</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>()
@@ -368,12 +368,12 @@
 
     <span class="kw">fn</span> <span class="ident">parent_got_page_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">page_setup</span>: <span class="kw-2">&amp;</span><span class="ident">PageSetup</span>,
     ) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>()
@@ -392,9 +392,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_render_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>()
@@ -412,9 +412,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>()
@@ -433,9 +433,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_end_preview</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation_preview</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>()
@@ -457,7 +457,7 @@
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 

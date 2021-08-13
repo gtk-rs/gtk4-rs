@@ -310,7 +310,7 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Builder</span>, <span class="ident">BuilderClosureFlags</span>, <span class="ident">BuilderScope</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>};
@@ -319,7 +319,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_type_from_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">type_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
@@ -329,7 +329,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_type_from_function&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
@@ -338,7 +338,7 @@
 
     <span class="kw">fn</span> <span class="ident">create_closure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">flags</span>: <span class="ident">BuilderClosureFlags</span>,
@@ -349,21 +349,21 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BuilderScopeImplExt</span>: <span class="ident">ObjectSubclass</span> {
     <span class="kw">fn</span> <span class="ident">parent_type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">type_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span>;
 
     <span class="kw">fn</span> <span class="ident">parent_type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span>;
 
     <span class="kw">fn</span> <span class="ident">parent_create_closure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">flags</span>: <span class="ident">BuilderClosureFlags</span>,
@@ -374,12 +374,12 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span> <span class="ident">BuilderScopeImplExt</span> <span class="kw">for</span> <span class="ident">B</span> {
     <span class="kw">fn</span> <span class="ident">parent_type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">type_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
@@ -400,12 +400,12 @@
 
     <span class="kw">fn</span> <span class="ident">parent_type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
@@ -426,14 +426,14 @@
 
     <span class="kw">fn</span> <span class="ident">parent_create_closure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">flags</span>: <span class="ident">BuilderClosureFlags</span>,
         <span class="ident">object</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Closure</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
@@ -466,7 +466,7 @@
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 

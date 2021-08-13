@@ -508,7 +508,7 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">DeleteType</span>, <span class="ident">MovementStep</span>, <span class="ident">Snapshot</span>, <span class="ident">TextExtendSelection</span>, <span class="ident">TextIter</span>, <span class="ident">TextView</span>, <span class="ident">TextViewLayer</span>,
     <span class="ident">Widget</span>,
@@ -517,25 +517,25 @@
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewImpl</span>: <span class="ident">TextViewImplExt</span> <span class="op">+</span> <span class="ident">WidgetImpl</span> {
-    <span class="kw">fn</span> <span class="ident">backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_backspace</span>(<span class="ident">text_view</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_copy_clipboard</span>(<span class="ident">text_view</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_cut_clipboard</span>(<span class="ident">text_view</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_delete_from_cursor</span>(<span class="ident">text_view</span>, <span class="ident">type_</span>, <span class="ident">count</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">extend_selection</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">granularity</span>: <span class="ident">TextExtendSelection</span>,
         <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
@@ -544,17 +544,17 @@
         <span class="self">self</span>.<span class="ident">parent_extend_selection</span>(<span class="ident">text_view</span>, <span class="ident">granularity</span>, <span class="ident">location</span>, <span class="ident">start</span>, <span class="ident">end</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="self">self</span>.<span class="ident">parent_insert_at_cursor</span>(<span class="ident">text_view</span>, <span class="ident">text</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_insert_emoji</span>(<span class="ident">text_view</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">move_cursor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">step</span>: <span class="ident">MovementStep</span>,
         <span class="ident">count</span>: <span class="ident">i32</span>,
         <span class="ident">extend_selection</span>: <span class="ident">bool</span>,
@@ -562,58 +562,58 @@
         <span class="self">self</span>.<span class="ident">parent_move_cursor</span>(<span class="ident">text_view</span>, <span class="ident">step</span>, <span class="ident">count</span>, <span class="ident">extend_selection</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_paste_clipboard</span>(<span class="ident">text_view</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_set_anchor</span>(<span class="ident">text_view</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">snapshot_layer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">layer</span>: <span class="ident">TextViewLayer</span>, <span class="ident">snapshot</span>: <span class="ident">Snapshot</span>) {
+    <span class="kw">fn</span> <span class="ident">snapshot_layer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">layer</span>: <span class="ident">TextViewLayer</span>, <span class="ident">snapshot</span>: <span class="ident">Snapshot</span>) {
         <span class="self">self</span>.<span class="ident">parent_snapshot_layer</span>(<span class="ident">text_view</span>, <span class="ident">layer</span>, <span class="ident">snapshot</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_toggle_overwrite</span>(<span class="ident">text_view</span>)
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>);
     <span class="kw">fn</span> <span class="ident">parent_extend_selection</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">granularity</span>: <span class="ident">TextExtendSelection</span>,
         <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span>;
-    <span class="kw">fn</span> <span class="ident">parent_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
-    <span class="kw">fn</span> <span class="ident">parent_insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
+    <span class="kw">fn</span> <span class="ident">parent_insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_move_cursor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">step</span>: <span class="ident">MovementStep</span>,
         <span class="ident">count</span>: <span class="ident">i32</span>,
         <span class="ident">extend_selection</span>: <span class="ident">bool</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
     <span class="kw">fn</span> <span class="ident">parent_snapshot_layer</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">layer</span>: <span class="ident">TextViewLayer</span>,
         <span class="ident">snapshot</span>: <span class="ident">Snapshot</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TextViewImpl</span><span class="op">&gt;</span> <span class="ident">TextViewImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -623,7 +623,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -633,7 +633,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -643,7 +643,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -659,7 +659,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_extend_selection</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">granularity</span>: <span class="ident">TextExtendSelection</span>,
         <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>,
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>,
@@ -682,7 +682,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -695,7 +695,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -707,7 +707,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_move_cursor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">step</span>: <span class="ident">MovementStep</span>,
         <span class="ident">count</span>: <span class="ident">i32</span>,
         <span class="ident">extend_selection</span>: <span class="ident">bool</span>,
@@ -726,7 +726,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -736,7 +736,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_set_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;
@@ -748,7 +748,7 @@
 
     <span class="kw">fn</span> <span class="ident">parent_snapshot_layer</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">layer</span>: <span class="ident">TextViewLayer</span>,
         <span class="ident">snapshot</span>: <span class="ident">Snapshot</span>,
     ) {
@@ -765,7 +765,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTextViewClass</span>;

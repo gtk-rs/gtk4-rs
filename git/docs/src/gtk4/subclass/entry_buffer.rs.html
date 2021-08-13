@@ -413,35 +413,35 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::EntryBuffer</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::EntryBuffer</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>, <span class="ident">Object</span>, <span class="ident">ObjectExt</span>};
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryBufferImpl</span>: <span class="ident">EntryBufferImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_delete_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">n_chars</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">parent_deleted_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">n_chars</span>)
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_length&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_length</span>(<span class="ident">entry_buffer</span>)
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
         <span class="self">self</span>.<span class="ident">parent_text</span>(<span class="ident">entry_buffer</span>)
     }
-    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_insert_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">chars</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="self">self</span>.<span class="ident">parent_inserted_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">chars</span>)
     }
 }
@@ -449,21 +449,21 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryBufferImplExt</span>: <span class="ident">ObjectSubclass</span> {
     <span class="kw">fn</span> <span class="ident">parent_delete_text</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">position</span>: <span class="ident">u32</span>,
         <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
-    <span class="kw">fn</span> <span class="ident">parent_deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>);
-    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span>;
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
-    <span class="kw">fn</span> <span class="ident">parent_inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
+    <span class="kw">fn</span> <span class="ident">parent_deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span>;
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EntryBufferImpl</span><span class="op">&gt;</span> <span class="ident">EntryBufferImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
     <span class="kw">fn</span> <span class="ident">parent_delete_text</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
+        <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">position</span>: <span class="ident">u32</span>,
         <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
@@ -484,7 +484,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -501,7 +501,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -515,7 +515,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -534,7 +534,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -554,7 +554,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -577,7 +577,7 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 
@@ -715,7 +715,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_n_chars</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::text_n_chars</span>;
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_ascii</span>() {
         <span class="macro">assert_eq!</span>(<span class="ident">text_n_chars</span>(<span class="string">&quot;gtk-rs bindings&quot;</span>, <span class="number">6</span>), <span class="string">&quot;gtk-rs&quot;</span>);

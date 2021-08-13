@@ -4415,28 +4415,28 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Accessible</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleRole</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Adjustment</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Align</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Buildable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::CellRenderer</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ConstraintTarget</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Editable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::LayoutManager</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::MovementStep</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Overflow</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scrollable</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ScrollablePolicy</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Tooltip</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeIter</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeModel</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreePath</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeSelection</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeViewColumn</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeViewDropPosition</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeViewGridLines</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Widget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Accessible</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AccessibleRole</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Adjustment</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Align</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Buildable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::CellRenderer</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ConstraintTarget</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Editable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::LayoutManager</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::MovementStep</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Overflow</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Scrollable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ScrollablePolicy</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Tooltip</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeIter</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeModel</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreePath</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeSelection</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeViewColumn</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeViewDropPosition</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TreeViewGridLines</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Widget</span>;
 <span class="kw">use</span> <span class="ident">glib::object::Cast</span>;
 <span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::object::ObjectExt</span>;
@@ -4592,7 +4592,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">TreeView</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>()
+        <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
 
@@ -4659,7 +4659,7 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`TreeViewBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::default</span>()
+        <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>

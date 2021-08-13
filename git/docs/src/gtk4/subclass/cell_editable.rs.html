@@ -197,35 +197,35 @@
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::CellEditable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::CellEditable</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellEditableImpl</span>: <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_editing_done</span>(<span class="ident">cell_editable</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_remove_widget</span>(<span class="ident">cell_editable</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">parent_start_editing</span>(<span class="ident">cell_editable</span>, <span class="ident">event</span>)
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellEditableImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
-    <span class="kw">fn</span> <span class="ident">parent_start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">parent_editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
+    <span class="kw">fn</span> <span class="ident">parent_start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">CellEditableImpl</span><span class="op">&gt;</span> <span class="ident">CellEditableImplExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">parent_editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkCellEditableIface</span>;
 
@@ -238,9 +238,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkCellEditableIface</span>;
 
@@ -253,9 +253,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">parent_start_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkCellEditableIface</span>;
 
@@ -276,7 +276,7 @@
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="kw">crate</span><span class="ident">::rt::is_initialized</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
             <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
         }
 
