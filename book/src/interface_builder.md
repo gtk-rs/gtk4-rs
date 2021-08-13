@@ -106,7 +106,7 @@ The button is easily available thanks to the stored reference in `self`.
 # fn main() {}
 ```
 
-With composite templates, `main.rs` actually becomes more concise.
+With composite templates, `build_ui` actually becomes more concise.
 
 <span class="filename">Filename: listings/interface_builder/2/main.rs</span>
 ```rust,no_run
