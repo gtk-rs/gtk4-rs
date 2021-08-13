@@ -17,7 +17,7 @@
 - [Interface Builder](interface_builder.md)
 - [Building a Simple To-Do App]()
 - [Actions & Keybindings]()
-- [Manipulate State of To-Do App]()
+- [Manipulating State of To-Do App]()
 - [CSS]()
 - [Resources]()
 - [Accessibility]()
