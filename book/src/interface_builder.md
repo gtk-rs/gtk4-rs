@@ -27,6 +27,7 @@ Then we can specify properties which are specified [here](https://docs.gtk.org/g
 Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to add a `Button`.
 
 To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](../docs/gtk4/struct.Builder.html)[^1].
+All widgets that can be described that way can be found [here](../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1)
 
 <span class="filename">Filename: listings/interface_builder/1/main.rs</span>
 ```rust,no_run
