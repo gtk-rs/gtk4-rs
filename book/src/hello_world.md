@@ -2,8 +2,8 @@
 
 Now that we have got a working installation, let us get right into it!
 
-At the very least, we need to create an `Application` instance, with an application id and the default application flags.
-[This guide](https://wiki.gnome.org/HowDoI/ChooseApplicationID) helps you find a suitable application id for your app.
+At the very least, we need to create an `Application` instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
+For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
 
 <span class="filename">Filename: listings/hello_world/1/main.rs</span>
 

@@ -3,7 +3,11 @@ use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
+    let app = Application::builder()
+        .application_id("org.gtk.example")
+        .build();
+
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -11,11 +15,12 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .build();
 
-    // Set the window title
-    window.set_title(Some("My GTK App"));
-
+    // Present window to the user
     window.present();
 }
