@@ -147,9 +147,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="interface-builder"><a class="header" href="#interface-builder">Interface Builder</a></h1>
-<p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>.
-This way we ended up with the most recent form of our trusty &quot;Hello World!&quot; app.</p>
-<p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
+<p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>.
+As a reminder, that is how we used it in our trusty &quot;Hello World!&quot; app.</p>
+<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
@@ -167,13 +167,13 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
+    // Create a window and set the title
     let window = ApplicationWindow::builder()
         .application(app)
         .title(&quot;My GTK App&quot;)
         .build();
 
-    // Create a button
+    // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
@@ -190,6 +190,8 @@ fn build_ui(app: &amp;Application) {
 
     // Add button
     window.set_child(Some(&amp;button));
+
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
@@ -545,7 +547,7 @@ impl ObjectImpl for Window {
 <p>Puh, yet another builder? Let us summarize what we have so far:</p>
 <ul>
 <li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
-<li><a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
+<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
 <li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
 </ul>
 <p>That was it with the builders.

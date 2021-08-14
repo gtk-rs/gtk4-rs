@@ -239,15 +239,17 @@ The build dependencies can be downloaded by the IDE.
 With GNOME Builder, you only have to press the run button for that.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
 <p>Now that we have got a working installation, let us get right into it!</p>
-<p>At the very least, we need to create an <code>Application</code> instance, with an application id and the default application flags.
-<a href="https://wiki.gnome.org/HowDoI/ChooseApplicationID">This guide</a> helps you find a suitable application id for your app.</p>
+<p>At the very least, we need to create an <code>Application</code> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
+For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.</p>
 <p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
 use gtk::Application;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
 
     // Run the application
     app.run();
@@ -262,7 +264,11 @@ use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
+
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -270,12 +276,13 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .build();
 
-    // Set the window title
-    window.set_title(Some(&quot;My GTK App&quot;));
-
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
@@ -289,7 +296,11 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -297,20 +308,20 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .build();
 
-    // Set the window title
-    window.set_title(Some(&quot;My GTK App&quot;));
-
-    // Create a button
-    let button = Button::with_label(&quot;Press me!&quot;);
-
-    // Set the button margins
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
+    // Create a button with label and margins
+    let button = Button::builder()
+        .label(&quot;Press me!&quot;)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
@@ -320,6 +331,8 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 
     // Add button
     window.set_child(Some(&amp;button));
+
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
@@ -342,20 +355,24 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
 ╰── Widget
     ╰── Button
 </code></pre>
-<p>The <a href="https://docs.gtk.org/gtk4/class.Button.html">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
+<p>The <a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
 <p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
 The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the <code>ButtonExt</code> trait.
 And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
-<p><span class="filename">Filename: listings/widgets/1/main.rs</span></p>
+<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -363,102 +380,13 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
+</span><span class="boring">    // Create a window and set the title
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
-</span>    // Create a button
-    let button = Button::with_label(&quot;Press me!&quot;);
-
-    // Set the button margins
-    button.set_margin_top(18);
-    button.set_margin_bottom(18);
-    button.set_margin_start(18);
-    button.set_margin_end(18);
-
-    // Connect to &quot;clicked&quot; signal of `button`
-    button.connect_clicked(move |button| {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
-    });
-<span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
-</span><span class="boring">    window.present();
-</span><span class="boring">}
-</span></code></pre></pre>
-<p>Please note that Rust requires bringing traits into scope, before using one of its methods.
-In our example we did that by adding the following line:</p>
-<p><span class="filename">Filename: listings/widgets/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
-<span class="boring">use gtk::{Application, ApplicationWindow, Button};
-</span><span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
-</span><span class="boring">    app.connect_activate(build_ui);
-</span><span class="boring">
-</span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
-</span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
-</span><span class="boring">    // Create a button
-</span><span class="boring">    let button = Button::with_label(&quot;Press me!&quot;);
-</span><span class="boring">
-</span><span class="boring">    // Set the button margins
-</span><span class="boring">    button.set_margin_top(18);
-</span><span class="boring">    button.set_margin_bottom(18);
-</span><span class="boring">    button.set_margin_start(18);
-</span><span class="boring">    button.set_margin_end(18);
-</span><span class="boring">
-</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
-</span><span class="boring">    button.connect_clicked(move |button| {
-</span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
-</span><span class="boring">    });
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
-</span><span class="boring">    window.present();
-</span><span class="boring">}
-</span></code></pre></pre>
-<p>With it, we import all necessary traits for dealing with widgets.
-You probably want to bring the prelude into scope in most of your source files.</p>
-<p>This is also a good moment to mention that most <code>gtk-rs</code> objects support the <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>.
-This is especially nice for creating widgets where multiple characteristics are already known during their creation.
-By utilizing the <code>builder</code> method, the construction of our objects becomes quite a bit neater.</p>
-<p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
-
-fn main() {
-    // Create a new application
-    let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
-        .build();
-
-    // Connect to &quot;activate&quot; signal of `app`
-    app.connect_activate(build_ui);
-
-    // Run the application
-    app.run();
-}
-
-fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
-    // Create a button
+</span>    // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
@@ -472,12 +400,64 @@ fn build_ui(app: &amp;Application) {
         // Set the label to &quot;Hello World!&quot; after the button has been clicked on
         button.set_label(&quot;Hello World!&quot;);
     });
-
-    // Add button
-    window.set_child(Some(&amp;button));
-    window.present();
-}
-</code></pre></pre>
+<span class="boring">
+</span><span class="boring">    // Add button
+</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">
+</span><span class="boring">    // Present window to the user
+</span><span class="boring">    window.present();
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>Please note that Rust requires bringing traits into scope, before using one of its methods.
+In our example we did that by adding the following line:</p>
+<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<span class="boring">use gtk::{Application, ApplicationWindow, Button};
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    // Create a window and set the title
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Create a button with label and margins
+</span><span class="boring">    let button = Button::builder()
+</span><span class="boring">        .label(&quot;Press me!&quot;)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;clicked&quot; signal of `button`
+</span><span class="boring">    button.connect_clicked(move |button| {
+</span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
+</span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
+</span><span class="boring">    });
+</span><span class="boring">
+</span><span class="boring">    // Add button
+</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">
+</span><span class="boring">    // Present window to the user
+</span><span class="boring">    window.present();
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>With it, we import all necessary traits for dealing with widgets.
+You probably want to bring the prelude into scope in most of your source files.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gobject-concepts"><a class="header" href="#gobject-concepts">GObject Concepts</a></h1>
 <p>GTK is an object-oriented framework.
 It is written in C, which does not support object-orientation out of the box.
@@ -4763,9 +4743,9 @@ These widgets are easy to use and allow, if necessary, to be bound to a model su
 Their data can then be modified, sorted and filtered more easily.
 However, if we need the widgets to be scalable we still need to use <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interface-builder"><a class="header" href="#interface-builder">Interface Builder</a></h1>
-<p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>.
-This way we ended up with the most recent form of our trusty &quot;Hello World!&quot; app.</p>
-<p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
+<p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>.
+As a reminder, that is how we used it in our trusty &quot;Hello World!&quot; app.</p>
+<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
@@ -4783,13 +4763,13 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
+    // Create a window and set the title
     let window = ApplicationWindow::builder()
         .application(app)
         .title(&quot;My GTK App&quot;)
         .build();
 
-    // Create a button
+    // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
@@ -4806,6 +4786,8 @@ fn build_ui(app: &amp;Application) {
 
     // Add button
     window.set_child(Some(&amp;button));
+
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
@@ -5161,7 +5143,7 @@ impl ObjectImpl for Window {
 <p>Puh, yet another builder? Let us summarize what we have so far:</p>
 <ul>
 <li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
-<li><a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
+<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
 <li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
 </ul>
 <p>That was it with the builders.

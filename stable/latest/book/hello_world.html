@@ -148,15 +148,17 @@
                     <main>
                         <h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
 <p>Now that we have got a working installation, let us get right into it!</p>
-<p>At the very least, we need to create an <code>Application</code> instance, with an application id and the default application flags.
-<a href="https://wiki.gnome.org/HowDoI/ChooseApplicationID">This guide</a> helps you find a suitable application id for your app.</p>
+<p>At the very least, we need to create an <code>Application</code> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
+For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.</p>
 <p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
 use gtk::Application;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
 
     // Run the application
     app.run();
@@ -171,7 +173,11 @@ use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+    let app = Application::builder()
+        .application_id(&quot;org.gtk.example&quot;)
+        .build();
+
+    // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -179,12 +185,13 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .build();
 
-    // Set the window title
-    window.set_title(Some(&quot;My GTK App&quot;));
-
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
@@ -198,7 +205,11 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
+</span><span class="boring">    let app = Application::builder()
+</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -206,20 +217,20 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .build();
 
-    // Set the window title
-    window.set_title(Some(&quot;My GTK App&quot;));
-
-    // Create a button
-    let button = Button::with_label(&quot;Press me!&quot;);
-
-    // Set the button margins
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
+    // Create a button with label and margins
+    let button = Button::builder()
+        .label(&quot;Press me!&quot;)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // Connect to &quot;clicked&quot; signal of `button`
     button.connect_clicked(move |button| {
@@ -229,6 +240,8 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 
     // Add button
     window.set_child(Some(&amp;button));
+
+    // Present window to the user
     window.present();
 }
 </code></pre></pre>
