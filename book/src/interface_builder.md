@@ -1,11 +1,11 @@
 # Interface Builder
 
-Until now, whenever we constructed pre-defined widgets we relied on the [builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html).
-This way we ended up with the most recent form of our trusty "Hello World!" app.
+Until now, whenever we constructed pre-defined widgets we relied on the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html).
+As a reminder, that is how we used it in our trusty "Hello World!" app.
 
-<span class="filename">Filename: listings/widgets/2/main.rs</span>
+<span class="filename">Filename: listings/hello_world/3/main.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/widgets/2/main.rs}}
+{{#rustdoc_include ../listings/hello_world/3/main.rs:all}}
 ```
 
 Creating widgets directly from code is perfectly fine.
@@ -129,7 +129,7 @@ In the following chapter, we will see how composite templates help us to create 
 
 [^1]: Puh, yet another builder? Let us summarize what we have so far:
 - [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
-- [builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html), a design pattern used to create objects with many optional parameters and
+- [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html), a design pattern used to create objects with many optional parameters and
 - [`gtk::Builder`](../docs/gtk4/struct.Builder.html), the interface builder which creates widgets from `xml` files.
 
 That was it with the builders.

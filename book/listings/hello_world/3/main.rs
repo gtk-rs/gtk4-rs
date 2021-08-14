@@ -1,9 +1,16 @@
+// ANCHOR: all
+// ANCHOR: prelude
 use gtk::prelude::*;
+// ANCHOR_END: prelude
 use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
+    let app = Application::builder()
+        .application_id("org.gtk.example")
+        .build();
+
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
@@ -12,29 +19,34 @@ fn main() {
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .build();
 
-    // Set the window title
-    window.set_title(Some("My GTK App"));
-
-    // Create a button
-    let button = Button::with_label("Press me!");
-
-    // Set the button margins
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
+    // ANCHOR: button
+    // Create a button with label and margins
+    let button = Button::builder()
+        .label("Press me!")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
     });
+    // ANCHOR_END: button
 
     // Add button
     window.set_child(Some(&button));
+
+    // Present window to the user
     window.present();
 }
-//ANCHOR_END: build_ui
+// ANCHOR_END: build_ui
+// ANCHOR_END: all
