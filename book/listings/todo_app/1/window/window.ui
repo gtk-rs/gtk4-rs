@@ -2,7 +2,7 @@
 <interface>
   <template class="TodoWindow" parent="GtkApplicationWindow">
     <property name="width_request">360</property>
-    <property name="title" translatable="yes">Todo</property>
+    <property name="title" translatable="yes">To-Do</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>

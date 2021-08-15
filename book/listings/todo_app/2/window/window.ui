@@ -26,7 +26,7 @@
   </menu>
   <template class="TodoWindow" parent="GtkApplicationWindow">
     <property name="width_request">360</property>
-    <property name="title" translatable="yes">Todo</property>
+    <property name="title" translatable="yes">To-Do</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type="start">
