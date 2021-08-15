@@ -5,6 +5,7 @@ use gtk::{gio, glib};
 use gtk::{CompositeTemplate, Entry, ListView};
 use once_cell::sync::OnceCell;
 
+// ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(file = "window.ui")]
@@ -31,7 +32,9 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+// ANCHOR_END: struct_and_subclass
 
+// ANCHOR: constructed
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
@@ -44,6 +47,7 @@ impl ObjectImpl for Window {
         obj.setup_callbacks();
     }
 }
+// ANCHOR_END: constructed
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}

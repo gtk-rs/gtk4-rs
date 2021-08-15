@@ -8,12 +8,14 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, NoSelection, SignalListItemFactory};
 
+// ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
+// ANCHOR_END: glib_wrapper
 
 impl Window {
     pub fn new(app: &Application) -> Self {
@@ -21,6 +23,7 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
+    // ANCHOR: model
     fn model(&self) -> &gio::ListStore {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -39,7 +42,9 @@ impl Window {
         let selection_model = NoSelection::new(Some(self.model()));
         imp.list_view.set_model(Some(&selection_model));
     }
+    // ANCHOR_END: model
 
+    // ANCHOR: setup_factory
     fn setup_factory(&self) {
         // Create a new factory
         let factory = SignalListItemFactory::new();
@@ -86,7 +91,9 @@ impl Window {
         let imp = imp::Window::from_instance(self);
         imp.list_view.set_factory(Some(&factory));
     }
+    // ANCHOR_END: setup_factory
 
+    // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -103,4 +110,5 @@ impl Window {
                 buffer.set_text("");
             }));
     }
+    // ANCHOR_END: setup_callbacks
 }

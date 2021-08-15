@@ -7,6 +7,7 @@ use gtk::Application;
 
 use window::Window;
 
+// ANCHOR: main
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
@@ -28,3 +29,4 @@ fn build_ui(app: &Application) {
     let window = Window::new(app);
     window.show();
 }
+// ANCHOR_END: main
