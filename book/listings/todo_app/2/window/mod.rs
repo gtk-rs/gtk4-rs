@@ -131,8 +131,7 @@ impl Window {
                 let buffer = entry.buffer();
                 let content = buffer.text();
                 let todo_object = TodoObject::new(content, false);
-                model
-                    .append(&todo_object);
+                model.append(&todo_object);
                 buffer.set_text("");
             }));
 
