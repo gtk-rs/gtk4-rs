@@ -15,13 +15,13 @@
 - [Saving Window State](saving_window_state.md)
 - [Lists](lists.md)
 - [Interface Builder](interface_builder.md)
-- [Building a Simple To-Do App]()
+- [Building a Simple To-Do App](todo_app_1.md)
 - [Actions & Keybindings]()
 - [Manipulating State of To-Do App]()
 - [CSS]()
 - [Resources]()
-- [Accessibility]()
 - [Internationalization]()
+- [Accessibility]()
 
 # Useful Libraries
 
