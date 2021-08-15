@@ -6,7 +6,7 @@ use gtk::{CompositeTemplate, Entry, ListView};
 use once_cell::sync::OnceCell;
 
 // Object holding the state
-#[derive(CompositeTemplate)]
+#[derive(CompositeTemplate, Default)]
 #[template(file = "window.ui")]
 pub struct Window {
     #[template_child]
@@ -14,16 +14,6 @@ pub struct Window {
     #[template_child]
     pub list_view: TemplateChild<ListView>,
     pub model: OnceCell<gio::ListStore>,
-}
-
-impl Default for Window {
-    fn default() -> Self {
-        Window {
-            entry: TemplateChild::default(),
-            list_view: TemplateChild::default(),
-            model: OnceCell::default(),
-        }
-    }
 }
 
 // The central trait for subclassing a GObject
