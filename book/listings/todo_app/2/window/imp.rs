@@ -79,13 +79,10 @@ impl WidgetImpl for Window {}
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
-        // Get model
-        let model = self.model.get().expect("Could not get model");
-
         // Store todo data in vector
         let mut backup_data = Vec::new();
         let mut position = 0;
-        while let Some(item) = model.item(position) {
+        while let Some(item) = window.model().item(position) {
             // Get `TodoObject` from `glib::Object`
             let todo_data = item
                 .downcast_ref::<TodoObject>()
