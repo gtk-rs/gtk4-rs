@@ -25,8 +25,20 @@ fn build_ui(application: &Application) {
     let window = ApplicationWindow::new(application);
 
     // Create two buttons
-    let button_increase = Button::with_label("Increase");
-    let button_decrease = Button::with_label("Decrease");
+    let button_increase = Button::builder()
+        .label("Increase")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+    let button_decrease = Button::builder()
+        .label("Decrease")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // A mutable integer
     let mut number = 0;
