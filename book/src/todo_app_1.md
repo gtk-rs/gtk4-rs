@@ -35,6 +35,15 @@
 {{#rustdoc_include ../listings/todo_app/1/main.rs:main}}
 ```
 
+<span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span>
+
+```rust
+{{#rustdoc_include ../listings/todo_app/1/todo_object/imp.rs:struct_and_subclass}}
+# // Please ignore this line
+# // It is only there to make mdbook happy
+# fn main() {}
+```
+
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
 ```rust

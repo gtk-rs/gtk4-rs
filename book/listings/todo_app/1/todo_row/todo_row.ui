@@ -17,8 +17,5 @@
         <property name="margin-start">12</property>
       </object>
     </child>
-    <style>
-      <class name="todo_row" />
-    </style>
   </template>
 </interface>
