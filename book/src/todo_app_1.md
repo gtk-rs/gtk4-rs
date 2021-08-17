@@ -62,6 +62,8 @@
 # fn main() {}
 ```
 
+<div style="text-align:center"><img src="img/todo_row.png" /></div>
+
 <span class="filename">Filename: listings/todo_app/1/todo_row/todo_row.ui</span>
 
 ```xml
