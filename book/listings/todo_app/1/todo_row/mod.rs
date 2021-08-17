@@ -84,5 +84,5 @@ impl TodoRow {
         // Clear the vector
         imp.bindings.borrow_mut().clear();
     }
-    // ANCHOR: unbind
+    // ANCHOR_END: unbind
 }
