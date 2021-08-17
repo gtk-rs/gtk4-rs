@@ -66,8 +66,8 @@ impl ObjectImpl for Window {
         // Setup
         obj.setup_model();
         obj.restore_data();
-        obj.setup_factory();
         obj.setup_callbacks();
+        obj.setup_factory();
         obj.setup_shortcut_window();
         obj.setup_filter_action();
     }

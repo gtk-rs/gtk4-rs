@@ -2,29 +2,24 @@ mod imp;
 
 use glib::Object;
 use gtk::glib;
-use gtk::subclass::prelude::*;
 
-use std::cell::RefCell;
-use std::rc::Rc;
-
+// ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
 }
+// ANCHOR_END: glib_wrapper
 
 impl TodoObject {
     pub fn new(content: String, completed: bool) -> Self {
         Object::new(&[("content", &content), ("completed", &completed)])
             .expect("Failed to create `TodoObject`.")
     }
-
-    pub fn todo_data(&self) -> Rc<RefCell<TodoData>> {
-        let imp = imp::TodoObject::from_instance(self);
-        imp.data.clone()
-    }
 }
 
+// ANCHOR: todo_data
 #[derive(Default)]
 pub struct TodoData {
     pub completed: bool,
     pub content: String,
 }
+// ANCHOR: todo_data

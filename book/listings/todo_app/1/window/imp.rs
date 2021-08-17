@@ -43,8 +43,8 @@ impl ObjectImpl for Window {
 
         // Setup
         obj.setup_model();
-        obj.setup_factory();
         obj.setup_callbacks();
+        obj.setup_factory();
     }
 }
 // ANCHOR_END: constructed

@@ -4,6 +4,7 @@ use gtk::subclass::prelude::*;
 use gtk::{glib, CheckButton, CompositeTemplate, Label};
 use std::cell::RefCell;
 
+// ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
 #[template(file = "todo_row.ui")]
@@ -12,6 +13,7 @@ pub struct TodoRow {
     pub completed_button: TemplateChild<CheckButton>,
     #[template_child]
     pub content_label: TemplateChild<Label>,
+    // Vector holding the bindings to properties of `TodoObject`
     pub bindings: RefCell<Vec<Binding>>,
 }
 
@@ -30,6 +32,7 @@ impl ObjectSubclass for TodoRow {
         obj.init_template();
     }
 }
+// ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
 impl ObjectImpl for TodoRow {}

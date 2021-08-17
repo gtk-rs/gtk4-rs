@@ -44,6 +44,25 @@ impl Window {
     }
     // ANCHOR_END: model
 
+    // ANCHOR: setup_callbacks
+    fn setup_callbacks(&self) {
+        // Get state
+        let imp = imp::Window::from_instance(self);
+        let model = self.model();
+
+        // Setup callback so that activation of the entry
+        // creates a new todo object and clears the entry
+        imp.entry
+            .connect_activate(clone!(@weak model => move |entry| {
+                let buffer = entry.buffer();
+                let content = buffer.text();
+                let todo_object = TodoObject::new(content, false);
+                model.append(&todo_object);
+                buffer.set_text("");
+            }));
+    }
+    // ANCHOR_END: setup_callbacks
+
     // ANCHOR: setup_factory
     fn setup_factory(&self) {
         // Create a new factory
@@ -92,23 +111,4 @@ impl Window {
         imp.list_view.set_factory(Some(&factory));
     }
     // ANCHOR_END: setup_factory
-
-    // ANCHOR: setup_callbacks
-    fn setup_callbacks(&self) {
-        // Get state
-        let imp = imp::Window::from_instance(self);
-        let model = self.model();
-
-        // Setup callback so that activation of the entry
-        // creates a new todo object and clears the entry
-        imp.entry
-            .connect_activate(clone!(@weak model => move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(content, false);
-                model.append(&todo_object);
-                buffer.set_text("");
-            }));
-    }
-    // ANCHOR_END: setup_callbacks
 }

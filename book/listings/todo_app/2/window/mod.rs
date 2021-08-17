@@ -72,6 +72,42 @@ impl Window {
         }
     }
 
+    fn setup_callbacks(&self) {
+        // Get state
+        let imp = imp::Window::from_instance(self);
+        let model = self.model();
+
+        // Setup callback so that activation of the entry
+        // creates a new todo object and clears the entry
+        imp.entry
+            .connect_activate(clone!(@weak model => move |entry| {
+                let buffer = entry.buffer();
+                let content = buffer.text();
+                let todo_object = TodoObject::new(content, false);
+                model.append(&todo_object);
+                buffer.set_text("");
+            }));
+
+        // Setup callback so that click on the clear_button
+        // removes all done tasks
+        imp.clear_button
+            .connect_clicked(clone!(@weak model => move |_| {
+                let mut position = 0;
+                while let Some(item) = model.item(position) {
+                    // Get `TodoObject` from `glib::Object`
+                    let todo_object = item
+                        .downcast_ref::<TodoObject>()
+                        .expect("The object needs to be of type `TodoObject`.");
+
+                    if todo_object.is_completed() {
+                        model.remove(position);
+                    } else {
+                        position += 1;
+                    }
+                }
+            }));
+    }
+
     fn setup_factory(&self) {
         // Create a new factory
         let factory = SignalListItemFactory::new();
@@ -117,42 +153,6 @@ impl Window {
         // Set the factory of the list view
         let imp = imp::Window::from_instance(self);
         imp.list_view.set_factory(Some(&factory));
-    }
-
-    fn setup_callbacks(&self) {
-        // Get state
-        let imp = imp::Window::from_instance(self);
-        let model = self.model();
-
-        // Setup callback so that activation of the entry
-        // creates a new todo object and clears the entry
-        imp.entry
-            .connect_activate(clone!(@weak model => move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(content, false);
-                model.append(&todo_object);
-                buffer.set_text("");
-            }));
-
-        // Setup callback so that click on the clear_button
-        // removes all done tasks
-        imp.clear_button
-            .connect_clicked(clone!(@weak model => move |_| {
-                let mut position = 0;
-                while let Some(item) = model.item(position) {
-                    // Get `TodoObject` from `glib::Object`
-                    let todo_object = item
-                        .downcast_ref::<TodoObject>()
-                        .expect("The object needs to be of type `TodoObject`.");
-
-                    if todo_object.is_completed() {
-                        model.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            }));
     }
 
     fn setup_shortcut_window(&self) {
