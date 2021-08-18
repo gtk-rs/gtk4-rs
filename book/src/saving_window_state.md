@@ -27,7 +27,7 @@ First, we create one and add methods for getting and setting the window state.
 ```
 
 The implementation struct holds the `settings`.
-We also overload the `constructed` and `close_request` methods, where we load or save the window state. 
+We also override the `constructed` and `close_request` methods, where we load or save the window state. 
 
 <span class="filename">Filename: listings/saving_window_state/1/custom_window/imp.rs</span>
 
