@@ -14,8 +14,8 @@ glib::wrapper! {
 }
 
 impl TodoObject {
-    pub fn new(content: String, completed: bool) -> Self {
-        Object::new(&[("content", &content), ("completed", &completed)])
+    pub fn new(completed: bool, content: String) -> Self {
+        Object::new(&[("completed", &completed), ("content", &content)])
             .expect("Failed to create `TodoObject`.")
     }
 

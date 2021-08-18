@@ -3,18 +3,18 @@ mod imp;
 use glib::Object;
 use gtk::glib;
 
-// ANCHOR: glib_wrapper
+// ANCHOR: glib_wrapper_and_new
 glib::wrapper! {
     pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
 }
-// ANCHOR_END: glib_wrapper
 
 impl TodoObject {
-    pub fn new(content: String, completed: bool) -> Self {
-        Object::new(&[("content", &content), ("completed", &completed)])
+    pub fn new(completed: bool, content: String) -> Self {
+        Object::new(&[("completed", &completed), ("content", &content)])
             .expect("Failed to create `TodoObject`.")
     }
 }
+// ANCHOR_END: glib_wrapper_and_new
 
 // ANCHOR: todo_data
 #[derive(Default)]

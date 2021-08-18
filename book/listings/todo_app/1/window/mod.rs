@@ -56,7 +56,7 @@ impl Window {
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
                 let content = buffer.text();
-                let todo_object = TodoObject::new(content, false);
+                let todo_object = TodoObject::new(false, content);
                 model.append(&todo_object);
                 buffer.set_text("");
             }));

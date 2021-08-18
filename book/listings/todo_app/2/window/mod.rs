@@ -62,7 +62,7 @@ impl Window {
 
             let todo_objects: Vec<Object> = backup_data
                 .into_iter()
-                .map(|todo_data| TodoObject::new(todo_data.content, todo_data.completed))
+                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
                 .map(|todo_object| todo_object.upcast())
                 .collect();
 
@@ -83,7 +83,7 @@ impl Window {
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
                 let content = buffer.text();
-                let todo_object = TodoObject::new(content, false);
+                let todo_object = TodoObject::new(false, content);
                 model.append(&todo_object);
                 buffer.set_text("");
             }));
