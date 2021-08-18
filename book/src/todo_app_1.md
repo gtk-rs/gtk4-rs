@@ -55,7 +55,7 @@ After that we add the typical boilerplate for initializing composite templates.
 
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
-Also where would the input go?
+Also, where would the input go?
 We have not even set up the list view yet.
 Let us take care of that!
 
@@ -140,8 +140,7 @@ Why we need that will become clear as soon as we get to bind the state of `TodoO
 ```
 
 Let us start with bringing everything together.
-We override the `constructed` method of `Window`
-
+We override the `constructed` method of `Window` in order to ensure that everything will be setup immediately after the window is constructed.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
@@ -152,6 +151,10 @@ We override the `constructed` method of `Window`
 # fn main() {}
 ```
 
+Additional methods will be added to `Window` instead of `imp::Window`.
+Let us start with the model.
+Since accessing the model is a typical use case, we add the convenience method `model` for that.
+In `setup_model` we create a new `gio::ListStore` and store a reference to it in `imp::Window` as well as the `gtk::ListView`.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
@@ -162,6 +165,11 @@ We override the `constructed` method of `Window`
 # fn main() {}
 ```
 
+For now, we only connect to the "activate" signal of the entry in `setup_callbacks`.
+Whenever, we finished up writing our task, we can activate the entry by, for example, pressing the enter key.
+When that happens, a new `TodoObject` with the content will be created and appended to the model.
+Then the entry will be cleared.
+
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
 ```rust
@@ -170,6 +178,14 @@ We override the `constructed` method of `Window`
 # // It is only there to make mdbook happy
 # fn main() {}
 ```
+
+Before we move on to the factory, let us first think which behavior we expect here.
+`content_label` of `TodoRow` should follow `content` of `TodoObject`.
+We already know how to do that with expressions.
+We also want `completed_button` of `TodoRow` follow `completed` of `TodoObject`.
+However, if we toggle the state of `completed_button`, `completed` should do the same.
+Unfortunately, we expressions cannot handle bidirectional relationships.
+This means we have to use property bindings and assure ourselves that they get unbound when they are not needed anymore.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 

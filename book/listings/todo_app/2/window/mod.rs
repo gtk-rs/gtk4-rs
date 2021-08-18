@@ -77,7 +77,7 @@ impl Window {
         let imp = imp::Window::from_instance(self);
         let model = self.model();
 
-        // Setup callback so that activation of the entry
+        // Setup callback so that activation
         // creates a new todo object and clears the entry
         imp.entry
             .connect_activate(clone!(@weak model => move |entry| {
