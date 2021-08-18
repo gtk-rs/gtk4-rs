@@ -80,11 +80,11 @@ impl Expression {
     }
 
     #[doc(alias = "gtk_expression_bind")]
-    pub fn bind<T: IsA<Object>>(
+    pub fn bind<T: IsA<Object>, U: IsA<Object>>(
         &self,
         target: &T,
         property_name: &str,
-        this: Option<&T>,
+        this: Option<&U>,
     ) -> ExpressionWatch {
         assert_initialized_main_thread!();
         unsafe {
