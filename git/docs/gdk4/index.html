@@ -87,12 +87,12 @@ of <a href="https://github.com/gtk-rs/gtk4-rs/">gtk4-rs</a>.</p>
 <p>We recommend using <a href="https://crates.io/keywords/gtk-rs">crates from crates.io</a>,
 as <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions">demonstrated here</a>.</p>
 <p>If you want to track the bleeding edge, use the git dependency instead:</p>
-<div class="example-wrap"><pre class="language-toml">[dependencies]
-gdk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4&quot; }</pre></div>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gdk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4&quot; }</code></pre></div>
 <p>Avoid mixing versioned and git crates like this:</p>
-<div class="example-wrap"><pre class="language-toml">[dependencies]
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
 gtk = {version = &quot;0.1&quot;, package = &quot;gtk4&quot;}
-gdk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4&quot; }</pre></div><h3 id="features" class="section-header"><a href="#features">Features</a></h3><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+gdk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4&quot; }</code></pre></div><h3 id="features" class="section-header"><a href="#features">Features</a></h3><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>v4_2</code></td><td>Enable the new APIs part of GTK 4.2</td></tr>
 </tbody></table>
 <h3 id="see-also" class="section-header"><a href="#see-also">See Also</a></h3>

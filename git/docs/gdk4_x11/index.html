@@ -89,12 +89,12 @@ GDK X11 contains functions specific to the X11 backend.</p>
 <p>We recommend using <a href="https://crates.io/keywords/gtk-rs">crates from crates.io</a>,
 as <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions">demonstrated here</a>.</p>
 <p>If you want to track the bleeding edge, use the git dependency instead:</p>
-<div class="example-wrap"><pre class="language-toml">[dependencies]
-gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</pre></div>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div>
 <p>Avoid mixing versioned and git crates like this:</p>
-<div class="example-wrap"><pre class="language-toml">[dependencies]
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
 gdk-x11 = {version = &quot;0.1&quot;, package = &quot;gdk4-x11&quot;}
-gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</pre></div><h3 id="see-also" class="section-header"><a href="#see-also">See Also</a></h3>
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div><h3 id="see-also" class="section-header"><a href="#see-also">See Also</a></h3>
 <ul>
 <li><a href="https://crates.io/crates/glib">glib</a></li>
 <li><a href="https://crates.io/crates/gio">gio</a></li>
