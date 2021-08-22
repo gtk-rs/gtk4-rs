@@ -48,7 +48,7 @@ impl ParamSpecExpression {
 
 // rustdoc-stripper-ignore-next
 /// Register Expression's ParamSpec support
-trait GtkParamSpecExt {
+pub trait GtkParamSpecExt {
     fn new_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self;
 }
 
