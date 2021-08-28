@@ -1,17 +1,15 @@
 # Building a Simple To-Do App
 
-After we have learned so many concepts,
-now it is finally time to put them into practice.
+After we have learned so many concepts, it is finally time to put them into practice.
 We are going to build a To-Do app!
 
 For now, we would already be satisfied with a minimal version.
-An entry to input new tasks and a list view to display them should suffice.
+An entry to input new tasks and a list view to display them will suffice.
 Something like this:
 
 <div style="text-align:center"><img src="img/todo_app_1.png" /></div>
 
-We can translate this mockup of the window directly into an `xml` file.
-This would then look like the following snippet:
+This mockup can be described by the following composite template.
 
 <span class="filename">Filename: listings/todo_app/1/window/window.ui</span>
 
@@ -19,8 +17,9 @@ This would then look like the following snippet:
 {{#rustdoc_include ../listings/todo_app/1/window/window.ui}}
 ```
 
-We see the `<template>` tag, so composite templates are involved here.
-First, we subclass from `gtk::ApplicationWindow`.
+In order to use the composite template, we create a custom widget.
+The `parent` is `gtk::ApplicationWindow`, so we inherit from it.
+As usual, we have to list all [ancestors](https://docs.gtk.org/gtk4/class.ApplicationWindow.html#ancestors) and [interfaces](https://docs.gtk.org/gtk4/class.ApplicationWindow.html#implements) apart from `GObject` and `GInitiallyUnowned`.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
@@ -35,6 +34,7 @@ Then we initialize the composite template for `imp::Window`.
 We store references to the entry, the list view as well as the model.
 This will come in handy when we later add methods to our window.
 After that we add the typical boilerplate for initializing composite templates.
+We only have to assure that the `class` attribute of the template in `window.ui` matches `NAME`.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
@@ -61,7 +61,7 @@ Let us take care of that!
 
 As discussed in the [lists chapter](./lists.html),
 we start out by creating a custom GObject.
-This object will store the state of the task:
+This object will store the state of the task consisting of:
 - a boolean describing whether the task is completed or not, and
 - a string holding the content.
 
@@ -86,9 +86,9 @@ Unlike the lists chapter, the state is stored in a struct rather than in individ
 ```
 
 Not only that, we see that it is also wrapped in a [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html).
-That does not help us much now, but will be very convenient when we want to save the state in one of the following chapters.
+This is not really relevant for now, but will be very convenient when we want to save the state in one of the following chapters.
 Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.
-In you are curious, you can press on the small eye symbol on the top right of the code snippet to check for yourself.
+In you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span>
 
@@ -99,8 +99,8 @@ In you are curious, you can press on the small eye symbol on the top right of th
 # fn main() {}
 ```
 
-
-We already determined that the row of a task should then look like this:
+Let us move on to the individual tasks.
+In the original mockup, we already determined that the row of a task should look like this:
 
 
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
@@ -114,7 +114,7 @@ Again, we describe the mockup with a composite template.
 {{#rustdoc_include ../listings/todo_app/1/todo_row/todo_row.ui}}
 ```
 
-First we derive `TodoRow` from `gtk::Bin`.
+First we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `TodoRow` from `gtk:Box`.
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
@@ -139,8 +139,8 @@ Why we need that will become clear as soon as we get to bind the state of `TodoO
 # fn main() {}
 ```
 
-Let us start with bringing everything together.
-We override the `constructed` method of `Window` in order to ensure that everything will be setup immediately after the window is constructed.
+Now we can bring everything together.
+We override the `imp::Window::constructed` in order to ensure that everything will be setup immediately after the parent is constructed.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
@@ -151,10 +151,9 @@ We override the `constructed` method of `Window` in order to ensure that everyth
 # fn main() {}
 ```
 
-Additional methods will be added to `Window` instead of `imp::Window`.
-Let us start with the model.
-Since accessing the model is a typical use case, we add the convenience method `model` for that.
-In `setup_model` we create a new `gio::ListStore` and store a reference to it in `imp::Window` as well as the `gtk::ListView`.
+Since we need to access the model quite often, we add the convenience method `Window::model` for that.
+In `Window::setup_model` we create a new model.
+Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
@@ -165,10 +164,11 @@ In `setup_model` we create a new `gio::ListStore` and store a reference to it in
 # fn main() {}
 ```
 
-For now, we only connect to the "activate" signal of the entry in `setup_callbacks`.
-Whenever, we finished up writing our task, we can activate the entry by, for example, pressing the enter key.
-When that happens, a new `TodoObject` with the content will be created and appended to the model.
-Then the entry will be cleared.
+In `Window::setup_callbacks` we connect to the "activate" signal of the entry.
+Whenever we finished writing up a new task, we can add it by activating the entry.
+Pressing the enter key is one way to activate the entry.
+Then, a new `TodoObject` with the content will be created and appended to the model.
+Finally, the entry will be cleared.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
@@ -178,14 +178,17 @@ Then the entry will be cleared.
 # // It is only there to make mdbook happy
 # fn main() {}
 ```
-
-Before we move on to the factory, let us first think which behavior we expect here.
+Again the list elements for the `gtk::ListView` are produced by a factory.
+Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
 `content_label` of `TodoRow` should follow `content` of `TodoObject`.
-We already know how to do that with expressions.
 We also want `completed_button` of `TodoRow` follow `completed` of `TodoObject`.
-However, if we toggle the state of `completed_button`, `completed` should do the same.
-Unfortunately, we expressions cannot handle bidirectional relationships.
+This could be achieved with expressions similar to what we did in the lists chapter.
+
+However, if we toggle the state of `completed_button` of `TodoRow`, `completed` of `TodoObject` should do the same.
+Unfortunately, expressions cannot handle bidirectional relationships.
 This means we have to use property bindings and assure ourselves that they get unbound when they are not needed anymore.
+
+In `Window::setup_factory`, we therefore only create empty `TodoRow` objects in the "setup" step and deal with the bindings in the "bind" and "unbind" steps.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
@@ -196,6 +199,12 @@ This means we have to use property bindings and assure ourselves that they get u
 # fn main() {}
 ```
 
+Binding of properties in `TodoRow::bind` works as we already know it from former chapters.
+The only difference is that we store the bindings in a vector.
+This is necessary, because a `TodoRow` will be reused as you scroll through the list.
+That means, that over time a `TodoRow` will need to bound to a new `TodoObject` and has to be unbound from the old one.
+Unbinding will only work if it can access the stored `glib::Binding`.
+
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
 ```rust
@@ -205,6 +214,9 @@ This means we have to use property bindings and assure ourselves that they get u
 # fn main() {}
 ```
 
+`TodoRow::unbind` takes care of the cleanup.
+It iterates through the vector and unbinds each binding.
+In the end, it clears the vector.
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
@@ -214,3 +226,6 @@ This means we have to use property bindings and assure ourselves that they get u
 # // It is only there to make mdbook happy
 # fn main() {}
 ```
+
+That was it, we created a basic To-Do app!
+It is already functional and will be extended with additional functionality in the following chapters.

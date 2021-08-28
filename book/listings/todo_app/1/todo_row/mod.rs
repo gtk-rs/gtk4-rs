@@ -10,7 +10,8 @@ use pango::{AttrList, Attribute};
 // ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct TodoRow(ObjectSubclass<imp::TodoRow>)
-    @extends gtk::Box, gtk::Widget;
+    @extends gtk::Box, gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 }
 // ANCHOR_END: glib_wrapper
 
@@ -50,10 +51,9 @@ impl TodoRow {
         // Save binding
         imp.bindings.borrow_mut().push(content_label_binding);
 
-        // Bind `todo_row.completed_button.active` to
-        // `todo_row.content_label.attributes`
-        completed_button
-            .bind_property("active", &content_label, "attributes")
+        // Bind `todo_object.completed` to `todo_row.content_label.attributes`
+        let content_label_binding = todo_object
+            .bind_property("completed", &content_label, "attributes")
             .flags(BindingFlags::SYNC_CREATE)
             .transform_to(|_, active_value| {
                 let attribute_list = AttrList::new();
@@ -69,6 +69,8 @@ impl TodoRow {
             })
             .build()
             .expect("Could not bind properties");
+        // Save binding
+        imp.bindings.borrow_mut().push(content_label_binding);
     }
     // ANCHOR_END: bind
 
