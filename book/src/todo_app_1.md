@@ -33,7 +33,7 @@ As usual, we have to list all [ancestors](https://docs.gtk.org/gtk4/class.Applic
 Then we initialize the composite template for `imp::Window`.
 We store references to the entry, the list view as well as the model.
 This will come in handy when we later add methods to our window.
-After that we add the typical boilerplate for initializing composite templates.
+After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the `class` attribute of the template in `window.ui` matches `NAME`.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
@@ -88,7 +88,7 @@ Unlike the lists chapter, the state is stored in a struct rather than in individ
 Not only that, we see that it is also wrapped in a [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html).
 This is not really relevant for now, but will be very convenient when we want to save the state in one of the following chapters.
 Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.
-In you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
+If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span>
 
@@ -201,8 +201,8 @@ In `Window::setup_factory`, we therefore only create empty `TodoRow` objects in 
 
 Binding of properties in `TodoRow::bind` works as we already know it from former chapters.
 The only difference is that we store the bindings in a vector.
-This is necessary, because a `TodoRow` will be reused as you scroll through the list.
-That means, that over time a `TodoRow` will need to bound to a new `TodoObject` and has to be unbound from the old one.
+This is necessary because a `TodoRow` will be reused as you scroll through the list.
+That means that over time a `TodoRow` will need to bound to a new `TodoObject` and has to be unbound from the old one.
 Unbinding will only work if it can access the stored `glib::Binding`.
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
