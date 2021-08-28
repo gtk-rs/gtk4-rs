@@ -73,7 +73,6 @@ The formerly private `number` is now accessible via the `property` and `set_prop
 
 ```rust
 {{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:object_impl}}
-
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}

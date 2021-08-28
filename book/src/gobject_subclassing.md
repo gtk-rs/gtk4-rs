@@ -10,8 +10,11 @@ It therefore corresponds to the private section of objects in languages like Jav
 
 <span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/imp.rs}}
+# // Please ignore this line
+# // It is only there to make mdbook happy
+# fn main() {}
 ```
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` should consist of crate-name, module-path and object-name in order to avoid name collisions. Use [PascalCase](https://wiki.c2.com/?PascalCase) here.
@@ -25,18 +28,17 @@ Next, we describe our custom GObject.
 
 <span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span>
 
-```rust,no_run
-{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs}}
-
+```rust ,no_run
+{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs:mod}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
 ```
 
 [`glib::wrapper!`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) does the most of the work of subclassing for us.
-We only have to point to the implementation struct and which ancestor GObjects we extend.
-Please note that the list of ancestor GObjects does not mention `glib::Object`.
-This is because `glib::Object` is *always* the base class in the object hierarchy and therefore already implied.
+Coming from most other languages you would probably expect that you only have to mention the base class you want to inherit from.
+However, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from `GObject` and `GInitiallyUnowned`.
+For `gtk::Button`, we can look them up in the corresponding [doc page](https://docs.gtk.org/gtk4/class.Button.html#hierarchy) of GTK4.
 
 After these steps, nothing is stopping us anymore from replacing `gtk::Button` with our `CustomButton`.
 
@@ -54,9 +56,8 @@ So let us make it a bit more interesting!
 
 <span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run
 {{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
-
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
