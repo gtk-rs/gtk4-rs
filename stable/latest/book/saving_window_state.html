@@ -185,8 +185,9 @@ First, we create one and add methods for getting and setting the window state.</
 </span><span class="boring">
 </span>glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
 impl Window {
@@ -234,7 +235,7 @@ impl Window {
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
 <p>The implementation struct holds the <code>settings</code>.
-We also overload the <code>constructed</code> and <code>close_request</code> methods, where we load or save the window state. </p>
+We also override the <code>constructed</code> and <code>close_request</code> methods, where we load or save the window state. </p>
 <p><span class="filename">Filename: listings/saving_window_state/1/custom_window/imp.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::signal::Inhibit;
