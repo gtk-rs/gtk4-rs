@@ -1078,10 +1078,7 @@ Let us see how this works by replacing the button in our &quot;Hello World!&quot
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use gtk::glib;
+<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
@@ -1104,7 +1101,9 @@ impl WidgetImpl for CustomButton {}
 
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {}
-<span class="boring">}
+<span class="boring">// Please ignore this line
+</span><span class="boring">// It is only there to make mdbook happy
+</span><span class="boring">fn main() {}
 </span></code></pre></pre>
 <p>The description of the subclassing is in <code>ObjectSubclass</code>.</p>
 <ul>
@@ -1117,14 +1116,15 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty <code>impl</code> though.
 Next, we describe our custom GObject.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">mod imp;
+<pre><pre class="playground"><code class="language-rust  no_run">mod imp;
 
 use glib::Object;
 use gtk::glib;
 
 glib::wrapper! {
     pub struct CustomButton(ObjectSubclass&lt;imp::CustomButton&gt;)
-        @extends gtk::Button, gtk::Widget;
+        @extends gtk::Button, gtk::Widget,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl CustomButton {
@@ -1136,21 +1136,20 @@ impl CustomButton {
         Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create `CustomButton`.&quot;)
     }
 }
-
-impl Default for CustomButton {
-    fn default() -&gt; Self {
-        Self::new()
-    }
-}
-
-<span class="boring">// Please ignore this line
+<span class="boring">
+</span><span class="boring">impl Default for CustomButton {
+</span><span class="boring">    fn default() -&gt; Self {
+</span><span class="boring">        Self::new()
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">// Please ignore this line
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
 <p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
-We only have to point to the implementation struct and which ancestor GObjects we extend.
-Please note that the list of ancestor GObjects does not mention <code>glib::Object</code>.
-This is because <code>glib::Object</code> is <em>always</em> the base class in the object hierarchy and therefore already implied.</p>
+Coming from most other languages you would probably expect that you only have to mention the base class you want to inherit from.
+However, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
+For <code>gtk::Button</code>, we can look them up in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us anymore from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">mod custom_button;
@@ -1203,7 +1202,7 @@ For the gain of zero benefits, it did involve quite a bit of boilerplate after a
 <p>So let us make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::glib;
+<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use std::cell::Cell;
@@ -1240,7 +1239,6 @@ impl ButtonImpl for CustomButton {
         button.set_label(&amp;self.number.get().to_string())
     }
 }
-
 <span class="boring">// Please ignore this line
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
@@ -1787,8 +1785,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">            .expect(&quot;Could not set property.&quot;);
 </span><span class="boring">    }
 </span><span class="boring">}
-</span>
-<span class="boring">// Please ignore this line
+</span><span class="boring">// Please ignore this line
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
@@ -3207,8 +3204,9 @@ First, we create one and add methods for getting and setting the window state.</
 </span><span class="boring">
 </span>glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
 impl Window {
@@ -4916,8 +4914,9 @@ use gtk::{gio, glib};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
-        @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
 impl Window {
