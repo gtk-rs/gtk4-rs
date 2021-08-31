@@ -821,8 +821,8 @@ impl ToValue for PopoverMenuFlags {
 }
 
 #[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 bitflags! {
+    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
     #[doc(alias = "GtkPrintCapabilities")]
     pub struct PrintCapabilities: u32 {
         #[doc(alias = "GTK_PRINT_CAPABILITY_PAGE_SET")]
