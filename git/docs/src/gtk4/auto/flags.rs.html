@@ -2431,13 +2431,13 @@
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)))]</span>
 <span class="macro">bitflags!</span> {
     <span class="doccomment">/// Specifies which features the print dialog should offer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If neither [`GENERATE_PDF`][Self::GENERATE_PDF] nor</span>
     <span class="doccomment">/// [`GENERATE_PS`][Self::GENERATE_PS] is specified, GTK assumes that all</span>
     <span class="doccomment">/// formats are supported.</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintCapabilities&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintCapabilities</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Print dialog will offer printing even/odd pages.</span>
