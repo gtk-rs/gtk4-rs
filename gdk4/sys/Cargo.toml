@@ -51,7 +51,7 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [build-dependencies]
-system-deps = "3"
+system-deps = "4"
 
 [dev-dependencies]
 shell-words = "1.0.0"
