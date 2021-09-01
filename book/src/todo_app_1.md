@@ -177,7 +177,7 @@ Finally, the entry will be cleared.
 # // It is only there to make mdbook happy
 # fn main() {}
 ```
-Again the list elements for the `gtk::ListView` are produced by a factory.
+The list elements for the `gtk::ListView` are produced by a factory.
 Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
 `content_label` of `TodoRow` should follow `content` of `TodoObject`.
 We also want `completed_button` of `TodoRow` follow `completed` of `TodoObject`.
