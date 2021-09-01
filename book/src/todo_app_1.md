@@ -165,8 +165,7 @@ Then we store a reference to the model in `imp::Window` as well as in `gtk::List
 ```
 
 In `Window::setup_callbacks` we connect to the "activate" signal of the entry.
-Whenever we finished writing up a new task, we can add it by activating the entry.
-Pressing the enter key is one way to activate the entry.
+This signal is triggered when we press the enter key in the entry.
 Then, a new `TodoObject` with the content will be created and appended to the model.
 Finally, the entry will be cleared.
 
