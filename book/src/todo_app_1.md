@@ -188,7 +188,7 @@ Unfortunately, expressions cannot handle bidirectional relationships.
 This means we have to use property bindings.
 We will need to unbind them manually when they are no longer needed.
 
-In `Window::setup_factory`, we therefore only create empty `TodoRow` objects in the "setup" step and deal with the bindings in the "bind" and "unbind" steps.
+We will create empty `TodoRow` objects in the "setup" step in `Window::setup_factory` and deal with binding in the "bind" and "unbind" steps.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
