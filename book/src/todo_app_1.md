@@ -114,7 +114,7 @@ Again, we describe the mockup with a composite template.
 {{#rustdoc_include ../listings/todo_app/1/todo_row/todo_row.ui}}
 ```
 
-First we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `TodoRow` from `gtk:Box`.
+In the code, we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `TodoRow` from `gtk:Box`:
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
