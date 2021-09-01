@@ -32,6 +32,7 @@ impl TodoRow {
         let imp = imp::TodoRow::from_instance(self);
         let completed_button = imp.completed_button.get();
         let content_label = imp.content_label.get();
+        let mut bindings = imp.bindings.borrow_mut();
 
         // Bind `todo_object.completed` to `todo_row.completed_button.active`
         let completed_button_binding = todo_object
@@ -40,7 +41,7 @@ impl TodoRow {
             .build()
             .expect("Could not bind properties");
         // Save binding
-        imp.bindings.borrow_mut().push(completed_button_binding);
+        bindings.push(completed_button_binding);
 
         // Bind `todo_object.content` to `todo_row.content_label.label`
         let content_label_binding = todo_object
@@ -49,7 +50,7 @@ impl TodoRow {
             .build()
             .expect("Could not bind properties");
         // Save binding
-        imp.bindings.borrow_mut().push(content_label_binding);
+        bindings.push(content_label_binding);
 
         // Bind `todo_object.completed` to `todo_row.content_label.attributes`
         let content_label_binding = todo_object
@@ -70,7 +71,7 @@ impl TodoRow {
             .build()
             .expect("Could not bind properties");
         // Save binding
-        imp.bindings.borrow_mut().push(content_label_binding);
+        bindings.push(content_label_binding);
     }
     // ANCHOR_END: bind
 
@@ -80,11 +81,9 @@ impl TodoRow {
         let imp = imp::TodoRow::from_instance(self);
 
         // Unbind all stored bindings
-        for binding in imp.bindings.borrow().iter() {
+        for binding in imp.bindings.borrow_mut().drain(..) {
             binding.unbind();
         }
-        // Clear the vector
-        imp.bindings.borrow_mut().clear();
     }
     // ANCHOR_END: unbind
 }

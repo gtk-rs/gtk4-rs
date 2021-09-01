@@ -31,7 +31,7 @@ As usual, we have to list all [ancestors](https://docs.gtk.org/gtk4/class.Applic
 ```
 
 Then we initialize the composite template for `imp::Window`.
-We store references to the entry, the list view as well as the model.
+We store references to the entry, the list view as well as the list model.
 This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the `class` attribute of the template in `window.ui` matches `NAME`.
@@ -56,7 +56,7 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
-We have not even set up the model yet.
+We have not even set up the list model yet.
 Let us do that!
 
 As discussed in the [lists chapter](./lists.html),

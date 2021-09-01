@@ -18,6 +18,7 @@ pub struct Window {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
+    // `class` attribute of template needs to match `NAME`.
     const NAME: &'static str = "MyGtkAppWindow";
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
