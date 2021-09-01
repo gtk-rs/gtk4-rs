@@ -100,7 +100,7 @@ If you are curious, you can press on the small eye symbol on the top right of th
 ```
 
 Let us move on to the individual tasks.
-In the original mockup, we already determined that the row of a task should look like this:
+The row of a task should look like this:
 
 
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
