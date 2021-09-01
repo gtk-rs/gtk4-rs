@@ -9,7 +9,6 @@ use std::rc::Rc;
 
 use super::TodoData;
 
-// ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default)]
 pub struct TodoObject {
@@ -23,7 +22,6 @@ impl ObjectSubclass for TodoObject {
     type Type = super::TodoObject;
     type ParentType = glib::Object;
 }
-// ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
 impl ObjectImpl for TodoObject {

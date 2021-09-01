@@ -154,3 +154,7 @@ path = "settings/2/main.rs"
 [[bin]]
 name = "todo_app_1"
 path = "todo_app/1/main.rs"
+
+[[bin]]
+name = "todo_app_2"
+path = "todo_app/2/main.rs"

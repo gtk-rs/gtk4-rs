@@ -4,7 +4,6 @@ use gtk::subclass::prelude::*;
 use gtk::{glib, CheckButton, CompositeTemplate, Label};
 use std::cell::RefCell;
 
-// ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
 #[template(file = "todo_row.ui")]
@@ -33,7 +32,6 @@ impl ObjectSubclass for TodoRow {
         obj.init_template();
     }
 }
-// ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
 impl ObjectImpl for TodoRow {}

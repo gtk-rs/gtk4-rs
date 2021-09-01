@@ -7,13 +7,11 @@ use gtk::subclass::prelude::*;
 use gtk::{glib, pango};
 use pango::{AttrList, Attribute};
 
-// ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct TodoRow(ObjectSubclass<imp::TodoRow>)
     @extends gtk::Box, gtk::Widget,
     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 }
-// ANCHOR_END: glib_wrapper
 
 impl Default for TodoRow {
     fn default() -> Self {
@@ -26,7 +24,6 @@ impl TodoRow {
         Object::new(&[]).expect("Failed to create `TodoRow`.")
     }
 
-    // ANCHOR: bind
     pub fn bind(&self, todo_object: &TodoObject) {
         // Get state
         let imp = imp::TodoRow::from_instance(self);
@@ -73,9 +70,7 @@ impl TodoRow {
         // Save binding
         bindings.push(content_label_binding);
     }
-    // ANCHOR_END: bind
 
-    // ANCHOR: unbind
     pub fn unbind(&self) {
         // Get state
         let imp = imp::TodoRow::from_instance(self);
@@ -85,5 +80,4 @@ impl TodoRow {
             binding.unbind();
         }
     }
-    // ANCHOR_END: unbind
 }
