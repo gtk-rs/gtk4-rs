@@ -151,7 +151,7 @@ We override the `imp::Window::constructed` in order to ensure that everything wi
 # fn main() {}
 ```
 
-Since we need to access the model quite often, we add the convenience method `Window::model` for that.
+Since we need to access the list model quite often, we add the convenience method `Window::model` for that.
 In `Window::setup_model` we create a new model.
 Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
