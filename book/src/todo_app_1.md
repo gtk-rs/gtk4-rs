@@ -185,7 +185,8 @@ This could be achieved with expressions similar to what we did in the lists chap
 
 However, if we toggle the state of `completed_button` of `TodoRow`, `completed` of `TodoObject` should change too.
 Unfortunately, expressions cannot handle bidirectional relationships.
-This means we have to use property bindings and assure ourselves that they get unbound when they are not needed anymore.
+This means we have to use property bindings.
+We will need to unbind them manually when they are no longer needed.
 
 In `Window::setup_factory`, we therefore only create empty `TodoRow` objects in the "setup" step and deal with the bindings in the "bind" and "unbind" steps.
 
