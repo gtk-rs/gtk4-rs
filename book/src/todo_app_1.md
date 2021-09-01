@@ -199,7 +199,7 @@ In `Window::setup_factory`, we therefore only create empty `TodoRow` objects in 
 # fn main() {}
 ```
 
-Binding of properties in `TodoRow::bind` works as we already know it from former chapters.
+Binding properties in `TodoRow::bind` works just like in former chapters.
 The only difference is that we store the bindings in a vector.
 This is necessary because a `TodoRow` will be reused as you scroll through the list.
 That means that over time a `TodoRow` will need to bound to a new `TodoObject` and has to be unbound from the old one.
