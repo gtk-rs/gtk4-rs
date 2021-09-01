@@ -57,21 +57,19 @@ impl ConstantExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::TEST_THREAD_WORKER;
+    use crate::test_synced;
 
     #[test]
     fn test_expressions() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let expr1 = ConstantExpression::new(&23);
-                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-                let expr2 = ConstantExpression::for_value(&"hello".to_value());
-                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-                let expr1 = ConstantExpression::new(&23);
-                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-                let expr2 = ConstantExpression::for_value(&"hello".to_value());
-                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-            })
-            .expect("Failed to schedule a test call");
+        test_synced(move || {
+            let expr1 = ConstantExpression::new(&23);
+            assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+            let expr2 = ConstantExpression::for_value(&"hello".to_value());
+            assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+            let expr1 = ConstantExpression::new(&23);
+            assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+            let expr2 = ConstantExpression::for_value(&"hello".to_value());
+            assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+        });
     }
 }

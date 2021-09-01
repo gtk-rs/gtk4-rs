@@ -58,9 +58,17 @@ pub const TEXT_VIEW_PRIORITY_VALIDATE: u32 = ffi::GTK_TEXT_VIEW_PRIORITY_VALIDAT
 #[macro_use]
 mod rt;
 
-#[allow(dead_code)]
 #[cfg(test)]
-pub(crate) static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
+fn test_synced(function: impl FnOnce() + Send + 'static) {
+    skip_assert_initialized!();
+    TEST_THREAD_WORKER
+        .push(function)
+        .expect("Failed to schedule a test call");
+    while TEST_THREAD_WORKER.unprocessed() > 0 {}
+}
+
+#[cfg(test)]
+static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
     once_cell::sync::Lazy::new(|| {
         let pool = glib::ThreadPool::new_exclusive(1).unwrap();
         pool.push(move || {

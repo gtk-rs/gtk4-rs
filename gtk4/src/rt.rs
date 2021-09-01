@@ -124,15 +124,13 @@ pub fn init() -> Result<(), glib::BoolError> {
 
 #[cfg(test)]
 mod tests {
-    use crate::TEST_THREAD_WORKER;
+    use crate::test_synced;
 
     #[test]
     fn init_should_acquire_default_main_context() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let context = glib::MainContext::ref_thread_default();
-                assert!(context.is_owner());
-            })
-            .expect("Failed to schedule a test call");
+        test_synced(move || {
+            let context = glib::MainContext::ref_thread_default();
+            assert!(context.is_owner());
+        });
     }
 }

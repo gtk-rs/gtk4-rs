@@ -42,16 +42,14 @@ impl ObjectExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::TEST_THREAD_WORKER;
+    use crate::test_synced;
 
     #[test]
     fn test_object_expression() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let obj = crate::IconTheme::new();
-                let expr = ObjectExpression::new(&obj);
-                assert_eq!(expr.object().unwrap(), obj);
-            })
-            .expect("Failed to schedule a test call");
+        test_synced(move || {
+            let obj = crate::IconTheme::new();
+            let expr = ObjectExpression::new(&obj);
+            assert_eq!(expr.object().unwrap(), obj);
+        });
     }
 }

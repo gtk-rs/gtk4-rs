@@ -139,28 +139,26 @@ impl<'a> ToGlibPtr<'a, *const ffi::GtkBitsetIter> for BitsetIter<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::TEST_THREAD_WORKER;
+    use crate::test_synced;
 
     #[test]
     fn test_bitset_iter() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let set = Bitset::new_range(0, 20);
-                let (mut iter, init_value) = BitsetIter::init_first(&set).unwrap();
-                assert_eq!(init_value, 0);
-                assert_eq!(iter.next(), Some(1));
-                assert_eq!(iter.previous(), Some(0));
+        test_synced(move || {
+            let set = Bitset::new_range(0, 20);
+            let (mut iter, init_value) = BitsetIter::init_first(&set).unwrap();
+            assert_eq!(init_value, 0);
+            assert_eq!(iter.next(), Some(1));
+            assert_eq!(iter.previous(), Some(0));
 
-                let set2 = Bitset::new_range(0, 3);
-                let (mut iter, init_val) = BitsetIter::init_last(&set2).unwrap();
-                assert_eq!(init_val, 2);
-                assert_eq!(iter.previous(), Some(1));
-                assert_eq!(iter.previous(), Some(0));
-                assert_eq!(iter.previous(), None);
-                assert!(!iter.is_valid());
-                assert_eq!(iter.next(), Some(1));
-                assert!(iter.is_valid());
-            })
-            .expect("Failed to schedule a test call");
+            let set2 = Bitset::new_range(0, 3);
+            let (mut iter, init_val) = BitsetIter::init_last(&set2).unwrap();
+            assert_eq!(init_val, 2);
+            assert_eq!(iter.previous(), Some(1));
+            assert_eq!(iter.previous(), Some(0));
+            assert_eq!(iter.previous(), None);
+            assert!(!iter.is_valid());
+            assert_eq!(iter.next(), Some(1));
+            assert!(iter.is_valid());
+        });
     }
 }
