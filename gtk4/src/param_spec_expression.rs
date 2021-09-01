@@ -70,22 +70,20 @@ impl GtkParamSpecExt for ParamSpec {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::TEST_THREAD_WORKER;
+    use crate::test_synced;
 
     #[test]
     fn test_paramspec_expression() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let pspec = ParamSpec::new_expression(
-                    "expression",
-                    "Expression",
-                    "Some Expression",
-                    glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
-                );
+        test_synced(move || {
+            let pspec = ParamSpec::new_expression(
+                "expression",
+                "Expression",
+                "Some Expression",
+                glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
+            );
 
-                let expr_pspec = pspec.downcast::<ParamSpecExpression>();
-                assert!(expr_pspec.is_ok());
-            })
-            .expect("Failed to schedule a test call");
+            let expr_pspec = pspec.downcast::<ParamSpecExpression>();
+            assert!(expr_pspec.is_ok());
+        });
     }
 }

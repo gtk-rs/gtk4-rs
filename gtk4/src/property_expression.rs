@@ -76,19 +76,17 @@ impl PropertyExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{NONE_EXPRESSION, TEST_THREAD_WORKER};
+    use crate::{test_synced, NONE_EXPRESSION};
     use glib::StaticType;
 
     #[test]
     fn test_property_expression() {
-        TEST_THREAD_WORKER
-            .push(move || {
-                let _prop_expr = PropertyExpression::new(
-                    crate::StringObject::static_type(),
-                    NONE_EXPRESSION,
-                    "string",
-                );
-            })
-            .expect("Failed to schedule a test call");
+        test_synced(move || {
+            let _prop_expr = PropertyExpression::new(
+                crate::StringObject::static_type(),
+                NONE_EXPRESSION,
+                "string",
+            );
+        });
     }
 }
