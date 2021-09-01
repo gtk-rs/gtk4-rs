@@ -142,7 +142,7 @@ Why we need that will become clear as soon as we get to bind the state of `TodoO
 ```
 
 Now we can bring everything together.
-We override the `imp::Window::constructed` in order to ensure that everything will be setup immediately after the parent is constructed.
+We override the `imp::Window::constructed` in order to set up window contents at the time of its construction.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
