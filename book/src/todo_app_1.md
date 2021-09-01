@@ -228,4 +228,4 @@ In the end, it clears the vector.
 ```
 
 That was it, we created a basic To-Do app!
-It is already functional and will be extended with additional functionality in the following chapters.
+We will extend it with additional functionality in the following chapters.
