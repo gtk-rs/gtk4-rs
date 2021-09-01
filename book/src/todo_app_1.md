@@ -183,7 +183,7 @@ Before we move on to the implementation, let us take a step back and think about
 We also want `completed_button` of `TodoRow` follow `completed` of `TodoObject`.
 This could be achieved with expressions similar to what we did in the lists chapter.
 
-However, if we toggle the state of `completed_button` of `TodoRow`, `completed` of `TodoObject` should do the same.
+However, if we toggle the state of `completed_button` of `TodoRow`, `completed` of `TodoObject` should change too.
 Unfortunately, expressions cannot handle bidirectional relationships.
 This means we have to use property bindings and assure ourselves that they get unbound when they are not needed anymore.
 
