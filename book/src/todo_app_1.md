@@ -7,7 +7,7 @@ For now, we would already be satisfied with a minimal version.
 An entry to input new tasks and a list view to display them will suffice.
 Something like this:
 
-<div style="text-align:center"><img src="img/todo_app_1.png" /></div>
+<div style="text-align:center"><img src="img/todo_app_1_mockup.png" /></div>
 
 This mockup can be described by the following composite template.
 
@@ -58,6 +58,8 @@ The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
 We have not even set up the list model yet.
 Let us do that!
+
+<div style="text-align:center"><img src="img/todo_app_1_empty.png" /></div>
 
 As discussed in the [lists chapter](./lists.html),
 we start out by creating a custom GObject.
@@ -229,3 +231,5 @@ In the end, it clears the vector.
 
 That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.
+
+<div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>
