@@ -56,14 +56,14 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
-We have not even set up the list view yet.
-Let us take care of that!
+We have not even set up the model yet.
+Let us do that!
 
 As discussed in the [lists chapter](./lists.html),
 we start out by creating a custom GObject.
 This object will store the state of the task consisting of:
 - a boolean describing whether the task is completed or not, and
-- a string holding the content.
+- a string holding the task name.
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span>
 
@@ -86,7 +86,7 @@ Unlike the lists chapter, the state is stored in a struct rather than in individ
 ```
 
 Not only that, we see that it is also wrapped in a [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html).
-This is not really relevant for now, but will be very convenient when we want to save the state in one of the following chapters.
+This will be very convenient for saving the state in one of the following chapters.
 Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
 
