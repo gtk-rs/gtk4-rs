@@ -345,7 +345,7 @@ pub struct Window {
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `class` attribute of template needs to match `NAME`.
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
 </span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
@@ -405,7 +405,7 @@ We also bind and initialize the template in <code>class_init</code> and <code>in
 </span>// The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
-    // `class` attribute of template needs to match `NAME`.
+    // `NAME` needs to match `class` attribute of template
     const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
@@ -465,7 +465,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `class` attribute of template needs to match `NAME`.
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
 </span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
