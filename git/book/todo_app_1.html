@@ -326,7 +326,7 @@ pub struct Window {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
-    // `class` attribute of template needs to match `NAME`.
+    // `NAME` needs to match `class` attribute of template
     const NAME: &amp;'static str = &quot;TodoWindow&quot;;
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
@@ -697,7 +697,7 @@ pub struct TodoRow {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for TodoRow {
-    // `class` attribute of template needs to match `NAME`.
+    // `NAME` needs to match `class` attribute of template
     const NAME: &amp;'static str = &quot;TodoRow&quot;;
     type Type = super::TodoRow;
     type ParentType = gtk::Box;
@@ -747,7 +747,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `class` attribute of template needs to match `NAME`.
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
 </span><span class="boring">    const NAME: &amp;'static str = &quot;TodoWindow&quot;;
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
