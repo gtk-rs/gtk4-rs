@@ -19,7 +19,7 @@ pub struct TodoRow {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for TodoRow {
-    // `class` attribute of template needs to match `NAME`.
+    // `NAME` needs to match `class` attribute of template
     const NAME: &'static str = "TodoRow";
     type Type = super::TodoRow;
     type ParentType = gtk::Box;
