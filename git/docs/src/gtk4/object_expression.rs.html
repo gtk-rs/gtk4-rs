@@ -145,8 +145,6 @@
 <span id="72">72</span>
 <span id="73">73</span>
 <span id="74">74</span>
-<span id="75">75</span>
-<span id="76">76</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -210,17 +208,15 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TEST_THREAD_WORKER</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::test_synced</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_object_expression</span>() {
-        <span class="ident">TEST_THREAD_WORKER</span>
-            .<span class="ident">push</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::IconTheme::new</span>();
-                <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">ObjectExpression::new</span>(<span class="kw-2">&amp;</span><span class="ident">obj</span>);
-                <span class="macro">assert_eq!</span>(<span class="ident">expr</span>.<span class="ident">object</span>().<span class="ident">unwrap</span>(), <span class="ident">obj</span>);
-            })
-            .<span class="ident">expect</span>(<span class="string">&quot;Failed to schedule a test call&quot;</span>);
+        <span class="ident">test_synced</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::IconTheme::new</span>();
+            <span class="kw">let</span> <span class="ident">expr</span> <span class="op">=</span> <span class="ident">ObjectExpression::new</span>(<span class="kw-2">&amp;</span><span class="ident">obj</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">expr</span>.<span class="ident">object</span>().<span class="ident">unwrap</span>(), <span class="ident">obj</span>);
+        });
     }
 }
 </code></pre></div>

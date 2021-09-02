@@ -305,6 +305,14 @@
 <span id="232">232</span>
 <span id="233">233</span>
 <span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
@@ -395,9 +403,17 @@
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="ident">TEST_THREAD_WORKER</span>: <span class="ident">once_cell::sync::Lazy</span><span class="op">&lt;</span><span class="ident">glib::ThreadPool</span><span class="op">&gt;</span> <span class="op">=</span>
+<span class="kw">fn</span> <span class="ident">test_synced</span>(<span class="ident">function</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) {
+    <span class="macro">skip_assert_initialized!</span>();
+    <span class="ident">TEST_THREAD_WORKER</span>
+        .<span class="ident">push</span>(<span class="ident">function</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;Failed to schedule a test call&quot;</span>);
+    <span class="kw">while</span> <span class="ident">TEST_THREAD_WORKER</span>.<span class="ident">unprocessed</span>() <span class="op">&gt;</span> <span class="number">0</span> {}
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">static</span> <span class="ident">TEST_THREAD_WORKER</span>: <span class="ident">once_cell::sync::Lazy</span><span class="op">&lt;</span><span class="ident">glib::ThreadPool</span><span class="op">&gt;</span> <span class="op">=</span>
     <span class="ident">once_cell::sync::Lazy::new</span>(<span class="op">|</span><span class="op">|</span> {
         <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">glib::ThreadPool::new_exclusive</span>(<span class="number">1</span>).<span class="ident">unwrap</span>();
         <span class="ident">pool</span>.<span class="ident">push</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
