@@ -34,10 +34,10 @@ Then we initialize the composite template for `imp::Window`.
 We store references to the entry, the list view as well as the list model.
 This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
-To enable the macro to match the correct widget definition for the struct we only
+To enable the macro to find the correct widget definition for the struct we only
 have to assure that the `class` attribute of the template in `window.ui` matches `NAME`.
-In order to be able to match the single widgets the names of the widget's variables in the code
-have to match the `id`s of the corresponding widget definition.
+For mapping the right widget definitions the names of the widget's variables in the code
+have to match the `id`s of the defined widgets.
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
