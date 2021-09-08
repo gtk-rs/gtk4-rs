@@ -13,7 +13,7 @@ impl ObjectSubclass for CustomButton {
     type Type = super::CustomButton;
     type ParentType = gtk::Button;
 }
-// ANCHOR: imp
+// ANCHOR_END: imp
 
 // Trait shared by all GObjects
 impl ObjectImpl for CustomButton {}
