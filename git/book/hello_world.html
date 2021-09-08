@@ -165,7 +165,7 @@ fn main() {
 }
 </code></pre></pre>
 <p>It builds fine, but nothing appears on our screen.
-GTK warns us, that it would have expected that something would be called in its <code>activate</code> step.
+GTK warns us that something should be called in its <code>activate</code> step.
 So let us create a window there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
@@ -246,8 +246,8 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 }
 </code></pre></pre>
 <p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
-<div style="text-align:center"><img src="img/hello_world_button.png" /></div>
-<p>Was not that hard to create our first <code>gtk-rs</code> app, right?
+<div style="text-align:center"><img src="img/hello_world_button.gif" /></div>
+<p>Wasn't that hard to create our first <code>gtk-rs</code> app, right?
 Let us now get a better understanding of what we did here.</p>
 
                     </main>
