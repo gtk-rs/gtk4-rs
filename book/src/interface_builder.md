@@ -1,5 +1,7 @@
 # Interface Builder
 
+## GTK Builder
+
 Until now, whenever we constructed pre-defined widgets we relied on the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html).
 As a reminder, that is how we used it in our trusty "Hello World!" app.
 
@@ -39,7 +41,34 @@ Even though we have already described the UI in the markup file, the amount of c
 There are still cases where it is valuable to know of the existence of `gtk::Builder`.
 We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) is quite a bit easier to instantiate that way.
 
-However, the reason why we talk about the interface builder at all is the existence of composite templates.
+At least we did not lose any flexibility by using `gtk::Builder`.
+It is for example still possible to refer to custom widgets such as this bare-bones `CustomButton`.
+
+<span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span>
+```rust,no_run
+{{#rustdoc_include ../listings/interface_builder/2/custom_button/imp.rs:imp}}
+# // Please ignore this line
+# // It is only there to make mdbook happy
+# fn main() {}
+```
+
+Within the `xml` file we reference the widget with the `NAME` we gave it in `imp.rs`.
+
+<span class="filename">Filename: listings/interface_builder/3/window/window.ui</span>
+```xml
+{{#rustdoc_include ../listings/interface_builder/2/window.ui}}
+```
+
+We also have to make sure to register the custom widget before it is used by the interface builder.
+
+<span class="filename">Filename: listings/interface_builder/2/main.rs</span>
+```rust,no_run
+{{#rustdoc_include ../listings/interface_builder/2/main.rs:main}}
+```
+
+## Composite Templates
+
+The actual reason why we devote a whole chapter to the interface builder is the existence of composite templates.
 Again, composite templates are described by `xml` files.
 
 <span class="filename">Filename: listings/interface_builder/3/window/window.ui</span>
@@ -47,7 +76,7 @@ Again, composite templates are described by `xml` files.
 {{#rustdoc_include ../listings/interface_builder/3/window/window.ui}}
 ```
 
-Even the content seems to be nearly the same.
+At first glance, the content seems to be nearly the same.
 Before, we described a pre-existing widget.
 
 ```xml
@@ -60,8 +89,7 @@ Now, we create a custom widget and let it inherit from a pre-existing one.
 <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
 ```
 
-Within our code we also have to create a custom widget inheriting from `gtk::ApplicationWindow` to make use of our template.
-
+Within our code we create a custom widget inheriting from `gtk::ApplicationWindow` to make use of our template.
 
 <span class="filename">Filename: listings/interface_builder/3/window/mod.rs</span>
 ```rust,no_run
@@ -73,12 +101,26 @@ Within our code we also have to create a custom widget inheriting from `gtk::App
 
 In the private struct, we then add the derive macro `gtk::CompositeTemplate`.
 We also specify that the template information comes from a file `window.ui` in the same folder.
-Additionally, we can hold a reference to any child of which we specified the `id` in the template.
-Since we need the button later on, we add it to the struct.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
 ```rust,no_run
 {{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object}}
+# // Please ignore this line
+# // It is only there to make mdbook happy
+# fn main() {}
+```
+
+One very convenient feature of templates is the template child.
+You use it by adding a struct member with the same name as one `id` attribute in the template.
+Template child then:
+- assures that the widget gets registered without doing it manually in `main.rs`, and
+- stores a reference to the widget for later use.
+
+We need both for our custom button, so we add it to the struct.
+
+<span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
+```rust,no_run
+{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:subclass}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -89,7 +131,7 @@ We also bind and initialize the template in `class_init` and `instance_init`.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:subclass}}
+{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object_impl}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -98,21 +140,12 @@ We also bind and initialize the template in `class_init` and `instance_init`.
 Finally, we connect the callback to the "clicked" signal of `button` within `constructed`.
 The button is easily available thanks to the stored reference in `self`.
 
-<span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
-```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object_impl}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
-```
-
-With composite templates, `build_ui` actually becomes more concise.
-
 <span class="filename">Filename: listings/interface_builder/3/main.rs</span>
 ```rust,no_run
 {{#rustdoc_include ../listings/interface_builder/3/main.rs:build_ui}}
 ```
-Also with regard to capabilities, we get the best of both worlds.
+With composite templates, `main.rs` actually became more concise.
+With regard to capabilities, we also get the best of both worlds.
 
 Thanks to custom widgets we can
 - keep state and part of it as properties,
