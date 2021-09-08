@@ -2,7 +2,9 @@ use glib::subclass::InitializingObject;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{Button, CompositeTemplate};
+use gtk::CompositeTemplate;
+
+use crate::custom_button::CustomButton;
 
 // ANCHOR: object
 // Object holding the state
@@ -10,7 +12,7 @@ use gtk::{Button, CompositeTemplate};
 #[template(file = "window.ui")]
 pub struct Window {
     #[template_child]
-    pub button: TemplateChild<Button>,
+    pub button: TemplateChild<CustomButton>,
 }
 // ANCHOR_END: object
 

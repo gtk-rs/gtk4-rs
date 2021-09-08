@@ -42,9 +42,9 @@ We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWi
 However, the reason why we talk about the interface builder at all is the existence of composite templates.
 Again, composite templates are described by `xml` files.
 
-<span class="filename">Filename: listings/interface_builder/2/window/window.ui</span>
+<span class="filename">Filename: listings/interface_builder/3/window/window.ui</span>
 ```xml
-{{#rustdoc_include ../listings/interface_builder/2/window/window.ui}}
+{{#rustdoc_include ../listings/interface_builder/3/window/window.ui}}
 ```
 
 Even the content seems to be nearly the same.
@@ -63,9 +63,9 @@ Now, we create a custom widget and let it inherit from a pre-existing one.
 Within our code we also have to create a custom widget inheriting from `gtk::ApplicationWindow` to make use of our template.
 
 
-<span class="filename">Filename: listings/interface_builder/2/window/mod.rs</span>
+<span class="filename">Filename: listings/interface_builder/3/window/mod.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/2/window/mod.rs}}
+{{#rustdoc_include ../listings/interface_builder/3/window/mod.rs}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -76,9 +76,9 @@ We also specify that the template information comes from a file `window.ui` in t
 Additionally, we can hold a reference to any child of which we specified the `id` in the template.
 Since we need the button later on, we add it to the struct.
 
-<span class="filename">Filename: listings/interface_builder/2/window/imp.rs</span>
+<span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/2/window/imp.rs:object}}
+{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -87,9 +87,9 @@ Since we need the button later on, we add it to the struct.
 Within the `ObjectSubclass` trait, we make sure that `NAME` corresponds to `class` in the template and `ParentType` corresponds to `parent` in the template.
 We also bind and initialize the template in `class_init` and `instance_init`.
 
-<span class="filename">Filename: listings/interface_builder/2/window/imp.rs</span>
+<span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/2/window/imp.rs:subclass}}
+{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:subclass}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -98,9 +98,9 @@ We also bind and initialize the template in `class_init` and `instance_init`.
 Finally, we connect the callback to the "clicked" signal of `button` within `constructed`.
 The button is easily available thanks to the stored reference in `self`.
 
-<span class="filename">Filename: listings/interface_builder/2/window/imp.rs</span>
+<span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/2/window/imp.rs:object_impl}}
+{{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object_impl}}
 # // Please ignore this line
 # // It is only there to make mdbook happy
 # fn main() {}
@@ -108,9 +108,9 @@ The button is easily available thanks to the stored reference in `self`.
 
 With composite templates, `build_ui` actually becomes more concise.
 
-<span class="filename">Filename: listings/interface_builder/2/main.rs</span>
+<span class="filename">Filename: listings/interface_builder/3/main.rs</span>
 ```rust,no_run
-{{#rustdoc_include ../listings/interface_builder/2/main.rs:build_ui}}
+{{#rustdoc_include ../listings/interface_builder/3/main.rs:build_ui}}
 ```
 Also with regard to capabilities, we get the best of both worlds.
 

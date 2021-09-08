@@ -94,6 +94,10 @@ path = "interface_builder/1/main.rs"
 name = "interface_builder_2"
 path = "interface_builder/2/main.rs"
 
+[[bin]]
+name = "interface_builder_3"
+path = "interface_builder/3/main.rs"
+
 # main_event_loop
 [[bin]]
 name = "main_event_loop_1"
