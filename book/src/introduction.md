@@ -7,11 +7,11 @@ The API even describes the ownership of its parameters!
 
 Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with.
 With this combination you do not have to worry about hitting bottlenecks mid-project anymore.
-Additionally, with Rust you will have nice things like:
- - Thread safety
- - Memory safety
- - Sensible dependency management
- - Excellent third party libraries, which benefit from the same points as mentioned above
+Additionally, with Rust you will have nice things such as
+ - thread safety,
+ - memory safety,
+ - sensible dependency management as well as
+ - excellent third party libraries.
 
 The `gtk-rs` project provides bindings to many GTK-related libraries which we will be using throughout this book.
 
@@ -28,7 +28,7 @@ Luckily, this — together with the wish to develop graphical applications — i
 
 ## How to use this book
 
-In general, this book assumes that you’re reading it in sequence from front to
+In general, this book assumes that you are reading it in sequence from front to
 back. However, if you are using it as a reference for a certain topic,
 you might find it useful to just jump into it.
 
