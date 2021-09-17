@@ -31,7 +31,7 @@ And indeed, `ButtonExt` includes the method [`connect_clicked`](../docs/gtk4/pre
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:button}}
 ```
 
@@ -40,7 +40,7 @@ In our example we did that by adding the following line:
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:prelude}}
 ```
 With it, we import all necessary traits for dealing with widgets.

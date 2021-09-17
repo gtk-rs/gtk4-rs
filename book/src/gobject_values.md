@@ -4,7 +4,7 @@ Some GObject-related functions rely on generic values for their arguments or ret
 Enums in C are not as powerful as the one in Rust, which is why [`glib::Value`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html) is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:
 
-```rust
+```rust, no_run,noplayground
 enum Value <T> {
     bool(bool),
     i8(i8),
@@ -24,7 +24,7 @@ For example, this is how you would use a `Value` representing an `i32`.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:i32}}
 ```
 
@@ -35,13 +35,13 @@ You can still access it the same way as with the `i32` above.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:string}}
 ```
 
 If you want to differentiate between specifying the wrong type and a `Value` representing `None`, just call `get::<Option<T>>` instead.
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:string_none}}
 ```
 

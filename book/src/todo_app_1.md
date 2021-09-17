@@ -23,11 +23,8 @@ As usual, we have to list all [ancestors](https://docs.gtk.org/gtk4/class.Applic
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/mod.rs:glib_wrapper}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Then we initialize the composite template for `imp::Window`.
@@ -38,18 +35,15 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/imp.rs:struct_and_subclass}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 `main.rs` also does not hold any surprises for us.
 
 <span class="filename">Filename: listings/todo_app/1/main.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/main.rs:main}}
 ```
 
@@ -69,22 +63,16 @@ This object will store the state of the task consisting of:
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_object/mod.rs:glib_wrapper_and_new}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Unlike the lists chapter, the state is stored in a struct rather than in individual members of `imp::TodoObject`.
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_object/mod.rs:todo_data}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Not only that, we see that it is also wrapped in a [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html).
@@ -94,11 +82,8 @@ If you are curious, you can press on the small eye symbol on the top right of th
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_object/imp.rs:struct_and_subclass}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Let us move on to the individual tasks.
@@ -120,11 +105,8 @@ In the code, we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `To
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_row/mod.rs:glib_wrapper}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 In `imp::TodoRow`, we hold references to `completed_button` and `content_label`.
@@ -134,11 +116,8 @@ Why we need that will become clear as soon as we get to bind the state of `TodoO
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/imp.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_row/imp.rs:struct_and_subclass}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Now we can bring everything together.
@@ -146,11 +125,8 @@ We override the `imp::Window::constructed` in order to set up window contents at
 
 <span class="filename">Filename: listings/todo_app/1/window/imp.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/imp.rs:constructed}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Since we need to access the list model quite often, we add the convenience method `Window::model` for that.
@@ -159,11 +135,8 @@ Then we store a reference to the model in `imp::Window` as well as in `gtk::List
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/mod.rs:model}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 In `Window::setup_callbacks` we connect to the "activate" signal of the entry.
@@ -173,11 +146,8 @@ Finally, the entry will be cleared.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/mod.rs:setup_callbacks}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 The list elements for the `gtk::ListView` are produced by a factory.
 Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
@@ -194,11 +164,8 @@ We will create empty `TodoRow` objects in the "setup" step in `Window::setup_fac
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/window/mod.rs:setup_factory}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Binding properties in `TodoRow::bind` works just like in former chapters.
@@ -209,11 +176,8 @@ Unbinding will only work if it can access the stored `glib::Binding`.
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_row/mod.rs:bind}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 `TodoRow::unbind` takes care of the cleanup.
@@ -222,11 +186,8 @@ In the end, it clears the vector.
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_row/mod.rs:unbind}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 That was it, we created a basic To-Do app!

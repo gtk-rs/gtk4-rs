@@ -6,7 +6,7 @@ Until now, whenever we constructed pre-defined widgets we relied on the [builder
 As a reminder, that is how we used it in our trusty "Hello World!" app.
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:all}}
 ```
 
@@ -32,7 +32,7 @@ To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](
 All widgets that can be described that way can be found [here](../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1)
 
 <span class="filename">Filename: listings/interface_builder/1/main.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/1/main.rs:build_ui}}
 ```
 
@@ -45,11 +45,8 @@ At least we did not lose any flexibility by using `gtk::Builder`.
 It is for example still possible to refer to custom widgets such as this bare-bones `CustomButton`.
 
 <span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/2/custom_button/imp.rs:imp}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Within the `xml` file we reference the widget with the `NAME` we gave it in `imp.rs`.
@@ -62,7 +59,7 @@ Within the `xml` file we reference the widget with the `NAME` we gave it in `imp
 We also have to make sure to register the custom widget before it is used by the interface builder.
 
 <span class="filename">Filename: listings/interface_builder/2/main.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/2/main.rs:main}}
 ```
 
@@ -92,22 +89,16 @@ Now, we create a custom widget and let it inherit from a pre-existing one.
 Within our code we create a custom widget inheriting from `gtk::ApplicationWindow` to make use of our template.
 
 <span class="filename">Filename: listings/interface_builder/3/window/mod.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/3/window/mod.rs}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 In the private struct, we then add the derive macro `gtk::CompositeTemplate`.
 We also specify that the template information comes from a file `window.ui` in the same folder.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 One very convenient feature of templates is the template child.
@@ -119,29 +110,23 @@ Template child then:
 We need both for our custom button, so we add it to the struct.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:subclass}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Within the `ObjectSubclass` trait, we make sure that `NAME` corresponds to `class` in the template and `ParentType` corresponds to `parent` in the template.
 We also bind and initialize the template in `class_init` and `instance_init`.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/3/window/imp.rs:object_impl}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 Finally, we connect the callback to the "clicked" signal of `button` within `constructed`.
 The button is easily available thanks to the stored reference in `self`.
 
 <span class="filename">Filename: listings/interface_builder/3/main.rs</span>
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/3/main.rs:build_ui}}
 ```
 With composite templates, `main.rs` actually became more concise.

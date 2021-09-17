@@ -16,7 +16,7 @@ The `id` is the same application id we used when we created our application.
 
 <span class="filename">Filename: listings/settings/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:application}}
 ```
 The `path` must start and end with a forward slash character ('/') and must not contain two sequential slash characters.
@@ -40,7 +40,7 @@ We initialize the `Settings` object by specifying the application id.
 
 <span class="filename">Filename: listings/settings/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:settings}}
 ```
 
@@ -48,7 +48,7 @@ Then we get the settings key and use it when we create our `Switch`.
 
 <span class="filename">Filename: listings/settings/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:switch}}
 ```
 
@@ -56,7 +56,7 @@ Finally, we assure that the switch state is stored in the settings whenever we c
 
 <span class="filename">Filename: listings/settings/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:connect_state_set}}
 ```
 
@@ -71,7 +71,7 @@ Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/gtk-rs-core/st
 
 <span class="filename">Filename: listings/settings/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/2/main.rs:settings_bind}}
 ```
 

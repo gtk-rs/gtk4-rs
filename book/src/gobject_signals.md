@@ -9,7 +9,7 @@ In our "Hello World" example we [connected](../docs/gtk4/prelude/trait.ButtonExt
 
 <span class="filename">Filename: listings/gobject_signals/1/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/1/main.rs:callback}}
 ```
 
@@ -18,7 +18,7 @@ connected to it with the generic [`connect_local`](http://gtk-rs.org/gtk-rs-core
 
 <span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/2/main.rs:callback}}
 ```
 
@@ -30,12 +30,9 @@ First we override the necessary methods in `ObjectImpl`.
 
 <span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:object_impl}}
 
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 The `signals` method is responsible for defining a set of signals.
@@ -49,12 +46,9 @@ After we did that, we set `number` back to 0.
 
 <span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:button_impl}}
 
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
@@ -63,7 +57,7 @@ Whenever we now receive the "max-number-reached" signal, the accompanying number
 
 <span class="filename">Filename: listings/gobject_signals/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/3/main.rs:signal_handling}}
 ```
 

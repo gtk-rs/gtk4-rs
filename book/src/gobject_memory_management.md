@@ -111,7 +111,7 @@ we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) typ
 
 <span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/1/main.rs:callback}}
 ```
 
@@ -120,7 +120,7 @@ We can improve that by using the `glib::clone!` macro.
 
 <span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/2/main.rs:callback}}
 ```
 
@@ -129,7 +129,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with `n
 
 <span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/3/main.rs:callback}}
 ```
 If we now click on one button, the other button's label gets changed.
@@ -145,7 +145,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:callback}}
 ```
 
@@ -163,7 +163,7 @@ Who then keeps the buttons alive?
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:box_append}}
 ```
 
@@ -171,7 +171,7 @@ When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference 
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:set_child}}
 ```
 
@@ -179,7 +179,7 @@ When we set `gtk_box` as child of `window`, `window` keeps a strong reference to
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:window}}
 ```
 

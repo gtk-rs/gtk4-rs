@@ -9,7 +9,7 @@ That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch
 
 <span class="filename">Filename: listings/gobject_properties/1/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
 Alternatively, we can use the general [`property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property) and [`set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
@@ -17,7 +17,7 @@ Because they can be used for properties of different types, they operate with `g
 
 <span class="filename">Filename: listings/gobject_properties/2/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/2/main.rs:switch}}
 ```
 
@@ -29,7 +29,7 @@ Let us see how that would look like for two `Switch` instances.
 
 <span class="filename">Filename: listings/gobject_properties/3/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/3/main.rs:switches}}
 ```
 
@@ -38,7 +38,7 @@ We also want the binding to be bidirectional, so we specify this with the [`Bind
 
 <span class="filename">Filename: listings/gobject_properties/3/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/3/main.rs:bind_state}}
 ```
 
@@ -71,11 +71,8 @@ The formerly private `number` is now accessible via the `property` and `set_prop
 
 <span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
 
-```rust
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:object_impl}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 We can immediately take advantage of this new property by binding the "label" property to it.
@@ -86,7 +83,7 @@ Let us see what we can do with this by creating two custom buttons.
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:buttons}}
 ```
 
@@ -95,7 +92,7 @@ By leveraging [`transform_to`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:bind_numbers}}
 ```
 Now if we click on one button, the "number" and "label" properties of the other button change as well.
@@ -107,7 +104,7 @@ We can do this like this:
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:connect_notify}}
 ```
 
