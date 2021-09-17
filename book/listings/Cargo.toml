@@ -11,6 +11,23 @@ pretty_env_logger = "0.4"
 serde = { version = "1.0", features = ["derive", "rc"] }
 serde_json = "1.0"
 
+# actions
+[[bin]]
+name = "actions_1"
+path = "actions/1/main.rs"
+
+[[bin]]
+name = "actions_2"
+path = "actions/2/main.rs"
+
+[[bin]]
+name = "actions_3"
+path = "actions/3/main.rs"
+
+[[bin]]
+name = "actions_4"
+path = "actions/4/main.rs"
+
 # gobject_memory_management
 [[bin]]
 name = "gobject_memory_management_1"
