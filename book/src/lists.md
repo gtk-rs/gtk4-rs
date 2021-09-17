@@ -9,7 +9,7 @@ Each label will display an integer starting from 0 and ranging up to 100.
 
 <span class="filename">Filename: listings/lists/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/1/main.rs:list_box}}
 ```
 
@@ -19,7 +19,7 @@ Now we can scroll through our elements.
 
 <span class="filename">Filename: listings/lists/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/1/main.rs:scrolled_window}}
 ```
 
@@ -54,24 +54,18 @@ We only need to let it inherit from GObject instead of `Button` and let the `new
 
 <span class="filename">Filename: listings/lists/2/integer_object/mod.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/integer_object/mod.rs:integer_object}}
 #
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 The `imp` module can stay the same apart from the rename from `CustomButton` to `IntegerObject`.
 
 <span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/integer_object/imp.rs:integer_object}}
 #
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 We now fill the model with integers from 0 to 100 000.
@@ -80,7 +74,7 @@ Neither `Label` nor any other widget is mentioned here.
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/main.rs:model}}
 ```
 
@@ -91,7 +85,7 @@ We connect to it to create a `Label` for every requested widget.
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/main.rs:factory_setup}}
 ```
 
@@ -99,7 +93,7 @@ In the "bind" step we bind the data in our model to the individual list items.
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/main.rs:factory_bind}}
 ```
 
@@ -109,7 +103,7 @@ Then we pass the model and the factory to the [`ListView`](../docs/gtk4/struct.L
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/main.rs:selection_list}}
 ```
 
@@ -117,7 +111,7 @@ Every `ListView` has to be a direct child of a `ScrolledWindow`, so we are addin
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/2/main.rs:scrolled_window}}
 ```
 
@@ -131,7 +125,7 @@ For that we first add the method `increase_number` to our `IntegerObject`.
 
 <span class="filename">Filename: listings/lists/3/integer_object/mod.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/3/integer_object/mod.rs:integer_object}}
 ```
 
@@ -139,7 +133,7 @@ In order to interact with our `ListView`, we connect to its "activate" signal.
 
 <span class="filename">Filename: listings/lists/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/3/main.rs:list_view_activate}}
 ```
 
@@ -150,7 +144,7 @@ One naive approach would be to bind the properties in the "bind" step of the `Si
 
 <span class="filename">Filename: listings/lists/3/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/3/main.rs:factory_bind}}
 ```
 
@@ -167,7 +161,7 @@ Let us see how the "setup" step now works.
 
 <span class="filename">Filename: listings/lists/4/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/4/main.rs:factory_setup}}
 ```
 
@@ -191,7 +185,7 @@ We can, for example, filter our model to only allow even numbers.
 
 <span class="filename">Filename: listings/lists/5/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/5/main.rs:filter}}
 ```
 
@@ -199,7 +193,7 @@ Additionally, we can reverse the order of our model.
 
 <span class="filename">Filename: listings/lists/5/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/5/main.rs:sorter}}
 ```
 
@@ -207,7 +201,7 @@ To ensure that our filter and sorter get updated when we modify the numbers, we 
 
 <span class="filename">Filename: listings/lists/5/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/lists/5/main.rs:activate}}
 ```
 

@@ -10,11 +10,8 @@ It therefore corresponds to the private section of objects in languages like Jav
 
 <span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/imp.rs}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` should consist of crate-name, module-path and object-name in order to avoid name collisions. Use [PascalCase](https://wiki.c2.com/?PascalCase) here.
@@ -28,11 +25,8 @@ Next, we describe our custom GObject.
 
 <span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs:mod}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 [`glib::wrapper!`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) does the most of the work of subclassing for us.
@@ -44,7 +38,7 @@ After these steps, nothing is stopping us anymore from replacing `gtk::Button` w
 
 <span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_subclassing/1/main.rs}}
 ```
 We are able to use `CustomButton` as a drop-in replacement for `gtk::Button`.
@@ -56,18 +50,15 @@ So let us make it a bit more interesting!
 
 <span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
 We also override `clicked` in `ButtonImpl` so that every click increases `number` and updates the label.
 
 <span class="filename">Filename: listings/gobject_subclassing/2/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_subclassing/2/main.rs:activate}}
 ```
 

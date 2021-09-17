@@ -18,7 +18,7 @@ Let us look at one example.
 
 <span class="filename">Filename: listings/main_event_loop/1/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/main_event_loop/1/main.rs}}
 ```
 
@@ -30,7 +30,7 @@ For that we just need to spawn a new thread and let the operation run there.
 
 <span class="filename">Filename: listings/main_event_loop/2/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
 ```
 
@@ -45,7 +45,7 @@ We want to send a `bool` to inform, whether we want the button to react to click
 
 <span class="filename">Filename: listings/main_event_loop/3/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
 ```
 
@@ -56,7 +56,7 @@ The converted code looks and behaves very similar to the multi-threaded code.
 
 <span class="filename">Filename: listings/main_event_loop/4/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
 ```
 
@@ -64,7 +64,7 @@ Since we are single-threaded again, we could even get rid of the channels while 
 
 <span class="filename">Filename: listings/main_event_loop/5/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/main_event_loop/5/main.rs:callback}}
 ```
 

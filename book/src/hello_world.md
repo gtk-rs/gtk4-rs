@@ -7,7 +7,7 @@ For that we use the [builder pattern](https://rust-unofficial.github.io/patterns
 
 <span class="filename">Filename: listings/hello_world/1/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/1/main.rs}}
 ```
 
@@ -17,7 +17,7 @@ So let us create a window there.
 
 <span class="filename">Filename: listings/hello_world/2/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/2/main.rs}}
 ```
 That is better!
@@ -29,7 +29,7 @@ Also, the name of the chapter suggests that the phrase "Hello World!" will be in
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
-```rust ,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}
 ```
 There is now a button and if we click on it, its label becomes "Hello World!".

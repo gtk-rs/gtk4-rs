@@ -18,12 +18,9 @@ First, we create one and add methods for getting and setting the window state.
 
 <span class="filename">Filename: listings/saving_window_state/1/custom_window/mod.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
 
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 The implementation struct holds the `settings`.
@@ -31,12 +28,9 @@ We also override the `constructed` and `close_request` methods, where we load or
 
 <span class="filename">Filename: listings/saving_window_state/1/custom_window/imp.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}
 
-# // Please ignore this line
-# // It is only there to make mdbook happy
-# fn main() {}
 ```
 
 That is it!
@@ -61,7 +55,7 @@ We then have to initialize `pretty_env_logger` by calling `init` in `main`.
 
 <span class="filename">Filename: listings/saving_window_state/1/main.rs</span>
 
-```rust,no_run
+```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/main.rs:main}}
 ```
 
