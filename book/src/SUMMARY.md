@@ -16,7 +16,7 @@
 - [Lists](lists.md)
 - [Interface Builder](interface_builder.md)
 - [Building a Simple To-Do App](todo_app_1.md)
-- [Actions & Keybindings]()
+- [Actions & Menus](actions.md)
 - [Manipulating State of To-Do App]()
 - [CSS]()
 - [Resources]()
