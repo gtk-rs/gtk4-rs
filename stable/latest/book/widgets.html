@@ -163,13 +163,13 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
 <p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
-The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
+The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the <code>ButtonExt</code> trait.
-And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
+And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -213,11 +213,11 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
 </span><span class="boring">    // Present window to the user
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Please note that Rust requires bringing traits into scope, before using one of its methods.
 In our example we did that by adding the following line:</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 <span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -261,7 +261,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">    // Present window to the user
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>With it, we import all necessary traits for dealing with widgets.
 You probably want to bring the prelude into scope in most of your source files.</p>
 

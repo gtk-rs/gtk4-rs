@@ -153,7 +153,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -195,11 +195,11 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If we wanted to, we could have 
 connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -248,13 +248,13 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
 <p>Let us see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::Signal;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -369,10 +369,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span>
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>The <code>signals</code> method is responsible for defining a set of signals.
 In our case, we only create a single signal named &quot;max-number-reached&quot;.
 When naming our signal, we make sure to do that in <a href="https://wiki.c2.com/?KebabCase">kebab-case</a>.
@@ -381,7 +378,7 @@ When emitted, it sends a single <code>i32</code> value and expects nothing in re
 Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::Signal;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -496,15 +493,12 @@ impl ButtonImpl for CustomButton {
     }
 }
 
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>If we now press on the button, the number of its label increases until it reaches <code>MAX_NUMBER</code>.
 Then it emits the &quot;max-number-reached&quot; signal which we can nicely connect to.
 Whenever we now receive the &quot;max-number-reached&quot; signal, the accompanying number is printed to standard output.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
@@ -551,7 +545,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
 <hr />

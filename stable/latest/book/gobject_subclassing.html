@@ -154,7 +154,7 @@ Let us see how this works by replacing the button in our &quot;Hello World!&quot
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground">use gtk::glib;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
@@ -177,10 +177,7 @@ impl WidgetImpl for CustomButton {}
 
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {}
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>The description of the subclassing is in <code>ObjectSubclass</code>.</p>
 <ul>
 <li><code>NAME</code> should consist of crate-name, module-path and object-name in order to avoid name collisions. Use <a href="https://wiki.c2.com/?PascalCase">PascalCase</a> here.</li>
@@ -192,7 +189,7 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty <code>impl</code> though.
 Next, we describe our custom GObject.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">mod imp;
+<pre><code class="language-rust  no_run noplayground">mod imp;
 
 use glib::Object;
 use gtk::glib;
@@ -218,17 +215,14 @@ impl CustomButton {
 </span><span class="boring">        Self::new()
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
 Coming from most other languages you would probably expect that you only have to mention the base class you want to inherit from.
 However, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
 For <code>gtk::Button</code>, we can look them up in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us anymore from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">mod custom_button;
+<pre><code class="language-rust  no_run noplayground">mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
@@ -271,14 +265,14 @@ fn build_ui(app: &amp;Application) {
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>We are able to use <code>CustomButton</code> as a drop-in replacement for <code>gtk::Button</code>.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.</p>
 <p>So let us make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground">use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use std::cell::Cell;
@@ -315,14 +309,11 @@ impl ButtonImpl for CustomButton {
         button.set_label(&amp;self.number.get().to_string())
     }
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>We override <code>constructed</code> in <code>ObjectImpl</code> so that the label of the button initializes with <code>number</code>.
 We also override <code>clicked</code> in <code>ButtonImpl</code> so that every click increases <code>number</code> and updates the label.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
@@ -359,7 +350,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>In <code>build_ui</code> we stop calling <code>connect_clicked</code>, and that was it.
 After a rebuild, the app now features our <code>CustomButton</code> with the label &quot;0&quot;.
 Every time we click on the button, the number displayed by the label increases by 1.</p>

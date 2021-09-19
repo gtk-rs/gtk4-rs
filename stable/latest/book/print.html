@@ -154,12 +154,12 @@ Thanks to GObject-Introspection, GTK's API can be easily targeted by various pro
 The API even describes the ownership of its parameters!</p>
 <p>Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with.
 With this combination you do not have to worry about hitting bottlenecks mid-project anymore.
-Additionally, with Rust you will have nice things like:</p>
+Additionally, with Rust you will have nice things such as</p>
 <ul>
-<li>Thread safety</li>
-<li>Memory safety</li>
-<li>Sensible dependency management</li>
-<li>Excellent third party libraries, which benefit from the same points as mentioned above</li>
+<li>thread safety,</li>
+<li>memory safety,</li>
+<li>sensible dependency management as well as</li>
+<li>excellent third party libraries.</li>
 </ul>
 <p>The <code>gtk-rs</code> project provides bindings to many GTK-related libraries which we will be using throughout this book.</p>
 <h2 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who this book is for</a></h2>
@@ -169,7 +169,7 @@ If you have experience with another low-level language such as C or C++ you
 might find that reading <a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A half hour to learn Rust</a> gives you sufficient information as well.</p>
 <p>Luckily, this — together with the wish to develop graphical applications — is all that is necessary to benefit from this book. </p>
 <h2 id="how-to-use-this-book"><a class="header" href="#how-to-use-this-book">How to use this book</a></h2>
-<p>In general, this book assumes that you’re reading it in sequence from front to
+<p>In general, this book assumes that you are reading it in sequence from front to
 back. However, if you are using it as a reference for a certain topic,
 you might find it useful to just jump into it.</p>
 <p>There are two kinds of chapters in this book: concept chapters and project
@@ -179,6 +179,9 @@ In project chapters, we will build small programs together, applying what you ha
 <p>The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
 If you are interested in contained and useful examples, we refer you to the corresponding <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/examples">section</a> of <code>gtk4-rs</code>' repository.</p>
+<h2 id="listings"><a class="header" href="#listings">Listings</a></h2>
+<p>Every valid code snippet in the book is part of a listing.
+The listings be found in the <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book/listings">git repository</a> of <code>gtk4-rs</code>.</p>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p>The book itself is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.
 The only exception are the code snippets which are licensed under the <a href="https://gitlab.gnome.org/Hofer-Julian/gtk-rs-book/-/blob/main/LICENSE">MIT license</a>.</p>
@@ -206,9 +209,9 @@ That is why we recommend to use <a href="https://mesonbuild.com/">Meson</a> on t
 It is cross-platform and its syntax is very readable.
 Meson takes care of</p>
 <ul>
-<li>translations</li>
-<li>building and installing <a href="resources.html">resources</a></li>
-<li>installing auxiliary files such as icons and <a href="settings.html">settings schemas</a></li>
+<li>translations,</li>
+<li>building and installing <a href="resources.html">resources</a> as well as</li>
+<li>installing auxiliary files such as icons and <a href="settings.html">settings schemas</a>.</li>
 </ul>
 <p>Here as well, you first follow the instructions on the <a href="https://www.gtk.org/docs/installations/">GTK website</a> in order to install GTK 4.
 Then install Rust with <a href="https://rustup.rs/">rustup</a>.
@@ -216,20 +219,20 @@ Finally, install Meson by following the instructions on the <a href="https://mes
 <p>You can download a ready-to-use gtk-rust-template <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template">here</a>.
 Follow the instructions in the README to initialize your own application.
 Then configure your project.</p>
-<pre><code class="language-bash">meson --prefix=/usr build
+<pre><code class="language-bash">meson setup builddir
 </code></pre>
 <p>In order to compile and install it run the following commands.
 You have to execute it every time you modify your application.</p>
-<pre><code class="language-bash">ninja -C build &amp;&amp; ninja -C build install
+<pre><code class="language-bash">meson -C builddir &amp;&amp; meson install -C builddir
 </code></pre>
 <p>Now the application should be in a folder included in your system path.
 You can either start it with the application launcher of your choice or in the terminal.</p>
 <h2 id="cargo--meson--flatpak"><a class="header" href="#cargo--meson--flatpak">Cargo + Meson + Flatpak</a></h2>
 <p>If you develop on Linux, using Flatpak is the most convenient option.
-With Flatpak your whole workflow is containerized and your users get the very same application you develop on (including all dependencies). 
+With Flatpak your whole workflow is containerized, and your users get the very same application you develop on (including all dependencies). 
 First, assure that Flatpak is installed on your system, check this <a href="https://flatpak.org/setup/">website</a> to see if any steps are necessary on your distribution.
 Then download the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template">gtk-rust-template</a> and follow the instructions in its README.</p>
-<p>Then either install:</p>
+<p>Then either install</p>
 <ul>
 <li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a> or</li>
 <li><a href="https://flathub.org/apps/details/com.vscodium.codium">VSCodium</a> together with the <a href="https://open-vsx.org/extension/matklad/rust-analyzer">rust-analyzer</a> and <a href="https://open-vsx.org/extension/bilelmoussaoui/flatpak-vscode">flatpak</a> extensions.</li>
@@ -242,7 +245,7 @@ With GNOME Builder, you only have to press the run button for that.</p>
 <p>At the very least, we need to create an <code>Application</code> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
 For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.</p>
 <p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::Application;
 
 fn main() {
@@ -254,12 +257,12 @@ fn main() {
     // Run the application
     app.run();
 }
-</code></pre></pre>
+</code></pre>
 <p>It builds fine, but nothing appears on our screen.
-GTK warns us, that it would have expected that something would be called in its <code>activate</code> step.
+GTK warns us that something should be called in its <code>activate</code> step.
 So let us create a window there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
 fn main() {
@@ -285,13 +288,13 @@ fn build_ui(app: &amp;Application) {
     // Present window to the user
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>That is better!</p>
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 <p>Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -335,10 +338,10 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
     // Present window to the user
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
-<div style="text-align:center"><img src="img/hello_world_button.png" /></div>
-<p>Was not that hard to create our first <code>gtk-rs</code> app, right?
+<div style="text-align:center"><img src="img/hello_world_button.gif" /></div>
+<p>Wasn't that hard to create our first <code>gtk-rs</code> app, right?
 Let us now get a better understanding of what we did here.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Widgets are the components that make up a GTK application.
@@ -357,13 +360,13 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
 <p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
-The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
+The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the <code>ButtonExt</code> trait.
-And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
+And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -407,11 +410,11 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
 </span><span class="boring">    // Present window to the user
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Please note that Rust requires bringing traits into scope, before using one of its methods.
 In our example we did that by adding the following line:</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 <span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -455,7 +458,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">    // Present window to the user
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>With it, we import all necessary traits for dealing with widgets.
 You probably want to bring the prelude into scope in most of your source files.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gobject-concepts"><a class="header" href="#gobject-concepts">GObject Concepts</a></h1>
@@ -575,7 +578,7 @@ We call every object containing a strong reference a shared owner of the value.
 If we want to modify the content of our <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>,
 we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.<sup class="footnote-reference"><a href="#1">1</a></sup></p>
 <p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use std::{cell::Cell, rc::Rc};
@@ -630,11 +633,11 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>It is not very nice though to fill the scope with temporary variables like <code>number_copy_1</code>.
 We can improve that by using the <code>glib::clone!</code> macro.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::clone;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
@@ -693,11 +696,11 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Just like <code>Rc&lt;Cell&lt;T&gt;&gt;</code>, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with <code>number</code>.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -761,7 +764,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If we now click on one button, the other button's label gets changed.</p>
 <p>But whoops!
 Did we forget about one annoyance of reference-counted systems?
@@ -772,7 +775,7 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead<sup class="footnote-reference"><a href="#2">2</a></sup>.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -838,7 +841,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The reference cycle is broken.
 Every time the button is clicked, <code>glib::clone</code> tries to upgrade the weak reference.
 If we now for example click on one button and the other button is not there anymore, <code>upgrade</code> will return <code>None</code>.
@@ -850,7 +853,7 @@ If we had a <em>weak</em> reference, no one would have kept <code>number</code> 
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -916,10 +919,10 @@ Who then keeps the buttons alive?</p>
     gtk_box.append(&amp;button_decrease);
 <span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -985,10 +988,10 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -1054,7 +1057,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>During the creation of our <code>window</code>, we pass <code>application</code> to it.
 Because of that, <code>application</code> holds a strong reference to <code>window</code>.
 <code>application</code> lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.</p>
@@ -1078,7 +1081,7 @@ Let us see how this works by replacing the button in our &quot;Hello World!&quot
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground">use gtk::glib;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
@@ -1101,10 +1104,7 @@ impl WidgetImpl for CustomButton {}
 
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {}
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>The description of the subclassing is in <code>ObjectSubclass</code>.</p>
 <ul>
 <li><code>NAME</code> should consist of crate-name, module-path and object-name in order to avoid name collisions. Use <a href="https://wiki.c2.com/?PascalCase">PascalCase</a> here.</li>
@@ -1116,7 +1116,7 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty <code>impl</code> though.
 Next, we describe our custom GObject.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">mod imp;
+<pre><code class="language-rust  no_run noplayground">mod imp;
 
 use glib::Object;
 use gtk::glib;
@@ -1142,17 +1142,14 @@ impl CustomButton {
 </span><span class="boring">        Self::new()
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
 Coming from most other languages you would probably expect that you only have to mention the base class you want to inherit from.
 However, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
 For <code>gtk::Button</code>, we can look them up in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us anymore from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">mod custom_button;
+<pre><code class="language-rust  no_run noplayground">mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
@@ -1195,14 +1192,14 @@ fn build_ui(app: &amp;Application) {
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>We are able to use <code>CustomButton</code> as a drop-in replacement for <code>gtk::Button</code>.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.</p>
 <p>So let us make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground">use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use std::cell::Cell;
@@ -1239,14 +1236,11 @@ impl ButtonImpl for CustomButton {
         button.set_label(&amp;self.number.get().to_string())
     }
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>We override <code>constructed</code> in <code>ObjectImpl</code> so that the label of the button initializes with <code>number</code>.
 We also override <code>clicked</code> in <code>ButtonImpl</code> so that every click increases <code>number</code> and updates the label.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
@@ -1283,7 +1277,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>In <code>build_ui</code> we stop calling <code>connect_clicked</code>, and that was it.
 After a rebuild, the app now features our <code>CustomButton</code> with the label &quot;0&quot;.
 Every time we click on the button, the number displayed by the label increases by 1.</p>
@@ -1298,10 +1292,7 @@ Every time we click on the button, the number displayed by the label increases b
 <p>Some GObject-related functions rely on generic values for their arguments or return parameters.
 Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>enum Value &lt;T&gt; {
+<pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
     bool(bool),
     i8(i8),
     i32(i32),
@@ -1313,12 +1304,11 @@ Conceptually though, there are similar to a Rust enum defined like this:</p>
     // boxed types
     String(Option&lt;String&gt;),
     Object(Option&lt;T: impl IsA&lt;Object&gt;&gt;),
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>That means that a <code>glib::Value</code> can represent a set of types, but only one of them per instance.
 For example, this is how you would use a <code>Value</code> representing an <code>i32</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Store `i32` as `Value`
@@ -1359,13 +1349,13 @@ For example, this is how you would use a <code>Value</code> representing an <cod
 </span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Please note that boxed types such as <code>String</code> or <code>Object</code> are wrapped in an <code>Option</code>.
 This comes from C, where boxed types can always be <code>None</code> (or null in C terms).
 You can still access it the same way as with the <code>i32</code> above.
 <code>get</code> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -1406,9 +1396,9 @@ You can still access it the same way as with the <code>i32</code> above.
 </span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If you want to differentiate between specifying the wrong type and a <code>Value</code> representing <code>None</code>, just call <code>get::&lt;Option&lt;T&gt;&gt;</code> instead.</p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -1449,7 +1439,7 @@ You can still access it the same way as with the <code>i32</code> above.
     assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
     assert_eq!(string_none, None);
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>For now, all you need to know is how to convert a Rust type into a <code>glib::Value</code> and vice versa.
 This knowledge will be useful in the next chapters where we discuss properties, signals and models.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
@@ -1459,7 +1449,7 @@ One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.
 According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
@@ -1508,11 +1498,11 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Alternatively, we can use the general <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
@@ -1567,13 +1557,13 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Dealing with a <code>glib::Value</code> is quite verbose.
 This is why you only want to use the generic methods for accessing properties you have added to your custom GObjects.</p>
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
 Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::BindingFlags;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, Box};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -1623,11 +1613,11 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In our case, we want to bind the &quot;state&quot; property of <code>switch_1</code> to the &quot;state&quot; property of <code>switch_2</code>.
 We also want the binding to be bidirectional, so we specify this with the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html"><code>BindingFlags</code></a>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::BindingFlags;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, Box};
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -1677,7 +1667,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now when we click on one of the two switches, the other one is toggled as well.</p>
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
 <p>We can also add properties to custom GObjects.
@@ -1699,7 +1689,7 @@ We also declare that the property can be read and be written to.
 <code>property</code> takes care of returning the underlying value.
 The formerly private <code>number</code> is now accessible via the <code>property</code> and <code>set_property</code> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -1785,16 +1775,13 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">            .expect(&quot;Could not set property.&quot;);
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We can immediately take advantage of this new property by binding the &quot;label&quot; property to it.
 It even converts the integer value of &quot;number&quot; to the string of &quot;label&quot;.
 Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
 <p>Let us see what we can do with this by creating two custom buttons.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -1874,11 +1861,11 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We have already seen that bound properties do not necessarily have to be of the same type.
 By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -1958,13 +1945,13 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now if we click on one button, the &quot;number&quot; and &quot;label&quot; properties of the other button change as well.</p>
 <div style="text-align:center"><img src="img/gobject_properties_buttons.png"/></div>
 <p>The final nice feature of properties is, that you can connect a callback to the event when a property gets changed.
 We can do this like this:</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
@@ -2044,7 +2031,7 @@ We can do this like this:</p>
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now, whenever the &quot;number&quot; property gets changed, the closure gets executed and prints the current value of &quot;number&quot;.</p>
 <p>Introducing properties to your custom GObjects is useful if you want to</p>
 <ul>
@@ -2059,7 +2046,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -2101,11 +2088,11 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If we wanted to, we could have 
 connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -2154,13 +2141,13 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
 <p>Let us see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::Signal;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -2275,10 +2262,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span>
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>The <code>signals</code> method is responsible for defining a set of signals.
 In our case, we only create a single signal named &quot;max-number-reached&quot;.
 When naming our signal, we make sure to do that in <a href="https://wiki.c2.com/?KebabCase">kebab-case</a>.
@@ -2287,7 +2271,7 @@ When emitted, it sends a single <code>i32</code> value and expects nothing in re
 Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::Signal;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -2402,15 +2386,12 @@ impl ButtonImpl for CustomButton {
     }
 }
 
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>If we now press on the button, the number of its label increases until it reaches <code>MAX_NUMBER</code>.
 Then it emits the &quot;max-number-reached&quot; signal which we can nicely connect to.
 Whenever we now receive the &quot;max-number-reached&quot; signal, the accompanying number is printed to standard output.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
@@ -2457,7 +2438,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
 <hr />
@@ -2477,7 +2458,7 @@ That is why you can move the window at the same time as a progress bar is growin
 That happens when a single task takes too long.
 Let us look at one example.</p>
 <p><span class="filename">Filename: listings/main_event_loop/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use std::time::Duration;
+<pre><code class="language-rust  no_run noplayground">use std::time::Duration;
 
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button};
@@ -2522,14 +2503,14 @@ fn build_ui(app: &amp;Application) {
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The <code>sleep</code> call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.</p>
 <p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button};
@@ -2576,7 +2557,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
 Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.</p>
 <p>Normally we want to keep track of the work in the thread.
@@ -2585,7 +2566,7 @@ In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.</p>
 <p><span class="filename">Filename: listings/main_event_loop/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
@@ -2651,13 +2632,13 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Spawning threads is not the only way to run operations asynchronously.
 You can also let the main loop take care of running <code>async</code> functions.
 If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
 <p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -2720,10 +2701,10 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Since we are single-threaded again, we could even get rid of the channels while achieving the same result.</p>
 <p><span class="filename">Filename: listings/main_event_loop/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -2774,7 +2755,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>But why did we not do the same thing with our multi-threaded example?</p>
 <pre><pre class="playground"><code class="language-rust  no_run compile_fail"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
@@ -2866,7 +2847,7 @@ Let us learn how to use <code>GSettings</code> by storing the state of a <a href
 <p>Let us get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
 </span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
@@ -2921,7 +2902,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    window.set_child(Some(&amp;switch));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>path</code> must start and end with a forward slash character ('/') and must not contain two sequential slash characters.
 When creating a <code>path</code>, we advise to take the <code>id</code>, replace the '.' with '/' and add '/' at the front and end of it.</p>
 <p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
@@ -2935,7 +2916,7 @@ $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 That is why we probably want to use a build system like <a href="https://mesonbuild.com/">Meson</a> to do it for us.</p>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
 </span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
@@ -2990,10 +2971,10 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    window.set_child(Some(&amp;switch));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Then we get the settings key and use it when we create our <code>Switch</code>.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
 </span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
@@ -3048,10 +3029,10 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    window.set_child(Some(&amp;switch));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Finally, we assure that the switch state is stored in the settings whenever we click on it.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
 </span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
@@ -3106,7 +3087,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    window.set_child(Some(&amp;switch));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>Switch</code> now retains its state even after closing the application.
 But we can make this even better.
 The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
@@ -3115,7 +3096,7 @@ So let us do exactly that.</p>
 We then bind the setting to the property by specifying the key, object and name of the property.
 Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
 <p><span class="filename">Filename: listings/settings/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::{Settings, SettingsBindFlags};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::{Settings, SettingsBindFlags};
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
@@ -3162,7 +3143,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">    window.set_child(Some(&amp;switch));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Whenever you have a property which nicely correspond to a setting, you probably want to bind it to it.
 In other cases, interacting with the settings via the getter and setter methods tends to be the right choice.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="saving-window-state"><a class="header" href="#saving-window-state">Saving Window State</a></h1>
@@ -3194,7 +3175,7 @@ We already know how to do this by using <code>Settings</code>.</p>
 That can be done by creating a custom window.
 First, we create one and add methods for getting and setting the window state.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/custom_window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::prelude::*;
@@ -3249,14 +3230,11 @@ impl Window {
     }
 }
 
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>The implementation struct holds the <code>settings</code>.
 We also override the <code>constructed</code> and <code>close_request</code> methods, where we load or save the window state. </p>
 <p><span class="filename">Filename: listings/saving_window_state/1/custom_window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::signal::Inhibit;
 </span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{subclass::prelude::*, ApplicationWindow};
@@ -3297,10 +3275,7 @@ impl WindowImpl for Window {
 }
 impl ApplicationWindowImpl for Window {}
 
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>That is it!
 Now our window retains its state between app sessions.</p>
 <p>Please note how we handle a failure in saving into the settings.
@@ -3316,7 +3291,7 @@ pretty_env_logger = &quot;0.4&quot;
 </code></pre>
 <p>We then have to initialize <code>pretty_env_logger</code> by calling <code>init</code> in <code>main</code>.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_window;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_window;
 </span><span class="boring">
 </span><span class="boring">use custom_window::Window;
 </span><span class="boring">use gtk::prelude::*;
@@ -3361,7 +3336,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We can now modify the log level by setting the <code>RUST_LOG</code> environment variable as can be seen <a href="https://docs.rs/env_logger/latest/env_logger/">here</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lists"><a class="header" href="#lists">Lists</a></h1>
 <p>Sometimes you want to display a list of elements in a certain arrangement.
@@ -3370,7 +3345,7 @@ pretty_env_logger = &quot;0.4&quot;
 <p>Let us explore this concept by adding labels to a <code>ListBox</code>.
 Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p><span class="filename">Filename: listings/lists/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -3410,12 +3385,12 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We cannot display so many widgets at once.
 Therefore, we add <code>ListBox</code> to a <a href="../docs/gtk/struct.ScrolledWindow.html"><code>ScrolledWindow</code></a>.
 Now we can scroll through our elements.</p>
 <p><span class="filename">Filename: listings/lists/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -3455,7 +3430,7 @@ Now we can scroll through our elements.</p>
     window.set_child(Some(&amp;scrolled_window));
     window.show();
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <div style="text-align:center"><img src="img/lists_list_box.png"/></div>
 <p>That was easy enough.
 However, we currently create one widget per element.
@@ -3480,7 +3455,7 @@ What we would need is a GObject which holds an integer and exposes it as propert
 To get that we just have to adapt the <code>CustomButton</code> we created in the subclassing <a href="gobject_subclassing.html">chapter</a>.
 We only need to let it inherit from GObject instead of <code>Button</code> and let the <code>new</code> method accept an integer as parameter.</p>
 <p><span class="filename">Filename: listings/lists/2/integer_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -3495,13 +3470,10 @@ impl IntegerObject {
     }
 }
 <span class="boring">
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>imp</code> module can stay the same apart from the rename from <code>CustomButton</code> to <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -3565,15 +3537,12 @@ pub struct IntegerObject {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We now fill the model with integers from 0 to 100 000.
 Please note that the models only takes care of the data.
 Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -3654,13 +3623,13 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>ListItemFactory</code> takes care of the widgets as well as their relationship to the model.
 Here, we use the <a href="../docs/gtk4/struct.SignalListItemFactory.html"><code>SignalListItemFactory</code></a> which emits a signal for every relevant step in the life of a <a href="../docs/gtk4/struct.ListItem.html"><code>ListItem</code></a>.
 The &quot;setup&quot; signal will be emitted when new widgets have to be created.
 We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -3741,10 +3710,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In the &quot;bind&quot; step we bind the data in our model to the individual list items.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -3825,12 +3794,12 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
 The other options would have been <a href="../docs/gtk4/struct.MultiSelection.html"><code>MultiSelection</code></a> or <a href="../docs/gtk4/struct.NoSelection.html"><code>NoSelection</code></a>.
 Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -3911,10 +3880,10 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Every <code>ListView</code> has to be a direct child of a <code>ScrolledWindow</code>, so we are adding it to one.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -3995,17 +3964,14 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
     window.set_child(Some(&amp;scrolled_window));
     window.show();
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_1.png"/></div>
 <p>Let us see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method <code>increase_number</code> to our <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/lists/3/integer_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -4031,11 +3997,10 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
             .expect(&quot;Could not set property.&quot;);
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>In order to interact with our <code>ListView</code>, we connect to its &quot;activate&quot; signal.</p>
 <p><span class="filename">Filename: listings/lists/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::prelude::*;
@@ -4126,13 +4091,13 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now every time we activate an element, for example by double-clicking on it,
 the corresponding &quot;number&quot; property of the <code>IntegerObject</code> in the model will be increased by 1.
 However, just because the <code>IntegerObject</code> has been modified the corresponding <code>Label</code> does not immediately change.
 One naive approach would be to bind the properties in the &quot;bind&quot; step of the <code>SignalListItemFactory</code>.</p>
 <p><span class="filename">Filename: listings/lists/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::prelude::*;
@@ -4223,7 +4188,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>At first glance, that seems to work.
 However, as you scroll around and activate a few list elements,
 you will notice that sometimes multiple numbers change even though you only activated a single one.
@@ -4234,7 +4199,7 @@ That also means that in our case, multiple numbers will be bound to the same wid
 As a first step it allows us to remove the &quot;bind&quot; step.
 Let us see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/lists/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -4319,7 +4284,7 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>An expression describes a reference to a value.
 So when we create a <a href="../docs/gtk4/struct.ConstantExpression.html"><code>ConstantExpression</code></a> of <code>list_item</code>, we create a reference to a <code>ListItem</code>.
 We then create a <a href="../docs/gtk4/struct.PropertyExpression.html"><code>PropertyExpression</code></a> to get a reference to the &quot;item&quot; property of <code>list_item</code>.
@@ -4336,7 +4301,7 @@ When we now activate a label, only the corresponding number visibly changes.</p>
 <p>That is still not everything we can do.
 We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -4470,10 +4435,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Additionally, we can reverse the order of our model.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -4607,10 +4572,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>To ensure that our filter and sorter get updated when we modify the numbers, we call the <code>changed</code> method on them.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -4744,7 +4709,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>After our changes, the application looks like this:</p>
 <div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
 <p>We now know how to display a list of data.
@@ -4757,7 +4722,7 @@ However, if we need the widgets to be scalable we still need to use <a href="../
 <p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>.
 As a reminder, that is how we used it in our trusty &quot;Hello World!&quot; app.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
@@ -4801,7 +4766,7 @@ fn build_ui(app: &amp;Application) {
     // Present window to the user
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>Creating widgets directly from code is perfectly fine.
 However, with most toolkits you can describe your user interface with a markup language and GTK is no exception here.
 For example the following <code>xml</code> snippet describes the window widget of the &quot;Hello World!&quot; app. </p>
@@ -4833,7 +4798,7 @@ Since <code>ApplicationWindow</code> can contain other widgets we use the <code>
 <p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a><sup class="footnote-reference"><a href="#1">1</a></sup>.
 All widgets that can be described that way can be found <a href="../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1">here</a></p>
 <p><span class="filename">Filename: listings/interface_builder/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -4874,7 +4839,7 @@ All widgets that can be described that way can be found <a href="../docs/gtk4/pr
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>This is a bit disappointing.
 Even though we have already described the UI in the markup file, the amount of code is still pretty much the same.
 There are still cases where it is valuable to know of the existence of <code>gtk::Builder</code>.
@@ -4882,7 +4847,7 @@ We will see for example that <a href="../docs/gtk4/struct.ShortcutsWindow.html">
 <p>At least we did not lose any flexibility by using <code>gtk::Builder</code>.
 It is for example still possible to refer to custom widgets such as this bare-bones <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">
 </span>// Object holding the state
@@ -4905,10 +4870,7 @@ impl ObjectSubclass for CustomButton {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Within the <code>xml</code> file we reference the widget with the <code>NAME</code> we gave it in <code>imp.rs</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -4929,7 +4891,7 @@ impl ObjectSubclass for CustomButton {
 </code></pre>
 <p>We also have to make sure to register the custom widget before it is used by the interface builder.</p>
 <p><span class="filename">Filename: listings/interface_builder/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -4977,7 +4939,7 @@ impl ObjectSubclass for CustomButton {
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <h2 id="composite-templates"><a class="header" href="#composite-templates">Composite Templates</a></h2>
 <p>The actual reason why we devote a whole chapter to the interface builder is the existence of composite templates.
 Again, composite templates are described by <code>xml</code> files.</p>
@@ -5007,7 +4969,7 @@ Before, we described a pre-existing widget.</p>
 </code></pre>
 <p>Within our code we create a custom widget inheriting from <code>gtk::ApplicationWindow</code> to make use of our template.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">mod imp;
+<pre><code class="language-rust  no_run noplayground">mod imp;
 
 use glib::Object;
 use gtk::Application;
@@ -5026,14 +4988,11 @@ impl Window {
         Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
     }
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>In the private struct, we then add the derive macro <code>gtk::CompositeTemplate</code>.
 We also specify that the template information comes from a file <code>window.ui</code> in the same folder.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -5088,10 +5047,7 @@ pub struct Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>One very convenient feature of templates is the template child.
 You use it by adding a struct member with the same name as one <code>id</code> attribute in the template.
 Template child then:</p>
@@ -5101,7 +5057,7 @@ Template child then:</p>
 </ul>
 <p>We need both for our custom button, so we add it to the struct.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -5156,14 +5112,11 @@ impl ObjectSubclass for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Within the <code>ObjectSubclass</code> trait, we make sure that <code>NAME</code> corresponds to <code>class</code> in the template and <code>ParentType</code> corresponds to <code>parent</code> in the template.
 We also bind and initialize the template in <code>class_init</code> and <code>instance_init</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -5218,14 +5171,11 @@ impl ObjectImpl for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Finally, we connect the callback to the &quot;clicked&quot; signal of <code>button</code> within <code>constructed</code>.
 The button is easily available thanks to the stored reference in <code>self</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">pub mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">pub mod custom_button;
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
@@ -5251,7 +5201,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
     let window = Window::new(app);
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>With composite templates, <code>main.rs</code> actually became more concise.
 With regard to capabilities, we also get the best of both worlds.</p>
 <p>Thanks to custom widgets we can</p>
@@ -5320,7 +5270,7 @@ Something like this:</p>
 The <code>parent</code> is <code>gtk::ApplicationWindow</code>, so we inherit from it.
 As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#ancestors">ancestors</a> and <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#implements">interfaces</a> apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -5426,17 +5376,14 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Then we initialize the composite template for <code>imp::Window</code>.
 We store references to the entry, the list view as well as the list model.
 This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the <code>class</code> attribute of the template in <code>window.ui</code> matches <code>NAME</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
@@ -5492,13 +5439,10 @@ impl ObjectSubclass for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><code>main.rs</code> also does not hold any surprises for us.</p>
 <p><span class="filename">Filename: listings/todo_app/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod todo_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod todo_object;
 </span><span class="boring">mod todo_row;
 </span><span class="boring">mod window;
 </span><span class="boring">
@@ -5528,7 +5472,7 @@ fn build_ui(app: &amp;Application) {
     let window = Window::new(app);
     window.show();
 }
-</code></pre></pre>
+</code></pre>
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
@@ -5543,7 +5487,7 @@ This object will store the state of the task consisting of:</p>
 <li>a string holding the task name.</li>
 </ul>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -5564,13 +5508,10 @@ impl TodoObject {
 </span><span class="boring">    pub completed: bool,
 </span><span class="boring">    pub content: String,
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Unlike the lists chapter, the state is stored in a struct rather than in individual members of <code>imp::TodoObject</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -5591,16 +5532,13 @@ pub struct TodoData {
     pub completed: bool,
     pub content: String,
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>Not only that, we see that it is also wrapped in a <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>.
 This will be very convenient for saving the state in one of the following chapters.
 Exposing <code>completed</code> and <code>content</code> as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -5683,10 +5621,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Let us move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
@@ -5700,7 +5635,7 @@ The row of a task should look like this:</p>
         &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
         &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
         &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;
       &lt;/object&gt;
     &lt;/child&gt;
     &lt;child&gt;
@@ -5708,7 +5643,7 @@ The row of a task should look like this:</p>
         &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
         &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
         &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/template&gt;
@@ -5716,7 +5651,7 @@ The row of a task should look like this:</p>
 </code></pre>
 <p>In the code, we <a href="https://docs.gtk.org/gtk4/class.Box.html#hierarchy">derive</a> <code>TodoRow</code> from <code>gtk:Box</code>:</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -5799,15 +5734,12 @@ The row of a task should look like this:</p>
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In <code>imp::TodoRow</code>, we hold references to <code>completed_button</code> and <code>content_label</code>.
 We also store a mutable vector of bindings.
 Why we need that will become clear as soon as we get to bind the state of <code>TodoObject</code> to the corresponding <code>TodoRow</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::Binding;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
@@ -5850,14 +5782,11 @@ impl ObjectSubclass for TodoRow {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all boxes
 </span><span class="boring">impl BoxImpl for TodoRow {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now we can bring everything together.
 We override the <code>imp::Window::constructed</code> in order to set up window contents at the time of its construction.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
@@ -5913,15 +5842,12 @@ impl ObjectImpl for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Since we need to access the list model quite often, we add the convenience method <code>Window::model</code> for that.
 In <code>Window::setup_model</code> we create a new model.
 Then we store a reference to the model in <code>imp::Window</code> as well as in <code>gtk::ListView</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -6027,16 +5953,13 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In <code>Window::setup_callbacks</code> we connect to the &quot;activate&quot; signal of the entry.
 This signal is triggered when we press the enter key in the entry.
 Then a new <code>TodoObject</code> with the content will be created and appended to the model.
 Finally, the entry will be cleared.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -6142,10 +6065,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The list elements for the <code>gtk::ListView</code> are produced by a factory.
 Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
 <code>content_label</code> of <code>TodoRow</code> should follow <code>content</code> of <code>TodoObject</code>.
@@ -6157,7 +6077,7 @@ This means we have to use property bindings.
 We will need to unbind them manually when they are no longer needed.</p>
 <p>We will create empty <code>TodoRow</code> objects in the &quot;setup&quot; step in <code>Window::setup_factory</code> and deal with binding in the &quot;bind&quot; and &quot;unbind&quot; steps.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -6263,17 +6183,14 @@ We will need to unbind them manually when they are no longer needed.</p>
         imp.list_view.set_factory(Some(&amp;factory));
     }
 <span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Binding properties in <code>TodoRow::bind</code> works just like in former chapters.
 The only difference is that we store the bindings in a vector.
 This is necessary because a <code>TodoRow</code> will be reused as you scroll through the list.
 That means that over time a <code>TodoRow</code> will need to bound to a new <code>TodoObject</code> and has to be unbound from the old one.
 Unbinding will only work if it can access the stored <code>glib::Binding</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -6356,15 +6273,12 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><code>TodoRow::unbind</code> takes care of the cleanup.
 It iterates through the vector and unbinds each binding.
 In the end, it clears the vector.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -6447,10 +6361,7 @@ In the end, it clears the vector.</p>
         }
     }
 <span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.</p>
 <div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>
