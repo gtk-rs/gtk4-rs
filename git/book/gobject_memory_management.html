@@ -250,7 +250,7 @@ We call every object containing a strong reference a shared owner of the value.
 If we want to modify the content of our <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>,
 we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.<sup class="footnote-reference"><a href="#1">1</a></sup></p>
 <p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use std::{cell::Cell, rc::Rc};
@@ -305,11 +305,11 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>It is not very nice though to fill the scope with temporary variables like <code>number_copy_1</code>.
 We can improve that by using the <code>glib::clone!</code> macro.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::clone;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
@@ -368,11 +368,11 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Just like <code>Rc&lt;Cell&lt;T&gt;&gt;</code>, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with <code>number</code>.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -436,7 +436,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If we now click on one button, the other button's label gets changed.</p>
 <p>But whoops!
 Did we forget about one annoyance of reference-counted systems?
@@ -447,7 +447,7 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead<sup class="footnote-reference"><a href="#2">2</a></sup>.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -513,7 +513,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The reference cycle is broken.
 Every time the button is clicked, <code>glib::clone</code> tries to upgrade the weak reference.
 If we now for example click on one button and the other button is not there anymore, <code>upgrade</code> will return <code>None</code>.
@@ -525,7 +525,7 @@ If we had a <em>weak</em> reference, no one would have kept <code>number</code> 
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -591,10 +591,10 @@ Who then keeps the buttons alive?</p>
     gtk_box.append(&amp;button_decrease);
 <span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -660,10 +660,10 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::Cell, rc::Rc};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
@@ -729,7 +729,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>During the creation of our <code>window</code>, we pass <code>application</code> to it.
 Because of that, <code>application</code> holds a strong reference to <code>window</code>.
 <code>application</code> lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.</p>

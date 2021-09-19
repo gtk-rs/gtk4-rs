@@ -189,7 +189,7 @@ Something like this:</p>
 The <code>parent</code> is <code>gtk::ApplicationWindow</code>, so we inherit from it.
 As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#ancestors">ancestors</a> and <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#implements">interfaces</a> apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -295,17 +295,14 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Then we initialize the composite template for <code>imp::Window</code>.
 We store references to the entry, the list view as well as the list model.
 This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the <code>class</code> attribute of the template in <code>window.ui</code> matches <code>NAME</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
@@ -361,13 +358,10 @@ impl ObjectSubclass for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><code>main.rs</code> also does not hold any surprises for us.</p>
 <p><span class="filename">Filename: listings/todo_app/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod todo_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod todo_object;
 </span><span class="boring">mod todo_row;
 </span><span class="boring">mod window;
 </span><span class="boring">
@@ -397,7 +391,7 @@ fn build_ui(app: &amp;Application) {
     let window = Window::new(app);
     window.show();
 }
-</code></pre></pre>
+</code></pre>
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
@@ -412,7 +406,7 @@ This object will store the state of the task consisting of:</p>
 <li>a string holding the task name.</li>
 </ul>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -433,13 +427,10 @@ impl TodoObject {
 </span><span class="boring">    pub completed: bool,
 </span><span class="boring">    pub content: String,
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Unlike the lists chapter, the state is stored in a struct rather than in individual members of <code>imp::TodoObject</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -460,16 +451,13 @@ pub struct TodoData {
     pub completed: bool,
     pub content: String,
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>Not only that, we see that it is also wrapped in a <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>.
 This will be very convenient for saving the state in one of the following chapters.
 Exposing <code>completed</code> and <code>content</code> as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -552,10 +540,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Let us move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
@@ -585,7 +570,7 @@ The row of a task should look like this:</p>
 </code></pre>
 <p>In the code, we <a href="https://docs.gtk.org/gtk4/class.Box.html#hierarchy">derive</a> <code>TodoRow</code> from <code>gtk:Box</code>:</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -668,15 +653,12 @@ The row of a task should look like this:</p>
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In <code>imp::TodoRow</code>, we hold references to <code>completed_button</code> and <code>content_label</code>.
 We also store a mutable vector of bindings.
 Why we need that will become clear as soon as we get to bind the state of <code>TodoObject</code> to the corresponding <code>TodoRow</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::Binding;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, CheckButton, CompositeTemplate, Label};
@@ -719,14 +701,11 @@ impl ObjectSubclass for TodoRow {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all boxes
 </span><span class="boring">impl BoxImpl for TodoRow {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now we can bring everything together.
 We override the <code>imp::Window::constructed</code> in order to set up window contents at the time of its construction.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
@@ -782,15 +761,12 @@ impl ObjectImpl for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Since we need to access the list model quite often, we add the convenience method <code>Window::model</code> for that.
 In <code>Window::setup_model</code> we create a new model.
 Then we store a reference to the model in <code>imp::Window</code> as well as in <code>gtk::ListView</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -896,16 +872,13 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In <code>Window::setup_callbacks</code> we connect to the &quot;activate&quot; signal of the entry.
 This signal is triggered when we press the enter key in the entry.
 Then a new <code>TodoObject</code> with the content will be created and appended to the model.
 Finally, the entry will be cleared.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -1011,10 +984,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The list elements for the <code>gtk::ListView</code> are produced by a factory.
 Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
 <code>content_label</code> of <code>TodoRow</code> should follow <code>content</code> of <code>TodoObject</code>.
@@ -1026,7 +996,7 @@ This means we have to use property bindings.
 We will need to unbind them manually when they are no longer needed.</p>
 <p>We will create empty <code>TodoRow</code> objects in the &quot;setup&quot; step in <code>Window::setup_factory</code> and deal with binding in the &quot;bind&quot; and &quot;unbind&quot; steps.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use crate::todo_row::TodoRow;
@@ -1132,17 +1102,14 @@ We will need to unbind them manually when they are no longer needed.</p>
         imp.list_view.set_factory(Some(&amp;factory));
     }
 <span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Binding properties in <code>TodoRow::bind</code> works just like in former chapters.
 The only difference is that we store the bindings in a vector.
 This is necessary because a <code>TodoRow</code> will be reused as you scroll through the list.
 That means that over time a <code>TodoRow</code> will need to bound to a new <code>TodoObject</code> and has to be unbound from the old one.
 Unbinding will only work if it can access the stored <code>glib::Binding</code>.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -1225,15 +1192,12 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p><code>TodoRow::unbind</code> takes care of the cleanup.
 It iterates through the vector and unbinds each binding.
 In the end, it clears the vector.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">use glib::{BindingFlags, Object};
@@ -1316,10 +1280,7 @@ In the end, it clears the vector.</p>
         }
     }
 <span class="boring">}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.</p>
 <div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>

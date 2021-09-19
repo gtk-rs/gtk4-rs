@@ -159,7 +159,7 @@ That is why you can move the window at the same time as a progress bar is growin
 That happens when a single task takes too long.
 Let us look at one example.</p>
 <p><span class="filename">Filename: listings/main_event_loop/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run">use std::time::Duration;
+<pre><code class="language-rust  no_run noplayground">use std::time::Duration;
 
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button};
@@ -204,14 +204,14 @@ fn build_ui(app: &amp;Application) {
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The <code>sleep</code> call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.</p>
 <p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button};
@@ -258,7 +258,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
 Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.</p>
 <p>Normally we want to keep track of the work in the thread.
@@ -267,7 +267,7 @@ In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.</p>
 <p><span class="filename">Filename: listings/main_event_loop/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use std::{thread, time::Duration};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
@@ -333,13 +333,13 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Spawning threads is not the only way to run operations asynchronously.
 You can also let the main loop take care of running <code>async</code> functions.
 If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
 <p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -402,10 +402,10 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Since we are single-threaded again, we could even get rid of the channels while achieving the same result.</p>
 <p><span class="filename">Filename: listings/main_event_loop/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust  no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -456,7 +456,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>But why did we not do the same thing with our multi-threaded example?</p>
 <pre><pre class="playground"><code class="language-rust  no_run compile_fail"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">

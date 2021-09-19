@@ -150,10 +150,7 @@
 <p>Some GObject-related functions rely on generic values for their arguments or return parameters.
 Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>enum Value &lt;T&gt; {
+<pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
     bool(bool),
     i8(i8),
     i32(i32),
@@ -165,12 +162,11 @@ Conceptually though, there are similar to a Rust enum defined like this:</p>
     // boxed types
     String(Option&lt;String&gt;),
     Object(Option&lt;T: impl IsA&lt;Object&gt;&gt;),
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>That means that a <code>glib::Value</code> can represent a set of types, but only one of them per instance.
 For example, this is how you would use a <code>Value</code> representing an <code>i32</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Store `i32` as `Value`
@@ -211,13 +207,13 @@ For example, this is how you would use a <code>Value</code> representing an <cod
 </span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Please note that boxed types such as <code>String</code> or <code>Object</code> are wrapped in an <code>Option</code>.
 This comes from C, where boxed types can always be <code>None</code> (or null in C terms).
 You can still access it the same way as with the <code>i32</code> above.
 <code>get</code> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -258,9 +254,9 @@ You can still access it the same way as with the <code>i32</code> above.
 </span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>If you want to differentiate between specifying the wrong type and a <code>Value</code> representing <code>None</code>, just call <code>get::&lt;Option&lt;T&gt;&gt;</code> instead.</p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -301,7 +297,7 @@ You can still access it the same way as with the <code>i32</code> above.
     assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
     assert_eq!(string_none, None);
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>For now, all you need to know is how to convert a Rust type into a <code>glib::Value</code> and vice versa.
 This knowledge will be useful in the next chapters where we discuss properties, signals and models.</p>
 

@@ -151,7 +151,7 @@
 <p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>.
 As a reminder, that is how we used it in our trusty &quot;Hello World!&quot; app.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
@@ -195,7 +195,7 @@ fn build_ui(app: &amp;Application) {
     // Present window to the user
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>Creating widgets directly from code is perfectly fine.
 However, with most toolkits you can describe your user interface with a markup language and GTK is no exception here.
 For example the following <code>xml</code> snippet describes the window widget of the &quot;Hello World!&quot; app. </p>
@@ -227,7 +227,7 @@ Since <code>ApplicationWindow</code> can contain other widgets we use the <code>
 <p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a><sup class="footnote-reference"><a href="#1">1</a></sup>.
 All widgets that can be described that way can be found <a href="../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1">here</a></p>
 <p><span class="filename">Filename: listings/interface_builder/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -268,7 +268,7 @@ All widgets that can be described that way can be found <a href="../docs/gtk4/pr
     window.set_child(Some(&amp;button));
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>This is a bit disappointing.
 Even though we have already described the UI in the markup file, the amount of code is still pretty much the same.
 There are still cases where it is valuable to know of the existence of <code>gtk::Builder</code>.
@@ -276,7 +276,7 @@ We will see for example that <a href="../docs/gtk4/struct.ShortcutsWindow.html">
 <p>At least we did not lose any flexibility by using <code>gtk::Builder</code>.
 It is for example still possible to refer to custom widgets such as this bare-bones <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">
 </span>// Object holding the state
@@ -299,10 +299,7 @@ impl ObjectSubclass for CustomButton {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Within the <code>xml</code> file we reference the widget with the <code>NAME</code> we gave it in <code>imp.rs</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -323,7 +320,7 @@ impl ObjectSubclass for CustomButton {
 </code></pre>
 <p>We also have to make sure to register the custom widget before it is used by the interface builder.</p>
 <p><span class="filename">Filename: listings/interface_builder/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow};
@@ -371,7 +368,7 @@ impl ObjectSubclass for CustomButton {
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <h2 id="composite-templates"><a class="header" href="#composite-templates">Composite Templates</a></h2>
 <p>The actual reason why we devote a whole chapter to the interface builder is the existence of composite templates.
 Again, composite templates are described by <code>xml</code> files.</p>
@@ -401,7 +398,7 @@ Before, we described a pre-existing widget.</p>
 </code></pre>
 <p>Within our code we create a custom widget inheriting from <code>gtk::ApplicationWindow</code> to make use of our template.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">mod imp;
+<pre><code class="language-rust  no_run noplayground">mod imp;
 
 use glib::Object;
 use gtk::Application;
@@ -420,14 +417,11 @@ impl Window {
         Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
     }
 }
-<span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</code></pre>
 <p>In the private struct, we then add the derive macro <code>gtk::CompositeTemplate</code>.
 We also specify that the template information comes from a file <code>window.ui</code> in the same folder.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -482,10 +476,7 @@ pub struct Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>One very convenient feature of templates is the template child.
 You use it by adding a struct member with the same name as one <code>id</code> attribute in the template.
 Template child then:</p>
@@ -495,7 +486,7 @@ Template child then:</p>
 </ul>
 <p>We need both for our custom button, so we add it to the struct.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -550,14 +541,11 @@ impl ObjectSubclass for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Within the <code>ObjectSubclass</code> trait, we make sure that <code>NAME</code> corresponds to <code>class</code> in the template and <code>ParentType</code> corresponds to <code>parent</code> in the template.
 We also bind and initialize the template in <code>class_init</code> and <code>instance_init</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::InitializingObject;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -612,14 +600,11 @@ impl ObjectImpl for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Finally, we connect the callback to the &quot;clicked&quot; signal of <code>button</code> within <code>constructed</code>.
 The button is easily available thanks to the stored reference in <code>self</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">pub mod custom_button;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">pub mod custom_button;
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
@@ -645,7 +630,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
     let window = Window::new(app);
     window.present();
 }
-</code></pre></pre>
+</code></pre>
 <p>With composite templates, <code>main.rs</code> actually became more concise.
 With regard to capabilities, we also get the best of both worlds.</p>
 <p>Thanks to custom widgets we can</p>

@@ -153,7 +153,7 @@
 <p>Let us explore this concept by adding labels to a <code>ListBox</code>.
 Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p><span class="filename">Filename: listings/lists/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -193,12 +193,12 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We cannot display so many widgets at once.
 Therefore, we add <code>ListBox</code> to a <a href="../docs/gtk/struct.ScrolledWindow.html"><code>ScrolledWindow</code></a>.
 Now we can scroll through our elements.</p>
 <p><span class="filename">Filename: listings/lists/1/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -238,7 +238,7 @@ Now we can scroll through our elements.</p>
     window.set_child(Some(&amp;scrolled_window));
     window.show();
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <div style="text-align:center"><img src="img/lists_list_box.png"/></div>
 <p>That was easy enough.
 However, we currently create one widget per element.
@@ -263,7 +263,7 @@ What we would need is a GObject which holds an integer and exposes it as propert
 To get that we just have to adapt the <code>CustomButton</code> we created in the subclassing <a href="gobject_subclassing.html">chapter</a>.
 We only need to let it inherit from GObject instead of <code>Button</code> and let the <code>new</code> method accept an integer as parameter.</p>
 <p><span class="filename">Filename: listings/lists/2/integer_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -278,13 +278,10 @@ impl IntegerObject {
     }
 }
 <span class="boring">
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>imp</code> module can stay the same apart from the rename from <code>CustomButton</code> to <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -348,15 +345,12 @@ pub struct IntegerObject {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">// Please ignore this line
-</span><span class="boring">// It is only there to make mdbook happy
-</span><span class="boring">fn main() {}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We now fill the model with integers from 0 to 100 000.
 Please note that the models only takes care of the data.
 Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -437,13 +431,13 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>The <code>ListItemFactory</code> takes care of the widgets as well as their relationship to the model.
 Here, we use the <a href="../docs/gtk4/struct.SignalListItemFactory.html"><code>SignalListItemFactory</code></a> which emits a signal for every relevant step in the life of a <a href="../docs/gtk4/struct.ListItem.html"><code>ListItem</code></a>.
 The &quot;setup&quot; signal will be emitted when new widgets have to be created.
 We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -524,10 +518,10 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>In the &quot;bind&quot; step we bind the data in our model to the individual list items.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -608,12 +602,12 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
 The other options would have been <a href="../docs/gtk4/struct.MultiSelection.html"><code>MultiSelection</code></a> or <a href="../docs/gtk4/struct.NoSelection.html"><code>NoSelection</code></a>.
 Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -694,10 +688,10 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Every <code>ListView</code> has to be a direct child of a <code>ScrolledWindow</code>, so we are adding it to one.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -778,17 +772,14 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
     window.set_child(Some(&amp;scrolled_window));
     window.show();
 <span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_1.png"/></div>
 <p>Let us see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method <code>increase_number</code> to our <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/lists/3/integer_object/mod.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">mod imp;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -814,11 +805,10 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
             .expect(&quot;Could not set property.&quot;);
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>In order to interact with our <code>ListView</code>, we connect to its &quot;activate&quot; signal.</p>
 <p><span class="filename">Filename: listings/lists/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::prelude::*;
@@ -909,13 +899,13 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Now every time we activate an element, for example by double-clicking on it,
 the corresponding &quot;number&quot; property of the <code>IntegerObject</code> in the model will be increased by 1.
 However, just because the <code>IntegerObject</code> has been modified the corresponding <code>Label</code> does not immediately change.
 One naive approach would be to bind the properties in the &quot;bind&quot; step of the <code>SignalListItemFactory</code>.</p>
 <p><span class="filename">Filename: listings/lists/3/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::prelude::*;
@@ -1006,7 +996,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>At first glance, that seems to work.
 However, as you scroll around and activate a few list elements,
 you will notice that sometimes multiple numbers change even though you only activated a single one.
@@ -1017,7 +1007,7 @@ That also means that in our case, multiple numbers will be bound to the same wid
 As a first step it allows us to remove the &quot;bind&quot; step.
 Let us see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/lists/4/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -1102,7 +1092,7 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>An expression describes a reference to a value.
 So when we create a <a href="../docs/gtk4/struct.ConstantExpression.html"><code>ConstantExpression</code></a> of <code>list_item</code>, we create a reference to a <code>ListItem</code>.
 We then create a <a href="../docs/gtk4/struct.PropertyExpression.html"><code>PropertyExpression</code></a> to get a reference to the &quot;item&quot; property of <code>list_item</code>.
@@ -1119,7 +1109,7 @@ When we now activate a label, only the corresponding number visibly changes.</p>
 <p>That is still not everything we can do.
 We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -1253,10 +1243,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>Additionally, we can reverse the order of our model.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -1390,10 +1380,10 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>To ensure that our filter and sorter get updated when we modify the numbers, we call the <code>changed</code> method on them.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
@@ -1527,7 +1517,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
 </span><span class="boring">    window.show();
 </span><span class="boring">}
-</span></code></pre></pre>
+</span></code></pre>
 <p>After our changes, the application looks like this:</p>
 <div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
 <p>We now know how to display a list of data.
