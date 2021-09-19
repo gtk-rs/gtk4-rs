@@ -28,6 +28,11 @@ path = "actions/3/main.rs"
 name = "actions_4"
 path = "actions/4/main.rs"
 
+[[bin]]
+name = "actions_5"
+path = "actions/5/main.rs"
+
+
 # gobject_memory_management
 [[bin]]
 name = "gobject_memory_management_1"
