@@ -35,7 +35,7 @@ impl ObjectImpl for Window {
         // Call "constructed" on parent
         self.parent_constructed(obj);
 
-        // Add action "quit" to `window`
+        // Add action "quit" to `window` which takes no parameters
         let action_quit = SimpleAction::new("quit", None);
         action_quit.connect_activate(clone!(@weak obj => move |_, _| {
             obj.close();
