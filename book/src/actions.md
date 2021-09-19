@@ -35,9 +35,33 @@ Also, if there are multiple windows and therefore potentially multiple actions n
 This is the reason why [`activate_action`](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.activate_action) takes `&self` as first parameter.
 `activate_action` up the action in the action groups associated with `self` and its ancestors.
 This means that if we press the button belonging to window #3, the action of window #3 will be activated.
-If we want to have a single globally accessible action instead, we add it to our application instead.
+If we want to have a single globally accessible action instead, we add it to our application.
 
+## Actionable
 
+Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [Actionable](../docs/gtk4/struct.Actionable.html) interface.
+That way the action can be specified by setting the property "action-name".
+We can do that by simply adding one method call to our [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html).
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/actions/3/main.rs:button_builder}}
+```
+
+This makes it also easily accessible through the interface builder.
+As usual, we build up the window via a composite template.
+Within the template we can then set the "action-name" property.
+
+```xml
+{{#rustdoc_include ../listings/actions/4/window/window.ui}}
+```
+
+The action can be added within `constructed`.
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/actions/4/window/imp.rs:object_impl}}
+```
+
+## Stateful Actions
 
 
 ## Keybindings

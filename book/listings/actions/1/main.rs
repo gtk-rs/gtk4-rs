@@ -25,7 +25,7 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .build();
 
-    // Add action "quit" to `window`
+    // Add action "quit" to `window` which takes no parameters
     let action_quit = SimpleAction::new("quit", None);
     action_quit.connect_activate(clone!(@weak window => move |_, _| {
         window.close();
@@ -43,7 +43,7 @@ fn build_ui(app: &Application) {
 
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        // Activate "win.quit" with no parameters
+        // Activate "win.quit" without passing parameters
         button.activate_action("win.quit", None);
     });
 
