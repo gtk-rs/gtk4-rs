@@ -451,6 +451,13 @@ impl PrintUnixDialog {
     }
 }
 
+impl Default for PrintUnixDialog {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct PrintUnixDialog object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`PrintUnixDialog`] objects.

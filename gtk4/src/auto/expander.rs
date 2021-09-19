@@ -351,6 +351,13 @@ impl Expander {
     }
 }
 
+impl Default for Expander {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Expander object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Expander`] objects.

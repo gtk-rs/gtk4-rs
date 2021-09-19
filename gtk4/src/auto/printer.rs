@@ -379,6 +379,13 @@ impl Printer {
     }
 }
 
+impl Default for Printer {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Printer object with default parameters")
+    }
+}
+
 impl fmt::Display for Printer {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

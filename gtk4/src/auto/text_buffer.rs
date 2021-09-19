@@ -43,6 +43,13 @@ impl TextBuffer {
     }
 }
 
+impl Default for TextBuffer {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct TextBuffer object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TextBuffer`] objects.

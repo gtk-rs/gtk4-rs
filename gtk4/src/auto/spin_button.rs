@@ -575,6 +575,13 @@ impl SpinButton {
     }
 }
 
+impl Default for SpinButton {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct SpinButton object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SpinButton`] objects.

@@ -160,6 +160,13 @@ impl SliceListModel {
     }
 }
 
+impl Default for SliceListModel {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct SliceListModel object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SliceListModel`] objects.

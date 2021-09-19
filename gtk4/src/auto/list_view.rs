@@ -300,6 +300,13 @@ impl ListView {
     }
 }
 
+impl Default for ListView {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct ListView object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ListView`] objects.

@@ -56,6 +56,13 @@ impl FontChooserDialog {
     }
 }
 
+impl Default for FontChooserDialog {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct FontChooserDialog object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FontChooserDialog`] objects.

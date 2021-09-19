@@ -151,6 +151,13 @@ impl AppChooserDialog {
     }
 }
 
+impl Default for AppChooserDialog {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct AppChooserDialog object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`AppChooserDialog`] objects.
