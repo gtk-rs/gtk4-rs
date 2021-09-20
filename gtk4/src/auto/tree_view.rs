@@ -808,7 +808,7 @@ pub trait TreeViewExt: 'static {
     fn remove_column(&self, column: &TreeViewColumn) -> i32;
 
     #[doc(alias = "gtk_tree_view_row_activated")]
-    fn row_activated(&self, path: &TreePath, column: &TreeViewColumn);
+    fn row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>);
 
     #[doc(alias = "gtk_tree_view_row_expanded")]
     fn row_expanded(&self, path: &TreePath) -> bool;
@@ -973,12 +973,12 @@ pub trait TreeViewExt: 'static {
     ) -> bool;
 
     #[doc(alias = "row-activated")]
-    fn connect_row_activated<F: Fn(&Self, &TreePath, &TreeViewColumn) + 'static>(
+    fn connect_row_activated<F: Fn(&Self, &TreePath, Option<&TreeViewColumn>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn emit_row_activated(&self, path: &TreePath, column: &TreeViewColumn);
+    fn emit_row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>);
 
     #[doc(alias = "row-collapsed")]
     fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
@@ -1772,7 +1772,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
+    fn row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>) {
         unsafe {
             ffi::gtk_tree_view_row_activated(
                 self.as_ref().to_glib_none().0,
@@ -2367,13 +2367,13 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_move_cursor`")
     }
 
-    fn connect_row_activated<F: Fn(&Self, &TreePath, &TreeViewColumn) + 'static>(
+    fn connect_row_activated<F: Fn(&Self, &TreePath, Option<&TreeViewColumn>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn row_activated_trampoline<
             P: IsA<TreeView>,
-            F: Fn(&P, &TreePath, &TreeViewColumn) + 'static,
+            F: Fn(&P, &TreePath, Option<&TreeViewColumn>) + 'static,
         >(
             this: *mut ffi::GtkTreeView,
             path: *mut ffi::GtkTreePath,
@@ -2384,7 +2384,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f(
                 TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
-                &from_glib_borrow(column),
+                Option::<TreeViewColumn>::from_glib_borrow(column)
+                    .as_ref()
+                    .as_ref(),
             )
         }
         unsafe {
@@ -2400,7 +2402,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn emit_row_activated(&self, path: &TreePath, column: &TreeViewColumn) {
+    fn emit_row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>) {
         let _ = unsafe {
             glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
                 .emit_by_name("row-activated", &[&path, &column])

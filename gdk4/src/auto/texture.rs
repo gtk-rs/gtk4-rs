@@ -64,7 +64,7 @@ pub trait TextureExt: 'static {
     fn width(&self) -> i32;
 
     #[doc(alias = "gdk_texture_save_to_png")]
-    fn save_to_png(&self, filename: &str) -> bool;
+    fn save_to_png<P: AsRef<std::path::Path>>(&self, filename: P) -> bool;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
@@ -76,11 +76,11 @@ impl<O: IsA<Texture>> TextureExt for O {
         unsafe { ffi::gdk_texture_get_width(self.as_ref().to_glib_none().0) }
     }
 
-    fn save_to_png(&self, filename: &str) -> bool {
+    fn save_to_png<P: AsRef<std::path::Path>>(&self, filename: P) -> bool {
         unsafe {
             from_glib(ffi::gdk_texture_save_to_png(
                 self.as_ref().to_glib_none().0,
-                filename.to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
             ))
         }
     }

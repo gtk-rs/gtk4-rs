@@ -3944,6 +3944,9 @@ extern "C" {
         win_x: *mut c_double,
         win_y: *mut c_double,
     ) -> *mut GdkSurface;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gdk_device_get_timestamp(device: *mut GdkDevice) -> u32;
     pub fn gdk_device_get_vendor_id(device: *mut GdkDevice) -> *const c_char;
     pub fn gdk_device_has_bidi_layouts(device: *mut GdkDevice) -> gboolean;
 
@@ -4004,6 +4007,12 @@ extern "C" {
         n_keys: *mut c_int,
     ) -> gboolean;
     pub fn gdk_display_notify_startup_complete(display: *mut GdkDisplay, startup_id: *const c_char);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gdk_display_prepare_gl(
+        self_: *mut GdkDisplay,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
     pub fn gdk_display_put_event(display: *mut GdkDisplay, event: *mut GdkEvent);
     pub fn gdk_display_supports_input_shapes(display: *mut GdkDisplay) -> gboolean;
     pub fn gdk_display_sync(display: *mut GdkDisplay);
@@ -4209,6 +4218,8 @@ extern "C" {
         minor: *mut c_int,
     );
     pub fn gdk_gl_context_is_legacy(context: *mut GdkGLContext) -> gboolean;
+    pub fn gdk_gl_context_is_shared(self_: *mut GdkGLContext, other: *mut GdkGLContext)
+        -> gboolean;
     pub fn gdk_gl_context_make_current(context: *mut GdkGLContext);
     pub fn gdk_gl_context_realize(
         context: *mut GdkGLContext,

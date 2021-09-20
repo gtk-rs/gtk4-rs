@@ -17,6 +17,9 @@ use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplay")]
@@ -110,6 +113,11 @@ pub trait DisplayExt: 'static {
 
     #[doc(alias = "gdk_display_notify_startup_complete")]
     fn notify_startup_complete(&self, startup_id: &str);
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_display_prepare_gl")]
+    fn prepare_gl(&self) -> Result<(), glib::Error>;
 
     #[doc(alias = "gdk_display_supports_input_shapes")]
     fn supports_input_shapes(&self) -> bool;
@@ -264,6 +272,20 @@ impl<O: IsA<Display>> DisplayExt for O {
                 self.as_ref().to_glib_none().0,
                 startup_id.to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    fn prepare_gl(&self) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let _ = ffi::gdk_display_prepare_gl(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 
