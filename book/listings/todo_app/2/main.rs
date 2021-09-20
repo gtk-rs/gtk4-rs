@@ -32,9 +32,9 @@ fn main() {
 }
 
 fn setup_shortcuts(app: &Application) {
-    app.set_accels_for_action("win.filter::All", &["<primary>a"]);
-    app.set_accels_for_action("win.filter::Open", &["<primary>o"]);
-    app.set_accels_for_action("win.filter::Done", &["<primary>d"]);
+    app.set_accels_for_action("win.filter('All')", &["<primary>a"]);
+    app.set_accels_for_action("win.filter('Open')", &["<primary>o"]);
+    app.set_accels_for_action("win.filter('Done')", &["<primary>d"]);
     app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 }
 
