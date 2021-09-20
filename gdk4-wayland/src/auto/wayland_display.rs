@@ -15,6 +15,14 @@ glib::wrapper! {
 }
 
 impl WaylandDisplay {
+    //#[cfg(any(feature = "v4_4", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    //#[doc(alias = "gdk_wayland_display_get_egl_display")]
+    //#[doc(alias = "get_egl_display")]
+    //pub fn egl_display(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
+    //    unsafe { TODO: call ffi:gdk_wayland_display_get_egl_display() }
+    //}
+
     #[doc(alias = "gdk_wayland_display_get_startup_notification_id")]
     #[doc(alias = "get_startup_notification_id")]
     pub fn startup_notification_id(&self) -> Option<glib::GString> {

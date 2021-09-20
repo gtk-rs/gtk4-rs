@@ -24,6 +24,7 @@ glib::wrapper! {
 pub const NONE_MEDIA_STREAM: Option<&MediaStream> = None;
 
 pub trait MediaStreamExt: 'static {
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gtk_media_stream_ended")]
     fn ended(&self);
 
@@ -80,6 +81,7 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_play")]
     fn play(&self);
 
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gtk_media_stream_prepared")]
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
@@ -107,6 +109,22 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_set_volume")]
     fn set_volume(&self, volume: f64);
 
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_media_stream_stream_ended")]
+    fn stream_ended(&self);
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_media_stream_stream_prepared")]
+    fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_media_stream_stream_unprepared")]
+    fn stream_unprepared(&self);
+
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gtk_media_stream_unprepared")]
     fn unprepared(&self);
 
@@ -329,6 +347,36 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     fn set_volume(&self, volume: f64) {
         unsafe {
             ffi::gtk_media_stream_set_volume(self.as_ref().to_glib_none().0, volume);
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    fn stream_ended(&self) {
+        unsafe {
+            ffi::gtk_media_stream_stream_ended(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64) {
+        unsafe {
+            ffi::gtk_media_stream_stream_prepared(
+                self.as_ref().to_glib_none().0,
+                has_audio.into_glib(),
+                has_video.into_glib(),
+                seekable.into_glib(),
+                duration,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    fn stream_unprepared(&self) {
+        unsafe {
+            ffi::gtk_media_stream_stream_unprepared(self.as_ref().to_glib_none().0);
         }
     }
 

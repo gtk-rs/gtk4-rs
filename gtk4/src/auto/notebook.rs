@@ -403,12 +403,12 @@ impl Notebook {
     }
 
     #[doc(alias = "create-window")]
-    pub fn connect_create_window<F: Fn(&Self, &Widget) -> Notebook + 'static>(
+    pub fn connect_create_window<F: Fn(&Self, &Widget) -> Option<Notebook> + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn create_window_trampoline<
-            F: Fn(&Notebook, &Widget) -> Notebook + 'static,
+            F: Fn(&Notebook, &Widget) -> Option<Notebook> + 'static,
         >(
             this: *mut ffi::GtkNotebook,
             page: *mut ffi::GtkWidget,

@@ -350,7 +350,7 @@ pub trait PrintOperationExt: 'static {
     fn connect_begin_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "create-custom-widget")]
-    fn connect_create_custom_widget<F: Fn(&Self) -> glib::Object + 'static>(
+    fn connect_create_custom_widget<F: Fn(&Self) -> Option<glib::Object> + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -869,13 +869,13 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn connect_create_custom_widget<F: Fn(&Self) -> glib::Object + 'static>(
+    fn connect_create_custom_widget<F: Fn(&Self) -> Option<glib::Object> + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn create_custom_widget_trampoline<
             P: IsA<PrintOperation>,
-            F: Fn(&P) -> glib::Object + 'static,
+            F: Fn(&P) -> Option<glib::Object> + 'static,
         >(
             this: *mut ffi::GtkPrintOperation,
             f: glib::ffi::gpointer,

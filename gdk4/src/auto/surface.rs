@@ -65,7 +65,7 @@ pub trait SurfaceExt: 'static {
     fn create_cairo_context(&self) -> Option<CairoContext>;
 
     #[doc(alias = "gdk_surface_create_gl_context")]
-    fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
+    fn create_gl_context(&self) -> Result<Option<GLContext>, glib::Error>;
 
     #[doc(alias = "gdk_surface_create_vulkan_context")]
     fn create_vulkan_context(&self) -> Result<VulkanContext, glib::Error>;
@@ -182,7 +182,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
+    fn create_gl_context(&self) -> Result<Option<GLContext>, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret =

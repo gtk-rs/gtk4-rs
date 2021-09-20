@@ -50,6 +50,7 @@ pub trait GLContextExt: 'static {
     #[doc(alias = "get_required_version")]
     fn required_version(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gdk_gl_context_get_shared_context")]
     #[doc(alias = "get_shared_context")]
     fn shared_context(&self) -> Option<GLContext>;
@@ -64,6 +65,9 @@ pub trait GLContextExt: 'static {
 
     #[doc(alias = "gdk_gl_context_is_legacy")]
     fn is_legacy(&self) -> bool;
+
+    #[doc(alias = "gdk_gl_context_is_shared")]
+    fn is_shared<P: IsA<GLContext>>(&self, other: &P) -> bool;
 
     #[doc(alias = "gdk_gl_context_make_current")]
     fn make_current(&self);
@@ -151,6 +155,15 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         unsafe {
             from_glib(ffi::gdk_gl_context_is_legacy(
                 self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn is_shared<P: IsA<GLContext>>(&self, other: &P) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_gl_context_is_shared(
+                self.as_ref().to_glib_none().0,
+                other.as_ref().to_glib_none().0,
             ))
         }
     }

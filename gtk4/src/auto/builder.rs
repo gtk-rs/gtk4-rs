@@ -91,16 +91,16 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_add_objects_from_file")]
-    pub fn add_objects_from_file(
+    pub fn add_objects_from_file<P: AsRef<std::path::Path>>(
         &self,
-        filename: &str,
+        filename: P,
         object_ids: &[&str],
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_builder_add_objects_from_file(
                 self.to_glib_none().0,
-                filename.to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
                 object_ids.to_glib_none().0,
                 &mut error,
             );

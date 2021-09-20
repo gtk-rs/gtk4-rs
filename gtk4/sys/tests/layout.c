@@ -185,6 +185,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkPageSet", sizeof(GtkPageSet), alignof(GtkPageSet));
     printf("%s;%zu;%zu\n", "GtkPanDirection", sizeof(GtkPanDirection), alignof(GtkPanDirection));
     printf("%s;%zu;%zu\n", "GtkParamSpecExpression", sizeof(GtkParamSpecExpression), alignof(GtkParamSpecExpression));
+    printf("%s;%zu;%zu\n", "GtkPasswordEntryBufferClass", sizeof(GtkPasswordEntryBufferClass), alignof(GtkPasswordEntryBufferClass));
     printf("%s;%zu;%zu\n", "GtkPickFlags", sizeof(GtkPickFlags), alignof(GtkPickFlags));
     printf("%s;%zu;%zu\n", "GtkPictureClass", sizeof(GtkPictureClass), alignof(GtkPictureClass));
     printf("%s;%zu;%zu\n", "GtkPolicyType", sizeof(GtkPolicyType), alignof(GtkPolicyType));
