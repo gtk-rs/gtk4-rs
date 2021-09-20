@@ -179,6 +179,13 @@ impl TreeListModel {
     }
 }
 
+impl Default for TreeListModel {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct TreeListModel object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TreeListModel`] objects.

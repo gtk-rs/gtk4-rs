@@ -439,6 +439,13 @@ impl ColumnView {
     }
 }
 
+impl Default for ColumnView {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct ColumnView object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ColumnView`] objects.

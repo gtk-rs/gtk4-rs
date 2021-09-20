@@ -73,6 +73,13 @@ impl Scale {
     }
 }
 
+impl Default for Scale {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Scale object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Scale`] objects.

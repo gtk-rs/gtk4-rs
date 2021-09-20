@@ -931,6 +931,13 @@ impl Label {
     }
 }
 
+impl Default for Label {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct Label object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Label`] objects.

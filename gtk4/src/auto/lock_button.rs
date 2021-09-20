@@ -343,6 +343,13 @@ impl LockButton {
     }
 }
 
+impl Default for LockButton {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct LockButton object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`LockButton`] objects.

@@ -96,6 +96,13 @@ impl PageSetupUnixDialog {
     }
 }
 
+impl Default for PageSetupUnixDialog {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct PageSetupUnixDialog object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`PageSetupUnixDialog`] objects.

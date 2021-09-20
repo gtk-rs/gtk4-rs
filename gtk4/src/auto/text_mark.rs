@@ -40,6 +40,13 @@ impl TextMark {
     }
 }
 
+impl Default for TextMark {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct TextMark object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TextMark`] objects.

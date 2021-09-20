@@ -198,6 +198,13 @@ impl FilterListModel {
     }
 }
 
+impl Default for FilterListModel {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct FilterListModel object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FilterListModel`] objects.
