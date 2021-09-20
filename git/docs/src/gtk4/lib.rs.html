@@ -313,6 +313,13 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
@@ -384,9 +391,17 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_VALUE_UNDEFINED&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACCESSIBLE_VALUE_UNDEFINED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">ffi::GTK_ACCESSIBLE_VALUE_UNDEFINED</span> <span class="kw">as</span> <span class="ident">i32</span>;
 
-<span class="comment">//TODO: replace with -sys value once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3513 gets merged</span>
+<span class="doccomment">/// The value used to refer to a guaranteed invalid position</span>
+<span class="doccomment">/// in a `GListModel`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This value may be returned from some functions, others may</span>
+<span class="doccomment">/// accept it as input. Its interpretation may differ for different</span>
+<span class="doccomment">/// functions.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Refer to each function&#39;s documentation for if this value is</span>
+<span class="doccomment">/// allowed and what it does.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INVALID_LIST_POSITION&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVALID_LIST_POSITION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::MAX</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVALID_LIST_POSITION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_INVALID_LIST_POSITION</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
 <span class="doccomment">/// Use this priority for functionality related to size allocation.</span>
 <span class="doccomment">///</span>
@@ -482,7 +497,6 @@
 <span class="kw">mod</span> <span class="ident">font_chooser</span>;
 <span class="kw">mod</span> <span class="ident">functions</span>;
 <span class="kw">mod</span> <span class="ident">gesture_stylus</span>;
-<span class="kw">mod</span> <span class="ident">icon_theme</span>;
 <span class="kw">mod</span> <span class="ident">im_context</span>;
 <span class="kw">mod</span> <span class="ident">im_context_simple</span>;
 <span class="kw">mod</span> <span class="ident">info_bar</span>;

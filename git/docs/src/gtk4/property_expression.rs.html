@@ -214,6 +214,8 @@
 <span id="141">141</span>
 <span id="142">142</span>
 <span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::expression::Expression</span>;
@@ -239,9 +241,10 @@
 );
 
 <span class="kw">impl</span> <span class="ident">PropertyExpression</span> {
-    <span class="doccomment">/// Creates an expression that looks up a property via the</span>
-    <span class="doccomment">/// given `expression` or the `this` argument when `expression`</span>
-    <span class="doccomment">/// is `NULL`.</span>
+    <span class="doccomment">/// Creates an expression that looks up a property.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The object to use is found by evaluating the `expression`,</span>
+    <span class="doccomment">/// or using the `this` argument when `expression` is `NULL`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the resulting object conforms to `this_type`, its property named</span>
     <span class="doccomment">/// `property_name` will be queried. Otherwise, this expression&#39;s</span>
@@ -276,9 +279,10 @@
         }
     }
 
-    <span class="doccomment">/// Creates an expression that looks up a property via the</span>
-    <span class="doccomment">/// given `expression` or the `this` argument when `expression`</span>
-    <span class="doccomment">/// is `NULL`.</span>
+    <span class="doccomment">/// Creates an expression that looks up a property.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The object to use is found by evaluating the `expression`,</span>
+    <span class="doccomment">/// or using the `this` argument when `expression` is `NULL`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the resulting object conforms to `this_type`, its</span>
     <span class="doccomment">/// property specified by `pspec` will be queried.</span>

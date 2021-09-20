@@ -353,7 +353,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the action name, or [`None`] if none is set</span>
+    <span class="doccomment">/// the action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_get_action_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_action_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">action_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -381,7 +381,7 @@
     <span class="doccomment">/// respectively. This is the same form used for actions in the `GMenu`</span>
     <span class="doccomment">/// associated with the window.</span>
     <span class="doccomment">/// ## `action_name`</span>
-    <span class="doccomment">/// an action name, or [`None`]</span>
+    <span class="doccomment">/// an action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">action_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
@@ -404,7 +404,7 @@
     <span class="doccomment">/// be rendered as active (and the other buttons, with different targets,</span>
     <span class="doccomment">/// rendered inactive).</span>
     <span class="doccomment">/// ## `target_value`</span>
-    <span class="doccomment">/// a [`glib::Variant`][crate::glib::Variant] to set as the target value, or [`None`]</span>
+    <span class="doccomment">/// a `GVariant` to set as the target value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">target_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>);
 

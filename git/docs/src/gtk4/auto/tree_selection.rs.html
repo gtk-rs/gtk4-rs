@@ -561,9 +561,9 @@
     <span class="doccomment">/// first.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// One of the important things to remember when monitoring the selection of</span>
-    <span class="doccomment">/// a view is that the `signal::TreeSelection::changed` signal is mostly a hint.</span>
+    <span class="doccomment">/// a view is that the [`TreeSelection`][crate::TreeSelection]::changed signal is mostly a hint.</span>
     <span class="doccomment">/// That is, it may only emit one signal when a range of rows is selected.</span>
-    <span class="doccomment">/// Additionally, it may on occasion emit a `signal::TreeSelection::changed` signal</span>
+    <span class="doccomment">/// Additionally, it may on occasion emit a [`TreeSelection`][crate::TreeSelection]::changed signal</span>
     <span class="doccomment">/// when nothing has happened (mostly as a result of programmers calling</span>
     <span class="doccomment">/// select_row on an already selected row).</span>
     <span class="doccomment">///</span>
@@ -618,10 +618,10 @@
     <span class="doccomment">/// TRUE, if there is a selected node.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel], or NULL.</span>
+    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// The [`TreeIter`][crate::TreeIter], or NULL.</span>
+    <span class="doccomment">/// The [`TreeIter`][crate::TreeIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_get_selected&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TreeModel</span>, <span class="ident">TreeIter</span>)<span class="op">&gt;</span> {
@@ -643,7 +643,7 @@
 
     <span class="doccomment">/// Creates a list of path of all selected rows. Additionally, if you are</span>
     <span class="doccomment">/// planning on modifying the model after calling this function, you may</span>
-    <span class="doccomment">/// want to convert the returned list into a list of `GtkTreeRowReferences`.</span>
+    <span class="doccomment">/// want to convert the returned list into a list of [`TreeRowReference`][crate::TreeRowReference]s.</span>
     <span class="doccomment">/// To do this, you can use [`TreeRowReference::new()`][crate::TreeRowReference::new()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To free the return value, use:</span>
@@ -660,7 +660,7 @@
     <span class="doccomment">/// A `GList` containing a [`TreePath`][crate::TreePath] for each selected row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel], or [`None`].</span>
+    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_get_selected_rows&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected_rows&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_rows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>, <span class="ident">TreeModel</span>) {

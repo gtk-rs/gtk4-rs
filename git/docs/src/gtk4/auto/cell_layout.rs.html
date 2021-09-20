@@ -437,7 +437,7 @@
     <span class="doccomment">/// setting attributes and data funcs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// One of the notable features provided by implementations of</span>
-    <span class="doccomment">/// GtkCellLayout are attributes. Attributes let you set the properties</span>
+    <span class="doccomment">/// [`CellLayout`][crate::CellLayout] are attributes. Attributes let you set the properties</span>
     <span class="doccomment">/// in flexible ways. They can just be set to constant values like regular</span>
     <span class="doccomment">/// properties. But they can also be mapped to a column of the underlying</span>
     <span class="doccomment">/// tree model with `gtk_cell_layout_set_attributes()`, which means that the value</span>
@@ -450,7 +450,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementations of GtkCellLayout which also implement the GtkBuildable</span>
     <span class="doccomment">/// interface ([`CellView`][crate::CellView], [`IconView`][crate::IconView], [`ComboBox`][crate::ComboBox],</span>
-    <span class="doccomment">/// [`EntryCompletion`][crate::EntryCompletion], [`TreeViewColumn`][crate::TreeViewColumn]) accept GtkCellRenderer objects</span>
+    <span class="doccomment">/// [`EntryCompletion`][crate::EntryCompletion], [`TreeViewColumn`][crate::TreeViewColumn]) accept [`CellRenderer`][crate::CellRenderer] objects</span>
     <span class="doccomment">/// as `&lt;child&gt;` elements in UI definitions. They support a custom `&lt;attributes&gt;`</span>
     <span class="doccomment">/// element for their children, which can contain multiple `&lt;attribute&gt;`</span>
     <span class="doccomment">/// elements. Each `&lt;attribute&gt;` element has a name attribute which specifies</span>
@@ -527,13 +527,14 @@
     <span class="doccomment">/// Adds an attribute mapping to the list in `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `column` is the column of the model to get a value from, and the</span>
-    <span class="doccomment">/// `attribute` is the parameter on `cell` to be set from the value. So for</span>
+    <span class="doccomment">/// `attribute` is the property on `cell` to be set from that value. So for</span>
     <span class="doccomment">/// example if column 2 of the model contains strings, you could have the</span>
     <span class="doccomment">/// “text” attribute of a [`CellRendererText`][crate::CellRendererText] get its values from column 2.</span>
+    <span class="doccomment">/// In this context &quot;attribute&quot; and &quot;property&quot; are used interchangeably.</span>
     <span class="doccomment">/// ## `cell`</span>
     <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer]</span>
     <span class="doccomment">/// ## `attribute`</span>
-    <span class="doccomment">/// an attribute on the renderer</span>
+    <span class="doccomment">/// a property on the renderer</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// the column position on the model to get the attribute from</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_add_attribute&quot;</span>)]</span>
@@ -557,8 +558,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the cell area used by `self`,</span>
-    <span class="doccomment">/// or [`None`] in case no cell area is used.</span>
+    <span class="doccomment">/// the cell area used by `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_get_area&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>;
@@ -610,7 +610,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_reorder&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reorder</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">position</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Sets the `GtkCellLayoutDataFunc` to use for `self`.</span>
+    <span class="doccomment">/// Sets the [`CellLayout`][crate::CellLayout]DataFunc to use for `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is used instead of the standard attributes mapping</span>
     <span class="doccomment">/// for setting the column value, and should set the value of `self`’s</span>
@@ -620,7 +620,7 @@
     <span class="doccomment">/// ## `cell`</span>
     <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer]</span>
     <span class="doccomment">/// ## `func`</span>
-    <span class="doccomment">/// the `GtkCellLayoutDataFunc` to use, or [`None`]</span>
+    <span class="doccomment">/// the [`CellLayout`][crate::CellLayout]DataFunc to use</span>
     <span class="doccomment">/// ## `func_data`</span>
     <span class="doccomment">/// user data for `func`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_set_cell_data_func&quot;</span>)]</span>

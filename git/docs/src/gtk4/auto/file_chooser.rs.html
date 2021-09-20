@@ -992,7 +992,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_create_folders&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">creates_folders</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the current folder of `self` as [`gio::File`][crate::gio::File].</span>
+    <span class="doccomment">/// Gets the current folder of `self` as `GFile`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1035,7 +1035,7 @@
     <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Lists all the selected files and subfolders in the current folder</span>
-    <span class="doccomment">/// of `self` as [`gio::File`][crate::gio::File].</span>
+    <span class="doccomment">/// of `self` as `GFile`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1050,7 +1050,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the current filter, or [`None`]</span>
+    <span class="doccomment">/// the current filter</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_get_filter&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_filter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">filter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FileFilter</span><span class="op">&gt;</span>;
@@ -1148,7 +1148,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_set_create_folders&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_create_folders</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">create_folders</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the current folder for `self` from a [`gio::File`][crate::gio::File].</span>
+    <span class="doccomment">/// Sets the current folder for `self` from a `GFile`.</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// the `GFile` for the new folder</span>
     <span class="doccomment">///</span>
@@ -1184,7 +1184,7 @@
     <span class="doccomment">/// the file’s base name will also appear in the dialog’s file name entry.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file name isn’t in the current folder of `self`, then the current</span>
-    <span class="doccomment">/// folder of `self` will be changed to the folder containing `filename`.</span>
+    <span class="doccomment">/// folder of `self` will be changed to the folder containing `file`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the file must exist, or nothing will be done except</span>
     <span class="doccomment">/// for the directory change.</span>

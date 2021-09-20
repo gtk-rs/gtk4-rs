@@ -432,7 +432,7 @@
     <span class="doccomment">/// The use of this is best demonstrated through an example. In the</span>
     <span class="doccomment">/// following sample code we create two [`TreeView`][crate::TreeView] widgets each with a</span>
     <span class="doccomment">/// view of the same data. As the model is wrapped here by a</span>
-    <span class="doccomment">/// [`TreeModelSort`][crate::TreeModelSort], the two `GtkTreeViews` can each sort their</span>
+    <span class="doccomment">/// [`TreeModelSort`][crate::TreeModelSort], the two [`TreeView`][crate::TreeView]s can each sort their</span>
     <span class="doccomment">/// view of the data without affecting the other. By contrast, if we</span>
     <span class="doccomment">/// simply put the same model in each widget, then sorting the first would</span>
     <span class="doccomment">/// sort the second.</span>
@@ -472,7 +472,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// To demonstrate how to access the underlying child model from the sort</span>
     <span class="doccomment">/// model, the next example will be a callback for the [`TreeSelection`][crate::TreeSelection]</span>
-    <span class="doccomment">/// `signal::TreeSelection::changed` signal. In this callback, we get a string</span>
+    <span class="doccomment">/// `GtkTreeSelection::changed` signal. In this callback, we get a string</span>
     <span class="doccomment">/// from COLUMN_1 of the model. We then modify the string, find the same</span>
     <span class="doccomment">/// selected row on the child model, and change the row there.</span>
     <span class="doccomment">///</span>
@@ -584,7 +584,7 @@
     <span class="doccomment">/// valid iterator pointer to a visible row in the child model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `sort_iter`</span>
-    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter].</span>
+    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_child_iter_to_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_iter_to_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
@@ -597,7 +597,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath], or [`None`]</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_child_path_to_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_path_to_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
@@ -623,7 +623,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath], or [`None`]</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_path_to_child_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_path_to_child_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorted_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
@@ -641,7 +641,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Checks if the given iter is a valid iter for this [`TreeModelSort`][crate::TreeModelSort].</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter].</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

@@ -551,6 +551,7 @@
 <span id="478">478</span>
 <span id="479">479</span>
 <span id="480">480</span>
+<span id="481">481</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ExpressionWatch</span>;
@@ -863,8 +864,10 @@
         }
     }
 
-    <span class="doccomment">/// Installs a watch for the given `expression` that calls the `notify` function</span>
-    <span class="doccomment">/// whenever the evaluation of `self` may have changed.</span>
+    <span class="doccomment">/// Watch the given `expression` for changes.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The `notify` function will be called whenever the evaluation of `self`</span>
+    <span class="doccomment">/// may have changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK cannot guarantee that the evaluation did indeed change when the `notify`</span>
     <span class="doccomment">/// gets invoked, but it guarantees the opposite: When it did in fact change,</span>
@@ -873,8 +876,7 @@
     <span class="doccomment">/// the `this` argument to</span>
     <span class="doccomment">///  watch</span>
     <span class="doccomment">/// ## `notify`</span>
-    <span class="doccomment">/// callback to invoke when the</span>
-    <span class="doccomment">///  expression changes</span>
+    <span class="doccomment">/// callback to invoke when the expression changes</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

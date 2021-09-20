@@ -3486,9 +3486,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`CellRendererText`][crate::CellRendererText] renders a given text in its cell, using the font, color and</span>
     <span class="doccomment">/// style information provided by its properties. The text will be ellipsized if it is</span>
-    <span class="doccomment">/// too long and the `property::CellRendererText::ellipsize` property allows it.</span>
+    <span class="doccomment">/// too long and the `GtkCellRendererText:ellipsize` property allows it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `property::CellRenderer::mode` is [`CellRendererMode::Editable`][crate::CellRendererMode::Editable],</span>
+    <span class="doccomment">/// If the `GtkCellRenderer:mode` is [`CellRendererMode::Editable`][crate::CellRendererMode::Editable],</span>
     <span class="doccomment">/// the [`CellRendererText`][crate::CellRendererText] allows to edit its text using an entry.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -3509,7 +3509,7 @@
     <span class="doccomment">/// you can bind a property to a value in a [`TreeModel`][crate::TreeModel]. For example,</span>
     <span class="doccomment">/// you can bind the “text” property on the cell renderer to a string</span>
     <span class="doccomment">/// value in the model, thus rendering a different string in each row</span>
-    <span class="doccomment">/// of the [`TreeView`][crate::TreeView]</span>
+    <span class="doccomment">/// of the [`TreeView`][crate::TreeView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3923,7 +3923,7 @@
     }
 
     <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
-    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
+    <span class="doccomment">/// `GtkCellRendererText:editable` is [`true`] and the cell is empty.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">placeholder_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">placeholder_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -4289,12 +4289,12 @@
     <span class="kw">fn</span> <span class="ident">set_max_width_chars</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">max_width_chars</span>: <span class="ident">i32</span>);
 
     <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
-    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
+    <span class="doccomment">/// `GtkCellRendererText:editable` is [`true`] and the cell is empty.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;placeholder-text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
-    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
+    <span class="doccomment">/// `GtkCellRendererText:editable` is [`true`] and the cell is empty.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;placeholder-text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_placeholder_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 

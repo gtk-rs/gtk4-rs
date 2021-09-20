@@ -320,11 +320,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`CellEditable`][struct@crate::CellEditable], [`ComboBoxText`][struct@crate::ComboBoxText], [`ComboBox`][struct@crate::ComboBox], [`Entry`][struct@crate::Entry], [`SpinButton`][struct@crate::SpinButton]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellEditableExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits the `signal::CellEditable::editing-done` signal.</span>
+    <span class="doccomment">/// Emits the `GtkCellEditable::editing-done` signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_editable_editing_done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">editing_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Emits the `signal::CellEditable::remove-widget` signal.</span>
+    <span class="doccomment">/// Emits the `GtkCellEditable::remove-widget` signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_editable_remove_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -346,7 +346,7 @@
     <span class="doccomment">/// disconnect the `cell_editable` from signals on the [`CellRenderer`][crate::CellRenderer], etc.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`editing_done()`][Self::editing_done()] is a convenience method</span>
-    <span class="doccomment">/// for emitting `signal::CellEditable::editing-done`.</span>
+    <span class="doccomment">/// for emitting `GtkCellEditable::editing-done`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;editing-done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_editing_done</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
@@ -356,12 +356,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementations of [`CellEditable`][crate::CellEditable] are responsible for</span>
     <span class="doccomment">/// emitting this signal when they are done editing. It must</span>
-    <span class="doccomment">/// be emitted after the `signal::CellEditable::editing-done` signal,</span>
+    <span class="doccomment">/// be emitted after the `GtkCellEditable::editing-done` signal,</span>
     <span class="doccomment">/// to give the cell renderer a chance to update the cell&#39;s value</span>
     <span class="doccomment">/// before the widget is removed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`remove_widget()`][Self::remove_widget()] is a convenience method</span>
-    <span class="doccomment">/// for emitting `signal::CellEditable::remove-widget`.</span>
+    <span class="doccomment">/// for emitting `GtkCellEditable::remove-widget`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;remove-widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_remove_widget</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 

@@ -373,6 +373,11 @@
 <span id="300">300</span>
 <span id="301">301</span>
 <span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">TreeIter</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeStore</span>};
@@ -385,8 +390,13 @@
     <span class="doccomment">/// in. Note that only types derived from standard GObject fundamental types</span>
     <span class="doccomment">/// are supported.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// As an example, `gtk_tree_store_new (3, G_TYPE_INT, G_TYPE_STRING,</span>
-    <span class="doccomment">/// GDK_TYPE_TEXTURE);` will create a new [`TreeStore`][crate::TreeStore] with three columns, of type</span>
+    <span class="doccomment">/// As an example,</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">/// gtk_tree_store_new (3, G_TYPE_INT, G_TYPE_STRING, GDK_TYPE_TEXTURE);</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// will create a new [`TreeStore`][crate::TreeStore] with three columns, of type</span>
     <span class="doccomment">/// `int`, `gchararray`, and [`gdk::Texture`][crate::gdk::Texture] respectively.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -431,7 +441,7 @@
     <span class="doccomment">/// `gtk_tree_store_insert_with_values()` should generally be preferred when</span>
     <span class="doccomment">/// inserting rows in a sorted tree store.</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter], or [`None`]</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position to insert the new row, or -1 to append after existing rows</span>
     <span class="doccomment">///</span>
@@ -439,7 +449,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set the new row, or [`None`].</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_insert_with_values&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_insert_with_valuesv&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_with_values</span>(
@@ -510,7 +520,7 @@
     <span class="doccomment">/// indicated by `new_order`. Note that this function only works with</span>
     <span class="doccomment">/// unsorted stores.</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter], or [`None`]</span>
+    <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">/// ## `new_order`</span>
     <span class="doccomment">/// an array of integers mapping the new position of each child</span>
     <span class="doccomment">///  to its old position before the re-ordering,</span>

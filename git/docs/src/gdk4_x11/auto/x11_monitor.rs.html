@@ -167,16 +167,16 @@
     }
 
     <span class="doccomment">/// Retrieves the size and position of the “work area” on a monitor</span>
-    <span class="doccomment">/// within the display coordinate space. The returned geometry is in</span>
-    <span class="doccomment">/// ”application pixels”, not in ”device pixels” (see</span>
-    <span class="doccomment">/// `gdk_monitor_get_scale_factor()`).</span>
+    <span class="doccomment">/// within the display coordinate space.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The returned geometry is in ”application pixels”, not in ”device pixels”</span>
+    <span class="doccomment">/// (see `Gdk::`Monitor::get_scale_factor()``).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `workarea`</span>
-    <span class="doccomment">/// a [`gdk::Rectangle`][crate::gdk::Rectangle] to be filled with</span>
-    <span class="doccomment">///  the monitor workarea</span>
+    <span class="doccomment">/// a [`gdk::Rectangle`][crate::gdk::Rectangle] to be filled with the monitor workarea</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_monitor_get_workarea&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_workarea&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">workarea</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::Rectangle</span> {

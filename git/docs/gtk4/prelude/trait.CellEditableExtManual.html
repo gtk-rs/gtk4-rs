@@ -77,7 +77,7 @@
 <p>The <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a> for the cell creates and returns a <a href="../struct.CellEditable.html" title="crate::CellEditable"><code>CellEditable</code></a> from
 <a href="trait.CellRendererExtManual.html#tymethod.start_editing" title="crate::prelude::CellRendererExtManual::start_editing()"><code>CellRendererExtManual::start_editing()</code></a>, configured for the <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a> type.</p>
 <p><a href="trait.CellEditableExtManual.html#tymethod.start_editing" title="crate::prelude::CellEditableExtManual::start_editing()"><code>CellEditableExtManual::start_editing()</code></a> can then set up <code>self</code> suitably for
-editing a cell, e.g. making the Esc key emit <code>signal::CellEditable::editing-done</code>.</p>
+editing a cell, e.g. making the Esc key emit <code>GtkCellEditable::editing-done</code>.</p>
 <p>Note that the <code>self</code> is created on-demand for the current edit; its
 lifetime is temporary and does not persist across other edits and/or cells.</p>
 <h2 id="event" class="section-header"><a href="#event"><code>event</code></a></h2>

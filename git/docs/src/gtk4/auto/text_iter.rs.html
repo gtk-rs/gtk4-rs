@@ -1983,7 +1983,7 @@
     <span class="doccomment">/// ## `pred`</span>
     <span class="doccomment">/// function to be called on each character</span>
     <span class="doccomment">/// ## `limit`</span>
-    <span class="doccomment">/// search limit, or [`None`] for none</span>
+    <span class="doccomment">/// search limit</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2077,10 +2077,10 @@
     <span class="doccomment">/// whether a match was found</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `match_start`</span>
-    <span class="doccomment">/// return location for start of match, or [`None`]</span>
+    <span class="doccomment">/// return location for start of match</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `match_end`</span>
-    <span class="doccomment">/// return location for end of match, or [`None`]</span>
+    <span class="doccomment">/// return location for end of match</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_backward_search&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">backward_search</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2156,7 +2156,7 @@
     <span class="doccomment">/// to the location of the toggle, or the start of the buffer</span>
     <span class="doccomment">/// if no toggle is found.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2441,7 +2441,7 @@
     <span class="doccomment">/// returns [`true`], [``has_tag()``][`Self::has_tag()`] will return</span>
     <span class="doccomment">/// [`false`] for the same parameters.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2588,7 +2588,7 @@
     <span class="doccomment">/// ## `pred`</span>
     <span class="doccomment">/// a function to be called on each character</span>
     <span class="doccomment">/// ## `limit`</span>
-    <span class="doccomment">/// search limit, or [`None`] for none</span>
+    <span class="doccomment">/// search limit</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2685,10 +2685,10 @@
     <span class="doccomment">/// whether a match was found</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `match_start`</span>
-    <span class="doccomment">/// return location for start of match, or [`None`]</span>
+    <span class="doccomment">/// return location for start of match</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `match_end`</span>
-    <span class="doccomment">/// return location for end of match, or [`None`]</span>
+    <span class="doccomment">/// return location for end of match</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_forward_search&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forward_search</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2800,7 +2800,7 @@
     <span class="doccomment">/// the location of the toggle, or to the end of the buffer</span>
     <span class="doccomment">/// if no toggle is found.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3457,7 +3457,7 @@
 
     <span class="doccomment">/// Moves iterator `self` to the start of the line `line_number`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `line_number` is negative or larger than the number of lines</span>
+    <span class="doccomment">/// If `line_number` is negative or larger than or equal to the number of lines</span>
     <span class="doccomment">/// in the buffer, moves `self` to the start of the last line in the buffer.</span>
     <span class="doccomment">/// ## `line_number`</span>
     <span class="doccomment">/// line number (counted from 0)</span>
@@ -3573,7 +3573,7 @@
     <span class="doccomment">/// this function returns [`true`], [``has_tag()``][`Self::has_tag()`]</span>
     <span class="doccomment">/// will also return [`true`] for the same parameters.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3607,7 +3607,7 @@
     <span class="doccomment">/// This is equivalent to ([`starts_tag()`][Self::starts_tag()] ||</span>
     <span class="doccomment">/// [`ends_tag()`][Self::ends_tag()])</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

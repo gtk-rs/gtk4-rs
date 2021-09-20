@@ -733,7 +733,7 @@
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group in the key_file to read, or [`None`]</span>
+    <span class="doccomment">/// the name of the group in the key_file to read</span>
     <span class="doccomment">///  to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -944,7 +944,7 @@
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group in the key_file to read, or [`None`]</span>
+    <span class="doccomment">/// the name of the group in the key_file to read</span>
     <span class="doccomment">///  to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1088,7 +1088,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new, floating, [`glib::Variant`][crate::glib::Variant]</span>
+    <span class="doccomment">/// a new, floating, `GVariant`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_gvariant</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

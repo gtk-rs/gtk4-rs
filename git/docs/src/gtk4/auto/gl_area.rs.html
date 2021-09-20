@@ -1317,7 +1317,7 @@
     <span class="doccomment">/// render (GtkGLArea *area, GdkGLContext *context)</span>
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   // inside this function it&#39;s safe to use GL; the given</span>
-    <span class="doccomment">///   // #GdkGLContext has been made current to the drawable</span>
+    <span class="doccomment">///   // GdkGLContext has been made current to the drawable</span>
     <span class="doccomment">///   // surface used by the `GtkGLArea` and the viewport has</span>
     <span class="doccomment">///   // already been set to be the size of the allocation</span>
     <span class="doccomment">///</span>
@@ -1364,7 +1364,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///   // If there were errors during the initialization or</span>
     <span class="doccomment">///   // when trying to make the context current, this</span>
-    <span class="doccomment">///   // function will return a #GError for you to catch</span>
+    <span class="doccomment">///   // function will return a GError for you to catch</span>
     <span class="doccomment">///   if (gtk_gl_area_get_error (area) != NULL)</span>
     <span class="doccomment">///     return;</span>
     <span class="doccomment">///</span>
@@ -1919,7 +1919,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`glib::Error`][crate::glib::Error] or [`None`]</span>
+    <span class="doccomment">/// the `GError`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_error&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>;

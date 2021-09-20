@@ -132,7 +132,7 @@ page setup, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Optio
 <h2 id="key_file" class="section-header"><a href="#key_file"><code>key_file</code></a></h2>
 <p>the <code>GKeyFile</code> to retrieve the page_setup from</p>
 <h2 id="group_name" class="section-header"><a href="#group_name"><code>group_name</code></a></h2>
-<p>the name of the group in the key_file to read, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
+<p>the name of the group in the key_file to read
 to use the default name “Page Setup”</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the restored <a href="struct.PageSetup.html" title="crate::PageSetup"><code>PageSetup</code></a></p>
@@ -208,7 +208,7 @@ See <a href="struct.PageSetup.html#method.page_width" title="Self::page_width()"
 <h2 id="key_file-1" class="section-header"><a href="#key_file-1"><code>key_file</code></a></h2>
 <p>the <code>GKeyFile</code> to retrieve the page_setup from</p>
 <h2 id="group_name-1" class="section-header"><a href="#group_name-1"><code>group_name</code></a></h2>
-<p>the name of the group in the key_file to read, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
+<p>the name of the group in the key_file to read
 to use the default name “Page Setup”</p>
 <h1 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h1>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
@@ -251,7 +251,7 @@ the margins according to the new paper size.</p>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.to_gvariant" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/page_setup.rs.html#494-496" title="goto source code">[src]</a></div><a href="#method.to_gvariant" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_gvariant" class="fnname">to_gvariant</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;</h4></div></summary><div class="docblock"><p>Serialize page setup to an a{sv} variant.</p>
 <h1 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h1>
-<p>a new, floating, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="crate::glib::Variant"><code>glib::Variant</code></a></p>
+<p>a new, floating, <code>GVariant</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.to_key_file" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/page_setup.rs.html#505-513" title="goto source code">[src]</a></div><a href="#method.to_key_file" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_key_file" class="fnname">to_key_file</a>(&amp;self, key_file: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/auto/key_file/struct.KeyFile.html" title="struct glib::auto::key_file::KeyFile">KeyFile</a>, group_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>This function adds the page setup from <code>self</code> to <code>key_file</code>.</p>
 <h2 id="key_file-2" class="section-header"><a href="#key_file-2"><code>key_file</code></a></h2>
 <p>the <code>GKeyFile</code> to save the page setup to</p>

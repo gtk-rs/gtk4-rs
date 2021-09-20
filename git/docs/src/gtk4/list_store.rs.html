@@ -446,12 +446,12 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// with the difference that the former will only emit `signal::TreeModel::row-inserted`</span>
-    <span class="doccomment">/// once, while the latter will emit `signal::TreeModel::row-inserted`,</span>
-    <span class="doccomment">/// `signal::TreeModel::row-changed` and, if the list store is sorted,</span>
-    <span class="doccomment">/// `signal::TreeModel::rows-reordered` for every inserted value.</span>
+    <span class="doccomment">/// with the difference that the former will only emit [`TreeModel`][crate::TreeModel]::row-inserted</span>
+    <span class="doccomment">/// once, while the latter will emit [`TreeModel`][crate::TreeModel]::row-inserted,</span>
+    <span class="doccomment">/// [`TreeModel`][crate::TreeModel]::row-changed and, if the list store is sorted,</span>
+    <span class="doccomment">/// [`TreeModel`][crate::TreeModel]::rows-reordered for every inserted value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Since emitting the `signal::TreeModel::rows-reordered` signal repeatedly can</span>
+    <span class="doccomment">/// Since emitting the `GtkTreeModel::rows-reordered` signal repeatedly can</span>
     <span class="doccomment">/// affect the performance of the program, `gtk_list_store_insert_with_values()`</span>
     <span class="doccomment">/// should generally be preferred when inserting rows in a sorted list store.</span>
     <span class="doccomment">/// ## `position`</span>
@@ -632,12 +632,12 @@
         }
     }
 
-    <span class="doccomment">/// This function is meant primarily for `GObjects` that inherit from [`ListStore`][crate::ListStore],</span>
+    <span class="doccomment">/// This function is meant primarily for `GObject`s that inherit from [`ListStore`][crate::ListStore],</span>
     <span class="doccomment">/// and should only be used when constructing a new [`ListStore`][crate::ListStore]. It will not</span>
     <span class="doccomment">/// function after a row has been added, or a method on the [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">/// interface is called.</span>
     <span class="doccomment">/// ## `types`</span>
-    <span class="doccomment">/// An array length n of `GTypes`</span>
+    <span class="doccomment">/// An array length n of `GType`s</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_set_column_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_column_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>]) {
         <span class="kw">unsafe</span> {

@@ -878,7 +878,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`gio::MenuModel`][crate::gio::MenuModel], or [`None`]</span>
+    <span class="doccomment">/// the `GMenuModel`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_header_menu&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_header_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span> {
@@ -961,7 +961,7 @@
     <span class="doccomment">/// Sets the [`ListItemFactory`][crate::ListItemFactory] to use for populating list items for this</span>
     <span class="doccomment">/// column.</span>
     <span class="doccomment">/// ## `factory`</span>
-    <span class="doccomment">/// the factory to use or [`None`] for none</span>
+    <span class="doccomment">/// the factory to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_factory&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_factory</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListItemFactory</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factory</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -989,7 +989,7 @@
     <span class="doccomment">/// Sets the menu model that is used to create the context menu</span>
     <span class="doccomment">/// for the column header.</span>
     <span class="doccomment">/// ## `menu`</span>
-    <span class="doccomment">/// a `GMenuModel`, or [`None`]</span>
+    <span class="doccomment">/// a `GMenuModel`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_header_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_header_menu</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

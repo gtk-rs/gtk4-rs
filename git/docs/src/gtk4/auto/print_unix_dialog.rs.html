@@ -1549,9 +1549,9 @@
 <span class="kw">impl</span> <span class="ident">PrintUnixDialog</span> {
     <span class="doccomment">/// Creates a new [`PrintUnixDialog`][crate::PrintUnixDialog].</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// Title of the dialog, or [`None`]</span>
+    <span class="doccomment">/// Title of the dialog</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// Transient parent of the dialog, or [`None`]</span>
+    <span class="doccomment">/// Transient parent of the dialog</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1804,7 +1804,7 @@
     <span class="doccomment">/// from a previous print operation before the print dialog</span>
     <span class="doccomment">/// is shown.</span>
     <span class="doccomment">/// ## `settings`</span>
-    <span class="doccomment">/// a [`PrintSettings`][crate::PrintSettings], or [`None`]</span>
+    <span class="doccomment">/// a [`PrintSettings`][crate::PrintSettings]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_set_settings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

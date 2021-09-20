@@ -78,7 +78,7 @@ of render nodes and their associated transformations.</p>
 functions operate on. Use the gtk_snapshot_push_… functions and
 <a href="struct.Snapshot.html#method.pop" title="Self::pop()"><code>pop()</code></a> to change the current node.</p>
 <p>The typical way to obtain a <a href="struct.Snapshot.html" title="crate::Snapshot"><code>Snapshot</code></a> object is as an argument to
-the <code>GtkWidgetClass.snapshot()</code> vfunc. If you need to create your own
+the <code>vfunc::Gtk::Widget::snapshot</code> vfunc. If you need to create your own
 <a href="struct.Snapshot.html" title="crate::Snapshot"><code>Snapshot</code></a>, use <a href="struct.Snapshot.html#method.new" title="Self::new()"><code>new()</code></a>.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p>[<code>trait@gdk::prelude::SnapshotExt</code>], <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a></p>

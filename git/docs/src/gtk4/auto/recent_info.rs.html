@@ -480,6 +480,9 @@
 
 <span class="kw">impl</span> <span class="ident">RecentInfo</span> {
     <span class="doccomment">/// Creates a `GAppInfo` for the specified [`RecentInfo`][crate::RecentInfo]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In case of error, `error` will be set either with a</span>
+    <span class="doccomment">/// `GTK_RECENT_MANAGER_ERROR` or a `G_IO_ERROR`</span>
     <span class="doccomment">/// ## `app_name`</span>
     <span class="doccomment">/// the name of the application that should</span>
     <span class="doccomment">///  be mapped to a `GAppInfo`; if [`None`] is used then the default</span>
@@ -487,9 +490,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `GAppInfo`,</span>
-    <span class="doccomment">///  or [`None`]. In case of error, `error` will be set either with a</span>
-    <span class="doccomment">///  `GTK_RECENT_MANAGER_ERROR` or a `G_IO_ERROR`</span>
+    <span class="doccomment">/// the newly created `GAppInfo`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_create_app_info&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_app_info</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -527,7 +528,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
+    <span class="doccomment">/// a `GDateTime` for the time</span>
     <span class="doccomment">///  when the resource was added</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_added&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_added&quot;</span>)]</span>
@@ -646,8 +647,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`gio::Icon`][crate::gio::Icon] containing the icon, or [`None`].</span>
-    <span class="doccomment">///  Use `g_object_unref()` when finished using the icon</span>
+    <span class="doccomment">/// a `GIcon` containing the icon</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_gicon&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gicon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span> {
@@ -694,7 +694,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
+    <span class="doccomment">/// a `GDateTime` for the time</span>
     <span class="doccomment">///  when the resource was last modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_modified&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_modified&quot;</span>)]</span>
@@ -766,7 +766,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
+    <span class="doccomment">/// a `GDateTime` for the time</span>
     <span class="doccomment">///  when the resource was last visited</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_visited&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visited&quot;</span>)]</span>

@@ -88,7 +88,7 @@ emit signals for each phase that has been requested. (See the signals of the
 <a href="struct.FrameClock.html" title="crate::FrameClock"><code>FrameClock</code></a> class for documentation of the phases.
 <a href="struct.FrameClockPhase.html#associatedconstant.UPDATE" title="crate::FrameClockPhase::UPDATE"><code>FrameClockPhase::UPDATE</code></a> and the <code>signal::GdkFrameClock::update</code> signal
 are most interesting for application writers, and are used to update the
-animations, using the frame time given by [metohd<code>Gdk</code>.get_frame_time].</p>
+animations, using the frame time given by <a href="struct.FrameClock.html#method.frame_time" title="Self::frame_time()"><code>frame_time()</code></a>.</p>
 <p>The frame time is reported in microseconds and generally in the same
 timescale as <code>g_get_monotonic_time()</code>, however, it is not the same
 as <code>g_get_monotonic_time()</code>. The frame time does not advance during
@@ -163,14 +163,14 @@ candidate presentation time after the given base time.
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.timings" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#223-230" title="goto source code">[src]</a></div><a href="#method.timings" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.timings" class="fnname">timings</a>(&amp;self, frame_counter: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.FrameTimings.html" title="struct gdk4::FrameTimings">FrameTimings</a>&gt;</h4></div></summary><div class="docblock"><p>Retrieves a <a href="struct.FrameTimings.html" title="crate::FrameTimings"><code>FrameTimings</code></a> object holding timing information
 for the current frame or a recent frame.</p>
 <p>The <a href="struct.FrameTimings.html" title="crate::FrameTimings"><code>FrameTimings</code></a> object may not yet be complete: see
-<a href="struct.FrameTimings.html#method.is_complete" title="crate::FrameTimings::is_complete()"><code>FrameTimings::is_complete()</code></a>.</p>
+<a href="struct.FrameTimings.html#method.is_complete" title="crate::FrameTimings::is_complete()"><code>FrameTimings::is_complete()</code></a> and
+<a href="struct.FrameClock.html#method.history_start" title="Self::history_start()"><code>history_start()</code></a>.</p>
 <h2 id="frame_counter" class="section-header"><a href="#frame_counter"><code>frame_counter</code></a></h2>
 <p>the frame counter value identifying the frame to
 be received</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>the <a href="struct.FrameTimings.html" title="crate::FrameTimings"><code>FrameTimings</code></a> object
-for the specified frame, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if it is not available. See
-<a href="struct.FrameClock.html#method.history_start" title="Self::history_start()"><code>history_start()</code></a>.</p>
+for the specified frame, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if it is not available</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.request_phase" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#246-250" title="goto source code">[src]</a></div><a href="#method.request_phase" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.request_phase" class="fnname">request_phase</a>(&amp;self, phase: <a class="struct" href="struct.FrameClockPhase.html" title="struct gdk4::FrameClockPhase">FrameClockPhase</a>)</h4></div></summary><div class="docblock"><p>Asks the frame clock to run a particular phase.</p>
 <p>The signal corresponding the requested phase will be emitted the next
 time the frame clock processes. Multiple calls to

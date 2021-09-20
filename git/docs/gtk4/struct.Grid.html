@@ -83,8 +83,8 @@ grid, use <a href="prelude/trait.GridExt.html#tymethod.remove" title="crate::pre
 cell is undefined.</p>
 <h1 id="gtkgrid-as-gtkbuildable" class="section-header"><a href="#gtkgrid-as-gtkbuildable">GtkGrid as GtkBuildable</a></h1>
 <p>Every child in a <a href="struct.Grid.html" title="crate::Grid"><code>Grid</code></a> has access to a custom <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a>
-element, called ´<code>&lt;layout&gt;</code>´. It can by used to specify a position in the
-grid and optionally spans. All properties that can be used in the ´<code>&lt;layout&gt;</code>´
+element, called <code>&lt;layout&gt;</code>. It can by used to specify a position in the
+grid and optionally spans. All properties that can be used in the <code>&lt;layout&gt;</code>
 element are implemented by <a href="struct.GridLayoutChild.html" title="crate::GridLayoutChild"><code>GridLayoutChild</code></a>.</p>
 <p>It is implemented by <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> using <a href="struct.LayoutManager.html" title="crate::LayoutManager"><code>LayoutManager</code></a>.</p>
 <p>To showcase it, here is a simple example:</p>
@@ -130,9 +130,9 @@ element are implemented by <a href="struct.GridLayoutChild.html" title="crate::G
 &lt;/object&gt;</code></pre></div>
 <p>It organizes the first two buttons side-by-side in one cell each.
 The third button is in the last column but spans across two rows.
-This is defined by the ´row-span´ property. The last button is
+This is defined by the <code>row-span</code> property. The last button is
 located in the second row and spans across two columns, which is
-defined by the ´column-span´ property.</p>
+defined by the <code>column-span</code> property.</p>
 <h1 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h1>
 <p><a href="struct.Grid.html" title="crate::Grid"><code>Grid</code></a> uses a single CSS node with name <code>grid</code>.</p>
 <h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>

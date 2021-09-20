@@ -77,7 +77,7 @@ with headers.</p>
 each column, for each visible item and displays them together as the row for
 this item.</p>
 <p>The <code>property::ColumnView::show-row-separators</code> and
-[propertyGtk.ColumnView:show-column-separators] properties offer a simple way
+<code>property::ColumnView::show-column-separators</code> properties offer a simple way
 to display separators between the rows or columns.</p>
 <p><a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a> allows the user to select items according to the selection
 characteristics of the model. For models that allow multiple selected items,
@@ -127,7 +127,7 @@ the <a href="enum.AccessibleRole.html#variant.GridCell" title="crate::Accessible
 <p>You most likely want to call <a href="struct.ColumnView.html#method.append_column" title="Self::append_column()"><code>append_column()</code></a>
 to add columns next.</p>
 <h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
-<p>the list model to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>the list model to use</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a new <a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.builder" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#136-138" title="goto source code">[src]</a></div><a href="#method.builder" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="struct.ColumnViewBuilder.html" title="struct gtk4::ColumnViewBuilder">ColumnViewBuilder</a></h4></div></summary><div class="docblock"><p>Creates a new builder-pattern struct instance to construct <a href="struct.ColumnView.html" title="ColumnView"><code>ColumnView</code></a> objects.</p>
@@ -194,7 +194,7 @@ gtk_column_view_set_model (view, selection);</code></pre></div><h1 id="returns-8
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_model" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#329-336" title="goto source code">[src]</a></div><a href="#method.set_model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_model" class="fnname">set_model</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.SelectionModel.html" title="struct gtk4::SelectionModel">SelectionModel</a>&gt;&gt;(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</h4></div></summary><div class="docblock"><p>Sets the model to use.</p>
 <p>This must be a <a href="struct.SelectionModel.html" title="crate::SelectionModel"><code>SelectionModel</code></a>.</p>
 <h2 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h2>
-<p>the model to use or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
+<p>the model to use</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_reorderable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#342-346" title="goto source code">[src]</a></div><a href="#method.set_reorderable" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_reorderable" class="fnname">set_reorderable</a>(&amp;self, reorderable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether columns should be reorderable by dragging.</p>
 <h2 id="reorderable" class="section-header"><a href="#reorderable"><code>reorderable</code></a></h2>
 <p>whether columns should be reorderable</p>
@@ -220,7 +220,7 @@ and <a href="struct.ColumnViewColumn.html#method.set_sorter" title="crate::Colum
 on <code>column</code> to associate a sorter with the column.</p>
 <p>If <code>column</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the view will be unsorted.</p>
 <h2 id="column-3" class="section-header"><a href="#column-3"><code>column</code></a></h2>
-<p>the <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> to sort by, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>the <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> to sort by</p>
 <h2 id="direction" class="section-header"><a href="#direction"><code>direction</code></a></h2>
 <p>the direction to sort in</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_activate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#426-446" title="goto source code">[src]</a></div><a href="#method.connect_activate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_activate" class="fnname">connect_activate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when a row has been activated by the user, usually via activating

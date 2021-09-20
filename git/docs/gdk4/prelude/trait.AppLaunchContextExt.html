@@ -98,16 +98,16 @@ context.</p>
 notification.</p>
 <p>See also <a href="trait.AppLaunchContextExt.html#tymethod.set_icon_name" title="Self::set_icon_name()"><code>set_icon_name()</code></a>.</p>
 <h2 id="icon" class="section-header"><a href="#icon"><code>icon</code></a></h2>
-<p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html" title="crate::gio::Icon"><code>gio::Icon</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <code>GIcon</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icon_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#101" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_icon_name" class="fnname">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the icon for applications that are launched with this context.</p>
 <p>The <code>icon_name</code> will be interpreted in the same way as the Icon field
-in desktop files. See also <a href="trait.AppLaunchContextExt.html#tymethod.set_icon" title="Self::set_icon()"><code>set_icon()</code></a>()].</p>
+in desktop files. See also <a href="trait.AppLaunchContextExt.html#tymethod.set_icon" title="Self::set_icon()"><code>set_icon()</code></a>.</p>
 <p>If both <code>icon</code> and <code>icon_name</code> are set, the <code>icon_name</code> takes priority.
 If neither <code>icon</code> or <code>icon_name</code> is set, the icon is taken from either
 the file that is passed to launched application or from the <code>GAppInfo</code>
 for the launched application itself.</p>
 <h2 id="icon_name" class="section-header"><a href="#icon_name"><code>icon_name</code></a></h2>
-<p>an icon name, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>an icon name</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_timestamp" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#115" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_timestamp" class="fnname">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></div></summary><div class="docblock"><p>Sets the timestamp of <code>self</code>.</p>
 <p>The timestamp should ideally be taken from the event that
 triggered the launch.</p>

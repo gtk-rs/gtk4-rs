@@ -79,13 +79,13 @@
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Sorter.html" title="Sorter"><code>Sorter</code></a> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
 <p><a href="../struct.CustomSorter.html" title="crate::CustomSorter"><code>CustomSorter</code></a>, <a href="../struct.MultiSorter.html" title="crate::MultiSorter"><code>MultiSorter</code></a>, <a href="../struct.NumericSorter.html" title="crate::NumericSorter"><code>NumericSorter</code></a>, <a href="../struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a>, <a href="../struct.StringSorter.html" title="crate::StringSorter"><code>StringSorter</code></a>, <a href="../struct.TreeListRowSorter.html" title="crate::TreeListRowSorter"><code>TreeListRowSorter</code></a></p>
-</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#73" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>)</h4></div></summary><div class="docblock"><p>Emits the <code>signal::Sorter::changed</code> signal to notify all users
-of the sorter that it has changed.</p>
-<p>Users of the sorter should then update the sort order via
-<code>gtk_sorter_compare()</code>.</p>
-<p>Depending on the <code>change</code> parameter, it may be possible to update
-the sort order without a full resorting. Refer to the
-<a href="../enum.SorterChange.html" title="crate::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#73" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>)</h4></div></summary><div class="docblock"><p>Notifies all users of the sorter that it has changed.</p>
+<p>This emits the <code>signal::Sorter::changed</code> signal. Users
+of the sorter should then update the sort order via
+<code>Gtk::</code>Sorter::compare()``.</p>
+<p>Depending on the <code>change</code> parameter, it may be possible to
+update the sort order without a full resorting. Refer to
+the <a href="../enum.SorterChange.html" title="crate::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
 <p>This function is intended for implementors of <a href="../struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a>
 subclasses and should not be called from other functions.</p>
 <h2 id="change" class="section-header"><a href="#change"><code>change</code></a></h2>

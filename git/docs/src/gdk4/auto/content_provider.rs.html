@@ -546,7 +546,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `providers`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  The `GdkContentProviders` to present the union of</span>
+    <span class="doccomment">///  The [`ContentProvider`][crate::ContentProvider]s to present the union of</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -608,7 +608,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given mime type does not need to be listed in the formats returned by</span>
     <span class="doccomment">/// [``formats()``][`Self::formats()`]. However, if the given `GType` is</span>
-    <span class="doccomment">/// not supported, [`gio::IOErrorEnum::NotSupported`][crate::gio::IOErrorEnum::NotSupported] will be reported.</span>
+    <span class="doccomment">/// not supported, `G_IO_ERROR_NOT_SUPPORTED` will be reported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given `stream` will not be closed.</span>
     <span class="doccomment">/// ## `mime_type`</span>

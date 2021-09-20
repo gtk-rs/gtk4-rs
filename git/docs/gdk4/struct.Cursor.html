@@ -129,7 +129,7 @@ cursor with the given name</p>
 <h2 id="hotspot_y" class="section-header"><a href="#hotspot_y"><code>hotspot_y</code></a></h2>
 <p>the vertical offset of the “hotspot” of the cursor</p>
 <h2 id="fallback-1" class="section-header"><a href="#fallback-1"><code>fallback</code></a></h2>
-<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> or the <a href="struct.Cursor.html" title="crate::Cursor"><code>Cursor</code></a> to fall back to when
+<p>the <a href="struct.Cursor.html" title="crate::Cursor"><code>Cursor</code></a> to fall back to when
 this one cannot be supported</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>a new <a href="struct.Cursor.html" title="crate::Cursor"><code>Cursor</code></a></p>
@@ -143,7 +143,7 @@ this can happen when the texture is too large or when the <a href="struct.Displa
 it is used on does not support textured cursors.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the fallback of the cursor or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
-to use the default cursor as fallback.</p>
+to use the default cursor as fallback</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.hotspot_x" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#168-170" title="goto source code">[src]</a></div><a href="#method.hotspot_x" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.hotspot_x" class="fnname">hotspot_x</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Returns the horizontal offset of the hotspot.</p>
 <p>The hotspot indicates the pixel that will be directly above the cursor.</p>
 <p>Note that named cursors may have a nonzero hotspot, but this function

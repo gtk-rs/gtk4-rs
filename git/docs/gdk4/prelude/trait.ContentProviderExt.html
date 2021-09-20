@@ -100,7 +100,7 @@ the data in.</p>
 of the operation.</p>
 <p>The given mime type does not need to be listed in the formats returned by
 <a href="trait.ContentProviderExt.html#tymethod.formats" title="Self::formats()"><code>formats()</code></a>. However, if the given <code>GType</code> is
-not supported, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/enums/enum.IOErrorEnum.html#variant.NotSupported" title="crate::gio::IOErrorEnum::NotSupported"><code>gio::IOErrorEnum::NotSupported</code></a> will be reported.</p>
+not supported, <code>G_IO_ERROR_NOT_SUPPORTED</code> will be reported.</p>
 <p>The given <code>stream</code> will not be closed.</p>
 <h2 id="mime_type" class="section-header"><a href="#mime_type"><code>mime_type</code></a></h2>
 <p>the mime type to provide the data in</p>

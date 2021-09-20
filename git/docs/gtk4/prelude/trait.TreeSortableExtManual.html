@@ -107,7 +107,7 @@ column ids.</p>
 <p>The <a href="../enum.SortType.html" title="crate::SortType"><code>SortType</code></a> to be filled in</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_sort_column_id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#121" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_sort_column_id" class="fnname">set_sort_column_id</a>(&amp;self, sort_column_id: <a class="enum" href="../enum.SortColumn.html" title="enum gtk4::SortColumn">SortColumn</a>, order: <a class="enum" href="../enum.SortType.html" title="enum gtk4::SortType">SortType</a>)</h4></div></summary><div class="docblock"><p>Sets the current sort column to be <code>sort_column_id</code>. The <code>self</code> will
 resort itself to reflect this change, after emitting a
-<code>signal::TreeSortable::sort-column-changed</code> signal. <code>sort_column_id</code> may either be
+<code>GtkTreeSortable::sort-column-changed</code> signal. <code>sort_column_id</code> may either be
 a regular column id, or one of the following special values:</p>
 <ul>
 <li>

@@ -244,7 +244,7 @@
     <span class="doccomment">/// Note that this sorter relies on `property::TreeListModel::passthrough`</span>
     <span class="doccomment">/// being [`false`] as it can only sort [`TreeListRow`][crate::TreeListRow]s.</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// a [`Sorter`][crate::Sorter], or [`None`]</span>
+    <span class="doccomment">/// a [`Sorter`][crate::Sorter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -279,7 +279,7 @@
     <span class="doccomment">/// This sorter will be passed the `property::TreeListRow::item` of</span>
     <span class="doccomment">/// the tree list rows passed to `self`.</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// The sorter to use, or [`None`]</span>
+    <span class="doccomment">/// The sorter to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_sorter_set_sorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_sorter</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

@@ -1038,12 +1038,12 @@
     <span class="doccomment">/// which it is derived. But while [`CellRendererText`][crate::CellRendererText] offers a simple entry to</span>
     <span class="doccomment">/// edit the text, [`CellRendererCombo`][crate::CellRendererCombo] offers a [`ComboBox`][crate::ComboBox]</span>
     <span class="doccomment">/// widget to edit the text. The values to display in the combo box are taken from</span>
-    <span class="doccomment">/// the tree model specified in the `property::CellRendererCombo::model` property.</span>
+    <span class="doccomment">/// the tree model specified in the [`CellRendererCombo`][crate::CellRendererCombo]:model property.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The combo cell renderer takes care of adding a text cell renderer to the combo</span>
     <span class="doccomment">/// box and sets it to display the column specified by its</span>
-    <span class="doccomment">/// `property::CellRendererCombo::text-column` property. Further properties of the combo box</span>
-    <span class="doccomment">/// can be set in a handler for the `signal::CellRenderer::editing-started` signal.</span>
+    <span class="doccomment">/// [`CellRendererCombo`][crate::CellRendererCombo]:text-column property. Further properties of the combo box</span>
+    <span class="doccomment">/// can be set in a handler for the `GtkCellRenderer::editing-started` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -1735,7 +1735,7 @@
     }
 
     <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
-    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
+    <span class="doccomment">/// `GtkCellRendererText:editable` is [`true`] and the cell is empty.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">placeholder_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">placeholder_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>

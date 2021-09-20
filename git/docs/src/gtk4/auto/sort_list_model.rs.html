@@ -446,8 +446,8 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// [`SortListModel`][crate::SortListModel] is a list model that sorts the elements of</span>
-    <span class="doccomment">/// the underlying model according to a [`Sorter`][crate::Sorter].</span>
+    <span class="doccomment">/// A `GListModel` that sorts the elements of an underlying model</span>
+    <span class="doccomment">/// according to a [`Sorter`][crate::Sorter].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model can be set up to do incremental sorting, so that</span>
     <span class="doccomment">/// sorting long lists doesn&#39;t block the UI. See</span>
@@ -473,9 +473,9 @@
 <span class="kw">impl</span> <span class="ident">SortListModel</span> {
     <span class="doccomment">/// Creates a new sort list model that uses the `sorter` to sort `model`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to sort, or [`None`]</span>
+    <span class="doccomment">/// the model to sort</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort `model` with, or [`None`]</span>
+    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort `model` with,</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

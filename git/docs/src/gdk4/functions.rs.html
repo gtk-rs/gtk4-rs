@@ -491,7 +491,6 @@
 <span id="418">418</span>
 <span id="419">419</span>
 <span id="420">420</span>
-<span id="421">421</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ContentDeserializer</span>, <span class="ident">ContentSerializer</span>};
@@ -526,9 +525,8 @@
 <span class="doccomment">/// ## `y_origin`</span>
 <span class="doccomment">/// baseline pixel where you intend to draw the layout line with this clip</span>
 <span class="doccomment">/// ## `index_ranges`</span>
-<span class="doccomment">/// array of byte indexes into the layout,</span>
-<span class="doccomment">///  where even members of array are start indexes and odd elements</span>
-<span class="doccomment">///  are end indexes</span>
+<span class="doccomment">/// array of byte indexes into the layout, where even</span>
+<span class="doccomment">///  members of array are start indexes and odd elements are end indexes</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -840,7 +838,7 @@
 <span class="doccomment">/// ## `io_priority`</span>
 <span class="doccomment">/// the I/O priority of the operation</span>
 <span class="doccomment">/// ## `cancellable`</span>
-<span class="doccomment">/// optional [`gio::Cancellable`][crate::gio::Cancellable] object</span>
+<span class="doccomment">/// optional `GCancellable` object</span>
 <span class="doccomment">/// ## `callback`</span>
 <span class="doccomment">/// callback to call when the operation is done</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_serialize_async&quot;</span>)]</span>

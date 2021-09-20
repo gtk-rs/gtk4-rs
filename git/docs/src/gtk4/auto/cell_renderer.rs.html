@@ -1588,16 +1588,16 @@
     <span class="doccomment">/// An object for rendering a single cell</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellRenderer`][crate::CellRenderer] is a base class of a set of objects used for</span>
-    <span class="doccomment">/// rendering a cell to a [`cairo::Context`][crate::cairo::Context]. These objects are used primarily by</span>
+    <span class="doccomment">/// rendering a cell to a `cairo_t`. These objects are used primarily by</span>
     <span class="doccomment">/// the [`TreeView`][crate::TreeView] widget, though they aren’t tied to them in any</span>
     <span class="doccomment">/// specific way. It is worth noting that [`CellRenderer`][crate::CellRenderer] is not a</span>
     <span class="doccomment">/// [`Widget`][crate::Widget] and cannot be treated as such.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The primary use of a [`CellRenderer`][crate::CellRenderer] is for drawing a certain graphical</span>
-    <span class="doccomment">/// elements on a [`cairo::Context`][crate::cairo::Context]. Typically, one cell renderer is used to</span>
+    <span class="doccomment">/// elements on a `cairo_t`. Typically, one cell renderer is used to</span>
     <span class="doccomment">/// draw many cells on the screen. To this extent, it isn’t expected that a</span>
     <span class="doccomment">/// CellRenderer keep any permanent state around. Instead, any state is set</span>
-    <span class="doccomment">/// just prior to use using `GObjects` property system. Then, the</span>
+    <span class="doccomment">/// just prior to use using `GObject`s property system. Then, the</span>
     <span class="doccomment">/// cell is measured using [`CellRendererExt::preferred_size()`][crate::prelude::CellRendererExt::preferred_size()]. Finally, the cell</span>
     <span class="doccomment">/// is rendered in the correct location using [`CellRendererExt::snapshot()`][crate::prelude::CellRendererExt::snapshot()].</span>
     <span class="doccomment">///</span>
@@ -1609,14 +1609,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Beyond merely rendering a cell, cell renderers can optionally</span>
     <span class="doccomment">/// provide active user interface elements. A cell renderer can be</span>
-    <span class="doccomment">/// “activatable” like [`CellRendererToggle`][crate::CellRendererToggle],</span>
+    <span class="doccomment">/// “activatable” like [`CellRenderer`][crate::CellRenderer]Toggle,</span>
     <span class="doccomment">/// which toggles when it gets activated by a mouse click, or it can be</span>
-    <span class="doccomment">/// “editable” like [`CellRendererText`][crate::CellRendererText], which</span>
+    <span class="doccomment">/// “editable” like [`CellRenderer`][crate::CellRenderer]Text, which</span>
     <span class="doccomment">/// allows the user to edit the text using a widget implementing the</span>
     <span class="doccomment">/// [`CellEditable`][crate::CellEditable] interface, e.g. [`Entry`][crate::Entry].</span>
     <span class="doccomment">/// To make a cell renderer activatable or editable, you have to</span>
-    <span class="doccomment">/// implement the `GtkCellRendererClass.activate` or</span>
-    <span class="doccomment">/// `GtkCellRendererClass.start_editing` virtual functions, respectively.</span>
+    <span class="doccomment">/// implement the [`CellRenderer`][crate::CellRenderer]Class.activate or</span>
+    <span class="doccomment">/// [`CellRenderer`][crate::CellRenderer]Class.start_editing virtual functions, respectively.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Many properties of [`CellRenderer`][crate::CellRenderer] and its subclasses have a</span>
     <span class="doccomment">/// corresponding “set” property, e.g. “cell-background-set” corresponds</span>
@@ -1674,10 +1674,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `xalign`</span>
-    <span class="doccomment">/// location to fill in with the x alignment of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the x alignment of the cell</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `yalign`</span>
-    <span class="doccomment">/// location to fill in with the y alignment of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the y alignment of the cell</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_alignment&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_alignment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">alignment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f32</span>, <span class="ident">f32</span>);
@@ -1688,10 +1688,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `width`</span>
-    <span class="doccomment">/// location to fill in with the fixed width of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the fixed width of the cell</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `height`</span>
-    <span class="doccomment">/// location to fill in with the fixed height of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the fixed height of the cell</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_fixed_size&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_fixed_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">fixed_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1720,10 +1720,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `xpad`</span>
-    <span class="doccomment">/// location to fill in with the x padding of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the x padding of the cell</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `ypad`</span>
-    <span class="doccomment">/// location to fill in with the y padding of the cell, or [`None`]</span>
+    <span class="doccomment">/// location to fill in with the y padding of the cell</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_padding&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_padding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1736,10 +1736,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_size`</span>
-    <span class="doccomment">/// location to store the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_size`</span>
-    <span class="doccomment">/// location to store the natural size, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_preferred_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1755,10 +1755,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_height`</span>
-    <span class="doccomment">/// location for storing the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_height`</span>
-    <span class="doccomment">/// location for storing the preferred size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the preferred size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_preferred_height_for_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height_for_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">width</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1772,10 +1772,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_size`</span>
-    <span class="doccomment">/// location for storing the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_size`</span>
-    <span class="doccomment">/// location for storing the natural size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the natural size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_preferred_size&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_size</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Requisition</span>, <span class="ident">Requisition</span>);
@@ -1788,10 +1788,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_size`</span>
-    <span class="doccomment">/// location to store the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_size`</span>
-    <span class="doccomment">/// location to store the natural size, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_preferred_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1807,10 +1807,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_width`</span>
-    <span class="doccomment">/// location for storing the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_width`</span>
-    <span class="doccomment">/// location for storing the preferred size, or [`None`]</span>
+    <span class="doccomment">/// location for storing the preferred size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_get_preferred_width_for_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width_for_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">height</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
@@ -1836,9 +1836,9 @@
 
     <span class="doccomment">/// Translates the cell renderer state to [`StateFlags`][crate::StateFlags],</span>
     <span class="doccomment">/// based on the cell renderer and widget sensitivity, and</span>
-    <span class="doccomment">/// the given [`CellRendererState`][crate::CellRendererState].</span>
+    <span class="doccomment">/// the given [`CellRenderer`][crate::CellRenderer]State.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a [`Widget`][crate::Widget], or [`None`]</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="doccomment">/// ## `cell_state`</span>
     <span class="doccomment">/// cell renderer state</span>
     <span class="doccomment">///</span>
@@ -1948,10 +1948,10 @@
 
     <span class="doccomment">/// Informs the cell renderer that the editing is stopped.</span>
     <span class="doccomment">/// If `canceled` is [`true`], the cell renderer will emit the</span>
-    <span class="doccomment">/// `signal::CellRenderer::editing-canceled` signal.</span>
+    <span class="doccomment">/// [`CellRenderer`][crate::CellRenderer]::editing-canceled signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be called by cell renderer implementations</span>
-    <span class="doccomment">/// in response to the `signal::CellEditable::editing-done` signal of</span>
+    <span class="doccomment">/// in response to the `GtkCellEditable::editing-done` signal of</span>
     <span class="doccomment">/// [`CellEditable`][crate::CellEditable].</span>
     <span class="doccomment">/// ## `canceled`</span>
     <span class="doccomment">/// [`true`] if the editing has been canceled</span>

@@ -959,9 +959,9 @@
     <span class="doccomment">/// The range of the spinbutton is taken from the adjustment property of the</span>
     <span class="doccomment">/// cell renderer, which can be set explicitly or mapped to a column in the</span>
     <span class="doccomment">/// tree model, like all properties of cell renders. [`CellRendererSpin`][crate::CellRendererSpin]</span>
-    <span class="doccomment">/// also has properties for the `property::CellRendererSpin::climb-rate` and the number</span>
-    <span class="doccomment">/// of `property::CellRendererSpin::digits` to display. Other [`SpinButton`][crate::SpinButton] properties</span>
-    <span class="doccomment">/// can be set in a handler for the `signal::CellRenderer::editing-started` signal.</span>
+    <span class="doccomment">/// also has properties for the `GtkCellRendererSpin:climb-rate` and the number</span>
+    <span class="doccomment">/// of `GtkCellRendererSpin:digits` to display. Other [`SpinButton`][crate::SpinButton] properties</span>
+    <span class="doccomment">/// can be set in a handler for the `GtkCellRenderer::editing-started` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellRendererSpin`][crate::CellRendererSpin] cell renderer was added in GTK 2.10.</span>
     <span class="doccomment">///</span>
@@ -1573,7 +1573,7 @@
     }
 
     <span class="doccomment">/// The text that will be displayed in the [`CellRenderer`][crate::CellRenderer] if</span>
-    <span class="doccomment">/// `property::CellRendererText::editable` is [`true`] and the cell is empty.</span>
+    <span class="doccomment">/// `GtkCellRendererText:editable` is [`true`] and the cell is empty.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">placeholder_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">placeholder_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">placeholder_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>

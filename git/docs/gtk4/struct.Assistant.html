@@ -124,7 +124,7 @@ clicked apply on a confirmation page.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>The index (starting from 0) of the current
 page in the <code>self</code>, or -1 if the <code>self</code> has no pages,
-or no current page.</p>
+or no current page</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.n_pages" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/assistant.rs.html#166-168" title="goto source code">[src]</a></div><a href="#method.n_pages" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.n_pages" class="fnname">n_pages</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Returns the number of pages in the <code>self</code></p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the number of pages in the <code>self</code></p>
@@ -204,7 +204,7 @@ Setting <code>page_func</code> to <a href="https://doc.rust-lang.org/nightly/cor
 use the default forward function, which just goes to the
 next visible page.</p>
 <h2 id="page_func" class="section-header"><a href="#page_func"><code>page_func</code></a></h2>
-<p>the <a href="struct.Assistant.html" title="crate::Assistant"><code>Assistant</code></a>PageFunc, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
+<p>the <code>GtkAssistantPageFunc</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 to use the default one</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_page_complete" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/assistant.rs.html#423-431" title="goto source code">[src]</a></div><a href="#method.set_page_complete" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_page_complete" class="fnname">set_page_complete</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, complete: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether <code>page</code> contents are complete.</p>
 <p>This will make <code>self</code> update the buttons state

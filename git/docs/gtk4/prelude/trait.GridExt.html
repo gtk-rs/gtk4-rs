@@ -121,8 +121,7 @@ by <code>width</code> and <code>height</code>.</p>
 <code>side</code>. When <code>sibling</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the widget is placed in row (for
 left or right placement) or column 0 (for top or bottom placement),
 at the end indicated by <code>side</code>.</p>
-<p>Attaching widgets labeled [1], [2], [3] with <code>sibling</code> == <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> and
-<code>side</code> == <a href="../enum.PositionType.html#variant.Left" title="crate::PositionType::Left"><code>PositionType::Left</code></a> yields a layout of [3][2][1].</p>
+<p>Attaching widgets labeled <code>[1]</code>, <code>[2]</code>, <code>[3]</code> with <code>sibling` == [`None`]` and </code>side<code> == [</code>PositionType::Left<code>][crate::PositionType::Left]</code> yields a layout of <code>[3][2][1]</code>.</p>
 <h2 id="child-1" class="section-header"><a href="#child-1"><code>child</code></a></h2>
 <p>the widget to add</p>
 <h2 id="sibling" class="section-header"><a href="#sibling"><code>sibling</code></a></h2>
@@ -144,7 +143,7 @@ cell at <code>column</code>, <code>row</code>.</p>
 <h2 id="row-1" class="section-header"><a href="#row-1"><code>row</code></a></h2>
 <p>the top edge of the cell</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p>the child at the given position, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>the child at the given position</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_column_homogeneous" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#691" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_column_homogeneous" class="fnname">is_column_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether all columns of <code>self</code> have the same width.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>whether all columns of <code>self</code> have the same width.</p>

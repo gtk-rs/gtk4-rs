@@ -726,7 +726,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The drag icon or [`None`] if none.</span>
+    <span class="doccomment">/// The drag icon</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_icon_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
@@ -735,7 +735,7 @@
 
     <span class="doccomment">/// Sets the widget to display as the drag icon.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a [`Widget`][crate::Widget] or [`None`]</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_icon_set_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -753,7 +753,7 @@
     <span class="doccomment">/// If GTK does not know how to create a widget for a given value,</span>
     <span class="doccomment">/// it will return [`None`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This method is used to set the default drag icon on drag&#39;n&#39;drop</span>
+    <span class="doccomment">/// This method is used to set the default drag icon on drag-and-drop</span>
     <span class="doccomment">/// operations started by [`DragSource`][crate::DragSource], so you don&#39;t need to set</span>
     <span class="doccomment">/// a drag icon using this function there.</span>
     <span class="doccomment">/// ## `value`</span>

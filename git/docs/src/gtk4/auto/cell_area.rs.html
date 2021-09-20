@@ -1927,7 +1927,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellArea`][crate::CellArea] is an abstract class for [`CellLayout`][crate::CellLayout] widgets</span>
     <span class="doccomment">/// (also referred to as &quot;layouting widgets&quot;) to interface with an</span>
-    <span class="doccomment">/// arbitrary number of `GtkCellRenderers` and interact with the user</span>
+    <span class="doccomment">/// arbitrary number of [`CellRenderer`][crate::CellRenderer]s and interact with the user</span>
     <span class="doccomment">/// for a given [`TreeModel`][crate::TreeModel] row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The cell area handles events, focus navigation, drawing and</span>
@@ -1957,17 +1957,17 @@
     <span class="doccomment">/// alignments with areas rendered for adjacent rows (cells can</span>
     <span class="doccomment">/// appear “columnized” inside an area even when the size of</span>
     <span class="doccomment">/// cells are different in each row). For this reason the [`CellArea`][crate::CellArea]</span>
-    <span class="doccomment">/// uses a [`CellAreaContext`][crate::CellAreaContext] object to store the alignments</span>
+    <span class="doccomment">/// uses a [`CellArea`][crate::CellArea]Context object to store the alignments</span>
     <span class="doccomment">/// and sizes along the way (as well as the overall largest minimum</span>
     <span class="doccomment">/// and natural size for all the rows which have been calculated</span>
     <span class="doccomment">/// with the said context).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`CellAreaContext`][crate::CellAreaContext] is an opaque object specific to the</span>
+    <span class="doccomment">/// The [`CellArea`][crate::CellArea]Context is an opaque object specific to the</span>
     <span class="doccomment">/// [`CellArea`][crate::CellArea] which created it (see [`CellAreaExt::create_context()`][crate::prelude::CellAreaExt::create_context()]).</span>
     <span class="doccomment">/// The owning cell-layouting widget can create as many contexts as</span>
     <span class="doccomment">/// it wishes to calculate sizes of rows which should receive the</span>
     <span class="doccomment">/// same size in at least one orientation (horizontally or vertically),</span>
-    <span class="doccomment">/// However, it’s important that the same [`CellAreaContext`][crate::CellAreaContext] which</span>
+    <span class="doccomment">/// However, it’s important that the same [`CellArea`][crate::CellArea]Context which</span>
     <span class="doccomment">/// was used to request the sizes for a given [`TreeModel`][crate::TreeModel] row be</span>
     <span class="doccomment">/// used when rendering or processing events for that row.</span>
     <span class="doccomment">///</span>
@@ -1998,7 +1998,7 @@
     <span class="doccomment">/// returned minimum and natural width of the area for each row</span>
     <span class="doccomment">/// unless the cell-layouting object is actually interested in the</span>
     <span class="doccomment">/// widths of individual rows. The overall width is however stored</span>
-    <span class="doccomment">/// in the accompanying [`CellAreaContext`][crate::CellAreaContext] object and can be consulted</span>
+    <span class="doccomment">/// in the accompanying [`CellArea`][crate::CellArea]Context object and can be consulted</span>
     <span class="doccomment">/// at any time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be useful since [`CellLayout`][crate::CellLayout] widgets usually have to</span>
@@ -2006,9 +2006,9 @@
     <span class="doccomment">/// exceedingly large amount of rows. The [`CellLayout`][crate::CellLayout] widget in</span>
     <span class="doccomment">/// that case would calculate the required width of the rows in an</span>
     <span class="doccomment">/// idle or timeout source (see `g_timeout_add()`) and when the widget</span>
-    <span class="doccomment">/// is requested its actual width in `GtkWidgetClass.measure()`</span>
+    <span class="doccomment">/// is requested its actual width in `vfunc::Gtk::Widget::measure`</span>
     <span class="doccomment">/// it can simply consult the width accumulated so far in the</span>
-    <span class="doccomment">/// [`CellAreaContext`][crate::CellAreaContext] object.</span>
+    <span class="doccomment">/// [`CellArea`][crate::CellArea]Context object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A simple example where rows are rendered from top to bottom and</span>
     <span class="doccomment">/// take up the full width of the layouting widget would look like:</span>
@@ -2036,10 +2036,10 @@
     <span class="doccomment">/// row sizes have been calculated (the amount of rows that Foo judged</span>
     <span class="doccomment">/// was appropriate to request space for in a single timeout iteration)</span>
     <span class="doccomment">/// before simply returning the amount of space required by the area via</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext].</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Requesting the height for width (or width for height) of an area is</span>
-    <span class="doccomment">/// a similar task except in this case the [`CellAreaContext`][crate::CellAreaContext] does not</span>
+    <span class="doccomment">/// a similar task except in this case the [`CellArea`][crate::CellArea]Context does not</span>
     <span class="doccomment">/// store the data (actually, it does not know how much space the layouting</span>
     <span class="doccomment">/// widget plans to allocate it for every row. It’s up to the layouting</span>
     <span class="doccomment">/// widget to render each row of data with the appropriate height and</span>
@@ -2090,7 +2090,7 @@
     <span class="doccomment">/// synchronously. The reasoning here is that any layouting widget is</span>
     <span class="doccomment">/// at least capable of synchronously calculating enough height to fill</span>
     <span class="doccomment">/// the screen height (or scrolled window height) in response to a single</span>
-    <span class="doccomment">/// call to `GtkWidgetClass.measure()`. Returning</span>
+    <span class="doccomment">/// call to `vfunc::Gtk::Widget::measure`. Returning</span>
     <span class="doccomment">/// a perfect height for width that is larger than the screen area is</span>
     <span class="doccomment">/// inconsequential since after the layouting receives an allocation</span>
     <span class="doccomment">/// from a scrolled window it simply continues to drive the scrollbar</span>
@@ -2101,7 +2101,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Once area sizes have been acquired at least for the rows in the</span>
     <span class="doccomment">/// visible area of the layouting widget they can be rendered at</span>
-    <span class="doccomment">/// `GtkWidgetClass.snapshot()` time.</span>
+    <span class="doccomment">/// `vfunc::Gtk::Widget::snapshot` time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A crude example of how to render all the rows at the root level</span>
     <span class="doccomment">/// runs as follows:</span>
@@ -2149,8 +2149,8 @@
     <span class="doccomment">/// API as they come in. Usually [`CellArea`][crate::CellArea] is only interested in</span>
     <span class="doccomment">/// button events, however some customized derived areas can be implemented</span>
     <span class="doccomment">/// who are interested in handling other events. Handling an event can</span>
-    <span class="doccomment">/// trigger the `signal::CellArea::focus-changed` signal to fire; as well as</span>
-    <span class="doccomment">/// `signal::CellArea::add-editable` in the case that an editable cell was</span>
+    <span class="doccomment">/// trigger the [`CellArea`][crate::CellArea]::focus-changed signal to fire; as well as</span>
+    <span class="doccomment">/// [`CellArea`][crate::CellArea]::add-editable in the case that an editable cell was</span>
     <span class="doccomment">/// clicked and needs to start editing. You can call</span>
     <span class="doccomment">/// [`CellAreaExt::stop_editing()`][crate::prelude::CellAreaExt::stop_editing()] at any time to cancel any cell editing</span>
     <span class="doccomment">/// that is currently in progress.</span>
@@ -2162,14 +2162,14 @@
     <span class="doccomment">/// area to paint the focus at render time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Layouting widgets that accept focus on cells should implement the</span>
-    <span class="doccomment">/// `GtkWidgetClass.focus()` virtual method. The layouting widget is always</span>
+    <span class="doccomment">/// `vfunc::Gtk::Widget::focus` virtual method. The layouting widget is always</span>
     <span class="doccomment">/// responsible for knowing where [`TreeModel`][crate::TreeModel] rows are rendered inside</span>
-    <span class="doccomment">/// the widget, so at `GtkWidgetClass.focus()` time the layouting widget</span>
+    <span class="doccomment">/// the widget, so at `vfunc::Gtk::Widget::focus` time the layouting widget</span>
     <span class="doccomment">/// should use the [`CellArea`][crate::CellArea] methods to navigate focus inside the area</span>
     <span class="doccomment">/// and then observe the GtkDirectionType to pass the focus to adjacent</span>
     <span class="doccomment">/// rows and areas.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A basic example of how the `GtkWidgetClass.focus()` virtual method</span>
+    <span class="doccomment">/// A basic example of how the `vfunc::Gtk::Widget::focus` virtual method</span>
     <span class="doccomment">/// should be implemented:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
@@ -2239,13 +2239,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Cell Properties</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`CellArea`][crate::CellArea] introduces cell properties for `GtkCellRenderers`.</span>
+    <span class="doccomment">/// The [`CellArea`][crate::CellArea] introduces cell properties for [`CellRenderer`][crate::CellRenderer]s.</span>
     <span class="doccomment">/// This provides some general interfaces for defining the relationship</span>
-    <span class="doccomment">/// cell areas have with their cells. For instance in a [`CellAreaBox`][crate::CellAreaBox]</span>
+    <span class="doccomment">/// cell areas have with their cells. For instance in a [`CellArea`][crate::CellArea]Box</span>
     <span class="doccomment">/// a cell might “expand” and receive extra space when the area is allocated</span>
     <span class="doccomment">/// more than its full natural request, or a cell might be configured to “align”</span>
     <span class="doccomment">/// with adjacent rows which were requested and rendered with the same</span>
-    <span class="doccomment">/// [`CellAreaContext`][crate::CellAreaContext].</span>
+    <span class="doccomment">/// [`CellArea`][crate::CellArea]Context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Use `gtk_cell_area_class_install_cell_property()` to install cell</span>
     <span class="doccomment">/// properties for a cell area class and `gtk_cell_area_class_find_cell_property()`</span>
@@ -2282,13 +2282,13 @@
     <span class="doccomment">/// cell, however some subclasses which embed widgets in the area</span>
     <span class="doccomment">/// can also activate a widget if it currently has the focus.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] in context with the current row data</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context in context with the current row data</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
     <span class="doccomment">/// ## `cell_area`</span>
     <span class="doccomment">/// the size and location of `self` relative to `widget`’s allocation</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`CellRendererState`][crate::CellRendererState] flags for `self` for this row of data.</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State flags for `self` for this row of data.</span>
     <span class="doccomment">/// ## `edit_only`</span>
     <span class="doccomment">/// if [`true`] then only cell renderers that are [`CellRendererMode::Editable`][crate::CellRendererMode::Editable]</span>
     <span class="doccomment">///  will be activated.</span>
@@ -2398,24 +2398,24 @@
     <span class="doccomment">/// was already used to request all the row widths that are</span>
     <span class="doccomment">/// to be displayed.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] to copy</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context to copy</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created [`CellAreaContext`][crate::CellAreaContext] copy of `context`.</span>
+    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context copy of `context`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_copy_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">copy_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Creates a [`CellAreaContext`][crate::CellAreaContext] to be used with `self` for</span>
-    <span class="doccomment">/// all purposes. [`CellAreaContext`][crate::CellAreaContext] stores geometry information</span>
+    <span class="doccomment">/// Creates a [`CellArea`][crate::CellArea]Context to be used with `self` for</span>
+    <span class="doccomment">/// all purposes. [`CellArea`][crate::CellArea]Context stores geometry information</span>
     <span class="doccomment">/// for rows for which it was operated on, it is important to use</span>
     <span class="doccomment">/// the same context for the same row of data at all times (i.e.</span>
-    <span class="doccomment">/// one should render and handle events with the same [`CellAreaContext`][crate::CellAreaContext]</span>
+    <span class="doccomment">/// one should render and handle events with the same [`CellArea`][crate::CellArea]Context</span>
     <span class="doccomment">/// which was used to request the size of those rows of data).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created [`CellAreaContext`][crate::CellAreaContext] which can be used with `self`.</span>
+    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context which can be used with `self`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_create_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
@@ -2446,7 +2446,7 @@
     <span class="doccomment">/// Calls `callback` for every [`CellRenderer`][crate::CellRenderer] in `self` with the</span>
     <span class="doccomment">/// allocated rectangle inside `cell_area`.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] for this row of data.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context for this row of data.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering to</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -2474,7 +2474,7 @@
     <span class="doccomment">/// Derives the allocation of `renderer` inside `self` if `self`</span>
     <span class="doccomment">/// were to be renderered in `cell_area`.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] used to hold sizes for `self`.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for `self`.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -2501,7 +2501,7 @@
     <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] at `x` and `y` coordinates inside `self` and optionally</span>
     <span class="doccomment">/// returns the full cell allocation for it inside `cell_area`.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] used to hold sizes for `self`.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for `self`.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -2518,7 +2518,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `alloc_area`</span>
     <span class="doccomment">/// where to store the inner allocated area of the</span>
-    <span class="doccomment">///  returned cell renderer, or [`None`].</span>
+    <span class="doccomment">///  returned cell renderer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_cell_at_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cell_at_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cell_at_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2586,8 +2586,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] for which `renderer`</span>
-    <span class="doccomment">///  is a sibling, or [`None`].</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]</span>
+    <span class="doccomment">///  for which `renderer` is a sibling</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_from_sibling&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_from_sibling&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus_from_sibling</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
@@ -2598,7 +2598,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GList` of `GtkCellRenderers`.</span>
+    <span class="doccomment">/// A `GList` of [`CellRenderer`][crate::CellRenderer]s.</span>
     <span class="doccomment">///  The returned list is internal and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_siblings&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_siblings&quot;</span>)]</span>
@@ -2612,7 +2612,7 @@
     <span class="doccomment">/// consult [`CellAreaContextExt::preferred_height()`][crate::prelude::CellAreaContextExt::preferred_height()] after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] to perform this request with</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context to perform this request with</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
     <span class="doccomment">///</span>
@@ -2620,10 +2620,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_height`</span>
-    <span class="doccomment">/// location to store the minimum height, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum height</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_height`</span>
-    <span class="doccomment">/// location to store the natural height, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_preferred_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2647,7 +2647,7 @@
     <span class="doccomment">/// the full width of the requested rows checked again with</span>
     <span class="doccomment">/// [`CellAreaContextExt::preferred_width()`][crate::prelude::CellAreaContextExt::preferred_width()].</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] which has already been requested for widths.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
     <span class="doccomment">/// ## `width`</span>
@@ -2657,10 +2657,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_height`</span>
-    <span class="doccomment">/// location to store the minimum height, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum height</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_height`</span>
-    <span class="doccomment">/// location to store the natural height, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_preferred_height_for_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height_for_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2678,7 +2678,7 @@
     <span class="doccomment">/// consult [`CellAreaContextExt::preferred_width()`][crate::prelude::CellAreaContextExt::preferred_width()] after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] to perform this request with</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context to perform this request with</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
     <span class="doccomment">///</span>
@@ -2686,10 +2686,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_width`</span>
-    <span class="doccomment">/// location to store the minimum width, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum width</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_width`</span>
-    <span class="doccomment">/// location to store the natural width, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural width</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_preferred_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2713,7 +2713,7 @@
     <span class="doccomment">/// the full height of the requested rows checked again with</span>
     <span class="doccomment">/// [`CellAreaContextExt::preferred_height()`][crate::prelude::CellAreaContextExt::preferred_height()].</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] which has already been requested for widths.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
     <span class="doccomment">/// ## `height`</span>
@@ -2723,10 +2723,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_width`</span>
-    <span class="doccomment">/// location to store the minimum width, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum width</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_width`</span>
-    <span class="doccomment">/// location to store the natural width, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural width</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_preferred_width_for_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width_for_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -2841,10 +2841,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_size`</span>
-    <span class="doccomment">/// location to store the minimum size, or [`None`]</span>
+    <span class="doccomment">/// location to store the minimum size</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_size`</span>
-    <span class="doccomment">/// location to store the natural size, or [`None`]</span>
+    <span class="doccomment">/// location to store the natural size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_request_renderer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">request_renderer</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2857,7 +2857,7 @@
     <span class="doccomment">/// Explicitly sets the currently focused cell to `renderer`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is generally called by implementations of</span>
-    <span class="doccomment">/// `GtkCellAreaClass.focus()` or `GtkCellAreaClass.event()`,</span>
+    <span class="doccomment">/// ``GtkCellAreaClass.focus()`` or ``GtkCellAreaClass.event()``,</span>
     <span class="doccomment">/// however it can also be used to implement functions such</span>
     <span class="doccomment">/// as [`TreeViewExt::set_cursor_on_cell()`][crate::prelude::TreeViewExt::set_cursor_on_cell()].</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -2868,7 +2868,7 @@
     <span class="doccomment">/// Snapshots `self`’s cells according to `self`’s layout onto at</span>
     <span class="doccomment">/// the given coordinates.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] for this row of data.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context for this row of data.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering to</span>
     <span class="doccomment">/// ## `snapshot`</span>
@@ -2878,7 +2878,7 @@
     <span class="doccomment">/// ## `cell_area`</span>
     <span class="doccomment">/// the `widget` relative coordinates for `self`</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`CellRendererState`][crate::CellRendererState] for `self` in this row.</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State for `self` in this row.</span>
     <span class="doccomment">/// ## `paint_focus`</span>
     <span class="doccomment">/// whether `self` should paint focus on focused cells for focused rows or not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_snapshot&quot;</span>)]</span>

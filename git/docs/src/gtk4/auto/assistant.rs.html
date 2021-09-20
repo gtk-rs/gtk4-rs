@@ -1567,7 +1567,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The index (starting from 0) of the current</span>
     <span class="doccomment">///  page in the `self`, or -1 if the `self` has no pages,</span>
-    <span class="doccomment">///  or no current page.</span>
+    <span class="doccomment">///  or no current page</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_get_current_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
@@ -1800,7 +1800,7 @@
     <span class="doccomment">/// use the default forward function, which just goes to the</span>
     <span class="doccomment">/// next visible page.</span>
     <span class="doccomment">/// ## `page_func`</span>
-    <span class="doccomment">/// the [`Assistant`][crate::Assistant]PageFunc, or [`None`]</span>
+    <span class="doccomment">/// the `GtkAssistantPageFunc`, or [`None`]</span>
     <span class="doccomment">///  to use the default one</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_set_forward_page_func&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_forward_page_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page_func</span>: <span class="ident">P</span>) {

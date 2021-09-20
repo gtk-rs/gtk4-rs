@@ -303,7 +303,7 @@
     <span class="doccomment">/// Sets the icon of the tooltip (which is in front of the text) to be</span>
     <span class="doccomment">/// `paintable`. If `paintable` is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable], or [`None`]</span>
+    <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -318,7 +318,7 @@
     <span class="doccomment">/// to be the icon indicated by `gicon` with the size indicated</span>
     <span class="doccomment">/// by `size`. If `gicon` is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `gicon`</span>
-    <span class="doccomment">/// a [`gio::Icon`][crate::gio::Icon] representing the icon, or [`None`]</span>
+    <span class="doccomment">/// a `GIcon` representing the icon</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon_from_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_icon_from_gicon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">gicon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -333,7 +333,7 @@
     <span class="doccomment">/// the icon indicated by `icon_name` with the size indicated</span>
     <span class="doccomment">/// by `size`. If `icon_name` is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// an icon name, or [`None`]</span>
+    <span class="doccomment">/// an icon name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon_from_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_icon_from_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -362,7 +362,7 @@
     <span class="doccomment">/// If `text` is [`None`], the label will be hidden.</span>
     <span class="doccomment">/// See also [``set_markup()``][`Self::set_markup()`].</span>
     <span class="doccomment">/// ## `text`</span>
-    <span class="doccomment">/// a text string or [`None`]</span>
+    <span class="doccomment">/// a text string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

@@ -1305,7 +1305,7 @@
     <span class="doccomment">/// is selected and the user presses one of the keys Space, Shift+Space,</span>
     <span class="doccomment">/// Return or Enter.</span>
     <span class="doccomment">/// ## `application`</span>
-    <span class="doccomment">/// the activated [`gio::AppInfo`][crate::gio::AppInfo]</span>
+    <span class="doccomment">/// the activated `GAppInfo`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;application-activated&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_application_activated</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gio::AppInfo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1336,7 +1336,7 @@
 
     <span class="doccomment">/// Emitted when an application item is selected from the widget&#39;s list.</span>
     <span class="doccomment">/// ## `application`</span>
-    <span class="doccomment">/// the selected [`gio::AppInfo`][crate::gio::AppInfo]</span>
+    <span class="doccomment">/// the selected `GAppInfo`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;application-selected&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_application_selected</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gio::AppInfo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

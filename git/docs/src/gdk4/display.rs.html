@@ -313,7 +313,6 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
-<span id="243">243</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">keys::Key</span>, <span class="ident">Display</span>, <span class="ident">Event</span>, <span class="ident">KeymapKey</span>, <span class="ident">ModifierType</span>};
@@ -353,18 +352,17 @@
     <span class="doccomment">/// [`true`] if there was a keyval bound to keycode/state/group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keyval`</span>
-    <span class="doccomment">/// return location for keyval, or [`None`]</span>
+    <span class="doccomment">/// return location for keyval</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `effective_group`</span>
-    <span class="doccomment">/// return location for effective</span>
-    <span class="doccomment">///  group, or [`None`]</span>
+    <span class="doccomment">/// return location for effective group</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `level`</span>
-    <span class="doccomment">/// return location for level, or [`None`]</span>
+    <span class="doccomment">/// return location for level</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `consumed`</span>
-    <span class="doccomment">/// return location for modifiers</span>
-    <span class="doccomment">///  that were used to determine the group or level, or [`None`]</span>
+    <span class="doccomment">/// return location for modifiers that were used</span>
+    <span class="doccomment">///  to determine the group or level</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_translate_key&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">translate_key</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -433,11 +431,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keys`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of [`KeymapKey`][crate::KeymapKey], or [`None`]</span>
+    <span class="doccomment">///  location for array of [`KeymapKey`][crate::KeymapKey]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keyvals`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of keyvals, or [`None`]</span>
+    <span class="doccomment">///  location for array of keyvals</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_map_keycode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">map_keycode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keycode</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">KeymapKey</span>, <span class="ident">Key</span>)<span class="op">&gt;</span><span class="op">&gt;</span>;
 

@@ -317,15 +317,15 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`CustomSorter`][struct@crate::CustomSorter], [`MultiSorter`][struct@crate::MultiSorter], [`NumericSorter`][struct@crate::NumericSorter], [`Sorter`][struct@crate::Sorter], [`StringSorter`][struct@crate::StringSorter], [`TreeListRowSorter`][struct@crate::TreeListRowSorter]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SorterExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits the `signal::Sorter::changed` signal to notify all users</span>
-    <span class="doccomment">/// of the sorter that it has changed.</span>
+    <span class="doccomment">/// Notifies all users of the sorter that it has changed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Users of the sorter should then update the sort order via</span>
-    <span class="doccomment">/// `gtk_sorter_compare()`.</span>
+    <span class="doccomment">/// This emits the `signal::Sorter::changed` signal. Users</span>
+    <span class="doccomment">/// of the sorter should then update the sort order via</span>
+    <span class="doccomment">/// `Gtk::`Sorter::compare()``.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
-    <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
-    <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
+    <span class="doccomment">/// Depending on the `change` parameter, it may be possible to</span>
+    <span class="doccomment">/// update the sort order without a full resorting. Refer to</span>
+    <span class="doccomment">/// the [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended for implementors of [`Sorter`][crate::Sorter]</span>
     <span class="doccomment">/// subclasses and should not be called from other functions.</span>

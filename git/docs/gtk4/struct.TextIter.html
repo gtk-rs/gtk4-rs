@@ -113,7 +113,7 @@ but goes backward from <code>self</code>.</p>
 <h2 id="pred" class="section-header"><a href="#pred"><code>pred</code></a></h2>
 <p>function to be called on each character</p>
 <h2 id="limit" class="section-header"><a href="#limit"><code>limit</code></a></h2>
-<p>search limit, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
+<p>search limit</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>whether a match was found</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.backward_line" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#174-176" title="goto source code">[src]</a></div><a href="#method.backward_line" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.backward_line" class="fnname">backward_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves <code>self</code> to the start of the previous line.</p>
@@ -150,9 +150,9 @@ even if there is a possible <code>match_start</code> before or at <code>self</co
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>whether a match was found</p>
 <h2 id="match_start" class="section-header"><a href="#match_start"><code>match_start</code></a></h2>
-<p>return location for start of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>return location for start of match</p>
 <h2 id="match_end" class="section-header"><a href="#match_end"><code>match_end</code></a></h2>
-<p>return location for end of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>return location for end of match</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.backward_sentence_start" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#262-268" title="goto source code">[src]</a></div><a href="#method.backward_sentence_start" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.backward_sentence_start" class="fnname">backward_sentence_start</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves backward to the previous sentence start.</p>
 <p>If <code>self</code> is already at the start of a sentence, moves backward
 to the next one.</p>
@@ -175,7 +175,7 @@ located at <code>self</code>, only toggles before <code>self</code>. Sets <code>
 to the location of the toggle, or the start of the buffer
 if no toggle is found.</p>
 <h2 id="tag" class="section-header"><a href="#tag"><code>tag</code></a></h2>
-<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
 <p>whether we found a tag toggle before <code>self</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.backward_visible_cursor_position" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#322-328" title="goto source code">[src]</a></div><a href="#method.backward_visible_cursor_position" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.backward_visible_cursor_position" class="fnname">backward_visible_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves <code>self</code> forward to the previous visible cursor position.</p>
@@ -285,7 +285,7 @@ unlike <a href="struct.TextIter.html#method.starts_tag" title="Self::starts_tag(
 returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, <a href="struct.TextIter.html#method.has_tag" title="Self::has_tag()"><code>has_tag()</code></a> will return
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for the same parameters.</p>
 <h2 id="tag-1" class="section-header"><a href="#tag-1"><code>tag</code></a></h2>
-<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
 <h1 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h1>
 <p>whether <code>self</code> is the end of a range tagged with <code>tag</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.ends_word" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#608-610" title="goto source code">[src]</a></div><a href="#method.ends_word" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.ends_word" class="fnname">ends_word</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Determines whether <code>self</code> ends a natural-language word.</p>
@@ -339,7 +339,7 @@ If <code>pred</code> never returns <a href="https://doc.rust-lang.org/nightly/st
 <h2 id="pred-1" class="section-header"><a href="#pred-1"><code>pred</code></a></h2>
 <p>a function to be called on each character</p>
 <h2 id="limit-2" class="section-header"><a href="#limit-2"><code>limit</code></a></h2>
-<p>search limit, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
+<p>search limit</p>
 <h1 id="returns-29" class="section-header"><a href="#returns-29">Returns</a></h1>
 <p>whether a match was found</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.forward_line" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#776-778" title="goto source code">[src]</a></div><a href="#method.forward_line" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.forward_line" class="fnname">forward_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves <code>self</code> to the start of the next line.</p>
@@ -378,9 +378,9 @@ even if there is a possible <code>match_end</code> after or at <code>self</code>
 <h1 id="returns-32" class="section-header"><a href="#returns-32">Returns</a></h1>
 <p>whether a match was found</p>
 <h2 id="match_start-1" class="section-header"><a href="#match_start-1"><code>match_start</code></a></h2>
-<p>return location for start of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>return location for start of match</p>
 <h2 id="match_end-1" class="section-header"><a href="#match_end-1"><code>match_end</code></a></h2>
-<p>return location for end of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>return location for end of match</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.forward_sentence_end" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#870-876" title="goto source code">[src]</a></div><a href="#method.forward_sentence_end" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.forward_sentence_end" class="fnname">forward_sentence_end</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves forward to the next sentence end.</p>
 <p>If <code>self</code> is at the end of a sentence, moves to the next
 end of sentence.</p>
@@ -418,7 +418,7 @@ located at <code>self</code>, only toggles after <code>self</code>. Sets <code>s
 the location of the toggle, or to the end of the buffer
 if no toggle is found.</p>
 <h2 id="tag-2" class="section-header"><a href="#tag-2"><code>tag</code></a></h2>
-<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
 <h1 id="returns-36" class="section-header"><a href="#returns-36">Returns</a></h1>
 <p>whether we found a tag toggle after <code>self</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.forward_visible_cursor_position" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#966-972" title="goto source code">[src]</a></div><a href="#method.forward_visible_cursor_position" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.forward_visible_cursor_position" class="fnname">forward_visible_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Moves <code>self</code> forward to the next visible cursor position.</p>
@@ -671,7 +671,7 @@ pre-sorted range.</p>
 <h2 id="second" class="section-header"><a href="#second"><code>second</code></a></h2>
 <p>another <a href="struct.TextIter.html" title="crate::TextIter"><code>TextIter</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_line" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1605-1609" title="goto source code">[src]</a></div><a href="#method.set_line" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_line" class="fnname">set_line</a>(&amp;mut self, line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Moves iterator <code>self</code> to the start of the line <code>line_number</code>.</p>
-<p>If <code>line_number</code> is negative or larger than the number of lines
+<p>If <code>line_number</code> is negative or larger than or equal to the number of lines
 in the buffer, moves <code>self</code> to the start of the last line in the buffer.</p>
 <h2 id="line_number" class="section-header"><a href="#line_number"><code>line_number</code></a></h2>
 <p>line number (counted from 0)</p>
@@ -725,7 +725,7 @@ words, unlike <a href="struct.TextIter.html#method.ends_tag" title="Self::ends_t
 this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, <a href="struct.TextIter.html#method.has_tag" title="Self::has_tag()"><code>has_tag()</code></a>
 will also return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> for the same parameters.</p>
 <h2 id="tag-4" class="section-header"><a href="#tag-4"><code>tag</code></a></h2>
-<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
 <h1 id="returns-74" class="section-header"><a href="#returns-74">Returns</a></h1>
 <p>whether <code>self</code> is the start of a range tagged with <code>tag</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.starts_word" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1740-1742" title="goto source code">[src]</a></div><a href="#method.starts_word" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.starts_word" class="fnname">starts_word</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Determines whether <code>self</code> begins a natural-language word.</p>
@@ -738,7 +738,7 @@ or ends at <code>self</code>.</p>
 <p>This is equivalent to (<a href="struct.TextIter.html#method.starts_tag" title="Self::starts_tag()"><code>starts_tag()</code></a> ||
 <a href="struct.TextIter.html#method.ends_tag" title="Self::ends_tag()"><code>ends_tag()</code></a>)</p>
 <h2 id="tag-5" class="section-header"><a href="#tag-5"><code>tag</code></a></h2>
-<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
 <h1 id="returns-76" class="section-header"><a href="#returns-76">Returns</a></h1>
 <p>whether <code>tag</code> is toggled on or off at <code>self</code></p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#14-31" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#14-31" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>

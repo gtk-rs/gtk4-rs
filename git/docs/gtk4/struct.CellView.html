@@ -104,8 +104,8 @@ possible.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>A newly created <a href="struct.CellView.html" title="crate::CellView"><code>CellView</code></a> widget.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_markup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#118-124" title="goto source code">[src]</a></div><a href="#method.with_markup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.with_markup" class="fnname">with_markup</a>(markup: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="struct.CellView.html" title="struct gtk4::CellView">CellView</a></h4></div></summary><div class="docblock"><p>Creates a new <a href="struct.CellView.html" title="crate::CellView"><code>CellView</code></a> widget, adds a <a href="struct.CellRendererText.html" title="crate::CellRendererText"><code>CellRendererText</code></a>
-to it, and makes it show <code>markup</code>. The text can be
-marked up with the [Pango text markup language][PangoMarkupFormat].</p>
+to it, and makes it show <code>markup</code>. The text can be marked up with
+the <a href="https://docs.gtk.org/Pango/pango_markup.html">Pango text markup language</a>.</p>
 <h2 id="markup" class="section-header"><a href="#markup"><code>markup</code></a></h2>
 <p>the text to display in the cell view</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
@@ -128,7 +128,7 @@ to it, and makes it show <code>texture</code>.</p>
 displayed row. If no row is currently displayed,
 <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p>the currently displayed row or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>the currently displayed row</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.draws_sensitive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#194-196" title="goto source code">[src]</a></div><a href="#method.draws_sensitive" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.draws_sensitive" class="fnname">draws_sensitive</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets whether <code>self</code> is configured to draw all of its
 cells in a sensitive state.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
@@ -142,7 +142,7 @@ the entire <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeMo
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.model" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#219-221" title="goto source code">[src]</a></div><a href="#method.model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.model" class="fnname">model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the model for <code>self</code>. If no model is used <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is
 returned.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
-<p>a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> used or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+<p>a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> used</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_displayed_row" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#232-239" title="goto source code">[src]</a></div><a href="#method.set_displayed_row" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_displayed_row" class="fnname">set_displayed_row</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></div></summary><div class="docblock"><p>Sets the row of the model that is currently displayed
 by the <a href="struct.CellView.html" title="crate::CellView"><code>CellView</code></a>. If the path is unset, then the
 contents of the cellview “stick” at their last value;
@@ -170,7 +170,7 @@ set, it will remove it before setting the new model. If <code>model</code> is
 <p>a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.cell_area" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#293-305" title="goto source code">[src]</a></div><a href="#method.cell_area" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.cell_area" class="fnname">cell_area</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;</h4></div></summary><div class="docblock"><p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> rendering cells</p>
 <p>If no area is specified when creating the cell view with <a href="struct.CellView.html#method.with_context" title="Self::with_context()"><code>with_context()</code></a>
-a horizontally oriented <a href="struct.CellAreaBox.html" title="crate::CellAreaBox"><code>CellAreaBox</code></a> will be used.</p>
+a horizontally oriented <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>Box will be used.</p>
 <p>since 3.0</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.cell_area_context" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/cell_view.rs.html#320-332" title="goto source code">[src]</a></div><a href="#method.cell_area_context" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.cell_area_context" class="fnname">cell_area_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;</h4></div></summary><div class="docblock"><p>The <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> used to compute the geometry of the cell view.</p>
 <p>A group of cell views can be assigned the same context in order to

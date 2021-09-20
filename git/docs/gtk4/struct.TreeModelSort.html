@@ -82,7 +82,7 @@ model without modifying it. Note that the sort function used by
 <p>The use of this is best demonstrated through an example. In the
 following sample code we create two <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a> widgets each with a
 view of the same data. As the model is wrapped here by a
-<a href="struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>, the two <code>GtkTreeViews</code> can each sort their
+<a href="struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>, the two <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a>s can each sort their
 view of the data without affecting the other. By contrast, if we
 simply put the same model in each widget, then sorting the first would
 sort the second.</p>
@@ -114,7 +114,7 @@ sort the second.</p>
 }</code></pre></div>
 <p>To demonstrate how to access the underlying child model from the sort
 model, the next example will be a callback for the <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>TreeSelection</code></a>
-<code>signal::TreeSelection::changed</code> signal. In this callback, we get a string
+<code>GtkTreeSelection::changed</code> signal. In this callback, we get a string
 from COLUMN_1 of the model. We then modify the string, find the same
 selected row on the child model, and change the row there.</p>
 <h2 id="accessing-the-child-model-of-in-a-selection-changed-callback" class="section-header"><a href="#accessing-the-child-model-of-in-a-selection-changed-callback">Accessing the child model of in a selection changed callback</a></h2>

@@ -88,9 +88,9 @@ Additionally, you cannot change the selection of a row on the model that
 is not currently displayed by the view without expanding its parents
 first.</p>
 <p>One of the important things to remember when monitoring the selection of
-a view is that the <code>signal::TreeSelection::changed</code> signal is mostly a hint.
+a view is that the <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>TreeSelection</code></a>::changed signal is mostly a hint.
 That is, it may only emit one signal when a range of rows is selected.
-Additionally, it may on occasion emit a <code>signal::TreeSelection::changed</code> signal
+Additionally, it may on occasion emit a <a href="struct.TreeSelection.html" title="crate::TreeSelection"><code>TreeSelection</code></a>::changed signal
 when nothing has happened (mostly as a result of programmers calling
 select_row on an already selected row).</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
@@ -110,19 +110,19 @@ use <code>self</code> is <a href="enum.SelectionMode.html#variant.Multiple" titl
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>TRUE, if there is a selected node.</p>
 <h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
-<p>A pointer to set to the <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a>, or NULL.</p>
+<p>A pointer to set to the <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
 <h2 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h2>
-<p>The <a href="struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a>, or NULL.</p>
+<p>The <a href="struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.selected_rows" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_selection.rs.html#142-150" title="goto source code">[src]</a></div><a href="#method.selected_rows" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.selected_rows" class="fnname">selected_rows</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;, <a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Creates a list of path of all selected rows. Additionally, if you are
 planning on modifying the model after calling this function, you may
-want to convert the returned list into a list of <code>GtkTreeRowReferences</code>.
+want to convert the returned list into a list of <a href="struct.TreeRowReference.html" title="crate::TreeRowReference"><code>TreeRowReference</code></a>s.
 To do this, you can use <a href="struct.TreeRowReference.html#method.new" title="crate::TreeRowReference::new()"><code>TreeRowReference::new()</code></a>.</p>
 <p>To free the return value, use:</p>
 <p><strong>⚠️ The following code is in C ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-C"><code>g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</code></pre></div><h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>A <code>GList</code> containing a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> for each selected row.</p>
 <h2 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h2>
-<p>A pointer to set to the <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
+<p>A pointer to set to the <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.tree_view" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_selection.rs.html#159-161" title="goto source code">[src]</a></div><a href="#method.tree_view" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.tree_view" class="fnname">tree_view</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreeView.html" title="struct gtk4::TreeView">TreeView</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the tree view associated with <code>self</code>.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>A <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a></p>

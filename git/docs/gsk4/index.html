@@ -95,7 +95,6 @@ gsk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot
 <div class="example-wrap"><pre class="language-toml"><code>[dependencies]
 gdk = {version = &quot;0.1&quot;, package = &quot;gdk4&quot;}
 gsk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gsk4&quot; }</code></pre></div><h3 id="features" class="section-header"><a href="#features">Features</a></h3><div><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>vulkan</code></td><td>Enable <code>vulkan</code> Renderer. Only if GTK is compiled with Vulkan support</td></tr>
 <tr><td><code>broadway</code></td><td>Enable <code>broadway</code> Renderer. Only if GTK is compiled with Broadway support</td></tr>
 <tr><td><code>v4_2</code></td><td>Enable the new APIs part of GTK 4.2</td></tr>
 </tbody></table>
@@ -155,7 +154,6 @@ tree of <a href="struct.RenderNode.html" title="crate::RenderNode"><code>RenderN
 </div><div class="item-left module-item"><a class="struct" href="struct.TextureNode.html" title="gsk4::TextureNode struct">TextureNode</a></div><div class="item-right docblock-short"><p>A render node for a <a href="../gdk4/auto/texture/struct.Texture.html" title="crate::gdk::Texture"><code>gdk::Texture</code></a>.</p>
 </div><div class="item-left module-item"><a class="struct" href="struct.Transform.html" title="gsk4::Transform struct">Transform</a></div><div class="item-right docblock-short"><p><a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> is an object to describe transform matrices.</p>
 </div><div class="item-left module-item"><a class="struct" href="struct.TransformNode.html" title="gsk4::TransformNode struct">TransformNode</a></div><div class="item-right docblock-short"><p>A render node applying a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> to its single child node.</p>
-</div><div class="item-left module-item"><a class="struct" href="struct.VulkanRenderer.html" title="gsk4::VulkanRenderer struct">VulkanRenderer</a></div><div class="item-right docblock-short"><p>A GSK renderer that is using Vulkan.</p>
 </div></div><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
 <div class="item-table"><div class="item-left module-item"><a class="enum" href="enum.BlendMode.html" title="gsk4::BlendMode enum">BlendMode</a></div><div class="item-right docblock-short"><p>The blend modes available for render nodes.</p>
 </div><div class="item-left module-item"><a class="enum" href="enum.Corner.html" title="gsk4::Corner enum">Corner</a></div><div class="item-right docblock-short"><p>The corner indices used by <a href="struct.RoundedRect.html" title="crate::RoundedRect"><code>RoundedRect</code></a>.</p>

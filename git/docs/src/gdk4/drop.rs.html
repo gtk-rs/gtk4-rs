@@ -238,7 +238,6 @@
 <span id="165">165</span>
 <span id="166">166</span>
 <span id="167">167</span>
-<span id="168">168</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>;
@@ -259,8 +258,7 @@
     <span class="doccomment">/// ## `io_priority`</span>
     <span class="doccomment">/// the I/O priority for the read operation</span>
     <span class="doccomment">/// ## `cancellable`</span>
-    <span class="doccomment">/// optional `GCancellable` object,</span>
-    <span class="doccomment">///  [`None`] to ignore</span>
+    <span class="doccomment">/// optional `GCancellable` object</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// a `GAsyncReadyCallback` to call when</span>
     <span class="doccomment">///  the request is satisfied</span>
@@ -341,7 +339,7 @@
     <span class="doccomment">/// then call `Gdk::`Drop::read_value_finish()`` to get the resulting</span>
     <span class="doccomment">/// `GValue`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For local drag&#39;n&#39;drop operations that are available in the given</span>
+    <span class="doccomment">/// For local drag-and-drop operations that are available in the given</span>
     <span class="doccomment">/// `GType`, the value will be copied directly. Otherwise, GDK will</span>
     <span class="doccomment">/// try to use [``content_deserialize_async()``][`crate::content_deserialize_async()`] to convert the data.</span>
     <span class="doccomment">/// ## `type_`</span>

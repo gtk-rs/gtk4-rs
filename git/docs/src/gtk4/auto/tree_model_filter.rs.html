@@ -451,7 +451,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A GtkTreeModel which hides parts of an underlying tree model</span>
+    <span class="doccomment">/// A [`TreeModel`][crate::TreeModel] which hides parts of an underlying tree model</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`TreeModelFilter`][crate::TreeModelFilter] is a tree model which wraps another tree model,</span>
     <span class="doccomment">/// and can do the following things:</span>
@@ -559,7 +559,7 @@
     <span class="doccomment">/// valid iterator pointing to a visible row in child model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `filter_iter`</span>
-    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter].</span>
+    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_child_iter_to_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_iter_to_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
@@ -573,7 +573,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath], or [`None`].</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_child_path_to_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_path_to_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
@@ -585,7 +585,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `child_iter`</span>
-    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter].</span>
+    <span class="doccomment">/// An uninitialized [`TreeIter`][crate::TreeIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_iter_to_child_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_iter_to_child_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
@@ -598,7 +598,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath], or [`None`].</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`][crate::TreePath]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_path_to_child_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_path_to_child_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
@@ -606,7 +606,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A pointer to a [`TreeModel`][crate::TreeModel].</span>
+    <span class="doccomment">/// A pointer to a [`TreeModel`][crate::TreeModel]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_get_model&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_model&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span>;
