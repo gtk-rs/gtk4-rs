@@ -142,6 +142,14 @@ impl ContentFormats {
             ))
         }
     }
+
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gdk_content_formats_parse")]
+    pub fn parse(string: &str) -> Option<ContentFormats> {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_full(ffi::gdk_content_formats_parse(string.to_glib_none().0)) }
+    }
 }
 
 impl fmt::Display for ContentFormats {

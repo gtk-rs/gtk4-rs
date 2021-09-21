@@ -283,29 +283,6 @@ impl DropTarget {
         }
     }
 
-    #[doc(alias = "formats")]
-    pub fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_formats_trampoline<F: Fn(&DropTarget) + 'static>(
-            this: *mut ffi::GtkDropTarget,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_formats_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
     #[doc(alias = "preload")]
     pub fn connect_preload_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_preload_trampoline<F: Fn(&DropTarget) + 'static>(
@@ -367,6 +344,7 @@ impl Default for DropTarget {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DropTargetBuilder {
     actions: Option<gdk::DragAction>,
+    formats: Option<gdk::ContentFormats>,
     preload: Option<bool>,
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -387,6 +365,9 @@ impl DropTargetBuilder {
         if let Some(ref actions) = self.actions {
             properties.push(("actions", actions));
         }
+        if let Some(ref formats) = self.formats {
+            properties.push(("formats", formats));
+        }
         if let Some(ref preload) = self.preload {
             properties.push(("preload", preload));
         }
@@ -405,6 +386,11 @@ impl DropTargetBuilder {
 
     pub fn actions(mut self, actions: gdk::DragAction) -> Self {
         self.actions = Some(actions);
+        self
+    }
+
+    pub fn formats(mut self, formats: &gdk::ContentFormats) -> Self {
+        self.formats = Some(formats.clone());
         self
     }
 

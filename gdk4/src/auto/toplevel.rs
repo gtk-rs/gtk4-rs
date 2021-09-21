@@ -7,6 +7,7 @@ use crate::FullscreenMode;
 use crate::Surface;
 use crate::SurfaceEdge;
 use crate::Texture;
+use crate::TitlebarGesture;
 use crate::ToplevelLayout;
 use crate::ToplevelState;
 use glib::object::Cast;
@@ -88,6 +89,9 @@ pub trait ToplevelExt: 'static {
 
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
+
+    #[doc(alias = "gdk_toplevel_titlebar_gesture")]
+    fn titlebar_gesture(&self, gesture: TitlebarGesture) -> bool;
 
     fn is_decorated(&self) -> bool;
 
@@ -267,6 +271,15 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         unsafe {
             from_glib(ffi::gdk_toplevel_supports_edge_constraints(
                 self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn titlebar_gesture(&self, gesture: TitlebarGesture) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_toplevel_titlebar_gesture(
+                self.as_ref().to_glib_none().0,
+                gesture.into_glib(),
             ))
         }
     }

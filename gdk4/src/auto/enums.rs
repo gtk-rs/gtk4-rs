@@ -1856,6 +1856,95 @@ impl ToValue for SurfaceEdge {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GdkTitlebarGesture")]
+pub enum TitlebarGesture {
+    #[doc(alias = "GDK_TITLEBAR_GESTURE_DOUBLE_CLICK")]
+    DoubleClick,
+    #[doc(alias = "GDK_TITLEBAR_GESTURE_RIGHT_CLICK")]
+    RightClick,
+    #[doc(alias = "GDK_TITLEBAR_GESTURE_MIDDLE_CLICK")]
+    MiddleClick,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for TitlebarGesture {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "TitlebarGesture::{}",
+            match *self {
+                Self::DoubleClick => "DoubleClick",
+                Self::RightClick => "RightClick",
+                Self::MiddleClick => "MiddleClick",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for TitlebarGesture {
+    type GlibType = ffi::GdkTitlebarGesture;
+
+    fn into_glib(self) -> ffi::GdkTitlebarGesture {
+        match self {
+            Self::DoubleClick => ffi::GDK_TITLEBAR_GESTURE_DOUBLE_CLICK,
+            Self::RightClick => ffi::GDK_TITLEBAR_GESTURE_RIGHT_CLICK,
+            Self::MiddleClick => ffi::GDK_TITLEBAR_GESTURE_MIDDLE_CLICK,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
+    unsafe fn from_glib(value: ffi::GdkTitlebarGesture) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GDK_TITLEBAR_GESTURE_DOUBLE_CLICK => Self::DoubleClick,
+            ffi::GDK_TITLEBAR_GESTURE_RIGHT_CLICK => Self::RightClick,
+            ffi::GDK_TITLEBAR_GESTURE_MIDDLE_CLICK => Self::MiddleClick,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for TitlebarGesture {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gdk_titlebar_gesture_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for TitlebarGesture {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for TitlebarGesture {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for TitlebarGesture {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "GdkTouchpadGesturePhase")]
 pub enum TouchpadGesturePhase {
     #[doc(alias = "GDK_TOUCHPAD_GESTURE_PHASE_BEGIN")]
