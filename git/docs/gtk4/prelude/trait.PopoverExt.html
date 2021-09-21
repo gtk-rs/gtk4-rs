@@ -150,8 +150,8 @@ as well. See <code>property::Popover::cascade-popdown</code>.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.present" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#732" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.present" class="fnname">present</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Presents the popover to the user.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_autohide" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#746" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_autohide" class="fnname">set_autohide</a>(&amp;self, autohide: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether <code>self</code> is modal.</p>
 <p>A modal popover will grab the keyboard focus on it when being
-displayed. Clicking outside the popover area or pressing Esc
-will dismiss the popover.</p>
+displayed. Focus will wrap around within the popover. Clicking
+outside the popover area or pressing Esc will dismiss the popover.</p>
 <p>Called this function on an already showing popup with a new
 autohide value different from the current one, will cause the
 popup to be hidden.</p>
