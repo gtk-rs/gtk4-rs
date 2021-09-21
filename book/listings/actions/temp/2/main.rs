@@ -1,4 +1,4 @@
-use gio::SimpleAction;
+use gio::{SimpleAction, SimpleActionGroup};
 use glib::clone;
 use gtk::prelude::*;
 use gtk::{gio, glib};
@@ -25,12 +25,19 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .build();
 
-    // Add action "quit" to `window` which takes no parameter
+    // Add action "quit" to `window` which takes no parameters
     let action_quit = SimpleAction::new("quit", None);
     action_quit.connect_activate(clone!(@weak window => move |_, _| {
         window.close();
     }));
     window.add_action(&action_quit);
+
+    // ANCHOR: action_group
+    // Create a new action group and add actions to it
+    let actions = SimpleActionGroup::new();
+    window.insert_action_group("win", Some(&actions));
+    actions.add_action(&action_quit);
+    // ANCHOR_END: action_group
 
     // Create a button with label and margins
     let button = Button::builder()
@@ -43,7 +50,7 @@ fn build_ui(app: &Application) {
 
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        // Activate "win.quit" without passing a parameter
+        // Activate "win.quit" without passing parameters
         button.activate_action("win.quit", None);
     });
 
