@@ -187,6 +187,11 @@ pub const GDK_SURFACE_EDGE_SOUTH_WEST: GdkSurfaceEdge = 5;
 pub const GDK_SURFACE_EDGE_SOUTH: GdkSurfaceEdge = 6;
 pub const GDK_SURFACE_EDGE_SOUTH_EAST: GdkSurfaceEdge = 7;
 
+pub type GdkTitlebarGesture = c_int;
+pub const GDK_TITLEBAR_GESTURE_DOUBLE_CLICK: GdkTitlebarGesture = 1;
+pub const GDK_TITLEBAR_GESTURE_RIGHT_CLICK: GdkTitlebarGesture = 2;
+pub const GDK_TITLEBAR_GESTURE_MIDDLE_CLICK: GdkTitlebarGesture = 3;
+
 pub type GdkTouchpadGesturePhase = c_int;
 pub const GDK_TOUCHPAD_GESTURE_PHASE_BEGIN: GdkTouchpadGesturePhase = 0;
 pub const GDK_TOUCHPAD_GESTURE_PHASE_UPDATE: GdkTouchpadGesturePhase = 1;
@@ -3374,6 +3379,11 @@ extern "C" {
     pub fn gdk_surface_edge_get_type() -> GType;
 
     //=========================================================================
+    // GdkTitlebarGesture
+    //=========================================================================
+    pub fn gdk_titlebar_gesture_get_type() -> GType;
+
+    //=========================================================================
     // GdkTouchpadGesturePhase
     //=========================================================================
     pub fn gdk_touchpad_gesture_phase_get_type() -> GType;
@@ -3482,6 +3492,9 @@ extern "C" {
         formats: *mut GdkContentFormats,
     ) -> *mut GdkContentFormats;
     pub fn gdk_content_formats_unref(formats: *mut GdkContentFormats);
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    pub fn gdk_content_formats_parse(string: *const c_char) -> *mut GdkContentFormats;
 
     //=========================================================================
     // GdkContentFormatsBuilder
@@ -4587,6 +4600,10 @@ extern "C" {
         event: *mut GdkEvent,
     ) -> gboolean;
     pub fn gdk_toplevel_supports_edge_constraints(toplevel: *mut GdkToplevel) -> gboolean;
+    pub fn gdk_toplevel_titlebar_gesture(
+        toplevel: *mut GdkToplevel,
+        gesture: GdkTitlebarGesture,
+    ) -> gboolean;
 
     //=========================================================================
     // Other functions

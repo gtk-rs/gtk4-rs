@@ -43,6 +43,7 @@ generate = [
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
+    "Gdk.TitlebarGesture",
     "Gdk.ToplevelLayout",
     "Gdk.ToplevelState",
     "Gdk.TouchpadGesturePhase",

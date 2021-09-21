@@ -127,6 +127,7 @@ pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
+pub use self::enums::TitlebarGesture;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
 

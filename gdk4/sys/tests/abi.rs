@@ -428,6 +428,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkTitlebarGesture",
+        Layout {
+            size: size_of::<GdkTitlebarGesture>(),
+            alignment: align_of::<GdkTitlebarGesture>(),
+        },
+    ),
+    (
         "GdkToplevelState",
         Layout {
             size: size_of::<GdkToplevelState>(),
@@ -2913,6 +2920,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_SURFACE_EDGE_SOUTH_EAST", "7"),
     ("(gint) GDK_SURFACE_EDGE_SOUTH_WEST", "5"),
     ("(gint) GDK_SURFACE_EDGE_WEST", "3"),
+    ("(gint) GDK_TITLEBAR_GESTURE_DOUBLE_CLICK", "1"),
+    ("(gint) GDK_TITLEBAR_GESTURE_MIDDLE_CLICK", "3"),
+    ("(gint) GDK_TITLEBAR_GESTURE_RIGHT_CLICK", "2"),
     ("(guint) GDK_TOPLEVEL_STATE_ABOVE", "16"),
     ("(guint) GDK_TOPLEVEL_STATE_BELOW", "32"),
     ("(guint) GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE", "8192"),
