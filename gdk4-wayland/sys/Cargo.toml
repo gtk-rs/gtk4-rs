@@ -34,7 +34,7 @@ version = "0.7"
 optional = true
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
+version = "0.14"
 
 [build-dependencies]
 system-deps = "4"

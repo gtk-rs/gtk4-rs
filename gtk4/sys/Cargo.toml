@@ -35,31 +35,33 @@ v4_4 = ["v4_2"]
 libc = "0.2"
 
 [dependencies.cairo-sys-rs]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.gdk4-sys]
 path = "../../gdk4/sys"
+version = "0.3"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.graphene-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [dependencies.gsk4-sys]
 path = "../../gsk4/sys"
+version = "0.3"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14"
 
 [build-dependencies]
 system-deps = "4"
