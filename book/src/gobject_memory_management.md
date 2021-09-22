@@ -156,8 +156,8 @@ Per default, it immediately returns from the closure with `()` as return value.
 In case the closure expects a different return value or a panic is preferred `@default-return` or `@default-panic`.
 For more information about `glib::clone`, please have a look at the [docs](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html).
 
-Notice that we kept the *strong* reference to `number`.
-If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
+Notice that we move `number` in the second closure.
+If we had only moved *weak* reference in both closures, nothing would have kept `number` alive and the closure would have never been called.
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 
