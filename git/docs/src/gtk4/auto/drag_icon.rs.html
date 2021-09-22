@@ -737,7 +737,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_icon_set_child&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_drag_icon_set_child</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -804,9 +804,9 @@
     <span class="doccomment">/// ## `hot_y`</span>
     <span class="doccomment">/// Y coordinate of the hotspot</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_icon_set_from_paintable&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_paintable</span>(
         <span class="ident">drag</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Drag</span>,
-        <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span>,
         <span class="ident">hot_x</span>: <span class="ident">i32</span>,
         <span class="ident">hot_y</span>: <span class="ident">i32</span>,
     ) {
@@ -993,7 +993,7 @@
     }
 
     <span class="doccomment">/// The widget to display as drag icon.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">child</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">child</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -1090,7 +1090,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
     <span class="doccomment">/// typically in their instance init function.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }

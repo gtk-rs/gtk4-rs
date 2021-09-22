@@ -1099,7 +1099,7 @@
     }
 
     <span class="doccomment">/// The `GMenuModel` to be used for the application&#39;s menu bar.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menubar</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">menubar</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menubar</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">menubar</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">menubar</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">menubar</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -1113,7 +1113,7 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action_group</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ActionGroup</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">action_group</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action_group</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">action_group</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ActionGroup</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">action_group</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">action_group</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -1165,7 +1165,7 @@
     <span class="doccomment">/// ## `window`</span>
     <span class="doccomment">/// a [`Window`][crate::Window]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_add_window&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">add_window</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">add_window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Gets the accelerators that are currently associated with</span>
     <span class="doccomment">/// the given action.</span>
@@ -1317,9 +1317,9 @@
     <span class="doccomment">///  in order to remove the request. If the platform does not support</span>
     <span class="doccomment">///  inhibiting or the request failed for some reason, 0 is returned.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_inhibit&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">inhibit</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">inhibit</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">window</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+        <span class="ident">window</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">flags</span>: <span class="ident">ApplicationInhibitFlags</span>,
         <span class="ident">reason</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
@@ -1345,7 +1345,7 @@
     <span class="doccomment">/// ## `window`</span>
     <span class="doccomment">/// a [`Window`][crate::Window]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_remove_window&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">remove_window</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">remove_window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets zero or more keyboard accelerators that will trigger the</span>
     <span class="doccomment">/// given action.</span>
@@ -1388,7 +1388,7 @@
     <span class="doccomment">/// ## `menubar`</span>
     <span class="doccomment">/// a `GMenuModel`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_set_menubar&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_menubar</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">set_menubar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Removes an inhibitor that has been previously established.</span>
     <span class="doccomment">///</span>
@@ -1464,7 +1464,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">GtkApplicationExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">add_window</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">add_window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_application_add_window</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1533,9 +1533,9 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">inhibit</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">inhibit</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">window</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+        <span class="ident">window</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">flags</span>: <span class="ident">ApplicationInhibitFlags</span>,
         <span class="ident">reason</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
@@ -1557,7 +1557,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">remove_window</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">remove_window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_application_remove_window</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1576,7 +1576,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_menubar</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">set_menubar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_application_set_menubar</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

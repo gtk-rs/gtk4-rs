@@ -1042,7 +1042,7 @@
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds for the new node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_texture&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Texture</span><span class="op">&gt;</span>, <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_snapshot_append_texture</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1331,9 +1331,9 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// rectangle height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_background&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_background</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_background</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
         <span class="ident">x</span>: <span class="ident">f64</span>,
         <span class="ident">y</span>: <span class="ident">f64</span>,
         <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1365,9 +1365,9 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// rectangle height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_focus&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_focus</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_focus</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
         <span class="ident">x</span>: <span class="ident">f64</span>,
         <span class="ident">y</span>: <span class="ident">f64</span>,
         <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1399,9 +1399,9 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// rectangle height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_frame&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_frame</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_frame</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
         <span class="ident">x</span>: <span class="ident">f64</span>,
         <span class="ident">y</span>: <span class="ident">f64</span>,
         <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1433,9 +1433,9 @@
     <span class="doccomment">/// ## `direction`</span>
     <span class="doccomment">/// the [`pango::Direction`][crate::pango::Direction] of the text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_insertion_cursor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_insertion_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_insertion_cursor</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
         <span class="ident">x</span>: <span class="ident">f64</span>,
         <span class="ident">y</span>: <span class="ident">f64</span>,
         <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango::Layout</span>,
@@ -1467,9 +1467,9 @@
     <span class="doccomment">/// ## `layout`</span>
     <span class="doccomment">/// the [`pango::Layout`][crate::pango::Layout] to render</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_layout&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
         <span class="ident">x</span>: <span class="ident">f64</span>,
         <span class="ident">y</span>: <span class="ident">f64</span>,
         <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango::Layout</span>,

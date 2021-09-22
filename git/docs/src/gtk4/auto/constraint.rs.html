@@ -541,11 +541,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created constraint</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">target</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">target</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">target_attribute</span>: <span class="ident">ConstraintAttribute</span>,
         <span class="ident">relation</span>: <span class="ident">ConstraintRelation</span>,
-        <span class="ident">source</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Q</span><span class="op">&gt;</span>,
+        <span class="ident">source</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">source_attribute</span>: <span class="ident">ConstraintAttribute</span>,
         <span class="ident">multiplier</span>: <span class="ident">f64</span>,
         <span class="ident">constant</span>: <span class="ident">f64</span>,
@@ -583,8 +583,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created constraint</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_new_constant&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_constant</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">target</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_constant</span>(
+        <span class="ident">target</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">target_attribute</span>: <span class="ident">ConstraintAttribute</span>,
         <span class="ident">relation</span>: <span class="ident">ConstraintRelation</span>,
         <span class="ident">constant</span>: <span class="ident">f64</span>,
@@ -835,7 +835,7 @@
     <span class="doccomment">/// The constraint will set the `property::Constraint::target-attribute`</span>
     <span class="doccomment">/// property of the target using the `property::Constraint::source-attribute`</span>
     <span class="doccomment">/// property of the source.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">source</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">source</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">source</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">source</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">source</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -862,7 +862,7 @@
     <span class="doccomment">/// The constraint will set the `property::Constraint::target-attribute`</span>
     <span class="doccomment">/// property of the target using the `property::Constraint::source-attribute`</span>
     <span class="doccomment">/// property of the source widget.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">target</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">target</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ConstraintTarget</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">target</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">target</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }

@@ -1738,8 +1738,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The new [`SpinButton`][crate::SpinButton]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">climb_rate</span>: <span class="ident">f64</span>,
         <span class="ident">digits</span>: <span class="ident">u32</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SpinButton</span> {
@@ -1807,9 +1807,9 @@
     <span class="doccomment">/// ## `digits`</span>
     <span class="doccomment">/// the number of decimal places to display in the spin button</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_configure&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
+        <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">climb_rate</span>: <span class="ident">f64</span>,
         <span class="ident">digits</span>: <span class="ident">u32</span>,
     ) {
@@ -1997,7 +1997,7 @@
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// a [`Adjustment`][crate::Adjustment] to replace the existing adjustment</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_set_adjustment&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_adjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_spin_button_set_adjustment</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2695,7 +2695,7 @@
     }
 
     <span class="doccomment">/// The adjustment that holds the value of the spin button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">adjustment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">adjustment</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -2836,7 +2836,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
     <span class="doccomment">/// typically in their instance init function.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }

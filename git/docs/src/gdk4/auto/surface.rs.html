@@ -1010,7 +1010,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new [`Surface`][crate::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_new_popup&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_popup</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_popup</span>(<span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_surface_new_popup</span>(
@@ -1028,7 +1028,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the new [`Surface`][crate::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_new_toplevel&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_toplevel</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_toplevel</span>(<span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_surface_new_toplevel</span>(
@@ -1127,7 +1127,7 @@
     <span class="doccomment">/// a [`Cursor`][crate::Cursor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_device_cursor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_device_cursor&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">device_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">device_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Obtains the current device position and modifier state.</span>
     <span class="doccomment">///</span>
@@ -1150,7 +1150,7 @@
     <span class="doccomment">/// return location for the modifier mask</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_device_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_device_position&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">device_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">device_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the [`Display`][crate::Display] associated with a [`Surface`][crate::Surface].</span>
     <span class="doccomment">///</span>
@@ -1284,7 +1284,7 @@
     <span class="doccomment">/// ## `cursor`</span>
     <span class="doccomment">/// a [`Cursor`][crate::Cursor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_set_device_cursor&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_device_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>);
+    <span class="kw">fn</span> <span class="ident">set_device_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>);
 
     <span class="doccomment">/// Apply the region to the surface for the purpose of event</span>
     <span class="doccomment">/// handling.</span>
@@ -1440,7 +1440,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_surface_get_cursor</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="kw">fn</span> <span class="ident">device_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">device_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_surface_get_device_cursor</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1449,7 +1449,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">device_position</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">device_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
@@ -1532,7 +1532,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_device_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) {
+    <span class="kw">fn</span> <span class="ident">set_device_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_surface_set_device_cursor</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

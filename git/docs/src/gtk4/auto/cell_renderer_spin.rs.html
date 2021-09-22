@@ -1431,7 +1431,7 @@
 
     <span class="doccomment">/// The adjustment that holds the value of the spinbutton.</span>
     <span class="doccomment">/// This must be non-[`None`] for the cell renderer to be editable.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">adjustment</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">adjustment</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }

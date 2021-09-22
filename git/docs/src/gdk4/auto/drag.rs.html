@@ -613,10 +613,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`Drag`][crate::Drag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_begin&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-        <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
-        <span class="ident">content</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin</span>(
+        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>,
+        <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>,
+        <span class="ident">content</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span>,
         <span class="ident">actions</span>: <span class="ident">DragAction</span>,
         <span class="ident">dx</span>: <span class="ident">f64</span>,
         <span class="ident">dy</span>: <span class="ident">f64</span>,

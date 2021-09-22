@@ -482,13 +482,13 @@
     }
 
     <span class="doccomment">/// The widget that is associated to the [`LayoutChild`][crate::LayoutChild] instance.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child_widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_widget</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child_widget</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">child_widget</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">child_widget</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The layout manager that created the [`LayoutChild`][crate::LayoutChild] instance.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }

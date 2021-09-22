@@ -967,7 +967,7 @@
     <span class="doccomment">/// ## `fontmap`</span>
     <span class="doccomment">/// a [`pango::FontMap`][crate::pango::FontMap]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_font_map&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_font_map</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">set_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets the language to use for font features.</span>
     <span class="doccomment">/// ## `language`</span>
@@ -1168,7 +1168,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_font_map</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">set_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_font_chooser_set_font_map</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

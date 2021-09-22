@@ -339,10 +339,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the [`ATContext`][crate::ATContext]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_at_context_create&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Accessible</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>(
         <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>,
-        <span class="ident">accessible</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-        <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
+        <span class="ident">accessible</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Accessible</span><span class="op">&gt;</span>,
+        <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ATContext</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {

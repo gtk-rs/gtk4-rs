@@ -1322,7 +1322,7 @@
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// a [`gdk::Surface`][crate::gdk::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_realize&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">realize</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Start a seek operation on `self` to `timestamp`.</span>
     <span class="doccomment">///</span>
@@ -1468,7 +1468,7 @@
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// the [`gdk::Surface`][crate::gdk::Surface] the stream was realized with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_unrealize&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">unrealize</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+    <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Media stream implementations should regularly call this</span>
     <span class="doccomment">/// function to update the timestamp reported by the stream.</span>
@@ -1649,7 +1649,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">realize</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_media_stream_realize</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1736,7 +1736,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">unrealize</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_media_stream_unrealize</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

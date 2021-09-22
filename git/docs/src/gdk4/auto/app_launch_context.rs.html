@@ -319,7 +319,7 @@
     <span class="doccomment">/// ## `icon`</span>
     <span class="doccomment">/// a `GIcon`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_set_icon&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">set_icon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets the icon for applications that are launched with this context.</span>
     <span class="doccomment">///</span>
@@ -365,7 +365,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">set_icon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_app_launch_context_set_icon</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
