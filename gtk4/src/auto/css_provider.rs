@@ -42,7 +42,7 @@ impl CssProvider {
     }
 
     #[doc(alias = "gtk_css_provider_load_from_file")]
-    pub fn load_from_file<P: IsA<gio::File>>(&self, file: &P) {
+    pub fn load_from_file(&self, file: &impl IsA<gio::File>) {
         unsafe {
             ffi::gtk_css_provider_load_from_file(
                 self.to_glib_none().0,

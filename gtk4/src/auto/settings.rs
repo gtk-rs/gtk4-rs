@@ -1326,7 +1326,7 @@ impl Settings {
 
     #[doc(alias = "gtk_settings_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display<P: IsA<gdk::Display>>(display: &P) -> Settings {
+    pub fn for_display(display: &impl IsA<gdk::Display>) -> Settings {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_settings_get_for_display(

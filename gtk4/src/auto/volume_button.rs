@@ -274,7 +274,7 @@ impl VolumeButtonBuilder {
         self
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }
@@ -349,7 +349,7 @@ impl VolumeButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

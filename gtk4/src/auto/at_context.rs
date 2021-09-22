@@ -26,10 +26,10 @@ glib::wrapper! {
 
 impl ATContext {
     #[doc(alias = "gtk_at_context_create")]
-    pub fn create<P: IsA<Accessible>, Q: IsA<gdk::Display>>(
+    pub fn create(
         accessible_role: AccessibleRole,
-        accessible: &P,
-        display: &Q,
+        accessible: &impl IsA<Accessible>,
+        display: &impl IsA<gdk::Display>,
     ) -> Option<ATContext> {
         skip_assert_initialized!();
         unsafe {

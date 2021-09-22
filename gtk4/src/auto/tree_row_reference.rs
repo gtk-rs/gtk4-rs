@@ -20,7 +20,7 @@ glib::wrapper! {
 
 impl TreeRowReference {
     #[doc(alias = "gtk_tree_row_reference_new")]
-    pub fn new<P: IsA<TreeModel>>(model: &P, path: &TreePath) -> Option<TreeRowReference> {
+    pub fn new(model: &impl IsA<TreeModel>, path: &TreePath) -> Option<TreeRowReference> {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gtk_tree_row_reference_new(
@@ -31,9 +31,9 @@ impl TreeRowReference {
     }
 
     #[doc(alias = "gtk_tree_row_reference_new_proxy")]
-    pub fn new_proxy<P: IsA<glib::Object>, Q: IsA<TreeModel>>(
-        proxy: &P,
-        model: &Q,
+    pub fn new_proxy(
+        proxy: &impl IsA<glib::Object>,
+        model: &impl IsA<TreeModel>,
         path: &TreePath,
     ) -> Option<TreeRowReference> {
         skip_assert_initialized!();
@@ -76,7 +76,7 @@ impl TreeRowReference {
     }
 
     #[doc(alias = "gtk_tree_row_reference_deleted")]
-    pub fn deleted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
+    pub fn deleted(proxy: &impl IsA<glib::Object>, path: &TreePath) {
         assert_initialized_main_thread!();
         unsafe {
             ffi::gtk_tree_row_reference_deleted(
@@ -87,7 +87,7 @@ impl TreeRowReference {
     }
 
     #[doc(alias = "gtk_tree_row_reference_inserted")]
-    pub fn inserted<P: IsA<glib::Object>>(proxy: &P, path: &TreePath) {
+    pub fn inserted(proxy: &impl IsA<glib::Object>, path: &TreePath) {
         assert_initialized_main_thread!();
         unsafe {
             ffi::gtk_tree_row_reference_inserted(

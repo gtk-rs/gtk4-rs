@@ -53,7 +53,7 @@ impl ComboBox {
 
     #[doc(alias = "gtk_combo_box_new_with_model")]
     #[doc(alias = "new_with_model")]
-    pub fn with_model<P: IsA<TreeModel>>(model: &P) -> ComboBox {
+    pub fn with_model(model: &impl IsA<TreeModel>) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_combo_box_new_with_model(
@@ -65,7 +65,7 @@ impl ComboBox {
 
     #[doc(alias = "gtk_combo_box_new_with_model_and_entry")]
     #[doc(alias = "new_with_model_and_entry")]
-    pub fn with_model_and_entry<P: IsA<TreeModel>>(model: &P) -> ComboBox {
+    pub fn with_model_and_entry(model: &impl IsA<TreeModel>) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_combo_box_new_with_model_and_entry(
@@ -292,7 +292,7 @@ impl ComboBoxBuilder {
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -317,7 +317,7 @@ impl ComboBoxBuilder {
         self
     }
 
-    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+    pub fn model(mut self, model: &impl IsA<TreeModel>) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }
@@ -387,7 +387,7 @@ impl ComboBoxBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -545,7 +545,7 @@ pub trait ComboBoxExt: 'static {
     fn set_button_sensitivity(&self, sensitivity: SensitivityType);
 
     #[doc(alias = "gtk_combo_box_set_child")]
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_combo_box_set_entry_text_column")]
     fn set_entry_text_column(&self, text_column: i32);
@@ -554,7 +554,7 @@ pub trait ComboBoxExt: 'static {
     fn set_id_column(&self, id_column: i32);
 
     #[doc(alias = "gtk_combo_box_set_model")]
-    fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>);
+    fn set_model(&self, model: Option<&impl IsA<TreeModel>>);
 
     #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
     fn set_popup_fixed_width(&self, fixed: bool);
@@ -742,7 +742,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_combo_box_set_child(
                 self.as_ref().to_glib_none().0,
@@ -763,7 +763,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
+    fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_combo_box_set_model(
                 self.as_ref().to_glib_none().0,

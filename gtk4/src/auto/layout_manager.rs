@@ -24,11 +24,11 @@ pub const NONE_LAYOUT_MANAGER: Option<&LayoutManager> = None;
 
 pub trait LayoutManagerExt: 'static {
     #[doc(alias = "gtk_layout_manager_allocate")]
-    fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32);
+    fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32);
 
     #[doc(alias = "gtk_layout_manager_get_layout_child")]
     #[doc(alias = "get_layout_child")]
-    fn layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
+    fn layout_child(&self, child: &impl IsA<Widget>) -> Option<LayoutChild>;
 
     #[doc(alias = "gtk_layout_manager_get_request_mode")]
     #[doc(alias = "get_request_mode")]
@@ -42,16 +42,16 @@ pub trait LayoutManagerExt: 'static {
     fn layout_changed(&self);
 
     #[doc(alias = "gtk_layout_manager_measure")]
-    fn measure<P: IsA<Widget>>(
+    fn measure(
         &self,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         orientation: Orientation,
         for_size: i32,
     ) -> (i32, i32, i32, i32);
 }
 
 impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
-    fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32) {
+    fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32) {
         unsafe {
             ffi::gtk_layout_manager_allocate(
                 self.as_ref().to_glib_none().0,
@@ -63,7 +63,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild> {
+    fn layout_child(&self, child: &impl IsA<Widget>) -> Option<LayoutChild> {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_layout_child(
                 self.as_ref().to_glib_none().0,
@@ -94,9 +94,9 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn measure<P: IsA<Widget>>(
+    fn measure(
         &self,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         orientation: Orientation,
         for_size: i32,
     ) -> (i32, i32, i32, i32) {

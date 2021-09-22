@@ -38,7 +38,7 @@ pub const NONE_SHORTCUT_TRIGGER: Option<&ShortcutTrigger> = None;
 
 pub trait ShortcutTriggerExt: 'static {
     #[doc(alias = "gtk_shortcut_trigger_to_label")]
-    fn to_label<P: IsA<gdk::Display>>(&self, display: &P) -> glib::GString;
+    fn to_label(&self, display: &impl IsA<gdk::Display>) -> glib::GString;
 
     #[doc(alias = "gtk_shortcut_trigger_to_string")]
     #[doc(alias = "to_string")]
@@ -46,7 +46,7 @@ pub trait ShortcutTriggerExt: 'static {
 }
 
 impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
-    fn to_label<P: IsA<gdk::Display>>(&self, display: &P) -> glib::GString {
+    fn to_label(&self, display: &impl IsA<gdk::Display>) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_label(
                 self.as_ref().to_glib_none().0,

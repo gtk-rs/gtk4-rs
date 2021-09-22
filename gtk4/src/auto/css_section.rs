@@ -20,8 +20,8 @@ glib::wrapper! {
 
 impl CssSection {
     #[doc(alias = "gtk_css_section_new")]
-    pub fn new<P: IsA<gio::File>>(
-        file: Option<&P>,
+    pub fn new(
+        file: Option<&impl IsA<gio::File>>,
         start: &CssLocation,
         end: &CssLocation,
     ) -> CssSection {

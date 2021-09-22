@@ -201,7 +201,7 @@ impl MenuButton {
     }
 
     #[doc(alias = "gtk_menu_button_set_menu_model")]
-    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, menu_model: Option<&P>) {
+    pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_menu_button_set_menu_model(
                 self.to_glib_none().0,
@@ -211,7 +211,7 @@ impl MenuButton {
     }
 
     #[doc(alias = "gtk_menu_button_set_popover")]
-    pub fn set_popover<P: IsA<Widget>>(&self, popover: Option<&P>) {
+    pub fn set_popover(&self, popover: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_menu_button_set_popover(
                 self.to_glib_none().0,
@@ -706,12 +706,12 @@ impl MenuButtonBuilder {
         self
     }
 
-    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+    pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
         self.menu_model = Some(menu_model.clone().upcast());
         self
     }
 
-    pub fn popover<P: IsA<Popover>>(mut self, popover: &P) -> Self {
+    pub fn popover(mut self, popover: &impl IsA<Popover>) -> Self {
         self.popover = Some(popover.clone().upcast());
         self
     }
@@ -788,7 +788,7 @@ impl MenuButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

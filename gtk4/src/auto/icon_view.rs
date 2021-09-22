@@ -57,7 +57,7 @@ impl IconView {
 
     #[doc(alias = "gtk_icon_view_new_with_area")]
     #[doc(alias = "new_with_area")]
-    pub fn with_area<P: IsA<CellArea>>(area: &P) -> IconView {
+    pub fn with_area(area: &impl IsA<CellArea>) -> IconView {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_icon_view_new_with_area(
@@ -69,7 +69,7 @@ impl IconView {
 
     #[doc(alias = "gtk_icon_view_new_with_model")]
     #[doc(alias = "new_with_model")]
-    pub fn with_model<P: IsA<TreeModel>>(model: &P) -> IconView {
+    pub fn with_model(model: &impl IsA<TreeModel>) -> IconView {
         skip_assert_initialized!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_icon_view_new_with_model(
@@ -137,10 +137,10 @@ impl IconView {
 
     #[doc(alias = "gtk_icon_view_get_cell_rect")]
     #[doc(alias = "get_cell_rect")]
-    pub fn cell_rect<P: IsA<CellRenderer>>(
+    pub fn cell_rect(
         &self,
         path: &TreePath,
-        cell: Option<&P>,
+        cell: Option<&impl IsA<CellRenderer>>,
     ) -> Option<gdk::Rectangle> {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
@@ -525,10 +525,10 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_set_cursor")]
-    pub fn set_cursor<P: IsA<CellRenderer>>(
+    pub fn set_cursor(
         &self,
         path: &TreePath,
-        cell: Option<&P>,
+        cell: Option<&impl IsA<CellRenderer>>,
         start_editing: bool,
     ) {
         unsafe {
@@ -588,7 +588,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_set_model")]
-    pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
+    pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_icon_view_set_model(
                 self.to_glib_none().0,
@@ -640,11 +640,11 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_set_tooltip_cell")]
-    pub fn set_tooltip_cell<P: IsA<CellRenderer>>(
+    pub fn set_tooltip_cell(
         &self,
         tooltip: &Tooltip,
         path: &TreePath,
-        cell: Option<&P>,
+        cell: Option<&impl IsA<CellRenderer>>,
     ) {
         unsafe {
             ffi::gtk_icon_view_set_tooltip_cell(
@@ -1591,7 +1591,7 @@ impl IconViewBuilder {
         self
     }
 
-    pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {
+    pub fn cell_area(mut self, cell_area: &impl IsA<CellArea>) -> Self {
         self.cell_area = Some(cell_area.clone().upcast());
         self
     }
@@ -1631,7 +1631,7 @@ impl IconViewBuilder {
         self
     }
 
-    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
+    pub fn model(mut self, model: &impl IsA<TreeModel>) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }
@@ -1731,7 +1731,7 @@ impl IconViewBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -1821,7 +1821,7 @@ impl IconViewBuilder {
         self
     }
 
-    pub fn hadjustment<P: IsA<Adjustment>>(mut self, hadjustment: &P) -> Self {
+    pub fn hadjustment(mut self, hadjustment: &impl IsA<Adjustment>) -> Self {
         self.hadjustment = Some(hadjustment.clone().upcast());
         self
     }
@@ -1831,7 +1831,7 @@ impl IconViewBuilder {
         self
     }
 
-    pub fn vadjustment<P: IsA<Adjustment>>(mut self, vadjustment: &P) -> Self {
+    pub fn vadjustment(mut self, vadjustment: &impl IsA<Adjustment>) -> Self {
         self.vadjustment = Some(vadjustment.clone().upcast());
         self
     }

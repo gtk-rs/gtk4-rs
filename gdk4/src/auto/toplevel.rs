@@ -34,13 +34,13 @@ pub const NONE_TOPLEVEL: Option<&Toplevel> = None;
 
 pub trait ToplevelExt: 'static {
     #[doc(alias = "gdk_toplevel_begin_move")]
-    fn begin_move<P: IsA<Device>>(&self, device: &P, button: i32, x: f64, y: f64, timestamp: u32);
+    fn begin_move(&self, device: &impl IsA<Device>, button: i32, x: f64, y: f64, timestamp: u32);
 
     #[doc(alias = "gdk_toplevel_begin_resize")]
-    fn begin_resize<P: IsA<Device>>(
+    fn begin_resize(
         &self,
         edge: SurfaceEdge,
-        device: Option<&P>,
+        device: Option<&impl IsA<Device>>,
         button: i32,
         x: f64,
         y: f64,
@@ -85,7 +85,7 @@ pub trait ToplevelExt: 'static {
     fn set_title(&self, title: &str);
 
     #[doc(alias = "gdk_toplevel_set_transient_for")]
-    fn set_transient_for<P: IsA<Surface>>(&self, parent: &P);
+    fn set_transient_for(&self, parent: &impl IsA<Surface>);
 
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
@@ -151,7 +151,7 @@ pub trait ToplevelExt: 'static {
 }
 
 impl<O: IsA<Toplevel>> ToplevelExt for O {
-    fn begin_move<P: IsA<Device>>(&self, device: &P, button: i32, x: f64, y: f64, timestamp: u32) {
+    fn begin_move(&self, device: &impl IsA<Device>, button: i32, x: f64, y: f64, timestamp: u32) {
         unsafe {
             ffi::gdk_toplevel_begin_move(
                 self.as_ref().to_glib_none().0,
@@ -164,10 +164,10 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn begin_resize<P: IsA<Device>>(
+    fn begin_resize(
         &self,
         edge: SurfaceEdge,
-        device: Option<&P>,
+        device: Option<&impl IsA<Device>>,
         button: i32,
         x: f64,
         y: f64,
@@ -258,7 +258,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn set_transient_for<P: IsA<Surface>>(&self, parent: &P) {
+    fn set_transient_for(&self, parent: &impl IsA<Surface>) {
         unsafe {
             ffi::gdk_toplevel_set_transient_for(
                 self.as_ref().to_glib_none().0,

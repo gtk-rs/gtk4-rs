@@ -256,7 +256,7 @@ impl ButtonBuilder {
         glib::Object::new::<Button>(&properties).expect("Failed to create an instance of Button")
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -341,7 +341,7 @@ impl ButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -466,7 +466,7 @@ pub trait ButtonExt: 'static {
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "gtk_button_set_child")]
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_button_set_has_frame")]
     fn set_has_frame(&self, has_frame: bool);
@@ -539,7 +539,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_button_set_child(
                 self.as_ref().to_glib_none().0,

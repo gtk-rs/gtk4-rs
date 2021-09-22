@@ -34,7 +34,7 @@ glib::wrapper! {
 impl PopoverMenuBar {
     #[doc(alias = "gtk_popover_menu_bar_new_from_model")]
     #[doc(alias = "new_from_model")]
-    pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenuBar {
+    pub fn from_model(model: Option<&impl IsA<gio::MenuModel>>) -> PopoverMenuBar {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_popover_menu_bar_new_from_model(
@@ -53,7 +53,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "gtk_popover_menu_bar_add_child")]
-    pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
+    pub fn add_child(&self, child: &impl IsA<Widget>, id: &str) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_bar_add_child(
                 self.to_glib_none().0,
@@ -74,7 +74,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "gtk_popover_menu_bar_remove_child")]
-    pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
+    pub fn remove_child(&self, child: &impl IsA<Widget>) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_bar_remove_child(
                 self.to_glib_none().0,
@@ -84,7 +84,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "gtk_popover_menu_bar_set_menu_model")]
-    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+    pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_popover_menu_bar_set_menu_model(
                 self.to_glib_none().0,
@@ -264,7 +264,7 @@ impl PopoverMenuBarBuilder {
             .expect("Failed to create an instance of PopoverMenuBar")
     }
 
-    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+    pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
         self.menu_model = Some(menu_model.clone().upcast());
         self
     }
@@ -329,7 +329,7 @@ impl PopoverMenuBarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

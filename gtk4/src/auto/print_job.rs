@@ -251,9 +251,9 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_set_source_file")]
-    pub fn set_source_file<P: AsRef<std::path::Path>>(
+    pub fn set_source_file(
         &self,
-        filename: P,
+        filename: impl AsRef<std::path::Path>,
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

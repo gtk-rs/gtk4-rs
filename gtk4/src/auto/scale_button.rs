@@ -225,7 +225,7 @@ impl ScaleButtonBuilder {
             .expect("Failed to create an instance of ScaleButton")
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }
@@ -300,7 +300,7 @@ impl ScaleButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -420,7 +420,7 @@ pub trait ScaleButtonExt: 'static {
     fn value(&self) -> f64;
 
     #[doc(alias = "gtk_scale_button_set_adjustment")]
-    fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
+    fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>);
 
     #[doc(alias = "gtk_scale_button_set_icons")]
     fn set_icons(&self, icons: &[&str]);
@@ -490,7 +490,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         unsafe { ffi::gtk_scale_button_get_value(self.as_ref().to_glib_none().0) }
     }
 
-    fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
+    fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_scale_button_set_adjustment(
                 self.as_ref().to_glib_none().0,

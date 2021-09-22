@@ -21,14 +21,14 @@ pub const NONE_MULTI_FILTER: Option<&MultiFilter> = None;
 
 pub trait MultiFilterExt: 'static {
     #[doc(alias = "gtk_multi_filter_append")]
-    fn append<P: IsA<Filter>>(&self, filter: &P);
+    fn append(&self, filter: &impl IsA<Filter>);
 
     #[doc(alias = "gtk_multi_filter_remove")]
     fn remove(&self, position: u32);
 }
 
 impl<O: IsA<MultiFilter>> MultiFilterExt for O {
-    fn append<P: IsA<Filter>>(&self, filter: &P) {
+    fn append(&self, filter: &impl IsA<Filter>) {
         unsafe {
             ffi::gtk_multi_filter_append(
                 self.as_ref().to_glib_none().0,

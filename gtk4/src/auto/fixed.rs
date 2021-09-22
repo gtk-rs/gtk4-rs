@@ -251,7 +251,7 @@ impl FixedBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -347,28 +347,28 @@ pub const NONE_FIXED: Option<&Fixed> = None;
 pub trait FixedExt: 'static {
     #[doc(alias = "gtk_fixed_get_child_position")]
     #[doc(alias = "get_child_position")]
-    fn child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64);
+    fn child_position(&self, widget: &impl IsA<Widget>) -> (f64, f64);
 
     #[doc(alias = "gtk_fixed_get_child_transform")]
     #[doc(alias = "get_child_transform")]
-    fn child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform>;
+    fn child_transform(&self, widget: &impl IsA<Widget>) -> Option<gsk::Transform>;
 
     #[doc(alias = "gtk_fixed_move")]
     #[doc(alias = "move")]
-    fn move_<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64);
+    fn move_(&self, widget: &impl IsA<Widget>, x: f64, y: f64);
 
     #[doc(alias = "gtk_fixed_put")]
-    fn put<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64);
+    fn put(&self, widget: &impl IsA<Widget>, x: f64, y: f64);
 
     #[doc(alias = "gtk_fixed_remove")]
-    fn remove<P: IsA<Widget>>(&self, widget: &P);
+    fn remove(&self, widget: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_fixed_set_child_transform")]
-    fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>);
+    fn set_child_transform(&self, widget: &impl IsA<Widget>, transform: Option<&gsk::Transform>);
 }
 
 impl<O: IsA<Fixed>> FixedExt for O {
-    fn child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64) {
+    fn child_position(&self, widget: &impl IsA<Widget>) -> (f64, f64) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -384,7 +384,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
+    fn child_transform(&self, widget: &impl IsA<Widget>) -> Option<gsk::Transform> {
         unsafe {
             from_glib_none(ffi::gtk_fixed_get_child_transform(
                 self.as_ref().to_glib_none().0,
@@ -393,7 +393,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn move_<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64) {
+    fn move_(&self, widget: &impl IsA<Widget>, x: f64, y: f64) {
         unsafe {
             ffi::gtk_fixed_move(
                 self.as_ref().to_glib_none().0,
@@ -404,7 +404,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn put<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64) {
+    fn put(&self, widget: &impl IsA<Widget>, x: f64, y: f64) {
         unsafe {
             ffi::gtk_fixed_put(
                 self.as_ref().to_glib_none().0,
@@ -415,7 +415,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn remove<P: IsA<Widget>>(&self, widget: &P) {
+    fn remove(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_fixed_remove(
                 self.as_ref().to_glib_none().0,
@@ -424,7 +424,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn set_child_transform<P: IsA<Widget>>(&self, widget: &P, transform: Option<&gsk::Transform>) {
+    fn set_child_transform(&self, widget: &impl IsA<Widget>, transform: Option<&gsk::Transform>) {
         unsafe {
             ffi::gtk_fixed_set_child_transform(
                 self.as_ref().to_glib_none().0,

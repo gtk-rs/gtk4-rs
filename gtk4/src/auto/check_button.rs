@@ -254,7 +254,7 @@ impl CheckButtonBuilder {
         self
     }
 
-    pub fn group<P: IsA<CheckButton>>(mut self, group: &P) -> Self {
+    pub fn group(mut self, group: &impl IsA<CheckButton>) -> Self {
         self.group = Some(group.clone().upcast());
         self
     }
@@ -334,7 +334,7 @@ impl CheckButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -458,7 +458,7 @@ pub trait CheckButtonExt: 'static {
     fn set_active(&self, setting: bool);
 
     #[doc(alias = "gtk_check_button_set_group")]
-    fn set_group<P: IsA<CheckButton>>(&self, group: Option<&P>);
+    fn set_group(&self, group: Option<&impl IsA<CheckButton>>);
 
     #[doc(alias = "gtk_check_button_set_inconsistent")]
     fn set_inconsistent(&self, inconsistent: bool);
@@ -536,7 +536,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn set_group<P: IsA<CheckButton>>(&self, group: Option<&P>) {
+    fn set_group(&self, group: Option<&impl IsA<CheckButton>>) {
         unsafe {
             ffi::gtk_check_button_set_group(
                 self.as_ref().to_glib_none().0,

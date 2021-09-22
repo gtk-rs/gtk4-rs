@@ -490,7 +490,7 @@ impl CellRendererPixbufBuilder {
             .expect("Failed to create an instance of CellRendererPixbuf")
     }
 
-    pub fn gicon<P: IsA<gio::Icon>>(mut self, gicon: &P) -> Self {
+    pub fn gicon(mut self, gicon: &impl IsA<gio::Icon>) -> Self {
         self.gicon = Some(gicon.clone().upcast());
         self
     }
@@ -520,7 +520,7 @@ impl CellRendererPixbufBuilder {
         self
     }
 
-    pub fn texture<P: IsA<gdk::Texture>>(mut self, texture: &P) -> Self {
+    pub fn texture(mut self, texture: &impl IsA<gdk::Texture>) -> Self {
         self.texture = Some(texture.clone().upcast());
         self
     }

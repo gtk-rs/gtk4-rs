@@ -22,7 +22,7 @@ glib::wrapper! {
 
 impl FlattenListModel {
     #[doc(alias = "gtk_flatten_list_model_new")]
-    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> FlattenListModel {
+    pub fn new(model: Option<&impl IsA<gio::ListModel>>) -> FlattenListModel {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_flatten_list_model_new(
@@ -49,7 +49,7 @@ impl FlattenListModel {
     }
 
     #[doc(alias = "gtk_flatten_list_model_set_model")]
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_flatten_list_model_set_model(
                 self.to_glib_none().0,

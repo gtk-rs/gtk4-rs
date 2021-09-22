@@ -156,7 +156,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_backward_to_tag_toggle")]
-    pub fn backward_to_tag_toggle<P: IsA<TextTag>>(&mut self, tag: Option<&P>) -> bool {
+    pub fn backward_to_tag_toggle(&mut self, tag: Option<&impl IsA<TextTag>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_backward_to_tag_toggle(
                 self.to_glib_none_mut().0,
@@ -277,7 +277,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_ends_tag")]
-    pub fn ends_tag<P: IsA<TextTag>>(&self, tag: Option<&P>) -> bool {
+    pub fn ends_tag(&self, tag: Option<&impl IsA<TextTag>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_ends_tag(
                 self.to_glib_none().0,
@@ -441,7 +441,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_forward_to_tag_toggle")]
-    pub fn forward_to_tag_toggle<P: IsA<TextTag>>(&mut self, tag: Option<&P>) -> bool {
+    pub fn forward_to_tag_toggle(&mut self, tag: Option<&impl IsA<TextTag>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_forward_to_tag_toggle(
                 self.to_glib_none_mut().0,
@@ -683,7 +683,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_has_tag")]
-    pub fn has_tag<P: IsA<TextTag>>(&self, tag: &P) -> bool {
+    pub fn has_tag(&self, tag: &impl IsA<TextTag>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_has_tag(
                 self.to_glib_none().0,
@@ -788,7 +788,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_starts_tag")]
-    pub fn starts_tag<P: IsA<TextTag>>(&self, tag: Option<&P>) -> bool {
+    pub fn starts_tag(&self, tag: Option<&impl IsA<TextTag>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_starts_tag(
                 self.to_glib_none().0,
@@ -803,7 +803,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_toggles_tag")]
-    pub fn toggles_tag<P: IsA<TextTag>>(&self, tag: Option<&P>) -> bool {
+    pub fn toggles_tag(&self, tag: Option<&impl IsA<TextTag>>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_iter_toggles_tag(
                 self.to_glib_none().0,

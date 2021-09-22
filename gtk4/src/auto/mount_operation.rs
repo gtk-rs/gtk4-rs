@@ -25,7 +25,7 @@ glib::wrapper! {
 
 impl MountOperation {
     #[doc(alias = "gtk_mount_operation_new")]
-    pub fn new<P: IsA<Window>>(parent: Option<&P>) -> MountOperation {
+    pub fn new(parent: Option<&impl IsA<Window>>) -> MountOperation {
         assert_initialized_main_thread!();
         unsafe {
             gio::MountOperation::from_glib_full(ffi::gtk_mount_operation_new(
@@ -118,12 +118,12 @@ impl MountOperationBuilder {
             .expect("Failed to create an instance of MountOperation")
     }
 
-    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }
 
-    pub fn parent<P: IsA<Window>>(mut self, parent: &P) -> Self {
+    pub fn parent(mut self, parent: &impl IsA<Window>) -> Self {
         self.parent = Some(parent.clone().upcast());
         self
     }
@@ -189,10 +189,10 @@ pub trait MountOperationExt: 'static {
     fn is_showing(&self) -> bool;
 
     #[doc(alias = "gtk_mount_operation_set_display")]
-    fn set_display<P: IsA<gdk::Display>>(&self, display: &P);
+    fn set_display(&self, display: &impl IsA<gdk::Display>);
 
     #[doc(alias = "gtk_mount_operation_set_parent")]
-    fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>);
+    fn set_parent(&self, parent: Option<&impl IsA<Window>>);
 
     #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -229,7 +229,7 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
         }
     }
 
-    fn set_display<P: IsA<gdk::Display>>(&self, display: &P) {
+    fn set_display(&self, display: &impl IsA<gdk::Display>) {
         unsafe {
             ffi::gtk_mount_operation_set_display(
                 self.as_ref().to_glib_none().0,
@@ -238,7 +238,7 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
         }
     }
 
-    fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>) {
+    fn set_parent(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_mount_operation_set_parent(
                 self.as_ref().to_glib_none().0,

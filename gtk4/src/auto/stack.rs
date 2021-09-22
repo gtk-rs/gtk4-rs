@@ -50,7 +50,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_add_child")]
-    pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> StackPage {
+    pub fn add_child(&self, child: &impl IsA<Widget>) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_child(
                 self.to_glib_none().0,
@@ -60,7 +60,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_add_named")]
-    pub fn add_named<P: IsA<Widget>>(&self, child: &P, name: Option<&str>) -> StackPage {
+    pub fn add_named(&self, child: &impl IsA<Widget>, name: Option<&str>) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_add_named(
                 self.to_glib_none().0,
@@ -71,9 +71,9 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_add_titled")]
-    pub fn add_titled<P: IsA<Widget>>(
+    pub fn add_titled(
         &self,
-        child: &P,
+        child: &impl IsA<Widget>,
         name: Option<&str>,
         title: &str,
     ) -> StackPage {
@@ -112,7 +112,7 @@ impl Stack {
 
     #[doc(alias = "gtk_stack_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
+    pub fn page(&self, child: &impl IsA<Widget>) -> Option<StackPage> {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_page(
                 self.to_glib_none().0,
@@ -164,7 +164,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_remove")]
-    pub fn remove<P: IsA<Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_stack_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -209,7 +209,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_set_visible_child")]
-    pub fn set_visible_child<P: IsA<Widget>>(&self, child: &P) {
+    pub fn set_visible_child(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_stack_set_visible_child(
                 self.to_glib_none().0,
@@ -654,7 +654,7 @@ impl StackBuilder {
         self
     }
 
-    pub fn visible_child<P: IsA<Widget>>(mut self, visible_child: &P) -> Self {
+    pub fn visible_child(mut self, visible_child: &impl IsA<Widget>) -> Self {
         self.visible_child = Some(visible_child.clone().upcast());
         self
     }
@@ -724,7 +724,7 @@ impl StackBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

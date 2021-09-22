@@ -23,11 +23,11 @@ glib::wrapper! {
 
 impl Constraint {
     #[doc(alias = "gtk_constraint_new")]
-    pub fn new<P: IsA<ConstraintTarget>, Q: IsA<ConstraintTarget>>(
-        target: Option<&P>,
+    pub fn new(
+        target: Option<&impl IsA<ConstraintTarget>>,
         target_attribute: ConstraintAttribute,
         relation: ConstraintRelation,
-        source: Option<&Q>,
+        source: Option<&impl IsA<ConstraintTarget>>,
         source_attribute: ConstraintAttribute,
         multiplier: f64,
         constant: f64,
@@ -49,8 +49,8 @@ impl Constraint {
     }
 
     #[doc(alias = "gtk_constraint_new_constant")]
-    pub fn new_constant<P: IsA<ConstraintTarget>>(
-        target: Option<&P>,
+    pub fn new_constant(
+        target: Option<&impl IsA<ConstraintTarget>>,
         target_attribute: ConstraintAttribute,
         relation: ConstraintRelation,
         constant: f64,
@@ -225,7 +225,7 @@ impl ConstraintBuilder {
         self
     }
 
-    pub fn source<P: IsA<ConstraintTarget>>(mut self, source: &P) -> Self {
+    pub fn source(mut self, source: &impl IsA<ConstraintTarget>) -> Self {
         self.source = Some(source.clone().upcast());
         self
     }
@@ -240,7 +240,7 @@ impl ConstraintBuilder {
         self
     }
 
-    pub fn target<P: IsA<ConstraintTarget>>(mut self, target: &P) -> Self {
+    pub fn target(mut self, target: &impl IsA<ConstraintTarget>) -> Self {
         self.target = Some(target.clone().upcast());
         self
     }

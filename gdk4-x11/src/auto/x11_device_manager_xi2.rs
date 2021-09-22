@@ -124,7 +124,7 @@ impl X11DeviceManagerXI2Builder {
             .expect("Failed to create an instance of X11DeviceManagerXI2")
     }
 
-    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }

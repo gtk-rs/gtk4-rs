@@ -28,9 +28,9 @@ glib::wrapper! {
 
 impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_new")]
-    pub fn new<P: IsA<ListItemFactory>>(
+    pub fn new(
         title: Option<&str>,
-        factory: Option<&P>,
+        factory: Option<&impl IsA<ListItemFactory>>,
     ) -> ColumnViewColumn {
         assert_initialized_main_thread!();
         unsafe {
@@ -139,7 +139,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_set_factory")]
-    pub fn set_factory<P: IsA<ListItemFactory>>(&self, factory: Option<&P>) {
+    pub fn set_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
         unsafe {
             ffi::gtk_column_view_column_set_factory(
                 self.to_glib_none().0,
@@ -156,7 +156,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_set_header_menu")]
-    pub fn set_header_menu<P: IsA<gio::MenuModel>>(&self, menu: Option<&P>) {
+    pub fn set_header_menu(&self, menu: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_column_view_column_set_header_menu(
                 self.to_glib_none().0,
@@ -173,7 +173,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_set_sorter")]
-    pub fn set_sorter<P: IsA<Sorter>>(&self, sorter: Option<&P>) {
+    pub fn set_sorter(&self, sorter: Option<&impl IsA<Sorter>>) {
         unsafe {
             ffi::gtk_column_view_column_set_sorter(
                 self.to_glib_none().0,
@@ -471,7 +471,7 @@ impl ColumnViewColumnBuilder {
         self
     }
 
-    pub fn factory<P: IsA<ListItemFactory>>(mut self, factory: &P) -> Self {
+    pub fn factory(mut self, factory: &impl IsA<ListItemFactory>) -> Self {
         self.factory = Some(factory.clone().upcast());
         self
     }
@@ -481,7 +481,7 @@ impl ColumnViewColumnBuilder {
         self
     }
 
-    pub fn header_menu<P: IsA<gio::MenuModel>>(mut self, header_menu: &P) -> Self {
+    pub fn header_menu(mut self, header_menu: &impl IsA<gio::MenuModel>) -> Self {
         self.header_menu = Some(header_menu.clone().upcast());
         self
     }
@@ -491,7 +491,7 @@ impl ColumnViewColumnBuilder {
         self
     }
 
-    pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {
+    pub fn sorter(mut self, sorter: &impl IsA<Sorter>) -> Self {
         self.sorter = Some(sorter.clone().upcast());
         self
     }

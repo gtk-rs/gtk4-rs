@@ -47,13 +47,13 @@ pub trait ScrollableExt: 'static {
     fn vscroll_policy(&self) -> ScrollablePolicy;
 
     #[doc(alias = "gtk_scrollable_set_hadjustment")]
-    fn set_hadjustment<P: IsA<Adjustment>>(&self, hadjustment: Option<&P>);
+    fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>);
 
     #[doc(alias = "gtk_scrollable_set_hscroll_policy")]
     fn set_hscroll_policy(&self, policy: ScrollablePolicy);
 
     #[doc(alias = "gtk_scrollable_set_vadjustment")]
-    fn set_vadjustment<P: IsA<Adjustment>>(&self, vadjustment: Option<&P>);
+    fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>);
 
     #[doc(alias = "gtk_scrollable_set_vscroll_policy")]
     fn set_vscroll_policy(&self, policy: ScrollablePolicy);
@@ -119,7 +119,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
-    fn set_hadjustment<P: IsA<Adjustment>>(&self, hadjustment: Option<&P>) {
+    fn set_hadjustment(&self, hadjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollable_set_hadjustment(
                 self.as_ref().to_glib_none().0,
@@ -137,7 +137,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
-    fn set_vadjustment<P: IsA<Adjustment>>(&self, vadjustment: Option<&P>) {
+    fn set_vadjustment(&self, vadjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollable_set_vadjustment(
                 self.as_ref().to_glib_none().0,

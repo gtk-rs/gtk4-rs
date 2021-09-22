@@ -211,7 +211,7 @@ impl FrameBuilder {
         glib::Object::new::<Frame>(&properties).expect("Failed to create an instance of Frame")
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -221,7 +221,7 @@ impl FrameBuilder {
         self
     }
 
-    pub fn label_widget<P: IsA<Widget>>(mut self, label_widget: &P) -> Self {
+    pub fn label_widget(mut self, label_widget: &impl IsA<Widget>) -> Self {
         self.label_widget = Some(label_widget.clone().upcast());
         self
     }
@@ -291,7 +291,7 @@ impl FrameBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -402,7 +402,7 @@ pub trait FrameExt: 'static {
     fn label_widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_frame_set_child")]
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_frame_set_label")]
     fn set_label(&self, label: Option<&str>);
@@ -411,7 +411,7 @@ pub trait FrameExt: 'static {
     fn set_label_align(&self, xalign: f32);
 
     #[doc(alias = "gtk_frame_set_label_widget")]
-    fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>);
+    fn set_label_widget(&self, label_widget: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "label-xalign")]
     fn label_xalign(&self) -> f32;
@@ -453,7 +453,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_child(
                 self.as_ref().to_glib_none().0,
@@ -474,7 +474,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
-    fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>) {
+    fn set_label_widget(&self, label_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_frame_set_label_widget(
                 self.as_ref().to_glib_none().0,

@@ -30,10 +30,10 @@ glib::wrapper! {
 
 impl Drag {
     #[doc(alias = "gdk_drag_begin")]
-    pub fn begin<P: IsA<Surface>, Q: IsA<Device>, R: IsA<ContentProvider>>(
-        surface: &P,
-        device: &Q,
-        content: &R,
+    pub fn begin(
+        surface: &impl IsA<Surface>,
+        device: &impl IsA<Device>,
+        content: &impl IsA<ContentProvider>,
         actions: DragAction,
         dx: f64,
         dy: f64,

@@ -30,9 +30,9 @@ glib::wrapper! {
 
 impl FileChooserNative {
     #[doc(alias = "gtk_file_chooser_native_new")]
-    pub fn new<P: IsA<Window>>(
+    pub fn new(
         title: Option<&str>,
-        parent: Option<&P>,
+        parent: Option<&impl IsA<Window>>,
         action: FileChooserAction,
         accept_label: Option<&str>,
         cancel_label: Option<&str>,
@@ -234,7 +234,7 @@ impl FileChooserNativeBuilder {
         self
     }
 
-    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+    pub fn transient_for(mut self, transient_for: &impl IsA<Window>) -> Self {
         self.transient_for = Some(transient_for.clone().upcast());
         self
     }

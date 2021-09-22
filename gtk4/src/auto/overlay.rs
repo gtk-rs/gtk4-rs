@@ -47,7 +47,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_add_overlay")]
-    pub fn add_overlay<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn add_overlay(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_overlay_add_overlay(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
@@ -61,7 +61,7 @@ impl Overlay {
 
     #[doc(alias = "gtk_overlay_get_clip_overlay")]
     #[doc(alias = "get_clip_overlay")]
-    pub fn is_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
+    pub fn is_clip_overlay(&self, widget: &impl IsA<Widget>) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_clip_overlay(
                 self.to_glib_none().0,
@@ -72,7 +72,7 @@ impl Overlay {
 
     #[doc(alias = "gtk_overlay_get_measure_overlay")]
     #[doc(alias = "get_measure_overlay")]
-    pub fn is_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
+    pub fn is_measure_overlay(&self, widget: &impl IsA<Widget>) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_measure_overlay(
                 self.to_glib_none().0,
@@ -82,7 +82,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_remove_overlay")]
-    pub fn remove_overlay<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn remove_overlay(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_overlay_remove_overlay(
                 self.to_glib_none().0,
@@ -92,7 +92,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_set_child")]
-    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_overlay_set_child(
                 self.to_glib_none().0,
@@ -102,7 +102,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_set_clip_overlay")]
-    pub fn set_clip_overlay<P: IsA<Widget>>(&self, widget: &P, clip_overlay: bool) {
+    pub fn set_clip_overlay(&self, widget: &impl IsA<Widget>, clip_overlay: bool) {
         unsafe {
             ffi::gtk_overlay_set_clip_overlay(
                 self.to_glib_none().0,
@@ -113,7 +113,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_set_measure_overlay")]
-    pub fn set_measure_overlay<P: IsA<Widget>>(&self, widget: &P, measure: bool) {
+    pub fn set_measure_overlay(&self, widget: &impl IsA<Widget>, measure: bool) {
         unsafe {
             ffi::gtk_overlay_set_measure_overlay(
                 self.to_glib_none().0,
@@ -304,7 +304,7 @@ impl OverlayBuilder {
         glib::Object::new::<Overlay>(&properties).expect("Failed to create an instance of Overlay")
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -369,7 +369,7 @@ impl OverlayBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

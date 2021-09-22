@@ -22,35 +22,29 @@ glib::wrapper! {
 
 impl MapListModel {
     #[doc(alias = "gtk_map_list_model_new")]
-    pub fn new<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> glib::Object + 'static>(
-        model: Option<&P>,
-        map_func: Q,
+    pub fn new<P: Fn(&glib::Object) -> glib::Object + 'static>(
+        model: Option<&impl IsA<gio::ListModel>>,
+        map_func: P,
     ) -> MapListModel {
         assert_initialized_main_thread!();
-        let map_func_data: Box_<Q> = Box_::new(map_func);
-        unsafe extern "C" fn map_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> glib::Object + 'static,
-        >(
+        let map_func_data: Box_<P> = Box_::new(map_func);
+        unsafe extern "C" fn map_func_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
-            let callback: &Q = &*(user_data as *mut _);
+            let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&item);
             res.to_glib_full()
         }
-        let map_func = Some(map_func_func::<P, Q> as _);
-        unsafe extern "C" fn user_destroy_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> glib::Object + 'static,
-        >(
+        let map_func = Some(map_func_func::<P> as _);
+        unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(user_destroy_func::<P, Q> as _);
-        let super_callback0: Box_<Q> = map_func_data;
+        let destroy_call3 = Some(user_destroy_func::<P> as _);
+        let super_callback0: Box_<P> = map_func_data;
         unsafe {
             from_glib_full(ffi::gtk_map_list_model_new(
                 model.map(|p| p.as_ref()).to_glib_full(),
@@ -103,7 +97,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_set_model")]
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_map_list_model_set_model(
                 self.to_glib_none().0,

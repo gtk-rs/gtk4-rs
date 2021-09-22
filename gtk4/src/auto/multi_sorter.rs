@@ -25,7 +25,7 @@ impl MultiSorter {
     }
 
     #[doc(alias = "gtk_multi_sorter_append")]
-    pub fn append<P: IsA<Sorter>>(&self, sorter: &P) {
+    pub fn append(&self, sorter: &impl IsA<Sorter>) {
         unsafe {
             ffi::gtk_multi_sorter_append(self.to_glib_none().0, sorter.as_ref().to_glib_full());
         }

@@ -108,7 +108,7 @@ impl X11DeviceXI2Builder {
         self
     }
 
-    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }

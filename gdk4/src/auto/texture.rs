@@ -27,7 +27,7 @@ impl Texture {
 
     #[doc(alias = "gdk_texture_new_from_file")]
     #[doc(alias = "new_from_file")]
-    pub fn from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, glib::Error> {
+    pub fn from_file(file: &impl IsA<gio::File>) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = ptr::null_mut();
@@ -64,7 +64,7 @@ pub trait TextureExt: 'static {
     fn width(&self) -> i32;
 
     #[doc(alias = "gdk_texture_save_to_png")]
-    fn save_to_png<P: AsRef<std::path::Path>>(&self, filename: P) -> bool;
+    fn save_to_png(&self, filename: impl AsRef<std::path::Path>) -> bool;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
@@ -76,7 +76,7 @@ impl<O: IsA<Texture>> TextureExt for O {
         unsafe { ffi::gdk_texture_get_width(self.as_ref().to_glib_none().0) }
     }
 
-    fn save_to_png<P: AsRef<std::path::Path>>(&self, filename: P) -> bool {
+    fn save_to_png(&self, filename: impl AsRef<std::path::Path>) -> bool {
         unsafe {
             from_glib(ffi::gdk_texture_save_to_png(
                 self.as_ref().to_glib_none().0,

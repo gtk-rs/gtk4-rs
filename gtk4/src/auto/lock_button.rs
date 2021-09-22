@@ -35,7 +35,7 @@ glib::wrapper! {
 
 impl LockButton {
     #[doc(alias = "gtk_lock_button_new")]
-    pub fn new<P: IsA<gio::Permission>>(permission: Option<&P>) -> LockButton {
+    pub fn new(permission: Option<&impl IsA<gio::Permission>>) -> LockButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_lock_button_new(
@@ -60,7 +60,7 @@ impl LockButton {
     }
 
     #[doc(alias = "gtk_lock_button_set_permission")]
-    pub fn set_permission<P: IsA<gio::Permission>>(&self, permission: Option<&P>) {
+    pub fn set_permission(&self, permission: Option<&impl IsA<gio::Permission>>) {
         unsafe {
             ffi::gtk_lock_button_set_permission(
                 self.to_glib_none().0,
@@ -545,7 +545,7 @@ impl LockButtonBuilder {
             .expect("Failed to create an instance of LockButton")
     }
 
-    pub fn permission<P: IsA<gio::Permission>>(mut self, permission: &P) -> Self {
+    pub fn permission(mut self, permission: &impl IsA<gio::Permission>) -> Self {
         self.permission = Some(permission.clone().upcast());
         self
     }
@@ -575,7 +575,7 @@ impl LockButtonBuilder {
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -660,7 +660,7 @@ impl LockButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

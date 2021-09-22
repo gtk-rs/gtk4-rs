@@ -31,7 +31,7 @@ impl SizeGroup {
     }
 
     #[doc(alias = "gtk_size_group_add_widget")]
-    pub fn add_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn add_widget(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_size_group_add_widget(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
@@ -54,7 +54,7 @@ impl SizeGroup {
     }
 
     #[doc(alias = "gtk_size_group_remove_widget")]
-    pub fn remove_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn remove_widget(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_size_group_remove_widget(
                 self.to_glib_none().0,

@@ -268,12 +268,12 @@ impl EmojiChooserBuilder {
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
 
-    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+    pub fn default_widget(mut self, default_widget: &impl IsA<Widget>) -> Self {
         self.default_widget = Some(default_widget.clone().upcast());
         self
     }
@@ -358,7 +358,7 @@ impl EmojiChooserBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

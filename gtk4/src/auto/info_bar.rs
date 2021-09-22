@@ -51,7 +51,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_add_action_widget")]
-    pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
+    pub fn add_action_widget(&self, child: &impl IsA<Widget>, response_id: ResponseType) {
         unsafe {
             ffi::gtk_info_bar_add_action_widget(
                 self.to_glib_none().0,
@@ -73,7 +73,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_add_child")]
-    pub fn add_child<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn add_child(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_info_bar_add_child(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
@@ -102,7 +102,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_remove_action_widget")]
-    pub fn remove_action_widget<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn remove_action_widget(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_info_bar_remove_action_widget(
                 self.to_glib_none().0,
@@ -112,7 +112,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_remove_child")]
-    pub fn remove_child<P: IsA<Widget>>(&self, widget: &P) {
+    pub fn remove_child(&self, widget: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_info_bar_remove_child(self.to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
@@ -525,7 +525,7 @@ impl InfoBarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

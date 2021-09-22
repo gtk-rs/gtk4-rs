@@ -28,7 +28,7 @@ pub trait RootExt: 'static {
     fn focus(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_root_set_focus")]
-    fn set_focus<P: IsA<Widget>>(&self, focus: Option<&P>);
+    fn set_focus(&self, focus: Option<&impl IsA<Widget>>);
 }
 
 impl<O: IsA<Root>> RootExt for O {
@@ -36,7 +36,7 @@ impl<O: IsA<Root>> RootExt for O {
         unsafe { from_glib_none(ffi::gtk_root_get_focus(self.as_ref().to_glib_none().0)) }
     }
 
-    fn set_focus<P: IsA<Widget>>(&self, focus: Option<&P>) {
+    fn set_focus(&self, focus: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_root_set_focus(
                 self.as_ref().to_glib_none().0,

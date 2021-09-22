@@ -30,8 +30,7 @@ pub trait SorterExt: 'static {
     fn changed(&self, change: SorterChange);
 
     #[doc(alias = "gtk_sorter_compare")]
-    fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(&self, item1: &P, item2: &Q)
-        -> Ordering;
+    fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering;
 
     #[doc(alias = "gtk_sorter_get_order")]
     #[doc(alias = "get_order")]
@@ -48,11 +47,7 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 
-    fn compare<P: IsA<glib::Object>, Q: IsA<glib::Object>>(
-        &self,
-        item1: &P,
-        item2: &Q,
-    ) -> Ordering {
+    fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering {
         unsafe {
             from_glib(ffi::gtk_sorter_compare(
                 self.as_ref().to_glib_none().0,

@@ -23,7 +23,7 @@ glib::wrapper! {
 
 impl WidgetPaintable {
     #[doc(alias = "gtk_widget_paintable_new")]
-    pub fn new<P: IsA<Widget>>(widget: Option<&P>) -> WidgetPaintable {
+    pub fn new(widget: Option<&impl IsA<Widget>>) -> WidgetPaintable {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_widget_paintable_new(
@@ -39,7 +39,7 @@ impl WidgetPaintable {
     }
 
     #[doc(alias = "gtk_widget_paintable_set_widget")]
-    pub fn set_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
+    pub fn set_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_widget_paintable_set_widget(
                 self.to_glib_none().0,

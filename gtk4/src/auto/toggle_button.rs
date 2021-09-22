@@ -262,12 +262,12 @@ impl ToggleButtonBuilder {
         self
     }
 
-    pub fn group<P: IsA<ToggleButton>>(mut self, group: &P) -> Self {
+    pub fn group(mut self, group: &impl IsA<ToggleButton>) -> Self {
         self.group = Some(group.clone().upcast());
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -352,7 +352,7 @@ impl ToggleButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -464,7 +464,7 @@ pub trait ToggleButtonExt: 'static {
     fn set_active(&self, is_active: bool);
 
     #[doc(alias = "gtk_toggle_button_set_group")]
-    fn set_group<P: IsA<ToggleButton>>(&self, group: Option<&P>);
+    fn set_group(&self, group: Option<&impl IsA<ToggleButton>>);
 
     #[doc(alias = "gtk_toggle_button_toggled")]
     fn toggled(&self);
@@ -497,7 +497,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    fn set_group<P: IsA<ToggleButton>>(&self, group: Option<&P>) {
+    fn set_group(&self, group: Option<&impl IsA<ToggleButton>>) {
         unsafe {
             ffi::gtk_toggle_button_set_group(
                 self.as_ref().to_glib_none().0,

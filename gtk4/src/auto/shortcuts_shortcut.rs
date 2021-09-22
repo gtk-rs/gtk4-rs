@@ -732,7 +732,7 @@ impl ShortcutsShortcutBuilder {
         self
     }
 
-    pub fn icon<P: IsA<gio::Icon>>(mut self, icon: &P) -> Self {
+    pub fn icon(mut self, icon: &impl IsA<gio::Icon>) -> Self {
         self.icon = Some(icon.clone().upcast());
         self
     }
@@ -827,7 +827,7 @@ impl ShortcutsShortcutBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

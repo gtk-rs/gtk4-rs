@@ -34,10 +34,10 @@ pub trait IMContextExt: 'static {
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
     #[doc(alias = "gtk_im_context_filter_key")]
-    fn filter_key<P: IsA<gdk::Surface>>(
+    fn filter_key(
         &self,
         press: bool,
-        surface: &P,
+        surface: &impl IsA<gdk::Surface>,
         device: &gdk::Device,
         time: u32,
         keycode: u32,
@@ -70,7 +70,7 @@ pub trait IMContextExt: 'static {
     fn reset(&self);
 
     #[doc(alias = "gtk_im_context_set_client_widget")]
-    fn set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
+    fn set_client_widget(&self, widget: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_im_context_set_cursor_location")]
     fn set_cursor_location(&self, area: &gdk::Rectangle);
@@ -139,10 +139,10 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn filter_key<P: IsA<gdk::Surface>>(
+    fn filter_key(
         &self,
         press: bool,
-        surface: &P,
+        surface: &impl IsA<gdk::Surface>,
         device: &gdk::Device,
         time: u32,
         keycode: u32,
@@ -238,7 +238,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
+    fn set_client_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_im_context_set_client_widget(
                 self.as_ref().to_glib_none().0,

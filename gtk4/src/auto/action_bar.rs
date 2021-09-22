@@ -59,28 +59,28 @@ impl ActionBar {
     }
 
     #[doc(alias = "gtk_action_bar_pack_end")]
-    pub fn pack_end<P: IsA<Widget>>(&self, child: &P) {
+    pub fn pack_end(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_action_bar_pack_end(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_action_bar_pack_start")]
-    pub fn pack_start<P: IsA<Widget>>(&self, child: &P) {
+    pub fn pack_start(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_action_bar_pack_start(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_action_bar_remove")]
-    pub fn remove<P: IsA<Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_action_bar_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_action_bar_set_center_widget")]
-    pub fn set_center_widget<P: IsA<Widget>>(&self, center_widget: Option<&P>) {
+    pub fn set_center_widget(&self, center_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_action_bar_set_center_widget(
                 self.to_glib_none().0,
@@ -338,7 +338,7 @@ impl ActionBarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

@@ -85,7 +85,7 @@ impl CenterBox {
     }
 
     #[doc(alias = "gtk_center_box_set_center_widget")]
-    pub fn set_center_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_center_widget(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_center_box_set_center_widget(
                 self.to_glib_none().0,
@@ -95,7 +95,7 @@ impl CenterBox {
     }
 
     #[doc(alias = "gtk_center_box_set_end_widget")]
-    pub fn set_end_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_end_widget(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_center_box_set_end_widget(
                 self.to_glib_none().0,
@@ -105,7 +105,7 @@ impl CenterBox {
     }
 
     #[doc(alias = "gtk_center_box_set_start_widget")]
-    pub fn set_start_widget<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_start_widget(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_center_box_set_start_widget(
                 self.to_glib_none().0,
@@ -363,7 +363,7 @@ impl CenterBoxBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

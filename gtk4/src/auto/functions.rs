@@ -46,8 +46,8 @@ pub fn accelerator_get_label(
 }
 
 #[doc(alias = "gtk_accelerator_get_label_with_keycode")]
-pub fn accelerator_get_label_with_keycode<P: IsA<gdk::Display>>(
-    display: Option<&P>,
+pub fn accelerator_get_label_with_keycode(
+    display: Option<&impl IsA<gdk::Display>>,
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
@@ -78,8 +78,8 @@ pub fn accelerator_name(
 }
 
 #[doc(alias = "gtk_accelerator_name_with_keycode")]
-pub fn accelerator_name_with_keycode<P: IsA<gdk::Display>>(
-    display: Option<&P>,
+pub fn accelerator_name_with_keycode(
+    display: Option<&impl IsA<gdk::Display>>,
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
@@ -250,8 +250,8 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
 }
 
 #[doc(alias = "gtk_print_run_page_setup_dialog")]
-pub fn print_run_page_setup_dialog<P: IsA<Window>>(
-    parent: Option<&P>,
+pub fn print_run_page_setup_dialog(
+    parent: Option<&impl IsA<Window>>,
     page_setup: Option<&PageSetup>,
     settings: &PrintSettings,
 ) -> Option<PageSetup> {
@@ -266,30 +266,24 @@ pub fn print_run_page_setup_dialog<P: IsA<Window>>(
 }
 
 #[doc(alias = "gtk_print_run_page_setup_dialog_async")]
-pub fn print_run_page_setup_dialog_async<
-    P: IsA<Window>,
-    Q: FnOnce(&PageSetup) + Send + Sync + 'static,
->(
-    parent: Option<&P>,
+pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + 'static>(
+    parent: Option<&impl IsA<Window>>,
     page_setup: Option<&PageSetup>,
     settings: &PrintSettings,
-    done_cb: Q,
+    done_cb: P,
 ) {
     skip_assert_initialized!();
-    let done_cb_data: Box_<Q> = Box_::new(done_cb);
-    unsafe extern "C" fn done_cb_func<
-        P: IsA<Window>,
-        Q: FnOnce(&PageSetup) + Send + Sync + 'static,
-    >(
+    let done_cb_data: Box_<P> = Box_::new(done_cb);
+    unsafe extern "C" fn done_cb_func<P: FnOnce(&PageSetup) + Send + Sync + 'static>(
         page_setup: *mut ffi::GtkPageSetup,
         data: glib::ffi::gpointer,
     ) {
         let page_setup = from_glib_borrow(page_setup);
-        let callback: Box_<Q> = Box_::from_raw(data as *mut _);
+        let callback: Box_<P> = Box_::from_raw(data as *mut _);
         (*callback)(&page_setup);
     }
-    let done_cb = Some(done_cb_func::<P, Q> as _);
-    let super_callback0: Box_<Q> = done_cb_data;
+    let done_cb = Some(done_cb_func::<P> as _);
+    let super_callback0: Box_<P> = done_cb_data;
     unsafe {
         ffi::gtk_print_run_page_setup_dialog_async(
             parent.map(|p| p.as_ref()).to_glib_none().0,
@@ -302,8 +296,8 @@ pub fn print_run_page_setup_dialog_async<
 }
 
 #[doc(alias = "gtk_render_activity")]
-pub fn render_activity<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_activity(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -324,8 +318,8 @@ pub fn render_activity<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_arrow")]
-pub fn render_arrow<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_arrow(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     angle: f64,
     x: f64,
@@ -346,8 +340,8 @@ pub fn render_arrow<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_background")]
-pub fn render_background<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_background(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -368,8 +362,8 @@ pub fn render_background<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_check")]
-pub fn render_check<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_check(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -390,8 +384,8 @@ pub fn render_check<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_expander")]
-pub fn render_expander<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_expander(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -412,8 +406,8 @@ pub fn render_expander<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_focus")]
-pub fn render_focus<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_focus(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -434,8 +428,8 @@ pub fn render_focus<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_frame")]
-pub fn render_frame<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_frame(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -456,8 +450,8 @@ pub fn render_frame<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_handle")]
-pub fn render_handle<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_handle(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -478,10 +472,10 @@ pub fn render_handle<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_icon")]
-pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(
-    context: &P,
+pub fn render_icon(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
-    texture: &Q,
+    texture: &impl IsA<gdk::Texture>,
     x: f64,
     y: f64,
 ) {
@@ -498,8 +492,8 @@ pub fn render_icon<P: IsA<StyleContext>, Q: IsA<gdk::Texture>>(
 }
 
 #[doc(alias = "gtk_render_layout")]
-pub fn render_layout<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_layout(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -518,8 +512,8 @@ pub fn render_layout<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_line")]
-pub fn render_line<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_line(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x0: f64,
     y0: f64,
@@ -540,8 +534,8 @@ pub fn render_line<P: IsA<StyleContext>>(
 }
 
 #[doc(alias = "gtk_render_option")]
-pub fn render_option<P: IsA<StyleContext>>(
-    context: &P,
+pub fn render_option(
+    context: &impl IsA<StyleContext>,
     cr: &cairo::Context,
     x: f64,
     y: f64,
@@ -585,7 +579,7 @@ pub fn set_debug_flags(flags: DebugFlags) {
 }
 
 #[doc(alias = "gtk_show_uri")]
-pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
+pub fn show_uri(parent: Option<&impl IsA<Window>>, uri: &str, timestamp: u32) {
     assert_initialized_main_thread!();
     unsafe {
         ffi::gtk_show_uri(
@@ -597,13 +591,13 @@ pub fn show_uri<P: IsA<Window>>(parent: Option<&P>, uri: &str, timestamp: u32) {
 }
 
 #[doc(alias = "gtk_test_accessible_assertion_message_role")]
-pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
+pub fn test_accessible_assertion_message_role(
     domain: &str,
     file: &str,
     line: i32,
     func: &str,
     expr: &str,
-    accessible: &P,
+    accessible: &impl IsA<Accessible>,
     expected_role: AccessibleRole,
     actual_role: AccessibleRole,
 ) {
@@ -623,23 +617,23 @@ pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
 }
 
 //#[doc(alias = "gtk_test_accessible_check_property")]
-//pub fn test_accessible_check_property<P: IsA<Accessible>>(accessible: &P, property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
+//pub fn test_accessible_check_property(accessible: &impl IsA<Accessible>, property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_property() }
 //}
 
 //#[doc(alias = "gtk_test_accessible_check_relation")]
-//pub fn test_accessible_check_relation<P: IsA<Accessible>>(accessible: &P, relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
+//pub fn test_accessible_check_relation(accessible: &impl IsA<Accessible>, relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_relation() }
 //}
 
 //#[doc(alias = "gtk_test_accessible_check_state")]
-//pub fn test_accessible_check_state<P: IsA<Accessible>>(accessible: &P, state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
+//pub fn test_accessible_check_state(accessible: &impl IsA<Accessible>, state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
 //    unsafe { TODO: call ffi:gtk_test_accessible_check_state() }
 //}
 
 #[doc(alias = "gtk_test_accessible_has_property")]
-pub fn test_accessible_has_property<P: IsA<Accessible>>(
-    accessible: &P,
+pub fn test_accessible_has_property(
+    accessible: &impl IsA<Accessible>,
     property: AccessibleProperty,
 ) -> bool {
     skip_assert_initialized!();
@@ -652,8 +646,8 @@ pub fn test_accessible_has_property<P: IsA<Accessible>>(
 }
 
 #[doc(alias = "gtk_test_accessible_has_relation")]
-pub fn test_accessible_has_relation<P: IsA<Accessible>>(
-    accessible: &P,
+pub fn test_accessible_has_relation(
+    accessible: &impl IsA<Accessible>,
     relation: AccessibleRelation,
 ) -> bool {
     skip_assert_initialized!();
@@ -666,7 +660,7 @@ pub fn test_accessible_has_relation<P: IsA<Accessible>>(
 }
 
 #[doc(alias = "gtk_test_accessible_has_role")]
-pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: AccessibleRole) -> bool {
+pub fn test_accessible_has_role(accessible: &impl IsA<Accessible>, role: AccessibleRole) -> bool {
     skip_assert_initialized!();
     unsafe {
         from_glib(ffi::gtk_test_accessible_has_role(
@@ -677,8 +671,8 @@ pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: Access
 }
 
 #[doc(alias = "gtk_test_accessible_has_state")]
-pub fn test_accessible_has_state<P: IsA<Accessible>>(
-    accessible: &P,
+pub fn test_accessible_has_state(
+    accessible: &impl IsA<Accessible>,
     state: AccessibleState,
 ) -> bool {
     skip_assert_initialized!();
@@ -704,7 +698,7 @@ pub fn test_register_all_types() {
 }
 
 #[doc(alias = "gtk_test_widget_wait_for_draw")]
-pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
+pub fn test_widget_wait_for_draw(widget: &impl IsA<Widget>) {
     skip_assert_initialized!();
     unsafe {
         ffi::gtk_test_widget_wait_for_draw(widget.as_ref().to_glib_none().0);
@@ -712,8 +706,8 @@ pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
 }
 
 #[doc(alias = "gtk_tree_create_row_drag_content")]
-pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(
-    tree_model: &P,
+pub fn tree_create_row_drag_content(
+    tree_model: &impl IsA<TreeModel>,
     path: &TreePath,
 ) -> Option<gdk::ContentProvider> {
     skip_assert_initialized!();

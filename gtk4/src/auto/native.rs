@@ -23,7 +23,7 @@ glib::wrapper! {
 impl Native {
     #[doc(alias = "gtk_native_get_for_surface")]
     #[doc(alias = "get_for_surface")]
-    pub fn for_surface<P: IsA<gdk::Surface>>(surface: &P) -> Option<Native> {
+    pub fn for_surface(surface: &impl IsA<gdk::Surface>) -> Option<Native> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_native_get_for_surface(

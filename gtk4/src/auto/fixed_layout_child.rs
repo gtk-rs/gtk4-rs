@@ -119,12 +119,12 @@ impl FixedLayoutChildBuilder {
         self
     }
 
-    pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
+    pub fn child_widget(mut self, child_widget: &impl IsA<Widget>) -> Self {
         self.child_widget = Some(child_widget.clone().upcast());
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

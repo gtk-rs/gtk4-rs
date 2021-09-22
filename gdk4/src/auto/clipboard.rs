@@ -60,9 +60,9 @@ impl Clipboard {
     }
 
     #[doc(alias = "gdk_clipboard_set_content")]
-    pub fn set_content<P: IsA<ContentProvider>>(
+    pub fn set_content(
         &self,
-        provider: Option<&P>,
+        provider: Option<&impl IsA<ContentProvider>>,
     ) -> Result<(), glib::error::BoolError> {
         unsafe {
             glib::result_from_gboolean!(
@@ -83,7 +83,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "gdk_clipboard_set_texture")]
-    pub fn set_texture<P: IsA<Texture>>(&self, texture: &P) {
+    pub fn set_texture(&self, texture: &impl IsA<Texture>) {
         unsafe {
             ffi::gdk_clipboard_set_texture(
                 self.to_glib_none().0,
@@ -211,7 +211,7 @@ impl ClipboardBuilder {
             .expect("Failed to create an instance of Clipboard")
     }
 
-    pub fn display<P: IsA<Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }

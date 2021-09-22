@@ -27,7 +27,7 @@ pub trait AppLaunchContextExt: 'static {
     fn set_desktop(&self, desktop: i32);
 
     #[doc(alias = "gdk_app_launch_context_set_icon")]
-    fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>);
+    fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>);
 
     #[doc(alias = "gdk_app_launch_context_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>);
@@ -51,7 +51,7 @@ impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
         }
     }
 
-    fn set_icon<P: IsA<gio::Icon>>(&self, icon: Option<&P>) {
+    fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::gdk_app_launch_context_set_icon(
                 self.as_ref().to_glib_none().0,

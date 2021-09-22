@@ -23,7 +23,7 @@ glib::wrapper! {
 
 impl NoSelection {
     #[doc(alias = "gtk_no_selection_new")]
-    pub fn new<P: IsA<gio::ListModel>>(model: Option<&P>) -> NoSelection {
+    pub fn new(model: Option<&impl IsA<gio::ListModel>>) -> NoSelection {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_no_selection_new(
@@ -39,7 +39,7 @@ impl NoSelection {
     }
 
     #[doc(alias = "gtk_no_selection_set_model")]
-    pub fn set_model<P: IsA<gio::ListModel>>(&self, model: Option<&P>) {
+    pub fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_no_selection_set_model(
                 self.to_glib_none().0,

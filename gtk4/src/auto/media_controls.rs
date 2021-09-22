@@ -34,7 +34,7 @@ glib::wrapper! {
 
 impl MediaControls {
     #[doc(alias = "gtk_media_controls_new")]
-    pub fn new<P: IsA<MediaStream>>(stream: Option<&P>) -> MediaControls {
+    pub fn new(stream: Option<&impl IsA<MediaStream>>) -> MediaControls {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_media_controls_new(
@@ -63,7 +63,7 @@ impl MediaControls {
     }
 
     #[doc(alias = "gtk_media_controls_set_media_stream")]
-    pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
+    pub fn set_media_stream(&self, stream: Option<&impl IsA<MediaStream>>) {
         unsafe {
             ffi::gtk_media_controls_set_media_stream(
                 self.to_glib_none().0,
@@ -250,7 +250,7 @@ impl MediaControlsBuilder {
             .expect("Failed to create an instance of MediaControls")
     }
 
-    pub fn media_stream<P: IsA<MediaStream>>(mut self, media_stream: &P) -> Self {
+    pub fn media_stream(mut self, media_stream: &impl IsA<MediaStream>) -> Self {
         self.media_stream = Some(media_stream.clone().upcast());
         self
     }
@@ -315,7 +315,7 @@ impl MediaControlsBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

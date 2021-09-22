@@ -97,7 +97,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_set_fullscreen")]
-    pub fn set_fullscreen<P: IsA<Monitor>>(&self, fullscreen: bool, monitor: Option<&P>) {
+    pub fn set_fullscreen(&self, fullscreen: bool, monitor: Option<&impl IsA<Monitor>>) {
         unsafe {
             ffi::gdk_toplevel_layout_set_fullscreen(
                 self.to_glib_none().0,

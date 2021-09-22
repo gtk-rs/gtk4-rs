@@ -39,7 +39,7 @@ glib::wrapper! {
 impl PopoverMenu {
     #[doc(alias = "gtk_popover_menu_new_from_model")]
     #[doc(alias = "new_from_model")]
-    pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenu {
+    pub fn from_model(model: Option<&impl IsA<gio::MenuModel>>) -> PopoverMenu {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_popover_menu_new_from_model(
@@ -51,8 +51,8 @@ impl PopoverMenu {
 
     #[doc(alias = "gtk_popover_menu_new_from_model_full")]
     #[doc(alias = "new_from_model_full")]
-    pub fn from_model_full<P: IsA<gio::MenuModel>>(
-        model: &P,
+    pub fn from_model_full(
+        model: &impl IsA<gio::MenuModel>,
         flags: PopoverMenuFlags,
     ) -> PopoverMenu {
         assert_initialized_main_thread!();
@@ -74,7 +74,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_add_child")]
-    pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
+    pub fn add_child(&self, child: &impl IsA<Widget>, id: &str) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_add_child(
                 self.to_glib_none().0,
@@ -91,7 +91,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_remove_child")]
-    pub fn remove_child<P: IsA<Widget>>(&self, child: &P) -> bool {
+    pub fn remove_child(&self, child: &impl IsA<Widget>) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_menu_remove_child(
                 self.to_glib_none().0,
@@ -101,7 +101,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_set_menu_model")]
-    pub fn set_menu_model<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+    pub fn set_menu_model(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_popover_menu_set_menu_model(
                 self.to_glib_none().0,
@@ -366,7 +366,7 @@ impl PopoverMenuBuilder {
             .expect("Failed to create an instance of PopoverMenu")
     }
 
-    pub fn menu_model<P: IsA<gio::MenuModel>>(mut self, menu_model: &P) -> Self {
+    pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {
         self.menu_model = Some(menu_model.clone().upcast());
         self
     }
@@ -386,12 +386,12 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
 
-    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+    pub fn default_widget(mut self, default_widget: &impl IsA<Widget>) -> Self {
         self.default_widget = Some(default_widget.clone().upcast());
         self
     }
@@ -476,7 +476,7 @@ impl PopoverMenuBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

@@ -77,7 +77,7 @@ pub trait RangeExt: 'static {
     fn value(&self) -> f64;
 
     #[doc(alias = "gtk_range_set_adjustment")]
-    fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
+    fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>);
 
     #[doc(alias = "gtk_range_set_fill_level")]
     fn set_fill_level(&self, fill_level: f64);
@@ -227,7 +227,7 @@ impl<O: IsA<Range>> RangeExt for O {
         unsafe { ffi::gtk_range_get_value(self.as_ref().to_glib_none().0) }
     }
 
-    fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
+    fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_range_set_adjustment(
                 self.as_ref().to_glib_none().0,

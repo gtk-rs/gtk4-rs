@@ -91,9 +91,9 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_add_objects_from_file")]
-    pub fn add_objects_from_file<P: AsRef<std::path::Path>>(
+    pub fn add_objects_from_file(
         &self,
-        filename: P,
+        filename: impl AsRef<std::path::Path>,
         object_ids: &[&str],
     ) -> Result<(), glib::Error> {
         unsafe {
@@ -159,11 +159,11 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_create_closure")]
-    pub fn create_closure<P: IsA<glib::Object>>(
+    pub fn create_closure(
         &self,
         function_name: &str,
         flags: BuilderClosureFlags,
-        object: Option<&P>,
+        object: Option<&impl IsA<glib::Object>>,
     ) -> Result<Option<glib::Closure>, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -183,7 +183,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_expose_object")]
-    pub fn expose_object<P: IsA<glib::Object>>(&self, name: &str, object: &P) {
+    pub fn expose_object(&self, name: &str, object: &impl IsA<glib::Object>) {
         unsafe {
             ffi::gtk_builder_expose_object(
                 self.to_glib_none().0,
@@ -194,9 +194,9 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_extend_with_template")]
-    pub fn extend_with_template<P: IsA<glib::Object>>(
+    pub fn extend_with_template(
         &self,
-        object: &P,
+        object: &impl IsA<glib::Object>,
         template_type: glib::types::Type,
         buffer: &str,
     ) -> Result<(), glib::Error> {
@@ -263,7 +263,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_set_current_object")]
-    pub fn set_current_object<P: IsA<glib::Object>>(&self, current_object: Option<&P>) {
+    pub fn set_current_object(&self, current_object: Option<&impl IsA<glib::Object>>) {
         unsafe {
             ffi::gtk_builder_set_current_object(
                 self.to_glib_none().0,
@@ -273,7 +273,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_set_scope")]
-    pub fn set_scope<P: IsA<BuilderScope>>(&self, scope: Option<&P>) {
+    pub fn set_scope(&self, scope: Option<&impl IsA<BuilderScope>>) {
         unsafe {
             ffi::gtk_builder_set_scope(
                 self.to_glib_none().0,

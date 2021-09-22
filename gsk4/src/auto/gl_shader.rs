@@ -53,7 +53,7 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_compile")]
-    pub fn compile<P: IsA<Renderer>>(&self, renderer: &P) -> Result<(), glib::Error> {
+    pub fn compile(&self, renderer: &impl IsA<Renderer>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gsk_gl_shader_compile(

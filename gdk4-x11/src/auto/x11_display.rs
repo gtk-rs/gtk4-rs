@@ -244,7 +244,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_set_program_class")]
-    pub fn set_program_class<P: IsA<gdk::Display>>(display: &P, program_class: &str) {
+    pub fn set_program_class(display: &impl IsA<gdk::Display>, program_class: &str) {
         assert_initialized_main_thread!();
         unsafe {
             ffi::gdk_x11_display_set_program_class(

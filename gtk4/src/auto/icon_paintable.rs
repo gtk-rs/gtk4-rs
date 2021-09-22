@@ -21,7 +21,7 @@ glib::wrapper! {
 impl IconPaintable {
     #[doc(alias = "gtk_icon_paintable_new_for_file")]
     #[doc(alias = "new_for_file")]
-    pub fn for_file<P: IsA<gio::File>>(file: &P, size: i32, scale: i32) -> IconPaintable {
+    pub fn for_file(file: &impl IsA<gio::File>, size: i32, scale: i32) -> IconPaintable {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_icon_paintable_new_for_file(
@@ -93,7 +93,7 @@ impl IconPaintableBuilder {
             .expect("Failed to create an instance of IconPaintable")
     }
 
-    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+    pub fn file(mut self, file: &impl IsA<gio::File>) -> Self {
         self.file = Some(file.clone().upcast());
         self
     }
