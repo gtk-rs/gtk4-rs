@@ -49,7 +49,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =>
+    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =>
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&number.get().to_string());
