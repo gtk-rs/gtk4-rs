@@ -4,6 +4,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, ApplicationWindow};
 
+// ANCHOR: main
 fn main() {
     // Create a new application
     let app = Application::builder()
@@ -19,6 +20,7 @@ fn main() {
     // Run the application
     app.run();
 }
+// ANCHOR_END: main
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {

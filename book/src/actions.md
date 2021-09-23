@@ -14,13 +14,23 @@ Let us check out the most simple case where we activate an action without any pa
 ```
 
 First, we create a new [`gio::SimpleAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html) by specifying its name as "quit" and declaring that it takes no parameters.
-As usual, we connect a callback where we then close the window.
-Finally, we activate the action in the callback of the button.
+We also connect a callback which closes the window.
 
-There are a few things curious here.
+<span class="filename">Filename: listings/actions/1/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/actions/1/main.rs:main}}
+```
+
+One of the most popular reasons to use actions are keyboard accelerators so we added one right now.
+With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
+Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
+Here we assigned `<primary>Q` which translates to `Ctrl+Q` on Linux and Windows or `Command+Q` on macOS.
+
+Before we move on to other aspects of actions, let us appreciate a few things that are a few things curious here.
 The "win" part of "win.quit" is the scope of the action.
 But how does GTK know that "win" is the action scope of our window?
-Because it is common to add actions to windows and applications, there are two predefined scopes available:
+The answer is that it is so common to add actions to windows and applications that there are already two predefined scopes available:
 - "app", for actions global to the application and
 - "win", for actions tied to an application window.
 
@@ -32,11 +42,25 @@ If that would not be the case, we would have to add the action scope via [`gio::
 {{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
 ```
 
-Also, if there are multiple windows and therefore potentially multiple actions named "win.quit", then how does GTK know which action to activate?
-This is the reason why [`activate_action`](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/prelude/trait.WidgetExt.html#tymethod.activate_action) takes `&self` as first parameter.
-`activate_action` up the action in the action groups associated with `self` and its ancestors.
-This means that if we press the button belonging to window #3, the action of window #3 will be activated.
+Also, if we would have multiple windows we would expect that the currently focused window will be closed if we activate "win.quit".
+And that what happens, but that also means that we actually define one action per window.
 If we want to have a single globally accessible action instead, we add it to our application.
+
+## Parameter & Stateful
+
+Like most functions actions can take parameters.
+However, unlike most functions they can also be stateful.
+Let us see how that goes.
+
+<span class="filename">Filename: listings/actions/4/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/actions/4/main.rs:build_ui}}
+```
+
+<div style="text-align:center"><img src="img/actions_counter.gif" /></div>
+
+
 
 ## Actionable
 
