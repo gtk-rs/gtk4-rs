@@ -419,7 +419,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span>    // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @strong button_decrease =&gt;
+    button_increase.connect_clicked(clone!(@weak number, @strong button_decrease =&gt;
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&amp;number.get().to_string());
