@@ -747,7 +747,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span>    // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @strong button_decrease =&gt;
+    button_increase.connect_clicked(clone!(@weak number, @strong button_decrease =&gt;
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&amp;number.get().to_string());
@@ -823,7 +823,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span>    // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =&gt;
+    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&amp;number.get().to_string());
@@ -848,8 +848,8 @@ If we now for example click on one button and the other button is not there anym
 Per default, it immediately returns from the closure with <code>()</code> as return value.
 In case the closure expects a different return value or a panic is preferred <code>@default-return</code> or <code>@default-panic</code>.
 For more information about <code>glib::clone</code>, please have a look at the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html">docs</a>.</p>
-<p>Notice that we kept the <em>strong</em> reference to <code>number</code>.
-If we had a <em>weak</em> reference, no one would have kept <code>number</code> alive and the closure would have never been called.
+<p>Notice that we move <code>number</code> in the second closure.
+If we had only moved <em>weak</em> reference in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
@@ -901,7 +901,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =&gt;
+</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() + 1);
 </span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
@@ -970,7 +970,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =&gt;
+</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() + 1);
 </span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
@@ -1039,7 +1039,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =&gt;
+</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() + 1);
 </span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
@@ -5256,6 +5256,7 @@ Something like this:</p>
           &lt;object class=&quot;GtkScrolledWindow&quot;&gt;
             &lt;property name=&quot;hscrollbar-policy&quot;&gt;never&lt;/property&gt;
             &lt;property name=&quot;min-content-height&quot;&gt;360&lt;/property&gt;
+            &lt;property name=&quot;vexpand&quot;&gt;true&lt;/property&gt;
             &lt;child&gt;
               &lt;object class=&quot;GtkListView&quot; id=&quot;list_view&quot;/&gt;
             &lt;/child&gt;
