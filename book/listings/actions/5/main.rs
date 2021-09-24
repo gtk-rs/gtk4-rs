@@ -54,14 +54,14 @@ fn build_ui(app: &Application) {
 
     window.add_action(&action_quit);
 
-    // Create a button with label
-    let button = Button::builder().label("Press me!").build();
-
-    // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |button| {
-        // Activate "win.quit" and pass "1" as parameter
-        button.activate_action("win.count", Some(&1.to_variant()));
-    });
+    // ANCHOR: button_builder
+    // Create a button with label and action
+    let button = Button::builder()
+        .label("Press me!")
+        .action_name("win.count")
+        .action_target(&1.to_variant())
+        .build();
+    // ANCHOR_END: button_builder
 
     // Create `gtk_box` and add `button` and `label` to it
     let gtk_box = gtk::Box::builder()

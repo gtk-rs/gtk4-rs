@@ -61,49 +61,40 @@ Let us see how that goes.
 <div style="text-align:center"><img src="img/actions_counter.gif" /></div>
 
 
-
 ## Actionable
 
-Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [Actionable](../docs/gtk4/struct.Actionable.html) interface.
-That way the action can be specified by setting the property "action-name".
-We can do that by simply adding one method call to our [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html).
+Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](../docs/gtk4/struct.Actionable.html) interface.
+That way the action can be specified by setting the properties "action-name" and in case the action has a property "action-target".
+We can do that by simply adding the corresponding method calls to our [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html).
 
-<span class="filename">Filename: listings/actions/3/main.rs</span>
+<span class="filename">Filename: listings/actions/5/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/3/main.rs:button_builder}}
+{{#rustdoc_include ../listings/actions/5/main.rs:button_builder}}
 ```
 
 This makes it also easily accessible through the interface builder.
 As usual, we build up the window via a composite template.
 Within the template we can then set the "action-name" property.
 
-<span class="filename">Filename: listings/actions/4/window/window.ui</span>
+<span class="filename">Filename: listings/actions/6/window/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/actions/4/window/window.ui}}
+{{#rustdoc_include ../listings/actions/6/window/window.ui}}
 ```
 
 The action can be added within `constructed`.
 
-<span class="filename">Filename: listings/actions/4/window/imp.rs</span>
+<span class="filename">Filename: listings/actions/6/window/imp.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/4/window/imp.rs:object_impl}}
+{{#rustdoc_include ../listings/actions/6/window/imp.rs:object_impl}}
 ```
 
-## Keyboard Accelerators
+Most APIs for actions such as `Actionable` and as we will later see `MenuModel` allow use of detailed action names.
+This is a convenient way of specifying an action name and an action target with a single string.
+The most general format is `action-name(5)`.
+In case "5" is a string, the action has to be specified like this `action-name("5")`
 
-If you want to assign keyboard accelerators, actions are the way to go.
-With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
-Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
-
-For example, this how we assign Ctrl+Q (or Command+Q on macOS) to "win.quit".
-
-<span class="filename">Filename: listings/actions/5/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/5/main.rs:main}}
-```
 
 # Menus
