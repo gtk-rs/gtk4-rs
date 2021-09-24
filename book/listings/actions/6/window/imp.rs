@@ -1,15 +1,17 @@
-use gio::SimpleAction;
-use glib::clone;
 use glib::subclass::InitializingObject;
+use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
-use gtk::{CompositeTemplate, Label};
+use gtk::{Button, CompositeTemplate, Label};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(file = "window.ui")]
 pub struct Window {
+    #[template_child]
+    pub gtk_box: TemplateChild<gtk::Box>,
+    #[template_child]
+    pub button: TemplateChild<Button>,
     #[template_child]
     pub label: TemplateChild<Label>,
 }
@@ -38,33 +40,8 @@ impl ObjectImpl for Window {
         // Call "constructed" on parent
         self.parent_constructed(obj);
 
-        let action_quit =
-            SimpleAction::new_stateful("count", Some(&i32::static_variant_type()), &0.to_variant());
-
-        let label = self.label.get();
-        action_quit.connect_activate(clone!(@weak label => move |action, parameter| {
-            // Get state
-            let mut state = action
-            .state()
-            .expect("Could not get state.")
-            .get::<i32>()
-            .expect("The value needs to be of type `i32`.");
-
-            // Get parameter
-            let parameter = parameter
-                .expect("Could not get parameter.")
-                .get::<i32>()
-                .expect("The value needs to be of type `i32`.");
-
-            // Increase state by parameter and store state
-            state += parameter;
-            action.set_state(&state.to_variant());
-
-            // Update label with new state
-            label.set_label(&format!("Counter: {}", state));
-        }));
-
-        obj.add_action(&action_quit);
+        // Add actions
+        obj.add_actions();
     }
 }
 // ANCHOR_END: object_impl
