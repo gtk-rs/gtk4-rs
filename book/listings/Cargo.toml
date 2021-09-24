@@ -32,6 +32,10 @@ path = "actions/4/main.rs"
 name = "actions_5"
 path = "actions/5/main.rs"
 
+[[bin]]
+name = "actions_6"
+path = "actions/6/main.rs"
+
 
 # gobject_memory_management
 [[bin]]
