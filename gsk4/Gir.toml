@@ -15,7 +15,6 @@ generate = [
     "Gsk.Corner",
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
-    "Gsk.NglRenderer",
     "Gsk.RenderNodeType",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
@@ -111,6 +110,10 @@ generate_builder = true
     name = "get_arg_vec4"
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
 
+[[object]]
+name = "Gsk.NglRenderer"
+status = "generate"
+version = "4.2"
 
 [[object]]
 name = "Gsk.Renderer"
