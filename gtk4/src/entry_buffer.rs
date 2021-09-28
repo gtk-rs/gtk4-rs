@@ -130,3 +130,10 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 }
+
+impl Default for EntryBuffer {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct EntryBuffer object with default parameters")
+    }
+}
