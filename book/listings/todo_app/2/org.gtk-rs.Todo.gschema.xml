@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema id="org.gtk-rs.Todo" path="/org/gtk/Todo/">
+  <schema id="org.gtk-rs-rs.Todo" path="/org/gtk-rs/Todo/">
     <key name="filter" type="s">
       <default>"All"</default>
     </key>

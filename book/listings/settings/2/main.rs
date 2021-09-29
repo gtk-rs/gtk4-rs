@@ -6,7 +6,7 @@ use gtk::{Align, Application, ApplicationWindow, Switch};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk.example")
+        .application_id("org.gtk-rs.example")
         .build();
 
     // Connect to "activate" signal of `app`
@@ -24,7 +24,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // Initialize settings
-    let settings = Settings::new("org.gtk.example");
+    let settings = Settings::new("org.gtk-rs.example");
 
     // Create a switch
     let switch = Switch::builder()
