@@ -483,7 +483,7 @@ use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -2767,7 +2767,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">       .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">       .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">       .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal
@@ -2833,8 +2833,16 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull&lt
 However, every time we close the application all of it is gone.
 Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
-<p><span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">{{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
+<p><span class="filename">Filename: listings/settings/1/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;is-switch-enabled&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;false&lt;/default&gt;
+      &lt;summary&gt;Default switch state&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
 </code></pre>
 <p>Let us get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
@@ -2901,7 +2909,7 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
 <p>Now we have to install the <code>GSchema</code> by executing the following commands:</p>
-<pre><code class="language-bash">$ sudo install -D org.gtk.example.gschema.xml /usr/share/glib-2.0/schemas/
+<pre><code class="language-bash">$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
 <p>This has to be repeated every time we change the <code>GSchema</code>.
@@ -3144,8 +3152,24 @@ If the user resizes or maximizes the window, they might expect to find it in the
 GTK does not provide this functionality out of the box, but luckily it is not too hard to manually implement it.
 We basically want two integers (<code>height</code> &amp; <code>width</code>) and a boolean (<code>is_maximized</code>) to persist.
 We already know how to do this by using <code>Settings</code>.</p>
-<p><span class="filename">Filename: listings/saving_window_state/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">{{#rustdoc_include ../listings/saving_window_state/1/org.gtk.example.gschema.xml}}
+<p><span class="filename">Filename: listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;window-width&quot; type=&quot;i&quot;&gt;
+      &lt;default&gt;-1&lt;/default&gt;
+      &lt;summary&gt;Default window width&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;window-height&quot; type=&quot;i&quot;&gt;
+      &lt;default&gt;-1&lt;/default&gt;
+      &lt;summary&gt;Default window height&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;is-maximized&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;false&lt;/default&gt;
+      &lt;summary&gt;Default window maximized behaviour&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
 </code></pre>
 <p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
@@ -5434,7 +5458,7 @@ impl ObjectSubclass for Window {
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk-rs-rs.Todo&quot;)
+        .application_id(&quot;org.gtk-rs.Todo&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`

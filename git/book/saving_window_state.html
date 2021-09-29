@@ -152,8 +152,24 @@ If the user resizes or maximizes the window, they might expect to find it in the
 GTK does not provide this functionality out of the box, but luckily it is not too hard to manually implement it.
 We basically want two integers (<code>height</code> &amp; <code>width</code>) and a boolean (<code>is_maximized</code>) to persist.
 We already know how to do this by using <code>Settings</code>.</p>
-<p><span class="filename">Filename: listings/saving_window_state/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">{{#rustdoc_include ../listings/saving_window_state/1/org.gtk.example.gschema.xml}}
+<p><span class="filename">Filename: listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;window-width&quot; type=&quot;i&quot;&gt;
+      &lt;default&gt;-1&lt;/default&gt;
+      &lt;summary&gt;Default window width&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;window-height&quot; type=&quot;i&quot;&gt;
+      &lt;default&gt;-1&lt;/default&gt;
+      &lt;summary&gt;Default window height&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;is-maximized&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;false&lt;/default&gt;
+      &lt;summary&gt;Default window maximized behaviour&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
 </code></pre>
 <p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.

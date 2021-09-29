@@ -151,8 +151,16 @@
 However, every time we close the application all of it is gone.
 Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
-<p><span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">{{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
+<p><span class="filename">Filename: listings/settings/1/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;is-switch-enabled&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;false&lt;/default&gt;
+      &lt;summary&gt;Default switch state&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
 </code></pre>
 <p>Let us get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
@@ -219,7 +227,7 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
 <p>Now we have to install the <code>GSchema</code> by executing the following commands:</p>
-<pre><code class="language-bash">$ sudo install -D org.gtk.example.gschema.xml /usr/share/glib-2.0/schemas/
+<pre><code class="language-bash">$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
 <p>This has to be repeated every time we change the <code>GSchema</code>.
