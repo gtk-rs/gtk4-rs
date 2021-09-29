@@ -251,7 +251,7 @@ use gtk::Application;
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Run the application
@@ -268,7 +268,7 @@ use gtk::{Application, ApplicationWindow};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -300,7 +300,7 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -372,7 +372,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/pre
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -420,7 +420,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -586,7 +586,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -646,7 +646,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -710,7 +710,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -785,7 +785,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -863,7 +863,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -932,7 +932,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1001,7 +1001,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1158,7 +1158,7 @@ use gtk::{Application, ApplicationWindow};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -1249,7 +1249,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1456,7 +1456,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1509,7 +1509,7 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1571,7 +1571,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1625,7 +1625,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1792,7 +1792,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1876,7 +1876,7 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -1962,7 +1962,7 @@ We can do this like this:</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2052,7 +2052,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2098,7 +2098,7 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2400,7 +2400,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2466,7 +2466,7 @@ use gtk::{self, Application, ApplicationWindow, Button};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -2518,7 +2518,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2576,7 +2576,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2646,7 +2646,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2712,7 +2712,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2834,15 +2834,7 @@ However, every time we close the application all of it is gone.
 Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
 <p><span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk.example&quot; path=&quot;/org/gtk/example/&quot;&gt;
-    &lt;key name=&quot;is-switch-enabled&quot; type=&quot;b&quot;&gt;
-      &lt;default&gt;false&lt;/default&gt;
-      &lt;summary&gt;Default switch state&lt;/summary&gt;
-    &lt;/key&gt;
-  &lt;/schema&gt;
-&lt;/schemalist&gt;
+<pre><code class="language-xml">{{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
 </code></pre>
 <p>Let us get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
@@ -2855,7 +2847,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">fn main() {
 </span>    // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 <span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2873,7 +2865,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -2924,7 +2916,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -2942,7 +2934,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Initialize settings
-    let settings = Settings::new(&quot;org.gtk.example&quot;);
+    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 <span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -2982,7 +2974,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3000,7 +2992,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span>    // Get the last switch state from the settings
     let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -3040,7 +3032,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3058,7 +3050,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -3104,7 +3096,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3122,7 +3114,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = Switch::builder()
@@ -3153,23 +3145,7 @@ GTK does not provide this functionality out of the box, but luckily it is not to
 We basically want two integers (<code>height</code> &amp; <code>width</code>) and a boolean (<code>is_maximized</code>) to persist.
 We already know how to do this by using <code>Settings</code>.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk.example&quot; path=&quot;/org/gtk/example/&quot;&gt;
-    &lt;key name=&quot;window-width&quot; type=&quot;i&quot;&gt;
-      &lt;default&gt;-1&lt;/default&gt;
-      &lt;summary&gt;Default window width&lt;/summary&gt;
-    &lt;/key&gt;
-    &lt;key name=&quot;window-height&quot; type=&quot;i&quot;&gt;
-      &lt;default&gt;-1&lt;/default&gt;
-      &lt;summary&gt;Default window height&lt;/summary&gt;
-    &lt;/key&gt;
-    &lt;key name=&quot;is-maximized&quot; type=&quot;b&quot;&gt;
-      &lt;default&gt;false&lt;/default&gt;
-      &lt;summary&gt;Default window maximized behaviour&lt;/summary&gt;
-    &lt;/key&gt;
-  &lt;/schema&gt;
-&lt;/schemalist&gt;
+<pre><code class="language-xml">{{#rustdoc_include ../listings/saving_window_state/1/org.gtk.example.gschema.xml}}
 </code></pre>
 <p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
@@ -3251,7 +3227,7 @@ impl ObjectSubclass for Window {
 
     fn new() -&gt; Self {
         Self {
-            settings: Settings::new(&quot;org.gtk.example&quot;),
+            settings: Settings::new(&quot;org.gtk-rs.example&quot;),
         }
     }
 }
@@ -3303,7 +3279,7 @@ pretty_env_logger = &quot;0.4&quot;
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -3351,7 +3327,7 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3396,7 +3372,7 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3555,7 +3531,7 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3642,7 +3618,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3726,7 +3702,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3812,7 +3788,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -3896,7 +3872,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4014,7 +3990,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4111,7 +4087,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4212,7 +4188,7 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4315,7 +4291,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4452,7 +4428,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4589,7 +4565,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -4728,7 +4704,7 @@ use gtk::{Application, ApplicationWindow, Button};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -4804,7 +4780,7 @@ All widgets that can be described that way can be found <a href="../docs/gtk4/pr
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal
@@ -4901,7 +4877,7 @@ impl ObjectSubclass for CustomButton {
 </span>fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal
@@ -5186,7 +5162,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -5458,7 +5434,7 @@ impl ObjectSubclass for Window {
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk-rs.Todo&quot;)
+        .application_id(&quot;org.gtk-rs-rs.Todo&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`

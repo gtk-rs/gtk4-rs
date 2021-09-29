@@ -153,23 +153,7 @@ GTK does not provide this functionality out of the box, but luckily it is not to
 We basically want two integers (<code>height</code> &amp; <code>width</code>) and a boolean (<code>is_maximized</code>) to persist.
 We already know how to do this by using <code>Settings</code>.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk.example&quot; path=&quot;/org/gtk/example/&quot;&gt;
-    &lt;key name=&quot;window-width&quot; type=&quot;i&quot;&gt;
-      &lt;default&gt;-1&lt;/default&gt;
-      &lt;summary&gt;Default window width&lt;/summary&gt;
-    &lt;/key&gt;
-    &lt;key name=&quot;window-height&quot; type=&quot;i&quot;&gt;
-      &lt;default&gt;-1&lt;/default&gt;
-      &lt;summary&gt;Default window height&lt;/summary&gt;
-    &lt;/key&gt;
-    &lt;key name=&quot;is-maximized&quot; type=&quot;b&quot;&gt;
-      &lt;default&gt;false&lt;/default&gt;
-      &lt;summary&gt;Default window maximized behaviour&lt;/summary&gt;
-    &lt;/key&gt;
-  &lt;/schema&gt;
-&lt;/schemalist&gt;
+<pre><code class="language-xml">{{#rustdoc_include ../listings/saving_window_state/1/org.gtk.example.gschema.xml}}
 </code></pre>
 <p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
@@ -251,7 +235,7 @@ impl ObjectSubclass for Window {
 
     fn new() -&gt; Self {
         Self {
-            settings: Settings::new(&quot;org.gtk.example&quot;),
+            settings: Settings::new(&quot;org.gtk-rs.example&quot;),
         }
     }
 }
@@ -303,7 +287,7 @@ pretty_env_logger = &quot;0.4&quot;
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`

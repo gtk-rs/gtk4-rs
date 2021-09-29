@@ -152,15 +152,7 @@ However, every time we close the application all of it is gone.
 Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
 <p><span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk.example&quot; path=&quot;/org/gtk/example/&quot;&gt;
-    &lt;key name=&quot;is-switch-enabled&quot; type=&quot;b&quot;&gt;
-      &lt;default&gt;false&lt;/default&gt;
-      &lt;summary&gt;Default switch state&lt;/summary&gt;
-    &lt;/key&gt;
-  &lt;/schema&gt;
-&lt;/schemalist&gt;
+<pre><code class="language-xml">{{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
 </code></pre>
 <p>Let us get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
@@ -173,7 +165,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">fn main() {
 </span>    // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk.example&quot;)
+        .application_id(&quot;org.gtk-rs.example&quot;)
         .build();
 <span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -191,7 +183,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -242,7 +234,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -260,7 +252,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Initialize settings
-    let settings = Settings::new(&quot;org.gtk.example&quot;);
+    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 <span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -300,7 +292,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -318,7 +310,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span>    // Get the last switch state from the settings
     let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -358,7 +350,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -376,7 +368,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
@@ -422,7 +414,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk.example&quot;)
+</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
@@ -440,7 +432,7 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Initialize settings
-</span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
+</span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = Switch::builder()
