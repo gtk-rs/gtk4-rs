@@ -8,6 +8,7 @@
         <choice value='Done'/>
       </choices>
       <default>'All'</default>
+      <summary>Filter of the tasks</summary>
     </key>
   </schema>
 </schemalist>
