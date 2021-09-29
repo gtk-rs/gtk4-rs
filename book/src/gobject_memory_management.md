@@ -10,7 +10,7 @@ use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk.example")
+        .application_id("org.gtk-rs.example")
         .build();
 
     // Connect to "activate" signal of `app`

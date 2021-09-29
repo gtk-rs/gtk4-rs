@@ -6,10 +6,10 @@ GTK does not provide this functionality out of the box, but luckily it is not to
 We basically want two integers (`height` & `width`) and a boolean (`is_maximized`) to persist.
 We already know how to do this by using `Settings`.
 
-<span class="filename">Filename: listings/saving_window_state/1/org.gtk.example.gschema.xml</span>
+<span class="filename">Filename: listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</span>
 
 ```xml
-{{#rustdoc_include ../listings/saving_window_state/1/org.gtk.example.gschema.xml}}
+{{#rustdoc_include ../listings/saving_window_state/1/org.gtk-rs.example.gschema.xml}}
 ```
 
 Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.

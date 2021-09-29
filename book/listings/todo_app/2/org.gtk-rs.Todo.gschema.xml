@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema id="org.gtk-rs-rs.Todo" path="/org/gtk-rs/Todo/">
+  <schema id="org.gtk-rs.Todo" path="/org/gtk-rs/Todo/">
     <key name="filter" type="s">
-      <default>"All"</default>
+      <choices>
+        <choice value='All'/>
+        <choice value='Open'/>
+        <choice value='Done'/>
+      </choices>
+      <default>'All'</default>
     </key>
   </schema>
 </schemalist>
