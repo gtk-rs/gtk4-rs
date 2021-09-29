@@ -7,7 +7,7 @@ fn main() {
     // ANCHOR: application
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk.example")
+        .application_id("org.gtk-rs.example")
         .build();
     // ANCHOR_END: application
 
@@ -27,7 +27,7 @@ fn build_ui(app: &Application) {
 
     // ANCHOR: settings
     // Initialize settings
-    let settings = Settings::new("org.gtk.example");
+    let settings = Settings::new("org.gtk-rs.example");
     // ANCHOR_END: settings
 
     // ANCHOR: switch

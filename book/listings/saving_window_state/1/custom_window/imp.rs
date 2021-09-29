@@ -16,7 +16,7 @@ impl ObjectSubclass for Window {
 
     fn new() -> Self {
         Self {
-            settings: Settings::new("org.gtk.example"),
+            settings: Settings::new("org.gtk-rs.example"),
         }
     }
 }
