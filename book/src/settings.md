@@ -6,10 +6,10 @@ Let us learn how to use `GSettings` by storing the state of a [`Switch`](../docs
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
-<span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span>
+<span class="filename">Filename: listings/settings/1/org.gtk-rs.example.gschema.xml</span>
 
 ```xml
-{{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
+{{#rustdoc_include ../listings/settings/1/org.gtk-rs.example.gschema.xml}}
 ```
 Let us get through it step by step.
 The `id` is the same application id we used when we created our application.
@@ -29,7 +29,7 @@ Finally, we define its default value and add a summary.
 Now we have to install the `GSchema` by executing the following commands:
 
 ```bash
-$ sudo install -D org.gtk.example.gschema.xml /usr/share/glib-2.0/schemas/
+$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 ```
 

@@ -36,7 +36,7 @@ impl Default for Window {
             list_view: TemplateChild::default(),
             clear_button: TemplateChild::default(),
             model: OnceCell::default(),
-            settings: Settings::new("org.gtk-rs-rs.Todo"),
+            settings: Settings::new("org.gtk-rs.Todo"),
         }
     }
 }
