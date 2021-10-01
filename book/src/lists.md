@@ -172,6 +172,8 @@ With another `PropertyExpression` we get a reference to the "number" property of
 That already makes the first power of expressions obvious: It allows nested relationships.
 Finally, we bind "number" to "label".
 In pseudo code that would be `label->label = list_item->item->number`.
+Unfortunately, expression bindings only work in one direction.
+If you need bidirectional bindings, property bindings are still your best bet.
 
 It is worth noting that at the "setup" stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
 This is the power of expressions!
