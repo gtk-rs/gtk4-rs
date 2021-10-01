@@ -1,6 +1,6 @@
 # Actions
 
-By now, we have learned many ways already to glue our widgets together.
+By now, we have already learned many ways to glue our widgets together.
 We can send messages through channels, emit signals, share reference-counted state and bind properties.
 Now, we will complete our set by learning about actions.
 
@@ -22,7 +22,7 @@ We also connected a callback which closes the window.
 {{#rustdoc_include ../listings/actions/1/main.rs:main}}
 ```
 
-One of the most popular reasons to use actions are keyboard accelerators so we added one here.
+One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
 With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
 Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
 Here we assigned `<primary>Q` which translates to `Ctrl+Q` on Linux and Windows and `Command+Q` on macOS.
