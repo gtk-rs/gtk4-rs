@@ -1099,7 +1099,9 @@ We then create a <a href="../docs/gtk4/struct.PropertyExpression.html"><code>Pro
 With another <code>PropertyExpression</code> we get a reference to the &quot;number&quot; property of the &quot;item&quot; property of <code>list_item</code>.
 That already makes the first power of expressions obvious: It allows nested relationships.
 Finally, we bind &quot;number&quot; to &quot;label&quot;.
-In pseudo code that would be <code>label-&gt;label = list_item-&gt;item-&gt;number</code>.</p>
+In pseudo code that would be <code>label-&gt;label = list_item-&gt;item-&gt;number</code>.
+Unfortunately, expression bindings only work in one direction.
+If you need bidirectional bindings, property bindings are still your best bet.</p>
 <p>It is worth noting that at the &quot;setup&quot; stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
 This is the power of expressions!
 We do not have to define a fixed relationship, the object and properties might not even exist yet.
