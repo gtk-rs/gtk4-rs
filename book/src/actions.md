@@ -25,7 +25,7 @@ We also connected a callback which closes the window.
 One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
 With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
 Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
-Here we assigned `<primary>Q` which translates to <kbd>Ctrl</kbd> + <kbd>Q</kbd> on Linux and Windows and ⌘ + <kbd>Q</kbd> on macOS.
+Here we assigned `<primary>W` which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.
 
 Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
 The "win" part of "win.quit" is the group of the action.

@@ -15,7 +15,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Set keyboard accelerator to trigger "win.quit".
-    app.set_accels_for_action("win.quit", &["<primary>Q"]);
+    app.set_accels_for_action("win.quit", &["<primary>W"]);
 
     // Run the application
     app.run();
