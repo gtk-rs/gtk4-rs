@@ -1,8 +1,13 @@
 # Generic Values
 
 Some GObject-related functions rely on generic values for their arguments or return parameters.
-Enums in C are not as powerful as the one in Rust, which is why [`glib::Value`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html) is used for this.
-Conceptually though, there are similar to a Rust enum defined like this:
+Since GObject introspection works through a C interface these functions can neither rely are cannot rely on any powerful Rust concepts.
+In these cases [`glib::Value`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html) or [`glib::Variant`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html) are used.
+
+## Value
+
+Let us start with `Value`.
+Conceptually, a `Value` is similar to a Rust enum defined like this:
 
 ```rust, no_run,noplayground
 enum Value <T> {
@@ -16,10 +21,10 @@ enum Value <T> {
     f64(f64),
     // boxed types
     String(Option<String>),
-    Object(Option<T: impl IsA<Object>>),
+    Object(Option<T: impl IsA<glib::Object>>),
+}
 ```
 
-That means that a `glib::Value` can represent a set of types, but only one of them per instance.
 For example, this is how you would use a `Value` representing an `i32`.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
@@ -28,8 +33,8 @@ For example, this is how you would use a `Value` representing an `i32`.
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:i32}}
 ```
 
-Please note that boxed types such as `String` or `Object` are wrapped in an `Option`.
-This comes from C, where boxed types can always be `None` (or null in C terms).
+Also note that in the enum above that boxed types such as `String` or `glib::Object` are wrapped in an `Option`.
+This comes from C, where every boxed types can potentially be `None` (or null in C terms).
 You can still access it the same way as with the `i32` above.
 `get` will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
@@ -41,9 +46,36 @@ You can still access it the same way as with the `i32` above.
 
 If you want to differentiate between specifying the wrong type and a `Value` representing `None`, just call `get::<Option<T>>` instead.
 
+<span class="filename">Filename: listings/gobject_values/1/main.rs</span>
+
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:string_none}}
 ```
 
-For now, all you need to know is how to convert a Rust type into a `glib::Value` and vice versa.
-This knowledge will be useful in the next chapters where we discuss properties, signals and models.
+We will use `Value` when we deal with properties and signals later on.
+
+## Variant
+
+A `Variant` is used whenever data needs to be serialized.
+In that sense a `Variant` is similar to a Rust object that implements [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html).
+Although `GVariant` supports arbitrarily complex types, the Rust bindings are currently limited to `bool`, `u8`, `i16`, `u16`, `i32`, `u32`, `i64`, `u64`, `f64`, `&str`/`String`, and [`VariantDict`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html).
+
+In the most simple case, converting Rust types to `Variant` and vice-versa is very similar to the way it worked with `Value`.
+
+<span class="filename">Filename: listings/gobject_values/2/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/gobject_values/2/main.rs:i32}}
+```
+
+However, a `Variant` is also able to represent containers such as [`HashMap`](https://doc.rust-lang.org/std/collections/struct.HashMap.html) or [`Vec`](https://doc.rust-lang.org/std/vec/struct.Vec.html).
+The following snippet shows how to convert between `Vec` and `Variant`.
+More examples can be found in the [docs](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/index.html).
+
+<span class="filename">Filename: listings/gobject_values/2/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/gobject_values/2/main.rs:vec}}
+```
+
+We will use `Variant` when saving settings using `gio::Settings` or activating actions via `gio::Action`.
