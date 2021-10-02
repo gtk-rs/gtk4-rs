@@ -31,13 +31,13 @@ fn build_ui(app: &Application) {
         .label(&format!("Counter: {}", original_state))
         .build();
 
-    // Add action "count" to `window` taking no parameters
-    let action_quit = SimpleAction::new_stateful(
+    // Add action "count" to `window` taking an integer as parameter
+    let action_count = SimpleAction::new_stateful(
         "count",
         Some(&i32::static_variant_type()),
         &original_state.to_variant(),
     );
-    action_quit.connect_activate(clone!(@weak label => move |action, parameter| {
+    action_count.connect_activate(clone!(@weak label => move |action, parameter| {
         // Get state
         let mut state = action
             .state()
@@ -58,7 +58,7 @@ fn build_ui(app: &Application) {
         // Update label with new state
         label.set_label(&format!("Counter: {}", state));
     }));
-    window.add_action(&action_quit);
+    window.add_action(&action_count);
 
     // Create a button with label
     let button = Button::builder().label("Press me!").build();
