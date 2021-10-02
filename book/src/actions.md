@@ -25,7 +25,7 @@ We also connected a callback which closes the window.
 One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
 With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
 Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
-Here we assigned `<primary>Q` which translates to `Ctrl+Q` on Linux and Windows and `Command+Q` on macOS.
+Here we assigned `<primary>Q` which translates to <kbd>Ctrl</kbd> + <kbd>Q</kbd> on Linux and Windows and ⌘ + <kbd>Q</kbd> on macOS.
 
 Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
 The "win" part of "win.quit" is the group of the action.
@@ -34,7 +34,7 @@ The answer is that it is so common to add actions to windows and applications th
 - "app" for actions global to the application, and
 - "win" for actions tied to an application window.
 
-If that would not be the case, we would have to add the action group via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
+If that was not the case, we would have to add the action group manually via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
 
 <span class="filename">Filename: listings/actions/2/main.rs</span>
 
@@ -43,7 +43,8 @@ If that would not be the case, we would have to add the action group via [`gio::
 ```
 
 Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.quit".
-And that is what happens, but that also means that we actually define one action per window instance.
+And indeed, "win.quit" on the Application dispatches the action to the currently focused window.
+However, that also means that we actually define one action per window instance.
 If we want to have a single globally accessible action instead, we add it to our application.
 
 ## Parameter and State
@@ -147,7 +148,7 @@ The logic of the code does not rely on a state but with it, the menu will be abl
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_orientation}}
 ```
 
-While it is not the [only option](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html), the most convenient way to create menus is via the interface builder.
+Even though [`gio::Menu`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html) can also be created with the bindings, the most convenient way is to use the interface builder for that.
 We do that by adding the menu in front of the template.
 
 <span class="filename">Filename: listings/actions/6/window/window.ui</span>
@@ -156,6 +157,7 @@ We do that by adding the menu in front of the template.
 {{#rustdoc_include ../listings/actions/6/window/window.ui}}
 ```
 
+While it is less readable, we could have also 
 Note how we specified a target:
 
 ```xml
@@ -177,7 +179,7 @@ This is how the app looks in action:
 
 ## Settings
 
-The menu entries nicely display the state of stateful actions, but after the app is closed everything is gone.
+The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with `gio::Settings`.
 First we add the settings to `imp::Window` and manually implement the `Default` trait.
 
@@ -216,5 +218,5 @@ Finally, we make sure that `bind_settings` is called within `constructed`.
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:object_impl}}
 ```
 
-Actions are extremely powerful and we only touched the surface here.
+Actions are extremely powerful and we are only scratching the surface here.
 If you want to learn more about them, the [GNOME developer documentation](https://developer.gnome.org/documentation/tutorials/actions.html) is a good place to start.

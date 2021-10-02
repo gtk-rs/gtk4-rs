@@ -36,10 +36,10 @@ impl Window {
         action_count.connect_activate(clone!(@weak label => move |action, parameter| {
             // Get state
             let mut state = action
-            .state()
-            .expect("Could not get state.")
-            .get::<i32>()
-            .expect("The value needs to be of type `i32`.");
+                .state()
+                .expect("Could not get state.")
+                .get::<i32>()
+                .expect("The value needs to be of type `i32`.");
 
             // Get parameter
             let parameter = parameter

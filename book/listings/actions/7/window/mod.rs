@@ -98,7 +98,7 @@ impl Window {
                 let orientation = match orientation.as_str() {
                     "Horizontal" => Orientation::Horizontal,
                     "Vertical" => Orientation::Vertical,
-                    _ => unimplemented!(),
+                    _ => unreachable!(),
                 };
 
                 Some(orientation.to_value())
