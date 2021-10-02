@@ -86,7 +86,7 @@ impl Window {
                 state = !state;
                 action.set_state(&state.to_variant());
 
-                // Let button's sensitivity follow current state
+                // Set the button's sensitivity in accordance with the current state
                 button.set_sensitive(state);
         }));
         self.add_action(&action_sensitive_button);
