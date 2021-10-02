@@ -70,7 +70,7 @@ fn build_ui(app: &Application) {
         button.activate_action("win.count", Some(&parameter.to_variant()));
     });
 
-    // Create `gtk_box` and add `button` and `label` to it
+    // Create a `gtk::Box` and add `button` and `label` to it
     let gtk_box = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .margin_top(12)
@@ -83,7 +83,7 @@ fn build_ui(app: &Application) {
     gtk_box.append(&button);
     gtk_box.append(&label);
 
-    // Add button
+    // Add `gtk_box` to the window
     window.set_child(Some(&gtk_box));
 
     // Present window to the user
