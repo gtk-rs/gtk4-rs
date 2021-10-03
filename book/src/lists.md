@@ -155,6 +155,8 @@ This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.
 
+## Expressions
+
 Situations like these are so common that GTK offers an alternative to property binding: [expressions](../docs/gtk4/struct.Expression.html).
 As a first step it allows us to remove the "bind" step.
 Let us see how the "setup" step now works.

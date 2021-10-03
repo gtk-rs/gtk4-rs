@@ -46,6 +46,8 @@ Now when we click on one of the two switches, the other one is toggled as well.
 
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
 
+## Adding Properties to Custom GObjects
+
 We can also add properties to custom GObjects.
 We can demonstrate that by binding the `number` of our `CustomButton` to a property.
 For that we need to be able to [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions.
