@@ -1670,6 +1670,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span></code></pre>
 <p>Now when we click on one of the two switches, the other one is toggled as well.</p>
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
+<h2 id="adding-properties-to-custom-gobjects"><a class="header" href="#adding-properties-to-custom-gobjects">Adding Properties to Custom GObjects</a></h2>
 <p>We can also add properties to custom GObjects.
 We can demonstrate that by binding the <code>number</code> of our <code>CustomButton</code> to a property.
 For that we need to be able to <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily evaluate</a> expressions.
@@ -2143,6 +2144,7 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">}
 </span></code></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
 <p>Let us see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
@@ -2507,8 +2509,9 @@ fn build_ui(app: &amp;Application) {
 <p>After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The <code>sleep</code> call is an artificial example,
-but it is not unusual wanting to run a slightly longer operation in one go.
-For that we just need to spawn a new thread and let the operation run there.</p>
+but it is not unusual wanting to run a slightly longer operation in one go.</p>
+<h2 id="how-to-avoid-blocking-the-main-loop"><a class="header" href="#how-to-avoid-blocking-the-main-loop">How to Avoid Blocking the Main Loop</a></h2>
+<p>In order to avoid blocking the main loop we can spawn a new thread and let the operation run there.</p>
 <p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
@@ -4195,6 +4198,7 @@ you will notice that sometimes multiple numbers change even though you only acti
 This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.</p>
+<h2 id="expressions"><a class="header" href="#expressions">Expressions</a></h2>
 <p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
 As a first step it allows us to remove the &quot;bind&quot; step.
 Let us see how the &quot;setup&quot; step now works.</p>
@@ -5236,6 +5240,7 @@ We are going to build a To-Do app!</p>
 An entry to input new tasks and a list view to display them will suffice.
 Something like this:</p>
 <div style="text-align:center"><img src="img/todo_app_1_mockup.png" /></div>
+<h2 id="window"><a class="header" href="#window">Window</a></h2>
 <p>This mockup can be described by the following composite template.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -5476,6 +5481,7 @@ fn build_ui(app: &amp;Application) {
     window.show();
 }
 </code></pre>
+<h2 id="to-do-object"><a class="header" href="#to-do-object">To-Do Object</a></h2>
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
@@ -5625,6 +5631,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
+<h2 id="to-do-row"><a class="header" href="#to-do-row">To-Do Row</a></h2>
 <p>Let us move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>

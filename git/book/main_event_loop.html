@@ -208,8 +208,9 @@ fn build_ui(app: &amp;Application) {
 <p>After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The <code>sleep</code> call is an artificial example,
-but it is not unusual wanting to run a slightly longer operation in one go.
-For that we just need to spawn a new thread and let the operation run there.</p>
+but it is not unusual wanting to run a slightly longer operation in one go.</p>
+<h2 id="how-to-avoid-blocking-the-main-loop"><a class="header" href="#how-to-avoid-blocking-the-main-loop">How to Avoid Blocking the Main Loop</a></h2>
+<p>In order to avoid blocking the main loop we can spawn a new thread and let the operation run there.</p>
 <p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">

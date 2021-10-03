@@ -1003,6 +1003,7 @@ you will notice that sometimes multiple numbers change even though you only acti
 This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.</p>
+<h2 id="expressions"><a class="header" href="#expressions">Expressions</a></h2>
 <p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
 As a first step it allows us to remove the &quot;bind&quot; step.
 Let us see how the &quot;setup&quot; step now works.</p>

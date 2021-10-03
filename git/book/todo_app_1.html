@@ -153,6 +153,7 @@ We are going to build a To-Do app!</p>
 An entry to input new tasks and a list view to display them will suffice.
 Something like this:</p>
 <div style="text-align:center"><img src="img/todo_app_1_mockup.png" /></div>
+<h2 id="window"><a class="header" href="#window">Window</a></h2>
 <p>This mockup can be described by the following composite template.</p>
 <p><span class="filename">Filename: listings/todo_app/1/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -393,6 +394,7 @@ fn build_ui(app: &amp;Application) {
     window.show();
 }
 </code></pre>
+<h2 id="to-do-object"><a class="header" href="#to-do-object">To-Do Object</a></h2>
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
@@ -542,6 +544,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
+<h2 id="to-do-row"><a class="header" href="#to-do-row">To-Do Row</a></h2>
 <p>Let us move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
