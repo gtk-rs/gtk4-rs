@@ -26,7 +26,10 @@ After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
-For that we just need to spawn a new thread and let the operation run there.
+
+## How to Avoid Blocking the Main Loop
+
+In order to avoid blocking the main loop we can spawn a new thread and let the operation run there.
 
 <span class="filename">Filename: listings/main_event_loop/2/main.rs</span>
 

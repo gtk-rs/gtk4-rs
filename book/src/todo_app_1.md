@@ -9,6 +9,8 @@ Something like this:
 
 <div style="text-align:center"><img src="img/todo_app_1_mockup.png" /></div>
 
+## Window
+
 This mockup can be described by the following composite template.
 
 <span class="filename">Filename: listings/todo_app/1/window/window.ui</span>
@@ -46,6 +48,8 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/main.rs:main}}
 ```
+
+## To-Do Object
 
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
@@ -85,6 +89,8 @@ If you are curious, you can press on the small eye symbol on the top right of th
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/todo_object/imp.rs:struct_and_subclass}}
 ```
+
+## To-Do Row
 
 Let us move on to the individual tasks.
 The row of a task should look like this:
