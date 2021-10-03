@@ -43,9 +43,9 @@ If that was not the case, we would have to add the action group manually via [`g
 ```
 
 Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.quit".
-And indeed, "win.quit" on the Application dispatches the action to the currently focused window.
+And indeed, the "win.quit" will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
-If we want to have a single globally accessible action instead, we add it to our application.
+If we want to have a single globally accessible action instead, we call `add_action` on our application instead.
 
 ## Parameter and State
 
@@ -140,7 +140,7 @@ This means that the caller can expect the boolean state to toggle after activati
 Finally, we add "win.orientation", an action with string parameter and string state.
 This action can be used to change the orientation of `gtk_box`.
 Here the convention is that the state should be set to the given parameter.
-The logic of the code does not rely on a state but with it, the menu will be able to display the current state.
+We do not need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.
 
 <span class="filename">Filename: listings/actions/6/window/mod.rs</span>
 
