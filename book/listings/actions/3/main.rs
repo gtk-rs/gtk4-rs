@@ -65,7 +65,7 @@ fn build_ui(app: &Application) {
 
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        // Activate "win.quit" and pass "1" as parameter
+        // Activate "win.count" and pass "1" as parameter
         let parameter = 1;
         button.activate_action("win.count", Some(&parameter.to_variant()));
     });
