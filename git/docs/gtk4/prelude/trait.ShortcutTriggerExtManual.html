@@ -79,18 +79,18 @@
 }</code></pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.compare" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/shortcut_trigger.rs.html#21" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.compare" class="fnname">compare</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ShortcutTrigger.html" title="struct gtk4::ShortcutTrigger">ShortcutTrigger</a>&gt;&gt;(&amp;self, trigger2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html" title="enum core::cmp::Ordering">Ordering</a></h4></div></summary><div class="docblock"><p>The types of <code>self</code> and <code>trigger2</code> are <code>gconstpointer</code> only to allow
 use of this function as a <code>GCompareFunc</code>.</p>
 <p>They must each be a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a>.</p>
-<h2 id="trigger2" class="section-header"><a href="#trigger2"><code>trigger2</code></a></h2>
+<h6 id="trigger2" class="section-header"><a href="#trigger2"><code>trigger2</code></a></h6>
 <p>a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a></p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>An integer less than, equal to, or greater than zero if
 <code>self</code> is found, respectively, to be less than, to match,
 or be greater than <code>trigger2</code>.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.equal" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/shortcut_trigger.rs.html#34" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.equal" class="fnname">equal</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ShortcutTrigger.html" title="struct gtk4::ShortcutTrigger">ShortcutTrigger</a>&gt;&gt;(&amp;self, trigger2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if <code>self</code> and <code>trigger2</code> trigger under the same conditions.</p>
 <p>The types of <code>one</code> and <code>two</code> are <code>gconstpointer</code> only to allow use of this
 function with <code>GHashTable</code>. They must each be a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a>.</p>
-<h2 id="trigger2-1" class="section-header"><a href="#trigger2-1"><code>trigger2</code></a></h2>
+<h6 id="trigger2-1" class="section-header"><a href="#trigger2-1"><code>trigger2</code></a></h6>
 <p>a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a></p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> and <code>trigger2</code> are equal</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.hash" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/shortcut_trigger.rs.html#50" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.hash" class="fnname">hash</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></div></summary><div class="docblock"><p>Generates a hash value for a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a>.</p>
 <p>The output of this function is guaranteed to be the same for a given
@@ -99,16 +99,16 @@ architectures or even different versions of GTK. Do not use this
 function as a basis for building protocols or file formats.</p>
 <p>The types of <code>self</code> is <code>gconstpointer</code> only to allow use of this
 function with <code>GHashTable</code>. They must each be a <a href="../struct.ShortcutTrigger.html" title="crate::ShortcutTrigger"><code>ShortcutTrigger</code></a>.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>a hash value corresponding to <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.trigger" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/shortcut_trigger.rs.html#64" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.trigger" class="fnname">trigger</a>(&amp;self, event: &amp;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>, enable_mnemonics: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="enum" href="../../gdk4/auto/enums/enum.KeyMatch.html" title="enum gdk4::auto::enums::KeyMatch">KeyMatch</a></h4></div></summary><div class="docblock"><p>Checks if the given <code>event</code> triggers <code>self</code>.</p>
-<h2 id="event" class="section-header"><a href="#event"><code>event</code></a></h2>
+<h6 id="event" class="section-header"><a href="#event"><code>event</code></a></h6>
 <p>the event to check</p>
-<h2 id="enable_mnemonics" class="section-header"><a href="#enable_mnemonics"><code>enable_mnemonics</code></a></h2>
+<h6 id="enable_mnemonics" class="section-header"><a href="#enable_mnemonics"><code>enable_mnemonics</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if mnemonics should trigger. Usually the
 value of this property is determined by checking that the passed
 in <code>event</code> is a Key event and has the right modifiers set.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>Whether the event triggered the shortcut</p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-ShortcutTriggerExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/shortcut_trigger.rs.html#67-108" title="goto source code">[src]</a></div><a href="#impl-ShortcutTriggerExtManual" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ShortcutTrigger.html" title="struct gtk4::ShortcutTrigger">ShortcutTrigger</a>&gt;&gt; <a class="trait" href="trait.ShortcutTriggerExtManual.html" title="trait gtk4::prelude::ShortcutTriggerExtManual">ShortcutTriggerExtManual</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.ShortcutTriggerExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>

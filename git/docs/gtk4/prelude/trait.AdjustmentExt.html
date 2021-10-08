@@ -96,7 +96,7 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_upper_notify" class="fnname">connect_upper_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_value_notify" class="fnname">connect_value_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 </details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Adjustment.html" title="Adjustment"><code>Adjustment</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.clamp_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#209" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.clamp_page" class="fnname">clamp_page</a>(&amp;self, lower: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, upper: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Updates the value property to ensure that the range
 between <code>lower</code> and <code>upper</code> is in the current page.</p>
@@ -105,9 +105,9 @@ If the range is larger than the page size, then only the
 start of it will be in the current page.</p>
 <p>A <code>signal::Adjustment::value-changed</code> signal will be emitted
 if the value is changed.</p>
-<h2 id="lower" class="section-header"><a href="#lower"><code>lower</code></a></h2>
+<h6 id="lower" class="section-header"><a href="#lower"><code>lower</code></a></h6>
 <p>the lower value</p>
-<h2 id="upper" class="section-header"><a href="#upper"><code>upper</code></a></h2>
+<h6 id="upper" class="section-header"><a href="#upper"><code>upper</code></a></h6>
 <p>the upper value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.configure" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#231-239" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.configure" class="fnname">configure</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;lower: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;upper: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;step_increment: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;page_increment: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;page_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><br>)</h4></div></summary><div class="docblock"><p>Sets all properties of the adjustment at once.</p>
 <p>Use this function to avoid multiple emissions of the
@@ -115,38 +115,38 @@ if the value is changed.</p>
 <a href="trait.AdjustmentExt.html#tymethod.set_lower" title="Self::set_lower()"><code>set_lower()</code></a> for an alternative
 way of compressing multiple emissions of
 <code>signal::Adjustment::changed</code> into one.</p>
-<h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
+<h6 id="value" class="section-header"><a href="#value"><code>value</code></a></h6>
 <p>the new value</p>
-<h2 id="lower-1" class="section-header"><a href="#lower-1"><code>lower</code></a></h2>
+<h6 id="lower-1" class="section-header"><a href="#lower-1"><code>lower</code></a></h6>
 <p>the new minimum value</p>
-<h2 id="upper-1" class="section-header"><a href="#upper-1"><code>upper</code></a></h2>
+<h6 id="upper-1" class="section-header"><a href="#upper-1"><code>upper</code></a></h6>
 <p>the new maximum value</p>
-<h2 id="step_increment" class="section-header"><a href="#step_increment"><code>step_increment</code></a></h2>
+<h6 id="step_increment" class="section-header"><a href="#step_increment"><code>step_increment</code></a></h6>
 <p>the new step increment</p>
-<h2 id="page_increment" class="section-header"><a href="#page_increment"><code>page_increment</code></a></h2>
+<h6 id="page_increment" class="section-header"><a href="#page_increment"><code>page_increment</code></a></h6>
 <p>the new page increment</p>
-<h2 id="page_size" class="section-header"><a href="#page_size"><code>page_size</code></a></h2>
+<h6 id="page_size" class="section-header"><a href="#page_size"><code>page_size</code></a></h6>
 <p>the new page size</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.lower" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#248" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.lower" class="fnname">lower</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the minimum value of the adjustment.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>The current minimum value of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minimum_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#257" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.minimum_increment" class="fnname">minimum_increment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Gets the smaller of step increment and page increment.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the minimum increment of <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.page_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#266" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.page_increment" class="fnname">page_increment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the page increment of the adjustment.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>The current page increment of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.page_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#275" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.page_size" class="fnname">page_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the page size of the adjustment.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>The current page size of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.step_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#284" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.step_increment" class="fnname">step_increment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the step increment of the adjustment.</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>The current step increment of the adjustment.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.upper" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#293" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.upper" class="fnname">upper</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the maximum value of the adjustment.</p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
 <p>The current maximum value of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.value" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#302" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.value" class="fnname">value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Gets the current value of the adjustment.</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p>The current value of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_lower" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#320" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_lower" class="fnname">set_lower</a>(&amp;self, lower: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the minimum value of the adjustment.</p>
 <p>When setting multiple adjustment properties via their individual
@@ -159,25 +159,25 @@ by calling <code>g_object_freeze_notify()</code> and <code>g_object_thaw_notify(
 around the calls to the individual setters.</p>
 <p>Alternatively, using a single <code>g_object_set()</code> for all the properties
 to change, or using <a href="trait.AdjustmentExt.html#tymethod.configure" title="Self::configure()"><code>configure()</code></a> has the same effect.</p>
-<h2 id="lower-2" class="section-header"><a href="#lower-2"><code>lower</code></a></h2>
+<h6 id="lower-2" class="section-header"><a href="#lower-2"><code>lower</code></a></h6>
 <p>the new minimum value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_page_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#330" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_page_increment" class="fnname">set_page_increment</a>(&amp;self, page_increment: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the page increment of the adjustment.</p>
 <p>See <a href="trait.AdjustmentExt.html#tymethod.set_lower" title="Self::set_lower()"><code>set_lower()</code></a> about how to compress
 multiple emissions of the <code>signal::Adjustment::changed</code>
 signal when setting multiple adjustment properties.</p>
-<h2 id="page_increment-1" class="section-header"><a href="#page_increment-1"><code>page_increment</code></a></h2>
+<h6 id="page_increment-1" class="section-header"><a href="#page_increment-1"><code>page_increment</code></a></h6>
 <p>the new page increment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_page_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#340" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_page_size" class="fnname">set_page_size</a>(&amp;self, page_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the page size of the adjustment.</p>
 <p>See <a href="trait.AdjustmentExt.html#tymethod.set_lower" title="Self::set_lower()"><code>set_lower()</code></a> about how to compress
 multiple emissions of the <code>signal::Adjustment::changed</code>
 signal when setting multiple adjustment properties.</p>
-<h2 id="page_size-1" class="section-header"><a href="#page_size-1"><code>page_size</code></a></h2>
+<h6 id="page_size-1" class="section-header"><a href="#page_size-1"><code>page_size</code></a></h6>
 <p>the new page size</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_step_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#350" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_step_increment" class="fnname">set_step_increment</a>(&amp;self, step_increment: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the step increment of the adjustment.</p>
 <p>See <a href="trait.AdjustmentExt.html#tymethod.set_lower" title="Self::set_lower()"><code>set_lower()</code></a> about how to compress
 multiple emissions of the <code>signal::Adjustment::changed</code>
 signal when setting multiple adjustment properties.</p>
-<h2 id="step_increment-1" class="section-header"><a href="#step_increment-1"><code>step_increment</code></a></h2>
+<h6 id="step_increment-1" class="section-header"><a href="#step_increment-1"><code>step_increment</code></a></h6>
 <p>the new step increment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_upper" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#363" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_upper" class="fnname">set_upper</a>(&amp;self, upper: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the maximum value of the adjustment.</p>
 <p>Note that values will be restricted by <code>upper - page-size</code>
@@ -185,7 +185,7 @@ if the page-size property is nonzero.</p>
 <p>See <a href="trait.AdjustmentExt.html#tymethod.set_lower" title="Self::set_lower()"><code>set_lower()</code></a> about how to compress
 multiple emissions of the <code>signal::Adjustment::changed</code>
 signal when setting multiple adjustment properties.</p>
-<h2 id="upper-2" class="section-header"><a href="#upper-2"><code>upper</code></a></h2>
+<h6 id="upper-2" class="section-header"><a href="#upper-2"><code>upper</code></a></h6>
 <p>the new maximum value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_value" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#377" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_value" class="fnname">set_value</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the <a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a> value.</p>
 <p>The value is clamped to lie between <code>property::Adjustment::lower</code>
@@ -194,7 +194,7 @@ and <code>property::Adjustment::upper</code>.</p>
 the effective range of allowed values goes from
 <code>property::Adjustment::lower</code> to
 <code>property::Adjustment::upper</code> - <code>property::Adjustment::page-size</code>.</p>
-<h2 id="value-1" class="section-header"><a href="#value-1"><code>value</code></a></h2>
+<h6 id="value-1" class="section-header"><a href="#value-1"><code>value</code></a></h6>
 <p>the new value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#385" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when one or more of the <a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a> properties have been
 changed.</p>

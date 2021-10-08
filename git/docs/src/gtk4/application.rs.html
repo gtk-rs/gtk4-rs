@@ -142,6 +142,15 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -211,6 +220,15 @@
             });
             <span class="kw-2">*</span><span class="ident">signalid</span>.<span class="ident">borrow_mut</span>() <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
         }
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Application</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">glib::object::Object::new</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span>[])
+            .<span class="ident">expect</span>(<span class="string">&quot;Can&#39;t construct Application object with default parameters&quot;</span>);
+        <span class="ident"><span class="self">Self</span>::register_startup_hook</span>(<span class="kw-2">&amp;</span><span class="ident">app</span>);
+        <span class="ident">app</span>
     }
 }
 </code></pre></div>

@@ -84,39 +84,39 @@ will always return a normalized one.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#24-244" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.RoundedRect.html" title="struct gsk4::RoundedRect">RoundedRect</a></h3></div></summary><div class="impl-items"><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#26-46" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;bounds: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;top_left: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;top_right: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;bottom_right: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;bottom_left: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a><br>) -&gt; Self</h4></div><div id="method.from_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#50-61" title="goto source code">[src]</a></div><a href="#method.from_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.from_rect" class="fnname">from_rect</a>(bounds: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; Self</h4></div><details class="rustdoc-toggle method-toggle" open><summary><div id="method.init" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#82-100" title="goto source code">[src]</a></div><a href="#method.init" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.init" class="fnname">init</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;bounds: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;top_left: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;top_right: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;bottom_right: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;bottom_left: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a><br>)</h4></div></summary><div class="docblock"><p>Initializes the given <a href="struct.RoundedRect.html" title="crate::RoundedRect"><code>RoundedRect</code></a> with the given values.</p>
 <p>This function will implicitly normalize the <a href="struct.RoundedRect.html" title="crate::RoundedRect"><code>RoundedRect</code></a>
 before returning.</p>
-<h2 id="bounds" class="section-header"><a href="#bounds"><code>bounds</code></a></h2>
+<h6 id="bounds" class="section-header"><a href="#bounds"><code>bounds</code></a></h6>
 <p>a <code>graphene_rect_t</code> describing the bounds</p>
-<h2 id="top_left" class="section-header"><a href="#top_left"><code>top_left</code></a></h2>
+<h6 id="top_left" class="section-header"><a href="#top_left"><code>top_left</code></a></h6>
 <p>the rounding radius of the top left corner</p>
-<h2 id="top_right" class="section-header"><a href="#top_right"><code>top_right</code></a></h2>
+<h6 id="top_right" class="section-header"><a href="#top_right"><code>top_right</code></a></h6>
 <p>the rounding radius of the top right corner</p>
-<h2 id="bottom_right" class="section-header"><a href="#bottom_right"><code>bottom_right</code></a></h2>
+<h6 id="bottom_right" class="section-header"><a href="#bottom_right"><code>bottom_right</code></a></h6>
 <p>the rounding radius of the bottom right corner</p>
-<h2 id="bottom_left" class="section-header"><a href="#bottom_left"><code>bottom_left</code></a></h2>
+<h6 id="bottom_left" class="section-header"><a href="#bottom_left"><code>bottom_left</code></a></h6>
 <p>the rounding radius of the bottom left corner</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>the initialized rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.init_from_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#113-117" title="goto source code">[src]</a></div><a href="#method.init_from_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.init_from_rect" class="fnname">init_from_rect</a>(&amp;mut self, bounds: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></div></summary><div class="docblock"><p>Initializes <code>self</code> to the given <code>bounds</code> and sets the radius
 of all four corners to <code>radius</code>.</p>
-<h2 id="bounds-1" class="section-header"><a href="#bounds-1"><code>bounds</code></a></h2>
+<h6 id="bounds-1" class="section-header"><a href="#bounds-1"><code>bounds</code></a></h6>
 <p>a <code>graphene_rect_t</code></p>
-<h2 id="radius" class="section-header"><a href="#radius"><code>radius</code></a></h2>
+<h6 id="radius" class="section-header"><a href="#radius"><code>radius</code></a></h6>
 <p>the border radius</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the initialized rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.normalize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#129-133" title="goto source code">[src]</a></div><a href="#method.normalize" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.normalize" class="fnname">normalize</a>(&amp;mut self)</h4></div></summary><div class="docblock"><p>Normalizes the passed rectangle.</p>
 <p>This function will ensure that the bounds of the rectangle
 are normalized and ensure that the corner values are positive
 and the corners do not overlap.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the normalized rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#147-151" title="goto source code">[src]</a></div><a href="#method.offset" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.offset" class="fnname">offset</a>(&amp;mut self, dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></div></summary><div class="docblock"><p>Offsets the bound’s origin by <code>dx</code> and <code>dy</code>.</p>
 <p>The size and corners of the rectangle are unchanged.</p>
-<h2 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h2>
+<h6 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h6>
 <p>the horizontal offset</p>
-<h2 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h2>
+<h6 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h6>
 <p>the vertical offset</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>the offset rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.shrink" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#174-178" title="goto source code">[src]</a></div><a href="#method.shrink" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shrink" class="fnname">shrink</a>(&amp;mut self, top: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, right: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, bottom: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, left: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></div></summary><div class="docblock"><p>Shrinks (or grows) the given rectangle by moving the 4 sides
 according to the offsets given.</p>
@@ -124,36 +124,36 @@ according to the offsets given.</p>
 the center of the corner circle intact. This emulates CSS behavior.</p>
 <p>This function also works for growing rectangles if you pass
 negative values for the <code>top</code>, <code>right</code>, <code>bottom</code> or <code>left</code>.</p>
-<h2 id="top" class="section-header"><a href="#top"><code>top</code></a></h2>
+<h6 id="top" class="section-header"><a href="#top"><code>top</code></a></h6>
 <p>How far to move the top side downwards</p>
-<h2 id="right" class="section-header"><a href="#right"><code>right</code></a></h2>
+<h6 id="right" class="section-header"><a href="#right"><code>right</code></a></h6>
 <p>How far to move the right side to the left</p>
-<h2 id="bottom" class="section-header"><a href="#bottom"><code>bottom</code></a></h2>
+<h6 id="bottom" class="section-header"><a href="#bottom"><code>bottom</code></a></h6>
 <p>How far to move the bottom side upwards</p>
-<h2 id="left" class="section-header"><a href="#left"><code>left</code></a></h2>
+<h6 id="left" class="section-header"><a href="#left"><code>left</code></a></h6>
 <p>How far to move the left side to the right</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>the resized <a href="struct.RoundedRect.html" title="crate::RoundedRect"><code>RoundedRect</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_rectilinear" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#190-192" title="goto source code">[src]</a></div><a href="#method.is_rectilinear" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_rectilinear" class="fnname">is_rectilinear</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if all corners of <code>self</code> are right angles and the
 rectangle covers all of its bounds.</p>
 <p>This information can be used to decide if <a href="struct.ClipNode.html#method.new" title="crate::ClipNode::new()"><code>ClipNode::new()</code></a>
 or <a href="struct.RoundedClipNode.html#method.new" title="crate::RoundedClipNode::new()"><code>RoundedClipNode::new()</code></a> should be called.</p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the rectangle is rectilinear</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.contains_point" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#202-209" title="goto source code">[src]</a></div><a href="#method.contains_point" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.contains_point" class="fnname">contains_point</a>(&amp;self, point: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if the given <code>point</code> is inside the rounded rectangle.</p>
-<h2 id="point" class="section-header"><a href="#point"><code>point</code></a></h2>
+<h6 id="point" class="section-header"><a href="#point"><code>point</code></a></h6>
 <p>the point to check</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>point</code> is inside the rounded rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.contains_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#219-226" title="goto source code">[src]</a></div><a href="#method.contains_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.contains_rect" class="fnname">contains_rect</a>(&amp;self, rect: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if the given <code>rect</code> is contained inside the rounded rectangle.</p>
-<h2 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h2>
+<h6 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h6>
 <p>the rectangle to check</p>
-<h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
+<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>rect</code> is fully contained inside the rounded rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.intersects_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#236-243" title="goto source code">[src]</a></div><a href="#method.intersects_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.intersects_rect" class="fnname">intersects_rect</a>(&amp;self, rect: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if part of the given <code>rect</code> is contained inside the rounded rectangle.</p>
-<h2 id="rect-1" class="section-header"><a href="#rect-1"><code>rect</code></a></h2>
+<h6 id="rect-1" class="section-header"><a href="#rect-1"><code>rect</code></a></h6>
 <p>the rectangle to check</p>
-<h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
+<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>rect</code> intersects with the rounded rectangle</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#20" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.RoundedRect.html" title="struct gsk4::RoundedRect">RoundedRect</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gsk4/rounded_rect.rs.html#20" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.RoundedRect.html" title="struct gsk4::RoundedRect">RoundedRect</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone_from" class="method trait-impl has-srclink"><div class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#131" title="goto source code">[src]</a></div><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></div></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>

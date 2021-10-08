@@ -79,11 +79,11 @@ new GtkTreeRowReference with <a href="struct.TreeRowReference.html#method.new" t
 by <code>path</code>, so long as it exists. Any changes that occur on <code>model</code> are
 propagated, and the path is updated appropriately. If
 <code>path</code> isn’t a valid path in <code>model</code>, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
-<h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
+<h6 id="model" class="section-header"><a href="#model"><code>model</code></a></h6>
 <p>a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
-<h2 id="path" class="section-header"><a href="#path"><code>path</code></a></h2>
+<h6 id="path" class="section-header"><a href="#path"><code>path</code></a></h6>
 <p>a valid <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to monitor</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a newly allocated <a href="struct.TreeRowReference.html" title="crate::TreeRowReference"><code>TreeRowReference</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new_proxy" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#85-98" title="goto source code">[src]</a></div><a href="#method.new_proxy" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new_proxy" class="fnname">new_proxy</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;proxy: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;model: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreeRowReference.html" title="struct gtk4::TreeRowReference">TreeRowReference</a>&gt;</h4></div></summary><div class="docblock"><p>You do not need to use this function.</p>
 <p>Creates a row reference based on <code>path</code>.</p>
@@ -105,49 +105,49 @@ doesn’t work for reasons of internal implementation.</p>
 <p>This type of row reference is primarily meant by structures that
 need to carefully monitor exactly when a row reference updates
 itself, and is not generally needed by most applications.</p>
-<h2 id="proxy" class="section-header"><a href="#proxy"><code>proxy</code></a></h2>
+<h6 id="proxy" class="section-header"><a href="#proxy"><code>proxy</code></a></h6>
 <p>a proxy <code>GObject</code></p>
-<h2 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h2>
+<h6 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h6>
 <p>a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
-<h2 id="path-1" class="section-header"><a href="#path-1"><code>path</code></a></h2>
+<h6 id="path-1" class="section-header"><a href="#path-1"><code>path</code></a></h6>
 <p>a valid <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to monitor</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>a newly allocated <a href="struct.TreeRowReference.html" title="crate::TreeRowReference"><code>TreeRowReference</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.model" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#107-113" title="goto source code">[src]</a></div><a href="#method.model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.model" class="fnname">model</a>(&amp;self) -&gt; <a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a></h4></div></summary><div class="docblock"><p>Returns the model that the row reference is monitoring.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the model</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.path" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#123-129" title="goto source code">[src]</a></div><a href="#method.path" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.path" class="fnname">path</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></div></summary><div class="docblock"><p>Returns a path that the row reference currently points to,
 or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the path pointed to is no longer valid.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>a current path</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.valid" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#138-144" title="goto source code">[src]</a></div><a href="#method.valid" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.valid" class="fnname">valid</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>self</code> is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> and refers to
 a current valid path.</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> points to a valid path</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.deleted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#154-162" title="goto source code">[src]</a></div><a href="#method.deleted" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.deleted" class="fnname">deleted</a>(proxy: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></div></summary><div class="docblock"><p>Lets a set of row reference created by
 <a href="struct.TreeRowReference.html#method.new_proxy" title="Self::new_proxy()"><code>new_proxy()</code></a> know that the
 model emitted the ::row-deleted signal.</p>
-<h2 id="proxy-1" class="section-header"><a href="#proxy-1"><code>proxy</code></a></h2>
+<h6 id="proxy-1" class="section-header"><a href="#proxy-1"><code>proxy</code></a></h6>
 <p>a <code>GObject</code></p>
-<h2 id="path-2" class="section-header"><a href="#path-2"><code>path</code></a></h2>
+<h6 id="path-2" class="section-header"><a href="#path-2"><code>path</code></a></h6>
 <p>the path position that was deleted</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.inserted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#172-180" title="goto source code">[src]</a></div><a href="#method.inserted" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.inserted" class="fnname">inserted</a>(proxy: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></div></summary><div class="docblock"><p>Lets a set of row reference created by
 <a href="struct.TreeRowReference.html#method.new_proxy" title="Self::new_proxy()"><code>new_proxy()</code></a> know that the
 model emitted the ::row-inserted signal.</p>
-<h2 id="proxy-2" class="section-header"><a href="#proxy-2"><code>proxy</code></a></h2>
+<h6 id="proxy-2" class="section-header"><a href="#proxy-2"><code>proxy</code></a></h6>
 <p>a <code>GObject</code></p>
-<h2 id="path-3" class="section-header"><a href="#path-3"><code>path</code></a></h2>
+<h6 id="path-3" class="section-header"><a href="#path-3"><code>path</code></a></h6>
 <p>the row position that was inserted</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-1" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/tree_row_reference.rs.html#8-43" title="goto source code">[src]</a></div><a href="#impl-1" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.TreeRowReference.html" title="struct gtk4::TreeRowReference">TreeRowReference</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.reordered" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/tree_row_reference.rs.html#21-42" title="goto source code">[src]</a></div><a href="#method.reordered" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.reordered" class="fnname">reordered</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;proxy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;<a class="struct" href="struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;new_order: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a><br>)</h4></div></summary><div class="docblock"><p>Lets a set of row reference created by
 <a href="struct.TreeRowReference.html#method.new_proxy" title="Self::new_proxy()"><code>new_proxy()</code></a> know that the
 model emitted the ::rows-reordered signal.</p>
-<h2 id="proxy-3" class="section-header"><a href="#proxy-3"><code>proxy</code></a></h2>
+<h6 id="proxy-3" class="section-header"><a href="#proxy-3"><code>proxy</code></a></h6>
 <p>a <code>GObject</code></p>
-<h2 id="path-4" class="section-header"><a href="#path-4"><code>path</code></a></h2>
+<h6 id="path-4" class="section-header"><a href="#path-4"><code>path</code></a></h6>
 <p>the parent path of the reordered signal</p>
-<h2 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h2>
+<h6 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h6>
 <p>the iter pointing to the parent of the reordered</p>
-<h2 id="new_order" class="section-header"><a href="#new_order"><code>new_order</code></a></h2>
+<h6 id="new_order" class="section-header"><a href="#new_order"><code>new_order</code></a></h6>
 <p>the new order of rows</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#10-22" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.TreeRowReference.html" title="struct gtk4::TreeRowReference">TreeRowReference</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#10-22" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.TreeRowReference.html" title="struct gtk4::TreeRowReference">TreeRowReference</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone_from" class="method trait-impl has-srclink"><div class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#131" title="goto source code">[src]</a></div><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></div></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>

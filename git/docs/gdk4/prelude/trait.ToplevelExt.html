@@ -109,52 +109,52 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_title_notify" class="fnname">connect_title_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_transient_for_notify" class="fnname">connect_transient_for_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 </details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Toplevel.html" title="Toplevel"><code>Toplevel</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.Toplevel.html" title="crate::Toplevel"><code>Toplevel</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.begin_move" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#65" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.begin_move" class="fnname">begin_move</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;button: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a><br>)</h4></div></summary><div class="docblock"><p>Begins an interactive move operation.</p>
 <p>You might use this function to implement draggable titlebars.</p>
-<h2 id="device" class="section-header"><a href="#device"><code>device</code></a></h2>
+<h6 id="device" class="section-header"><a href="#device"><code>device</code></a></h6>
 <p>the device used for the operation</p>
-<h2 id="button" class="section-header"><a href="#button"><code>button</code></a></h2>
+<h6 id="button" class="section-header"><a href="#button"><code>button</code></a></h6>
 <p>the button being used to drag, or 0 for a keyboard-initiated drag</p>
-<h2 id="x" class="section-header"><a href="#x"><code>x</code></a></h2>
+<h6 id="x" class="section-header"><a href="#x"><code>x</code></a></h6>
 <p>surface X coordinate of mouse click that began the drag</p>
-<h2 id="y" class="section-header"><a href="#y"><code>y</code></a></h2>
+<h6 id="y" class="section-header"><a href="#y"><code>y</code></a></h6>
 <p>surface Y coordinate of mouse click that began the drag</p>
-<h2 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h2>
+<h6 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h6>
 <p>timestamp of mouse click that began the drag (use
 <a href="../struct.Event.html#method.time" title="crate::Event::time()"><code>Event::time()</code></a>)</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.begin_resize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#84-92" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.begin_resize" class="fnname">begin_resize</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;edge: <a class="enum" href="../enum.SurfaceEdge.html" title="enum gdk4::SurfaceEdge">SurfaceEdge</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;device: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;button: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a><br>)</h4></div></summary><div class="docblock"><p>Begins an interactive resize operation.</p>
 <p>You might use this function to implement a “window resize grip.”</p>
-<h2 id="edge" class="section-header"><a href="#edge"><code>edge</code></a></h2>
+<h6 id="edge" class="section-header"><a href="#edge"><code>edge</code></a></h6>
 <p>the edge or corner from which the drag is started</p>
-<h2 id="device-1" class="section-header"><a href="#device-1"><code>device</code></a></h2>
+<h6 id="device-1" class="section-header"><a href="#device-1"><code>device</code></a></h6>
 <p>the device used for the operation</p>
-<h2 id="button-1" class="section-header"><a href="#button-1"><code>button</code></a></h2>
+<h6 id="button-1" class="section-header"><a href="#button-1"><code>button</code></a></h6>
 <p>the button being used to drag, or 0 for a keyboard-initiated drag</p>
-<h2 id="x-1" class="section-header"><a href="#x-1"><code>x</code></a></h2>
+<h6 id="x-1" class="section-header"><a href="#x-1"><code>x</code></a></h6>
 <p>surface X coordinate of mouse click that began the drag</p>
-<h2 id="y-1" class="section-header"><a href="#y-1"><code>y</code></a></h2>
+<h6 id="y-1" class="section-header"><a href="#y-1"><code>y</code></a></h6>
 <p>surface Y coordinate of mouse click that began the drag</p>
-<h2 id="timestamp-1" class="section-header"><a href="#timestamp-1"><code>timestamp</code></a></h2>
+<h6 id="timestamp-1" class="section-header"><a href="#timestamp-1"><code>timestamp</code></a></h6>
 <p>timestamp of mouse click that began the drag (use
 <a href="../struct.Event.html#method.time" title="crate::Event::time()"><code>Event::time()</code></a>)</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.focus" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#101" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.focus" class="fnname">focus</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></div></summary><div class="docblock"><p>Sets keyboard focus to <code>surface</code>.</p>
 <p>In most cases, <code>Gtk::</code>Window::present_with_time()`` should be
 used on a <code>Gtk::Window</code>, rather than calling this function.</p>
-<h2 id="timestamp-2" class="section-header"><a href="#timestamp-2"><code>timestamp</code></a></h2>
+<h6 id="timestamp-2" class="section-header"><a href="#timestamp-2"><code>timestamp</code></a></h6>
 <p>timestamp of the event triggering the surface focus</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.state" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#111" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.state" class="fnname">state</a>(&amp;self) -&gt; <a class="struct" href="../struct.ToplevelState.html" title="struct gdk4::ToplevelState">ToplevelState</a></h4></div></summary><div class="docblock"><p>Gets the bitwise or of the currently active surface state flags,
 from the <a href="../struct.ToplevelState.html" title="crate::ToplevelState"><code>ToplevelState</code></a> enumeration.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>surface state bitfield</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.lower" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#121" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.lower" class="fnname">lower</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Asks to lower the <code>self</code> below other windows.</p>
 <p>The windowing system may choose to ignore the request.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the surface was lowered</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minimize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#131" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.minimize" class="fnname">minimize</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Asks to minimize the <code>self</code>.</p>
 <p>The windowing system may choose to ignore the request.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the surface was minimized</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.present" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#147" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.present" class="fnname">present</a>(&amp;self, layout: &amp;<a class="struct" href="../struct.ToplevelLayout.html" title="struct gdk4::ToplevelLayout">ToplevelLayout</a>)</h4></div></summary><div class="docblock"><p>Present <code>self</code> after having processed the <a href="../struct.ToplevelLayout.html" title="crate::ToplevelLayout"><code>ToplevelLayout</code></a> rules.</p>
 <p>If the toplevel was previously not showing, it will be showed,
@@ -164,7 +164,7 @@ the user of this toplevel compute the preferred size of the toplevel
 surface.</p>
 <p>Presenting is asynchronous and the specified layout parameters are not
 guaranteed to be respected.</p>
-<h2 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h2>
+<h6 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h6>
 <p>the <a href="../struct.ToplevelLayout.html" title="crate::ToplevelLayout"><code>ToplevelLayout</code></a> object used to layout</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.restore_system_shortcuts" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#154" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.restore_system_shortcuts" class="fnname">restore_system_shortcuts</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Restore default system keyboard shortcuts which were previously
 inhibited.</p>
@@ -173,12 +173,12 @@ inhibited.</p>
 <p>Setting <code>decorated</code> to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> hints the desktop environment
 that the surface has its own, client-side decorations and
 does not need to have window decorations added.</p>
-<h2 id="decorated" class="section-header"><a href="#decorated"><code>decorated</code></a></h2>
+<h6 id="decorated" class="section-header"><a href="#decorated"><code>decorated</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to request decorations</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_deletable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#173" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_deletable" class="fnname">set_deletable</a>(&amp;self, deletable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets the toplevel to be deletable.</p>
 <p>Setting <code>deletable</code> to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> hints the desktop environment
 that it should offer the user a way to close the surface.</p>
-<h2 id="deletable" class="section-header"><a href="#deletable"><code>deletable</code></a></h2>
+<h6 id="deletable" class="section-header"><a href="#deletable"><code>deletable</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to request a delete button</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icon_list" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#188" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_icon_list" class="fnname">set_icon_list</a>(&amp;self, surfaces: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="struct" href="../struct.Texture.html" title="struct gdk4::Texture">Texture</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>)</h4></div></summary><div class="docblock"><p>Sets a list of icons for the surface.</p>
 <p>One of these will be used to represent the surface in iconic form.
@@ -187,7 +187,7 @@ size is shown depends on the window manager. The window manager
 can scale the icon but setting several size icons can give better
 image quality.</p>
 <p>Note that some platforms don’t support surface icons.</p>
-<h2 id="surfaces" class="section-header"><a href="#surfaces"><code>surfaces</code></a></h2>
+<h6 id="surfaces" class="section-header"><a href="#surfaces"><code>surfaces</code></a></h6>
 <p>A list of textures to use as icon, of different sizes</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_modal" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#202" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_modal" class="fnname">set_modal</a>(&amp;self, modal: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets the toplevel to be modal.</p>
 <p>The application can use this hint to tell the
@@ -196,18 +196,18 @@ behaviour. The window manager can use this information
 to handle modal surfaces in a special way.</p>
 <p>You should only use this on surfaces for which you have
 previously called <a href="trait.ToplevelExt.html#tymethod.set_transient_for" title="Self::set_transient_for()"><code>set_transient_for()</code></a>.</p>
-<h2 id="modal" class="section-header"><a href="#modal"><code>modal</code></a></h2>
+<h6 id="modal" class="section-header"><a href="#modal"><code>modal</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the surface is modal, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_startup_id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#212" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_startup_id" class="fnname">set_startup_id</a>(&amp;self, startup_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the startup notification ID.</p>
 <p>When using GTK, typically you should use
 <code>Gtk::</code>Window::set_startup_id()`` instead of this
 low-level function.</p>
-<h2 id="startup_id" class="section-header"><a href="#startup_id"><code>startup_id</code></a></h2>
+<h6 id="startup_id" class="section-header"><a href="#startup_id"><code>startup_id</code></a></h6>
 <p>a string with startup-notification identifier</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_title" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#221" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_title" class="fnname">set_title</a>(&amp;self, title: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the title of a toplevel surface.</p>
 <p>The title maybe be displayed in the titlebar,
 in lists of windows, etc.</p>
-<h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
+<h6 id="title" class="section-header"><a href="#title"><code>title</code></a></h6>
 <p>title of <code>surface</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_transient_for" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#235" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_transient_for" class="fnname">set_transient_for</a>(&amp;self, parent: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets a transient-for parent.</p>
 <p>Indicates to the window manager that <code>surface</code> is a transient
@@ -216,11 +216,11 @@ allows the window manager to do things like center <code>surface</code>
 on <code>parent</code> and keep <code>surface</code> above <code>parent</code>.</p>
 <p>See <code>Gtk::</code>Window::set_transient_for()`` if you’re using
 <code>Gtk::Window</code> or <code>Gtk::Dialog</code>.</p>
-<h2 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h2>
+<h6 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h6>
 <p>another toplevel <a href="../struct.Surface.html" title="crate::Surface"><code>Surface</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.supports_edge_constraints" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#244" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.supports_edge_constraints" class="fnname">supports_edge_constraints</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the desktop environment supports
 tiled window states.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the desktop environment supports tiled window states</p>
 </div></details><div id="tymethod.titlebar_gesture" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#247" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.titlebar_gesture" class="fnname">titlebar_gesture</a>(&amp;self, gesture: <a class="enum" href="../enum.TitlebarGesture.html" title="enum gdk4::TitlebarGesture">TitlebarGesture</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.is_decorated" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#250" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_decorated" class="fnname">is_decorated</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Whether the window manager should add decorations.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_deletable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/toplevel.rs.html#253" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_deletable" class="fnname">is_deletable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Whether the window manager should allow to close the surface.</p>

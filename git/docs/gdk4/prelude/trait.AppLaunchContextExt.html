@@ -78,10 +78,10 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.set_icon_name" class="fnname">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;);
 <div class="item-spacer"></div>    fn <a href="#tymethod.set_timestamp" class="fnname">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.AppLaunchContext.html" title="AppLaunchContext"><code>AppLaunchContext</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.AppLaunchContext.html" title="crate::AppLaunchContext"><code>AppLaunchContext</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#61" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the <a href="../struct.Display.html" title="crate::Display"><code>Display</code></a> that <code>self</code> is for.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>the display of <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_desktop" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#75" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_desktop" class="fnname">set_desktop</a>(&amp;self, desktop: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Sets the workspace on which applications will be launched.</p>
 <p>This only works when running under a window manager that
@@ -90,14 +90,14 @@ supports multiple workspaces, as described in the
 <p>When the workspace is not specified or <code>desktop</code> is set to -1,
 it is up to the window manager to pick one, typically it will
 be the current workspace.</p>
-<h2 id="desktop" class="section-header"><a href="#desktop"><code>desktop</code></a></h2>
+<h6 id="desktop" class="section-header"><a href="#desktop"><code>desktop</code></a></h6>
 <p>the number of a workspace, or -1</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icon" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#87" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_icon" class="fnname">set_icon</a>(&amp;self, icon: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/struct.Icon.html" title="struct gio::auto::icon::Icon">Icon</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets the icon for applications that are launched with this
 context.</p>
 <p>Window Managers can use this information when displaying startup
 notification.</p>
 <p>See also <a href="trait.AppLaunchContextExt.html#tymethod.set_icon_name" title="Self::set_icon_name()"><code>set_icon_name()</code></a>.</p>
-<h2 id="icon" class="section-header"><a href="#icon"><code>icon</code></a></h2>
+<h6 id="icon" class="section-header"><a href="#icon"><code>icon</code></a></h6>
 <p>a <code>GIcon</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icon_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#101" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_icon_name" class="fnname">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the icon for applications that are launched with this context.</p>
 <p>The <code>icon_name</code> will be interpreted in the same way as the Icon field
@@ -106,7 +106,7 @@ in desktop files. See also <a href="trait.AppLaunchContextExt.html#tymethod.set_
 If neither <code>icon</code> or <code>icon_name</code> is set, the icon is taken from either
 the file that is passed to launched application or from the <code>GAppInfo</code>
 for the launched application itself.</p>
-<h2 id="icon_name" class="section-header"><a href="#icon_name"><code>icon_name</code></a></h2>
+<h6 id="icon_name" class="section-header"><a href="#icon_name"><code>icon_name</code></a></h6>
 <p>an icon name</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_timestamp" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#115" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_timestamp" class="fnname">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></div></summary><div class="docblock"><p>Sets the timestamp of <code>self</code>.</p>
 <p>The timestamp should ideally be taken from the event that
@@ -115,7 +115,7 @@ triggered the launch.</p>
 focus to the newly launched application when the user is busy
 typing in another window. This is also known as ‘focus stealing
 prevention’.</p>
-<h2 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h2>
+<h6 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h6>
 <p>a timestamp</p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-AppLaunchContextExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/app_launch_context.rs.html#118-156" title="goto source code">[src]</a></div><a href="#impl-AppLaunchContextExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext">AppLaunchContext</a>&gt;&gt; <a class="trait" href="trait.AppLaunchContextExt.html" title="trait gdk4::prelude::AppLaunchContextExt">AppLaunchContextExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gdk4/prelude/trait.AppLaunchContextExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>

@@ -299,6 +299,13 @@
 <span id="226">226</span>
 <span id="227">227</span>
 <span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::EntryBuffer</span>;
@@ -525,6 +532,13 @@
                 <span class="op">-</span><span class="number">1</span>,
             );
         }
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">EntryBuffer</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">glib::object::Object::new</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span>[])
+            .<span class="ident">expect</span>(<span class="string">&quot;Can&#39;t construct EntryBuffer object with default parameters&quot;</span>)
     }
 }
 </code></pre></div>

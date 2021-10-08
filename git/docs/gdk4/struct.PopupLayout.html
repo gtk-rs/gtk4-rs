@@ -105,37 +105,37 @@ and surface to pin together.</p>
 <p>The position of <code>anchor_rect</code>’s anchor point can optionally be offset using
 <a href="struct.PopupLayout.html#method.set_offset" title="Self::set_offset()"><code>set_offset()</code></a>, which is equivalent to offsetting the
 position of surface.</p>
-<h2 id="anchor_rect" class="section-header"><a href="#anchor_rect"><code>anchor_rect</code></a></h2>
+<h6 id="anchor_rect" class="section-header"><a href="#anchor_rect"><code>anchor_rect</code></a></h6>
 <p>the anchor <a href="struct.Rectangle.html" title="crate::Rectangle"><code>Rectangle</code></a> to align <code>surface</code> with</p>
-<h2 id="rect_anchor" class="section-header"><a href="#rect_anchor"><code>rect_anchor</code></a></h2>
+<h6 id="rect_anchor" class="section-header"><a href="#rect_anchor"><code>rect_anchor</code></a></h6>
 <p>the point on <code>anchor_rect</code> to align with <code>surface</code>’s anchor point</p>
-<h2 id="surface_anchor" class="section-header"><a href="#surface_anchor"><code>surface_anchor</code></a></h2>
+<h6 id="surface_anchor" class="section-header"><a href="#surface_anchor"><code>surface_anchor</code></a></h6>
 <p>the point on <code>surface</code> to align with <code>rect</code>’s anchor point</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>newly created instance of <a href="struct.PopupLayout.html" title="crate::PopupLayout"><code>PopupLayout</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.copy" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#102-104" title="goto source code">[src]</a></div><a href="#method.copy" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.copy" class="fnname">copy</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>&gt;</h4></div></summary><div class="docblock"><p>Makes a copy of <code>self</code>.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>a copy of <code>self</code>.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.anchor_hints" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#131-137" title="goto source code">[src]</a></div><a href="#method.anchor_hints" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.anchor_hints" class="fnname">anchor_hints</a>(&amp;self) -&gt; <a class="struct" href="struct.AnchorHints.html" title="struct gdk4::AnchorHints">AnchorHints</a></h4></div></summary><div class="docblock"><p>Get the <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a>.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.anchor_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#146-148" title="goto source code">[src]</a></div><a href="#method.anchor_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.anchor_rect" class="fnname">anchor_rect</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Rectangle.html" title="struct gdk4::Rectangle">Rectangle</a>&gt;</h4></div></summary><div class="docblock"><p>Get the anchor rectangle.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>The anchor rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.rect_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#157-159" title="goto source code">[src]</a></div><a href="#method.rect_anchor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.rect_anchor" class="fnname">rect_anchor</a>(&amp;self) -&gt; <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></div></summary><div class="docblock"><p>Returns the anchor position on the anchor rectangle.</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>the anchor on the anchor rectangle.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.shadow_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#181-200" title="goto source code">[src]</a></div><a href="#method.shadow_width" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shadow_width" class="fnname">shadow_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_2</code></strong> only.</div></div></summary><div class="docblock"><p>Obtains the shadow widths of this layout.</p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1><h2 id="left" class="section-header"><a href="#left"><code>left</code></a></h2>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5><h6 id="left" class="section-header"><a href="#left"><code>left</code></a></h6>
 <p>return location for the left shadow width</p>
-<h2 id="right" class="section-header"><a href="#right"><code>right</code></a></h2>
+<h6 id="right" class="section-header"><a href="#right"><code>right</code></a></h6>
 <p>return location for the right shadow width</p>
-<h2 id="top" class="section-header"><a href="#top"><code>top</code></a></h2>
+<h6 id="top" class="section-header"><a href="#top"><code>top</code></a></h6>
 <p>return location for the top shadow width</p>
-<h2 id="bottom" class="section-header"><a href="#bottom"><code>bottom</code></a></h2>
+<h6 id="bottom" class="section-header"><a href="#bottom"><code>bottom</code></a></h6>
 <p>return location for the bottom shadow width</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.surface_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#209-215" title="goto source code">[src]</a></div><a href="#method.surface_anchor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.surface_anchor" class="fnname">surface_anchor</a>(&amp;self) -&gt; <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></div></summary><div class="docblock"><p>Returns the anchor position on the popup surface.</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p>the anchor on the popup surface.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_anchor_hints" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#227-231" title="goto source code">[src]</a></div><a href="#method.set_anchor_hints" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_anchor_hints" class="fnname">set_anchor_hints</a>(&amp;self, anchor_hints: <a class="struct" href="struct.AnchorHints.html" title="struct gdk4::AnchorHints">AnchorHints</a>)</h4></div></summary><div class="docblock"><p>Set new anchor hints.</p>
 <p>The set <code>anchor_hints</code> determines how <code>surface</code> will be moved
@@ -143,38 +143,38 @@ if the anchor points cause it to move off-screen. For example,
 <a href="struct.AnchorHints.html#associatedconstant.FLIP_X" title="crate::AnchorHints::FLIP_X"><code>AnchorHints::FLIP_X</code></a> will replace <a href="enum.Gravity.html#variant.NorthWest" title="crate::Gravity::NorthWest"><code>Gravity::NorthWest</code></a> with
 <a href="enum.Gravity.html#variant.NorthEast" title="crate::Gravity::NorthEast"><code>Gravity::NorthEast</code></a> and vice versa if <code>surface</code> extends
 beyond the left or right edges of the monitor.</p>
-<h2 id="anchor_hints" class="section-header"><a href="#anchor_hints"><code>anchor_hints</code></a></h2>
+<h6 id="anchor_hints" class="section-header"><a href="#anchor_hints"><code>anchor_hints</code></a></h6>
 <p>the new <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_anchor_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#237-244" title="goto source code">[src]</a></div><a href="#method.set_anchor_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_anchor_rect" class="fnname">set_anchor_rect</a>(&amp;self, anchor_rect: &amp;<a class="struct" href="struct.Rectangle.html" title="struct gdk4::Rectangle">Rectangle</a>)</h4></div></summary><div class="docblock"><p>Set the anchor rectangle.</p>
-<h2 id="anchor_rect-1" class="section-header"><a href="#anchor_rect-1"><code>anchor_rect</code></a></h2>
+<h6 id="anchor_rect-1" class="section-header"><a href="#anchor_rect-1"><code>anchor_rect</code></a></h6>
 <p>the new anchor rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#252-256" title="goto source code">[src]</a></div><a href="#method.set_offset" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_offset" class="fnname">set_offset</a>(&amp;self, dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Offset the position of the anchor rectangle with the given delta.</p>
-<h2 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h2>
+<h6 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h6>
 <p>x delta to offset the anchor rectangle with</p>
-<h2 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h2>
+<h6 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h6>
 <p>y delta to offset the anchor rectangle with</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_rect_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#262-266" title="goto source code">[src]</a></div><a href="#method.set_rect_anchor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_rect_anchor" class="fnname">set_rect_anchor</a>(&amp;self, anchor: <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a>)</h4></div></summary><div class="docblock"><p>Set the anchor on the anchor rectangle.</p>
-<h2 id="anchor" class="section-header"><a href="#anchor"><code>anchor</code></a></h2>
+<h6 id="anchor" class="section-header"><a href="#anchor"><code>anchor</code></a></h6>
 <p>the new rect anchor</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_shadow_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#284-288" title="goto source code">[src]</a></div><a href="#method.set_shadow_width" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_shadow_width" class="fnname">set_shadow_width</a>(&amp;self, left: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, right: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, top: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, bottom: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_2</code></strong> only.</div></div></summary><div class="docblock"><p>Sets the shadow width of the popup.</p>
 <p>The shadow width corresponds to the part of the computed
 surface size that would consist of the shadow margin
 surrounding the window, would there be any.</p>
-<h2 id="left-1" class="section-header"><a href="#left-1"><code>left</code></a></h2>
+<h6 id="left-1" class="section-header"><a href="#left-1"><code>left</code></a></h6>
 <p>width of the left part of the shadow</p>
-<h2 id="right-1" class="section-header"><a href="#right-1"><code>right</code></a></h2>
+<h6 id="right-1" class="section-header"><a href="#right-1"><code>right</code></a></h6>
 <p>width of the right part of the shadow</p>
-<h2 id="top-1" class="section-header"><a href="#top-1"><code>top</code></a></h2>
+<h6 id="top-1" class="section-header"><a href="#top-1"><code>top</code></a></h6>
 <p>height of the top part of the shadow</p>
-<h2 id="bottom-1" class="section-header"><a href="#bottom-1"><code>bottom</code></a></h2>
+<h6 id="bottom-1" class="section-header"><a href="#bottom-1"><code>bottom</code></a></h6>
 <p>height of the bottom part of the shadow</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_surface_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#294-298" title="goto source code">[src]</a></div><a href="#method.set_surface_anchor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_surface_anchor" class="fnname">set_surface_anchor</a>(&amp;self, anchor: <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a>)</h4></div></summary><div class="docblock"><p>Set the anchor on the popup surface.</p>
-<h2 id="anchor-1" class="section-header"><a href="#anchor-1"><code>anchor</code></a></h2>
+<h6 id="anchor-1" class="section-header"><a href="#anchor-1"><code>anchor</code></a></h6>
 <p>the new popup surface anchor</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-1" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/popup_layout.rs.html#6-27" title="goto source code">[src]</a></div><a href="#impl-1" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/popup_layout.rs.html#19-26" title="goto source code">[src]</a></div><a href="#method.offset" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Retrieves the offset for the anchor rectangle.</p>
-<h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1><h2 id="dx-1" class="section-header"><a href="#dx-1"><code>dx</code></a></h2>
+<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5><h6 id="dx-1" class="section-header"><a href="#dx-1"><code>dx</code></a></h6>
 <p>return location for the delta X coordinate</p>
-<h2 id="dy-1" class="section-header"><a href="#dy-1"><code>dy</code></a></h2>
+<h6 id="dy-1" class="section-header"><a href="#dy-1"><code>dy</code></a></h6>
 <p>return location for the delta Y coordinate</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#13-55" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#13-55" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone_from" class="method trait-impl has-srclink"><div class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#131" title="goto source code">[src]</a></div><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></div></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>

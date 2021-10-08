@@ -76,24 +76,24 @@
 <p>Once the <code>object</code> is disposed, it will fail to evaluate.</p>
 <p>This expression is meant to break reference cycles.</p>
 <p>If you want to keep a reference to <code>object</code>, use <a href="struct.ConstantExpression.html#method.new" title="crate::ConstantExpression::new()"><code>ConstantExpression::new()</code></a>.</p>
-<h2 id="object" class="section-header"><a href="#object"><code>object</code></a></h2>
+<h6 id="object" class="section-header"><a href="#object"><code>object</code></a></h6>
 <p>object to watch</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a new <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.object" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/object_expression.rs.html#55-58" title="goto source code">[src]</a></div><a href="#method.object" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.object" class="fnname">object</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the object that the expression evaluates to.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the object, or <code>NULL</code></p>
 </div></details></div></details><h2 id="deref-methods" class="small-section-header"><span>Methods from <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/deref/trait.Deref.html" title="trait core::ops::deref::Deref">Deref</a>&lt;Target = <a class="struct" href="struct.Expression.html" title="struct gtk4::Expression">Expression</a>&gt;</span><a href="#deref-methods" class="anchor"></a></h2><div class="impl-items"><div id="method.downcast_ref" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#186-194" title="goto source code">[src]</a></div><a href="#method.downcast_ref" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.downcast_ref" class="fnname">downcast_ref</a>&lt;E:&nbsp;IsExpression&gt;(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>E&gt;</h4></div><div id="method.type_" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#196-202" title="goto source code">[src]</a></div><a href="#method.type_" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.type_" class="fnname">type_</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a></h4></div><details class="rustdoc-toggle method-toggle" open><summary><div id="method.value_type" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#214-217" title="goto source code">[src]</a></div><a href="#method.value_type" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.value_type" class="fnname">value_type</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a></h4></div></summary><div class="docblock"><p>Gets the <code>GType</code> that this expression evaluates to.</p>
 <p>This type is constant and will not change over the lifetime
 of this expression.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>The type returned from <a href="struct.Expression.html#method.evaluate" title="Self::evaluate()"><code>evaluate()</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_static" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#231-234" title="goto source code">[src]</a></div><a href="#method.is_static" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_static" class="fnname">is_static</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if the expression is static.</p>
 <p>A static expression will never change its result when
 <a href="struct.Expression.html#method.evaluate" title="Self::evaluate()"><code>evaluate()</code></a> is called on it with the same arguments.</p>
 <p>That means a call to <a href="struct.Expression.html#method.watch" title="Self::watch()"><code>watch()</code></a> is not necessary because
 it will never trigger a notify.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p><code>TRUE</code> if the expression is static</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.bind" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#260-275" title="goto source code">[src]</a></div><a href="#method.bind" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.bind" class="fnname">bind</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, U:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T, <br>&nbsp;&nbsp;&nbsp;&nbsp;property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>U&gt;<br>) -&gt; <a class="struct" href="struct.ExpressionWatch.html" title="struct gtk4::ExpressionWatch">ExpressionWatch</a></h4></div></summary><div class="docblock"><p>Bind <code>target</code>’s property named <code>property</code> to <code>self</code>.</p>
 <p>The value that <code>self</code> evaluates to is set via <code>g_object_set()</code> on
@@ -104,14 +104,14 @@ You can ensure that this doesn’t happen by using a fallback
 expression.</p>
 <p>Note that this function takes ownership of <code>self</code>. If you want
 to keep it around, you should <code>Gtk::</code>Expression::ref()`` it beforehand.</p>
-<h2 id="target" class="section-header"><a href="#target"><code>target</code></a></h2>
+<h6 id="target" class="section-header"><a href="#target"><code>target</code></a></h6>
 <p>the target object to bind to</p>
-<h2 id="property" class="section-header"><a href="#property"><code>property</code></a></h2>
+<h6 id="property" class="section-header"><a href="#property"><code>property</code></a></h6>
 <p>name of the property on <code>target</code> to bind to</p>
-<h2 id="this_" class="section-header"><a href="#this_"><code>this_</code></a></h2>
+<h6 id="this_" class="section-header"><a href="#this_"><code>this_</code></a></h6>
 <p>the this argument for
 the evaluation of <code>self</code></p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>a <a href="struct.ExpressionWatch.html" title="crate::ExpressionWatch"><code>ExpressionWatch</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.evaluate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#296-311" title="goto source code">[src]</a></div><a href="#method.evaluate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.evaluate" class="fnname">evaluate</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(&amp;self, this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;</h4></div></summary><div class="docblock"><p>Evaluates the given expression and on success stores the result
 in <code>value</code>.</p>
@@ -121,11 +121,11 @@ in <code>value</code>.</p>
 when the expression references objects that have been destroyed or
 set to <code>NULL</code>. In that case <code>value</code> will remain empty and <code>FALSE</code>
 will be returned.</p>
-<h2 id="this_-1" class="section-header"><a href="#this_-1"><code>this_</code></a></h2>
+<h6 id="this_-1" class="section-header"><a href="#this_-1"><code>this_</code></a></h6>
 <p>the this argument for the evaluation</p>
-<h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
+<h6 id="value" class="section-header"><a href="#value"><code>value</code></a></h6>
 <p>an empty <code>GValue</code></p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
 <p><code>TRUE</code> if the expression could be evaluated</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.watch" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/expression.rs.html#335-358" title="goto source code">[src]</a></div><a href="#method.watch" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.watch" class="fnname">watch</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>() + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;notify: F<br>) -&gt; <a class="struct" href="struct.ExpressionWatch.html" title="struct gtk4::ExpressionWatch">ExpressionWatch</a></h4></div></summary><div class="docblock"><p>Watch the given <code>expression</code> for changes.</p>
 <p>The <code>notify</code> function will be called whenever the evaluation of <code>self</code>
@@ -133,12 +133,12 @@ may have changed.</p>
 <p>GTK cannot guarantee that the evaluation did indeed change when the <code>notify</code>
 gets invoked, but it guarantees the opposite: When it did in fact change,
 the <code>notify</code> will be invoked.</p>
-<h2 id="this_-2" class="section-header"><a href="#this_-2"><code>this_</code></a></h2>
+<h6 id="this_-2" class="section-header"><a href="#this_-2"><code>this_</code></a></h6>
 <p>the <code>this</code> argument to
 watch</p>
-<h2 id="notify" class="section-header"><a href="#notify"><code>notify</code></a></h2>
+<h6 id="notify" class="section-header"><a href="#notify"><code>notify</code></a></h6>
 <p>callback to invoke when the expression changes</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p>The newly installed watch. Note that the only
 reference held to the watch will be released when the watch is unwatched
 which can happen automatically, and not just via

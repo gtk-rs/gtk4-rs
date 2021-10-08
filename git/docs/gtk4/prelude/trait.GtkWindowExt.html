@@ -165,7 +165,7 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_title_notify" class="fnname">connect_title_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_transient_for_notify" class="fnname">connect_transient_for_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 </details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Window.html" title="Window"><code>Window</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.AboutDialog.html" title="crate::AboutDialog"><code>AboutDialog</code></a>, <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a>, <a href="../struct.Assistant.html" title="crate::Assistant"><code>Assistant</code></a>, <a href="../struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a>, <a href="../struct.ShortcutsWindow.html" title="crate::ShortcutsWindow"><code>ShortcutsWindow</code></a>, <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.close" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#895" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.close" class="fnname">close</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Requests that the window is closed.</p>
 <p>This is similar to what happens when a window manager
@@ -188,83 +188,83 @@ any given monitor.</p>
 <p>You can track the result of this operation via the
 <code>property::Gdk::Toplevel::state</code> property, or by listening to
 notifications of the <code>property::Window::fullscreened</code> property.</p>
-<h2 id="monitor" class="section-header"><a href="#monitor"><code>monitor</code></a></h2>
+<h6 id="monitor" class="section-header"><a href="#monitor"><code>monitor</code></a></h6>
 <p>which monitor to go fullscreen on</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.application" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#935" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.application" class="fnname">application</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Application.html" title="struct gtk4::Application">Application</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the <a href="../struct.Application.html" title="crate::Application"><code>Application</code></a> associated with the window.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a <a href="../struct.Application.html" title="crate::Application"><code>Application</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.child" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#944" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.child" class="fnname">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the child widget of <code>self</code>.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the child widget of <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_decorated" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#953" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_decorated" class="fnname">is_decorated</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window has been set to have decorations.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window has been set to have decorations</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.default_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#971" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.default_size" class="fnname">default_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Gets the default size of the window.</p>
 <p>A value of 0 for the width or height indicates that a default
 size has not been explicitly set for that dimension, so the
 “natural” size of the window will be used.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1><h2 id="width" class="section-header"><a href="#width"><code>width</code></a></h2>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5><h6 id="width" class="section-header"><a href="#width"><code>width</code></a></h6>
 <p>location to store the default width</p>
-<h2 id="height" class="section-header"><a href="#height"><code>height</code></a></h2>
+<h6 id="height" class="section-header"><a href="#height"><code>height</code></a></h6>
 <p>location to store the default height</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.default_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#980" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.default_widget" class="fnname">default_widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the default widget for <code>self</code>.</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>the default widget</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_deletable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#989" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_deletable" class="fnname">is_deletable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window has been set to have a close button.</p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window has been set to have a close button</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.must_destroy_with_parent" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#998" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.must_destroy_with_parent" class="fnname">must_destroy_with_parent</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window will be destroyed with its transient parent.</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window will be destroyed with its transient parent.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.gets_focus_visible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1008" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.gets_focus_visible" class="fnname">gets_focus_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets whether “focus rectangles” are supposed to be visible.</p>
-<h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
+<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if “focus rectangles” are supposed to be visible
 in this window.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.group" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1020" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.group" class="fnname">group</a>(&amp;self) -&gt; <a class="struct" href="../struct.WindowGroup.html" title="struct gtk4::WindowGroup">WindowGroup</a></h4></div></summary><div class="docblock"><p>Returns the group for <code>self</code>.</p>
 <p>If the window has no group, then the default group is returned.</p>
-<h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
+<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
 <p>the <a href="../struct.WindowGroup.html" title="crate::WindowGroup"><code>WindowGroup</code></a> for a window
 or the default group</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_handle_menubar_accel" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1032" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_handle_menubar_accel" class="fnname">is_handle_menubar_accel</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_2</code></strong> only.</div></div><div class="docblock"><p>Returns whether this window reacts to F10 key presses by
 activating a menubar it contains.</p>
-<h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
+<h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window handles F10</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.hides_on_close" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1041" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.hides_on_close" class="fnname">hides_on_close</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window will be hidden when the close button is clicked.</p>
-<h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
+<h5 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window will be hidden</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.icon_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1050" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.icon_name" class="fnname">icon_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the name of the themed icon for the window.</p>
-<h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
+<h5 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h5>
 <p>the icon name</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_mnemonics_visible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1060" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_mnemonics_visible" class="fnname">is_mnemonics_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets whether mnemonics are supposed to be visible.</p>
-<h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
+<h5 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if mnemonics are supposed to be visible
 in this window.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_modal" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1070" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_modal" class="fnname">is_modal</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window is modal.</p>
-<h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
+<h5 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window is set to be modal and
 establishes a grab when shown</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_resizable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1079" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_resizable" class="fnname">is_resizable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets the value set by <a href="trait.GtkWindowExt.html#tymethod.set_resizable" title="Self::set_resizable()"><code>set_resizable()</code></a>.</p>
-<h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
+<h5 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the user can resize the window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.title" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1088" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.title" class="fnname">title</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></div></summary><div class="docblock"><p>Retrieves the title of the window.</p>
-<h1 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h1>
+<h5 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h5>
 <p>the title of the window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.titlebar" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1098" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.titlebar" class="fnname">titlebar</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the custom titlebar that has been set with
 <a href="trait.GtkWindowExt.html#tymethod.set_titlebar" title="Self::set_titlebar()"><code>set_titlebar()</code></a>.</p>
-<h1 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h1>
+<h5 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h5>
 <p>the custom titlebar</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.transient_for" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1107" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.transient_for" class="fnname">transient_for</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></div></summary><div class="docblock"><p>Fetches the transient parent for this window.</p>
-<h1 id="returns-17" class="section-header"><a href="#returns-17">Returns</a></h1>
+<h5 id="returns-17" class="section-header"><a href="#returns-17">Returns</a></h5>
 <p>the transient parent for this window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.has_group" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1115" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.has_group" class="fnname">has_group</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether <code>self</code> has an explicit window group.</p>
-<h1 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h1>
+<h5 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> has an explicit window group.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_active" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1129" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_active" class="fnname">is_active</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the window is part of the current active toplevel.</p>
 <p>The active toplevel is the window receiving keystrokes.</p>
 <p>The return value is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window is active toplevel itself.
 You might use this function if you wanted to draw a widget
 differently in an active window from a widget in an inactive window.</p>
-<h1 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h1>
+<h5 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the window part of the current active window.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_fullscreen" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1146" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_fullscreen" class="fnname">is_fullscreen</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Retrieves the current fullscreen state of <code>self</code>.</p>
 <p>Note that since fullscreening is ultimately handled by the window
@@ -274,7 +274,7 @@ immediately (or at all), as an effect of calling
 <a href="trait.GtkWindowExt.html#tymethod.fullscreen" title="Self::fullscreen()"><code>fullscreen()</code></a> or <a href="trait.GtkWindowExt.html#tymethod.unfullscreen" title="Self::unfullscreen()"><code>unfullscreen()</code></a>.</p>
 <p>If the window isn’t yet mapped, the value returned will whether the
 initial requested state is fullscreen.</p>
-<h1 id="returns-20" class="section-header"><a href="#returns-20">Returns</a></h1>
+<h5 id="returns-20" class="section-header"><a href="#returns-20">Returns</a></h5>
 <p>whether the window has a fullscreen state.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_maximized" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1163" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_maximized" class="fnname">is_maximized</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Retrieves the current maximized state of <code>self</code>.</p>
 <p>Note that since maximization is ultimately handled by the window
@@ -284,7 +284,7 @@ immediately (or at all), as an effect of calling
 <a href="trait.GtkWindowExt.html#tymethod.maximize" title="Self::maximize()"><code>maximize()</code></a> or <a href="trait.GtkWindowExt.html#tymethod.unmaximize" title="Self::unmaximize()"><code>unmaximize()</code></a>.</p>
 <p>If the window isn’t yet mapped, the value returned will whether the
 initial requested state is maximized.</p>
-<h1 id="returns-21" class="section-header"><a href="#returns-21">Returns</a></h1>
+<h5 id="returns-21" class="section-header"><a href="#returns-21">Returns</a></h5>
 <p>whether the window has a maximized state.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.maximize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1181" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.maximize" class="fnname">maximize</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Asks to maximize <code>self</code>, so that it fills the screen.</p>
 <p>Note that you shouldn’t assume the window is definitely maximized
@@ -329,7 +329,7 @@ already-open dialog where the user can see it.</p>
 The timestamp should be gathered when the window was requested
 to be shown (when clicking a link for example), rather than once
 the window is ready to be shown.</p>
-<h2 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h2>
+<h6 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h6>
 <p>the timestamp of the user interaction (typically a
 button or key press event) which triggered this call</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_application" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1250" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_application" class="fnname">set_application</a>(&amp;self, application: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Application.html" title="struct gtk4::Application">Application</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets or unsets the <a href="../struct.Application.html" title="crate::Application"><code>Application</code></a> associated with the window.</p>
@@ -342,10 +342,10 @@ it by setting the <code>application</code> to <a href="https://doc.rust-lang.org
 <p>This is equivalent to calling <a href="trait.GtkApplicationExt.html#tymethod.remove_window" title="crate::prelude::GtkApplicationExt::remove_window()"><code>GtkApplicationExt::remove_window()</code></a>
 and/or <a href="trait.GtkApplicationExt.html#tymethod.add_window" title="crate::prelude::GtkApplicationExt::add_window()"><code>GtkApplicationExt::add_window()</code></a> on the old/new applications
 as relevant.</p>
-<h2 id="application" class="section-header"><a href="#application"><code>application</code></a></h2>
+<h6 id="application" class="section-header"><a href="#application"><code>application</code></a></h6>
 <p>a <a href="../struct.Application.html" title="crate::Application"><code>Application</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to unset</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_child" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1256" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_child" class="fnname">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets the child widget of <code>self</code>.</p>
-<h2 id="child" class="section-header"><a href="#child"><code>child</code></a></h2>
+<h6 id="child" class="section-header"><a href="#child"><code>child</code></a></h6>
 <p>the child widget</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_decorated" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1274" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_decorated" class="fnname">set_decorated</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the window should be decorated.</p>
 <p>By default, windows are decorated with a title bar, resize
@@ -358,7 +358,7 @@ window that is already visible, so you should call it before calling
 <a href="trait.WidgetExt.html#tymethod.show" title="crate::prelude::WidgetExt::show()"><code>WidgetExt::show()</code></a>.</p>
 <p>On Windows, this function always works, since there’s no window manager
 policy involved.</p>
-<h2 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h2>
+<h6 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to decorate the window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_default_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1306" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_default_size" class="fnname">set_default_size</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Sets the default size of a window.</p>
 <p>If the window’s “natural” size (its size request) is larger than
@@ -380,14 +380,14 @@ note that the appropriate size to save is the one returned by
 <a href="trait.GtkWindowExt.html#tymethod.default_size" title="Self::default_size()"><code>default_size()</code></a>. Using the window allocation
 directly will not work in all circumstances and can lead to growing
 or shrinking windows.</p>
-<h2 id="width-1" class="section-header"><a href="#width-1"><code>width</code></a></h2>
+<h6 id="width-1" class="section-header"><a href="#width-1"><code>width</code></a></h6>
 <p>width in pixels, or -1 to unset the default width</p>
-<h2 id="height-1" class="section-header"><a href="#height-1"><code>height</code></a></h2>
+<h6 id="height-1" class="section-header"><a href="#height-1"><code>height</code></a></h6>
 <p>height in pixels, or -1 to unset the default height</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_default_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1316" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_default_widget" class="fnname">set_default_widget</a>(&amp;self, default_widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets the default widget.</p>
 <p>The default widget is the widget that is activated when the user
 presses Enter in a dialog (for example).</p>
-<h2 id="default_widget" class="section-header"><a href="#default_widget"><code>default_widget</code></a></h2>
+<h6 id="default_widget" class="section-header"><a href="#default_widget"><code>default_widget</code></a></h6>
 <p>widget to be the default
 to unset the default widget for the toplevel</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_deletable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1333" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_deletable" class="fnname">set_deletable</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the window should be deletable.</p>
@@ -400,39 +400,39 @@ have any effect when called on a window that is already visible,
 so you should call it before calling <a href="trait.WidgetExt.html#tymethod.show" title="crate::prelude::WidgetExt::show()"><code>WidgetExt::show()</code></a>.</p>
 <p>On Windows, this function always works, since there’s no window
 manager policy involved.</p>
-<h2 id="setting-1" class="section-header"><a href="#setting-1"><code>setting</code></a></h2>
+<h6 id="setting-1" class="section-header"><a href="#setting-1"><code>setting</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to decorate the window as deletable</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_destroy_with_parent" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1343" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_destroy_with_parent" class="fnname">set_destroy_with_parent</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>If <code>setting</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then destroying the transient parent of <code>self</code>
 will also destroy <code>self</code> itself.</p>
 <p>This is useful for dialogs that shouldn’t persist beyond the lifetime
 of the main window they are associated with, for example.</p>
-<h2 id="setting-2" class="section-header"><a href="#setting-2"><code>setting</code></a></h2>
+<h6 id="setting-2" class="section-header"><a href="#setting-2"><code>setting</code></a></h6>
 <p>whether to destroy <code>self</code> with its transient parent</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1352" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_display" class="fnname">set_display</a>(&amp;self, display: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a> where the <code>self</code> is displayed.</p>
 <p>If the window is already mapped, it will be unmapped,
 and then remapped on the new display.</p>
-<h2 id="display" class="section-header"><a href="#display"><code>display</code></a></h2>
+<h6 id="display" class="section-header"><a href="#display"><code>display</code></a></h6>
 <p>a <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_focus_visible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1358" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_focus_visible" class="fnname">set_focus_visible</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether “focus rectangles” are supposed to be visible.</p>
-<h2 id="setting-3" class="section-header"><a href="#setting-3"><code>setting</code></a></h2>
+<h6 id="setting-3" class="section-header"><a href="#setting-3"><code>setting</code></a></h6>
 <p>the new value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_handle_menubar_accel" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1367" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_handle_menubar_accel" class="fnname">set_handle_menubar_accel</a>(&amp;self, handle_menubar_accel: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_2</code></strong> only.</div></div><div class="docblock"><p>Sets whether this window should react to F10 key presses
 by activating a menubar it contains.</p>
-<h2 id="handle_menubar_accel" class="section-header"><a href="#handle_menubar_accel"><code>handle_menubar_accel</code></a></h2>
+<h6 id="handle_menubar_accel" class="section-header"><a href="#handle_menubar_accel"><code>handle_menubar_accel</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to make <code>self</code> handle F10</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_hide_on_close" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1374" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_hide_on_close" class="fnname">set_hide_on_close</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>If <code>setting</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then clicking the close button on the window
 will not destroy it, but only hide it.</p>
-<h2 id="setting-4" class="section-header"><a href="#setting-4"><code>setting</code></a></h2>
+<h6 id="setting-4" class="section-header"><a href="#setting-4"><code>setting</code></a></h6>
 <p>whether to hide the window when it is closed</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icon_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1386" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_icon_name" class="fnname">set_icon_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the icon for the window from a named themed icon.</p>
 <p>See the docs for <a href="../struct.IconTheme.html" title="crate::IconTheme"><code>IconTheme</code></a> for more details.
 On some platforms, the window icon is not used at all.</p>
 <p>Note that this has nothing to do with the WM_ICON_NAME
 property which is mentioned in the ICCCM.</p>
-<h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
+<h6 id="name" class="section-header"><a href="#name"><code>name</code></a></h6>
 <p>the name of the themed icon</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_mnemonics_visible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1392" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_mnemonics_visible" class="fnname">set_mnemonics_visible</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether mnemonics are supposed to be visible.</p>
-<h2 id="setting-5" class="section-header"><a href="#setting-5"><code>setting</code></a></h2>
+<h6 id="setting-5" class="section-header"><a href="#setting-5"><code>setting</code></a></h6>
 <p>the new value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_modal" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1404" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_modal" class="fnname">set_modal</a>(&amp;self, modal: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets a window modal or non-modal.</p>
 <p>Modal windows prevent interaction with other windows in the same
@@ -440,11 +440,11 @@ application. To keep modal dialogs on top of main application windows,
 use <a href="trait.GtkWindowExt.html#tymethod.set_transient_for" title="Self::set_transient_for()"><code>set_transient_for()</code></a> to make the dialog transient
 for the parent; most window managers will then disallow lowering the
 dialog below the parent.</p>
-<h2 id="modal" class="section-header"><a href="#modal"><code>modal</code></a></h2>
+<h6 id="modal" class="section-header"><a href="#modal"><code>modal</code></a></h6>
 <p>whether the window is modal</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_resizable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1412" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_resizable" class="fnname">set_resizable</a>(&amp;self, resizable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the user can resize a window.</p>
 <p>Windows are user resizable by default.</p>
-<h2 id="resizable" class="section-header"><a href="#resizable"><code>resizable</code></a></h2>
+<h6 id="resizable" class="section-header"><a href="#resizable"><code>resizable</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the user can resize this window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_startup_id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1431" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_startup_id" class="fnname">set_startup_id</a>(&amp;self, startup_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the startup notification ID.</p>
 <p>Startup notification identifiers are used by desktop environment
@@ -457,7 +457,7 @@ other processes. You should use this function before calling
 <a href="trait.GtkWindowExt.html#tymethod.present" title="Self::present()"><code>present()</code></a> or any equivalent function generating
 a window map event.</p>
 <p>This function is only useful on X11, not with other GTK targets.</p>
-<h2 id="startup_id" class="section-header"><a href="#startup_id"><code>startup_id</code></a></h2>
+<h6 id="startup_id" class="section-header"><a href="#startup_id"><code>startup_id</code></a></h6>
 <p>a string with startup-notification identifier</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_title" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1446" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_title" class="fnname">set_title</a>(&amp;self, title: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the title of the <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a>.</p>
 <p>The title of a window will be displayed in its title bar; on the
@@ -467,7 +467,7 @@ user’s exact configuration. The title should help a user distinguish
 this window from other windows they may have open. A good title might
 include the application name and current document filename, for example.</p>
 <p>Passing <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> does the same as setting the title to an empty string.</p>
-<h2 id="title" class="section-header"><a href="#title"><code>title</code></a></h2>
+<h6 id="title" class="section-header"><a href="#title"><code>title</code></a></h6>
 <p>title of the window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_titlebar" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1462" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_titlebar" class="fnname">set_titlebar</a>(&amp;self, titlebar: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets a custom titlebar for <code>self</code>.</p>
 <p>A typical widget used here is <a href="../struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a>, as it
@@ -478,7 +478,7 @@ the window manager not to put its own titlebar on the window.
 Depending on the system, this function may not work for a window
 that is already visible, so you set the titlebar before calling
 <a href="trait.WidgetExt.html#tymethod.show" title="crate::prelude::WidgetExt::show()"><code>WidgetExt::show()</code></a>.</p>
-<h2 id="titlebar" class="section-header"><a href="#titlebar"><code>titlebar</code></a></h2>
+<h6 id="titlebar" class="section-header"><a href="#titlebar"><code>titlebar</code></a></h6>
 <p>the widget to use as titlebar</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_transient_for" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1478" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_transient_for" class="fnname">set_transient_for</a>(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Dialog windows should be set transient for the main application
 window they were spawned from. This allows window managers to e.g.
@@ -489,7 +489,7 @@ convenience functions in GTK will sometimes call
 <p>Passing <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for <code>parent</code> unsets the current transient window.</p>
 <p>On Windows, this function puts the child window on top of the parent,
 much as the window manager would have done on X.</p>
-<h2 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h2>
+<h6 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h6>
 <p>parent window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.unfullscreen" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1494" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.unfullscreen" class="fnname">unfullscreen</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Asks to remove the fullscreen state for <code>self</code>, and return to
 its previous state.</p>
@@ -549,7 +549,7 @@ of <code>window</code>.</p>
 widget of <code>window</code>.</p>
 <p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
 </div></details><div id="tymethod.emit_activate_focus" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1589" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.emit_activate_focus" class="fnname">emit_activate_focus</a>(&amp;self)</h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_close_request" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1597-1600" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_close_request" class="fnname">connect_close_request</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) -&gt; <a class="struct" href="../struct.Inhibit.html" title="struct gtk4::Inhibit">Inhibit</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the user clicks on the close button of the window.</p>
-<h1 id="returns-22" class="section-header"><a href="#returns-22">Returns</a></h1>
+<h5 id="returns-22" class="section-header"><a href="#returns-22">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to stop other handlers from being invoked for the signal</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_enable_debugging" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1619-1622" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_enable_debugging" class="fnname">connect_enable_debugging</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the user enables or disables interactive debugging.</p>
 <p>When <code>toggle</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, interactive debugging is toggled on or off,
@@ -558,9 +558,9 @@ under the pointer.</p>
 <p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
 <p>The default bindings for this signal are Ctrl-Shift-I
 and Ctrl-Shift-D.</p>
-<h2 id="toggle" class="section-header"><a href="#toggle"><code>toggle</code></a></h2>
+<h6 id="toggle" class="section-header"><a href="#toggle"><code>toggle</code></a></h6>
 <p>toggle the debugger</p>
-<h1 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h1>
+<h5 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the key binding was handled</p>
 </div></details><div id="tymethod.emit_enable_debugging" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1624" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.emit_enable_debugging" class="fnname">emit_enable_debugging</a>(&amp;self, toggle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_keys_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1629" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_keys_changed" class="fnname">connect_keys_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>emitted when the set of accelerators or mnemonics that
 are associated with <code>window</code> changes.</p>

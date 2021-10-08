@@ -80,29 +80,29 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.surface_anchor" class="fnname">surface_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.present" class="fnname">present</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, layout: &amp;<a class="struct" href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Popup.html" title="Popup"><code>Popup</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.Popup.html" title="crate::Popup"><code>Popup</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.is_autohide" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#47" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_autohide" class="fnname">is_autohide</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether this popup is set to hide on outside clicks.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> will autohide</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.parent" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#56" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.parent" class="fnname">parent</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the parent surface of a popup.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the parent surface</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.position_x" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#65" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.position_x" class="fnname">position_x</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Obtains the position of the popup relative to its parent.</p>
-<h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the X coordinate of <code>self</code> position</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.position_y" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#74" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.position_y" class="fnname">position_y</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Obtains the position of the popup relative to its parent.</p>
-<h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>the Y coordinate of <code>self</code> position</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.rect_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#86" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.rect_anchor" class="fnname">rect_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></div></summary><div class="docblock"><p>Gets the current popup rectangle anchor.</p>
 <p>The value returned may change after calling <a href="trait.PopupExt.html#tymethod.present" title="Self::present()"><code>present()</code></a>,
 or after the <code>signal::Surface::layout</code> signal is emitted.</p>
-<h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>the current rectangle anchor value of <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.surface_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#98" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.surface_anchor" class="fnname">surface_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></div></summary><div class="docblock"><p>Gets the current popup surface anchor.</p>
 <p>The value returned may change after calling <a href="trait.PopupExt.html#tymethod.present" title="Self::present()"><code>present()</code></a>,
 or after the <code>signal::Surface::layout</code> signal is emitted.</p>
-<h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
 <p>the current surface anchor value of <code>self</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.present" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#126" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.present" class="fnname">present</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, layout: &amp;<a class="struct" href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Present <code>self</code> after having processed the <a href="../struct.PopupLayout.html" title="crate::PopupLayout"><code>PopupLayout</code></a> rules.</p>
 <p>If the popup was previously now showing, it will be showed,
@@ -116,13 +116,13 @@ and <a href="trait.PopupExt.html#tymethod.surface_anchor" title="Self::surface_a
 <p>Presenting may fail, for example if the <code>self</code> is set to autohide
 and is immediately hidden upon being presented. If presenting failed,
 the <code>signal::Surface::layout</code> signal will not me emitted.</p>
-<h2 id="width" class="section-header"><a href="#width"><code>width</code></a></h2>
+<h6 id="width" class="section-header"><a href="#width"><code>width</code></a></h6>
 <p>the unconstrained popup width to layout</p>
-<h2 id="height" class="section-header"><a href="#height"><code>height</code></a></h2>
+<h6 id="height" class="section-header"><a href="#height"><code>height</code></a></h6>
 <p>the unconstrained popup height to layout</p>
-<h2 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h2>
+<h6 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h6>
 <p>the <a href="../struct.PopupLayout.html" title="crate::PopupLayout"><code>PopupLayout</code></a> object used to layout</p>
-<h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if it failed to be presented, otherwise <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-PopupExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/popup.rs.html#129-172" title="goto source code">[src]</a></div><a href="#impl-PopupExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Popup.html" title="struct gdk4::Popup">Popup</a>&gt;&gt; <a class="trait" href="trait.PopupExt.html" title="trait gdk4::prelude::PopupExt">PopupExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gdk4/prelude/trait.PopupExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>

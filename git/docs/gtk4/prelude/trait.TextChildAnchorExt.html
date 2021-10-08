@@ -75,7 +75,7 @@
     fn <a href="#tymethod.is_deleted" class="fnname">is_deleted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;;
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TextChildAnchor.html" title="TextChildAnchor"><code>TextChildAnchor</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>TextChildAnchor</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.is_deleted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_child_anchor.rs.html#74" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_deleted" class="fnname">is_deleted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Determines whether a child anchor has been deleted from
 the buffer.</p>
@@ -84,11 +84,11 @@ when removed from the buffer, so you need to hold your own
 reference (with <code>g_object_ref()</code>) if you plan to use this
 function — otherwise all deleted child anchors will also
 be finalized.</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the child anchor has been deleted from its buffer</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.widgets" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_child_anchor.rs.html#86" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Gets a list of all widgets anchored at this child anchor.</p>
 <p>The order in which the widgets are returned is not defined.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>an
 array of widgets anchored at <code>self</code></p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-TextChildAnchorExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_child_anchor.rs.html#89-111" title="goto source code">[src]</a></div><a href="#impl-TextChildAnchorExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;&gt; <a class="trait" href="trait.TextChildAnchorExt.html" title="trait gtk4::prelude::TextChildAnchorExt">TextChildAnchorExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.TextChildAnchorExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
