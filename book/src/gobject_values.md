@@ -58,7 +58,13 @@ We will use `Value` when we deal with properties and signals later on.
 
 A `Variant` is used whenever data needs to be serialized.
 In that sense, a `Variant` is similar to a Rust object that implements [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html).
+It would be possible to add derive macros similar to the ones of `serde` for serializing/deserializing arbitrary Rust structs.
+It is just that nobody did the work yet.
+Pull requests to add this functionality would be very appreciated!
+
 Although `GVariant` supports arbitrarily complex types, the Rust bindings are currently limited to `bool`, `u8`, `i16`, `u16`, `i32`, `u32`, `i64`, `u64`, `f64`, `&str`/`String`, and [`VariantDict`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html).
+Containers of the above types are possible as well, such as `HashMap`, `Vec`, `Option`, tuples up to 16 elements, and `Variant`.
+These can even be arbitrarily nested like e.g. `HashMap<Option<u32>, Vec<HashMap<String, Variant>>>`.
 
 In the most simple case, converting Rust types to `Variant` and vice-versa is very similar to the way it worked with `Value`.
 
