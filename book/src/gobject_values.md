@@ -21,7 +21,7 @@ enum Value <T> {
     f64(f64),
     // boxed types
     String(Option<String>),
-    Object(Option<T: impl IsA<glib::Object>>),
+    Object(Option<dyn IsA<glib::Object>>),
 }
 ```
 
@@ -34,7 +34,7 @@ For example, this is how you would use a `Value` representing an `i32`.
 ```
 
 Also note that in the `enum` above boxed types such as `String` or `glib::Object` are wrapped in an `Option`.
-This comes from C, where every boxed type can potentially be `None` (or null in C terms).
+This comes from C, where every boxed type can potentially be `None` (or `NULL` in C terms).
 You can still access it the same way as with the `i32` above.
 `get` will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
@@ -56,7 +56,7 @@ We will use `Value` when we deal with properties and signals later on.
 
 ## Variant
 
-A `Variant` is used whenever data needs to be serialized.
+A `Variant` is used whenever data needs to be serialized, for example for sending it to another process or over the network, or for storing it on disk.
 In that sense, a `Variant` is similar to a Rust object that implements [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html) and [`serde::Deserialize`](https://docs.rs/serde/latest/serde/trait.Deserialize.html).
 Although `GVariant` supports arbitrarily complex types, the Rust bindings are currently limited to `bool`, `u8`, `i16`, `u16`, `i32`, `u32`, `i64`, `u64`, `f64`, `&str`/`String`, and [`VariantDict`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html).
 
