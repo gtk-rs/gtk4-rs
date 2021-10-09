@@ -1281,8 +1281,11 @@ Every time we click on the button, the number displayed by the label increases b
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generic-values"><a class="header" href="#generic-values">Generic Values</a></h1>
 <p>Some GObject-related functions rely on generic values for their arguments or return parameters.
-Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
-Conceptually though, there are similar to a Rust enum defined like this:</p>
+Since GObject introspection works through a C interface, these functions cannot rely on any powerful Rust concepts.
+In these cases <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html"><code>glib::Variant</code></a> are used.</p>
+<h2 id="value"><a class="header" href="#value">Value</a></h2>
+<p>Let us start with <code>Value</code>.
+Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> defined like this:</p>
 <pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
     bool(bool),
     i8(i8),
@@ -1294,10 +1297,10 @@ Conceptually though, there are similar to a Rust enum defined like this:</p>
     f64(f64),
     // boxed types
     String(Option&lt;String&gt;),
-    Object(Option&lt;T: impl IsA&lt;Object&gt;&gt;),
+    Object(Option&lt;dyn IsA&lt;glib::Object&gt;&gt;),
+}
 </code></pre>
-<p>That means that a <code>glib::Value</code> can represent a set of types, but only one of them per instance.
-For example, this is how you would use a <code>Value</code> representing an <code>i32</code>.</p>
+<p>For example, this is how you would use a <code>Value</code> representing an <code>i32</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
@@ -1341,8 +1344,8 @@ For example, this is how you would use a <code>Value</code> representing an <cod
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}
 </span></code></pre>
-<p>Please note that boxed types such as <code>String</code> or <code>Object</code> are wrapped in an <code>Option</code>.
-This comes from C, where boxed types can always be <code>None</code> (or null in C terms).
+<p>Also note that in the <code>enum</code> above boxed types such as <code>String</code> or <code>glib::Object</code> are wrapped in an <code>Option</code>.
+This comes from C, where every boxed type can potentially be <code>None</code> (or <code>NULL</code> in C terms).
 You can still access it the same way as with the <code>i32</code> above.
 <code>get</code> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
@@ -1389,6 +1392,7 @@ You can still access it the same way as with the <code>i32</code> above.
 </span><span class="boring">}
 </span></code></pre>
 <p>If you want to differentiate between specifying the wrong type and a <code>Value</code> representing <code>None</code>, just call <code>get::&lt;Option&lt;T&gt;&gt;</code> instead.</p>
+<p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -1431,8 +1435,67 @@ You can still access it the same way as with the <code>i32</code> above.
     assert_eq!(string_none, None);
 <span class="boring">}
 </span></code></pre>
-<p>For now, all you need to know is how to convert a Rust type into a <code>glib::Value</code> and vice versa.
-This knowledge will be useful in the next chapters where we discuss properties, signals and models.</p>
+<p>We will use <code>Value</code> when we deal with properties and signals later on.</p>
+<h2 id="variant"><a class="header" href="#variant">Variant</a></h2>
+<p>A <code>Variant</code> is used whenever data needs to be serialized, for example for sending it to another process or over the network, or for storing it on disk.
+In that sense, a <code>Variant</code> is similar to a Rust object that implements <a href="https://docs.rs/serde/latest/serde/trait.Serialize.html"><code>serde::Serialize</code></a> and <a href="https://docs.rs/serde/latest/serde/trait.Deserialize.html"><code>serde::Deserialize</code></a>.
+It would be possible to add derive macros similar to the ones of <code>serde</code> for serializing/deserializing arbitrary Rust structs.
+It is just that nobody did the work yet.
+Pull requests to add this functionality would be very appreciated!</p>
+<p>Although <code>GVariant</code> supports arbitrarily complex types, the Rust bindings are currently limited to <code>bool</code>, <code>u8</code>, <code>i16</code>, <code>u16</code>, <code>i32</code>, <code>u32</code>, <code>i64</code>, <code>u64</code>, <code>f64</code>, <code>&amp;str</code>/<code>String</code>, and <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.VariantDict.html"><code>VariantDict</code></a>.
+Containers of the above types are possible as well, such as <code>HashMap</code>, <code>Vec</code>, <code>Option</code>, tuples up to 16 elements, and <code>Variant</code>.
+These can even be arbitrarily nested like e.g. <code>HashMap&lt;Option&lt;u32&gt;, Vec&lt;HashMap&lt;String, Variant&gt;&gt;&gt;</code>.</p>
+<p>In the most simple case, converting Rust types to <code>Variant</code> and vice-versa is very similar to the way it worked with <code>Value</code>.</p>
+<p><span class="filename">Filename: listings/gobject_values/2/main.rs</span></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span>    // Store `i32` as `Variant`
+    let integer_variant = 10.to_variant();
+
+    // Retrieve `i32` from `Variant`
+    let integer = integer_variant
+        .get::&lt;i32&gt;()
+        .expect(&quot;The variant needs to be of type `i32`.&quot;);
+
+    // Check if the retrieved value is correct
+    assert_eq!(integer, 10);
+<span class="boring">
+</span><span class="boring">    let variant = vec![&quot;Hello&quot;, &quot;there!&quot;].to_variant();
+</span><span class="boring">    assert_eq!(variant.n_children(), 2);
+</span><span class="boring">    let vec = &amp;variant
+</span><span class="boring">        .get::&lt;Vec&lt;String&gt;&gt;()
+</span><span class="boring">        .expect(&quot;The variant needs to be of type `String`.&quot;);
+</span><span class="boring">    assert_eq!(vec[0], &quot;Hello&quot;);
+</span><span class="boring">}
+</span></code></pre>
+<p>However, a <code>Variant</code> is also able to represent containers such as <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html"><code>HashMap</code></a> or <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.
+The following snippet shows how to convert between <code>Vec</code> and <code>Variant</code>.
+More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/index.html">docs</a>.</p>
+<p><span class="filename">Filename: listings/gobject_values/2/main.rs</span></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Store `i32` as `Variant`
+</span><span class="boring">    let integer_variant = 10.to_variant();
+</span><span class="boring">
+</span><span class="boring">    // Retrieve `i32` from `Variant`
+</span><span class="boring">    let integer = integer_variant
+</span><span class="boring">        .get::&lt;i32&gt;()
+</span><span class="boring">        .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">    // Check if the retrieved value is correct
+</span><span class="boring">    assert_eq!(integer, 10);
+</span><span class="boring">
+</span>    let variant = vec![&quot;Hello&quot;, &quot;there!&quot;].to_variant();
+    assert_eq!(variant.n_children(), 2);
+    let vec = &amp;variant
+        .get::&lt;Vec&lt;String&gt;&gt;()
+        .expect(&quot;The variant needs to be of type `String`.&quot;);
+    assert_eq!(vec[0], &quot;Hello&quot;);
+<span class="boring">}
+</span></code></pre>
+<p>We will use <code>Variant</code> when saving settings using <code>gio::Settings</code> or activating actions via <code>gio::Action</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
 <p>Properties provide a public API for accessing state of GObjects.</p>
 <p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
