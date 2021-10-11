@@ -30,3 +30,10 @@ impl DropDown {
         }
     }
 }
+
+impl Default for DropDown {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct DropDown object with default parameters")
+    }
+}

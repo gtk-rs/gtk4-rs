@@ -109,7 +109,7 @@ Any thread can schedule a closure to be run by the main loop on the main
 thread via [`glib::idle_add`][`fn@glib::idle_add`] or
 [`glib::timeout_add`][`fn@glib::timeout_add`]. While
 working with GTK you might need the [`glib::idle_add_local`][`fn@glib::idle_add_local`]
-or [glib::timeout_add_local`][`fn@glib::timeout_add_local`] version without the
+or [`glib::timeout_add_local`][`fn@glib::timeout_add_local`] version without the
 [`Send`] bound. Those may only be called from the main thread.
 
 # Panics

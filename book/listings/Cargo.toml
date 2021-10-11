@@ -101,6 +101,10 @@ path = "gobject_subclassing/2/main.rs"
 name = "gobject_values_1"
 path = "gobject_values/1/main.rs"
 
+[[bin]]
+name = "gobject_values_2"
+path = "gobject_values/2/main.rs"
+
 # hello_world
 [[bin]]
 name = "hello_world_1"
