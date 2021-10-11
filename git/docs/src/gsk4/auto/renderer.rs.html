@@ -286,11 +286,11 @@
     <span class="doccomment">/// tree of [`RenderNode`][crate::RenderNode] instances.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typically you will use a [`Renderer`][crate::Renderer] instance to repeatedly call</span>
-    <span class="doccomment">/// [``RendererExtManual::render()``][crate::prelude::`RendererExtManual::render()`] to update the contents of its associated</span>
+    <span class="doccomment">/// [``GskRendererManual::render()``][crate::prelude::`GskRendererManual::render()`] to update the contents of its associated</span>
     <span class="doccomment">/// [`gdk::Surface`][crate::gdk::Surface].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is necessary to realize a [`Renderer`][crate::Renderer] instance using</span>
-    <span class="doccomment">/// [``RendererExt::realize()``][crate::prelude::`RendererExt::realize()`] before calling [``RendererExtManual::render()``][crate::prelude::`RendererExtManual::render()`],</span>
+    <span class="doccomment">/// [``GskRenderer::realize()``][crate::prelude::`GskRenderer::realize()`] before calling [``GskRendererManual::render()``][crate::prelude::`GskRendererManual::render()`],</span>
     <span class="doccomment">/// in order to create the appropriate windowing system resources needed</span>
     <span class="doccomment">/// to render the scene.</span>
     <span class="doccomment">///</span>
@@ -298,7 +298,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RendererExt`][trait@crate::prelude::RendererExt], [`RendererExtManual`][trait@crate::prelude::RendererExtManual]</span>
+    <span class="doccomment">/// [`GskRenderer`][trait@crate::prelude::GskRenderer], [`GskRendererExtManual`][trait@crate::prelude::GskRendererExtManual]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskRenderer&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Renderer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskRenderer</span>, <span class="ident">ffi::GskRendererClass</span><span class="op">&gt;</span>);
 
@@ -336,7 +336,7 @@
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`BroadwayRenderer`][struct@crate::BroadwayRenderer], [`CairoRenderer`][struct@crate::CairoRenderer], [`GLRenderer`][struct@crate::GLRenderer], [`NglRenderer`][struct@crate::NglRenderer], [`Renderer`][struct@crate::Renderer]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RendererExt</span>: <span class="lifetime">&#39;static</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GskRenderer</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves the [`gdk::Surface`][crate::gdk::Surface] set using `gsk_enderer_realize()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the renderer has not been realized yet, [`None`] will be returned.</span>
@@ -374,7 +374,7 @@
     <span class="kw">fn</span> <span class="ident">connect_surface_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Renderer</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">RendererExt</span> <span class="kw">for</span> <span class="ident">O</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Renderer</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">GskRenderer</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_renderer_get_surface</span>(
