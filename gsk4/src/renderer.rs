@@ -4,7 +4,7 @@ use crate::{RenderNode, Renderer};
 use glib::object::IsA;
 use glib::translate::*;
 
-pub trait RendererExtManual: 'static {
+pub trait GskRendererExtManual: 'static {
     #[doc(alias = "gsk_renderer_render")]
     fn render<P: AsRef<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);
 
@@ -16,7 +16,7 @@ pub trait RendererExtManual: 'static {
     ) -> Option<gdk::Texture>;
 }
 
-impl<O: IsA<Renderer>> RendererExtManual for O {
+impl<O: IsA<Renderer>> GskRendererExtManual for O {
     fn render<P: AsRef<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gsk_renderer_render(

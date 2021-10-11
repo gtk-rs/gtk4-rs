@@ -5,7 +5,7 @@
 
 pub use crate::auto::traits::*;
 
-pub use crate::renderer::RendererExtManual;
+pub use crate::renderer::GskRendererExtManual;
 
 #[doc(hidden)]
 pub use gdk::prelude::*;

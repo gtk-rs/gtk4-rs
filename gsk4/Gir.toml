@@ -118,17 +118,18 @@ version = "4.2"
 [[object]]
 name = "Gsk.Renderer"
 status = "generate"
-manual_traits = ["RendererExtManual"]
+trait_name = "GskRenderer"
+manual_traits = ["GskRendererExtManual"]
     [[object.function]]
     name = "render"
     # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
-    doc_trait_name = "RendererExtManual"
+    doc_trait_name = "GskRendererExtManual"
     [[object.function]]
     name = "render_texture"
     # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
-    doc_trait_name = "RendererExtManual"
+    doc_trait_name = "GskRendererExtManual"
 
 [[object]]
 name = "Gsk.RenderNode"
