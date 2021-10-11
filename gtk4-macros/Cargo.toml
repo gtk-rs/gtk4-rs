@@ -16,8 +16,6 @@ proc-macro = true
 
 [dependencies]
 anyhow = "1.0"
-heck = "0.3"
-itertools = "0.10"
 proc-macro-crate = "1.0"
 proc-macro-error = "1.0"
 proc-macro2 = "1.0"

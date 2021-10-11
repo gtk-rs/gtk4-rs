@@ -48,9 +48,6 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 [dependencies.gobject-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.graphene-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-
 [dependencies.pango-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
