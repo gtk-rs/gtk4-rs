@@ -162,7 +162,8 @@ functions (including <a href="fn.init.html" title="init"><code>init</code></a>) 
 thread via <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add.html" title="glib::idle_add"><code>glib::idle_add</code></a> or
 <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add"><code>glib::timeout_add</code></a>. While
 working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local"><code>glib::idle_add_local</code></a>
-or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local">glib::timeout_add_local<code>][</code>fn@glib::timeout_add_local<code>] version without the [</code>Send`</a> bound. Those may only be called from the main thread.</p>
+or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local"><code>glib::timeout_add_local</code></a> version without the
+<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> bound. Those may only be called from the main thread.</p>
 <h2 id="panics" class="section-header"><a href="#panics">Panics</a></h2>
 <p>The <a href="index.html"><code>gtk</code></a> and <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> crates have some run-time safety and contract
 checks.</p>

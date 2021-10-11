@@ -196,20 +196,20 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the key press was handled, [`false`] otherwise.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_key_pressed</span><span class="op">&lt;</span>
-        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>, <span class="ident">Key</span>, <span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>, <span class="ident">Key</span>, <span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>) -&gt; <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">key_pressed_trampoline</span><span class="op">&lt;</span>
-            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>, <span class="ident">Key</span>, <span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+            <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>, <span class="ident">Key</span>, <span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>) -&gt; <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEventControllerKey</span>,
             <span class="ident">keyval</span>: <span class="ident">libc::c_uint</span>,
             <span class="ident">keycode</span>: <span class="ident">libc::c_uint</span>,
             <span class="ident">state</span>: <span class="ident">gdk::ffi::GdkModifierType</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+        ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
             <span class="ident">f</span>(
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">this</span>),
@@ -244,7 +244,7 @@
     <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    ) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">key_released_trampoline</span><span class="op">&lt;</span>
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>, <span class="ident">Key</span>, <span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
         <span class="op">&gt;</span>(

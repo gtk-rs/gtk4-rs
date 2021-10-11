@@ -237,7 +237,7 @@
 <span class="doccomment">/// An interned string for the canonicalized</span>
 <span class="doccomment">///  mime type or [`None`] if the string wasn&#39;t a valid mime type</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_intern_mime_type&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intern_mime_type</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intern_mime_type</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_intern_mime_type</span>(<span class="ident">string</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
 }
@@ -271,7 +271,7 @@
     <span class="ident">src_y</span>: <span class="ident">i32</span>,
     <span class="ident">width</span>: <span class="ident">i32</span>,
     <span class="ident">height</span>: <span class="ident">i32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pixbuf_get_from_surface</span>(
@@ -296,7 +296,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// a new [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pixbuf_get_from_texture&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_get_from_texture</span>(<span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_get_from_texture</span>(<span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pixbuf_get_from_texture</span>(
@@ -359,7 +359,7 @@
 <span class="doccomment">/// the corresponding GDK key symbol, if one exists.</span>
 <span class="doccomment">///  or, if there is no corresponding symbol, wc | 0x01000000</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_unicode_to_keyval&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unicode_to_keyval</span>(<span class="ident">wc</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unicode_to_keyval</span>(<span class="ident">wc</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_unicode_to_keyval</span>(<span class="ident">wc</span>) }
 }

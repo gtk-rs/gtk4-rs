@@ -152,7 +152,7 @@
     <span class="doccomment">/// ## `formats`</span>
     <span class="doccomment">/// the formats to add</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_add_formats&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_formats</span>(<span class="self">self</span>, <span class="ident">formats</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_formats</span>(<span class="self">self</span>, <span class="ident">formats</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_content_formats_builder_add_formats</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -167,7 +167,7 @@
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// a `GType`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_add_gtype&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_type</span>(<span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_type</span>(<span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_content_formats_builder_add_gtype</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">type_</span>.<span class="ident">into_glib</span>());
         }
@@ -179,7 +179,7 @@
     <span class="doccomment">/// ## `mime_type`</span>
     <span class="doccomment">/// a mime type</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_add_mime_type&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_mime_type</span>(<span class="self">self</span>, <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_mime_type</span>(<span class="self">self</span>, <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_content_formats_builder_add_mime_type</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -203,7 +203,7 @@
     <span class="doccomment">/// the newly created [`ContentFormats`][crate::ContentFormats]</span>
     <span class="doccomment">///  with all the formats added to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_to_formats&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">ContentFormats</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_builder_to_formats</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

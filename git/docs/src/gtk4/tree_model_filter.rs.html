@@ -170,7 +170,7 @@
 
 <span class="kw">impl</span> <span class="ident">TreeModelFilter</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">child_model</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">root</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreePath</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">child_model</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">root</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreePath</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">TreeModel::from_glib_none</span>(<span class="ident">ffi::gtk_tree_model_filter_new</span>(
@@ -198,7 +198,7 @@
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// A `GtkTreeModelFilterModifyFunc`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_set_modify_func&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_modify_func</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">set_modify_func</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) -&gt; <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>],
         <span class="ident">func</span>: <span class="ident">F</span>,
@@ -207,7 +207,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModelFilter</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">TreeModelFilterExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_set_modify_func&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">set_modify_func</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">set_modify_func</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) -&gt; <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>],
         <span class="ident">func</span>: <span class="ident">F</span>,
@@ -216,7 +216,7 @@
             <span class="kw">let</span> <span class="ident">types_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::ffi::GType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">into_glib</span>()).<span class="ident">collect</span>();
 
             <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">func_trampoline</span><span class="op">&lt;</span>
-                <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+                <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) -&gt; <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
             <span class="op">&gt;</span>(
                 <span class="ident">model</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeModel</span>,
                 <span class="ident">iter</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeIter</span>,
@@ -230,7 +230,7 @@
             }
 
             <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">destroy_func</span><span class="op">&lt;</span>
-                <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+                <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">i32</span>) -&gt; <span class="ident">glib::Value</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
             <span class="op">&gt;</span>(
                 <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
             ) {

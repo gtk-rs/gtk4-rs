@@ -468,7 +468,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FilterCallback</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_family</span>: <span class="kw-2">&amp;</span><span class="ident">FontFamily</span>, <span class="ident">font_face</span>: <span class="kw-2">&amp;</span><span class="ident">FontFace</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_family</span>: <span class="kw-2">&amp;</span><span class="ident">FontFamily</span>, <span class="ident">font_face</span>: <span class="kw-2">&amp;</span><span class="ident">FontFace</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">filter_func</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_func</span> {
                 <span class="ident">from_glib</span>(<span class="ident">filter_func</span>(
@@ -495,15 +495,15 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FontChooserImpl</span>: <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_font_family</span>(<span class="ident">font_chooser</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_font_face</span>(<span class="ident">font_chooser</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="ident">parent_font_size</span>(<span class="ident">font_chooser</span>)
     }
 
@@ -515,7 +515,7 @@
         <span class="self">self</span>.<span class="ident">parent_set_font_map</span>(<span class="ident">font_chooser</span>, <span class="ident">font_map</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_font_map</span>(<span class="ident">font_chooser</span>)
     }
 
@@ -525,17 +525,17 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FontChooserImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">parent_font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">parent_font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">i32</span>;
     <span class="kw">fn</span> <span class="ident">parent_set_filter_func</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">callback</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FilterCallback</span><span class="op">&gt;</span>);
     <span class="kw">fn</span> <span class="ident">parent_set_font_map</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">font_map</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
-    <span class="kw">fn</span> <span class="ident">parent_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_font_activated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">font_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span> <span class="ident">FontChooserImplExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">parent_font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">FontChooser</span><span class="op">&gt;</span>()
@@ -551,7 +551,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontFace</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">FontChooser</span><span class="op">&gt;</span>()
@@ -568,7 +568,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">parent_font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">FontChooser</span><span class="op">&gt;</span>()
@@ -641,7 +641,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">FontChooser</span><span class="op">&gt;</span>()
@@ -710,7 +710,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_family</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkFontChooser</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontFamily</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontFamily</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>);
@@ -742,7 +742,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_face</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkFontChooser</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontFace</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontFace</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>);
@@ -762,7 +762,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_size</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkFontChooser</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+) -&gt; <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
@@ -799,7 +799,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_map</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkFontChooser</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontMap</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoFontMap</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 

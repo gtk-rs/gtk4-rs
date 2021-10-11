@@ -405,7 +405,7 @@
     <span class="doccomment">/// a new [`ListStore`][crate::ListStore]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_newv&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">column_types</span>: <span class="kw-2">&amp;</span>[<span class="ident">Type</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">column_types</span>: <span class="kw-2">&amp;</span>[<span class="ident">Type</span>]) -&gt; <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">column_types</span> <span class="op">=</span> <span class="ident">column_types</span>
@@ -469,7 +469,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
         <span class="ident">columns_and_values</span>: <span class="kw-2">&amp;</span>[(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span> {
+    ) -&gt; <span class="ident">TreeIter</span> {
         <span class="kw">unsafe</span> {
             <span class="macro">assert!</span>(
                 <span class="ident">position</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="op">&lt;</span><span class="op">=</span> <span class="ident">i32::max_value</span>() <span class="kw">as</span> <span class="ident">u32</span>,
@@ -541,7 +541,7 @@
                 <span class="self">self</span>.<span class="ident">upcast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">ptr::null_mut</span>(),
             );
-            <span class="kw">let</span> <span class="ident">safe_count</span> <span class="op">=</span> <span class="ident">count</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">=</span><span class="op">=</span> <span class="ident">new_order</span>.<span class="ident">len</span>();
+            <span class="kw">let</span> <span class="ident">safe_count</span> <span class="op">=</span> <span class="ident">count</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">==</span> <span class="ident">new_order</span>.<span class="ident">len</span>();
             <span class="macro">debug_assert!</span>(
                 <span class="ident">safe_count</span>,
                 <span class="string">&quot;Incorrect `new_order` slice length. Expected `{}`, found `{}`.&quot;</span>,

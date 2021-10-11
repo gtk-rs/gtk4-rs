@@ -483,7 +483,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureDrag</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureDrag</span>, <span class="ident">ffi::GtkGestureDragClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_drag_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_drag_get_type</span>(),
     }
 }
 
@@ -494,7 +494,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`GestureDrag`][crate::GestureDrag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_drag_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureDrag</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="ident">GestureDrag</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Gesture::from_glib_full</span>(<span class="ident">ffi::gtk_gesture_drag_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
@@ -503,13 +503,13 @@
     <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`GestureDrag`] objects.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method returns an instance of [`GestureDragBuilder`] which can be used to create [`GestureDrag`] objects.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureDragBuilder</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">GestureDragBuilder</span> {
         <span class="ident">GestureDragBuilder::default</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">GestureDrag</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
@@ -532,13 +532,13 @@
 <span class="kw">impl</span> <span class="ident">GestureDragBuilder</span> {
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`GestureDragBuilder`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Build the [`GestureDrag`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureDrag</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">GestureDrag</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">button</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">button</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;button&quot;</span>, <span class="ident">button</span>));
@@ -566,7 +566,7 @@
     }
 
     <span class="doccomment">/// Mouse button number to listen to, or 0 to listen for any button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">button</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">button</span>);
         <span class="self">self</span>
     }
@@ -574,38 +574,38 @@
     <span class="doccomment">/// Whether the gesture is exclusive.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Exclusive gestures only listen to pointer and pointer emulated events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exclusive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exclusive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">exclusive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">exclusive</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Whether the gesture handles only touch events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">touch_only</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">touch_only</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">touch_only</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">touch_only</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">touch_only</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">touch_only</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The number of touch points that trigger</span>
     <span class="doccomment">/// recognition on this gesture.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">n_points</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">n_points</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The name for this controller, typically used for debugging purposes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The limit for which events this controller will handle.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_limit</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_limit</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The propagation phase at which this controller will handle events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_phase</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_phase</span>);
         <span class="self">self</span>
     }
@@ -636,7 +636,7 @@
     <span class="doccomment">/// Y offset for the current point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_drag_get_offset&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_offset&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the point where the drag started.</span>
     <span class="doccomment">///</span>
@@ -655,7 +655,7 @@
     <span class="doccomment">/// Y coordinate for the drag start point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_drag_get_start_point&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_start_point&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">start_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">start_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
 
     <span class="doccomment">/// Emitted whenever dragging starts.</span>
     <span class="doccomment">/// ## `start_x`</span>
@@ -663,7 +663,7 @@
     <span class="doccomment">/// ## `start_y`</span>
     <span class="doccomment">/// Y coordinate, relative to the widget allocation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;drag-begin&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">connect_drag_begin</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_drag_begin</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted whenever the dragging is finished.</span>
     <span class="doccomment">/// ## `offset_x`</span>
@@ -671,7 +671,7 @@
     <span class="doccomment">/// ## `offset_y`</span>
     <span class="doccomment">/// Y offset, relative to the start point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;drag-end&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">connect_drag_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_drag_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// Emitted whenever the dragging point moves.</span>
     <span class="doccomment">/// ## `offset_x`</span>
@@ -679,11 +679,11 @@
     <span class="doccomment">/// ## `offset_y`</span>
     <span class="doccomment">/// Y offset, relative to the start point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;drag-update&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">connect_drag_update</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_drag_update</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">GestureDrag</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">GestureDragExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
@@ -702,7 +702,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">start_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">start_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
@@ -721,7 +721,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_drag_begin</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_drag_begin</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">drag_begin_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">GestureDrag</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -751,7 +751,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_drag_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_drag_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">drag_end_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">GestureDrag</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -781,7 +781,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_drag_update</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_drag_update</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">drag_update_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">GestureDrag</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -813,7 +813,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">GestureDrag</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;GestureDrag&quot;</span>)
     }
 }

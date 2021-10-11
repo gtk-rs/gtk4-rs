@@ -281,7 +281,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureZoom</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureZoom</span>, <span class="ident">ffi::GtkGestureZoomClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_zoom_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_zoom_get_type</span>(),
     }
 }
 
@@ -293,7 +293,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`GestureZoom`][crate::GestureZoom]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_zoom_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureZoom</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="ident">GestureZoom</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Gesture::from_glib_full</span>(<span class="ident">ffi::gtk_gesture_zoom_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
@@ -302,7 +302,7 @@
     <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`GestureZoom`] objects.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method returns an instance of [`GestureZoomBuilder`] which can be used to create [`GestureZoom`] objects.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureZoomBuilder</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">GestureZoomBuilder</span> {
         <span class="ident">GestureZoomBuilder::default</span>()
     }
 
@@ -318,7 +318,7 @@
     <span class="doccomment">/// the scale delta</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_zoom_get_scale_delta&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_scale_delta&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_gesture_zoom_get_scale_delta</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
@@ -326,7 +326,7 @@
     <span class="doccomment">/// ## `scale`</span>
     <span class="doccomment">/// Scale delta, taking the initial state as 1:1</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;scale-changed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scale_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scale_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">scale_changed_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">GestureZoom</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkGestureZoom</span>,
             <span class="ident">scale</span>: <span class="ident">libc::c_double</span>,
@@ -350,7 +350,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">GestureZoom</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
@@ -370,13 +370,13 @@
 <span class="kw">impl</span> <span class="ident">GestureZoomBuilder</span> {
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`GestureZoomBuilder`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Build the [`GestureZoom`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureZoom</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">GestureZoom</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">n_points</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">n_points</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;n-points&quot;</span>, <span class="ident">n_points</span>));
@@ -396,32 +396,32 @@
 
     <span class="doccomment">/// The number of touch points that trigger</span>
     <span class="doccomment">/// recognition on this gesture.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">n_points</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">n_points</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The name for this controller, typically used for debugging purposes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The limit for which events this controller will handle.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_limit</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_limit</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The propagation phase at which this controller will handle events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_phase</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_phase</span>);
         <span class="self">self</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">GestureZoom</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;GestureZoom&quot;</span>)
     }
 }

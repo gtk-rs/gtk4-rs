@@ -199,7 +199,7 @@
     <span class="doccomment">///  `self` is found, respectively, to be less than, to match,</span>
     <span class="doccomment">///  or be greater than `trigger2`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_compare&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::cmp::Ordering</span>;
+    <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) -&gt; <span class="ident">std::cmp::Ordering</span>;
 
     <span class="doccomment">/// Checks if `self` and `trigger2` trigger under the same conditions.</span>
     <span class="doccomment">///</span>
@@ -212,7 +212,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if `self` and `trigger2` are equal</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_equal&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Generates a hash value for a [`ShortcutTrigger`][crate::ShortcutTrigger].</span>
     <span class="doccomment">///</span>
@@ -228,7 +228,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a hash value corresponding to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_hash&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
 
     <span class="doccomment">/// Checks if the given `event` triggers `self`.</span>
     <span class="doccomment">/// ## `event`</span>
@@ -242,11 +242,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whether the event triggered the shortcut</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_trigger&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">trigger</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>, <span class="ident">enable_mnemonics</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::KeyMatch</span>;
+    <span class="kw">fn</span> <span class="ident">trigger</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>, <span class="ident">enable_mnemonics</span>: <span class="ident">bool</span>) -&gt; <span class="ident">gdk::KeyMatch</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ShortcutTriggerExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::cmp::Ordering</span> {
+    <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) -&gt; <span class="ident">std::cmp::Ordering</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_shortcut_trigger_compare</span>(
                 <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkShortcutTrigger</span><span class="op">&gt;</span><span class="ident">::to_glib_none</span>(<span class="self">self</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
@@ -257,7 +257,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_shortcut_trigger_equal</span>(
                 <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkShortcutTrigger</span><span class="op">&gt;</span><span class="ident">::to_glib_none</span>(<span class="self">self</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
@@ -268,7 +268,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_shortcut_trigger_hash</span>(
                 <span class="ident">ToGlibPtr</span>::<span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkShortcutTrigger</span><span class="op">&gt;</span><span class="ident">::to_glib_none</span>(<span class="self">self</span>.<span class="ident">as_ref</span>()).<span class="number">0</span>
@@ -277,7 +277,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">trigger</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>, <span class="ident">enable_mnemonics</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::KeyMatch</span> {
+    <span class="kw">fn</span> <span class="ident">trigger</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>, <span class="ident">enable_mnemonics</span>: <span class="ident">bool</span>) -&gt; <span class="ident">gdk::KeyMatch</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_shortcut_trigger_trigger</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

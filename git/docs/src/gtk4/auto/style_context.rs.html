@@ -686,7 +686,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkStyleContext</span>, <span class="ident">ffi::GtkStyleContextClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_style_context_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_style_context_get_type</span>(),
     }
 }
 
@@ -804,7 +804,7 @@
     <span class="doccomment">/// return value for the border settings</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_border&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_border&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span>;
+    <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span>;
 
     <span class="doccomment">/// Gets the foreground color for a given state.</span>
     <span class="doccomment">///</span>
@@ -815,7 +815,7 @@
     <span class="doccomment">/// return value for the foreground color</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_color&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_color&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::RGBA</span>;
+    <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::RGBA</span>;
 
     <span class="doccomment">/// Returns the [`gdk::Display`][crate::gdk::Display] to which `self` is attached.</span>
     <span class="doccomment">///</span>
@@ -824,7 +824,7 @@
     <span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::Display</span>;
+    <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::Display</span>;
 
     <span class="doccomment">/// Gets the margin for a given state as a [`Border`][crate::Border].</span>
     <span class="doccomment">///</span>
@@ -835,7 +835,7 @@
     <span class="doccomment">/// return value for the margin settings</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_margin&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_margin&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span>;
+    <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span>;
 
     <span class="doccomment">/// Gets the padding for a given state as a [`Border`][crate::Border].</span>
     <span class="doccomment">///</span>
@@ -846,7 +846,7 @@
     <span class="doccomment">/// return value for the padding settings</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_padding&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_padding&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span>;
+    <span class="kw">fn</span> <span class="ident">padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span>;
 
     <span class="doccomment">/// Returns the scale used for assets.</span>
     <span class="doccomment">///</span>
@@ -855,7 +855,7 @@
     <span class="doccomment">/// the scale</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_scale&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_scale&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
     <span class="doccomment">/// Returns the state used for style matching.</span>
     <span class="doccomment">///</span>
@@ -870,7 +870,7 @@
     <span class="doccomment">/// the state flags</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_state&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StateFlags</span>;
+    <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">StateFlags</span>;
 
     <span class="doccomment">/// Returns [`true`] if `self` currently has defined the</span>
     <span class="doccomment">/// given class name.</span>
@@ -881,7 +881,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if `self` has `class_name` defined</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_has_class&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">has_class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">class_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">has_class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">class_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Looks up and resolves a color name in the `self` color map.</span>
     <span class="doccomment">/// ## `color_name`</span>
@@ -894,7 +894,7 @@
     <span class="doccomment">/// ## `color`</span>
     <span class="doccomment">/// Return location for the looked up color</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_lookup_color&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">lookup_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">lookup_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Removes `class_name` from `self`.</span>
     <span class="doccomment">/// ## `class_name`</span>
@@ -969,10 +969,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly allocated string representing `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_to_string&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">StyleContextPrintFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::GString</span>;
+    <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">StyleContextPrintFlags</span>) -&gt; <span class="ident">glib::GString</span>;
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;display&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
+    <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">StyleContextExt</span> <span class="kw">for</span> <span class="ident">O</span> {
@@ -995,7 +995,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
+    <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">Border::uninitialized</span>();
             <span class="ident">ffi::gtk_style_context_get_border</span>(
@@ -1006,7 +1006,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::RGBA</span> {
+    <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::RGBA</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">gdk::RGBA::uninitialized</span>();
             <span class="ident">ffi::gtk_style_context_get_color</span>(
@@ -1017,7 +1017,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::Display</span> {
+    <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::Display</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_style_context_get_display</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1025,7 +1025,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
+    <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">margin</span> <span class="op">=</span> <span class="ident">Border::uninitialized</span>();
             <span class="ident">ffi::gtk_style_context_get_margin</span>(
@@ -1036,7 +1036,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
+    <span class="kw">fn</span> <span class="ident">padding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Border</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">padding</span> <span class="op">=</span> <span class="ident">Border::uninitialized</span>();
             <span class="ident">ffi::gtk_style_context_get_padding</span>(
@@ -1047,11 +1047,11 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_style_context_get_scale</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StateFlags</span> {
+    <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">StateFlags</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_style_context_get_state</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1059,7 +1059,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">has_class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">class_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">has_class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">class_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_style_context_has_class</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1068,7 +1068,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">lookup_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">lookup_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">gdk::RGBA::uninitialized</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_style_context_lookup_color</span>(
@@ -1135,7 +1135,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">StyleContextPrintFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::GString</span> {
+    <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">StyleContextPrintFlags</span>) -&gt; <span class="ident">glib::GString</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_style_context_to_string</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1144,7 +1144,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">fn</span> <span class="ident">connect_display_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_display_trampoline</span><span class="op">&lt;</span>
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>,
             <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
@@ -1171,7 +1171,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">StyleContext</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;StyleContext&quot;</span>)
     }
 }

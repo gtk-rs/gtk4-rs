@@ -558,12 +558,12 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span> {
         <span class="self">self</span>.<span class="ident">parent_text</span>(<span class="ident">editable</span>)
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_delegate&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_delegate</span>(<span class="ident">editable</span>)
     }
 
@@ -576,7 +576,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_bounds&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_selection_bounds</span>(<span class="ident">editable</span>)
     }
 
@@ -592,7 +592,7 @@
         <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">prop_id</span>: <span class="ident">usize</span>,
         <span class="ident">pspec</span>: <span class="kw-2">&amp;</span><span class="ident">glib::ParamSpec</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Value</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Value</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::from_type</span>(<span class="ident">pspec</span>.<span class="ident">value_type</span>());
 
@@ -616,7 +616,7 @@
         <span class="ident">prop_id</span>: <span class="ident">usize</span>,
         <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>,
         <span class="ident">pspec</span>: <span class="kw-2">&amp;</span><span class="ident">glib::ParamSpec</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_editable_delegate_set_property</span>(
                 <span class="ident">editable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -644,15 +644,15 @@
         <span class="ident">position</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
     );
     <span class="kw">fn</span> <span class="ident">parent_do_delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">start_position</span>: <span class="ident">i32</span>, <span class="ident">end_position</span>: <span class="ident">i32</span>);
-    <span class="kw">fn</span> <span class="ident">parent_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">parent_selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_set_selection_bounds</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">start_position</span>: <span class="ident">i32</span>,
         <span class="ident">end_position</span>: <span class="ident">i32</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span>;
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span> <span class="ident">EditableImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
@@ -695,7 +695,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>()
@@ -710,7 +710,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>()
@@ -775,7 +775,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>()
@@ -893,7 +893,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">editable_get_text</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span>(
     <span class="ident">editable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEditable</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
@@ -906,7 +906,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">editable_get_delegate</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span>(
     <span class="ident">editable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEditable</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEditable</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEditable</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
@@ -915,12 +915,12 @@
     <span class="kw">let</span> <span class="ident">delegate</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">delegate</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
 
     <span class="kw">match</span> <span class="ident">wrap</span>.<span class="ident">qdata</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">EDITABLE_GET_DELEGATE_QUARK</span>) {
-        <span class="prelude-val">Some</span>(<span class="ident">delegate_data</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">delegate_data</span>) =&gt; {
             <span class="kw">if</span> <span class="ident">delegate_data</span>.<span class="ident">as_ref</span>() <span class="op">!</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">delegate</span> {
                 <span class="macro">panic!</span>(<span class="string">&quot;The Editable delegate must not change&quot;</span>);
             }
         }
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">None</span> =&gt; {
             <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(<span class="kw-2">*</span><span class="ident">EDITABLE_GET_DELEGATE_QUARK</span>, <span class="ident">delegate</span>.<span class="ident">clone</span>());
         }
     };
@@ -963,7 +963,7 @@
     <span class="ident">editable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEditable</span>,
     <span class="ident">start_position</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
     <span class="ident">end_position</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 

@@ -249,7 +249,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceTool</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkDeviceTool</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gdk_device_tool_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gdk_device_tool_get_type</span>(),
     }
 }
 
@@ -258,7 +258,7 @@
     <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`DeviceTool`] objects.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method returns an instance of [`DeviceToolBuilder`] which can be used to create [`DeviceTool`] objects.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DeviceToolBuilder</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">DeviceToolBuilder</span> {
         <span class="ident">DeviceToolBuilder::default</span>()
     }
 
@@ -269,7 +269,7 @@
     <span class="doccomment">/// the axes of `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_axes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_axes&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AxisFlags</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AxisFlags</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_device_tool_get_axes</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
@@ -290,7 +290,7 @@
     <span class="doccomment">/// The hardware identificator of this tool.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_hardware_id&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_hardware_id&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hardware_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hardware_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_device_tool_get_hardware_id</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
@@ -304,7 +304,7 @@
     <span class="doccomment">/// The serial ID for this tool</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_serial&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_serial&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serial</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serial</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_device_tool_get_serial</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
@@ -317,7 +317,7 @@
     <span class="doccomment">///  or a pencil.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_tool_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tool_type&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tool_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DeviceToolType</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tool_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">DeviceToolType</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_device_tool_get_tool_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 }
@@ -337,13 +337,13 @@
 <span class="kw">impl</span> <span class="ident">DeviceToolBuilder</span> {
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`DeviceToolBuilder`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Build the [`DeviceTool`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DeviceTool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">DeviceTool</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">axes</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">axes</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;axes&quot;</span>, <span class="ident">axes</span>));
@@ -362,32 +362,32 @@
     }
 
     <span class="doccomment">/// The axes of the tool.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">axes</span>: <span class="ident">AxisFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">axes</span>: <span class="ident">AxisFlags</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">axes</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">axes</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The hardware ID of the tool.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hardware_id</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hardware_id</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hardware_id</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">hardware_id</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">hardware_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">hardware_id</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The serial number of the tool.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serial</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">serial</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serial</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">serial</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">serial</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">serial</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The type of the tool.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tool_type</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tool_type</span>: <span class="ident">DeviceToolType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tool_type</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tool_type</span>: <span class="ident">DeviceToolType</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tool_type</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tool_type</span>);
         <span class="self">self</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">DeviceTool</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;DeviceTool&quot;</span>)
     }
 }

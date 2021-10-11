@@ -403,7 +403,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureLongPress</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureLongPress</span>, <span class="ident">ffi::GtkGestureLongPressClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_long_press_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_gesture_long_press_get_type</span>(),
     }
 }
 
@@ -414,7 +414,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`GestureLongPress`][crate::GestureLongPress].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_long_press_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureLongPress</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="ident">GestureLongPress</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Gesture::from_glib_full</span>(<span class="ident">ffi::gtk_gesture_long_press_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
@@ -423,7 +423,7 @@
     <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`GestureLongPress`] objects.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create [`GestureLongPress`] objects.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureLongPressBuilder</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">GestureLongPressBuilder</span> {
         <span class="ident">GestureLongPressBuilder::default</span>()
     }
 
@@ -434,7 +434,7 @@
     <span class="doccomment">/// the delay factor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_long_press_get_delay_factor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_delay_factor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">delay_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">delay_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_gesture_long_press_get_delay_factor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
@@ -454,7 +454,7 @@
     <span class="doccomment">/// Emitted whenever a press moved too far, or was released</span>
     <span class="doccomment">/// before `signal::GestureLongPress::pressed` happened.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cancelled&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_cancelled</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_cancelled</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cancelled_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">GestureLongPress</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkGestureLongPress</span>,
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -482,7 +482,7 @@
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// the Y coordinate where the press happened, relative to the widget allocation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;pressed&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_pressed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_pressed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">pressed_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">GestureLongPress</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkGestureLongPress</span>,
             <span class="ident">x</span>: <span class="ident">libc::c_double</span>,
@@ -506,7 +506,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;delay-factor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_delay_factor_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_delay_factor_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_delay_factor_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">GestureLongPress</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkGestureLongPress</span>,
             <span class="ident">_param_spec</span>: <span class="ident">glib::ffi::gpointer</span>,
@@ -530,7 +530,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">GestureLongPress</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
@@ -554,13 +554,13 @@
 <span class="kw">impl</span> <span class="ident">GestureLongPressBuilder</span> {
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Create a new [`GestureLongPressBuilder`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::default</span>()
     }
 
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Build the [`GestureLongPress`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureLongPress</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">GestureLongPress</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">delay_factor</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">delay_factor</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;delay-factor&quot;</span>, <span class="ident">delay_factor</span>));
@@ -591,13 +591,13 @@
     }
 
     <span class="doccomment">/// Factor by which to modify the default timeout.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">delay_factor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">delay_factor</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">delay_factor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">delay_factor</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">delay_factor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">delay_factor</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Mouse button number to listen to, or 0 to listen for any button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">button</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">button</span>);
         <span class="self">self</span>
     }
@@ -605,45 +605,45 @@
     <span class="doccomment">/// Whether the gesture is exclusive.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Exclusive gestures only listen to pointer and pointer emulated events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exclusive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exclusive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">exclusive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">exclusive</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Whether the gesture handles only touch events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">touch_only</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">touch_only</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">touch_only</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">touch_only</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">touch_only</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">touch_only</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The number of touch points that trigger</span>
     <span class="doccomment">/// recognition on this gesture.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_points</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">n_points</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">n_points</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">n_points</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The name for this controller, typically used for debugging purposes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The limit for which events this controller will handle.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_limit</span>: <span class="ident">PropagationLimit</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_limit</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_limit</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The propagation phase at which this controller will handle events.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">propagation_phase</span>: <span class="ident">PropagationPhase</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">propagation_phase</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">propagation_phase</span>);
         <span class="self">self</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">GestureLongPress</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;GestureLongPress&quot;</span>)
     }
 }

@@ -537,11 +537,11 @@
         <span class="self">self</span>.<span class="ident">parent_detach_clipboard</span>(<span class="ident">provider</span>, <span class="ident">clipboard</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">fn</span> <span class="ident">formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span> {
         <span class="self">self</span>.<span class="ident">parent_formats</span>(<span class="ident">provider</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">fn</span> <span class="ident">storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span> {
         <span class="self">self</span>.<span class="ident">parent_storable_formats</span>(<span class="ident">provider</span>)
     }
 
@@ -551,11 +551,11 @@
         <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">gio::OutputStream</span>,
         <span class="ident">io_priority</span>: <span class="ident">glib::Priority</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_write_mime_type_future</span>(<span class="ident">provider</span>, <span class="ident">mime_type</span>, <span class="ident">stream</span>, <span class="ident">io_priority</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_value</span>(<span class="ident">provider</span>, <span class="ident">type_</span>)
     }
 }
@@ -567,9 +567,9 @@
 
     <span class="kw">fn</span> <span class="ident">parent_detach_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">clipboard</span>: <span class="kw-2">&amp;</span><span class="ident">Clipboard</span>);
 
-    <span class="kw">fn</span> <span class="ident">parent_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span>;
+    <span class="kw">fn</span> <span class="ident">parent_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span>;
 
-    <span class="kw">fn</span> <span class="ident">parent_storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span>;
+    <span class="kw">fn</span> <span class="ident">parent_storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span>;
 
     <span class="kw">fn</span> <span class="ident">parent_write_mime_type_async</span><span class="op">&lt;</span>
         <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Cancellable</span><span class="op">&gt;</span>,
@@ -590,9 +590,9 @@
         <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">gio::OutputStream</span>,
         <span class="ident">io_priority</span>: <span class="ident">glib::Priority</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
-    <span class="kw">fn</span> <span class="ident">parent_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ContentProviderImpl</span><span class="op">&gt;</span> <span class="ident">ContentProviderImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
@@ -641,7 +641,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">fn</span> <span class="ident">parent_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProviderClass</span>;
@@ -657,7 +657,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">fn</span> <span class="ident">parent_storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">ContentFormats</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProviderClass</span>;
@@ -711,7 +711,7 @@
                         <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProvider</span>,
                         <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio::ffi::GAsyncResult</span>,
                         <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GError</span>,
-                    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span>,
+                    ) -&gt; <span class="ident">glib::ffi::gboolean</span>,
                 )<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">user_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
                 <span class="ident">cb</span>.<span class="number">1</span>(<span class="ident">source_object_ptr</span> <span class="kw">as</span> <span class="kw">_</span>, <span class="ident">res</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>);
                 <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
@@ -745,7 +745,7 @@
         <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">gio::OutputStream</span>,
         <span class="ident">io_priority</span>: <span class="ident">glib::Priority</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">stream</span>.<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="ident">mime_type</span>);
         <span class="ident">Box::pin</span>(<span class="ident">gio::GioFuture::new</span>(
@@ -767,7 +767,7 @@
         ))
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">type_</span>: <span class="ident">glib::Type</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProviderClass</span>;
@@ -851,7 +851,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">content_provider_formats</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ContentProviderImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProvider</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentFormats</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentFormats</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -861,7 +861,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">content_provider_storable_formats</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ContentProviderImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProvider</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentFormats</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentFormats</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -907,8 +907,8 @@
             )
             .<span class="kw">await</span>;
         <span class="kw">match</span> <span class="ident">res</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">t</span>.<span class="ident">return_value</span>(<span class="kw-2">&amp;</span><span class="bool-val">true</span>.<span class="ident">to_value</span>()),
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">t</span>.<span class="ident">return_error</span>(<span class="ident">e</span>),
+            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="ident">t</span>.<span class="ident">return_value</span>(<span class="kw-2">&amp;</span><span class="bool-val">true</span>.<span class="ident">to_value</span>()),
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="ident">t</span>.<span class="ident">return_error</span>(<span class="ident">e</span>),
         }
     });
 }
@@ -917,16 +917,16 @@
     <span class="ident">_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProvider</span>,
     <span class="ident">res_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio::ffi::GAsyncResult</span>,
     <span class="ident">error_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GError</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">gio::AsyncResult</span> <span class="op">=</span> <span class="ident">from_glib_none</span>(<span class="ident">res_ptr</span>);
     <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">res</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">gio::Task</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">t</span>.<span class="ident">propagate_value</span>();
     <span class="kw">match</span> <span class="ident">ret</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">v</span>) =&gt; {
             <span class="macro">assert!</span>(<span class="ident">v</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>());
             <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
         }
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
             <span class="kw-2">*</span><span class="ident">error_ptr</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">into_raw</span>();
             <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
         }
@@ -937,7 +937,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentProvider</span>,
     <span class="ident">value_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GValue</span>,
     <span class="ident">error_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GError</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -945,11 +945,11 @@
 
     <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">value</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">value</span>.<span class="ident">type_</span>());
     <span class="kw">match</span> <span class="ident">ret</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">v</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">v</span>) =&gt; {
             <span class="ident">glib::gobject_ffi::g_value_copy</span>(<span class="ident">v</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">value_ptr</span>);
             <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
         }
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
             <span class="kw-2">*</span><span class="ident">error_ptr</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">into_raw</span>();
             <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
         }

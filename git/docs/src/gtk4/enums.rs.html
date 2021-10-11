@@ -131,45 +131,45 @@
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">cmp::Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">cmp::Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">cmp::Ordering</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
-            <span class="ident">cmp::Ordering::Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Equal</span>,
-            <span class="ident">cmp::Ordering::Greater</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Larger</span>,
-            <span class="ident">cmp::Ordering::Less</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Smaller</span>,
+            <span class="ident">cmp::Ordering::Equal</span> =&gt; <span class="ident"><span class="self">Self</span>::Equal</span>,
+            <span class="ident">cmp::Ordering::Greater</span> =&gt; <span class="ident"><span class="self">Self</span>::Larger</span>,
+            <span class="ident">cmp::Ordering::Less</span> =&gt; <span class="ident"><span class="self">Self</span>::Smaller</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">cmp::Ordering</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">Ordering</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
-            <span class="ident">Ordering::Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Equal</span>,
-            <span class="ident">Ordering::Larger</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Greater</span>,
-            <span class="ident">Ordering::Smaller</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="self">Self</span>::Less</span>,
-            <span class="ident">Ordering::__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+            <span class="ident">Ordering::Equal</span> =&gt; <span class="ident"><span class="self">Self</span>::Equal</span>,
+            <span class="ident">Ordering::Larger</span> =&gt; <span class="ident"><span class="self">Self</span>::Greater</span>,
+            <span class="ident">Ordering::Smaller</span> =&gt; <span class="ident"><span class="self">Self</span>::Less</span>,
+            <span class="ident">Ordering::__Unknown</span>(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">ErrorDomain</span> <span class="kw">for</span> <span class="ident">CssParserWarning</span> {
-    <span class="kw">fn</span> <span class="ident">domain</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Quark</span> {
+    <span class="kw">fn</span> <span class="ident">domain</span>() -&gt; <span class="ident">Quark</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_css_parser_warning_quark</span>()) }
     }
 
-    <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="ident">into_glib</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_DEPRECATED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Deprecated</span>),
-            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_SYNTAX</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Syntax</span>),
-            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Unimplemented</span>),
-            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>)),
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_DEPRECATED</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Deprecated</span>),
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_SYNTAX</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Syntax</span>),
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Unimplemented</span>),
+            <span class="ident">value</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
 }
