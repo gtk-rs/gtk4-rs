@@ -232,15 +232,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_bounds&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">bounds_width</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
-            <span class="kw">let</span> <span class="ident">bounds_height</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds_width</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds_height</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
 
             <span class="ident">ffi::gdk_toplevel_size_get_bounds</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-                <span class="ident">bounds_width</span>,
-                <span class="ident">bounds_height</span>,
+                <span class="ident">bounds_width</span>.<span class="ident">as_mut_ptr</span>(),
+                <span class="ident">bounds_height</span>.<span class="ident">as_mut_ptr</span>(),
             );
-            (<span class="ident">bounds_width</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">bounds_height</span> <span class="kw">as</span> <span class="ident">i32</span>)
+            (<span class="ident">bounds_width</span>.<span class="ident">assume_init</span>(), <span class="ident">bounds_height</span>.<span class="ident">assume_init</span>())
         }
     }
 
