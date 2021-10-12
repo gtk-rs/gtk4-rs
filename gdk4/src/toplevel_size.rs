@@ -12,15 +12,15 @@ impl ToplevelSize {
     #[doc(alias = "get_bounds")]
     pub fn bounds(&self) -> (i32, i32) {
         unsafe {
-            let bounds_width = std::ptr::null_mut();
-            let bounds_height = std::ptr::null_mut();
+            let mut bounds_width = std::mem::MaybeUninit::uninit();
+            let mut bounds_height = std::mem::MaybeUninit::uninit();
 
             ffi::gdk_toplevel_size_get_bounds(
                 self.to_glib_none().0 as *mut _,
-                bounds_width,
-                bounds_height,
+                bounds_width.as_mut_ptr(),
+                bounds_height.as_mut_ptr(),
             );
-            (bounds_width as i32, bounds_height as i32)
+            (bounds_width.assume_init(), bounds_height.assume_init())
         }
     }
 
