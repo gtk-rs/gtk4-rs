@@ -153,8 +153,70 @@ We do that by adding the menu in front of the template.
 
 <span class="filename">Filename: listings/actions/6/window/window.ui</span>
 
-```xml
-{{#rustdoc_include ../listings/actions/6/window/window.ui}}
+```diff
+ <?xml version="1.0" encoding="UTF-8"?>
+ <interface>
++  <menu id="main-menu">
++    <item>
++      <attribute name="label" translatable="yes">_Close window</attribute>
++      <attribute name="action">win.quit</attribute>
++    </item>
++    <item>
++      <attribute name="label" translatable="yes">_Sensitive button</attribute>
++      <attribute name="action">win.sensitive-button</attribute>
++    </item>
++    <section>
++      <attribute name="label" translatable="yes">Orientation</attribute>
++      <item>
++        <attribute name="label" translatable="yes">_Horizontal</attribute>
++        <attribute name="action">win.orientation</attribute>
++        <attribute name="target">Horizontal</attribute>
++      </item>
++      <item>
++        <attribute name="label" translatable="yes">_Vertical</attribute>
++        <attribute name="action">win.orientation</attribute>
++        <attribute name="target">Vertical</attribute>
++      </item>
++    </section>
++  </menu>
+   <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
+     <property name="title">My GTK App</property>
++    <property name="width_request">360</property>
++    <child type="titlebar">
++      <object class="GtkHeaderBar">
++        <child type ="end">
++          <object class="GtkMenuButton">
++            <property name="icon_name">open-menu-symbolic</property>
++            <property name="menu_model">main-menu</property>
++          </object>
++        </child>
++      </object>
++    </child>
+     <child>
+       <object class="GtkBox" id="gtk_box">
+         <property name="orientation">vertical</property>
+         <property name="margin-top">12</property>
+         <property name="margin-bottom">12</property>
+         <property name="margin-start">12</property>
+         <property name="margin-end">12</property>
+         <property name="spacing">12</property>
+         <property name="halign">center</property>
+         <child>
+           <object class="GtkButton" id="button">
+             <property name="label">Press me!</property>
+             <property name="action-name">win.count</property>
+             <property name="action-target">1</property>
+           </object>
+         </child>
+         <child>
+           <object class="GtkLabel" id="label">
+             <property name="label">Counter: 0</property>
+           </object>
+         </child>
+       </object>
+     </child>
+   </template>
+ </interface>
 ```
 
 While it is less readable, we could have also 
