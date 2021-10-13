@@ -5,15 +5,12 @@ use std::fmt;
 use std::ops;
 
 glib::wrapper! {
-    #[derive(PartialEq, Eq, PartialOrd, Ord, Hash)]
     #[doc(alias = "GtkBorder")]
-    pub struct Border(Boxed<ffi::GtkBorder>);
+    pub struct Border(BoxedInline<ffi::GtkBorder>);
 
     match fn {
         copy => |ptr| ffi::gtk_border_copy(mut_override(ptr)),
         free => |ptr| ffi::gtk_border_free(ptr),
-        init => |_ptr| (),
-        clear => |_ptr| (),
         type_ => || ffi::gtk_border_get_type(),
     }
 }
@@ -22,13 +19,13 @@ impl ops::Deref for Border {
     type Target = ffi::GtkBorder;
 
     fn deref(&self) -> &Self::Target {
-        &(*self.0)
+        &self.0
     }
 }
 
 impl ops::DerefMut for Border {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut (*self.0)
+        &mut self.0
     }
 }
 
@@ -36,7 +33,7 @@ impl Border {
     #[doc(alias = "gtk_border_new")]
     pub fn new() -> Self {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gtk_border_new()) }
+        unsafe { Self::uninitialized() }
     }
 
     // rustdoc-stripper-ignore-next
@@ -96,6 +93,17 @@ impl fmt::Debug for Border {
             .finish()
     }
 }
+
+impl PartialEq for Border {
+    fn eq(&self, other: &Self) -> bool {
+        self.left == other.left
+            && self.right == other.right
+            && self.top == other.top
+            && self.bottom == other.bottom
+    }
+}
+
+impl Eq for Border {}
 
 #[derive(Clone, Default)]
 pub struct BorderBuilder {
