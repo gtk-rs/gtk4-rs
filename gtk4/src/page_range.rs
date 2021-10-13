@@ -23,15 +23,6 @@ impl PageRange {
 }
 
 #[doc(hidden)]
-impl IntoGlib for PageRange {
-    type GlibType = ffi::GtkPageRange;
-
-    fn into_glib(self) -> ffi::GtkPageRange {
-        self.0
-    }
-}
-
-#[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *const ffi::GtkPageRange> for PageRange {
     type Storage = Box<ffi::GtkPageRange>;
 
