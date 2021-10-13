@@ -67,8 +67,6 @@ manual = [
     "Gdk.MotionEvent",
     "Gdk.PadEvent",
     "Gdk.ProximityEvent",
-    "Gdk.Rectangle",
-    "Gdk.RGBA",
     "Gdk.ScrollEvent",
     "Gdk.TimeCoord",
     "Gdk.ToplevelSize",
@@ -473,6 +471,20 @@ status = "generate"
     [[object.function]]
     name = "get_offset"
     manual = true # invalid mutability
+
+[[object]]
+name = "Gdk.Rectangle"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Gdk.RGBA"
+status = "generate"
+boxed_inline = true
+    [[object.function]]
+    name = "parse"
+    # This is a constructor
+    manual = true
 
 [[object]]
 name = "Gdk.Seat"
