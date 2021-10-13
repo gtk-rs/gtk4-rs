@@ -37,45 +37,16 @@ impl PaintableImpl for CustomPaintable {
             &graphene::Point::new(0f32, 0f32),
             &graphene::Point::new(width as f32, height as f32),
             &[
-                gsk::ColorStop::new(0.0, gdk::RGBA::red()),
-                gsk::ColorStop::new(
-                    0.15,
-                    gdk::RGBA {
-                        red: 1.0,
-                        green: 127_f32 / 255_f32,
-                        blue: 0.0,
-                        alpha: 1.0,
-                    },
-                ),
-                gsk::ColorStop::new(
-                    0.3,
-                    gdk::RGBA {
-                        red: 1.0,
-                        green: 1.0,
-                        blue: 0.0,
-                        alpha: 1.0,
-                    },
-                ),
-                gsk::ColorStop::new(0.45, gdk::RGBA::green()),
-                gsk::ColorStop::new(0.6, gdk::RGBA::blue()),
+                gsk::ColorStop::new(0.0, gdk::RGBA::RED),
+                gsk::ColorStop::new(0.15, gdk::RGBA::new(1.0, 127_f32 / 255_f32, 0.0, 1.0)),
+                gsk::ColorStop::new(0.3, gdk::RGBA::new(1.0, 1.0, 0.0, 1.0)),
+                gsk::ColorStop::new(0.45, gdk::RGBA::GREEN),
+                gsk::ColorStop::new(0.6, gdk::RGBA::BLUE),
                 gsk::ColorStop::new(
                     0.75,
-                    gdk::RGBA {
-                        red: 75_f32 / 255_f32,
-                        green: 0.0,
-                        blue: 130_f32 / 255_f32,
-                        alpha: 1.0,
-                    },
+                    gdk::RGBA::new(75_f32 / 255_f32, 0.0, 130_f32 / 255_f32, 1.0),
                 ),
-                gsk::ColorStop::new(
-                    0.9,
-                    gdk::RGBA {
-                        red: 143_f32 / 255_f32,
-                        green: 0.0,
-                        blue: 1.0,
-                        alpha: 1.0,
-                    },
-                ),
+                gsk::ColorStop::new(0.9, gdk::RGBA::new(143_f32 / 255_f32, 0.0, 1.0, 1.0)),
             ],
         );
     }

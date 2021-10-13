@@ -124,12 +124,7 @@ impl LayoutManagerImpl for CustomLayout {
             let x = t * cx + (1.0 - t) * gx;
             let y = t * cy + (1.0 - t) * gy;
             child.size_allocate(
-                &gtk::Allocation {
-                    x: x as i32,
-                    y: y as i32,
-                    width: child_width,
-                    height: child_height,
-                },
+                &gtk::Allocation::new(x as i32, y as i32, child_width, child_height),
                 -1,
             );
             i += 1;

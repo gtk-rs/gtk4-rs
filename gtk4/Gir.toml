@@ -2003,8 +2003,7 @@ manual_traits = ["TextBufferExtManual"]
 [[object]]
 name = "Gtk.TextIter"
 status = "generate"
-init_function_expression = "|_ptr| ()"
-clear_function_expression = "|_ptr| ()"
+boxed_inline = true
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_buffer"
@@ -2094,8 +2093,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TreeIter"
 status = "generate"
-init_function_expression = "|_ptr| ()"
-clear_function_expression = "|_ptr| ()"
+boxed_inline = true
 
 [[object]]
 name = "Gtk.TreeListModel"

@@ -5,14 +5,11 @@
 use glib::translate::*;
 
 glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct TreeIter(Boxed<ffi::GtkTreeIter>);
+    pub struct TreeIter(BoxedInline<ffi::GtkTreeIter>);
 
     match fn {
         copy => |ptr| ffi::gtk_tree_iter_copy(mut_override(ptr)),
         free => |ptr| ffi::gtk_tree_iter_free(ptr),
-        init => |_ptr| (),
-        clear => |_ptr| (),
         type_ => || ffi::gtk_tree_iter_get_type(),
     }
 }

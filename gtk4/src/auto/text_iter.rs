@@ -12,14 +12,11 @@ use glib::translate::*;
 use std::cmp;
 
 glib::wrapper! {
-    #[derive(Debug, Hash)]
-    pub struct TextIter(Boxed<ffi::GtkTextIter>);
+    pub struct TextIter(BoxedInline<ffi::GtkTextIter>);
 
     match fn {
         copy => |ptr| ffi::gtk_text_iter_copy(ptr),
         free => |ptr| ffi::gtk_text_iter_free(ptr),
-        init => |_ptr| (),
-        clear => |_ptr| (),
         type_ => || ffi::gtk_text_iter_get_type(),
     }
 }

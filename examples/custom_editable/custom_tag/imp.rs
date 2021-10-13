@@ -114,14 +114,7 @@ impl WidgetImpl for CustomTag {
     }
 
     fn size_allocate(&self, _widget: &Self::Type, width: i32, height: i32, baseline: i32) {
-        self.container.size_allocate(
-            &gtk::Allocation {
-                width,
-                height,
-                x: 0,
-                y: 0,
-            },
-            baseline,
-        )
+        self.container
+            .size_allocate(&gtk::Allocation::new(0, 0, width, height), baseline)
     }
 }

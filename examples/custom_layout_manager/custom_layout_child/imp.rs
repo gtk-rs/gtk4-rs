@@ -13,7 +13,7 @@ pub struct CustomLayoutChild {
 impl Default for CustomLayoutChild {
     fn default() -> Self {
         Self {
-            color: RefCell::new(gdk::RGBA::black()),
+            color: RefCell::new(gdk::RGBA::BLACK),
         }
     }
 }

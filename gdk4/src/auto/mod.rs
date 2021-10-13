@@ -107,6 +107,12 @@ pub use self::frame_timings::FrameTimings;
 mod popup_layout;
 pub use self::popup_layout::PopupLayout;
 
+mod rgba;
+pub use self::rgba::RGBA;
+
+mod rectangle;
+pub use self::rectangle::Rectangle;
+
 mod toplevel_layout;
 pub use self::toplevel_layout::ToplevelLayout;
 

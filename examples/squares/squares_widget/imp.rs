@@ -29,25 +29,23 @@ impl WidgetImpl for SquaresWidget {
 
     fn snapshot(&self, widget: &Self::Type, snapshot: &gtk::Snapshot) {
         // Draw four color squares
-        let mut rect = graphene::Rect::zero();
-
         let width = (widget.width() / 2) as f32;
         let height = (widget.height() / 2) as f32;
 
-        let red_color = gdk::RGBA::red();
-        rect.init(0_f32, 0_f32, width, height);
+        let red_color = gdk::RGBA::RED;
+        let rect = graphene::Rect::new(0_f32, 0_f32, width, height);
         snapshot.append_color(&red_color, &rect);
 
-        let green_color = gdk::RGBA::green();
-        rect.init(width, 0_f32, width, height);
+        let green_color = gdk::RGBA::GREEN;
+        let rect = graphene::Rect::new(width, 0_f32, width, height);
         snapshot.append_color(&green_color, &rect);
 
         let yellow_color = gdk::RGBA::from_str("yellow").expect("Failed to parse string");
-        rect.init(0_f32, height, width, height);
+        let rect = graphene::Rect::new(0_f32, height, width, height);
         snapshot.append_color(&yellow_color, &rect);
 
-        let blue_color = gdk::RGBA::blue();
-        rect.init(width, height, width, height);
+        let blue_color = gdk::RGBA::BLUE;
+        let rect = graphene::Rect::new(width, height, width, height);
         snapshot.append_color(&blue_color, &rect);
     }
 }
