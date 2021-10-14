@@ -35,8 +35,8 @@ impl Window {
         // Get state
         let imp = imp::Window::from_instance(self);
 
-        // Get value from settings
-        let value: String = imp.settings.get("filter");
+        // Get filter state from settings
+        let filter_state: String = imp.settings.get("filter");
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj: &Object| {
@@ -59,7 +59,7 @@ impl Window {
         });
 
         // Return correct filter
-        match value.as_str() {
+        match filter_state.as_str() {
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
             _ => None,

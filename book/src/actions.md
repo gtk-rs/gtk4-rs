@@ -154,6 +154,9 @@ We do that by adding the menu in front of the template.
 <span class="filename">Filename: listings/actions/6/window/window.ui</span>
 
 ```diff
+--- /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/5/window/window.ui
++++ /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/6/window/window.ui
+@@ -1,7 +1,41 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <interface>
 +  <menu id="main-menu">
@@ -195,32 +198,9 @@ We do that by adding the menu in front of the template.
      <child>
        <object class="GtkBox" id="gtk_box">
          <property name="orientation">vertical</property>
-         <property name="margin-top">12</property>
-         <property name="margin-bottom">12</property>
-         <property name="margin-start">12</property>
-         <property name="margin-end">12</property>
-         <property name="spacing">12</property>
-         <property name="halign">center</property>
-         <child>
-           <object class="GtkButton" id="button">
-             <property name="label">Press me!</property>
-             <property name="action-name">win.count</property>
-             <property name="action-target">1</property>
-           </object>
-         </child>
-         <child>
-           <object class="GtkLabel" id="label">
-             <property name="label">Counter: 0</property>
-           </object>
-         </child>
-       </object>
-     </child>
-   </template>
- </interface>
 ```
 
-While it is less readable, we could have also 
-Note how we specified a target:
+Note how we specified the target:
 
 ```xml
 <attribute name="target">Horizontal</attribute>
