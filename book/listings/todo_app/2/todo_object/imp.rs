@@ -57,10 +57,17 @@ impl ObjectImpl for TodoObject {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(
+        &self,
+        _obj: &Self::Type,
+        _id: usize,
+        value: &Value,
+        pspec: &ParamSpec,
+    ) {
         match pspec.name() {
             "completed" => {
-                let input_value = value.get().expect("The value needs to be of type `bool`.");
+                let input_value =
+                    value.get().expect("The value needs to be of type `bool`.");
                 self.data.borrow_mut().completed = input_value;
             }
             "content" => {

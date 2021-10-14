@@ -45,10 +45,17 @@ impl ObjectImpl for IntegerObject {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(
+        &self,
+        _obj: &Self::Type,
+        _id: usize,
+        value: &Value,
+        pspec: &ParamSpec,
+    ) {
         match pspec.name() {
             "number" => {
-                let input_number = value.get().expect("The value needs to be of type `i32`.");
+                let input_number =
+                    value.get().expect("The value needs to be of type `i32`.");
                 self.number.replace(input_number);
             }
             _ => unimplemented!(),

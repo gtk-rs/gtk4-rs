@@ -3,9 +3,9 @@ mod integer_object;
 use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
-    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
-    SingleSelection, SortListModel, SorterChange,
+    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange,
+    Label, ListView, PolicyType, PropertyExpression, ScrolledWindow,
+    SignalListItemFactory, SingleSelection, SortListModel, SorterChange,
 };
 use integer_object::IntegerObject;
 
