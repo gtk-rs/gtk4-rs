@@ -3,7 +3,6 @@ mod todo_row;
 mod utils;
 mod window;
 
-use gtk::gdk;
 use gtk::prelude::*;
 use gtk::Application;
 
@@ -19,9 +18,7 @@ fn main() {
         .build();
 
     // Connect to signals
-    app.connect_startup(|app| {
-        setup_shortcuts(app);
-    });
+    app.connect_startup(setup_shortcuts);
     app.connect_activate(build_ui);
 
     // Run the application

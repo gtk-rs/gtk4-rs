@@ -31,12 +31,13 @@ impl Window {
         imp.model.get().expect("Could not get model")
     }
 
+    // ANCHOR: filter
     fn filter(&self) -> Option<CustomFilter> {
         // Get state
         let imp = imp::Window::from_instance(self);
 
-        // Get value from settings
-        let value: String = imp.settings.get("filter");
+        // Get filter_state from settings
+        let filter_state: String = imp.settings.get("filter");
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj: &Object| {
@@ -59,12 +60,13 @@ impl Window {
         });
 
         // Return correct filter
-        match value.as_str() {
+        match filter_state.as_str() {
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
             _ => None,
         }
     }
+    // ANCHOR_END: filter
 
     fn setup_model(&self) {
         // Create new model

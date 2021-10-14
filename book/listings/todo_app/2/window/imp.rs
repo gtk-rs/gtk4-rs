@@ -12,6 +12,7 @@ use once_cell::sync::OnceCell;
 use crate::todo_object::TodoObject;
 use crate::utils::data_path;
 
+// ANCHOR: struct_default
 // Object holding the state
 #[derive(CompositeTemplate)]
 #[template(file = "window.ui")]
@@ -40,6 +41,7 @@ impl Default for Window {
         }
     }
 }
+// ANCHOR_END: struct_default
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
