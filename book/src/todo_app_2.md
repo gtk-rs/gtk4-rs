@@ -8,6 +8,7 @@ Your browser does not support the video tag.
  </video>
 </div>
 
+<span class="filename">Filename: listings/todo_app/2/window/window.ui</span>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -75,4 +76,10 @@ Your browser does not support the video tag.
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:filter}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```

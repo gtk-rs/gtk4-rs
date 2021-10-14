@@ -61,13 +61,15 @@ impl Window {
 
         // Return correct filter
         match filter_state.as_str() {
+            "All" => None,
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
-            _ => None,
+            _ => unreachable!(),
         }
     }
     // ANCHOR_END: filter
 
+    // ANCHOR: setup_model
     fn setup_model(&self) {
         // Create new model
         let model = gio::ListStore::new(TodoObject::static_type());
@@ -91,6 +93,7 @@ impl Window {
             }),
         );
     }
+    // ANCHOR_END: setup_model
 
     fn restore_data(&self) {
         // Deserialize data from file to vector
