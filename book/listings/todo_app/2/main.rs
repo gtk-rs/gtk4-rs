@@ -8,6 +8,7 @@ use gtk::Application;
 
 use window::Window;
 
+// ANCHOR: main
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
@@ -31,6 +32,7 @@ fn setup_shortcuts(app: &Application) {
     app.set_accels_for_action("win.filter('Done')", &["<primary>d"]);
     app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 }
+// ANCHOR_END: main
 
 fn build_ui(app: &Application) {
     // Create a new custom window and show it

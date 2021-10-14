@@ -60,6 +60,7 @@ impl ObjectSubclass for Window {
     }
 }
 
+// ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
@@ -75,10 +76,12 @@ impl ObjectImpl for Window {
         obj.setup_filter_action();
     }
 }
+// ANCHOR_END: object_impl
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
 
+// ANCHOR: window_impl
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
@@ -105,6 +108,7 @@ impl WindowImpl for Window {
         self.parent_close_request(window)
     }
 }
+// ANCHOR_END: window_impl
 
 // Trait shared by all application
 impl ApplicationWindowImpl for Window {}

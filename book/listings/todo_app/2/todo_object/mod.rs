@@ -34,8 +34,10 @@ impl TodoObject {
 }
 // ANCHOR_END: impl
 
+// ANCHOR: serialize
 #[derive(Default, Serialize, Deserialize)]
 pub struct TodoData {
     pub completed: bool,
     pub content: String,
 }
+// ANCHOR: serialize

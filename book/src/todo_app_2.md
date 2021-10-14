@@ -83,3 +83,52 @@ Your browser does not support the video tag.
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```
+
+
+<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_callbacks}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_shortcut_window}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_filter_action}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/main.rs:main}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/todo_object/mod.rs:serialize}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/imp.rs:window_impl}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:restore_data}}
+```
+
+<span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/imp.rs:object_impl}}
+```

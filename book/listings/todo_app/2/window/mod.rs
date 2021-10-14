@@ -95,6 +95,7 @@ impl Window {
     }
     // ANCHOR_END: setup_model
 
+    // ANCHOR: restore_data
     fn restore_data(&self) {
         // Deserialize data from file to vector
         if let Ok(file) = File::open(data_path()) {
@@ -112,7 +113,9 @@ impl Window {
             info!("Backup file does not exist yet {:?}", data_path());
         }
     }
+    // ANCHOR_END: restore_data
 
+    // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -148,6 +151,7 @@ impl Window {
                 }
             }));
     }
+    // ANCHOR_END: setup_callbacks
 
     fn setup_factory(&self) {
         // Create a new factory
@@ -196,6 +200,7 @@ impl Window {
         imp.list_view.set_factory(Some(&factory));
     }
 
+    // ANCHOR: setup_shortcut_window
     fn setup_shortcut_window(&self) {
         // Get `ShortcutsWindow` via `gtk::Builder`
         let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
@@ -206,7 +211,9 @@ impl Window {
         // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
     }
+    // ANCHOR_END: setup_shortcut_window
 
+    // ANCHOR: setup_filter_action
     fn setup_filter_action(&self) {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -217,4 +224,5 @@ impl Window {
         // Add action "filter" to action group "win"
         self.add_action(&filter_action);
     }
+    // ANCHOR_END: setup_filter_action
 }
