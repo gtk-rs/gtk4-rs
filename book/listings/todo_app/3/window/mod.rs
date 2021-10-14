@@ -62,9 +62,10 @@ impl Window {
 
         // Return correct filter
         match filter_state.as_str() {
+            "All" => None,
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
-            _ => None,
+            _ => unreachable!(),
         }
     }
 
