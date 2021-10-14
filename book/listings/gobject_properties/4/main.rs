@@ -57,7 +57,8 @@ fn build_ui(app: &Application) {
     // ANCHOR_END: bind_numbers
 
     // ANCHOR: connect_notify
-    // The closure will be called whenever the property "number" of `button_1` gets changed
+    // The closure will be called
+    // whenever the property "number" of `button_1` gets changed
     button_1.connect_notify_local(Some("number"), move |button, _| {
         let number = button
             .property("number")
