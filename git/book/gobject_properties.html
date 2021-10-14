@@ -531,7 +531,8 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span><span class="boring">    // The closure will be called
+</span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
 </span><span class="boring">            .property(&quot;number&quot;)
@@ -615,7 +616,8 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
         .build();
 <span class="boring">
-</span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span><span class="boring">    // The closure will be called
+</span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
 </span><span class="boring">            .property(&quot;number&quot;)
@@ -701,7 +703,8 @@ We can do this like this:</p>
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span>    // The closure will be called
+    // whenever the property &quot;number&quot; of `button_1` gets changed
     button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
         let number = button
             .property(&quot;number&quot;)

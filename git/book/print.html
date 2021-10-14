@@ -1890,7 +1890,8 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span><span class="boring">    // The closure will be called
+</span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
 </span><span class="boring">            .property(&quot;number&quot;)
@@ -1974,7 +1975,8 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
         .build();
 <span class="boring">
-</span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span><span class="boring">    // The closure will be called
+</span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
 </span><span class="boring">            .property(&quot;number&quot;)
@@ -2060,7 +2062,8 @@ We can do this like this:</p>
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
+</span>    // The closure will be called
+    // whenever the property &quot;number&quot; of `button_1` gets changed
     button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
         let number = button
             .property(&quot;number&quot;)
@@ -2297,6 +2300,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
 </span><span class="boring">static MAX_NUMBER: i32 = 8;
+</span><span class="boring">
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
@@ -2421,6 +2425,7 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
 </span>static MAX_NUMBER: i32 = 8;
+
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&amp;self, button: &amp;Self::Type) {
@@ -7316,7 +7321,10 @@ We do not need the action state to implement orientation switching, however it i
 <p>Even though <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html"><code>gio::Menu</code></a> can also be created with the bindings, the most convenient way is to use the interface builder for that.
 We do that by adding the menu in front of the template.</p>
 <p><span class="filename">Filename: listings/actions/6/window/window.ui</span></p>
-<pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-diff">--- /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/5/window/window.ui
++++ /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/6/window/window.ui
+@@ -1,7 +1,41 @@
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  &lt;interface&gt;
 +  &lt;menu id=&quot;main-menu&quot;&gt;
 +    &lt;item&gt;
@@ -7357,31 +7365,8 @@ We do that by adding the menu in front of the template.</p>
      &lt;child&gt;
        &lt;object class=&quot;GtkBox&quot; id=&quot;gtk_box&quot;&gt;
          &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
-         &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-         &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-         &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-         &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;
-         &lt;property name=&quot;spacing&quot;&gt;12&lt;/property&gt;
-         &lt;property name=&quot;halign&quot;&gt;center&lt;/property&gt;
-         &lt;child&gt;
-           &lt;object class=&quot;GtkButton&quot; id=&quot;button&quot;&gt;
-             &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-             &lt;property name=&quot;action-name&quot;&gt;win.count&lt;/property&gt;
-             &lt;property name=&quot;action-target&quot;&gt;1&lt;/property&gt;
-           &lt;/object&gt;
-         &lt;/child&gt;
-         &lt;child&gt;
-           &lt;object class=&quot;GtkLabel&quot; id=&quot;label&quot;&gt;
-             &lt;property name=&quot;label&quot;&gt;Counter: 0&lt;/property&gt;
-           &lt;/object&gt;
-         &lt;/child&gt;
-       &lt;/object&gt;
-     &lt;/child&gt;
-   &lt;/template&gt;
- &lt;/interface&gt;
 </code></pre>
-<p>While it is less readable, we could have also 
-Note how we specified a target:</p>
+<p>Note how we specified the target:</p>
 <pre><code class="language-xml">&lt;attribute name=&quot;target&quot;&gt;Horizontal&lt;/attribute&gt;
 </code></pre>
 <p>String is the default type of the target which is why we did not have to specify a type.

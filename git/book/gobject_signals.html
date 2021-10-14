@@ -340,6 +340,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
 </span><span class="boring">static MAX_NUMBER: i32 = 8;
+</span><span class="boring">
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
@@ -464,6 +465,7 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
 </span>static MAX_NUMBER: i32 = 8;
+
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&amp;self, button: &amp;Self::Type) {
