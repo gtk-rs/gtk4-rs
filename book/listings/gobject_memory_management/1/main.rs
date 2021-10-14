@@ -44,8 +44,7 @@ fn build_ui(app: &Application) {
 
     // Connect callbacks, when a button is clicked `number` will be changed
     let number_copy_1 = number.clone();
-    button_increase
-        .connect_clicked(move |_| number_copy_1.set(number_copy_1.get() + 1));
+    button_increase.connect_clicked(move |_| number_copy_1.set(number_copy_1.get() + 1));
     button_decrease.connect_clicked(move |_| number.set(number.get() - 1));
     // ANCHOR_END: callback
 

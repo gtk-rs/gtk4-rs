@@ -9,9 +9,7 @@ use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
-use gtk::{
-    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
-};
+use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
 use log::info;
 
 glib::wrapper! {
@@ -77,8 +75,7 @@ impl Window {
         imp.model.set(model).expect("Could not set model");
 
         // Wrap model with filter and selection and pass it to the list view
-        let filter_model =
-            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         imp.list_view.set_model(Some(&selection_model));
 
@@ -96,14 +93,12 @@ impl Window {
     fn restore_data(&self) {
         // Deserialize data from file to vector
         if let Ok(file) = File::open(data_path()) {
-            let backup_data: Vec<TodoData> = serde_json::from_reader(file)
-                .expect("Could not get backup data from json file.");
+            let backup_data: Vec<TodoData> =
+                serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
             let todo_objects: Vec<Object> = backup_data
                 .into_iter()
-                .map(|todo_data| {
-                    TodoObject::new(todo_data.completed, todo_data.content)
-                })
+                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
                 .map(|todo_object| todo_object.upcast())
                 .collect();
 
