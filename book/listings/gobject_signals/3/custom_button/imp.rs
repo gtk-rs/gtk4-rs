@@ -95,6 +95,7 @@ impl WidgetImpl for CustomButton {}
 
 // ANCHOR: button_impl
 static MAX_NUMBER: i32 = 8;
+
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self, button: &Self::Type) {
