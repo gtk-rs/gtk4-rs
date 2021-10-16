@@ -222,9 +222,9 @@
         <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
         <span class="ident">value</span>: <span class="ident">Value</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="ident">Value</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+        -&gt; <span class="ident">bool</span>;
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragDestImplExt</span>: <span class="ident">ObjectSubclass</span> {
@@ -233,13 +233,13 @@
         <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
         <span class="ident">value</span>: <span class="ident">Value</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">parent_row_drop_possible</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
         <span class="ident">value</span>: <span class="ident">Value</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragDestImpl</span><span class="op">&gt;</span> <span class="ident">TreeDragDestImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
@@ -248,7 +248,7 @@
         <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
         <span class="ident">value</span>: <span class="ident">Value</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">TreeDragDest</span><span class="op">&gt;</span>()
@@ -274,7 +274,7 @@
         <span class="ident">tree_drag_dest</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
         <span class="ident">value</span>: <span class="ident">Value</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">TreeDragDest</span><span class="op">&gt;</span>()
@@ -315,7 +315,7 @@
     <span class="ident">tree_drag_dest</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeDragDest</span>,
     <span class="ident">destptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
     <span class="ident">valueptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_dest</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
@@ -334,7 +334,7 @@
     <span class="ident">tree_drag_dest</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeDragDest</span>,
     <span class="ident">destptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
     <span class="ident">valueptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
+) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_dest</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">dest</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">destptr</span>);

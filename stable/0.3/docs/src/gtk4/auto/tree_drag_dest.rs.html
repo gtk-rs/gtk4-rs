@@ -182,7 +182,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeDragDest</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeDragDest</span>, <span class="ident">ffi::GtkTreeDragDestIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_tree_drag_dest_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_tree_drag_dest_get_type</span>(),
     }
 }
 
@@ -209,7 +209,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// whether a new row was created before position `dest`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_drag_dest_drag_data_received&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drag_data_received</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">drag_data_received</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Determines whether a drop is possible before the given `dest_path`,</span>
     <span class="doccomment">/// at the same depth as `dest_path`. i.e., can we drop the data in</span>
@@ -225,11 +225,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if a drop is possible before `dest_path`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_drag_dest_row_drop_possible&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeDragDest</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">TreeDragDestExt</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">drag_data_received</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">drag_data_received</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_drag_dest_drag_data_received</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -239,7 +239,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_drag_dest_row_drop_possible</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -251,7 +251,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">TreeDragDest</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;TreeDragDest&quot;</span>)
     }
 }

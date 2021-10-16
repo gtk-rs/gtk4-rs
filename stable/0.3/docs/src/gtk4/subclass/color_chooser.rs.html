@@ -297,7 +297,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_rgba&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span>;
+    <span class="kw">fn</span> <span class="ident">rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">RGBA</span>;
     <span class="kw">fn</span> <span class="ident">set_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">rgba</span>: <span class="ident">RGBA</span>);
 }
 
@@ -310,7 +310,7 @@
         <span class="ident">colors</span>: <span class="kw-2">&amp;</span>[<span class="ident">RGBA</span>],
     );
     <span class="kw">fn</span> <span class="ident">parent_color_activated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">rgba</span>: <span class="ident">RGBA</span>);
-    <span class="kw">fn</span> <span class="ident">parent_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span>;
+    <span class="kw">fn</span> <span class="ident">parent_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">RGBA</span>;
     <span class="kw">fn</span> <span class="ident">parent_set_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">rgba</span>: <span class="ident">RGBA</span>);
 }
 
@@ -363,7 +363,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
+    <span class="kw">fn</span> <span class="ident">parent_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_chooser</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">RGBA</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()

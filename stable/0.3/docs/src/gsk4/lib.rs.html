@@ -187,12 +187,12 @@
 
 <span class="comment">// GSK 4 has no runtime to initialize</span>
 <span class="macro">macro_rules!</span> <span class="ident">assert_initialized_main_thread</span> {
-    () <span class="op">=</span><span class="op">&gt;</span> {};
+    () =&gt; {};
 }
 
 <span class="comment">// No-op</span>
 <span class="macro">macro_rules!</span> <span class="ident">skip_assert_initialized</span> {
-    () <span class="op">=</span><span class="op">&gt;</span> {};
+    () =&gt; {};
 }
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>

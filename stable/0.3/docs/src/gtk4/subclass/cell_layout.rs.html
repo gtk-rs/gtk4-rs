@@ -622,7 +622,7 @@
         <span class="self">self</span>.<span class="ident">parent_clear_attributes</span>(<span class="ident">cell_layout</span>, <span class="ident">cell</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_cells</span>(<span class="ident">cell_layout</span>)
     }
 
@@ -651,7 +651,7 @@
         <span class="self">self</span>.<span class="ident">parent_pack_end</span>(<span class="ident">cell_layout</span>, <span class="ident">cell</span>, <span class="ident">expand</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_area</span>(<span class="ident">cell_layout</span>)
     }
 }
@@ -665,7 +665,7 @@
         <span class="ident">column</span>: <span class="ident">i32</span>,
     );
     <span class="kw">fn</span> <span class="ident">parent_clear_attributes</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>);
-    <span class="kw">fn</span> <span class="ident">parent_cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_set_cell_data_func</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
@@ -691,7 +691,7 @@
         <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">expand</span>: <span class="ident">bool</span>,
     );
-    <span class="kw">fn</span> <span class="ident">parent_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">CellLayoutImpl</span><span class="op">&gt;</span> <span class="ident">CellLayoutImplExt</span> <span class="kw">for</span> <span class="ident">O</span> {
@@ -733,7 +733,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">CellLayout</span><span class="op">&gt;</span>()
@@ -862,7 +862,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell_layout</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">CellLayout</span><span class="op">&gt;</span>()
@@ -902,7 +902,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cell_layout_get_area</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CellLayoutImpl</span><span class="op">&gt;</span>(
     <span class="ident">cell_layout</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellLayout</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellArea</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellArea</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
@@ -1037,7 +1037,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cell_layout_get_cells</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CellLayoutImpl</span><span class="op">&gt;</span>(
     <span class="ident">cell_layout</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellLayout</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GList</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GList</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 

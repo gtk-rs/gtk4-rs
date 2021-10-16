@@ -109,7 +109,7 @@
     <span class="doccomment">/// GDK keyval usable for accelerators, or `GDK_KEY_VoidSymbol`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_mnemonic_keyval&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mnemonic_keyval&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mnemonic_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::keys::Key</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mnemonic_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::keys::Key</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_label_get_mnemonic_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
     }
 }

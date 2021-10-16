@@ -166,7 +166,7 @@
     <span class="doccomment">/// location to store the uniform value in</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_get_arg_vec2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_arg_vec2&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">graphene::Vec2</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) -&gt; <span class="ident">graphene::Vec2</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out_value</span> <span class="op">=</span> <span class="ident">graphene::Vec2::uninitialized</span>();
             <span class="ident">ffi::gsk_gl_shader_get_arg_vec2</span>(
@@ -190,7 +190,7 @@
     <span class="doccomment">/// location to store the uniform value in</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_get_arg_vec3&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_arg_vec3&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">graphene::Vec3</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) -&gt; <span class="ident">graphene::Vec3</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out_value</span> <span class="op">=</span> <span class="ident">graphene::Vec3::uninitialized</span>();
             <span class="ident">ffi::gsk_gl_shader_get_arg_vec3</span>(
@@ -214,7 +214,7 @@
     <span class="doccomment">/// location to store set the uniform value in</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_get_arg_vec4&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_arg_vec4&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">graphene::Vec4</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arg_vec4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>, <span class="ident">idx</span>: <span class="ident">i32</span>) -&gt; <span class="ident">graphene::Vec4</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out_value</span> <span class="op">=</span> <span class="ident">graphene::Vec4::uninitialized</span>();
             <span class="ident">ffi::gsk_gl_shader_get_arg_vec4</span>(

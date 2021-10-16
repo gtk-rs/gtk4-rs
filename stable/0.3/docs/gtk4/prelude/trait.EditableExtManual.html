@@ -78,12 +78,12 @@
 for inserting the text, so by connecting to this signal and then
 stopping the signal with <code>g_signal_stop_emission()</code>, it is possible
 to modify the inserted text, or prevent it from being inserted entirely.</p>
-<h2 id="text" class="section-header"><a href="#text"><code>text</code></a></h2>
+<h6 id="text" class="section-header"><a href="#text"><code>text</code></a></h6>
 <p>the new text to insert</p>
-<h2 id="length" class="section-header"><a href="#length"><code>length</code></a></h2>
+<h6 id="length" class="section-header"><a href="#length"><code>length</code></a></h6>
 <p>the length of the new text, in bytes,
 or -1 if new_text is nul-terminated</p>
-<h2 id="position" class="section-header"><a href="#position"><code>position</code></a></h2>
+<h6 id="position" class="section-header"><a href="#position"><code>position</code></a></h6>
 <p>the position, in characters,
 at which to insert the new text. this is an in-out
 parameter. After the signal emission is finished, it

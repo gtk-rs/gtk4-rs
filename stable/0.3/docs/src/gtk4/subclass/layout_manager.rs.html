@@ -436,17 +436,17 @@
         <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">for_child</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutChild</span> {
+    ) -&gt; <span class="ident">LayoutChild</span> {
         <span class="self">self</span>.<span class="ident">parent_create_layout_child</span>(<span class="ident">layout_manager</span>, <span class="ident">widget</span>, <span class="ident">for_child</span>)
     }
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Only set if the child implemented LayoutChildImpl</span>
-    <span class="kw">fn</span> <span class="ident">layout_child_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">layout_child_type</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {
         <span class="prelude-val">None</span>
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_request_mode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
+    <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) -&gt; <span class="ident">SizeRequestMode</span> {
         <span class="self">self</span>.<span class="ident">parent_request_mode</span>(<span class="ident">layout_manager</span>, <span class="ident">widget</span>)
     }
 
@@ -456,7 +456,7 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_measure</span>(<span class="ident">layout_manager</span>, <span class="ident">widget</span>, <span class="ident">orientation</span>, <span class="ident">for_size</span>)
     }
 
@@ -484,9 +484,9 @@
         <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">for_child</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutChild</span>;
+    ) -&gt; <span class="ident">LayoutChild</span>;
 
-    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>;
+    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) -&gt; <span class="ident">SizeRequestMode</span>;
 
     <span class="kw">fn</span> <span class="ident">parent_measure</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -494,7 +494,7 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
+    ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>);
 
@@ -533,7 +533,7 @@
         <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">for_child</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutChild</span> {
+    ) -&gt; <span class="ident">LayoutChild</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
@@ -551,7 +551,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
+    <span class="kw">fn</span> <span class="ident">parent_request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) -&gt; <span class="ident">SizeRequestMode</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
@@ -574,7 +574,7 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>,
         <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
+    ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
@@ -675,7 +675,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManager</span>,
     <span class="ident">widgetptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
     <span class="ident">for_childptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutChild</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutChild</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -689,7 +689,7 @@
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">layout_manager_get_request_mode</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">LayoutManagerImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManager</span>,
     <span class="ident">widgetptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GtkSizeRequestMode</span> {
+) -&gt; <span class="ident">ffi::GtkSizeRequestMode</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);

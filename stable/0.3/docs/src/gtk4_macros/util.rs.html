@@ -91,12 +91,12 @@
 <span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Ident</span>, <span class="ident">Span</span>};
 <span class="kw">use</span> <span class="ident">proc_macro_crate::crate_name</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">crate_ident_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ident</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">crate_ident_new</span>() -&gt; <span class="ident">Ident</span> {
     <span class="kw">use</span> <span class="ident">proc_macro_crate::FoundCrate</span>;
 
     <span class="kw">let</span> <span class="ident">crate_name</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">crate_name</span>(<span class="string">&quot;gtk4&quot;</span>).<span class="ident">expect</span>(<span class="string">&quot;missing gtk4 dependency in `Cargo.toml`&quot;</span>) {
-        <span class="ident">FoundCrate::Name</span>(<span class="ident">name</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">name</span>,
-        <span class="ident">FoundCrate::Itself</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;gtk4&quot;</span>.<span class="ident">to_owned</span>(),
+        <span class="ident">FoundCrate::Name</span>(<span class="ident">name</span>) =&gt; <span class="ident">name</span>,
+        <span class="ident">FoundCrate::Itself</span> =&gt; <span class="string">&quot;gtk4&quot;</span>.<span class="ident">to_owned</span>(),
     };
 
     <span class="ident">Ident::new</span>(<span class="kw-2">&amp;</span><span class="ident">crate_name</span>, <span class="ident">Span::call_site</span>())

@@ -342,63 +342,63 @@
     <span class="ident">String</span>(<span class="ident">String</span>),
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_template_source</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TemplateSource</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_template_source</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TemplateSource</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">find_attribute_meta</span>(<span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">attrs</span>, <span class="string">&quot;template&quot;</span>)<span class="question-mark">?</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">meta</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">meta</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;Missing &#39;template&#39; attribute&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">meta</span>) =&gt; <span class="ident">meta</span>,
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;Missing &#39;template&#39; attribute&quot;</span>),
     };
 
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">meta</span>.<span class="ident">nested</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">n</span> {
-        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) =&gt; {
             <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">m</span>.<span class="ident">path</span>();
             <span class="ident">p</span>.<span class="ident">is_ident</span>(<span class="string">&quot;file&quot;</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">is_ident</span>(<span class="string">&quot;resource&quot;</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">is_ident</span>(<span class="string">&quot;string&quot;</span>)
         }
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+        <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
     }) {
-        <span class="prelude-val">Some</span>(<span class="ident">meta</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">meta</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;Invalid meta, specify one of &#39;file&#39;, &#39;resource&#39;, or &#39;string&#39;&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">meta</span>) =&gt; <span class="ident">meta</span>,
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;Invalid meta, specify one of &#39;file&#39;, &#39;resource&#39;, or &#39;string&#39;&quot;</span>),
     };
 
     <span class="kw">let</span> (<span class="ident">ident</span>, <span class="ident">v</span>) <span class="op">=</span> <span class="ident">parse_attribute</span>(<span class="ident">meta</span>)<span class="question-mark">?</span>;
 
     <span class="kw">match</span> <span class="ident">ident</span>.<span class="ident">as_ref</span>() {
-        <span class="string">&quot;file&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::File</span>(<span class="ident">v</span>)),
-        <span class="string">&quot;resource&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::Resource</span>(<span class="ident">v</span>)),
-        <span class="string">&quot;string&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::String</span>(<span class="ident">v</span>)),
-        <span class="ident">s</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;Unknown enum meta {}&quot;</span>, <span class="ident">s</span>),
+        <span class="string">&quot;file&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::File</span>(<span class="ident">v</span>)),
+        <span class="string">&quot;resource&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::Resource</span>(<span class="ident">v</span>)),
+        <span class="string">&quot;string&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">TemplateSource::String</span>(<span class="ident">v</span>)),
+        <span class="ident">s</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;Unknown enum meta {}&quot;</span>, <span class="ident">s</span>),
     }
 }
 
 <span class="comment">// find the #[@attr_name] attribute in @attrs</span>
-<span class="kw">fn</span> <span class="ident">find_attribute_meta</span>(<span class="ident">attrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">Attribute</span>], <span class="ident">attr_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MetaList</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">find_attribute_meta</span>(<span class="ident">attrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">Attribute</span>], <span class="ident">attr_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MetaList</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">attrs</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">a</span><span class="op">|</span> <span class="ident">a</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="ident">attr_name</span>)) {
-        <span class="prelude-val">Some</span>(<span class="ident">a</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">a</span>.<span class="ident">parse_meta</span>(),
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">a</span>) =&gt; <span class="ident">a</span>.<span class="ident">parse_meta</span>(),
+        <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
     };
     <span class="kw">match</span> <span class="ident">meta</span><span class="question-mark">?</span> {
-        <span class="ident">Meta::List</span>(<span class="ident">n</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">n</span>)),
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
+        <span class="ident">Meta::List</span>(<span class="ident">n</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">n</span>)),
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
     }
 }
 
 <span class="comment">// parse a single meta like: ident = &quot;value&quot;</span>
-<span class="kw">fn</span> <span class="ident">parse_attribute</span>(<span class="ident">meta</span>: <span class="kw-2">&amp;</span><span class="ident">NestedMeta</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">parse_attribute</span>(<span class="ident">meta</span>: <span class="kw-2">&amp;</span><span class="ident">NestedMeta</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">meta</span> {
-        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">m</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
+        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) =&gt; <span class="ident">m</span>,
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
     };
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">meta</span> {
-        <span class="ident">Meta::NameValue</span>(<span class="ident">n</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">n</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
+        <span class="ident">Meta::NameValue</span>(<span class="ident">n</span>) =&gt; <span class="ident">n</span>,
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
     };
     <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">meta</span>.<span class="ident">lit</span> {
-        <span class="ident">Lit::Str</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">s</span>.<span class="ident">value</span>(),
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
+        <span class="ident">Lit::Str</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>.<span class="ident">value</span>(),
+        <span class="kw">_</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;wrong meta type&quot;</span>),
     };
 
     <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">meta</span>.<span class="ident">path</span>.<span class="ident">get_ident</span>() {
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">bail!</span>(<span class="string">&quot;missing ident&quot;</span>),
-        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ident</span>,
+        <span class="prelude-val">None</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;missing ident&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) =&gt; <span class="ident">ident</span>,
     };
 
     <span class="prelude-val">Ok</span>((<span class="ident">ident</span>.<span class="ident">to_string</span>(), <span class="ident">value</span>))
@@ -426,10 +426,10 @@
     <span class="kw">pub</span> <span class="ident">attr</span>: <span class="ident">FieldAttribute</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">parse_field_attr_value_str</span>(<span class="ident">name_value</span>: <span class="kw-2">&amp;</span><span class="ident">MetaNameValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">parse_field_attr_value_str</span>(<span class="ident">name_value</span>: <span class="kw-2">&amp;</span><span class="ident">MetaNameValue</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">name_value</span>.<span class="ident">lit</span> {
-        <span class="ident">Lit::Str</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">value</span>()),
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
+        <span class="ident">Lit::Str</span>(<span class="ident">s</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">value</span>()),
+        <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
             <span class="ident">name_value</span>.<span class="ident">lit</span>.<span class="ident">span</span>(),
             <span class="string">&quot;invalid value type: Expected str literal&quot;</span>,
         )),
@@ -439,10 +439,10 @@
 <span class="kw">fn</span> <span class="ident">parse_field_attr_meta</span>(
     <span class="ident">ty</span>: <span class="kw-2">&amp;</span><span class="ident">FieldAttributeType</span>,
     <span class="ident">meta</span>: <span class="kw-2">&amp;</span><span class="ident">NestedMeta</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FieldAttributeArg</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FieldAttributeArg</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">meta</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">meta</span> {
-        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">m</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">NestedMeta::Meta</span>(<span class="ident">m</span>) =&gt; <span class="ident">m</span>,
+        <span class="kw">_</span> =&gt; {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                 <span class="ident">meta</span>.<span class="ident">span</span>(),
                 <span class="string">&quot;invalid type - expected a name-value pair like id = \&quot;widget\&quot;&quot;</span>,
@@ -450,8 +450,8 @@
         }
     };
     <span class="kw">let</span> <span class="ident">name_value</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">meta</span> {
-        <span class="ident">Meta::NameValue</span>(<span class="ident">n</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">n</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">Meta::NameValue</span>(<span class="ident">n</span>) =&gt; <span class="ident">n</span>,
+        <span class="kw">_</span> =&gt; {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                 <span class="ident">meta</span>.<span class="ident">span</span>(),
                 <span class="string">&quot;invalid type - expected a name-value pair like id = \&quot;widget\&quot;&quot;</span>,
@@ -459,13 +459,13 @@
         }
     };
     <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">name_value</span>.<span class="ident">path</span>.<span class="ident">get_ident</span>() {
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">None</span> =&gt; {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                 <span class="ident">name_value</span>.<span class="ident">path</span>.<span class="ident">span</span>(),
                 <span class="string">&quot;invalid name type - expected identifier&quot;</span>,
             ))
         }
-        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ident</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) =&gt; <span class="ident">ident</span>,
     };
 
     <span class="kw">let</span> <span class="ident">ident_str</span> <span class="op">=</span> <span class="ident">ident</span>.<span class="ident">to_string</span>();
@@ -474,9 +474,9 @@
         <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;unknown attribute argument: `{}`&quot;</span>, <span class="ident">ident_str</span>),
     ));
     <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ty</span> {
-        <span class="ident">FieldAttributeType::TemplateChild</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">ident_str</span>.<span class="ident">as_str</span>() {
-            <span class="string">&quot;id&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">FieldAttributeArg::Id</span>(<span class="ident">parse_field_attr_value_str</span>(<span class="ident">name_value</span>)<span class="question-mark">?</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="ident">unknown_err</span>,
+        <span class="ident">FieldAttributeType::TemplateChild</span> =&gt; <span class="kw">match</span> <span class="ident">ident_str</span>.<span class="ident">as_str</span>() {
+            <span class="string">&quot;id&quot;</span> =&gt; <span class="ident">FieldAttributeArg::Id</span>(<span class="ident">parse_field_attr_value_str</span>(<span class="ident">name_value</span>)<span class="question-mark">?</span>),
+            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="ident">unknown_err</span>,
         },
     };
 
@@ -486,15 +486,15 @@
 <span class="kw">fn</span> <span class="ident">parse_field_attr_args</span>(
     <span class="ident">ty</span>: <span class="kw-2">&amp;</span><span class="ident">FieldAttributeType</span>,
     <span class="ident">attr</span>: <span class="kw-2">&amp;</span><span class="ident">Attribute</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FieldAttributeArg</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FieldAttributeArg</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">field_attribute_args</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
     <span class="kw">match</span> <span class="ident">attr</span>.<span class="ident">parse_meta</span>()<span class="question-mark">?</span> {
-        <span class="ident">Meta::List</span>(<span class="ident">list</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">Meta::List</span>(<span class="ident">list</span>) =&gt; {
             <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">list</span>.<span class="ident">nested</span> {
                 <span class="kw">let</span> <span class="ident">new_arg</span> <span class="op">=</span> <span class="ident">parse_field_attr_meta</span>(<span class="ident">ty</span>, <span class="ident">meta</span>)<span class="question-mark">?</span>;
                 <span class="kw">for</span> <span class="ident">arg</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">field_attribute_args</span> {
                     <span class="comment">// Comparison of enum variants, not data</span>
-                    <span class="kw">if</span> <span class="ident">std::mem::discriminant</span>(<span class="ident">arg</span>) <span class="op">=</span><span class="op">=</span> <span class="ident">std::mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">new_arg</span>) {
+                    <span class="kw">if</span> <span class="ident">std::mem::discriminant</span>(<span class="ident">arg</span>) <span class="op">==</span> <span class="ident">std::mem::discriminant</span>(<span class="kw-2">&amp;</span><span class="ident">new_arg</span>) {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                             <span class="ident">meta</span>.<span class="ident">span</span>(),
                             <span class="string">&quot;two instances of the same attribute \
@@ -505,8 +505,8 @@
                 <span class="ident">field_attribute_args</span>.<span class="ident">push</span>(<span class="ident">new_arg</span>);
             }
         }
-        <span class="ident">Meta::Path</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> (),
-        <span class="ident">meta</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">Meta::Path</span>(<span class="kw">_</span>) =&gt; (),
+        <span class="ident">meta</span> =&gt; {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(
                 <span class="ident">meta</span>.<span class="ident">span</span>(),
                 <span class="string">&quot;invalid attribute argument type, expected `name = value` list or nothing&quot;</span>,
@@ -517,11 +517,11 @@
     <span class="prelude-val">Ok</span>(<span class="ident">field_attribute_args</span>)
 }
 
-<span class="kw">fn</span> <span class="ident">parse_field</span>(<span class="ident">field</span>: <span class="kw-2">&amp;</span><span class="ident">Field</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AttributedField</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">parse_field</span>(<span class="ident">field</span>: <span class="kw-2">&amp;</span><span class="ident">Field</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AttributedField</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">field_attrs</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">attrs</span>;
     <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">ident</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ident</span>,
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">field</span>.<span class="ident">span</span>(), <span class="string">&quot;expected identifier&quot;</span>)),
+        <span class="prelude-val">Some</span>(<span class="ident">ident</span>) =&gt; <span class="ident">ident</span>,
+        <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::new</span>(<span class="ident">field</span>.<span class="ident">span</span>(), <span class="string">&quot;expected identifier&quot;</span>)),
     };
 
     <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">ty</span>;
@@ -566,7 +566,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_fields</span>(<span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">Fields</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AttributedField</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_fields</span>(<span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">Fields</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AttributedField</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attributed_fields</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
 
     <span class="kw">for</span> <span class="ident">field</span> <span class="kw">in</span> <span class="ident">fields</span> {

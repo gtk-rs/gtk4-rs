@@ -132,7 +132,7 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLTexture</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkGLTexture</span>, <span class="ident">ffi::GdkGLTextureClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Texture</span>, @<span class="ident">implements</span> <span class="ident">Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">type_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gdk_gl_texture_get_type</span>(),
+        <span class="ident">type_</span> =&gt; <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gdk_gl_texture_get_type</span>(),
     }
 }
 
@@ -151,7 +151,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">GLTexture</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;GLTexture&quot;</span>)
     }
 }

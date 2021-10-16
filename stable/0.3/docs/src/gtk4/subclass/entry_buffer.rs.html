@@ -419,7 +419,7 @@
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryBufferImpl</span>: <span class="ident">EntryBufferImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) -&gt; <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_delete_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">n_chars</span>)
     }
 
@@ -428,15 +428,15 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_length&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_length</span>(<span class="ident">entry_buffer</span>)
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span> {
         <span class="self">self</span>.<span class="ident">parent_text</span>(<span class="ident">entry_buffer</span>)
     }
-    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">u32</span> {
         <span class="self">self</span>.<span class="ident">parent_insert_text</span>(<span class="ident">entry_buffer</span>, <span class="ident">position</span>, <span class="ident">chars</span>)
     }
 
@@ -451,11 +451,11 @@
         <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">position</span>: <span class="ident">u32</span>,
         <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    ) -&gt; <span class="ident">u32</span>;
     <span class="kw">fn</span> <span class="ident">parent_deleted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>);
-    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span>;
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span>;
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">u32</span>;
     <span class="kw">fn</span> <span class="ident">parent_inserted_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 }
 
@@ -465,7 +465,7 @@
         <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">position</span>: <span class="ident">u32</span>,
         <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -500,7 +500,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">parent_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -514,7 +514,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+    <span class="kw">fn</span> <span class="ident">parent_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">GString</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -533,7 +533,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entry_buffer</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBufferClass</span>;
@@ -598,12 +598,12 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBuffer</span>,
     <span class="ident">position</span>: <span class="ident">u32</span>,
     <span class="ident">n_chars</span>: <span class="ident">u32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+) -&gt; <span class="ident">u32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="kw">let</span> <span class="ident">n_chars</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32::MAX</span> {
+    <span class="kw">let</span> <span class="ident">n_chars</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">==</span> <span class="ident">u32::MAX</span> {
         <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
         <span class="prelude-val">Some</span>(<span class="ident">n_chars</span>)
@@ -621,7 +621,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="kw">let</span> <span class="ident">n_chars</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">=</span><span class="op">=</span> <span class="ident">u32::MAX</span> {
+    <span class="kw">let</span> <span class="ident">n_chars</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">==</span> <span class="ident">u32::MAX</span> {
         <span class="prelude-val">None</span>
     } <span class="kw">else</span> {
         <span class="prelude-val">Some</span>(<span class="ident">n_chars</span>)
@@ -636,7 +636,7 @@
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">entry_buffer_get_text</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EntryBufferImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBuffer</span>,
     <span class="ident">n_bytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">usize</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -652,7 +652,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">entry_buffer_get_length</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EntryBufferImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkEntryBuffer</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+) -&gt; <span class="ident">u32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -665,7 +665,7 @@
     <span class="ident">position</span>: <span class="ident">u32</span>,
     <span class="ident">charsptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
     <span class="ident">n_chars</span>: <span class="ident">u32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+) -&gt; <span class="ident">u32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
@@ -691,7 +691,7 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text_n_chars&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">text_n_chars</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">n_chars</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+<span class="kw">fn</span> <span class="ident">text_n_chars</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">n_chars</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
     <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">!</span><span class="op">=</span> <span class="ident">u32::MAX</span> <span class="op">&amp;&amp;</span> <span class="ident">n_chars</span> <span class="op">&gt;</span> <span class="number">0</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">text</span>
             .<span class="ident">char_indices</span>()
@@ -704,7 +704,7 @@
             );
         <span class="kw">let</span> <span class="ident">pos_end</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">next</span>().<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">text</span>.<span class="ident">len</span>());
         <span class="kw-2">&amp;</span><span class="ident">text</span>[..<span class="ident">pos_end</span>]
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n_chars</span> <span class="op">==</span> <span class="number">0</span> {
         <span class="comment">// Avoid doing skipping to -1 char</span>
         <span class="string">&quot;&quot;</span>
     } <span class="kw">else</span> {

@@ -530,7 +530,7 @@
         <span class="self">self</span>.<span class="ident">parent_begin_print</span>(<span class="ident">print_operation</span>, <span class="ident">context</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_create_custom_widget</span>(<span class="ident">print_operation</span>)
     }
 
@@ -550,7 +550,7 @@
         <span class="self">self</span>.<span class="ident">parent_end_print</span>(<span class="ident">print_operation</span>, <span class="ident">context</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_paginate</span>(<span class="ident">print_operation</span>, <span class="ident">context</span>)
     }
 
@@ -560,7 +560,7 @@
         <span class="ident">preview</span>: <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">parent_preview</span>(<span class="ident">print_operation</span>, <span class="ident">preview</span>, <span class="ident">context</span>, <span class="ident">parent</span>)
     }
 
@@ -591,19 +591,19 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PrintOperationImplExt</span>: <span class="ident">ObjectSubclass</span> {
     <span class="kw">fn</span> <span class="ident">parent_begin_print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>);
-    <span class="kw">fn</span> <span class="ident">parent_create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_custom_widget_apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>);
     <span class="kw">fn</span> <span class="ident">parent_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">result</span>: <span class="ident">PrintOperationResult</span>);
     <span class="kw">fn</span> <span class="ident">parent_draw_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>);
     <span class="kw">fn</span> <span class="ident">parent_end_print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>);
-    <span class="kw">fn</span> <span class="ident">parent_paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">parent_paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) -&gt; <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">parent_preview</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
         <span class="ident">preview</span>: <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">parent_request_page_setup</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>,
@@ -638,7 +638,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
@@ -719,7 +719,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">parent_paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
@@ -744,7 +744,7 @@
         <span class="ident">preview</span>: <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>,
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
@@ -862,7 +862,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">print_operation_create_custom_widget</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrintOperationImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span> {
+) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);

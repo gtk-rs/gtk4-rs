@@ -1526,7 +1526,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskColorStop</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskColorStop @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">field</span>(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">offset</span>)
             .<span class="ident">field</span>(<span class="string">&quot;color&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">color</span>)
@@ -1546,7 +1546,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskGLShaderClass</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskGLShaderClass @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">field</span>(<span class="string">&quot;parent_class&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">parent_class</span>)
             .<span class="ident">finish</span>()
@@ -1569,7 +1569,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskParseLocation</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskParseLocation @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">field</span>(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes</span>)
             .<span class="ident">field</span>(<span class="string">&quot;chars&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">chars</span>)
@@ -1593,7 +1593,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRoundedRect</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRoundedRect @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">field</span>(<span class="string">&quot;bounds&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bounds</span>)
             .<span class="ident">field</span>(<span class="string">&quot;corner&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">corner</span>)
@@ -1605,7 +1605,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskShaderArgsBuilder</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskShaderArgsBuilder</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskShaderArgsBuilder @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1621,7 +1621,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskShadow</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskShadow @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">field</span>(<span class="string">&quot;color&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">color</span>)
             .<span class="ident">field</span>(<span class="string">&quot;dx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">dx</span>)
@@ -1635,7 +1635,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskTransform</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskTransform</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskTransform @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1646,7 +1646,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskBlendNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskBlendNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskBlendNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1656,7 +1656,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskBlurNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskBlurNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskBlurNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1666,7 +1666,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskBorderNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskBorderNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskBorderNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1676,7 +1676,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskBroadwayRenderer</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskBroadwayRenderer</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskBroadwayRenderer @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1686,7 +1686,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskCairoNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskCairoNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskCairoNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1696,7 +1696,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskCairoRenderer</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskCairoRenderer</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskCairoRenderer @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1706,7 +1706,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskClipNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskClipNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskClipNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1716,7 +1716,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskColorMatrixNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskColorMatrixNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskColorMatrixNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1726,7 +1726,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskColorNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskColorNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskColorNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1736,7 +1736,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskConicGradientNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskConicGradientNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskConicGradientNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1746,7 +1746,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskContainerNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskContainerNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskContainerNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1756,7 +1756,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskCrossFadeNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskCrossFadeNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskCrossFadeNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1766,7 +1766,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskDebugNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskDebugNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskDebugNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1776,7 +1776,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskGLRenderer</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskGLRenderer</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskGLRenderer @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1786,7 +1786,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskGLShader</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskGLShader</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskGLShader @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1796,7 +1796,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskGLShaderNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskGLShaderNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskGLShaderNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1806,7 +1806,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskInsetShadowNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskInsetShadowNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskInsetShadowNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1816,7 +1816,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskLinearGradientNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskLinearGradientNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskLinearGradientNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1826,7 +1826,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskNglRenderer</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskNglRenderer</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskNglRenderer @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1836,7 +1836,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskOpacityNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskOpacityNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskOpacityNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1846,7 +1846,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskOutsetShadowNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskOutsetShadowNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskOutsetShadowNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1856,7 +1856,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRadialGradientNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRadialGradientNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRadialGradientNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1866,7 +1866,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRenderNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRenderNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRenderNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1876,7 +1876,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRenderer</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRenderer</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRenderer @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1886,7 +1886,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRepeatNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRepeatNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRepeatNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1896,7 +1896,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRepeatingLinearGradientNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRepeatingLinearGradientNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRepeatingLinearGradientNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1906,7 +1906,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRepeatingRadialGradientNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRepeatingRadialGradientNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRepeatingRadialGradientNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1916,7 +1916,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskRoundedClipNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskRoundedClipNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskRoundedClipNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1926,7 +1926,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskShadowNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskShadowNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskShadowNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1936,7 +1936,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskTextNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskTextNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskTextNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1946,7 +1946,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskTextureNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskTextureNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskTextureNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1956,7 +1956,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GskTransformNode</span>(<span class="ident">c_void</span>);
 
 <span class="kw">impl</span> <span class="ident">::std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GskTransformNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;GskTransformNode @ {:p}&quot;</span>, <span class="self">self</span>))
             .<span class="ident">finish</span>()
     }
@@ -1968,38 +1968,38 @@
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskBlendMode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_mode_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_mode_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskCorner</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_corner_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_corner_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskGLUniformType</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_uniform_type_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_uniform_type_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRenderNodeType</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_type_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_type_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskScalingFilter</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_scaling_filter_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_scaling_filter_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskSerializationError</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_serialization_error_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_serialization_error_quark</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::GQuark</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_serialization_error_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_serialization_error_quark</span>() -&gt; <span class="ident">glib::GQuark</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskTransformCategory</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_category_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_category_get_type</span>() -&gt; <span class="ident">GType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRoundedRect</span>
@@ -2007,11 +2007,11 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_contains_point</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">point</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_contains_rect</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">rect</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_init</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
@@ -2019,49 +2019,49 @@
         <span class="ident">top_right</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_size_t</span>,
         <span class="ident">bottom_right</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_size_t</span>,
         <span class="ident">bottom_left</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_init_copy</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">src</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_init_from_rect</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">radius</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_intersects_rect</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">rect</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_is_rectilinear</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_normalize</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_is_rectilinear</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>) -&gt; <span class="ident">gboolean</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_normalize</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_offset</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">dx</span>: <span class="ident">c_float</span>,
         <span class="ident">dy</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_rect_shrink</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">top</span>: <span class="ident">c_float</span>,
         <span class="ident">right</span>: <span class="ident">c_float</span>,
         <span class="ident">bottom</span>: <span class="ident">c_float</span>,
         <span class="ident">left</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedRect</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskShaderArgsBuilder</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_new</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">initial_values</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_free_to_args</span>(
         <span class="ident">builder</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_ref</span>(
         <span class="ident">builder</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_set_bool</span>(
         <span class="ident">builder</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>,
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
@@ -2098,41 +2098,41 @@
         <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_vec4_t</span>,
     );
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_to_args</span>(<span class="ident">builder</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+        -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shader_args_builder_unref</span>(<span class="ident">builder</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShaderArgsBuilder</span>);
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskTransform</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_equal</span>(<span class="ident">first</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">second</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_get_category</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GskTransformCategory</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_invert</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_new</span>() -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_equal</span>(<span class="ident">first</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">second</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) -&gt; <span class="ident">gboolean</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_get_category</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) -&gt; <span class="ident">GskTransformCategory</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_invert</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_matrix</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">matrix</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_matrix_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_perspective</span>(<span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">depth</span>: <span class="ident">c_float</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_perspective</span>(<span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">depth</span>: <span class="ident">c_float</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_print</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">string</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GString</span>);
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_ref</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_rotate</span>(<span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">angle</span>: <span class="ident">c_float</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_ref</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_rotate</span>(<span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>, <span class="ident">angle</span>: <span class="ident">c_float</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_rotate_3d</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">angle</span>: <span class="ident">c_float</span>,
         <span class="ident">axis</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_vec3_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_scale</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">factor_x</span>: <span class="ident">c_float</span>,
         <span class="ident">factor_y</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_scale_3d</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">factor_x</span>: <span class="ident">c_float</span>,
         <span class="ident">factor_y</span>: <span class="ident">c_float</span>,
         <span class="ident">factor_z</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_to_2d</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">out_xx</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_float</span>,
@@ -2153,7 +2153,7 @@
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">out_matrix</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">graphene::graphene_matrix_t</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_to_string</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_to_string</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_to_translate</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">out_dx</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_float</span>,
@@ -2162,7 +2162,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_transform</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">other</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_transform_bounds</span>(
         <span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">rect</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
@@ -2176,213 +2176,213 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_translate</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">point</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_translate_3d</span>(
         <span class="ident">next</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
         <span class="ident">point</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point3d_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_unref</span>(<span class="ident">self_</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_parse</span>(
         <span class="ident">string</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
         <span class="ident">out_transform</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskBlendNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_new</span>(
         <span class="ident">bottom</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">top</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">blend_mode</span>: <span class="ident">GskBlendMode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBlendNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_blend_mode</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GskBlendMode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_bottom_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_top_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBlendNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_blend_mode</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) -&gt; <span class="ident">GskBlendMode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_bottom_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blend_node_get_top_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlendNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskBlurNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_new</span>(<span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>, <span class="ident">radius</span>: <span class="ident">c_float</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBlurNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlurNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlurNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_new</span>(<span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>, <span class="ident">radius</span>: <span class="ident">c_float</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBlurNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlurNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_blur_node_get_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBlurNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskBorderNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_new</span>(
         <span class="ident">outline</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">border_width</span>: <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">c_float</span>; <span class="number">4</span>],
         <span class="ident">border_color</span>: <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">gdk::GdkRGBA</span>; <span class="number">4</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBorderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_colors</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_outline</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_widths</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">c_float</span>; <span class="number">4</span>];
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskBorderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_colors</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_outline</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_border_node_get_widths</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskBorderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">c_float</span>; <span class="number">4</span>];
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskBroadwayRenderer</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_broadway_renderer_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_broadway_renderer_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_broadway_renderer_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_broadway_renderer_new</span>() -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskCairoNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_new</span>(<span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_draw_context</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::cairo_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_surface</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::cairo_surface_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_new</span>(<span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_draw_context</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::cairo_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_node_get_surface</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCairoNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::cairo_surface_t</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskCairoRenderer</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_renderer_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_renderer_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_renderer_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cairo_renderer_new</span>() -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskClipNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_new</span>(
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">clip</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskClipNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskClipNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_clip</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskClipNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskClipNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskClipNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_clip_node_get_clip</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskClipNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskColorMatrixNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_new</span>(
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">color_matrix</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_matrix_t</span>,
         <span class="ident">color_offset</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_vec4_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskColorMatrixNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorMatrixNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskColorMatrixNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorMatrixNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_color_matrix</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorMatrixNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_matrix_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_matrix_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_matrix_node_get_color_offset</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorMatrixNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_vec4_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_vec4_t</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskColorNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_node_new</span>(
         <span class="ident">rgba</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskColorNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskColorNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_color_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskConicGradientNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">center</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
         <span class="ident">rotation</span>: <span class="ident">c_float</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>,
         <span class="ident">n_color_stops</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskConicGradientNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskConicGradientNode</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_angle</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_angle</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_center</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_color_stops</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>,
         <span class="ident">n_stops</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_n_color_stops</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_rotation</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_n_color_stops</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) -&gt; <span class="ident">size_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_conic_gradient_node_get_rotation</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskConicGradientNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskContainerNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_new</span>(
         <span class="ident">children</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">n_children</span>: <span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskContainerNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskContainerNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_get_child</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskContainerNode</span>,
         <span class="ident">idx</span>: <span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_get_n_children</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskContainerNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_container_node_get_n_children</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskContainerNode</span>) -&gt; <span class="ident">c_uint</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskCrossFadeNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_new</span>(
         <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">progress</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCrossFadeNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_end_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskCrossFadeNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_progress</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskCrossFadeNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskCrossFadeNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_end_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskCrossFadeNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_progress</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskCrossFadeNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_cross_fade_node_get_start_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskCrossFadeNode</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+        -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskDebugNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_new</span>(<span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>, <span class="ident">message</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskDebugNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskDebugNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_message</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskDebugNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+        -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskDebugNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskDebugNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_debug_node_get_message</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskDebugNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskGLRenderer</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_renderer_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_renderer_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_renderer_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_renderer_new</span>() -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskGLShader</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_new_from_bytes</span>(<span class="ident">sourcecode</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_new_from_resource</span>(<span class="ident">resource_path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_new_from_bytes</span>(<span class="ident">sourcecode</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_new_from_resource</span>(<span class="ident">resource_path</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_compile</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>,
         <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GError</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_find_uniform_by_name</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_format_args</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, ...) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+    ) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_format_args</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, ...) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
     <span class="comment">//pub fn gsk_gl_shader_format_args_va(shader: *mut GskGLShader, uniforms: /*Unimplemented*/va_list) -&gt; *mut glib::GBytes;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_arg_bool</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_arg_float</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_arg_int</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    ) -&gt; <span class="ident">i32</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_arg_uint</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    ) -&gt; <span class="ident">u32</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_arg_vec2</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
@@ -2401,39 +2401,39 @@
         <span class="ident">idx</span>: <span class="ident">c_int</span>,
         <span class="ident">out_value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">graphene::graphene_vec4_t</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_args_size</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_n_textures</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_n_uniforms</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_resource</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_source</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_uniform_name</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, <span class="ident">idx</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_uniform_offset</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, <span class="ident">idx</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_args_size</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) -&gt; <span class="ident">size_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_n_textures</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_n_uniforms</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_resource</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_source</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_uniform_name</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, <span class="ident">idx</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_uniform_offset</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, <span class="ident">idx</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_get_uniform_type</span>(<span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>, <span class="ident">idx</span>: <span class="ident">c_int</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GskGLUniformType</span>;
+        -&gt; <span class="ident">GskGLUniformType</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskGLShaderNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_new</span>(
         <span class="ident">shader</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">args</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">children</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">n_children</span>: <span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShaderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_args</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShaderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_args</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_child</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>,
         <span class="ident">idx</span>: <span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_n_children</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_shader</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_n_children</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_gl_shader_node_get_shader</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskGLShaderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskGLShader</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskInsetShadowNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_new</span>(
         <span class="ident">outline</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">color</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>,
@@ -2441,61 +2441,61 @@
         <span class="ident">dy</span>: <span class="ident">c_float</span>,
         <span class="ident">spread</span>: <span class="ident">c_float</span>,
         <span class="ident">blur_radius</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskInsetShadowNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_blur_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_dx</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_dy</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskInsetShadowNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_blur_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_dx</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_dy</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_outline</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_spread</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_inset_shadow_node_get_spread</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskInsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskLinearGradientNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
         <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>,
         <span class="ident">n_color_stops</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskLinearGradientNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskLinearGradientNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_color_stops</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskLinearGradientNode</span>,
         <span class="ident">n_stops</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_end</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskLinearGradientNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_n_color_stops</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskLinearGradientNode</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
+        -&gt; <span class="ident">size_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_linear_gradient_node_get_start</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskLinearGradientNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskNglRenderer</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_ngl_renderer_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_ngl_renderer_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_ngl_renderer_new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_ngl_renderer_new</span>() -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskOpacityNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_new</span>(<span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>, <span class="ident">opacity</span>: <span class="ident">c_float</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskOpacityNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOpacityNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_opacity</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOpacityNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+        -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskOpacityNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOpacityNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_opacity_node_get_opacity</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOpacityNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskOutsetShadowNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_new</span>(
         <span class="ident">outline</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
         <span class="ident">color</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>,
@@ -2503,22 +2503,22 @@
         <span class="ident">dy</span>: <span class="ident">c_float</span>,
         <span class="ident">spread</span>: <span class="ident">c_float</span>,
         <span class="ident">blur_radius</span>: <span class="ident">c_float</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskOutsetShadowNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_blur_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskOutsetShadowNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_blur_radius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_color</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_dx</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_dy</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_dx</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_dy</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_outline</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_spread</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_outset_shadow_node_get_spread</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskOutsetShadowNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRadialGradientNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">center</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
@@ -2528,57 +2528,57 @@
         <span class="ident">end</span>: <span class="ident">c_float</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>,
         <span class="ident">n_color_stops</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRadialGradientNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRadialGradientNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_center</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_color_stops</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>,
         <span class="ident">n_stops</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_end</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_hradius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_end</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_hradius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) -&gt; <span class="ident">c_float</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_n_color_stops</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_start</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_vradius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_float</span>;
+        -&gt; <span class="ident">size_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_start</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) -&gt; <span class="ident">c_float</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_radial_gradient_node_get_vradius</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRadialGradientNode</span>) -&gt; <span class="ident">c_float</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRenderNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_deserialize</span>(
         <span class="ident">bytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">error_func</span>: <span class="ident">GskParseErrorFunc</span>,
         <span class="ident">user_data</span>: <span class="ident">gpointer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_draw</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>, <span class="ident">cr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::cairo_t</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_get_bounds</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">graphene::graphene_rect_t</span>,
     );
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_get_node_type</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRenderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GskRenderNodeType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_ref</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_serialize</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_get_node_type</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRenderNode</span>) -&gt; <span class="ident">GskRenderNodeType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_ref</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_serialize</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GBytes</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_unref</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>);
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_render_node_write_to_file</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
         <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GError</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRenderer</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_new_for_surface</span>(<span class="ident">surface</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkSurface</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_get_surface</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkSurface</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_is_realized</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_get_type</span>() -&gt; <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_new_for_surface</span>(<span class="ident">surface</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkSurface</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_get_surface</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkSurface</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_is_realized</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_realize</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>,
         <span class="ident">surface</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkSurface</span>,
         <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::GError</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    ) -&gt; <span class="ident">gboolean</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_render</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>,
         <span class="ident">root</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
@@ -2588,39 +2588,39 @@
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>,
         <span class="ident">root</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">viewport</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkTexture</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkTexture</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_renderer_unrealize</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderer</span>);
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRepeatNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">child_bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRepeatNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRepeatNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeat_node_get_child_bounds</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRepeatNode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRepeatingLinearGradientNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_linear_gradient_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_linear_gradient_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_linear_gradient_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
         <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>,
         <span class="ident">n_color_stops</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatingLinearGradientNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatingLinearGradientNode</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRepeatingRadialGradientNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_radial_gradient_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_radial_gradient_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_repeating_radial_gradient_node_new</span>(
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
         <span class="ident">center</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
@@ -2630,75 +2630,75 @@
         <span class="ident">end</span>: <span class="ident">c_float</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskColorStop</span>,
         <span class="ident">n_color_stops</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatingRadialGradientNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRepeatingRadialGradientNode</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskRoundedClipNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_new</span>(
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">clip</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedClipNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedClipNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRoundedClipNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedClipNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_rounded_clip_node_get_clip</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedClipNode</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
+        -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskRoundedRect</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskShadowNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_new</span>(
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">shadows</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadow</span>,
         <span class="ident">n_shadows</span>: <span class="ident">size_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShadowNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_n_shadows</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_shadow</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>, <span class="ident">i</span>: <span class="ident">size_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadow</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskShadowNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_n_shadows</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>) -&gt; <span class="ident">size_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_shadow_node_get_shadow</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadowNode</span>, <span class="ident">i</span>: <span class="ident">size_t</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskShadow</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskTextNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_new</span>(
         <span class="ident">font</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::PangoFont</span>,
         <span class="ident">glyphs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::PangoGlyphString</span>,
         <span class="ident">color</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>,
         <span class="ident">offset</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTextNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_font</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::PangoFont</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTextNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_color</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::GdkRGBA</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_font</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::PangoFont</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_glyphs</span>(
         <span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>,
         <span class="ident">n_glyphs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_uint</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pango::PangoGlyphInfo</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_num_glyphs</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_offset</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">pango::PangoGlyphInfo</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_num_glyphs</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) -&gt; <span class="ident">c_uint</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_get_offset</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_point_t</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_has_color_glyphs</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gboolean</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_text_node_has_color_glyphs</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextNode</span>) -&gt; <span class="ident">gboolean</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskTextureNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_texture_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_texture_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_texture_node_new</span>(
         <span class="ident">texture</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkTexture</span>,
         <span class="ident">bounds</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">graphene::graphene_rect_t</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTextureNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_texture_node_get_texture</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextureNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkTexture</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTextureNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_texture_node_get_texture</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTextureNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::GdkTexture</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GskTransformNode</span>
     <span class="comment">//=========================================================================</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GType</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_type</span>() -&gt; <span class="ident">GType</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_new</span>(
         <span class="ident">child</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>,
         <span class="ident">transform</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransformNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTransformNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_transform</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTransformNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
+    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransformNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_child</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTransformNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskRenderNode</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gsk_transform_node_get_transform</span>(<span class="ident">node</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">GskTransformNode</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">GskTransform</span>;
 
 }
 </code></pre></div>

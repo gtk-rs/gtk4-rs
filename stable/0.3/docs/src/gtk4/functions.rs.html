@@ -175,7 +175,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`true`] if the accelerator is valid</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_valid&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_valid</span>(<span class="ident">keyval</span>: <span class="ident">gdk::keys::Key</span>, <span class="ident">modifiers</span>: <span class="ident">gdk::ModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_valid</span>(<span class="ident">keyval</span>: <span class="ident">gdk::keys::Key</span>, <span class="ident">modifiers</span>: <span class="ident">gdk::ModifierType</span>) -&gt; <span class="ident">bool</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_accelerator_valid</span>(
@@ -226,7 +226,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">///  0-terminated array of type ids</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_test_list_all_types&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_list_all_types</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_list_all_types</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n_types</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
         <span class="kw">let</span> <span class="ident">types</span> <span class="op">=</span> <span class="ident">ffi::gtk_test_list_all_types</span>(<span class="ident">n_types</span>.<span class="ident">as_mut_ptr</span>());

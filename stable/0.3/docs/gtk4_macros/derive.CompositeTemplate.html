@@ -82,7 +82,7 @@
 from;  it can be a <code>file</code>, a <code>resource</code>, or a <code>string</code>.</p>
 <p>The <code>template_child</code> attribute is used to mark all internal widgets
 we need to have programmatic access to.</p>
-<h1 id="example" class="section-header"><a href="#example">Example</a></h1>
+<h2 id="example" class="section-header"><a href="#example">Example</a></h2>
 <p>Specify that <code>MyWidget</code> is using a composite template and load the
 template file the <code>composite_template.ui</code> file.</p>
 <p>Then, in the <code>ObjectSubclass</code> implementation you will need to call
@@ -131,7 +131,7 @@ template file the <code>composite_template.ui</code> file.</p>
 }
 
 <span class="kw">impl</span> <span class="ident">MyWidget</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident">glib::Object::new</span>(<span class="kw-2">&amp;</span>[]).<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of MyWidget&quot;</span>)
     }
 }</code></pre></div>

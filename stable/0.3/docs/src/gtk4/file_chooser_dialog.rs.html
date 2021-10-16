@@ -148,7 +148,7 @@
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span>,
         <span class="ident">action</span>: <span class="ident">FileChooserAction</span>,
         <span class="ident">buttons</span>: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">ResponseType</span>)],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    ) -&gt; <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">dialog</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_file_chooser_dialog_new</span>(

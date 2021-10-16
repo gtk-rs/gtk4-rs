@@ -116,11 +116,11 @@
     <span class="doccomment">/// a Wayland `wl_surface`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_surface_get_wl_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_wl_surface&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WlSurface</span>;
+    <span class="kw">fn</span> <span class="ident">wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlSurface</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">WaylandSurface</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">WaylandSurfaceExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WlSurface</span> {
+    <span class="kw">fn</span> <span class="ident">wl_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlSurface</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_surface_get_wl_surface</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
             <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()

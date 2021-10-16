@@ -77,7 +77,7 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.order" class="fnname">order</a>(&amp;self) -&gt; <a class="enum" href="../enum.SorterOrder.html" title="enum gtk4::SorterOrder">SorterOrder</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Sorter.html" title="Sorter"><code>Sorter</code></a> methods.</p>
-<h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.CustomSorter.html" title="crate::CustomSorter"><code>CustomSorter</code></a>, <a href="../struct.MultiSorter.html" title="crate::MultiSorter"><code>MultiSorter</code></a>, <a href="../struct.NumericSorter.html" title="crate::NumericSorter"><code>NumericSorter</code></a>, <a href="../struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a>, <a href="../struct.StringSorter.html" title="crate::StringSorter"><code>StringSorter</code></a>, <a href="../struct.TreeListRowSorter.html" title="crate::TreeListRowSorter"><code>TreeListRowSorter</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#73" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>)</h4></div></summary><div class="docblock"><p>Notifies all users of the sorter that it has changed.</p>
 <p>This emits the <code>signal::Sorter::changed</code> signal. Users
@@ -88,7 +88,7 @@ update the sort order without a full resorting. Refer to
 the <a href="../enum.SorterChange.html" title="crate::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
 <p>This function is intended for implementors of <a href="../struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a>
 subclasses and should not be called from other functions.</p>
-<h2 id="change" class="section-header"><a href="#change"><code>change</code></a></h2>
+<h6 id="change" class="section-header"><a href="#change"><code>change</code></a></h6>
 <p>How the sorter changed</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.compare" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#98-99" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.compare" class="fnname">compare</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;item1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;item2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q<br>) -&gt; <a class="enum" href="../enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a></h4></div></summary><div class="docblock"><p>Compares two given items according to the sort order implemented
 by the sorter.</p>
@@ -101,11 +101,11 @@ then a ≤ c</li>
 </ul>
 <p>The sorter may signal it conforms to additional constraints
 via the return value of <a href="trait.SorterExt.html#tymethod.order" title="Self::order()"><code>order()</code></a>.</p>
-<h2 id="item1" class="section-header"><a href="#item1"><code>item1</code></a></h2>
+<h6 id="item1" class="section-header"><a href="#item1"><code>item1</code></a></h6>
 <p>first item to compare</p>
-<h2 id="item2" class="section-header"><a href="#item2"><code>item2</code></a></h2>
+<h6 id="item2" class="section-header"><a href="#item2"><code>item2</code></a></h6>
 <p>second item to compare</p>
-<h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p><a href="../enum.Ordering.html#variant.Equal" title="crate::Ordering::Equal"><code>Ordering::Equal</code></a> if <code>item1</code> == <code>item2</code>,
 <a href="../enum.Ordering.html#variant.Smaller" title="crate::Ordering::Smaller"><code>Ordering::Smaller</code></a> if <code>item1</code> &lt; <code>item2</code>,
 <a href="../enum.Ordering.html#variant.Larger" title="crate::Ordering::Larger"><code>Ordering::Larger</code></a> if <code>item1</code> &gt; <code>item2</code></p>
@@ -113,7 +113,7 @@ via the return value of <a href="trait.SorterExt.html#tymethod.order" title="Sel
 <p>See <a href="../enum.SorterOrder.html" title="crate::SorterOrder"><code>SorterOrder</code></a> for details
 of the possible return values.</p>
 <p>This function is intended to allow optimizations.</p>
-<h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>The order</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#128" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted whenever the sorter changed.</p>
 <p>Users of the sorter should then update the sort order
@@ -122,7 +122,7 @@ again via <code>gtk_sorter_compare()</code>.</p>
 <p>Depending on the <code>change</code> parameter, it may be possible to update
 the sort order without a full resorting. Refer to the
 <a href="../enum.SorterChange.html" title="crate::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
-<h2 id="change-1" class="section-header"><a href="#change-1"><code>change</code></a></h2>
+<h6 id="change-1" class="section-header"><a href="#change-1"><code>change</code></a></h6>
 <p>how the sorter changed</p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-SorterExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#131-183" title="goto source code">[src]</a></div><a href="#impl-SorterExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Sorter.html" title="struct gtk4::Sorter">Sorter</a>&gt;&gt; <a class="trait" href="trait.SorterExt.html" title="trait gtk4::prelude::SorterExt">SorterExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.SorterExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script>

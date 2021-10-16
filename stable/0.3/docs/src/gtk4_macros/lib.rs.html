@@ -242,7 +242,7 @@
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">CompositeTemplate</span>, <span class="ident">attributes</span>(<span class="ident">template</span>, <span class="ident">template_child</span>))]</span>
 <span class="attribute">#[<span class="ident">proc_macro_error</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">composite_template_derive</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">composite_template_derive</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">input</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
     <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">composite_template_derive::impl_composite_template</span>(<span class="kw-2">&amp;</span><span class="ident">input</span>);
     <span class="ident">gen</span>.<span class="ident">into</span>()
