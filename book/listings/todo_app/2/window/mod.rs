@@ -40,7 +40,7 @@ impl Window {
         let filter_state: String = imp.settings.get("filter");
 
         // Create custom filters
-        let filter_open = CustomFilter::new(|obj: &Object| {
+        let filter_open = CustomFilter::new(|obj| {
             // Get `TodoObject` from `glib::Object`
             let todo_object = obj
                 .downcast_ref::<TodoObject>()
