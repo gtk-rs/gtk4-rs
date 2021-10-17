@@ -1,5 +1,7 @@
 # Manipulating State of To-Do App
 
+## Filtering Tasks
+
 Now that we have learned how to use actions, we can continue working on our To-Do app.
 One obvious feature to add would be filtering of tasks.
 Let us use actions as entry points for this feature.
@@ -107,12 +109,17 @@ If the state is "All" nothing has to be filtered out.
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:filter}}
 ```
 
+Now, we can setup the model.
+We initialize `filter_model` with the value of the corresponding setting by calling the method `filter`.
+Whenever the setting of key "filter" the changes, we call `filter` again to get the update `filter_model`.
+
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```
 
+In `setup_callbacks` we add a signal handler to `clear_button`, which removes all done tasks when activated.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -120,12 +127,16 @@ If the state is "All" nothing has to be filtered out.
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_callbacks}}
 ```
 
+In `setup_shortcut_window` we add a shortcut window so that the users of our app know which shortcuts they can use.
+
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_shortcut_window}}
 ```
 
+Finally, we bind the shortcuts to their actions.
+Since this has to be done at the application level, `setup_shortcuts` takes a `gtk::Application` as parameter.
 
 <span class="filename">Filename: listings/todo_app/2/main.rs</span>
 
@@ -133,17 +144,57 @@ If the state is "All" nothing has to be filtered out.
 {{#rustdoc_include ../listings/todo_app/2/main.rs:main}}
 ```
 
+## Saving and Restoring Tasks
+
+Since we utilize `Settings` for handling our filter state it will persist between sesssions.
+Unfortunately, the same cannot be said about the actual tasks.
+Let us change that.
+
+First we extend our `Cargo.toml` with the popular [`serde`](https://lib.rs/crates/serde) and corresponding [`serde_json`](https://lib.rs/crates/serde_json) crate.
+
+```toml
+[dependencies]
+serde = { version = "1.0", features = ["derive", "rc"] }
+serde_json = "1.0"
+```
+
+Serde is a framework for serializing and deserializing Rust data structures.
+Activating the `derive` feature allows us to derive the necessary traits for this automatically.
+We also use the `rc` feature so that Serde can deal with `std::rc::Rc` objects.
+
+Now it should be clear why the data of `TodoObject` is stored in a distinct `TodoData` object.
+Because this allows us to derive `Serialize` and `Deserialize` on `TodoData`.
+
 <span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/todo_object/mod.rs:serialize}}
 ```
 
+We plan to store our data as a file, so we create a utility function to provide a suitable path for us.
+We use `glib::user_config_dir` to get the path to the config directory and create a new sub-directory for our app.
+Then we return the final path.
+
+<span class="filename">Filename: listings/todo_app/2/utils.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/utils.rs:data_path}}
+```
+
+We override the `close_request` virtual function to save the tasks whenever the window gets closed.
+We iterate through all entries and store them in a `Vec`.
+Then we serialize the `Vec` and store the data as a [JSON](https://en.wikipedia.org/wiki/JSON) file.
+
+
 <span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:window_impl}}
 ```
+
+When we start the app, we will want to restore the saved data so let us add a `restore_data` method.
+First, we make sure not to panic if there is no data file there yet.
+It might be the first time that we started the app and in that case there is no former session to restore.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
