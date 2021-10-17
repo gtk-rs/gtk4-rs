@@ -85,11 +85,9 @@ impl Window {
 
         // Filter model whenever the value of the key "filter" changes
         imp.settings.connect_changed(
-            None,
-            clone!(@weak self as window, @weak filter_model => move |_, key| {
-                if key == "filter" {
-                    filter_model.set_filter(window.filter().as_ref());
-                }
+            Some("filter"),
+            clone!(@weak self as window, @weak filter_model => move |_, _| {
+                filter_model.set_filter(window.filter().as_ref());
             }),
         );
     }
@@ -208,7 +206,8 @@ impl Window {
             .object("shortcuts")
             .expect("Could not get object `shortcuts` from builder.");
 
-        // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
+        // After calling this method,
+        // calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
     }
     // ANCHOR_END: setup_shortcut_window
