@@ -51,7 +51,7 @@ meson setup builddir
 In order to compile and install it run the following commands.
 You have to execute it every time you modify your application.
 ```bash
-meson -C builddir && meson install -C builddir
+meson compile -C builddir && meson install -C builddir
 ```
 
 Now the application should be in a folder included in your system path.
