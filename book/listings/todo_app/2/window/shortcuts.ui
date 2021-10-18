@@ -18,19 +18,19 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Filter to show all tasks</property>
-                <property name="action-name">win.filter("All")</property>
+                <property name="action-name">win.filter('All')</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Filter to show only open tasks</property>
-                <property name="action-name">win.filter("Open")</property>
+                <property name="action-name">win.filter('Open')</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Filter to show only done tasks</property>
-                <property name="action-name">win.filter("Done")</property>
+                <property name="action-name">win.filter('Done')</property>
               </object>
             </child>
           </object>
