@@ -90,17 +90,19 @@ impl Window {
     }
 
     fn restore_data(&self) {
-        // Deserialize data from file to vector
         if let Ok(file) = File::open(data_path()) {
+            // Deserialize data from file to vector
             let backup_data: Vec<TodoData> =
                 serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
+            // Convert `Vec<TodoData>` to `Vec<Object>`
             let todo_objects: Vec<Object> = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
                 .map(|todo_object| todo_object.upcast())
                 .collect();
 
+            // Insert restored objects into model
             self.model().splice(0, 0, &todo_objects);
         } else {
             info!("Backup file does not exist yet {:?}", data_path());
