@@ -101,9 +101,10 @@ Then we add the newly created action "filter" to our window.
 ```
 
 After activating the action "win.filter", the corresponding setting will be changed.
-So we need a method which translates this setting to a filter the `gtk::FilterListModel` understands.
-The possible states are "All", "Open" and "Done" and we return a `Some(filter)` for "Open" and "Done".
-If the state is "All" nothing has to be filtered out so we return `None`.
+So we need a method which translates this setting into a filter that the `gtk::FilterListModel` understands.
+The possible states are "All", "Open" and "Done". 
+We return `Some(filter)` for "Open" and "Done".
+If the state is "All" nothing has to be filtered out, so we return `None`.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -111,7 +112,7 @@ If the state is "All" nothing has to be filtered out so we return `None`.
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:filter}}
 ```
 
-Now, we can setup the model.
+Now, we can set up the model.
 We initialize `filter_model` with the setting state by calling the method `filter`.
 Whenever the setting of the key "filter" changes, we call the method `filter` again to get the updated `filter_model`.
 
@@ -121,7 +122,7 @@ Whenever the setting of the key "filter" changes, we call the method `filter` ag
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```
 
-In `setup_callbacks` we add a signal handler to `clear_button`, which removes all done tasks when activated.
+In `setup_callbacks`, we add a signal handler to `clear_button`, which removes all done tasks when activated.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -129,7 +130,7 @@ In `setup_callbacks` we add a signal handler to `clear_button`, which removes al
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_callbacks}}
 ```
 
-In `setup_shortcut_window` we add a handy way to let users of our app know which shortcuts they can use.
+In `setup_shortcut_window`, we add a handy way to let users of our app know which shortcuts they can use.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -167,7 +168,7 @@ Since we utilize `Settings`, our filter state will persist between sessions.
 Unfortunately, the same cannot be said about the actual tasks.
 Let us change that.
 
-First we extend our `Cargo.toml` with the popular [`serde`](https://lib.rs/crates/serde) and corresponding [`serde_json`](https://lib.rs/crates/serde_json) crate.
+First, we extend our `Cargo.toml` with the popular [`serde`](https://lib.rs/crates/serde) and corresponding [`serde_json`](https://lib.rs/crates/serde_json) crate.
 
 ```toml
 [dependencies]
@@ -228,5 +229,5 @@ Finally, we make sure that everything is set up in `constructed`.
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:object_impl}}
 ```
 
-Our app suddenly became much more useful.
+Our To-Do app suddenly became much more useful.
 Not only can we filter tasks, we also retain our tasks between session.
