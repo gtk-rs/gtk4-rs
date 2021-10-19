@@ -2,7 +2,7 @@
 <interface>
   <menu id="main-menu">
     <submenu>
-      <attribute name="label" translatable="yes">_Filtering</attribute>
+      <attribute name="label" translatable="yes">_Filter</attribute>
       <item>
         <attribute name="label" translatable="yes">_All</attribute>
         <attribute name="action">win.filter</attribute>

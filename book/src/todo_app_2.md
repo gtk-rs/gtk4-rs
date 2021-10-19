@@ -15,8 +15,8 @@ Your browser does not support the video tag.
  </video>
 </div>
 
-Note that the screencast also shows a `clear_button` which will remove all done tasks.
-This will come in handy when we later allow the app to keep its tasks between sessions.
+Note that the screencast also shows a button with label "Clear" which will remove all done tasks.
+This will come in handy when we later make the app preserve the tasks between sessions.
 
 Let us start by adding the menu and title bar to `window.ui`.
 The changed code should feel familiar to the one in the former chapter.
@@ -147,13 +147,15 @@ The `shortcuts.ui` file looks like this:
 {{#rustdoc_include ../listings/todo_app/2/window/shortcuts.ui}}
 ```
 
-> Note the way we specified the target for `ShortcutsShortcut` and later `set_accels_for_action`.
-Instead of accepting a separate property for the target, it takes a *detailed* action name.
-It follows the following system: `action_group.action_name(target)`.
-The way the target has to be formatted depends on the type of the target and is documented [here](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html#method.parse_detailed_name).
+> Note the way we set `action-name` for `ShortcutsShortcut`.
+Instead of using a separate property for the target, it takes a *detailed* action name.
+Detailed names look like this: `action_group.action_name(target)`.
+Formatting of the target depends on its type and is documented [here](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html#method.parse_detailed_name).
+In particular, strings have to be enclosed single quotes as you can see in this example.
 
 
 Finally, we bind the shortcuts to their actions with `set_accels_for_action`.
+Here as well, a detailed action name is used.
 Since this has to be done at the application level, `setup_shortcuts` takes a `gtk::Application` as parameter.
 
 <span class="filename">Filename: listings/todo_app/2/main.rs</span>
@@ -168,11 +170,14 @@ Since we utilize `Settings`, our filter state will persist between sessions.
 Unfortunately, the same cannot be said about the actual tasks.
 Let us change that.
 
-First, we extend our `Cargo.toml` with the popular [`serde`](https://lib.rs/crates/serde) and corresponding [`serde_json`](https://lib.rs/crates/serde_json) crate.
+We could store our tasks in `Settings`, but it would be inconvenient.
+When it comes to serializing and deserializing nothing beats the crate [`serde`](https://lib.rs/crates/serde).
+Combined with [`serde_json`](https://lib.rs/crates/serde_json) we can save our tasks as serialized [json](https://en.wikipedia.org/wiki/JSON) files
+First, we extend our `Cargo.toml` with the `serde` and `serde_json` crate.
 
 ```toml
 [dependencies]
-serde = { version = "1.0", features = ["derive", "rc"] }
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 ```
 
@@ -201,13 +206,43 @@ Then we return the file path.
 
 We override the `close_request` virtual function to save the tasks whenever the window gets closed.
 To do so, we first iterate through all entries and store them in a `Vec`.
-Then we serialize the `Vec` and store the data as a [JSON](https://en.wikipedia.org/wiki/JSON) file.
-
+Then we serialize the `Vec` and store the data as a json file.
 
 <span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:window_impl}}
+```
+
+Note that we used [`serde_json::to_writer_pretty`](https://docs.serde.rs/serde_json/fn.to_writer_pretty.html) here.
+The `pretty` suffix suggests that the json file is formatted in a readable way.
+For your own app you might not care about this and go for [`serde_json::to_writer`](https://docs.serde.rs/serde_json/fn.to_writer.html) which produces smaller files.
+For this example we like it, because it allows us to see into what a `Vec<TodoData>` will be serialized.
+
+<span class="filename">Filename: data.json</span>
+```json
+[
+  {
+    "completed": true,
+    "content": "Task Number Two"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Five"
+  },
+  {
+    "completed": true,
+    "content": "Task Number Six"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Seven"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Eight"
+  }
+]
 ```
 
 When we start the app, we will want to restore the saved data.

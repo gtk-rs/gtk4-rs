@@ -46,7 +46,7 @@ impl Window {
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.");
 
-            // Only allow open tasks
+            // Only allow completed tasks
             !todo_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
@@ -59,7 +59,7 @@ impl Window {
             todo_object.is_completed()
         });
 
-        // Return correct filter
+        // Return the correct filter
         match filter_state.as_str() {
             "All" => None,
             "Open" => Some(filter_open),
