@@ -117,7 +117,7 @@ or [`glib::timeout_add_local`][`fn@glib::timeout_add_local`] version without the
 The [`gtk`](mod@crate) and [`gdk`][`mod@gdk`] crates have some run-time safety and contract
 checks.
 
-- Any constructor or free function will panic if called before [`init][`fn@init`] or on
+- Any constructor or free function will panic if called before [`init`][`fn@init`] or on
 a non-main thread.
 
 - Any [`&str`] or [`&Path`](std::path::Path) parameter with an interior null (`\0`) character will
