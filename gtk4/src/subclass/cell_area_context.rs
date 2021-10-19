@@ -133,9 +133,10 @@ unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
 
         let klass = class.as_mut();
         klass.reset = Some(cell_area_context_reset::<T>);

@@ -243,6 +243,12 @@ impl AsRef<Event> for Event {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// A common trait implemented by the various [`gdk::Event`] types.
+///
+/// # Safety
+///
+/// The user is not supposed to implement this trait.
 pub unsafe trait EventKind:
     StaticType + FromGlibPtrFull<*mut ffi::GdkEvent> + 'static
 {

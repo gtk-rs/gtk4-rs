@@ -583,9 +583,10 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
     fn class_init(class: &mut ::glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
 
         let klass = class.as_mut();
         unsafe {
@@ -919,6 +920,7 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     imp.unroot(wrap.unsafe_cast_ref())
 }
 
+#[allow(clippy::missing_safety_doc)]
 pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_set_template")]
     fn set_template_bytes(&mut self, template: &glib::Bytes) {
@@ -1090,12 +1092,12 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         arguments: Option<&glib::Variant>,
     ) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
-        if SignalId::lookup(signal_name, type_).is_none() {
-            panic!(
-                "Signal '{}' doesn't exists for type '{}'",
-                signal_name, type_
-            );
-        }
+        assert!(
+            SignalId::lookup(signal_name, type_).is_some(),
+            "Signal '{}' doesn't exists for type '{}'",
+            signal_name,
+            type_
+        );
 
         let shortcut = crate::Shortcut::new(
             Some(&crate::KeyvalTrigger::new(keyval, mods)),
@@ -1150,12 +1152,13 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_set_activate_signal_from_name")]
     fn set_activate_signal_from_name(&mut self, signal_name: &str) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
-        if SignalId::lookup(signal_name, type_).is_none() {
-            panic!(
-                "Signal '{}' doesn't exists for type '{}'",
-                signal_name, type_
-            );
-        }
+        assert!(
+            SignalId::lookup(signal_name, type_).is_some(),
+            "Signal '{}' doesn't exists for type '{}'",
+            signal_name,
+            type_
+        );
+
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
             ffi::gtk_widget_class_set_activate_signal_from_name(

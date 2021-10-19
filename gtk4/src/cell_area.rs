@@ -99,13 +99,13 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             let pspec = pspec.unwrap_or_else(|| {
                 panic!("The CellArea property {} doesn't exists", property_name)
             });
-            if !pspec.value_type().is_a(value.value_type()) {
-                panic!(
-                    "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
-                    pspec.value_type(),
-                    value.value_type()
-                )
-            }
+
+            assert!(
+                pspec.value_type().is_a(value.value_type()),
+                "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
+                pspec.value_type(),
+                value.value_type()
+            );
 
             ffi::gtk_cell_area_cell_set_property(
                 self.as_ref().to_glib_none().0,

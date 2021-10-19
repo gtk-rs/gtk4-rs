@@ -164,9 +164,10 @@ unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
 
         let klass = class.as_mut();
         klass.delete_text = Some(entry_buffer_delete_text::<T>);

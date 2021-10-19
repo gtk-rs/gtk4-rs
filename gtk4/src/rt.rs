@@ -14,6 +14,7 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 /// Asserts that this is the main thread and `gtk::init` has been called.
 macro_rules! assert_initialized_main_thread {
     () => {
+        #[allow(clippy::if_then_panic)]
         if !crate::rt::is_initialized_main_thread() {
             if crate::rt::is_initialized() {
                 panic!("GTK may only be used from the main thread.");
@@ -33,9 +34,10 @@ macro_rules! skip_assert_initialized {
 #[allow(unused_macros)]
 macro_rules! assert_not_initialized {
     () => {
-        if crate::rt::is_initialized() {
-            panic!("This function has to be called before `gtk::init`.");
-        }
+        assert!(
+            !crate::rt::is_initialized(),
+            "This function has to be called before `gtk::init`."
+        );
     };
 }
 
@@ -67,6 +69,7 @@ pub fn is_initialized_main_thread() -> bool {
 /// 1. You have initialized the underlying GTK library yourself.
 /// 2. You did 1 on the thread with which you are calling this function
 /// 3. You ensure that this thread is the main thread for the process.
+#[allow(clippy::if_then_panic)]
 pub unsafe fn set_initialized() {
     skip_assert_initialized!();
     if is_initialized_main_thread() {
@@ -76,6 +79,7 @@ pub unsafe fn set_initialized() {
     } else if !{ from_glib(ffi::gtk_is_initialized()) } {
         panic!("GTK was not actually initialized");
     }
+
     INITIALIZED.store(true, Ordering::Release);
     IS_MAIN_THREAD.with(|c| c.set(true));
 }
@@ -92,6 +96,7 @@ pub unsafe fn set_initialized() {
 /// Instead, an Ok is returned if the windowing system was successfully
 /// initialized otherwise an Err is returned.
 #[doc(alias = "gtk_init")]
+#[allow(clippy::if_then_panic)]
 pub fn init() -> Result<(), glib::BoolError> {
     skip_assert_initialized!();
     if is_initialized_main_thread() {
@@ -99,6 +104,7 @@ pub fn init() -> Result<(), glib::BoolError> {
     } else if is_initialized() {
         panic!("Attempted to initialize GTK from two different threads.");
     }
+
     unsafe {
         if from_glib(ffi::gtk_init_check()) {
             // See https://github.com/gtk-rs/gtk-rs-core/issues/186 for reasoning behind

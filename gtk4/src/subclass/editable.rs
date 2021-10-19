@@ -379,9 +379,11 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
 
     match wrap.qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK) {
         Some(delegate_data) => {
-            if delegate_data.as_ref() != &delegate {
-                panic!("The Editable delegate must not change");
-            }
+            assert_eq!(
+                delegate_data.as_ref(),
+                &delegate,
+                "The Editable delegate must not change"
+            );
         }
         None => {
             wrap.set_qdata(*EDITABLE_GET_DELEGATE_QUARK, delegate.clone());

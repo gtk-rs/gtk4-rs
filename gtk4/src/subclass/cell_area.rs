@@ -683,9 +683,10 @@ unsafe impl<T: CellAreaImpl> IsSubclassable<T> for CellArea {
         <Object as IsSubclassable<T>>::class_init(class);
         let klass = class.as_mut();
 
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
 
         let pspecs = <T as CellAreaImpl>::cell_properties();
         if !pspecs.is_empty() {
@@ -1089,6 +1090,7 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
     )
 }
 
+#[allow(clippy::missing_safety_doc)]
 pub unsafe trait CellAreaClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_cell_area_class_find_cell_property")]
     fn find_cell_property(&self, property_name: &str) -> Option<ParamSpec> {

@@ -227,9 +227,10 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
 
         iface.get_font_family = Some(font_chooser_get_font_family::<T>);
         iface.get_font_face = Some(font_chooser_get_font_face::<T>);
