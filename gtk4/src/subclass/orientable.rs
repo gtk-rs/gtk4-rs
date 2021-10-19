@@ -7,9 +7,10 @@ pub trait OrientableImpl: ObjectImpl {}
 
 unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {
     fn interface_init(_iface: &mut glib::Interface<Self>) {
-        if !crate::rt::is_initialized() {
-            panic!("GTK has to be initialized first");
-        }
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
     }
 
     fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}

@@ -137,6 +137,12 @@ impl RenderNode {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// A common trait implemented by the various [`gsk::RenderNode`] types.
+///
+/// # Safety
+///
+/// The user is not supposed to implement this trait.
 pub unsafe trait IsRenderNode:
     StaticType
     + FromGlibPtrFull<*mut ffi::GskRenderNode>

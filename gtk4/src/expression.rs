@@ -32,6 +32,12 @@ impl AsRef<Expression> for Expression {
 
 pub const NONE_EXPRESSION: Option<&Expression> = None;
 
+// rustdoc-stripper-ignore-next
+/// A common trait implemented by the various [`gtk::Expression`] types.
+///
+/// # Safety
+///
+/// The user is not supposed to implement this trait.
 pub unsafe trait IsExpression:
     glib::StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
 {
