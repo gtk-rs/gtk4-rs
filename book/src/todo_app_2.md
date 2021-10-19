@@ -3,9 +3,9 @@
 ## Filtering Tasks
 
 Now it is time to continue working on our To-Do app.
-One nice feature to add would be to allow filtering of tasks.
+One nice feature to add would be filtering of the tasks.
 What a chance to use our newly gained knowledge of actions!
-Using actions, we can access the filter via the menu as well as via keyboard accelerators.
+Using actions, we can access the filter via the menu as well as via keyboard shortcuts.
 This is how we want this to work in the end:
 
 <div style="text-align:center">
@@ -18,8 +18,8 @@ Your browser does not support the video tag.
 Note that the screencast also shows a button with label "Clear" which will remove all done tasks.
 This will come in handy when we later make the app preserve the tasks between sessions.
 
-Let us start by adding the menu and title bar to `window.ui`.
-The changed code should feel familiar to the one in the former chapter.
+Let us start by adding a menu and a header bar to `window.ui`.
+The code should feel familiar to the one in the former chapter.
 
 <span class="filename">Filename: listings/todo_app/2/window/window.ui</span>
 
@@ -73,7 +73,7 @@ The changed code should feel familiar to the one in the former chapter.
          <property name="orientation">vertical</property>
 ```
 
-We also add `settings` and a reference to `clear_button` to `imp::Window`.
+We also need to add `settings` and a reference to `clear_button` to `imp::Window`.
 Since `gio::Settings` does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
 
 <span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
@@ -91,7 +91,7 @@ We will make use of them in the following snippets.
 {{#rustdoc_include ../listings/todo_app/2/todo_object/mod.rs:impl}}
 ```
 
-Similar to the chapter before, we let `settings` create the action.
+Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
@@ -113,8 +113,8 @@ If the state is "All" nothing has to be filtered out, so we return `None`.
 ```
 
 Now, we can set up the model.
-We initialize `filter_model` with the setting state by calling the method `filter`.
-Whenever the setting of the key "filter" changes, we call the method `filter` again to get the updated `filter_model`.
+We initialize `filter_model` with the state from the settings by calling the method `filter`.
+Whenever the state of the key "filter" changes, we call the method `filter` again to get the updated `filter_model`.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -122,7 +122,7 @@ Whenever the setting of the key "filter" changes, we call the method `filter` ag
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```
 
-In `setup_callbacks`, we add a signal handler to `clear_button`, which removes all done tasks when activated.
+In `setup_callbacks`, we add a signal handler to `clear_button`, which removes all completed tasks when activated.
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -166,9 +166,9 @@ Since this has to be done at the application level, `setup_shortcuts` takes a `g
 
 ## Saving and Restoring Tasks
 
-Since we utilize `Settings`, our filter state will persist between sessions.
-Unfortunately, the same cannot be said about the actual tasks.
-Let us change that.
+Since we use `Settings`, our filter state will persist between sessions.
+However, the tasks themselves will not.
+Let us implement that.
 
 We could store our tasks in `Settings`, but it would be inconvenient.
 When it comes to serializing and deserializing nothing beats the crate [`serde`](https://lib.rs/crates/serde).
@@ -182,10 +182,10 @@ serde_json = "1.0"
 ```
 
 Serde is a framework for serializing and deserializing Rust data structures.
-Activating the `derive` feature allows us to derive the necessary traits for this automatically.
+The `derive` feature allows us to make our structures (de-)serializable with a single line of code.
 We also use the `rc` feature so that Serde can deal with `std::rc::Rc` objects.
 
-Now it should be clear why the data of `TodoObject` is stored in a distinct `TodoData` object.
+This is why we stored the data of `TodoObject` in a distinct `TodoData` structure.
 Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 
 <span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span>
@@ -204,7 +204,7 @@ Then we return the file path.
 {{#rustdoc_include ../listings/todo_app/2/utils.rs:data_path}}
 ```
 
-We override the `close_request` virtual function to save the tasks whenever the window gets closed.
+We override the `close_request` virtual function to save the tasks when the window is closed.
 To do so, we first iterate through all entries and store them in a `Vec`.
 Then we serialize the `Vec` and store the data as a json file.
 
@@ -265,4 +265,4 @@ Finally, we make sure that everything is set up in `constructed`.
 ```
 
 Our To-Do app suddenly became much more useful.
-Not only can we filter tasks, we also retain our tasks between session.
+Not only can we filter tasks, we also retain our tasks between sessions.
