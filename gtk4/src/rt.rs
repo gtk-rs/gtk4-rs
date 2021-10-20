@@ -14,6 +14,7 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 /// Asserts that this is the main thread and `gtk::init` has been called.
 macro_rules! assert_initialized_main_thread {
     () => {
+        #[allow(unknown_lints)]
         #[allow(clippy::if_then_panic)]
         if !crate::rt::is_initialized_main_thread() {
             if crate::rt::is_initialized() {
@@ -69,6 +70,7 @@ pub fn is_initialized_main_thread() -> bool {
 /// 1. You have initialized the underlying GTK library yourself.
 /// 2. You did 1 on the thread with which you are calling this function
 /// 3. You ensure that this thread is the main thread for the process.
+#[allow(unknown_lints)]
 #[allow(clippy::if_then_panic)]
 pub unsafe fn set_initialized() {
     skip_assert_initialized!();
@@ -96,6 +98,7 @@ pub unsafe fn set_initialized() {
 /// Instead, an Ok is returned if the windowing system was successfully
 /// initialized otherwise an Err is returned.
 #[doc(alias = "gtk_init")]
+#[allow(unknown_lints)]
 #[allow(clippy::if_then_panic)]
 pub fn init() -> Result<(), glib::BoolError> {
     skip_assert_initialized!();
