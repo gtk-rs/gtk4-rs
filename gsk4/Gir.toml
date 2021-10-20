@@ -18,7 +18,6 @@ generate = [
     "Gsk.RenderNodeType",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
-    "Gsk.ShaderArgsBuilder",
     "Gsk.TransformCategory",
 ]
 
@@ -135,6 +134,13 @@ manual_traits = ["GskRendererExtManual"]
 name = "Gsk.RenderNode"
 status = "manual" # fundemental type
 final_type = true # avoids the usage of RenderNodeExt trait
+
+[[object]]
+name = "Gsk.ShaderArgsBuilder"
+status = "generate"
+    [[object.function]]
+    name = "free_to_args"
+    ignore = true # C convenience functions
 
 [[object]]
 name = "Gsk.Transform"

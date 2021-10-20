@@ -28,15 +28,6 @@ impl ShaderArgsBuilder {
         }
     }
 
-    #[doc(alias = "gsk_shader_args_builder_free_to_args")]
-    pub fn free_to_args(&self) -> Option<glib::Bytes> {
-        unsafe {
-            from_glib_full(ffi::gsk_shader_args_builder_free_to_args(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gsk_shader_args_builder_set_bool")]
     pub fn set_bool(&self, idx: i32, value: bool) {
         unsafe {

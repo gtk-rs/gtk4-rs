@@ -1872,6 +1872,9 @@ name = "Gtk.Snapshot"
 status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
+    pattern = "free_to_(node|paintable)"
+    ignore = true # C convenience functions
+    [[object.function]]
     name = "append_border"
     manual = true
     [[object.function]]

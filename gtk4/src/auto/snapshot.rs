@@ -112,21 +112,6 @@ impl Snapshot {
         }
     }
 
-    #[doc(alias = "gtk_snapshot_free_to_node")]
-    pub fn free_to_node(&self) -> Option<gsk::RenderNode> {
-        unsafe { from_glib_full(ffi::gtk_snapshot_free_to_node(self.to_glib_full())) }
-    }
-
-    #[doc(alias = "gtk_snapshot_free_to_paintable")]
-    pub fn free_to_paintable(&self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_full(ffi::gtk_snapshot_free_to_paintable(
-                self.to_glib_full(),
-                size.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gtk_snapshot_gl_shader_pop_texture")]
     pub fn gl_shader_pop_texture(&self) {
         unsafe {
