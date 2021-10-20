@@ -10,7 +10,7 @@ name = "gdk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.3.0"
-
+rust-version = "1.54"
 [lib]
 name = "gdk4"
 
