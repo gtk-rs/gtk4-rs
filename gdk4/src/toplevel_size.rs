@@ -1,11 +1,18 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
+use std::fmt;
 
-#[derive(Debug)]
-#[repr(transparent)]
+glib::wrapper! {
+
 #[doc(alias = "GdkToplevelSize")]
-pub struct ToplevelSize(ffi::GdkToplevelSize);
+    pub struct ToplevelSize(BoxedInline<ffi::GdkToplevelSize>);
+
+    match fn {
+        type_ => || ffi::gdk_toplevel_size_get_type(),
+    }
+
+}
 
 impl ToplevelSize {
     #[doc(alias = "gdk_toplevel_size_get_bounds")]
@@ -52,24 +59,10 @@ impl ToplevelSize {
     }
 }
 
-#[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *const ffi::GdkToplevelSize> for ToplevelSize {
-    type Storage = &'a Self;
-
-    #[inline]
-    fn to_glib_none(&'a self) -> Stash<'a, *const ffi::GdkToplevelSize, Self> {
-        let ptr: *const ToplevelSize = &*self;
-        Stash(ptr as *const ffi::GdkToplevelSize, self)
-    }
-}
-
-#[doc(hidden)]
-impl<'a> ToGlibPtrMut<'a, *mut ffi::GdkToplevelSize> for ToplevelSize {
-    type Storage = &'a mut Self;
-
-    #[inline]
-    fn to_glib_none_mut(&'a mut self) -> StashMut<'a, *mut ffi::GdkToplevelSize, Self> {
-        let ptr: *mut ToplevelSize = &mut *self;
-        StashMut(ptr as *mut ffi::GdkToplevelSize, self)
+impl fmt::Debug for ToplevelSize {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("ToplevelSize")
+            .field("bounds", &self.bounds())
+            .finish()
     }
 }

@@ -1,11 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
+use std::fmt;
 
-#[derive(Copy, Clone)]
-#[repr(transparent)]
-#[doc(alias = "GskParseLocation")]
-pub struct ParseLocation(ffi::GskParseLocation);
+glib::wrapper! {
+    #[doc(alias = "GskParseLocation")]
+    pub struct ParseLocation(BoxedInline<ffi::GskParseLocation>);
+}
 
 impl ParseLocation {
     pub fn bytes(&self) -> usize {
@@ -29,11 +29,14 @@ impl ParseLocation {
     }
 }
 
-#[doc(hidden)]
-impl FromGlibPtrBorrow<*const ffi::GskParseLocation> for ParseLocation {
-    unsafe fn from_glib_borrow(
-        ptr: *const ffi::GskParseLocation,
-    ) -> glib::translate::Borrowed<Self> {
-        glib::translate::Borrowed::new(*(ptr as *const ParseLocation))
+impl fmt::Debug for ParseLocation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("ParseLocation")
+            .field("bytes", &self.bytes())
+            .field("chars", &self.chars())
+            .field("lines", &self.lines())
+            .field("line_bytes", &self.line_bytes())
+            .field("line_chars", &self.line_chars())
+            .finish()
     }
 }

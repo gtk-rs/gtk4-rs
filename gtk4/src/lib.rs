@@ -204,7 +204,6 @@ pub use page_range::PageRange;
 pub use param_spec_expression::ParamSpecExpression;
 pub use property_expression::PropertyExpression;
 pub use recent_data::RecentData;
-pub use requisition::Requisition;
 pub use response_type::ResponseType;
 pub use tree_sortable::SortColumn;
 pub use widget::TickCallbackId;

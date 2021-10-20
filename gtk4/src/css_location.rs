@@ -1,11 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
+use std::fmt;
 
-#[repr(C)]
-#[derive(Clone)]
-#[doc(alias = "GtkCssLocation")]
-pub struct CssLocation(ffi::GtkCssLocation);
+glib::wrapper! {
+    #[doc(alias = "GtkCssLocation")]
+    pub struct CssLocation(BoxedInline<ffi::GtkCssLocation>);
+}
 
 impl CssLocation {
     pub fn new(
@@ -46,18 +46,14 @@ impl CssLocation {
     }
 }
 
-#[doc(hidden)]
-impl FromGlibPtrNone<*const ffi::GtkCssLocation> for CssLocation {
-    unsafe fn from_glib_none(ptr: *const ffi::GtkCssLocation) -> Self {
-        Self(*ptr)
-    }
-}
-
-#[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *const ffi::GtkCssLocation> for CssLocation {
-    type Storage = &'a Self;
-
-    fn to_glib_none(&'a self) -> Stash<*const ffi::GtkCssLocation, Self> {
-        Stash(&self.0, self)
+impl fmt::Debug for CssLocation {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("CssLocation")
+            .field("bytes", &self.bytes())
+            .field("chars", &self.chars())
+            .field("lines", &self.lines())
+            .field("line_bytes", &self.line_bytes())
+            .field("line_chars", &self.line_chars())
+            .finish()
     }
 }

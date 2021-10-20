@@ -342,7 +342,6 @@ manual = [
     "Gtk.ParamSpecExpression",
     "Gtk.PropertyExpression",
     "Gtk.RecentData",
-    "Gtk.Requisition",
     "Gtk.ResponseType",
     "Pango.Alignment",
     "Pango.AttrList",
@@ -1747,6 +1746,11 @@ generate_builder = false
 name = "Gtk.RecentManager"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.Requisition"
+status = "generate"
+boxed_inline = true
 
 [[object]]
 name = "Gtk.Scale"
