@@ -31,21 +31,22 @@ impl Window {
         imp.model.get().expect("Could not get model")
     }
 
+    // ANCHOR: filter
     fn filter(&self) -> Option<CustomFilter> {
         // Get state
         let imp = imp::Window::from_instance(self);
 
-        // Get value from settings
-        let value: String = imp.settings.get("filter");
+        // Get filter_state from settings
+        let filter_state: String = imp.settings.get("filter");
 
         // Create custom filters
-        let filter_open = CustomFilter::new(|obj: &Object| {
+        let filter_open = CustomFilter::new(|obj| {
             // Get `TodoObject` from `glib::Object`
             let todo_object = obj
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.");
 
-            // Only allow open tasks
+            // Only allow completed tasks
             !todo_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
@@ -58,14 +59,17 @@ impl Window {
             todo_object.is_completed()
         });
 
-        // Return correct filter
-        match value.as_str() {
+        // Return the correct filter
+        match filter_state.as_str() {
+            "All" => None,
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
-            _ => None,
+            _ => unreachable!(),
         }
     }
+    // ANCHOR_END: filter
 
+    // ANCHOR: setup_model
     fn setup_model(&self) {
         // Create new model
         let model = gio::ListStore::new(TodoObject::static_type());
@@ -81,33 +85,37 @@ impl Window {
 
         // Filter model whenever the value of the key "filter" changes
         imp.settings.connect_changed(
-            None,
-            clone!(@weak self as window, @weak filter_model => move |_, key| {
-                if key == "filter" {
-                    filter_model.set_filter(window.filter().as_ref());
-                }
+            Some("filter"),
+            clone!(@weak self as window, @weak filter_model => move |_, _| {
+                filter_model.set_filter(window.filter().as_ref());
             }),
         );
     }
+    // ANCHOR_END: setup_model
 
+    // ANCHOR: restore_data
     fn restore_data(&self) {
-        // Deserialize data from file to vector
         if let Ok(file) = File::open(data_path()) {
+            // Deserialize data from file to vector
             let backup_data: Vec<TodoData> =
                 serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
+            // Convert `Vec<TodoData>` to `Vec<Object>`
             let todo_objects: Vec<Object> = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
                 .map(|todo_object| todo_object.upcast())
                 .collect();
 
+            // Insert restored objects into model
             self.model().splice(0, 0, &todo_objects);
         } else {
             info!("Backup file does not exist yet {:?}", data_path());
         }
     }
+    // ANCHOR_END: restore_data
 
+    // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -143,6 +151,7 @@ impl Window {
                 }
             }));
     }
+    // ANCHOR_END: setup_callbacks
 
     fn setup_factory(&self) {
         // Create a new factory
@@ -191,6 +200,7 @@ impl Window {
         imp.list_view.set_factory(Some(&factory));
     }
 
+    // ANCHOR: setup_shortcut_window
     fn setup_shortcut_window(&self) {
         // Get `ShortcutsWindow` via `gtk::Builder`
         let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
@@ -198,10 +208,13 @@ impl Window {
             .object("shortcuts")
             .expect("Could not get object `shortcuts` from builder.");
 
-        // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
+        // After calling this method,
+        // calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
     }
+    // ANCHOR_END: setup_shortcut_window
 
+    // ANCHOR: setup_filter_action
     fn setup_filter_action(&self) {
         // Get state
         let imp = imp::Window::from_instance(self);
@@ -212,4 +225,5 @@ impl Window {
         // Add action "filter" to action group "win"
         self.add_action(&filter_action);
     }
+    // ANCHOR_END: setup_filter_action
 }

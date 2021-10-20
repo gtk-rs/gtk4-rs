@@ -2,6 +2,7 @@ use std::path::PathBuf;
 
 use gtk::glib;
 
+// ANCHOR: data_path
 pub fn data_path() -> PathBuf {
     let mut path = glib::user_config_dir();
     path.push("org.gtk-rs.Todo");
@@ -9,3 +10,4 @@ pub fn data_path() -> PathBuf {
     path.push("data.json");
     path
 }
+// ANCHOR_END: data_path

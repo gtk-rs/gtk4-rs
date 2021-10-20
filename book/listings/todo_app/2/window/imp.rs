@@ -12,6 +12,7 @@ use once_cell::sync::OnceCell;
 use crate::todo_object::TodoObject;
 use crate::utils::data_path;
 
+// ANCHOR: struct_default
 // Object holding the state
 #[derive(CompositeTemplate)]
 #[template(file = "window.ui")]
@@ -40,6 +41,7 @@ impl Default for Window {
         }
     }
 }
+// ANCHOR_END: struct_default
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
@@ -58,6 +60,7 @@ impl ObjectSubclass for Window {
     }
 }
 
+// ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
@@ -73,10 +76,12 @@ impl ObjectImpl for Window {
         obj.setup_filter_action();
     }
 }
+// ANCHOR_END: object_impl
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
 
+// ANCHOR: window_impl
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
@@ -103,6 +108,7 @@ impl WindowImpl for Window {
         self.parent_close_request(window)
     }
 }
+// ANCHOR_END: window_impl
 
 // Trait shared by all application
 impl ApplicationWindowImpl for Window {}

@@ -39,13 +39,13 @@ impl Window {
         let filter_state: String = imp.settings.get("filter");
 
         // Create custom filters
-        let filter_open = CustomFilter::new(|obj: &Object| {
+        let filter_open = CustomFilter::new(|obj| {
             // Get `TodoObject` from `glib::Object`
             let todo_object = obj
                 .downcast_ref::<TodoObject>()
                 .expect("The object needs to be of type `TodoObject`.");
 
-            // Only allow open tasks
+            // Only allow completed tasks
             !todo_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
@@ -58,7 +58,7 @@ impl Window {
             todo_object.is_completed()
         });
 
-        // Return correct filter
+        // Return the correct filter
         match filter_state.as_str() {
             "All" => None,
             "Open" => Some(filter_open),
@@ -82,27 +82,27 @@ impl Window {
 
         // Filter model whenever the value of the key "filter" changes
         imp.settings.connect_changed(
-            None,
-            clone!(@weak self as window, @weak filter_model => move |_, key| {
-                if key == "filter" {
-                    filter_model.set_filter(window.filter().as_ref());
-                }
+            Some("filter"),
+            clone!(@weak self as window, @weak filter_model => move |_, _| {
+                filter_model.set_filter(window.filter().as_ref());
             }),
         );
     }
 
     fn restore_data(&self) {
-        // Deserialize data from file to vector
         if let Ok(file) = File::open(data_path()) {
+            // Deserialize data from file to vector
             let backup_data: Vec<TodoData> =
                 serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
+            // Convert `Vec<TodoData>` to `Vec<Object>`
             let todo_objects: Vec<Object> = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
                 .map(|todo_object| todo_object.upcast())
                 .collect();
 
+            // Insert restored objects into model
             self.model().splice(0, 0, &todo_objects);
         } else {
             info!("Backup file does not exist yet {:?}", data_path());
@@ -199,7 +199,8 @@ impl Window {
             .object("shortcuts")
             .expect("Could not get object `shortcuts` from builder.");
 
-        // After calling this method, calling the action "win.show-help-overlay" will show the shortcut window
+        // After calling this method,
+        // calling the action "win.show-help-overlay" will show the shortcut window
         self.set_help_overlay(Some(&shortcuts));
     }
 

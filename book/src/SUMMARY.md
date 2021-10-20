@@ -29,4 +29,5 @@
 - [Adwaita]()
 - [SourceView]()
 - [Zbus and Ashpd]()
+- [Librsvg]()
 - [Relm4]()
