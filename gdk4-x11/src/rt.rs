@@ -11,6 +11,7 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
 macro_rules! assert_initialized_main_thread {
     () => {
+        #[allow(unknown_lints)]
         #[allow(clippy::if_then_panic)]
         if !crate::rt::is_initialized_main_thread() {
             if crate::rt::is_initialized() {
