@@ -457,6 +457,7 @@
 <span id="384">384</span>
 <span id="385">385</span>
 <span id="386">386</span>
+<span id="387">387</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Bitset</span>, <span class="ident">SelectionModel</span>};
@@ -696,9 +697,10 @@
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
-            <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
-        }
+        <span class="macro">assert!</span>(
+            <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>(),
+            <span class="string">&quot;GTK has to be initialized first&quot;</span>
+        );
 
         <span class="ident">iface</span>.<span class="ident">get_selection_in_range</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model_get_selection_in_range</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">is_selected</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">model_is_selected</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);

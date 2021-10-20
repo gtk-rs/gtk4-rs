@@ -398,13 +398,13 @@
             <span class="kw">let</span> <span class="ident">pspec</span> <span class="op">=</span> <span class="ident">pspec</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
                 <span class="macro">panic!</span>(<span class="string">&quot;The CellArea property {} doesn&#39;t exists&quot;</span>, <span class="ident">property_name</span>)
             });
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">pspec</span>.<span class="ident">value_type</span>().<span class="ident">is_a</span>(<span class="ident">value</span>.<span class="ident">value_type</span>()) {
-                <span class="macro">panic!</span>(
-                    <span class="string">&quot;The CellArea property&#39;s value is of wrong type. Expected &#39;{}&#39; but got &#39;{}&#39;&quot;</span>,
-                    <span class="ident">pspec</span>.<span class="ident">value_type</span>(),
-                    <span class="ident">value</span>.<span class="ident">value_type</span>()
-                )
-            }
+
+            <span class="macro">assert!</span>(
+                <span class="ident">pspec</span>.<span class="ident">value_type</span>().<span class="ident">is_a</span>(<span class="ident">value</span>.<span class="ident">value_type</span>()),
+                <span class="string">&quot;The CellArea property&#39;s value is of wrong type. Expected &#39;{}&#39; but got &#39;{}&#39;&quot;</span>,
+                <span class="ident">pspec</span>.<span class="ident">value_type</span>(),
+                <span class="ident">value</span>.<span class="ident">value_type</span>()
+            );
 
             <span class="ident">ffi::gtk_cell_area_cell_set_property</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

@@ -207,6 +207,15 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -223,6 +232,8 @@
 <span class="doccomment">/// Asserts that this is the main thread and `gtk::init` has been called.</span>
 <span class="macro">macro_rules!</span> <span class="ident">assert_initialized_main_thread</span> {
     () =&gt; {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unknown_lints</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_then_panic</span>)]</span>
         <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized_main_thread</span>() {
             <span class="kw">if</span> <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
                 <span class="macro">panic!</span>(<span class="string">&quot;GTK may only be used from the main thread.&quot;</span>);
@@ -242,9 +253,10 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_macros</span>)]</span>
 <span class="macro">macro_rules!</span> <span class="ident">assert_not_initialized</span> {
     () =&gt; {
-        <span class="kw">if</span> <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
-            <span class="macro">panic!</span>(<span class="string">&quot;This function has to be called before `gtk::init`.&quot;</span>);
-        }
+        <span class="macro">assert!</span>(
+            <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>(),
+            <span class="string">&quot;This function has to be called before `gtk::init`.&quot;</span>
+        );
     };
 }
 
@@ -276,6 +288,8 @@
 <span class="doccomment">/// 1. You have initialized the underlying GTK library yourself.</span>
 <span class="doccomment">/// 2. You did 1 on the thread with which you are calling this function</span>
 <span class="doccomment">/// 3. You ensure that this thread is the main thread for the process.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unknown_lints</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_then_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_initialized</span>() {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">if</span> <span class="ident">is_initialized_main_thread</span>() {
@@ -285,6 +299,7 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span>{ <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_is_initialized</span>()) } {
         <span class="macro">panic!</span>(<span class="string">&quot;GTK was not actually initialized&quot;</span>);
     }
+
     <span class="ident">INITIALIZED</span>.<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">Ordering::Release</span>);
     <span class="ident">IS_MAIN_THREAD</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">set</span>(<span class="bool-val">true</span>));
 }
@@ -301,6 +316,8 @@
 <span class="doccomment">/// Instead, an Ok is returned if the windowing system was successfully</span>
 <span class="doccomment">/// initialized otherwise an Err is returned.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_init&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unknown_lints</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_then_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::BoolError</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">if</span> <span class="ident">is_initialized_main_thread</span>() {
@@ -308,6 +325,7 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">is_initialized</span>() {
         <span class="macro">panic!</span>(<span class="string">&quot;Attempted to initialize GTK from two different threads.&quot;</span>);
     }
+
     <span class="kw">unsafe</span> {
         <span class="kw">if</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_init_check</span>()) {
             <span class="comment">// See https://github.com/gtk-rs/gtk-rs-core/issues/186 for reasoning behind</span>

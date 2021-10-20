@@ -112,6 +112,8 @@
 <span id="39">39</span>
 <span id="40">40</span>
 <span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">std::cell::Cell</span>;
@@ -125,11 +127,13 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">assert_initialized_main_thread</span> {
     () =&gt; {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unknown_lints</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_then_panic</span>)]</span>
         <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized_main_thread</span>() {
             <span class="kw">if</span> <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
                 <span class="macro">panic!</span>(<span class="string">&quot;GDK may only be used from the main thread.&quot;</span>);
             } <span class="kw">else</span> {
-                <span class="macro">panic!</span>(<span class="string">&quot;GDK has not been initialized. Call `gdk::init` or `gtk::init` first.&quot;</span>);
+                <span class="macro">panic!</span>(<span class="string">&quot;GDK has not been initialized. Call `gtk::init` first.&quot;</span>);
             }
         }
     };

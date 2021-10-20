@@ -1385,6 +1385,9 @@
 <span id="1312">1312</span>
 <span id="1313">1313</span>
 <span id="1314">1314</span>
+<span id="1315">1315</span>
+<span id="1316">1316</span>
+<span id="1317">1317</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -1970,9 +1973,10 @@
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
-            <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
-        }
+        <span class="macro">assert!</span>(
+            <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>(),
+            <span class="string">&quot;GTK has to be initialized first&quot;</span>
+        );
 
         <span class="kw">let</span> <span class="ident">klass</span> <span class="op">=</span> <span class="ident">class</span>.<span class="ident">as_mut</span>();
         <span class="kw">unsafe</span> {
@@ -2306,6 +2310,7 @@
     <span class="ident">imp</span>.<span class="ident">unroot</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_safety_doc</span>)]</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">WidgetClassSubclassExt</span>: <span class="ident">ClassStruct</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_class_set_template&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_template_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">template</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>) {
@@ -2477,12 +2482,12 @@
         <span class="ident">arguments</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
-        <span class="kw">if</span> <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_none</span>() {
-            <span class="macro">panic!</span>(
-                <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
-                <span class="ident">signal_name</span>, <span class="ident">type_</span>
-            );
-        }
+        <span class="macro">assert!</span>(
+            <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_some</span>(),
+            <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
+            <span class="ident">signal_name</span>,
+            <span class="ident">type_</span>
+        );
 
         <span class="kw">let</span> <span class="ident">shortcut</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::Shortcut::new</span>(
             <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::KeyvalTrigger::new</span>(<span class="ident">keyval</span>, <span class="ident">mods</span>)),
@@ -2537,12 +2542,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_class_set_activate_signal_from_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_activate_signal_from_name</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">signal_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span> <span class="kw">as</span> <span class="ident">ObjectSubclassType</span><span class="op">&gt;</span><span class="ident">::type_</span>();
-        <span class="kw">if</span> <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_none</span>() {
-            <span class="macro">panic!</span>(
-                <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
-                <span class="ident">signal_name</span>, <span class="ident">type_</span>
-            );
-        }
+        <span class="macro">assert!</span>(
+            <span class="ident">SignalId::lookup</span>(<span class="ident">signal_name</span>, <span class="ident">type_</span>).<span class="ident">is_some</span>(),
+            <span class="string">&quot;Signal &#39;{}&#39; doesn&#39;t exists for type &#39;{}&#39;&quot;</span>,
+            <span class="ident">signal_name</span>,
+            <span class="ident">type_</span>
+        );
+
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
             <span class="ident">ffi::gtk_widget_class_set_activate_signal_from_name</span>(

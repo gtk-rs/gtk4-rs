@@ -472,6 +472,12 @@
 <span id="399">399</span>
 <span id="400">400</span>
 <span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AxisUse</span>, <span class="ident">Device</span>, <span class="ident">Display</span>, <span class="ident">EventType</span>, <span class="ident">ModifierType</span>, <span class="ident">Seat</span>, <span class="ident">Surface</span>, <span class="ident">TimeCoord</span>};
@@ -815,6 +821,12 @@
     }
 }
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A common trait implemented by the various [`gdk::Event`] types.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Safety</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The user is not supposed to implement this trait.</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">EventKind</span>:
     <span class="ident">StaticType</span> <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {

@@ -552,6 +552,12 @@
 <span id="479">479</span>
 <span id="480">480</span>
 <span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ExpressionWatch</span>;
@@ -721,6 +727,12 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_EXPRESSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Expression</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// A common trait implemented by the various [`gtk::Expression`] types.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Safety</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The user is not supposed to implement this trait.</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">IsExpression</span>:
     <span class="ident">glib::StaticType</span> <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkExpression</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {

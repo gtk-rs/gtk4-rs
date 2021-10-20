@@ -194,6 +194,7 @@
 <span id="121">121</span>
 <span id="122">122</span>
 <span id="123">123</span>
+<span id="124">124</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -275,9 +276,10 @@
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>() {
-            <span class="macro">panic!</span>(<span class="string">&quot;GTK has to be initialized first&quot;</span>);
-        }
+        <span class="macro">assert!</span>(
+            <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>(),
+            <span class="string">&quot;GTK has to be initialized first&quot;</span>
+        );
 
         <span class="ident">iface</span>.<span class="ident">editing_done</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_editable_editing_done</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">remove_widget</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_editable_remove_widget</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
