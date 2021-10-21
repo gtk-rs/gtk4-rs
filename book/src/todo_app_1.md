@@ -72,6 +72,7 @@ This object will store the state of the task consisting of:
 ```
 
 Unlike the lists chapter, the state is stored in a struct rather than in individual members of `imp::TodoObject`.
+This will be very convenient when saving the state in one of the following chapters.
 
 <span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span>
 
@@ -79,8 +80,6 @@ Unlike the lists chapter, the state is stored in a struct rather than in individ
 {{#rustdoc_include ../listings/todo_app/1/todo_object/mod.rs:todo_data}}
 ```
 
-Not only that, we see that it is also wrapped in a [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html).
-This will be very convenient for saving the state in one of the following chapters.
 Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
 
