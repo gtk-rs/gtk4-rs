@@ -41,8 +41,6 @@ The book strives to explain essential GTK concepts paired with practical example
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
 If you are interested in contained and useful examples, we refer you to the corresponding [section](https://github.com/gtk-rs/gtk4-rs/tree/master/examples) of `gtk4-rs`' repository.
 
-## Listings
-
 Every valid code snippet in the book is part of a listing.
 The listings be found in the [git repository](https://github.com/gtk-rs/gtk4-rs/tree/master/book/listings) of `gtk4-rs`.
 
