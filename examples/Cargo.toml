@@ -110,6 +110,10 @@ name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
 
 [[bin]]
+name = "scale_bin"
+path = "scale_bin/main.rs"
+
+[[bin]]
 name = "search_bar"
 path = "search_bar/main.rs"
 
