@@ -4,9 +4,10 @@ use glib::translate::*;
 use graphene::{Point, Rect, Size};
 use std::mem;
 
-#[derive(Clone, Debug)]
-#[doc(alias = "GskRoundedRect")]
-pub struct RoundedRect(ffi::GskRoundedRect);
+glib::wrapper! {
+    #[doc(alias = "GskRoundedRect")]
+    pub struct RoundedRect(BoxedInline<ffi::GskRoundedRect>);
+}
 
 impl RoundedRect {
     #[doc(alias = "gsk_rounded_rect_init")]
@@ -129,21 +130,5 @@ impl RoundedRect {
                 rect.to_glib_none().0,
             ))
         }
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibPtrNone<*const ffi::GskRoundedRect> for RoundedRect {
-    unsafe fn from_glib_none(ptr: *const ffi::GskRoundedRect) -> Self {
-        Self(*ptr)
-    }
-}
-
-#[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *const ffi::GskRoundedRect> for RoundedRect {
-    type Storage = &'a Self;
-
-    fn to_glib_none(&'a self) -> Stash<*const ffi::GskRoundedRect, Self> {
-        Stash(&self.0, self)
     }
 }

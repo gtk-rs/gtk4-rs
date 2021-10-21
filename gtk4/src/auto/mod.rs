@@ -996,6 +996,9 @@ pub use self::paper_size::PaperSize;
 mod recent_info;
 pub use self::recent_info::RecentInfo;
 
+mod requisition;
+pub use self::requisition::Requisition;
+
 mod text_iter;
 pub use self::text_iter::TextIter;
 

@@ -90,8 +90,8 @@ impl LayoutManagerImpl for CustomLayout {
             }
 
             let (child_req, _) = child.preferred_size();
-            child_width = child_width.max(child_req.width);
-            child_height = child_height.max(child_req.height);
+            child_width = child_width.max(child_req.width());
+            child_height = child_height.max(child_req.height());
             if let Some(next_child) = child.next_sibling() {
                 child = next_child;
             } else {
@@ -118,8 +118,8 @@ impl LayoutManagerImpl for CustomLayout {
             let a = *self.child_pos.borrow().get(i as usize).unwrap() as f64
                 * (PI / (TOTAL_COLORS as f64 / 2.0));
 
-            let cx = x0 + a.sin() * radius - child_req.width as f64 / 2.0;
-            let cy = y0 + a.cos() * radius - child_req.height as f64 / 2.0;
+            let cx = x0 + a.sin() * radius - child_req.width() as f64 / 2.0;
+            let cy = y0 + a.cos() * radius - child_req.height() as f64 / 2.0;
 
             let x = t * cx + (1.0 - t) * gx;
             let y = t * cy + (1.0 - t) * gy;

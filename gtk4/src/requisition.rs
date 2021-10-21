@@ -1,41 +1,23 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
-use std::mem;
+use crate::Requisition;
+use std::fmt;
 
-#[repr(C)]
-#[doc(alias = "GtkRequisition")]
-pub struct Requisition {
-    pub width: i32,
-    pub height: i32,
-}
+impl Requisition {
+    pub fn width(&self) -> i32 {
+        self.0.width
+    }
 
-#[doc(hidden)]
-impl Uninitialized for Requisition {
-    #[inline]
-    unsafe fn uninitialized() -> Self {
-        mem::zeroed()
+    pub fn height(&self) -> i32 {
+        self.0.height
     }
 }
 
-#[doc(hidden)]
-impl<'a> ToGlibPtr<'a, *const ffi::GtkRequisition> for Requisition {
-    type Storage = &'a Self;
-
-    #[inline]
-    fn to_glib_none(&'a self) -> Stash<'a, *const ffi::GtkRequisition, Self> {
-        let ptr: *const Requisition = &*self;
-        Stash(ptr as *const ffi::GtkRequisition, self)
-    }
-}
-
-#[doc(hidden)]
-impl<'a> ToGlibPtrMut<'a, *mut ffi::GtkRequisition> for Requisition {
-    type Storage = &'a mut Self;
-
-    #[inline]
-    fn to_glib_none_mut(&'a mut self) -> StashMut<'a, *mut ffi::GtkRequisition, Self> {
-        let ptr: *mut Requisition = &mut *self;
-        StashMut(ptr as *mut ffi::GtkRequisition, self)
+impl fmt::Debug for Requisition {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.debug_struct("Requisition")
+            .field("width", &self.width())
+            .field("height", &self.height())
+            .finish()
     }
 }
