@@ -90,15 +90,11 @@ impl<T: BaseButtonImpl> BaseButtonImplExt for T {
 /// Make the BaseButton subclassable
 unsafe impl<T: BaseButtonImpl> IsSubclassable<T> for BaseButton {
     fn class_init(class: &mut glib::Class<Self>) {
-        <gtk::Button as IsSubclassable<T>>::class_init(class.upcast_ref_mut());
+        Self::parent_class_init::<T>(class.upcast_ref_mut());
 
         let klass = class.as_mut();
         klass.sync_method = Some(sync_method_trampoline::<T>);
         klass.async_method = Some(async_method_trampoline::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <gtk::Button as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

@@ -5,7 +5,7 @@ use crate::{Clipboard, ContentFormats, ContentProvider};
 use crate::subclass::prelude::*;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::{Cast, Object, ToValue, Value};
+use glib::{Cast, ToValue, Value};
 use std::future::Future;
 use std::pin::Pin;
 
@@ -282,7 +282,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
 unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.content_changed = Some(content_provider_content_changed::<T>);
@@ -293,10 +293,6 @@ unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
         klass.write_mime_type_async = Some(content_provider_write_mime_type_async::<T>);
         klass.write_mime_type_finish = Some(content_provider_write_mime_type_finish::<T>);
         klass.get_value = Some(content_provider_get_value::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::{TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag};
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 
 pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     fn apply_tag(&self, text_buffer: &Self::Type, tag: &TextTag, start: &TextIter, end: &TextIter) {
@@ -332,7 +332,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
 
 unsafe impl<T: TextBufferImpl> IsSubclassable<T> for TextBuffer {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -355,10 +355,6 @@ unsafe impl<T: TextBufferImpl> IsSubclassable<T> for TextBuffer {
         klass.remove_tag = Some(text_buffer_remove_tag::<T>);
         klass.redo = Some(text_buffer_redo::<T>);
         klass.undo = Some(text_buffer_undo::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

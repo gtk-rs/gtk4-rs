@@ -8,7 +8,7 @@ use crate::{
 };
 use glib::subclass::SignalId;
 use glib::translate::*;
-use glib::{Cast, GString, IsA, Object, Variant};
+use glib::{Cast, GString, IsA, Variant};
 use std::boxed::Box as Box_;
 use std::collections::HashMap;
 use std::fmt;
@@ -581,7 +581,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
 unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
     fn class_init(class: &mut ::glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -620,10 +620,6 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
         klass.unmap = Some(widget_unmap::<T>);
         klass.unrealize = Some(widget_unrealize::<T>);
         klass.unroot = Some(widget_unroot::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

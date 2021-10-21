@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::{TreeIter, TreeModel, TreeModelFilter};
 use glib::translate::*;
-use glib::{Cast, IsA, Object, Value};
+use glib::{Cast, IsA, Value};
 
 pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
     fn visible<M: IsA<TreeModel>>(
@@ -99,7 +99,7 @@ impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
 
 unsafe impl<T: TreeModelFilterImpl> IsSubclassable<T> for TreeModelFilter {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -109,10 +109,6 @@ unsafe impl<T: TreeModelFilterImpl> IsSubclassable<T> for TreeModelFilter {
         let klass = class.as_mut();
         klass.visible = Some(tree_model_filter_visible::<T>);
         klass.modify = Some(tree_model_filter_modify::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

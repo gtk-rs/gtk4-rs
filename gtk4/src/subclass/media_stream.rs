@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::MediaStream;
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 
 pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
     fn pause(&self, media_stream: &Self::Type) {
@@ -141,7 +141,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
 unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -155,10 +155,6 @@ unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
         klass.seek = Some(media_stream_seek::<T>);
         klass.unrealize = Some(media_stream_unrealize::<T>);
         klass.update_audio = Some(media_stream_update_audio::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

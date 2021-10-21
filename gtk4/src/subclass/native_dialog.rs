@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::{NativeDialog, ResponseType};
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 
 pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
     fn response(&self, dialog: &Self::Type, response: ResponseType) {
@@ -64,7 +64,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
 
 unsafe impl<T: NativeDialogImpl> IsSubclassable<T> for NativeDialog {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -75,10 +75,6 @@ unsafe impl<T: NativeDialogImpl> IsSubclassable<T> for NativeDialog {
         klass.response = Some(dialog_response::<T>);
         klass.show = Some(dialog_show::<T>);
         klass.hide = Some(dialog_hide::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

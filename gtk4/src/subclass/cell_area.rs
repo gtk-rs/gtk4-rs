@@ -6,7 +6,7 @@ use crate::{
     Snapshot, TreeIter, TreeModel, Widget,
 };
 use glib::translate::*;
-use glib::{Cast, IsA, Object, ParamSpec, Value};
+use glib::{Cast, IsA, ParamSpec, Value};
 use std::mem;
 
 #[derive(Debug)]
@@ -680,7 +680,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
 unsafe impl<T: CellAreaImpl> IsSubclassable<T> for CellArea {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
         let klass = class.as_mut();
 
         assert!(
@@ -719,10 +719,6 @@ unsafe impl<T: CellAreaImpl> IsSubclassable<T> for CellArea {
         klass.snapshot = Some(cell_area_snapshot::<T>);
         klass.set_cell_property = Some(cell_area_set_cell_property::<T>);
         klass.get_cell_property = Some(cell_area_get_cell_property::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

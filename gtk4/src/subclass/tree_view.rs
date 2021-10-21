@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn, Widget};
+use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn};
 use glib::translate::*;
 use glib::Cast;
 
@@ -363,7 +363,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
 unsafe impl<T: TreeViewImpl> IsSubclassable<T> for TreeView {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.columns_changed = Some(tree_view_columns_changed::<T>);
@@ -381,10 +381,6 @@ unsafe impl<T: TreeViewImpl> IsSubclassable<T> for TreeView {
         klass.test_expand_row = Some(tree_view_test_expand_row::<T>);
         klass.toggle_cursor_row = Some(tree_view_toggle_cursor_row::<T>);
         klass.unselect_all = Some(tree_view_unselect_all::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{Widget, Window};
+use crate::Window;
 use glib::translate::*;
 use glib::Cast;
 
@@ -100,7 +100,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
 unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
     fn class_init(class: &mut ::glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.activate_focus = Some(window_activate_focus::<T>);
@@ -108,10 +108,6 @@ unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
         klass.keys_changed = Some(window_keys_changed::<T>);
         klass.enable_debugging = Some(window_enable_debugging::<T>);
         klass.close_request = Some(window_close_request::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

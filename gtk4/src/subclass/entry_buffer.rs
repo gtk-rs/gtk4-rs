@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::EntryBuffer;
 use glib::translate::*;
-use glib::{Cast, GString, Object, ObjectExt};
+use glib::{Cast, GString, ObjectExt};
 use once_cell::sync::Lazy;
 
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
@@ -162,7 +162,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
 
 unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -176,10 +176,6 @@ unsafe impl<T: EntryBufferImpl> IsSubclassable<T> for EntryBuffer {
         klass.get_text = Some(entry_buffer_get_text::<T>);
         klass.insert_text = Some(entry_buffer_insert_text::<T>);
         klass.inserted_text = Some(entry_buffer_inserted_text::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

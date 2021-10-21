@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{Button, Widget};
+use crate::Button;
 use glib::translate::*;
 use glib::Cast;
 
@@ -44,15 +44,11 @@ impl<T: ButtonImpl> ButtonImplExt for T {
 
 unsafe impl<T: ButtonImpl> IsSubclassable<T> for Button {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.activate = Some(button_activate::<T>);
         klass.clicked = Some(button_clicked::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

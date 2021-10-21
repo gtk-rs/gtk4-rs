@@ -50,7 +50,7 @@ impl<T: SorterImpl> SorterImplExt for T {
 
 unsafe impl<T: SorterImpl> IsSubclassable<T> for Sorter {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -60,10 +60,6 @@ unsafe impl<T: SorterImpl> IsSubclassable<T> for Sorter {
         let klass = class.as_mut();
         klass.compare = Some(sorter_compare::<T>);
         klass.get_order = Some(sorter_get_order::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 
