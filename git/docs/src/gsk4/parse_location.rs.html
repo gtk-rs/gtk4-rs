@@ -111,15 +111,18 @@
 <span id="38">38</span>
 <span id="39">39</span>
 <span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="doccomment">/// A location in a parse buffer.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskParseLocation&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ParseLocation</span>(<span class="ident">ffi::GskParseLocation</span>);
+<span class="macro">glib::wrapper!</span> {
+    <span class="doccomment">/// A location in a parse buffer.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskParseLocation&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ParseLocation</span>(<span class="ident">BoxedInline</span><span class="op">&lt;</span><span class="ident">ffi::GskParseLocation</span><span class="op">&gt;</span>);
+}
 
 <span class="kw">impl</span> <span class="ident">ParseLocation</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
@@ -143,12 +146,15 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">FromGlibPtrBorrow</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskParseLocation</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ParseLocation</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_borrow</span>(
-        <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskParseLocation</span>,
-    ) -&gt; <span class="ident">glib::translate::Borrowed</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">glib::translate::Borrowed::new</span>(<span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ParseLocation</span>))
+<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ParseLocation</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ParseLocation&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;chars&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">chars</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;lines&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">lines</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;line_bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">line_bytes</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;line_chars&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">line_chars</span>())
+            .<span class="ident">finish</span>()
     }
 }
 </code></pre></div>
