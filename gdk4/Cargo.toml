@@ -19,6 +19,7 @@ name = "gdk4"
 dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2"]
+v4_6 = ["ffi/v4_6", "v4_4"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
