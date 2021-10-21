@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{Border, Range, ScrollType, Widget};
+use crate::{Border, Range, ScrollType};
 use glib::translate::*;
 use glib::Cast;
 
@@ -113,7 +113,7 @@ impl<T: RangeImpl> RangeImplExt for T {
 
 unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.adjust_bounds = Some(range_adjust_bounds::<T>);
@@ -121,10 +121,6 @@ unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
         klass.get_range_border = Some(range_get_range_border::<T>);
         klass.move_slider = Some(range_move_slider::<T>);
         klass.value_changed = Some(range_value_changed::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

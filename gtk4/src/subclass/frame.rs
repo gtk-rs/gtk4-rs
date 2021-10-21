@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{Allocation, Frame, Widget};
+use crate::{Allocation, Frame};
 use glib::translate::*;
 use glib::Cast;
 
@@ -35,14 +35,10 @@ impl<T: FrameImpl> FrameImplExt for T {
 
 unsafe impl<T: FrameImpl> IsSubclassable<T> for Frame {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.compute_child_allocation = Some(frame_compute_child_allocation::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

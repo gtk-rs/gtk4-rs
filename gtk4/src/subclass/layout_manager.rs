@@ -2,7 +2,7 @@
 
 use crate::subclass::prelude::*;
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 use libc::c_int;
 
 use crate::{LayoutChild, LayoutManager, Orientation, SizeRequestMode, Widget};
@@ -220,7 +220,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
 unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -237,10 +237,6 @@ unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
         klass.measure = Some(layout_manager_measure::<T>);
         klass.root = Some(layout_manager_root::<T>);
         klass.unroot = Some(layout_manager_unroot::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

@@ -6,7 +6,7 @@ use crate::{
     PrintSettings, Widget, Window,
 };
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 
 pub trait PrintOperationImpl: PrintOperationImplExt + PrintOperationPreviewImpl {
     fn begin_print(&self, print_operation: &Self::Type, context: &PrintContext) {
@@ -312,7 +312,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
 unsafe impl<T: PrintOperationImpl> IsSubclassable<T> for PrintOperation {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.begin_print = Some(print_operation_begin_print::<T>);
@@ -324,10 +324,6 @@ unsafe impl<T: PrintOperationImpl> IsSubclassable<T> for PrintOperation {
         klass.request_page_setup = Some(print_operation_request_page_setup::<T>);
         klass.status_changed = Some(print_operation_status_changed::<T>);
         klass.update_custom_widget = Some(print_operation_update_custom_widget::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

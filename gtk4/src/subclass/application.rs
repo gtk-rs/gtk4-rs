@@ -57,7 +57,7 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
 
 unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
     fn class_init(class: &mut ::glib::Class<Self>) {
-        <gio::Application as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.window_added = Some(application_window_added::<T>);
@@ -66,10 +66,6 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
         // Chain our startup handler in here
         let parent_klass = &mut class.as_mut().parent_class;
         parent_klass.startup = Some(application_startup::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <gio::Application as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

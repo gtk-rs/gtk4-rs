@@ -3,7 +3,7 @@
 use crate::subclass::prelude::*;
 use crate::CellAreaContext;
 use glib::translate::*;
-use glib::{Cast, Object};
+use glib::Cast;
 use std::mem::MaybeUninit;
 
 pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
@@ -131,7 +131,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
 
 unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -145,10 +145,6 @@ unsafe impl<T: CellAreaContextImpl> IsSubclassable<T> for CellAreaContext {
         klass.get_preferred_width_for_height =
             Some(cell_area_context_get_preferred_width_for_height::<T>);
         klass.allocate = Some(cell_area_context_allocate::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

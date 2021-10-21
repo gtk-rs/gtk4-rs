@@ -3,7 +3,6 @@
 use crate::subclass::prelude::*;
 use crate::{
     DeleteType, MovementStep, Snapshot, TextExtendSelection, TextIter, TextView, TextViewLayer,
-    Widget,
 };
 use glib::translate::*;
 use glib::Cast;
@@ -270,7 +269,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
 
 unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.backspace = Some(text_view_backspace::<T>);
@@ -285,10 +284,6 @@ unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
         klass.set_anchor = Some(text_view_set_anchor::<T>);
         klass.snapshot_layer = Some(text_view_snapshot_layer::<T>);
         klass.toggle_overwrite = Some(text_view_toggle_overwrite::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

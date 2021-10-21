@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{MediaFile, MediaStream};
+use crate::MediaFile;
 use glib::translate::*;
 use glib::Cast;
 
@@ -43,15 +43,11 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
 
 unsafe impl<T: MediaFileImpl> IsSubclassable<T> for MediaFile {
     fn class_init(class: &mut glib::Class<Self>) {
-        <MediaStream as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.close = Some(media_file_close::<T>);
         klass.open = Some(media_file_open::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <MediaStream as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{GLArea, Widget};
+use crate::GLArea;
 use gdk::GLContext;
 use glib::translate::*;
 use glib::Cast;
@@ -74,16 +74,12 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
 
 unsafe impl<T: GLAreaImpl> IsSubclassable<T> for GLArea {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.create_context = Some(gl_area_create_context::<T>);
         klass.render = Some(gl_area_render::<T>);
         klass.resize = Some(gl_area_resize::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

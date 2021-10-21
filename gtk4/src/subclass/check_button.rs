@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{CheckButton, Widget};
+use crate::CheckButton;
 use glib::translate::*;
 use glib::Cast;
 
@@ -53,7 +53,7 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
 
 unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.toggled = Some(check_button_toggled::<T>);
@@ -62,10 +62,6 @@ unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
         {
             klass.activate = Some(check_button_activate::<T>);
         };
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

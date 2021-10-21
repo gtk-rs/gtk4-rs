@@ -49,7 +49,7 @@ impl<T: FilterImpl> FilterImplExt for T {
 
 unsafe impl<T: FilterImpl> IsSubclassable<T> for Filter {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -59,10 +59,6 @@ unsafe impl<T: FilterImpl> IsSubclassable<T> for Filter {
         let klass = class.as_mut();
         klass.match_ = Some(filter_match::<T>);
         klass.get_strictness = Some(filter_get_strictness::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <glib::Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

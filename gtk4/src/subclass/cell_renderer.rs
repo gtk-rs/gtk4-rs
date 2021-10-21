@@ -7,7 +7,7 @@ use crate::subclass::prelude::*;
 use crate::{CellEditable, CellRenderer, CellRendererState, SizeRequestMode, Snapshot, Widget};
 use glib::object::IsA;
 use glib::translate::*;
-use glib::{Cast, GString, Object};
+use glib::{Cast, GString};
 
 pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
     fn activate<P: IsA<Widget>>(
@@ -424,7 +424,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
 
 unsafe impl<T: CellRendererImpl> IsSubclassable<T> for CellRenderer {
     fn class_init(class: &mut ::glib::Class<Self>) {
-        <Object as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         assert!(
             crate::rt::is_initialized(),
@@ -446,10 +446,6 @@ unsafe impl<T: CellRendererImpl> IsSubclassable<T> for CellRenderer {
         klass.get_request_mode = Some(cell_renderer_get_request_mode::<T>);
         klass.snapshot = Some(cell_renderer_snapshot::<T>);
         klass.start_editing = Some(cell_renderer_start_editing::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Object as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

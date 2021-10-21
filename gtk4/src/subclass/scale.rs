@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{Range, Scale};
+use crate::Scale;
 use glib::translate::*;
 use glib::Cast;
 
@@ -37,14 +37,10 @@ impl<T: ScaleImpl> ScaleImplExt for T {
 
 unsafe impl<T: ScaleImpl> IsSubclassable<T> for Scale {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Range as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.get_layout_offsets = Some(scale_get_layout_offsets::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Range as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

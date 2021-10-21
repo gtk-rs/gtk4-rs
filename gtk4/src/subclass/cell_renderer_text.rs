@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{CellRenderer, CellRendererText};
+use crate::CellRendererText;
 use glib::translate::*;
 use glib::{Cast, GString};
 
@@ -36,14 +36,10 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
 
 unsafe impl<T: CellRendererTextImpl> IsSubclassable<T> for CellRendererText {
     fn class_init(class: &mut ::glib::Class<Self>) {
-        <CellRenderer as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.edited = Some(cell_renderer_text_edited::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <CellRenderer as IsSubclassable<T>>::instance_init(instance);
     }
 }
 

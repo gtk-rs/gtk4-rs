@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::subclass::prelude::*;
-use crate::{ComboBox, Widget};
+use crate::ComboBox;
 use glib::translate::*;
 use glib::{Cast, GString};
 
@@ -47,15 +47,11 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
 
 unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
     fn class_init(class: &mut glib::Class<Self>) {
-        <Widget as IsSubclassable<T>>::class_init(class);
+        Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.changed = Some(combo_box_changed::<T>);
         klass.format_entry_text = Some(combo_box_format_entry_text::<T>);
-    }
-
-    fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {
-        <Widget as IsSubclassable<T>>::instance_init(instance);
     }
 }
 
