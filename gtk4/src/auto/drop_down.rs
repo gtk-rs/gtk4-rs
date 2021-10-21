@@ -96,6 +96,14 @@ impl DropDown {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_selected_item(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_drop_down_get_show_arrow")]
+    #[doc(alias = "get_show_arrow")]
+    pub fn shows_arrow(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_drop_down_get_show_arrow(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_drop_down_set_enable_search")]
     pub fn set_enable_search(&self, enable_search: bool) {
         unsafe {
@@ -137,6 +145,15 @@ impl DropDown {
     pub fn set_selected(&self, position: u32) {
         unsafe {
             ffi::gtk_drop_down_set_selected(self.to_glib_none().0, position);
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_drop_down_set_show_arrow")]
+    pub fn set_show_arrow(&self, show_arrow: bool) {
+        unsafe {
+            ffi::gtk_drop_down_set_show_arrow(self.to_glib_none().0, show_arrow.into_glib());
         }
     }
 
@@ -300,6 +317,31 @@ impl DropDown {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "show-arrow")]
+    pub fn connect_show_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_arrow_trampoline<F: Fn(&DropDown) + 'static>(
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-arrow\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_arrow_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 #[derive(Clone, Default)]
@@ -314,6 +356,9 @@ pub struct DropDownBuilder {
     list_factory: Option<ListItemFactory>,
     model: Option<gio::ListModel>,
     selected: Option<u32>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    show_arrow: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -374,6 +419,10 @@ impl DropDownBuilder {
         }
         if let Some(ref selected) = self.selected {
             properties.push(("selected", selected));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref show_arrow) = self.show_arrow {
+            properties.push(("show-arrow", show_arrow));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -496,6 +545,13 @@ impl DropDownBuilder {
 
     pub fn selected(mut self, selected: u32) -> Self {
         self.selected = Some(selected);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn show_arrow(mut self, show_arrow: bool) -> Self {
+        self.show_arrow = Some(show_arrow);
         self
     }
 

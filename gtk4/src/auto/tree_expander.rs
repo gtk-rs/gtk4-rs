@@ -53,6 +53,18 @@ impl TreeExpander {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_tree_expander_get_indent_for_icon")]
+    #[doc(alias = "get_indent_for_icon")]
+    pub fn is_indent_for_icon(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_expander_get_indent_for_icon(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_tree_expander_get_item")]
     #[doc(alias = "get_item")]
     pub fn item(&self) -> Option<glib::Object> {
@@ -71,6 +83,18 @@ impl TreeExpander {
             ffi::gtk_tree_expander_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_tree_expander_set_indent_for_icon")]
+    pub fn set_indent_for_icon(&self, indent_for_icon: bool) {
+        unsafe {
+            ffi::gtk_tree_expander_set_indent_for_icon(
+                self.to_glib_none().0,
+                indent_for_icon.into_glib(),
             );
         }
     }
@@ -99,6 +123,31 @@ impl TreeExpander {
                 b"notify::child\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "indent-for-icon")]
+    pub fn connect_indent_for_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_indent_for_icon_trampoline<F: Fn(&TreeExpander) + 'static>(
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::indent-for-icon\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_indent_for_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -165,6 +214,9 @@ impl Default for TreeExpander {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TreeExpanderBuilder {
     child: Option<Widget>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    indent_for_icon: Option<bool>,
     list_row: Option<TreeListRow>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -211,6 +263,10 @@ impl TreeExpanderBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {
             properties.push(("child", child));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref indent_for_icon) = self.indent_for_icon {
+            properties.push(("indent-for-icon", indent_for_icon));
         }
         if let Some(ref list_row) = self.list_row {
             properties.push(("list-row", list_row));
@@ -311,6 +367,13 @@ impl TreeExpanderBuilder {
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn indent_for_icon(mut self, indent_for_icon: bool) -> Self {
+        self.indent_for_icon = Some(indent_for_icon);
         self
     }
 

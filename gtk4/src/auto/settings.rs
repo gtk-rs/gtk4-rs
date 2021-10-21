@@ -667,6 +667,36 @@ impl Settings {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk-hint-font-metrics")]
+    pub fn is_gtk_hint_font_metrics(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"gtk-hint-font-metrics\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `gtk-hint-font-metrics` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk-hint-font-metrics")]
+    pub fn set_gtk_hint_font_metrics(&self, gtk_hint_font_metrics: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.as_ptr() as *mut glib::gobject_ffi::GObject,
+                b"gtk-hint-font-metrics\0".as_ptr() as *const _,
+                gtk_hint_font_metrics.to_value().to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk-icon-theme-name")]
     pub fn gtk_icon_theme_name(&self) -> Option<glib::GString> {
         unsafe {
@@ -1978,6 +2008,34 @@ impl Settings {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk-hint-font-metrics")]
+    pub fn connect_gtk_hint_font_metrics_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_hint_font_metrics_trampoline<F: Fn(&Settings) + 'static>(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::gtk-hint-font-metrics\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_gtk_hint_font_metrics_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "gtk-icon-theme-name")]
     pub fn connect_gtk_icon_theme_name_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2663,6 +2721,9 @@ pub struct SettingsBuilder {
     gtk_error_bell: Option<bool>,
     gtk_font_name: Option<String>,
     gtk_fontconfig_timestamp: Option<u32>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    gtk_hint_font_metrics: Option<bool>,
     gtk_icon_theme_name: Option<String>,
     gtk_im_module: Option<String>,
     gtk_keynav_use_caret: Option<bool>,
@@ -2782,6 +2843,10 @@ impl SettingsBuilder {
         }
         if let Some(ref gtk_fontconfig_timestamp) = self.gtk_fontconfig_timestamp {
             properties.push(("gtk-fontconfig-timestamp", gtk_fontconfig_timestamp));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref gtk_hint_font_metrics) = self.gtk_hint_font_metrics {
+            properties.push(("gtk-hint-font-metrics", gtk_hint_font_metrics));
         }
         if let Some(ref gtk_icon_theme_name) = self.gtk_icon_theme_name {
             properties.push(("gtk-icon-theme-name", gtk_icon_theme_name));
@@ -2988,6 +3053,13 @@ impl SettingsBuilder {
 
     pub fn gtk_fontconfig_timestamp(mut self, gtk_fontconfig_timestamp: u32) -> Self {
         self.gtk_fontconfig_timestamp = Some(gtk_fontconfig_timestamp);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_hint_font_metrics(mut self, gtk_hint_font_metrics: bool) -> Self {
+        self.gtk_hint_font_metrics = Some(gtk_hint_font_metrics);
         self
     }
 

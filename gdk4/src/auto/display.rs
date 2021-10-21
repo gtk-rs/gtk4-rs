@@ -5,6 +5,9 @@
 use crate::AppLaunchContext;
 use crate::Clipboard;
 use crate::Device;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use crate::GLContext;
 use crate::Monitor;
 use crate::Seat;
 use crate::Surface;
@@ -60,6 +63,11 @@ pub trait DisplayExt: 'static {
 
     #[doc(alias = "gdk_display_close")]
     fn close(&self);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_display_create_gl_context")]
+    fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
 
     #[doc(alias = "gdk_display_device_is_grabbed")]
     fn device_is_grabbed(&self, device: &impl IsA<Device>) -> bool;
@@ -163,6 +171,21 @@ impl<O: IsA<Display>> DisplayExt for O {
     fn close(&self) {
         unsafe {
             ffi::gdk_display_close(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret =
+                ffi::gdk_display_create_gl_context(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
         }
     }
 

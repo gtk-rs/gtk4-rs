@@ -256,6 +256,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkStyleContext", sizeof(GtkStyleContext), alignof(GtkStyleContext));
     printf("%s;%zu;%zu\n", "GtkStyleContextClass", sizeof(GtkStyleContextClass), alignof(GtkStyleContextClass));
     printf("%s;%zu;%zu\n", "GtkStyleContextPrintFlags", sizeof(GtkStyleContextPrintFlags), alignof(GtkStyleContextPrintFlags));
+    printf("%s;%zu;%zu\n", "GtkSymbolicColor", sizeof(GtkSymbolicColor), alignof(GtkSymbolicColor));
+    printf("%s;%zu;%zu\n", "GtkSymbolicPaintableInterface", sizeof(GtkSymbolicPaintableInterface), alignof(GtkSymbolicPaintableInterface));
     printf("%s;%zu;%zu\n", "GtkSystemSetting", sizeof(GtkSystemSetting), alignof(GtkSystemSetting));
     printf("%s;%zu;%zu\n", "GtkText", sizeof(GtkText), alignof(GtkText));
     printf("%s;%zu;%zu\n", "GtkTextBuffer", sizeof(GtkTextBuffer), alignof(GtkTextBuffer));

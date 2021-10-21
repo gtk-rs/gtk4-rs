@@ -90,6 +90,12 @@ pub struct TextTagBuilder {
     left_margin_set: Option<bool>,
     letter_spacing: Option<i32>,
     letter_spacing_set: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    line_height: Option<f32>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    line_height_set: Option<bool>,
     name: Option<String>,
     overline: Option<pango::Overline>,
     overline_rgba: Option<gdk::RGBA>,
@@ -110,6 +116,12 @@ pub struct TextTagBuilder {
     rise_set: Option<bool>,
     scale: Option<f64>,
     scale_set: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    sentence: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    sentence_set: Option<bool>,
     show_spaces: Option<pango::ShowFlags>,
     show_spaces_set: Option<bool>,
     size: Option<i32>,
@@ -125,6 +137,12 @@ pub struct TextTagBuilder {
     style_set: Option<bool>,
     tabs: Option<pango::TabArray>,
     tabs_set: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    text_transform: Option<pango::TextTransform>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    text_transform_set: Option<bool>,
     underline: Option<pango::Underline>,
     underline_rgba: Option<gdk::RGBA>,
     underline_rgba_set: Option<bool>,
@@ -133,6 +151,12 @@ pub struct TextTagBuilder {
     variant_set: Option<bool>,
     weight: Option<i32>,
     weight_set: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    word: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    word_set: Option<bool>,
     wrap_mode: Option<WrapMode>,
     wrap_mode_set: Option<bool>,
 }
@@ -256,6 +280,14 @@ impl TextTagBuilder {
         if let Some(ref letter_spacing_set) = self.letter_spacing_set {
             properties.push(("letter-spacing-set", letter_spacing_set));
         }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref line_height) = self.line_height {
+            properties.push(("line-height", line_height));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref line_height_set) = self.line_height_set {
+            properties.push(("line-height-set", line_height_set));
+        }
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
@@ -316,6 +348,14 @@ impl TextTagBuilder {
         if let Some(ref scale_set) = self.scale_set {
             properties.push(("scale-set", scale_set));
         }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref sentence) = self.sentence {
+            properties.push(("sentence", sentence));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref sentence_set) = self.sentence_set {
+            properties.push(("sentence-set", sentence_set));
+        }
         if let Some(ref show_spaces) = self.show_spaces {
             properties.push(("show-spaces", show_spaces));
         }
@@ -361,6 +401,14 @@ impl TextTagBuilder {
         if let Some(ref tabs_set) = self.tabs_set {
             properties.push(("tabs-set", tabs_set));
         }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref text_transform) = self.text_transform {
+            properties.push(("text-transform", text_transform));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref text_transform_set) = self.text_transform_set {
+            properties.push(("text-transform-set", text_transform_set));
+        }
         if let Some(ref underline) = self.underline {
             properties.push(("underline", underline));
         }
@@ -384,6 +432,14 @@ impl TextTagBuilder {
         }
         if let Some(ref weight_set) = self.weight_set {
             properties.push(("weight-set", weight_set));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref word) = self.word {
+            properties.push(("word", word));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref word_set) = self.word_set {
+            properties.push(("word-set", word_set));
         }
         if let Some(ref wrap_mode) = self.wrap_mode {
             properties.push(("wrap-mode", wrap_mode));
@@ -574,6 +630,20 @@ impl TextTagBuilder {
         self
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn line_height(mut self, line_height: f32) -> Self {
+        self.line_height = Some(line_height);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn line_height_set(mut self, line_height_set: bool) -> Self {
+        self.line_height_set = Some(line_height_set);
+        self
+    }
+
     pub fn name(mut self, name: &str) -> Self {
         self.name = Some(name.to_string());
         self
@@ -674,6 +744,20 @@ impl TextTagBuilder {
         self
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn sentence(mut self, sentence: bool) -> Self {
+        self.sentence = Some(sentence);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn sentence_set(mut self, sentence_set: bool) -> Self {
+        self.sentence_set = Some(sentence_set);
+        self
+    }
+
     pub fn show_spaces(mut self, show_spaces: pango::ShowFlags) -> Self {
         self.show_spaces = Some(show_spaces);
         self
@@ -749,6 +833,20 @@ impl TextTagBuilder {
         self
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn text_transform(mut self, text_transform: pango::TextTransform) -> Self {
+        self.text_transform = Some(text_transform);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn text_transform_set(mut self, text_transform_set: bool) -> Self {
+        self.text_transform_set = Some(text_transform_set);
+        self
+    }
+
     pub fn underline(mut self, underline: pango::Underline) -> Self {
         self.underline = Some(underline);
         self
@@ -786,6 +884,20 @@ impl TextTagBuilder {
 
     pub fn weight_set(mut self, weight_set: bool) -> Self {
         self.weight_set = Some(weight_set);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn word(mut self, word: bool) -> Self {
+        self.word = Some(word);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn word_set(mut self, word_set: bool) -> Self {
+        self.word_set = Some(word_set);
         self
     }
 
@@ -1003,6 +1115,26 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "letter-spacing-set")]
     fn set_letter_spacing_set(&self, letter_spacing_set: bool);
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height")]
+    fn line_height(&self) -> f32;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height")]
+    fn set_line_height(&self, line_height: f32);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height-set")]
+    fn is_line_height_set(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height-set")]
+    fn set_line_height_set(&self, line_height_set: bool);
+
     fn name(&self) -> Option<glib::GString>;
 
     fn overline(&self) -> pango::Overline;
@@ -1110,6 +1242,24 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "scale-set")]
     fn set_scale_set(&self, scale_set: bool);
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_sentence(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_sentence(&self, sentence: bool);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "sentence-set")]
+    fn is_sentence_set(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "sentence-set")]
+    fn set_sentence_set(&self, sentence_set: bool);
+
     #[doc(alias = "show-spaces")]
     fn show_spaces(&self) -> pango::ShowFlags;
 
@@ -1187,8 +1337,25 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "tabs-set")]
     fn is_tabs_set(&self) -> bool;
 
-    #[doc(alias = "tabs-set")]
-    fn set_tabs_set(&self, tabs_set: bool);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform")]
+    fn text_transform(&self) -> pango::TextTransform;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform")]
+    fn set_text_transform(&self, text_transform: pango::TextTransform);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform-set")]
+    fn is_text_transform_set(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform-set")]
+    fn set_text_transform_set(&self, text_transform_set: bool);
 
     fn underline(&self) -> pango::Underline;
 
@@ -1231,6 +1398,24 @@ pub trait TextTagExt: 'static {
 
     #[doc(alias = "weight-set")]
     fn set_weight_set(&self, weight_set: bool);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_word(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_word(&self, word: bool);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "word-set")]
+    fn is_word_set(&self) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "word-set")]
+    fn set_word_set(&self, word_set: bool);
 
     #[doc(alias = "wrap-mode")]
     fn wrap_mode(&self) -> WrapMode;
@@ -1358,6 +1543,16 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "letter-spacing-set")]
     fn connect_letter_spacing_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height")]
+    fn connect_line_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "line-height-set")]
+    fn connect_line_height_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "overline")]
     fn connect_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1430,6 +1625,16 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "scale-set")]
     fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "sentence")]
+    fn connect_sentence_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "sentence-set")]
+    fn connect_sentence_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "show-spaces")]
     fn connect_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1478,6 +1683,16 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "tabs-set")]
     fn connect_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform")]
+    fn connect_text_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "text-transform-set")]
+    fn connect_text_transform_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "underline")]
     fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1501,6 +1716,16 @@ pub trait TextTagExt: 'static {
 
     #[doc(alias = "weight-set")]
     fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "word")]
+    fn connect_word_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "word-set")]
+    fn connect_word_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "wrap-mode")]
     fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -2363,6 +2588,62 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn line_height(&self) -> f32 {
+        unsafe {
+            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"line-height\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `line-height` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_line_height(&self, line_height: f32) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"line-height\0".as_ptr() as *const _,
+                line_height.to_value().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_line_height_set(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"line-height-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `line-height-set` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_line_height_set(&self, line_height_set: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"line-height-set\0".as_ptr() as *const _,
+                line_height_set.to_value().to_glib_none().0,
+            );
+        }
+    }
+
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -2819,6 +3100,62 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_sentence(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"sentence\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `sentence` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_sentence(&self, sentence: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"sentence\0".as_ptr() as *const _,
+                sentence.to_value().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_sentence_set(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"sentence-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `sentence-set` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_sentence_set(&self, sentence_set: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"sentence-set\0".as_ptr() as *const _,
+                sentence_set.to_value().to_glib_none().0,
+            );
+        }
+    }
+
     fn show_spaces(&self) -> pango::ShowFlags {
         unsafe {
             let mut value = glib::Value::from_type(<pango::ShowFlags as StaticType>::static_type());
@@ -3169,12 +3506,59 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_tabs_set(&self, tabs_set: bool) {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn text_transform(&self) -> pango::TextTransform {
+        unsafe {
+            let mut value =
+                glib::Value::from_type(<pango::TextTransform as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"text-transform\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `text-transform` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_text_transform(&self, text_transform: pango::TextTransform) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"tabs-set\0".as_ptr() as *const _,
-                tabs_set.to_value().to_glib_none().0,
+                b"text-transform\0".as_ptr() as *const _,
+                text_transform.to_value().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_text_transform_set(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"text-transform-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `text-transform-set` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_text_transform_set(&self, text_transform_set: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"text-transform-set\0".as_ptr() as *const _,
+                text_transform_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -3367,6 +3751,62 @@ impl<O: IsA<TextTag>> TextTagExt for O {
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"weight-set\0".as_ptr() as *const _,
                 weight_set.to_value().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_word(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"word\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `word` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_word(&self, word: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"word\0".as_ptr() as *const _,
+                word.to_value().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn is_word_set(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"word-set\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `word-set` getter")
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_word_set(&self, word_set: bool) {
+        unsafe {
+            glib::gobject_ffi::g_object_set_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"word-set\0".as_ptr() as *const _,
+                word_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -4283,6 +4723,57 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_line_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_line_height_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::line-height\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_line_height_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_line_height_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_line_height_set_trampoline<
+            P: IsA<TextTag>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::line-height-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_line_height_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     fn connect_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overline_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
@@ -4758,6 +5249,57 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_sentence_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sentence_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sentence\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sentence_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_sentence_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sentence_set_trampoline<
+            P: IsA<TextTag>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sentence-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_sentence_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     fn connect_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_spaces_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
@@ -5106,6 +5648,60 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_text_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_transform_trampoline<
+            P: IsA<TextTag>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::text-transform\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_transform_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_text_transform_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_text_transform_set_trampoline<
+            P: IsA<TextTag>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::text-transform-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_text_transform_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
@@ -5285,6 +5881,54 @@ impl<O: IsA<TextTag>> TextTagExt for O {
                 b"notify::weight-set\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_weight_set_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_word_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_word_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::word\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_word_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_word_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_word_set_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkTextTag,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(TextTag::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::word-set\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_word_set_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

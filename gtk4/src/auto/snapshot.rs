@@ -219,7 +219,8 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_push_shadow")]
-    pub fn push_shadow(&self, shadow: &gsk::Shadow, n_shadows: usize) {
+    pub fn push_shadow(&self, shadow: &[&gsk::Shadow]) {
+        let n_shadows = shadow.len() as usize;
         unsafe {
             ffi::gtk_snapshot_push_shadow(
                 self.to_glib_none().0,

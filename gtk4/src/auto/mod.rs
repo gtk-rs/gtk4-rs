@@ -866,6 +866,13 @@ mod switch;
 pub use self::switch::Switch;
 pub use self::switch::SwitchBuilder;
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+mod symbolic_paintable;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::symbolic_paintable::{SymbolicPaintable, NONE_SYMBOLIC_PAINTABLE};
+
 mod text;
 pub use self::text::Text;
 pub use self::text::TextBuilder;
@@ -1088,6 +1095,9 @@ pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
 pub use self::enums::StringFilterMatchMode;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::enums::SymbolicColor;
 pub use self::enums::SystemSetting;
 pub use self::enums::TextDirection;
 pub use self::enums::TextExtendSelection;
@@ -1239,6 +1249,9 @@ pub mod traits {
     pub use super::sorter::SorterExt;
     pub use super::style_context::StyleContextExt;
     pub use super::style_provider::StyleProviderExt;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub use super::symbolic_paintable::SymbolicPaintableExt;
     pub use super::text_buffer::TextBufferExt;
     pub use super::text_child_anchor::TextChildAnchorExt;
     pub use super::text_mark::TextMarkExt;

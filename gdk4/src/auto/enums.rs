@@ -1331,6 +1331,42 @@ pub enum MemoryFormat {
     R8g8b8,
     #[doc(alias = "GDK_MEMORY_B8G8R8")]
     B8g8r8,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16")]
+    R16g16b16,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16A16_PREMULTIPLIED")]
+    R16g16b16a16Premultiplied,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16A16")]
+    R16g16b16a16,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16_FLOAT")]
+    R16g16b16Float,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED")]
+    R16g16b16a16FloatPremultiplied,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT")]
+    R16g16b16a16Float,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R32G32B32_FLOAT")]
+    R32g32b32Float,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED")]
+    R32g32b32a32FloatPremultiplied,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT")]
+    R32g32b32a32Float,
     #[doc(alias = "GDK_MEMORY_N_FORMATS")]
     NFormats,
     #[doc(hidden)]
@@ -1352,6 +1388,24 @@ impl fmt::Display for MemoryFormat {
                 Self::A8b8g8r8 => "A8b8g8r8",
                 Self::R8g8b8 => "R8g8b8",
                 Self::B8g8r8 => "B8g8r8",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16 => "R16g16b16",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16a16Premultiplied => "R16g16b16a16Premultiplied",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16a16 => "R16g16b16a16",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16Float => "R16g16b16Float",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16a16FloatPremultiplied => "R16g16b16a16FloatPremultiplied",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R16g16b16a16Float => "R16g16b16a16Float",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R32g32b32Float => "R32g32b32Float",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
+                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                Self::R32g32b32a32Float => "R32g32b32a32Float",
                 Self::NFormats => "NFormats",
                 _ => "Unknown",
             }
@@ -1374,6 +1428,28 @@ impl IntoGlib for MemoryFormat {
             Self::A8b8g8r8 => ffi::GDK_MEMORY_A8B8G8R8,
             Self::R8g8b8 => ffi::GDK_MEMORY_R8G8B8,
             Self::B8g8r8 => ffi::GDK_MEMORY_B8G8R8,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16 => ffi::GDK_MEMORY_R16G16B16,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16a16Premultiplied => ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16a16 => ffi::GDK_MEMORY_R16G16B16A16,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16Float => ffi::GDK_MEMORY_R16G16B16_FLOAT,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16a16FloatPremultiplied => {
+                ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED
+            }
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R16g16b16a16Float => ffi::GDK_MEMORY_R16G16B16A16_FLOAT,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R32g32b32Float => ffi::GDK_MEMORY_R32G32B32_FLOAT,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R32g32b32a32FloatPremultiplied => {
+                ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED
+            }
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            Self::R32g32b32a32Float => ffi::GDK_MEMORY_R32G32B32A32_FLOAT,
             Self::NFormats => ffi::GDK_MEMORY_N_FORMATS,
             Self::__Unknown(value) => value,
         }
@@ -1394,6 +1470,28 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A8B8G8R8 => Self::A8b8g8r8,
             ffi::GDK_MEMORY_R8G8B8 => Self::R8g8b8,
             ffi::GDK_MEMORY_B8G8R8 => Self::B8g8r8,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16 => Self::R16g16b16,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED => Self::R16g16b16a16Premultiplied,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16A16 => Self::R16g16b16a16,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16_FLOAT => Self::R16g16b16Float,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED => {
+                Self::R16g16b16a16FloatPremultiplied
+            }
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R16G16B16A16_FLOAT => Self::R16g16b16a16Float,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R32G32B32_FLOAT => Self::R32g32b32Float,
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED => {
+                Self::R32g32b32a32FloatPremultiplied
+            }
+            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            ffi::GDK_MEMORY_R32G32B32A32_FLOAT => Self::R32g32b32a32Float,
             ffi::GDK_MEMORY_N_FORMATS => Self::NFormats,
             value => Self::__Unknown(value),
         }
@@ -1841,6 +1939,141 @@ unsafe impl<'a> FromValue<'a> for SurfaceEdge {
 }
 
 impl ToValue for SurfaceEdge {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkTextureError")]
+pub enum TextureError {
+    #[doc(alias = "GDK_TEXTURE_ERROR_TOO_LARGE")]
+    TooLarge,
+    #[doc(alias = "GDK_TEXTURE_ERROR_CORRUPT_IMAGE")]
+    CorruptImage,
+    #[doc(alias = "GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT")]
+    UnsupportedContent,
+    #[doc(alias = "GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT")]
+    UnsupportedFormat,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl fmt::Display for TextureError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "TextureError::{}",
+            match *self {
+                Self::TooLarge => "TooLarge",
+                Self::CorruptImage => "CorruptImage",
+                Self::UnsupportedContent => "UnsupportedContent",
+                Self::UnsupportedFormat => "UnsupportedFormat",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl IntoGlib for TextureError {
+    type GlibType = ffi::GdkTextureError;
+
+    fn into_glib(self) -> ffi::GdkTextureError {
+        match self {
+            Self::TooLarge => ffi::GDK_TEXTURE_ERROR_TOO_LARGE,
+            Self::CorruptImage => ffi::GDK_TEXTURE_ERROR_CORRUPT_IMAGE,
+            Self::UnsupportedContent => ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT,
+            Self::UnsupportedFormat => ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkTextureError> for TextureError {
+    unsafe fn from_glib(value: ffi::GdkTextureError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GDK_TEXTURE_ERROR_TOO_LARGE => Self::TooLarge,
+            ffi::GDK_TEXTURE_ERROR_CORRUPT_IMAGE => Self::CorruptImage,
+            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT => Self::UnsupportedContent,
+            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT => Self::UnsupportedFormat,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl ErrorDomain for TextureError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+
+        unsafe { from_glib(ffi::gdk_texture_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.into_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            ffi::GDK_TEXTURE_ERROR_TOO_LARGE => Some(Self::TooLarge),
+            ffi::GDK_TEXTURE_ERROR_CORRUPT_IMAGE => Some(Self::CorruptImage),
+            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT => Some(Self::UnsupportedContent),
+            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT => Some(Self::UnsupportedFormat),
+            value => Some(Self::__Unknown(value)),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl StaticType for TextureError {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gdk_texture_error_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl glib::value::ValueType for TextureError {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+unsafe impl<'a> FromValue<'a> for TextureError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl ToValue for TextureError {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {

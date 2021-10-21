@@ -10,7 +10,7 @@ use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GdkTexture")]
-    pub struct Texture(Object<ffi::GdkTexture, ffi::GdkTextureClass>) @implements Paintable;
+    pub struct Texture(Object<ffi::GdkTexture, ffi::GdkTextureClass>) @implements Paintable, gio::Icon, gio::LoadableIcon;
 
     match fn {
         type_ => || ffi::gdk_texture_get_type(),
@@ -25,6 +25,23 @@ impl Texture {
         unsafe { from_glib_full(ffi::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_texture_new_from_bytes")]
+    #[doc(alias = "new_from_bytes")]
+    pub fn from_bytes(bytes: &glib::Bytes) -> Result<Texture, glib::Error> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = ffi::gdk_texture_new_from_bytes(bytes.to_glib_none().0, &mut error);
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
     #[doc(alias = "gdk_texture_new_from_file")]
     #[doc(alias = "new_from_file")]
     pub fn from_file(file: &impl IsA<gio::File>) -> Result<Texture, glib::Error> {
@@ -32,6 +49,24 @@ impl Texture {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = ffi::gdk_texture_new_from_file(file.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_texture_new_from_filename")]
+    #[doc(alias = "new_from_filename")]
+    pub fn from_filename(path: impl AsRef<std::path::Path>) -> Result<Texture, glib::Error> {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret =
+                ffi::gdk_texture_new_from_filename(path.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
                 Ok(from_glib_full(ret))
             } else {
@@ -55,6 +90,11 @@ impl Texture {
 pub const NONE_TEXTURE: Option<&Texture> = None;
 
 pub trait TextureExt: 'static {
+    //#[cfg(any(feature = "v4_6", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    //#[doc(alias = "gdk_texture_download_float")]
+    //fn download_float(&self, data: &[f32], stride: usize);
+
     #[doc(alias = "gdk_texture_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> i32;
@@ -65,9 +105,30 @@ pub trait TextureExt: 'static {
 
     #[doc(alias = "gdk_texture_save_to_png")]
     fn save_to_png(&self, filename: impl AsRef<std::path::Path>) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_texture_save_to_png_bytes")]
+    fn save_to_png_bytes(&self) -> Option<glib::Bytes>;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_texture_save_to_tiff")]
+    fn save_to_tiff(&self, filename: impl AsRef<std::path::Path>) -> bool;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_texture_save_to_tiff_bytes")]
+    fn save_to_tiff_bytes(&self) -> Option<glib::Bytes>;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
+    //#[cfg(any(feature = "v4_6", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    //fn download_float(&self, data: &[f32], stride: usize) {
+    //    unsafe { TODO: call ffi:gdk_texture_download_float() }
+    //}
+
     fn height(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
     }
@@ -81,6 +142,37 @@ impl<O: IsA<Texture>> TextureExt for O {
             from_glib(ffi::gdk_texture_save_to_png(
                 self.as_ref().to_glib_none().0,
                 filename.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn save_to_png_bytes(&self) -> Option<glib::Bytes> {
+        unsafe {
+            from_glib_full(ffi::gdk_texture_save_to_png_bytes(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn save_to_tiff(&self, filename: impl AsRef<std::path::Path>) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_texture_save_to_tiff(
+                self.as_ref().to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn save_to_tiff_bytes(&self) -> Option<glib::Bytes> {
+        unsafe {
+            from_glib_full(ffi::gdk_texture_save_to_tiff_bytes(
+                self.as_ref().to_glib_none().0,
             ))
         }
     }

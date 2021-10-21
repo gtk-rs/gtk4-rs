@@ -11,7 +11,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkMemoryTexture")]
-    pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
+    pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass>) @extends Texture, @implements Paintable, gio::Icon, gio::LoadableIcon;
 
     match fn {
         type_ => || ffi::gdk_memory_texture_get_type(),

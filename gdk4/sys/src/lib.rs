@@ -152,7 +152,16 @@ pub const GDK_MEMORY_R8G8B8A8: GdkMemoryFormat = 5;
 pub const GDK_MEMORY_A8B8G8R8: GdkMemoryFormat = 6;
 pub const GDK_MEMORY_R8G8B8: GdkMemoryFormat = 7;
 pub const GDK_MEMORY_B8G8R8: GdkMemoryFormat = 8;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 9;
+pub const GDK_MEMORY_R16G16B16: GdkMemoryFormat = 9;
+pub const GDK_MEMORY_R16G16B16A16_PREMULTIPLIED: GdkMemoryFormat = 10;
+pub const GDK_MEMORY_R16G16B16A16: GdkMemoryFormat = 11;
+pub const GDK_MEMORY_R16G16B16_FLOAT: GdkMemoryFormat = 12;
+pub const GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 13;
+pub const GDK_MEMORY_R16G16B16A16_FLOAT: GdkMemoryFormat = 14;
+pub const GDK_MEMORY_R32G32B32_FLOAT: GdkMemoryFormat = 15;
+pub const GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 16;
+pub const GDK_MEMORY_R32G32B32A32_FLOAT: GdkMemoryFormat = 17;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 18;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
@@ -186,6 +195,12 @@ pub const GDK_SURFACE_EDGE_EAST: GdkSurfaceEdge = 4;
 pub const GDK_SURFACE_EDGE_SOUTH_WEST: GdkSurfaceEdge = 5;
 pub const GDK_SURFACE_EDGE_SOUTH: GdkSurfaceEdge = 6;
 pub const GDK_SURFACE_EDGE_SOUTH_EAST: GdkSurfaceEdge = 7;
+
+pub type GdkTextureError = c_int;
+pub const GDK_TEXTURE_ERROR_TOO_LARGE: GdkTextureError = 0;
+pub const GDK_TEXTURE_ERROR_CORRUPT_IMAGE: GdkTextureError = 1;
+pub const GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT: GdkTextureError = 2;
+pub const GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT: GdkTextureError = 3;
 
 pub type GdkTitlebarGesture = c_int;
 pub const GDK_TITLEBAR_GESTURE_DOUBLE_CLICK: GdkTitlebarGesture = 1;
@@ -2532,6 +2547,10 @@ pub const GDK_FRAME_CLOCK_PHASE_PAINT: GdkFrameClockPhase = 16;
 pub const GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS: GdkFrameClockPhase = 32;
 pub const GDK_FRAME_CLOCK_PHASE_AFTER_PAINT: GdkFrameClockPhase = 64;
 
+pub type GdkGLAPI = c_uint;
+pub const GDK_GL_API_GL: GdkGLAPI = 1;
+pub const GDK_GL_API_GLES: GdkGLAPI = 2;
+
 pub type GdkModifierType = c_uint;
 pub const GDK_SHIFT_MASK: GdkModifierType = 1;
 pub const GDK_LOCK_MASK: GdkModifierType = 2;
@@ -2674,6 +2693,16 @@ pub struct GdkEventSequence(c_void);
 impl ::std::fmt::Debug for GdkEventSequence {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkEventSequence @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GdkFileList(c_void);
+
+impl ::std::fmt::Debug for GdkFileList {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkFileList @ {:p}", self))
             .finish()
     }
 }
@@ -3379,6 +3408,16 @@ extern "C" {
     pub fn gdk_surface_edge_get_type() -> GType;
 
     //=========================================================================
+    // GdkTextureError
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_error_get_type() -> GType;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_error_quark() -> glib::GQuark;
+
+    //=========================================================================
     // GdkTitlebarGesture
     //=========================================================================
     pub fn gdk_titlebar_gesture_get_type() -> GType;
@@ -3414,6 +3453,13 @@ extern "C" {
     // GdkFrameClockPhase
     //=========================================================================
     pub fn gdk_frame_clock_phase_get_type() -> GType;
+
+    //=========================================================================
+    // GdkGLAPI
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_gl_api_get_type() -> GType;
 
     //=========================================================================
     // GdkModifierType
@@ -3528,6 +3574,16 @@ extern "C" {
     // GdkEventSequence
     //=========================================================================
     pub fn gdk_event_sequence_get_type() -> GType;
+
+    //=========================================================================
+    // GdkFileList
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_file_list_get_type() -> GType;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_file_list_get_files(file_list: *mut GdkFileList) -> *mut glib::GSList;
 
     //=========================================================================
     // GdkFrameTimings
@@ -3980,6 +4036,12 @@ extern "C" {
     pub fn gdk_display_open(display_name: *const c_char) -> *mut GdkDisplay;
     pub fn gdk_display_beep(display: *mut GdkDisplay);
     pub fn gdk_display_close(display: *mut GdkDisplay);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_display_create_gl_context(
+        self_: *mut GdkDisplay,
+        error: *mut *mut glib::GError,
+    ) -> *mut GdkGLContext;
     pub fn gdk_display_device_is_grabbed(
         display: *mut GdkDisplay,
         device: *mut GdkDevice,
@@ -4214,6 +4276,12 @@ extern "C" {
     pub fn gdk_gl_context_get_type() -> GType;
     pub fn gdk_gl_context_clear_current();
     pub fn gdk_gl_context_get_current() -> *mut GdkGLContext;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_gl_context_get_allowed_apis(self_: *mut GdkGLContext) -> GdkGLAPI;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_gl_context_get_api(self_: *mut GdkGLContext) -> GdkGLAPI;
     pub fn gdk_gl_context_get_debug_enabled(context: *mut GdkGLContext) -> gboolean;
     pub fn gdk_gl_context_get_display(context: *mut GdkGLContext) -> *mut GdkDisplay;
     pub fn gdk_gl_context_get_forward_compatible(context: *mut GdkGLContext) -> gboolean;
@@ -4240,6 +4308,9 @@ extern "C" {
         context: *mut GdkGLContext,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_gl_context_set_allowed_apis(self_: *mut GdkGLContext, apis: GdkGLAPI);
     pub fn gdk_gl_context_set_debug_enabled(context: *mut GdkGLContext, enabled: gboolean);
     pub fn gdk_gl_context_set_forward_compatible(context: *mut GdkGLContext, compatible: gboolean);
     pub fn gdk_gl_context_set_required_version(
@@ -4449,15 +4520,39 @@ extern "C" {
     //=========================================================================
     pub fn gdk_texture_get_type() -> GType;
     pub fn gdk_texture_new_for_pixbuf(pixbuf: *mut gdk_pixbuf::GdkPixbuf) -> *mut GdkTexture;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_new_from_bytes(
+        bytes: *mut glib::GBytes,
+        error: *mut *mut glib::GError,
+    ) -> *mut GdkTexture;
     pub fn gdk_texture_new_from_file(
         file: *mut gio::GFile,
         error: *mut *mut glib::GError,
     ) -> *mut GdkTexture;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_new_from_filename(
+        path: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> *mut GdkTexture;
     pub fn gdk_texture_new_from_resource(resource_path: *const c_char) -> *mut GdkTexture;
     pub fn gdk_texture_download(texture: *mut GdkTexture, data: *mut u8, stride: size_t);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_download_float(texture: *mut GdkTexture, data: *mut c_float, stride: size_t);
     pub fn gdk_texture_get_height(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_get_width(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_save_to_png(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_save_to_png_bytes(texture: *mut GdkTexture) -> *mut glib::GBytes;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_save_to_tiff(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gdk_texture_save_to_tiff_bytes(texture: *mut GdkTexture) -> *mut glib::GBytes;
 
     //=========================================================================
     // GdkTouchEvent

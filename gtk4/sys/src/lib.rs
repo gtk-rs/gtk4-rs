@@ -740,6 +740,12 @@ pub const GTK_STRING_FILTER_MATCH_MODE_EXACT: GtkStringFilterMatchMode = 0;
 pub const GTK_STRING_FILTER_MATCH_MODE_SUBSTRING: GtkStringFilterMatchMode = 1;
 pub const GTK_STRING_FILTER_MATCH_MODE_PREFIX: GtkStringFilterMatchMode = 2;
 
+pub type GtkSymbolicColor = c_int;
+pub const GTK_SYMBOLIC_COLOR_FOREGROUND: GtkSymbolicColor = 0;
+pub const GTK_SYMBOLIC_COLOR_ERROR: GtkSymbolicColor = 1;
+pub const GTK_SYMBOLIC_COLOR_WARNING: GtkSymbolicColor = 2;
+pub const GTK_SYMBOLIC_COLOR_SUCCESS: GtkSymbolicColor = 3;
+
 pub type GtkSystemSetting = c_int;
 pub const GTK_SYSTEM_SETTING_DPI: GtkSystemSetting = 0;
 pub const GTK_SYSTEM_SETTING_FONT_NAME: GtkSystemSetting = 1;
@@ -4028,6 +4034,30 @@ impl ::std::fmt::Debug for GtkStyleContextClass {
             .field("_gtk_reserved2", &self._gtk_reserved2)
             .field("_gtk_reserved3", &self._gtk_reserved3)
             .field("_gtk_reserved4", &self._gtk_reserved4)
+            .finish()
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GtkSymbolicPaintableInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub snapshot_symbolic: Option<
+        unsafe extern "C" fn(
+            *mut GtkSymbolicPaintable,
+            *mut gdk::GdkSnapshot,
+            c_double,
+            c_double,
+            *const gdk::GdkRGBA,
+            size_t,
+        ),
+    >,
+}
+
+impl ::std::fmt::Debug for GtkSymbolicPaintableInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkSymbolicPaintableInterface @ {:p}", self))
+            .field("snapshot_symbolic", &self.snapshot_symbolic)
             .finish()
     }
 }
@@ -7784,6 +7814,15 @@ impl ::std::fmt::Debug for GtkStyleProvider {
 }
 
 #[repr(C)]
+pub struct GtkSymbolicPaintable(c_void);
+
+impl ::std::fmt::Debug for GtkSymbolicPaintable {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GtkSymbolicPaintable @ {:p}", self)
+    }
+}
+
+#[repr(C)]
 pub struct GtkTreeDragDest(c_void);
 
 impl ::std::fmt::Debug for GtkTreeDragDest {
@@ -8244,6 +8283,13 @@ extern "C" {
     // GtkStringFilterMatchMode
     //=========================================================================
     pub fn gtk_string_filter_match_mode_get_type() -> GType;
+
+    //=========================================================================
+    // GtkSymbolicColor
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_symbolic_color_get_type() -> GType;
 
     //=========================================================================
     // GtkSystemSetting
@@ -10814,6 +10860,9 @@ extern "C" {
     pub fn gtk_drop_down_get_model(self_: *mut GtkDropDown) -> *mut gio::GListModel;
     pub fn gtk_drop_down_get_selected(self_: *mut GtkDropDown) -> c_uint;
     pub fn gtk_drop_down_get_selected_item(self_: *mut GtkDropDown) -> *mut gobject::GObject;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_drop_down_get_show_arrow(self_: *mut GtkDropDown) -> gboolean;
     pub fn gtk_drop_down_set_enable_search(self_: *mut GtkDropDown, enable_search: gboolean);
     pub fn gtk_drop_down_set_expression(self_: *mut GtkDropDown, expression: *mut GtkExpression);
     pub fn gtk_drop_down_set_factory(self_: *mut GtkDropDown, factory: *mut GtkListItemFactory);
@@ -10823,6 +10872,9 @@ extern "C" {
     );
     pub fn gtk_drop_down_set_model(self_: *mut GtkDropDown, model: *mut gio::GListModel);
     pub fn gtk_drop_down_set_selected(self_: *mut GtkDropDown, position: c_uint);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_drop_down_set_show_arrow(self_: *mut GtkDropDown, show_arrow: gboolean);
 
     //=========================================================================
     // GtkDropTarget
@@ -11432,6 +11484,9 @@ extern "C" {
     //=========================================================================
     pub fn gtk_flow_box_get_type() -> GType;
     pub fn gtk_flow_box_new() -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_flow_box_append(self_: *mut GtkFlowBox, child: *mut GtkWidget);
     pub fn gtk_flow_box_bind_model(
         box_: *mut GtkFlowBox,
         model: *mut gio::GListModel,
@@ -11459,6 +11514,9 @@ extern "C" {
     pub fn gtk_flow_box_insert(box_: *mut GtkFlowBox, widget: *mut GtkWidget, position: c_int);
     pub fn gtk_flow_box_invalidate_filter(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_invalidate_sort(box_: *mut GtkFlowBox);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_flow_box_prepend(self_: *mut GtkFlowBox, child: *mut GtkWidget);
     pub fn gtk_flow_box_remove(box_: *mut GtkFlowBox, widget: *mut GtkWidget);
     pub fn gtk_flow_box_select_all(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_select_child(box_: *mut GtkFlowBox, child: *mut GtkFlowBoxChild);
@@ -12750,6 +12808,9 @@ extern "C" {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_get_always_show_arrow(menu_button: *mut GtkMenuButton) -> gboolean;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_menu_button_get_child(menu_button: *mut GtkMenuButton) -> *mut GtkWidget;
     pub fn gtk_menu_button_get_direction(menu_button: *mut GtkMenuButton) -> GtkArrowType;
     pub fn gtk_menu_button_get_has_frame(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_get_icon_name(menu_button: *mut GtkMenuButton) -> *const c_char;
@@ -12768,6 +12829,9 @@ extern "C" {
         menu_button: *mut GtkMenuButton,
         always_show_arrow: gboolean,
     );
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_menu_button_set_child(menu_button: *mut GtkMenuButton, child: *mut GtkWidget);
     pub fn gtk_menu_button_set_create_popup_func(
         menu_button: *mut GtkMenuButton,
         func: GtkMenuButtonCreatePopupFunc,
@@ -15615,9 +15679,18 @@ extern "C" {
     pub fn gtk_tree_expander_get_type() -> GType;
     pub fn gtk_tree_expander_new() -> *mut GtkWidget;
     pub fn gtk_tree_expander_get_child(self_: *mut GtkTreeExpander) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_tree_expander_get_indent_for_icon(self_: *mut GtkTreeExpander) -> gboolean;
     pub fn gtk_tree_expander_get_item(self_: *mut GtkTreeExpander) -> *mut gobject::GObject;
     pub fn gtk_tree_expander_get_list_row(self_: *mut GtkTreeExpander) -> *mut GtkTreeListRow;
     pub fn gtk_tree_expander_set_child(self_: *mut GtkTreeExpander, child: *mut GtkWidget);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_tree_expander_set_indent_for_icon(
+        self_: *mut GtkTreeExpander,
+        indent_for_icon: gboolean,
+    );
     pub fn gtk_tree_expander_set_list_row(
         self_: *mut GtkTreeExpander,
         list_row: *mut GtkTreeListRow,
@@ -17303,6 +17376,23 @@ extern "C" {
     // GtkStyleProvider
     //=========================================================================
     pub fn gtk_style_provider_get_type() -> GType;
+
+    //=========================================================================
+    // GtkSymbolicPaintable
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_symbolic_paintable_get_type() -> GType;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_symbolic_paintable_snapshot_symbolic(
+        paintable: *mut GtkSymbolicPaintable,
+        snapshot: *mut gdk::GdkSnapshot,
+        width: c_double,
+        height: c_double,
+        colors: *const gdk::GdkRGBA,
+        n_colors: size_t,
+    );
 
     //=========================================================================
     // GtkTreeDragDest

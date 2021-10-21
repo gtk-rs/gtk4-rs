@@ -101,6 +101,13 @@ pub use self::content_formats_builder::ContentFormatsBuilder;
 mod event_sequence;
 pub use self::event_sequence::EventSequence;
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+mod file_list;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::file_list::FileList;
+
 mod frame_timings;
 pub use self::frame_timings::FrameTimings;
 
@@ -133,6 +140,9 @@ pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::enums::TextureError;
 pub use self::enums::TitlebarGesture;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
@@ -146,6 +156,9 @@ pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
 pub use self::flags::ToplevelState;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::flags::GLAPI;
 
 pub mod functions;
 

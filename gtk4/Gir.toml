@@ -212,12 +212,13 @@ generate = [
     "Gtk.StringObject",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
+    "Gtk.SymbolicColor",
+    "Gtk.SymbolicPaintable",
     "Gtk.SystemSetting",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",
     "Gtk.TextSearchFlags",
-    "Gtk.TextTag",
     "Gtk.TextTagTable",
     "Gtk.TextViewLayer",
     "Gtk.TextWindowType",
@@ -353,6 +354,7 @@ manual = [
     "Pango.Stretch",
     "Pango.Style",
     "Pango.TabArray",
+    "Pango.TextTransform",
     "Pango.Underline",
     "Pango.Variant",
     "Pango.WrapMode",
@@ -2081,6 +2083,25 @@ boxed_inline = true
 name = "Gtk.TextMark"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.TextTag"
+status = "generate"
+    [[object.property]]
+    name = "line-height" # the annotation is set on the source code, doesn't get detected by gir
+    version = "4.6"
+    [[object.property]]
+    name = "line-height-set" # uses a macro to generate the property
+    version = "4.6"
+    [[object.property]]
+    name = "sentence-set" # uses a macro to generate the property
+    version = "4.6"
+    [[object.property]]
+    name = "text-transform-set" # uses a macro to generate the property
+    version = "4.6"
+    [[object.property]]
+    name = "word-set" # uses a macro to generate the property
+    version = "4.6"
 
 [[object]]
 name = "Gtk.TextView"
