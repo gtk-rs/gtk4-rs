@@ -3,7 +3,11 @@
 // DO NOT EDIT
 
 use crate::Renderer;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
 use glib::object::Cast;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
 use glib::translate::*;
 use std::fmt;
 
@@ -17,6 +21,8 @@ glib::wrapper! {
 }
 
 impl GLRenderer {
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_gl_renderer_new")]
     pub fn new() -> GLRenderer {
         assert_initialized_main_thread!();
@@ -24,6 +30,8 @@ impl GLRenderer {
     }
 }
 
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
 impl Default for GLRenderer {
     fn default() -> Self {
         Self::new()

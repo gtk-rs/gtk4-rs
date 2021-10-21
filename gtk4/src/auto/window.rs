@@ -132,6 +132,9 @@ pub struct WindowBuilder {
     resizable: Option<bool>,
     startup_id: Option<String>,
     title: Option<String>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    titlebar: Option<Widget>,
     transient_for: Option<Window>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -239,6 +242,10 @@ impl WindowBuilder {
         }
         if let Some(ref title) = self.title {
             properties.push(("title", title));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref titlebar) = self.titlebar {
+            properties.push(("titlebar", titlebar));
         }
         if let Some(ref transient_for) = self.transient_for {
             properties.push(("transient-for", transient_for));
@@ -440,6 +447,13 @@ impl WindowBuilder {
 
     pub fn title(mut self, title: &str) -> Self {
         self.title = Some(title.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn titlebar(mut self, titlebar: &impl IsA<Widget>) -> Self {
+        self.titlebar = Some(titlebar.clone().upcast());
         self
     }
 
@@ -898,6 +912,11 @@ pub trait GtkWindowExt: 'static {
 
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "titlebar")]
+    fn connect_titlebar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "transient-for")]
     fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -2031,6 +2050,30 @@ impl<O: IsA<Window>> GtkWindowExt for O {
                 b"notify::title\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_titlebar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_titlebar_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::titlebar\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_titlebar_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

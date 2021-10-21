@@ -9,7 +9,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskNglRenderer")]
-    pub struct NglRenderer(Object<ffi::GskNglRenderer, ffi::GskNglRendererClass>) @extends Renderer;
+    pub struct NglRenderer(Object<ffi::GskNglRenderer>) @extends Renderer;
 
     match fn {
         type_ => || ffi::gsk_ngl_renderer_get_type(),
@@ -17,6 +17,7 @@ glib::wrapper! {
 }
 
 impl NglRenderer {
+    #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gsk_ngl_renderer_new")]
     pub fn new() -> NglRenderer {
         assert_initialized_main_thread!();
@@ -24,8 +25,7 @@ impl NglRenderer {
     }
 }
 
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
 impl Default for NglRenderer {
     fn default() -> Self {
         Self::new()

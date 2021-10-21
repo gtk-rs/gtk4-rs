@@ -330,6 +330,88 @@ impl ToValue for FrameClockPhase {
     }
 }
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+bitflags! {
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "GdkGLAPI")]
+    pub struct GLAPI: u32 {
+        #[doc(alias = "GDK_GL_API_GL")]
+        const GL = ffi::GDK_GL_API_GL as u32;
+        #[doc(alias = "GDK_GL_API_GLES")]
+        const GLES = ffi::GDK_GL_API_GLES as u32;
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl fmt::Display for GLAPI {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl IntoGlib for GLAPI {
+    type GlibType = ffi::GdkGLAPI;
+
+    fn into_glib(self) -> ffi::GdkGLAPI {
+        self.bits()
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkGLAPI> for GLAPI {
+    unsafe fn from_glib(value: ffi::GdkGLAPI) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl StaticType for GLAPI {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gdk_gl_api_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl glib::value::ValueType for GLAPI {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+unsafe impl<'a> FromValue<'a> for GLAPI {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl ToValue for GLAPI {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 bitflags! {
     #[doc(alias = "GdkModifierType")]
     pub struct ModifierType: u32 {

@@ -302,6 +302,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkGLAPI",
+        Layout {
+            size: size_of::<GdkGLAPI>(),
+            alignment: align_of::<GdkGLAPI>(),
+        },
+    ),
+    (
         "GdkGLError",
         Layout {
             size: size_of::<GdkGLError>(),
@@ -418,6 +425,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GdkSurfaceEdge>(),
             alignment: align_of::<GdkSurfaceEdge>(),
+        },
+    ),
+    (
+        "GdkTextureError",
+        Layout {
+            size: size_of::<GdkTextureError>(),
+            alignment: align_of::<GdkTextureError>(),
         },
     ),
     (
@@ -552,6 +566,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GDK_FRAME_CLOCK_PHASE_UPDATE", "4"),
     ("(gint) GDK_FULLSCREEN_ON_ALL_MONITORS", "1"),
     ("(gint) GDK_FULLSCREEN_ON_CURRENT_MONITOR", "0"),
+    ("(guint) GDK_GL_API_GL", "1"),
+    ("(guint) GDK_GL_API_GLES", "2"),
     ("(gint) GDK_GL_ERROR_COMPILATION_FAILED", "3"),
     ("(gint) GDK_GL_ERROR_LINK_FAILED", "4"),
     ("(gint) GDK_GL_ERROR_NOT_AVAILABLE", "0"),
@@ -2860,7 +2876,16 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_MEMORY_B8G8R8", "8"),
     ("(gint) GDK_MEMORY_B8G8R8A8", "3"),
     ("(gint) GDK_MEMORY_B8G8R8A8_PREMULTIPLIED", "0"),
-    ("(gint) GDK_MEMORY_N_FORMATS", "9"),
+    ("(gint) GDK_MEMORY_N_FORMATS", "18"),
+    ("(gint) GDK_MEMORY_R16G16B16", "9"),
+    ("(gint) GDK_MEMORY_R16G16B16A16", "11"),
+    ("(gint) GDK_MEMORY_R16G16B16A16_FLOAT", "14"),
+    ("(gint) GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED", "13"),
+    ("(gint) GDK_MEMORY_R16G16B16A16_PREMULTIPLIED", "10"),
+    ("(gint) GDK_MEMORY_R16G16B16_FLOAT", "12"),
+    ("(gint) GDK_MEMORY_R32G32B32A32_FLOAT", "17"),
+    ("(gint) GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED", "16"),
+    ("(gint) GDK_MEMORY_R32G32B32_FLOAT", "15"),
     ("(gint) GDK_MEMORY_R8G8B8", "7"),
     ("(gint) GDK_MEMORY_R8G8B8A8", "5"),
     ("(gint) GDK_MEMORY_R8G8B8A8_PREMULTIPLIED", "2"),
@@ -2920,6 +2945,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_SURFACE_EDGE_SOUTH_EAST", "7"),
     ("(gint) GDK_SURFACE_EDGE_SOUTH_WEST", "5"),
     ("(gint) GDK_SURFACE_EDGE_WEST", "3"),
+    ("(gint) GDK_TEXTURE_ERROR_CORRUPT_IMAGE", "1"),
+    ("(gint) GDK_TEXTURE_ERROR_TOO_LARGE", "0"),
+    ("(gint) GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT", "2"),
+    ("(gint) GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT", "3"),
     ("(gint) GDK_TITLEBAR_GESTURE_DOUBLE_CLICK", "1"),
     ("(gint) GDK_TITLEBAR_GESTURE_MIDDLE_CLICK", "3"),
     ("(gint) GDK_TITLEBAR_GESTURE_RIGHT_CLICK", "2"),

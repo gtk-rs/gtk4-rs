@@ -1954,6 +1954,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkSymbolicColor",
+        Layout {
+            size: size_of::<GtkSymbolicColor>(),
+            alignment: align_of::<GtkSymbolicColor>(),
+        },
+    ),
+    (
+        "GtkSymbolicPaintableInterface",
+        Layout {
+            size: size_of::<GtkSymbolicPaintableInterface>(),
+            alignment: align_of::<GtkSymbolicPaintableInterface>(),
+        },
+    ),
+    (
         "GtkSystemSetting",
         Layout {
             size: size_of::<GtkSystemSetting>(),
@@ -3062,6 +3076,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_STYLE_PROVIDER_PRIORITY_SETTINGS", "400"),
     ("GTK_STYLE_PROVIDER_PRIORITY_THEME", "200"),
     ("GTK_STYLE_PROVIDER_PRIORITY_USER", "800"),
+    ("(gint) GTK_SYMBOLIC_COLOR_ERROR", "1"),
+    ("(gint) GTK_SYMBOLIC_COLOR_FOREGROUND", "0"),
+    ("(gint) GTK_SYMBOLIC_COLOR_SUCCESS", "3"),
+    ("(gint) GTK_SYMBOLIC_COLOR_WARNING", "2"),
     ("(gint) GTK_SYSTEM_SETTING_DISPLAY", "3"),
     ("(gint) GTK_SYSTEM_SETTING_DPI", "0"),
     ("(gint) GTK_SYSTEM_SETTING_FONT_CONFIG", "2"),

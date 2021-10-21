@@ -41,7 +41,7 @@ pub trait GskRenderer: 'static {
     fn is_realized(&self) -> bool;
 
     #[doc(alias = "gsk_renderer_realize")]
-    fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error>;
+    fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
@@ -70,7 +70,7 @@ impl<O: IsA<Renderer>> GskRenderer for O {
         }
     }
 
-    fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error> {
+    fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gsk_renderer_realize(

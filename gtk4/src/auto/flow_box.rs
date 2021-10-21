@@ -53,6 +53,15 @@ impl FlowBox {
         FlowBoxBuilder::default()
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_flow_box_append")]
+    pub fn append(&self, child: &impl IsA<Widget>) {
+        unsafe {
+            ffi::gtk_flow_box_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_flow_box_bind_model")]
     pub fn bind_model<P: Fn(&glib::Object) -> Widget + 'static>(
         &self,
@@ -189,6 +198,15 @@ impl FlowBox {
     pub fn invalidate_sort(&self) {
         unsafe {
             ffi::gtk_flow_box_invalidate_sort(self.to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_flow_box_prepend")]
+    pub fn prepend(&self, child: &impl IsA<Widget>) {
+        unsafe {
+            ffi::gtk_flow_box_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 

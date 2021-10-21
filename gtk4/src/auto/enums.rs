@@ -8858,6 +8858,116 @@ impl ToValue for StringFilterMatchMode {
     }
 }
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkSymbolicColor")]
+pub enum SymbolicColor {
+    #[doc(alias = "GTK_SYMBOLIC_COLOR_FOREGROUND")]
+    Foreground,
+    #[doc(alias = "GTK_SYMBOLIC_COLOR_ERROR")]
+    Error,
+    #[doc(alias = "GTK_SYMBOLIC_COLOR_WARNING")]
+    Warning,
+    #[doc(alias = "GTK_SYMBOLIC_COLOR_SUCCESS")]
+    Success,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl fmt::Display for SymbolicColor {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "SymbolicColor::{}",
+            match *self {
+                Self::Foreground => "Foreground",
+                Self::Error => "Error",
+                Self::Warning => "Warning",
+                Self::Success => "Success",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl IntoGlib for SymbolicColor {
+    type GlibType = ffi::GtkSymbolicColor;
+
+    fn into_glib(self) -> ffi::GtkSymbolicColor {
+        match self {
+            Self::Foreground => ffi::GTK_SYMBOLIC_COLOR_FOREGROUND,
+            Self::Error => ffi::GTK_SYMBOLIC_COLOR_ERROR,
+            Self::Warning => ffi::GTK_SYMBOLIC_COLOR_WARNING,
+            Self::Success => ffi::GTK_SYMBOLIC_COLOR_SUCCESS,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkSymbolicColor> for SymbolicColor {
+    unsafe fn from_glib(value: ffi::GtkSymbolicColor) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_SYMBOLIC_COLOR_FOREGROUND => Self::Foreground,
+            ffi::GTK_SYMBOLIC_COLOR_ERROR => Self::Error,
+            ffi::GTK_SYMBOLIC_COLOR_WARNING => Self::Warning,
+            ffi::GTK_SYMBOLIC_COLOR_SUCCESS => Self::Success,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl StaticType for SymbolicColor {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_symbolic_color_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl glib::value::ValueType for SymbolicColor {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+unsafe impl<'a> FromValue<'a> for SymbolicColor {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl ToValue for SymbolicColor {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSystemSetting")]

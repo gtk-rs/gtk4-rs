@@ -3,10 +3,28 @@
 // DO NOT EDIT
 
 use crate::DrawContext;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use crate::GLAPI;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use glib::signal::connect_raw;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
@@ -38,6 +56,18 @@ impl GLContext {
 pub const NONE_GL_CONTEXT: Option<&GLContext> = None;
 
 pub trait GLContextExt: 'static {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_get_allowed_apis")]
+    #[doc(alias = "get_allowed_apis")]
+    fn allowed_apis(&self) -> GLAPI;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_get_api")]
+    #[doc(alias = "get_api")]
+    fn api(&self) -> GLAPI;
+
     #[doc(alias = "gdk_gl_context_get_debug_enabled")]
     #[doc(alias = "get_debug_enabled")]
     fn is_debug_enabled(&self) -> bool;
@@ -77,6 +107,11 @@ pub trait GLContextExt: 'static {
     #[doc(alias = "gdk_gl_context_realize")]
     fn realize(&self) -> Result<(), glib::Error>;
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gdk_gl_context_set_allowed_apis")]
+    fn set_allowed_apis(&self, apis: GLAPI);
+
     #[doc(alias = "gdk_gl_context_set_debug_enabled")]
     fn set_debug_enabled(&self, enabled: bool);
 
@@ -88,9 +123,35 @@ pub trait GLContextExt: 'static {
 
     #[doc(alias = "gdk_gl_context_set_use_es")]
     fn set_use_es(&self, use_es: i32);
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "allowed-apis")]
+    fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "api")]
+    fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<GLContext>> GLContextExt for O {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn allowed_apis(&self) -> GLAPI {
+        unsafe {
+            from_glib(ffi::gdk_gl_context_get_allowed_apis(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn api(&self) -> GLAPI {
+        unsafe { from_glib(ffi::gdk_gl_context_get_api(self.as_ref().to_glib_none().0)) }
+    }
+
     fn is_debug_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_debug_enabled(
@@ -190,6 +251,14 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn set_allowed_apis(&self, apis: GLAPI) {
+        unsafe {
+            ffi::gdk_gl_context_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());
+        }
+    }
+
     fn set_debug_enabled(&self, enabled: bool) {
         unsafe {
             ffi::gdk_gl_context_set_debug_enabled(
@@ -217,6 +286,57 @@ impl<O: IsA<GLContext>> GLContextExt for O {
     fn set_use_es(&self, use_es: i32) {
         unsafe {
             ffi::gdk_gl_context_set_use_es(self.as_ref().to_glib_none().0, use_es);
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allowed_apis_trampoline<
+            P: IsA<GLContext>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkGLContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(GLContext::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allowed-apis\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_allowed_apis_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_api_trampoline<P: IsA<GLContext>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GdkGLContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(GLContext::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::api\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_api_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

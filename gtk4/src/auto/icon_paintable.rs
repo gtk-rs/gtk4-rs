@@ -2,10 +2,25 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use crate::SymbolicPaintable;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+glib::wrapper! {
+    #[doc(alias = "GtkIconPaintable")]
+    pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable, SymbolicPaintable;
+
+    match fn {
+        type_ => || ffi::gtk_icon_paintable_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_6", feature = "dox")))]
 glib::wrapper! {
     #[doc(alias = "GtkIconPaintable")]
     pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;

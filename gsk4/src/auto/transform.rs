@@ -100,6 +100,13 @@ impl Transform {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gsk_transform_skew")]
+    pub fn skew(&self, skew_x: f32, skew_y: f32) -> Option<Transform> {
+        unsafe { from_glib_full(ffi::gsk_transform_skew(self.to_glib_full(), skew_x, skew_y)) }
+    }
+
     #[doc(alias = "gsk_transform_to_2d")]
     pub fn to_2d(&self) -> (f32, f32, f32, f32, f32, f32) {
         unsafe {
@@ -125,6 +132,47 @@ impl Transform {
             let out_dx = out_dx.assume_init();
             let out_dy = out_dy.assume_init();
             (out_xx, out_yx, out_xy, out_yy, out_dx, out_dy)
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gsk_transform_to_2d_components")]
+    pub fn to_2d_components(&self) -> (f32, f32, f32, f32, f32, f32, f32) {
+        unsafe {
+            let mut out_skew_x = mem::MaybeUninit::uninit();
+            let mut out_skew_y = mem::MaybeUninit::uninit();
+            let mut out_scale_x = mem::MaybeUninit::uninit();
+            let mut out_scale_y = mem::MaybeUninit::uninit();
+            let mut out_angle = mem::MaybeUninit::uninit();
+            let mut out_dx = mem::MaybeUninit::uninit();
+            let mut out_dy = mem::MaybeUninit::uninit();
+            ffi::gsk_transform_to_2d_components(
+                self.to_glib_none().0,
+                out_skew_x.as_mut_ptr(),
+                out_skew_y.as_mut_ptr(),
+                out_scale_x.as_mut_ptr(),
+                out_scale_y.as_mut_ptr(),
+                out_angle.as_mut_ptr(),
+                out_dx.as_mut_ptr(),
+                out_dy.as_mut_ptr(),
+            );
+            let out_skew_x = out_skew_x.assume_init();
+            let out_skew_y = out_skew_y.assume_init();
+            let out_scale_x = out_scale_x.assume_init();
+            let out_scale_y = out_scale_y.assume_init();
+            let out_angle = out_angle.assume_init();
+            let out_dx = out_dx.assume_init();
+            let out_dy = out_dy.assume_init();
+            (
+                out_skew_x,
+                out_skew_y,
+                out_scale_x,
+                out_scale_y,
+                out_angle,
+                out_dx,
+                out_dy,
+            )
         }
     }
 

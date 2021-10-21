@@ -27,11 +27,11 @@ generate = [
     "Gdk.FrameClockPhase",
     "Gdk.FrameTimings",
     "Gdk.FullscreenMode",
+    "Gdk.GLAPI",
     "Gdk.GLError",
     "Gdk.Gravity",
     "Gdk.InputSource",
     "Gdk.KeyMatch",
-    "Gdk.MemoryFormat",
     "Gdk.MemoryTexture",
     "Gdk.ModifierType",
     "Gdk.NotifyType",
@@ -43,6 +43,7 @@ generate = [
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
+    "Gdk.TextureError",
     "Gdk.TitlebarGesture",
     "Gdk.ToplevelLayout",
     "Gdk.ToplevelState",
@@ -80,6 +81,7 @@ manual = [
     "Gio.InputStream",
     "Gio.IOErrorEnum",
     "Gio.ListModel",
+    "Gio.LoadableIcon",
     "Gio.OutputStream",
     "GLib.Bytes",
     "GLib.Error",
@@ -450,6 +452,15 @@ status = "manual" # fundemental type
 final_type = true # avoids the usage of EventExt trait
 
 [[object]]
+name = "Gdk.FileList"
+status = "generate"
+    [[object.function]]
+    name = "get_files"
+        [[object.function.parameter]]
+        pattern = "*" # work around not being able to target self param (https://github.com/gtk-rs/gir/issues/1246)
+        const = true
+
+[[object]]
 name = "Gdk.GLContext"
 status = "generate"
 final_type = false
@@ -465,6 +476,37 @@ status = "generate"
     [[object.function]]
     name = "new"
     manual = true
+
+[[object]]
+name = "Gdk.MemoryFormat"
+status = "generate"
+    [[object.member]]
+    name = "r16g16b16"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_float_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32a32_float_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32a32_float"
+    version = "4.6"
 
 [[object]]
 name = "Gdk.Monitor"

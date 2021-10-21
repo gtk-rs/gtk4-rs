@@ -63,6 +63,14 @@ impl MenuButton {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_menu_button_get_child")]
+    #[doc(alias = "get_child")]
+    pub fn child(&self) -> Option<Widget> {
+        unsafe { from_glib_none(ffi::gtk_menu_button_get_child(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_menu_button_get_direction")]
     #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ArrowType {
@@ -139,6 +147,18 @@ impl MenuButton {
             ffi::gtk_menu_button_set_always_show_arrow(
                 self.to_glib_none().0,
                 always_show_arrow.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_menu_button_set_child")]
+    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
+        unsafe {
+            ffi::gtk_menu_button_set_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -295,6 +315,31 @@ impl MenuButton {
                 b"notify::always-show-arrow\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_always_show_arrow_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_child_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -503,6 +548,9 @@ pub struct MenuButtonBuilder {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     always_show_arrow: Option<bool>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    child: Option<Widget>,
     direction: Option<ArrowType>,
     has_frame: Option<bool>,
     icon_name: Option<String>,
@@ -559,6 +607,10 @@ impl MenuButtonBuilder {
         #[cfg(any(feature = "v4_4", feature = "dox"))]
         if let Some(ref always_show_arrow) = self.always_show_arrow {
             properties.push(("always-show-arrow", always_show_arrow));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref child) = self.child {
+            properties.push(("child", child));
         }
         if let Some(ref direction) = self.direction {
             properties.push(("direction", direction));
@@ -683,6 +735,13 @@ impl MenuButtonBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn always_show_arrow(mut self, always_show_arrow: bool) -> Self {
         self.always_show_arrow = Some(always_show_arrow);
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
+        self.child = Some(child.clone().upcast());
         self
     }
 

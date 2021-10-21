@@ -20,6 +20,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkEventType", sizeof(GdkEventType), alignof(GdkEventType));
     printf("%s;%zu;%zu\n", "GdkFrameClockPhase", sizeof(GdkFrameClockPhase), alignof(GdkFrameClockPhase));
     printf("%s;%zu;%zu\n", "GdkFullscreenMode", sizeof(GdkFullscreenMode), alignof(GdkFullscreenMode));
+    printf("%s;%zu;%zu\n", "GdkGLAPI", sizeof(GdkGLAPI), alignof(GdkGLAPI));
     printf("%s;%zu;%zu\n", "GdkGLError", sizeof(GdkGLError), alignof(GdkGLError));
     printf("%s;%zu;%zu\n", "GdkGravity", sizeof(GdkGravity), alignof(GdkGravity));
     printf("%s;%zu;%zu\n", "GdkInputSource", sizeof(GdkInputSource), alignof(GdkInputSource));
@@ -37,6 +38,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkSeatCapabilities", sizeof(GdkSeatCapabilities), alignof(GdkSeatCapabilities));
     printf("%s;%zu;%zu\n", "GdkSubpixelLayout", sizeof(GdkSubpixelLayout), alignof(GdkSubpixelLayout));
     printf("%s;%zu;%zu\n", "GdkSurfaceEdge", sizeof(GdkSurfaceEdge), alignof(GdkSurfaceEdge));
+    printf("%s;%zu;%zu\n", "GdkTextureError", sizeof(GdkTextureError), alignof(GdkTextureError));
     printf("%s;%zu;%zu\n", "GdkTimeCoord", sizeof(GdkTimeCoord), alignof(GdkTimeCoord));
     printf("%s;%zu;%zu\n", "GdkTitlebarGesture", sizeof(GdkTitlebarGesture), alignof(GdkTitlebarGesture));
     printf("%s;%zu;%zu\n", "GdkToplevelState", sizeof(GdkToplevelState), alignof(GdkToplevelState));

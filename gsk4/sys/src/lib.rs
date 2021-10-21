@@ -166,11 +166,6 @@ impl ::std::fmt::Debug for GskGLShaderClass {
 }
 
 #[repr(C)]
-pub struct _GskNglRendererClass(c_void);
-
-pub type GskNglRendererClass = *mut _GskNglRendererClass;
-
-#[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GskParseLocation {
     pub bytes: size_t,
@@ -745,12 +740,31 @@ extern "C" {
         factor_y: c_float,
         factor_z: c_float,
     ) -> *mut GskTransform;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_transform_skew(
+        next: *mut GskTransform,
+        skew_x: c_float,
+        skew_y: c_float,
+    ) -> *mut GskTransform;
     pub fn gsk_transform_to_2d(
         self_: *mut GskTransform,
         out_xx: *mut c_float,
         out_yx: *mut c_float,
         out_xy: *mut c_float,
         out_yy: *mut c_float,
+        out_dx: *mut c_float,
+        out_dy: *mut c_float,
+    );
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_transform_to_2d_components(
+        self_: *mut GskTransform,
+        out_skew_x: *mut c_float,
+        out_skew_y: *mut c_float,
+        out_scale_x: *mut c_float,
+        out_scale_y: *mut c_float,
+        out_angle: *mut c_float,
         out_dx: *mut c_float,
         out_dy: *mut c_float,
     );
@@ -956,6 +970,8 @@ extern "C" {
     // GskGLRenderer
     //=========================================================================
     pub fn gsk_gl_renderer_get_type() -> GType;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gsk_gl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1091,8 +1107,6 @@ extern "C" {
     // GskNglRenderer
     //=========================================================================
     pub fn gsk_ngl_renderer_get_type() -> GType;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gsk_ngl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1311,5 +1325,21 @@ extern "C" {
     ) -> *mut GskTransformNode;
     pub fn gsk_transform_node_get_child(node: *const GskTransformNode) -> *mut GskRenderNode;
     pub fn gsk_transform_node_get_transform(node: *const GskTransformNode) -> *mut GskTransform;
+
+    //=========================================================================
+    // Other functions
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_value_dup_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_value_get_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_value_set_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gsk_value_take_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
 
 }
