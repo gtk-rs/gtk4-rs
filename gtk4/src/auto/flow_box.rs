@@ -329,43 +329,6 @@ impl FlowBox {
         }
     }
 
-    #[doc(alias = "gtk_flow_box_set_sort_func")]
-    pub fn set_sort_func<P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>(
-        &self,
-        sort_func: P,
-    ) {
-        let sort_func_data: Box_<P> = Box_::new(sort_func);
-        unsafe extern "C" fn sort_func_func<
-            P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static,
-        >(
-            child1: *mut ffi::GtkFlowBoxChild,
-            child2: *mut ffi::GtkFlowBoxChild,
-            user_data: glib::ffi::gpointer,
-        ) -> libc::c_int {
-            let child1 = from_glib_borrow(child1);
-            let child2 = from_glib_borrow(child2);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&child1, &child2);
-            res
-        }
-        let sort_func = Some(sort_func_func::<P> as _);
-        unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>(
-            data: glib::ffi::gpointer,
-        ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(destroy_func::<P> as _);
-        let super_callback0: Box_<P> = sort_func_data;
-        unsafe {
-            ffi::gtk_flow_box_set_sort_func(
-                self.to_glib_none().0,
-                sort_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
-        }
-    }
-
     #[doc(alias = "gtk_flow_box_set_vadjustment")]
     pub fn set_vadjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
