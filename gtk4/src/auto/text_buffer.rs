@@ -302,9 +302,6 @@ pub trait TextBufferExt: 'static {
         default_editable: bool,
     ) -> bool;
 
-    //#[doc(alias = "gtk_text_buffer_insert_with_tags_by_name")]
-    //fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, first_tag_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_text_buffer_move_mark")]
     fn move_mark(&self, mark: &impl IsA<TextMark>, where_: &TextIter);
 
@@ -973,10 +970,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
             ))
         }
     }
-
-    //fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, first_tag_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_text_buffer_insert_with_tags_by_name() }
-    //}
 
     fn move_mark(&self, mark: &impl IsA<TextMark>, where_: &TextIter) {
         unsafe {

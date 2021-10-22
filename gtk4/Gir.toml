@@ -2088,10 +2088,13 @@ manual_traits = ["TextBufferExtManual"]
     doc_trait_name = "TextBufferExtManual"
     [[object.function]]
     name = "create_tag"
-    ignore = true # TODO: fix me once varargs are supported
+    manual = true
     [[object.function]]
     name = "insert_with_tags"
-    ignore = true # TODO: fix me once varargs are supported
+    manual = true
+    [[object.function]]
+    name = "insert_with_tags_by_name"
+    manual = true
 
 [[object]]
 name = "Gtk.TextIter"
