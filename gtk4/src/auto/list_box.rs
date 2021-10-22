@@ -371,38 +371,6 @@ impl ListBox {
         }
     }
 
-    #[doc(alias = "gtk_list_box_set_sort_func")]
-    pub fn set_sort_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(&self, sort_func: P) {
-        let sort_func_data: Box_<P> = Box_::new(sort_func);
-        unsafe extern "C" fn sort_func_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(
-            row1: *mut ffi::GtkListBoxRow,
-            row2: *mut ffi::GtkListBoxRow,
-            user_data: glib::ffi::gpointer,
-        ) -> libc::c_int {
-            let row1 = from_glib_borrow(row1);
-            let row2 = from_glib_borrow(row2);
-            let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&row1, &row2);
-            res
-        }
-        let sort_func = Some(sort_func_func::<P> as _);
-        unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(
-            data: glib::ffi::gpointer,
-        ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
-        }
-        let destroy_call3 = Some(destroy_func::<P> as _);
-        let super_callback0: Box_<P> = sort_func_data;
-        unsafe {
-            ffi::gtk_list_box_set_sort_func(
-                self.to_glib_none().0,
-                sort_func,
-                Box_::into_raw(super_callback0) as *mut _,
-                destroy_call3,
-            );
-        }
-    }
-
     #[doc(alias = "gtk_list_box_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {

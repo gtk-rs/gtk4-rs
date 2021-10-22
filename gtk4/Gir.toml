@@ -1173,9 +1173,7 @@ status = "generate"
         nullable = false
     [[object.function]]
     name = "set_sort_func"
-        [[object.function.parameter]]
-        name = "sort_func" # use unset_sort_func instead
-        nullable = false
+    manual = true # make the sort closure return a Ordering instead of an int
 
 [[object]]
 name = "Gtk.FontButton"
@@ -1350,9 +1348,7 @@ trust_return_value_nullability = false
         nullable = false # we add a manual unset_header_func
     [[object.function]]
     name = "set_sort_func"
-        [[object.function.parameter]]
-        name = "sort_func"
-        nullable = false # we add a manual unset_sort_func
+    manual = true # make the sort closure return a Ordering instead of an int
 
 [[object]]
 name = "Gtk.ListItem"
