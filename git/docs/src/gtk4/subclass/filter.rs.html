@@ -156,10 +156,6 @@
 <span id="83">83</span>
 <span id="84">84</span>
 <span id="85">85</span>
-<span id="86">86</span>
-<span id="87">87</span>
-<span id="88">88</span>
-<span id="89">89</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -211,7 +207,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FilterImpl</span><span class="op">&gt;</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Filter</span> {
     <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="op">&lt;</span><span class="ident">Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::class_init</span>(<span class="ident">class</span>);
+        <span class="ident"><span class="self">Self</span>::parent_class_init</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">class</span>);
 
         <span class="macro">assert!</span>(
             <span class="ident"><span class="kw">crate</span>::rt::is_initialized</span>(),
@@ -221,10 +217,6 @@
         <span class="kw">let</span> <span class="ident">klass</span> <span class="op">=</span> <span class="ident">class</span>.<span class="ident">as_mut</span>();
         <span class="ident">klass</span>.<span class="ident">match_</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">filter_match</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">klass</span>.<span class="ident">get_strictness</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">filter_get_strictness</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
-    }
-
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
-        <span class="op">&lt;</span><span class="ident">glib::Object</span> <span class="kw">as</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::instance_init</span>(<span class="ident">instance</span>);
     }
 }
 
