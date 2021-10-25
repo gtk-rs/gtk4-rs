@@ -79,6 +79,7 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
 
 pub enum FieldAttributeArg {
     Id(String),
+    Internal(bool),
 }
 
 #[derive(Debug)]
@@ -109,6 +110,16 @@ fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String, Erro
     }
 }
 
+fn parse_field_attr_value_bool(internal_value: &MetaNameValue) -> Result<bool, Error> {
+    match &internal_value.lit {
+        Lit::Bool(s) => Ok(s.value()),
+        _ => Err(Error::new(
+            internal_value.lit.span(),
+            "invalid value type: Expected bool",
+        )),
+    }
+}
+
 fn parse_field_attr_meta(
     ty: &FieldAttributeType,
     meta: &NestedMeta,
@@ -131,15 +142,10 @@ fn parse_field_attr_meta(
             ))
         }
     };
-    let ident = match name_value.path.get_ident() {
-        None => {
-            return Err(Error::new(
-                name_value.path.span(),
-                "invalid name type - expected identifier",
-            ))
-        }
-        Some(ident) => ident,
-    };
+    let path = &name_value.path;
+    let ident = path
+        .get_ident()
+        .ok_or_else(|| Error::new(path.span(), "invalid name type - expected identifier"))?;
 
     let ident_str = ident.to_string();
     let unknown_err = Err(Error::new(
@@ -149,6 +155,7 @@ fn parse_field_attr_meta(
     let value = match ty {
         FieldAttributeType::TemplateChild => match ident_str.as_str() {
             "id" => FieldAttributeArg::Id(parse_field_attr_value_str(name_value)?),
+            "internal" => FieldAttributeArg::Internal(parse_field_attr_value_bool(name_value)?),
             _ => return unknown_err,
         },
     };
