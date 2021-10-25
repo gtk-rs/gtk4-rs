@@ -10,7 +10,7 @@ This is how we want this to work in the end:
 
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="img/todo_app_2_animation.webm" type="video/webm">
+  <source src="vid/todo_app_2_animation.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>
