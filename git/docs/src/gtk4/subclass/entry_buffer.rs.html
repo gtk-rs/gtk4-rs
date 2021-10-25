@@ -407,6 +407,8 @@
 <span id="334">334</span>
 <span id="335">335</span>
 <span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -636,7 +638,9 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">text</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
-    <span class="kw-2">*</span><span class="ident">n_bytes</span> <span class="op">=</span> <span class="ident">ret</span>.<span class="ident">len</span>();
+    <span class="kw">if</span> <span class="op">!</span><span class="ident">n_bytes</span>.<span class="ident">is_null</span>() {
+        <span class="kw-2">*</span><span class="ident">n_bytes</span> <span class="op">=</span> <span class="ident">ret</span>.<span class="ident">len</span>();
+    }
     <span class="comment">// Ensures that the returned text stays alive for as long as</span>
     <span class="comment">// the entry buffer instance</span>
     <span class="kw">let</span> <span class="ident">fullptr</span> <span class="op">=</span> <span class="ident">ret</span>.<span class="ident">to_glib_full</span>();
