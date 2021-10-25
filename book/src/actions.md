@@ -64,7 +64,12 @@ It also takes care of updating the `label` with the current state.
 The button activates the action with each click while passing "1" as parameter.
 This is how our app works:
 
-<div style="text-align:center"><img src="img/actions_counter.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_counter.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 
 
 ## Actionable
@@ -216,8 +221,13 @@ For example, an `i32` variable with value "5" would correspond to this:
 
 This is how the app looks in action:
 
-<div style="text-align:center"><img src="img/actions_menu.gif" /></div>
 
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_menu.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 
 ## Settings
 

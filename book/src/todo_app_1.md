@@ -198,4 +198,9 @@ In the end, it clears the vector.
 That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.
 
-<div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_app_1_animation.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
