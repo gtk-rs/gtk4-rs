@@ -23,7 +23,7 @@ define_expression!(
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<F, R>(callback: F, params: &[Expression]) -> Self
+    pub fn new<F, R>(params: &[Expression], callback: F) -> Self
     where
         F: Fn(&[Value]) -> R + 'static,
         R: ValueType,
@@ -44,7 +44,7 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure<R>(closure: glib::Closure, params: &[Expression]) -> Self
+    pub fn with_closure<R>(params: &[Expression], closure: glib::Closure) -> Self
     where
         R: ValueType,
     {
