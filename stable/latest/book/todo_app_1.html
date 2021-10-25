@@ -422,7 +422,8 @@ impl TodoObject {
 </span><span class="boring">    pub content: String,
 </span><span class="boring">}
 </span></code></pre>
-<p>Unlike the lists chapter, the state is stored in a struct rather than in individual members of <code>imp::TodoObject</code>.</p>
+<p>Unlike the lists chapter, the state is stored in a struct rather than in individual members of <code>imp::TodoObject</code>.
+This will be very convenient when saving the state in one of the following chapters.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
@@ -446,9 +447,7 @@ pub struct TodoData {
     pub content: String,
 }
 </code></pre>
-<p>Not only that, we see that it is also wrapped in a <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>.
-This will be very convenient for saving the state in one of the following chapters.
-Exposing <code>completed</code> and <code>content</code> as properties does not become much different that way, so we will not discuss it further.
+<p>Exposing <code>completed</code> and <code>content</code> as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.</p>
 <p><span class="filename">Filename: listings/todo_app/1/todo_object/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
@@ -1278,7 +1277,12 @@ In the end, it clears the vector.</p>
 </span></code></pre>
 <p>That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.</p>
-<div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_app_1_animation.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 
                     </main>
 
