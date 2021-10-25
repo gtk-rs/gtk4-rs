@@ -1384,6 +1384,7 @@
 <span id="1311">1311</span>
 <span id="1312">1312</span>
 <span id="1313">1313</span>
+<span id="1314">1314</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -2609,6 +2610,7 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">bind_template_child_with_offset</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">internal</span>: <span class="ident">bool</span>,
         <span class="ident">offset</span>: <span class="ident">field_offset::FieldOffset</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">TemplateChild</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">ObjectType</span> <span class="op">+</span> <span class="ident">FromGlibPtrNone</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">ObjectType</span><span class="op">&gt;</span><span class="ident">::GlibType</span><span class="op">&gt;</span>,
@@ -2620,7 +2622,7 @@
         <span class="ident">ffi::gtk_widget_class_bind_template_child_full</span>(
             <span class="ident">widget_class</span>,
             <span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            <span class="bool-val">false</span> <span class="kw">as</span> <span class="ident">glib::ffi::gboolean</span>,
+            <span class="ident">internal</span>.<span class="ident">into_glib</span>(),
             <span class="ident">private_offset</span> <span class="op">+</span> (<span class="ident">offset</span>.<span class="ident">get_byte_offset</span>() <span class="kw">as</span> <span class="ident">isize</span>),
         )
     }
