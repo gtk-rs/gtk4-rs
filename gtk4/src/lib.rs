@@ -131,6 +131,7 @@ mod entry_completion;
 mod enums;
 mod event_controller_key;
 mod expression_watch;
+mod file_chooser;
 mod file_chooser_dialog;
 mod flow_box;
 mod font_chooser;

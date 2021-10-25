@@ -1135,9 +1135,10 @@ final_type = true
 name = "Gtk.FileChooser"
 status = "generate"
 trust_return_value_nullability = false
+manual_traits = ["FileChooserExtManual"]
     [[object.function]]
     name = "add_choice"
-    ignore = true # TODO: strange type of options and option_labels
+    manual = true # rust-ify the options param
 
 [[object]]
 name = "Gtk.FileChooserDialog"
