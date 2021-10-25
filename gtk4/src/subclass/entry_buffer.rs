@@ -227,7 +227,9 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     let ret = imp.text(wrap.unsafe_cast_ref());
-    *n_bytes = ret.len();
+    if !n_bytes.is_null() {
+        *n_bytes = ret.len();
+    }
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
     let fullptr = ret.to_glib_full();
