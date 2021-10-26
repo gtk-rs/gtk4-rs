@@ -350,6 +350,9 @@ final_type = false
     [[object.function]]
     name = "get_scroll_lock_state"
     rename = "is_scroll_locked"
+    [[object.property]]
+    name = "tool"
+    generate = ["notify"]
 
 [[object]]
 name = "Gdk.DeviceTool"
