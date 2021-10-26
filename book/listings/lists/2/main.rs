@@ -1,7 +1,7 @@
 mod integer_object;
 
-use gtk::gio;
 use gtk::prelude::*;
+use gtk::{gio, glib};
 use gtk::{
     Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection,
@@ -31,11 +31,18 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: model
+    // Create a `Vec<glib::Object>` with numbers from 0 to 100_000
+    let vector: Vec<glib::Object> = (0..=100_000)
+        .into_iter()
+        .map(IntegerObject::new)
+        .map(Cast::upcast)
+        .collect();
+
+    // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..=100_000 {
-        let integer_object = IntegerObject::new(number);
-        model.append(&integer_object);
-    }
+
+    // Add the vector to the model at position 0 and 0 removals
+    model.splice(0, 0, &vector);
     // ANCHOR_END: model
 
     // ANCHOR: factory_setup
