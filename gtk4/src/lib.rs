@@ -167,6 +167,7 @@ mod recent_data;
 mod requisition;
 mod response_type;
 mod scale;
+mod shortcut;
 mod shortcut_trigger;
 mod shortcuts_section;
 mod snapshot;

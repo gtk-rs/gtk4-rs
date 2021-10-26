@@ -40,12 +40,6 @@ impl Shortcut {
         }
     }
 
-    //#[doc(alias = "gtk_shortcut_new_with_arguments")]
-    //#[doc(alias = "new_with_arguments")]
-    //pub fn with_arguments(trigger: Option<&impl IsA<ShortcutTrigger>>, action: Option<&impl IsA<ShortcutAction>>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
-    //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
-    //}
-
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Shortcut`] objects.
     ///
