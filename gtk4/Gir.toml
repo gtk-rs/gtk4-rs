@@ -180,7 +180,6 @@ generate = [
     "Gtk.SensitivityType",
     "Gtk.Separator",
     "Gtk.Settings",
-    "Gtk.Shortcut",
     "Gtk.ShortcutActionFlags",
     "Gtk.ShortcutController",
     "Gtk.ShortcutLabel",
@@ -1834,6 +1833,14 @@ status = "generate"
 name = "Gtk.SelectionFilterModel"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.Shortcut"
+status = "generate"
+    [[object.function]]
+    name = "new_with_arguments"
+    rename = "with_arguments"
+    manual = true # take arguments as a glib::Variant
 
 [[object]]
 name = "Gtk.ShortcutAction"
