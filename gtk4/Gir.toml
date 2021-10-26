@@ -2526,11 +2526,12 @@ trust_return_value_nullability = false
         name = "func"
         nullable = false
     [[object.function]]
-    name = "add_attribute"
-    ignore = true # docs only
+    name = "set_attributes"
+    manual = true
     [[object.function]]
-    name = "pack_start"
-    ignore = true # docs only
+    name = "new_with_attributes"
+    rename = "with_attributes"
+    manual = true
 
 [[object]]
 name = "Gtk.Widget"

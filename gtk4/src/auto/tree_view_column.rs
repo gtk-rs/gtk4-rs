@@ -51,12 +51,6 @@ impl TreeViewColumn {
         }
     }
 
-    //#[doc(alias = "gtk_tree_view_column_new_with_attributes")]
-    //#[doc(alias = "new_with_attributes")]
-    //pub fn with_attributes(title: &str, cell: &impl IsA<CellRenderer>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeViewColumn {
-    //    unsafe { TODO: call ffi:gtk_tree_view_column_new_with_attributes() }
-    //}
-
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TreeViewColumn`] objects.
     ///
@@ -310,11 +304,6 @@ impl TreeViewColumn {
             ffi::gtk_tree_view_column_set_alignment(self.to_glib_none().0, xalign);
         }
     }
-
-    //#[doc(alias = "gtk_tree_view_column_set_attributes")]
-    //pub fn set_attributes(&self, cell_renderer: &impl IsA<CellRenderer>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_tree_view_column_set_attributes() }
-    //}
 
     #[doc(alias = "gtk_tree_view_column_set_cell_data_func")]
     pub fn set_cell_data_func<
