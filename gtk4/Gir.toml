@@ -210,7 +210,6 @@ generate = [
     "Gtk.StateFlags",
     "Gtk.Statusbar",
     "Gtk.StringFilterMatchMode",
-    "Gtk.StringList",
     "Gtk.StringObject",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
@@ -1956,6 +1955,13 @@ status = "generate"
     [[object.function]]
     name = "set_expression"
     manual = true # use AsRef<Expression>
+
+[[object]]
+name = "Gtk.StringList"
+status = "generate"
+    [[object.function]]
+    name = "take"
+    ignore = true # A C helper, bindings should use append instead
 
 [[object]]
 name = "Gtk.StringSorter"
