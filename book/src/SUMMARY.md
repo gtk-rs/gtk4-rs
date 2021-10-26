@@ -2,7 +2,6 @@
 
 [Introduction](introduction.md)
 - [Prerequisites](prerequisites.md)
-  - [Windows installation](windows_install.md)
 - [Hello World!](hello_world.md)
 - [Widgets](widgets.md)
 - [GObject Concepts](gobject_concepts.md)

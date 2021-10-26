@@ -37,7 +37,7 @@ Run the following commands from your terminal:
 Run the following command from your **MSYS2 terminal**:
 
 ```sh
-pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-pkg-config mingw-w64-x86_64-gcc
+pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-pkgconf mingw-w64-x86_64-gcc
 ```
 
 
@@ -54,7 +54,7 @@ pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-pkg-config mingw-w64-x86_64-gcc
 Run the following command from your **MSYS2 terminal**:
 
 ```sh
-pacman -S pkg-config
+pacman -S pkgconf
 ```
 
 ### Compile and install GTK4
@@ -64,7 +64,21 @@ Run the following commands from your terminal:
 ```sh
 git clone https://gitlab.gnome.org/GNOME/gtk.git
 cd gtk
-meson setup build -Dmedia-gstreamer=disabled -Dbuild-tests=false
+meson setup build -Dbuild-tests=false -Dmedia-gstreamer=disabled 
 meson compile -C build
 meson install -C build
 ```
+
+### [Optional] install gstreamer
+
+1. Install gstreamer from [gstreamer.freedesktop.org](https://gstreamer.freedesktop.org/download/) using both normal and development installers (you might need to select right-click -> Properties -> Security: "Unblock" after download)
+2. Add this to your Path
+
+```
+C:\gstreamer\1.0\msvc_x86_64\include
+C:\gstreamer\1.0\msvc_x86_64\bin
+C:\gstreamer\1.0\msvc_x86_64\lib
+```
+
+3. Add a new environment variable called `PKG_CONFIG_PATH` and set it to `C:\gstreamer\1.0\msvc_x86_64\lib\pkgconfig`
+4. Configure GTK without `-Dmedia-gstreamer=disabled`
