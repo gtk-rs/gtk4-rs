@@ -133,7 +133,7 @@ fn build_ui(app: &Application) {
         // Increase "number" of `IntegerObject`
         integer_object.increase_number();
 
-        // Notify that the filter and sorter has been changed
+        // Notify that the filter and sorter have been changed
         filter.changed(FilterChange::Different);
         sorter.changed(SorterChange::Different);
     });

@@ -157,30 +157,30 @@ path = "main_event_loop/5/main.rs"
 name = "saving_window_state_1"
 path = "saving_window_state/1/main.rs"
 
-# lists
+# list_widgets
 [[bin]]
-name = "lists_1"
-path = "lists/1/main.rs"
+name = "list_widgets_1"
+path = "list_widgets/1/main.rs"
 
 [[bin]]
-name = "lists_2"
-path = "lists/2/main.rs"
+name = "list_widgets_2"
+path = "list_widgets/2/main.rs"
 
 [[bin]]
-name = "lists_3"
-path = "lists/3/main.rs"
+name = "list_widgets_3"
+path = "list_widgets/3/main.rs"
 
 [[bin]]
-name = "lists_4"
-path = "lists/4/main.rs"
+name = "list_widgets_4"
+path = "list_widgets/4/main.rs"
 
 [[bin]]
-name = "lists_5"
-path = "lists/5/main.rs"
+name = "list_widgets_5"
+path = "list_widgets/5/main.rs"
 
 [[bin]]
-name = "lists_6"
-path = "lists/6/main.rs"
+name = "list_widgets_6"
+path = "list_widgets/6/main.rs"
 
 # settings
 [[bin]]

@@ -59,7 +59,7 @@ Let us do that!
 
 <div style="text-align:center"><img src="img/todo_app_1_empty.png" /></div>
 
-As discussed in the [lists chapter](./lists.html),
+As discussed in the [list widgets chapter](./list_widgets.html),
 we start out by creating a custom GObject.
 This object will store the state of the task consisting of:
 - a boolean describing whether the task is completed or not, and

@@ -26,6 +26,7 @@ fn build_ui(app: &Application) {
         .default_height(300)
         .build();
 
+    // ANCHOR: string_list
     // Create a `Vec<String` with number from 0 to 100_000
     let vector: Vec<String> = (0..=100_000)
         .into_iter()
@@ -37,6 +38,7 @@ fn build_ui(app: &Application) {
 
     // Create new `StringList` from `vector`
     let model = gtk::StringList::new(&vector);
+    // ANCHOR_END: string_list
 
     let factory = SignalListItemFactory::new();
     // ANCHOR: factory_setup
