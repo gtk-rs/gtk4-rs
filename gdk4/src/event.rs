@@ -124,6 +124,28 @@ impl Event {
         }
     }
 
+    #[doc(alias = "gdk_event_get_axes")]
+    #[doc(alias = "get_axes")]
+    pub fn axes(&self) -> Option<Vec<f64>> {
+        unsafe {
+            let mut axes = std::ptr::null_mut();
+            let mut n_axes = mem::MaybeUninit::uninit();
+            let success = from_glib(ffi::gdk_event_get_axes(
+                self.to_glib_none().0,
+                &mut axes,
+                n_axes.as_mut_ptr(),
+            ));
+            if success {
+                Some(FromGlibContainer::from_glib_full_num(
+                    axes,
+                    n_axes.assume_init() as usize,
+                ))
+            } else {
+                None
+            }
+        }
+    }
+
     #[doc(alias = "gdk_event_get_axis")]
     #[doc(alias = "get_axis")]
     pub fn axis(&self, axis_use: AxisUse) -> Option<f64> {
