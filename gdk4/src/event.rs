@@ -1,6 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{AxisUse, Device, Display, EventType, ModifierType, Seat, Surface, TimeCoord};
+use crate::{
+    AxisUse, Device, DeviceTool, Display, EventType, ModifierType, Seat, Surface, TimeCoord,
+};
 use glib::translate::*;
 use glib::{StaticType, Type};
 use std::fmt;
@@ -44,6 +46,12 @@ impl Event {
                 None
             }
         }
+    }
+
+    #[doc(alias = "gdk_event_get_device_tool")]
+    #[doc(alias = "get_device_tool")]
+    pub fn device_tool(&self) -> Option<DeviceTool> {
+        unsafe { from_glib_none(ffi::gdk_event_get_device_tool(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_events_get_angle")]
