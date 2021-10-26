@@ -3605,13 +3605,13 @@ pub struct IntegerObject {
 </span><span class="boring">
 </span></code></pre>
 <p>We now fill the model with integers from 0 to 100 000.
-Please note that the models only takes care of the data.
+Please note that models only takes care of the data.
 Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3640,11 +3640,18 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..=100_000 {
-        let integer_object = IntegerObject::new(number);
-        model.append(&amp;integer_object);
-    }
+</span>    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+        .into_iter()
+        .map(IntegerObject::new)
+        .map(Cast::upcast)
+        .collect();
+
+    // Create new model
+    let model = gio::ListStore::new(IntegerObject::static_type());
+
+    // Add the vector to the model at position 0 and 0 removals
+    model.splice(0, 0, &amp;vector);
 <span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -3697,8 +3704,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3727,11 +3734,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span>    let factory = SignalListItemFactory::new();
     factory.connect_setup(move |_, list_item| {
@@ -3781,8 +3795,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3811,11 +3825,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -3867,8 +3888,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3897,11 +3918,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -3951,8 +3979,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3981,11 +4009,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4099,11 +4134,18 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4196,11 +4238,18 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4268,8 +4317,8 @@ Let us see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/lists/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, PolicyType,
 </span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, SingleSelection,
@@ -4298,11 +4347,18 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span>    factory.connect_setup(move |_, list_item| {
@@ -4372,8 +4428,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4403,11 +4459,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4509,8 +4572,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4540,11 +4603,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4646,8 +4716,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/lists/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4677,11 +4747,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
+</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
+</span><span class="boring">        .into_iter()
+</span><span class="boring">        .map(IntegerObject::new)
+</span><span class="boring">        .map(Cast::upcast)
+</span><span class="boring">        .collect();
+</span><span class="boring">
+</span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
-</span><span class="boring">    for number in 0..=100_000 {
-</span><span class="boring">        let integer_object = IntegerObject::new(number);
-</span><span class="boring">        model.append(&amp;integer_object);
-</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    // Add the vector to the model at position 0 and 0 removals
+</span><span class="boring">    model.splice(0, 0, &amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
