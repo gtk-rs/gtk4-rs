@@ -218,7 +218,6 @@ pub use self::constraint_layout::ConstraintLayout;
 
 mod constraint_layout_child;
 pub use self::constraint_layout_child::ConstraintLayoutChild;
-pub use self::constraint_layout_child::ConstraintLayoutChildBuilder;
 
 mod constraint_target;
 pub use self::constraint_target::{ConstraintTarget, NONE_CONSTRAINT_TARGET};
@@ -241,7 +240,6 @@ pub use self::directory_list::DirectoryList;
 
 mod drag_icon;
 pub use self::drag_icon::DragIcon;
-pub use self::drag_icon::DragIconBuilder;
 
 mod drag_source;
 pub use self::drag_source::DragSource;
@@ -354,7 +352,6 @@ pub use self::fixed_layout::FixedLayout;
 
 mod fixed_layout_child;
 pub use self::fixed_layout_child::FixedLayoutChild;
-pub use self::fixed_layout_child::FixedLayoutChildBuilder;
 
 mod flatten_list_model;
 pub use self::flatten_list_model::FlattenListModel;
@@ -438,7 +435,6 @@ pub use self::grid_layout::GridLayoutBuilder;
 
 mod grid_layout_child;
 pub use self::grid_layout_child::GridLayoutChild;
-pub use self::grid_layout_child::GridLayoutChildBuilder;
 
 mod grid_view;
 pub use self::grid_view::GridView;
@@ -461,7 +457,6 @@ pub use self::im_multicontext::{IMMulticontext, NONE_IM_MULTICONTEXT};
 
 mod icon_paintable;
 pub use self::icon_paintable::IconPaintable;
-pub use self::icon_paintable::IconPaintableBuilder;
 
 mod icon_theme;
 pub use self::icon_theme::IconTheme;
@@ -603,7 +598,6 @@ pub use self::overlay_layout::OverlayLayout;
 
 mod overlay_layout_child;
 pub use self::overlay_layout_child::OverlayLayoutChild;
-pub use self::overlay_layout_child::OverlayLayoutChildBuilder;
 
 mod pad_controller;
 pub use self::pad_controller::PadController;
