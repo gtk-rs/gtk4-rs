@@ -69,7 +69,7 @@ The `imp` module can stay the same apart from the rename from `CustomButton` to 
 ```
 
 We now fill the model with integers from 0 to 100 000.
-Please note that the models only takes care of the data.
+Please note that models only takes care of the data.
 Neither `Label` nor any other widget is mentioned here.
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
