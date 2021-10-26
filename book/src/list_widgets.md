@@ -1,4 +1,4 @@
-# Lists
+# List Widgets
 
 Sometimes you want to display a list of elements in a certain arrangement.
 [`ListBox`](../docs/gtk4/struct.ListBox.html) and [`FlowBox`](../docs/gtk4/struct.FlowBox.html) are two container widgets which allow you to do this.
@@ -7,23 +7,25 @@ Sometimes you want to display a list of elements in a certain arrangement.
 Let us explore this concept by adding labels to a `ListBox`.
 Each label will display an integer starting from 0 and ranging up to 100.  
 
-<span class="filename">Filename: listings/lists/1/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/1/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/1/main.rs:list_box}}
+{{#rustdoc_include ../listings/list_widgets/1/main.rs:list_box}}
 ```
 
 We cannot display so many widgets at once.
 Therefore, we add `ListBox` to a [`ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html).
 Now we can scroll through our elements.
 
-<span class="filename">Filename: listings/lists/1/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/1/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/1/main.rs:scrolled_window}}
+{{#rustdoc_include ../listings/list_widgets/1/main.rs:scrolled_window}}
 ```
 
 <div style="text-align:center"><img src="img/lists_list_box.png"/></div>
+
+## Views
 
 That was easy enough.
 However, we currently create one widget per element.
@@ -52,19 +54,19 @@ What we would need is a GObject which holds an integer and exposes it as propert
 To get that we just have to adapt the `CustomButton` we created in the subclassing [chapter](gobject_subclassing.html).
 We only need to let it inherit from GObject instead of `Button` and let the `new` method accept an integer as parameter.
 
-<span class="filename">Filename: listings/lists/2/integer_object/mod.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/integer_object/mod.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/integer_object/mod.rs:integer_object}}
+{{#rustdoc_include ../listings/list_widgets/2/integer_object/mod.rs:integer_object}}
 #
 ```
 
 The `imp` module can stay the same apart from the rename from `CustomButton` to `IntegerObject`.
 
-<span class="filename">Filename: listings/lists/2/integer_object/imp.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/integer_object/imp.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/integer_object/imp.rs:integer_object}}
+{{#rustdoc_include ../listings/list_widgets/2/integer_object/imp.rs:integer_object}}
 #
 ```
 
@@ -72,10 +74,10 @@ We now fill the model with integers from 0 to 100 000.
 Please note that models only takes care of the data.
 Neither `Label` nor any other widget is mentioned here.
 
-<span class="filename">Filename: listings/lists/2/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/main.rs:model}}
+{{#rustdoc_include ../listings/list_widgets/2/main.rs:model}}
 ```
 
 The `ListItemFactory` takes care of the widgets as well as their relationship to the model.
@@ -83,36 +85,36 @@ Here, we use the [`SignalListItemFactory`](../docs/gtk4/struct.SignalListItemFac
 The "setup" signal will be emitted when new widgets have to be created.
 We connect to it to create a `Label` for every requested widget.
 
-<span class="filename">Filename: listings/lists/2/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/main.rs:factory_setup}}
+{{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_setup}}
 ```
 
 In the "bind" step we bind the data in our model to the individual list items.
 
-<span class="filename">Filename: listings/lists/2/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/main.rs:factory_bind}}
+{{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_bind}}
 ```
 
 We only want single items to be selectable, so we choose [`SingleSelection`](../docs/gtk4/struct.SingleSelection.html).
 The other options would have been [`MultiSelection`](../docs/gtk4/struct.MultiSelection.html) or [`NoSelection`](../docs/gtk4/struct.NoSelection.html).
 Then we pass the model and the factory to the [`ListView`](../docs/gtk4/struct.ListView.html).
 
-<span class="filename">Filename: listings/lists/2/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/main.rs:selection_list}}
+{{#rustdoc_include ../listings/list_widgets/2/main.rs:selection_list}}
 ```
 
 Every `ListView` has to be a direct child of a `ScrolledWindow`, so we are adding it to one.
 
-<span class="filename">Filename: listings/lists/2/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/2/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/2/main.rs:scrolled_window}}
+{{#rustdoc_include ../listings/list_widgets/2/main.rs:scrolled_window}}
 ```
 
 We can now easily scroll through our long list of integers.
@@ -123,18 +125,18 @@ Let us see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method `increase_number` to our `IntegerObject`.
 
-<span class="filename">Filename: listings/lists/3/integer_object/mod.rs</span>
+<span class="filename">Filename: listings/list_widgets/3/integer_object/mod.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/3/integer_object/mod.rs:integer_object}}
+{{#rustdoc_include ../listings/list_widgets/3/integer_object/mod.rs:integer_object}}
 ```
 
 In order to interact with our `ListView`, we connect to its "activate" signal.
 
-<span class="filename">Filename: listings/lists/3/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/3/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/3/main.rs:list_view_activate}}
+{{#rustdoc_include ../listings/list_widgets/3/main.rs:list_view_activate}}
 ```
 
 Now every time we activate an element, for example by double-clicking on it,
@@ -142,10 +144,10 @@ the corresponding "number" property of the `IntegerObject` in the model will be 
 However, just because the `IntegerObject` has been modified the corresponding `Label` does not immediately change.
 One naive approach would be to bind the properties in the "bind" step of the `SignalListItemFactory`.
 
-<span class="filename">Filename: listings/lists/3/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/3/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/3/main.rs:factory_bind}}
+{{#rustdoc_include ../listings/list_widgets/3/main.rs:factory_bind}}
 ```
 
 At first glance, that seems to work.
@@ -155,16 +157,16 @@ This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.
 
-## Expressions
+### Expressions
 
 Situations like these are so common that GTK offers an alternative to property binding: [expressions](../docs/gtk4/struct.Expression.html).
 As a first step it allows us to remove the "bind" step.
 Let us see how the "setup" step now works.
 
-<span class="filename">Filename: listings/lists/4/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/4/main.rs:factory_setup}}
+{{#rustdoc_include ../listings/list_widgets/4/main.rs:factory_setup}}
 ```
 
 An expression describes a reference to a value.
@@ -187,34 +189,66 @@ When we now activate a label, only the corresponding number visibly changes.
 That is still not everything we can do.
 We can, for example, filter our model to only allow even numbers.
 
-<span class="filename">Filename: listings/lists/5/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/5/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/5/main.rs:filter}}
+{{#rustdoc_include ../listings/list_widgets/5/main.rs:filter}}
 ```
 
 Additionally, we can reverse the order of our model.
 
-<span class="filename">Filename: listings/lists/5/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/5/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/5/main.rs:sorter}}
+{{#rustdoc_include ../listings/list_widgets/5/main.rs:sorter}}
 ```
 
 To ensure that our filter and sorter get updated when we modify the numbers, we call the `changed` method on them.
 
-<span class="filename">Filename: listings/lists/5/main.rs</span>
+<span class="filename">Filename: listings/list_widgets/5/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/lists/5/main.rs:activate}}
+{{#rustdoc_include ../listings/list_widgets/5/main.rs:activate}}
 ```
 
 After our changes, the application looks like this:
 
 <div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
 
+### String List
+
+Often, all you want is to display a list of strings.
+However, if you either need to filter and sort your displayed data or have too many elements to be displayed by `ListBox`, you will still want to use a view.
+GTK provides a convenient model for this use case: [`gtk::StringList`](../docs/gtk4/struct.StringList.html).
+
+Let us see with a small example how to use this API.
+Filter and sorter is controlled by the factory, so nothing changes here.
+This is why we will skip this topic here.
+
+First, we add a bunch of strings to our model.
+
+<span class="filename">Filename: listings/list_widgets/6/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/list_widgets/6/main.rs:string_list}}
+```
+
+Note that [`StringList::new`](../docs/gtk4/struct.StringList.html#method.new) directly takes `&[&str]`.
+This means we do not have to create a custom GObject for our model anymore.
+
+As usual, we connect the label to the list item via an expression.
+Here we can use [`StringObject`](../docs/gtk4/struct.StringObject.html), which exposes its content via the [property "string"](https://docs.gtk.org/gtk4/property.StringObject.string.html).
+
+<span class="filename">Filename: listings/list_widgets/6/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/list_widgets/6/main.rs:factory_setup}}
+```
+
+## Conclusion
+
 We now know how to display a list of data.
 Small amount of elements can be handled by `ListBox` or `FlowBox`.
 These widgets are easy to use and allow, if necessary, to be bound to a model such as [`gio::ListStore`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
 Their data can then be modified, sorted and filtered more easily.
-However, if we need the widgets to be scalable we still need to use [`ListView`](../docs/gtk4/struct.ListView.html), [`ColumnView`](../docs/gtk4/struct.ColumnView.html) or [`GridView`](../docs/gtk4/struct.GridView.html) instead.
+However, if we need the widgets to be scalable, we still need to use [`ListView`](../docs/gtk4/struct.ListView.html), [`ColumnView`](../docs/gtk4/struct.ColumnView.html) or [`GridView`](../docs/gtk4/struct.GridView.html) instead.

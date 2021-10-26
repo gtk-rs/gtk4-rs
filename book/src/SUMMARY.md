@@ -13,7 +13,7 @@
 - [The Main Event Loop](main_event_loop.md)
 - [Settings](settings.md)
 - [Saving Window State](saving_window_state.md)
-- [Lists](lists.md)
+- [List Widgets](list_widgets.md)
 - [Interface Builder](interface_builder.md)
 - [Building a Simple To-Do App](todo_app_1.md)
 - [Actions](actions.md)
