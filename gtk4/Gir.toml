@@ -70,7 +70,6 @@ generate = [
     "Gtk.CornerType",
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
-    "Gtk.CssProvider",
     "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
@@ -880,12 +879,23 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.CssProvider"
+status = "generate"
+    [[object.function]]
+    name = "to_string"
+    rename = "to_str"
+
+[[object]]
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
     name = "print"
     ignore = true # Same as CssSection::to_str
+    [[object.function]]
+    name = "to_string"
+    rename = "to_str"
+
 
 [[object]]
 name = "Gtk.CustomFilter"
@@ -1840,6 +1850,10 @@ status = "generate"
     [[object.function]]
     name = "print"
     ignore = true # Same as ShortcutAction::to_str
+    [[object.function]]
+    name = "to_string"
+    rename = "to_str"
+
 
 [[object]]
 name = "Gtk.ShortcutsSection"
@@ -1874,6 +1888,9 @@ manual_traits = ["ShortcutTriggerExtManual"]
     name = "trigger"
     manual = true # to handle gdk::Event
     doc_trait_name = "ShortcutTriggerExtManual"
+    [[object.function]]
+    name = "to_string"
+    rename = "to_str"
 
 [[object]]
 name = "Gtk.SignalAction"
@@ -1977,6 +1994,9 @@ status = "generate"
 name = "Gtk.StyleContext"
 status = "generate"
 generate_builder = false
+    [[object.function]]
+    name = "to_string"
+    rename = "to_str"
 
 [[object]]
 name = "Gtk.Switch"
@@ -2290,6 +2310,7 @@ status = "generate"
     ignore = true
     [[object.function]]
     name = "to_string"
+    rename = "to_str"
         [[object.function.parameter]]
         name = "path"
         const = true
