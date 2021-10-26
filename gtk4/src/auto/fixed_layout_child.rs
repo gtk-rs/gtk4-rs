@@ -3,16 +3,10 @@
 // DO NOT EDIT
 
 use crate::LayoutChild;
-use crate::LayoutManager;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -27,14 +21,6 @@ glib::wrapper! {
 }
 
 impl FixedLayoutChild {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`FixedLayoutChild`] objects.
-    ///
-    /// This method returns an instance of [`FixedLayoutChildBuilder`] which can be used to create [`FixedLayoutChild`] objects.
-    pub fn builder() -> FixedLayoutChildBuilder {
-        FixedLayoutChildBuilder::default()
-    }
-
     #[doc(alias = "gtk_fixed_layout_child_get_transform")]
     #[doc(alias = "get_transform")]
     pub fn transform(&self) -> Option<gsk::Transform> {
@@ -76,57 +62,6 @@ impl FixedLayoutChild {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`FixedLayoutChild`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct FixedLayoutChildBuilder {
-    transform: Option<gsk::Transform>,
-    child_widget: Option<Widget>,
-    layout_manager: Option<LayoutManager>,
-}
-
-impl FixedLayoutChildBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FixedLayoutChildBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`FixedLayoutChild`].
-    pub fn build(self) -> FixedLayoutChild {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref transform) = self.transform {
-            properties.push(("transform", transform));
-        }
-        if let Some(ref child_widget) = self.child_widget {
-            properties.push(("child-widget", child_widget));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        glib::Object::new::<FixedLayoutChild>(&properties)
-            .expect("Failed to create an instance of FixedLayoutChild")
-    }
-
-    pub fn transform(mut self, transform: &gsk::Transform) -> Self {
-        self.transform = Some(transform.clone());
-        self
-    }
-
-    pub fn child_widget(mut self, child_widget: &impl IsA<Widget>) -> Self {
-        self.child_widget = Some(child_widget.clone().upcast());
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
     }
 }
 

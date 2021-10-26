@@ -3,16 +3,10 @@
 // DO NOT EDIT
 
 use crate::LayoutChild;
-use crate::LayoutManager;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -27,14 +21,6 @@ glib::wrapper! {
 }
 
 impl GridLayoutChild {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`GridLayoutChild`] objects.
-    ///
-    /// This method returns an instance of [`GridLayoutChildBuilder`] which can be used to create [`GridLayoutChild`] objects.
-    pub fn builder() -> GridLayoutChildBuilder {
-        GridLayoutChildBuilder::default()
-    }
-
     #[doc(alias = "gtk_grid_layout_child_get_column")]
     #[doc(alias = "get_column")]
     pub fn column(&self) -> i32 {
@@ -177,84 +163,6 @@ impl GridLayoutChild {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`GridLayoutChild`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct GridLayoutChildBuilder {
-    column: Option<i32>,
-    column_span: Option<i32>,
-    row: Option<i32>,
-    row_span: Option<i32>,
-    child_widget: Option<Widget>,
-    layout_manager: Option<LayoutManager>,
-}
-
-impl GridLayoutChildBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`GridLayoutChildBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`GridLayoutChild`].
-    pub fn build(self) -> GridLayoutChild {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref column) = self.column {
-            properties.push(("column", column));
-        }
-        if let Some(ref column_span) = self.column_span {
-            properties.push(("column-span", column_span));
-        }
-        if let Some(ref row) = self.row {
-            properties.push(("row", row));
-        }
-        if let Some(ref row_span) = self.row_span {
-            properties.push(("row-span", row_span));
-        }
-        if let Some(ref child_widget) = self.child_widget {
-            properties.push(("child-widget", child_widget));
-        }
-        if let Some(ref layout_manager) = self.layout_manager {
-            properties.push(("layout-manager", layout_manager));
-        }
-        glib::Object::new::<GridLayoutChild>(&properties)
-            .expect("Failed to create an instance of GridLayoutChild")
-    }
-
-    pub fn column(mut self, column: i32) -> Self {
-        self.column = Some(column);
-        self
-    }
-
-    pub fn column_span(mut self, column_span: i32) -> Self {
-        self.column_span = Some(column_span);
-        self
-    }
-
-    pub fn row(mut self, row: i32) -> Self {
-        self.row = Some(row);
-        self
-    }
-
-    pub fn row_span(mut self, row_span: i32) -> Self {
-        self.row_span = Some(row_span);
-        self
-    }
-
-    pub fn child_widget(mut self, child_widget: &impl IsA<Widget>) -> Self {
-        self.child_widget = Some(child_widget.clone().upcast());
-        self
-    }
-
-    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
-        self.layout_manager = Some(layout_manager.clone().upcast());
-        self
     }
 }
 

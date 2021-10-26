@@ -2,11 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -32,14 +29,6 @@ impl IconPaintable {
         }
     }
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`IconPaintable`] objects.
-    ///
-    /// This method returns an instance of [`IconPaintableBuilder`] which can be used to create [`IconPaintable`] objects.
-    pub fn builder() -> IconPaintableBuilder {
-        IconPaintableBuilder::default()
-    }
-
     #[doc(alias = "gtk_icon_paintable_get_file")]
     #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
@@ -55,57 +44,6 @@ impl IconPaintable {
     #[doc(alias = "gtk_icon_paintable_is_symbolic")]
     pub fn is_symbolic(&self) -> bool {
         unsafe { from_glib(ffi::gtk_icon_paintable_is_symbolic(self.to_glib_none().0)) }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`IconPaintable`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct IconPaintableBuilder {
-    file: Option<gio::File>,
-    icon_name: Option<String>,
-    is_symbolic: Option<bool>,
-}
-
-impl IconPaintableBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`IconPaintableBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`IconPaintable`].
-    pub fn build(self) -> IconPaintable {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref file) = self.file {
-            properties.push(("file", file));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref is_symbolic) = self.is_symbolic {
-            properties.push(("is-symbolic", is_symbolic));
-        }
-        glib::Object::new::<IconPaintable>(&properties)
-            .expect("Failed to create an instance of IconPaintable")
-    }
-
-    pub fn file(mut self, file: &impl IsA<gio::File>) -> Self {
-        self.file = Some(file.clone().upcast());
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn is_symbolic(mut self, is_symbolic: bool) -> Self {
-        self.is_symbolic = Some(is_symbolic);
-        self
     }
 }
 

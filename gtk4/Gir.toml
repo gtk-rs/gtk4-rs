@@ -63,7 +63,6 @@ generate = [
     "Gtk.ComboBoxText",
     "Gtk.Constraint",
     "Gtk.ConstraintAttribute",
-    "Gtk.ConstraintLayoutChild",
     "Gtk.ConstraintRelation",
     "Gtk.ConstraintStrength",
     "Gtk.ConstraintTarget",
@@ -98,7 +97,6 @@ generate = [
     "Gtk.FilterMatch",
     "Gtk.Fixed",
     "Gtk.FixedLayout",
-    "Gtk.FixedLayoutChild",
     "Gtk.FlowBoxChild",
     "Gtk.FontChooserDialog",
     "Gtk.FontChooserLevel",
@@ -113,11 +111,9 @@ generate = [
     "Gtk.GestureZoom",
     "Gtk.Grid",
     "Gtk.GridLayout",
-    "Gtk.GridLayoutChild",
     "Gtk.GridView",
     "Gtk.HeaderBar",
     "Gtk.IconLookupFlags",
-    "Gtk.IconPaintable",
     "Gtk.IconSize",
     "Gtk.IconThemeError",
     "Gtk.IconViewDropPosition",
@@ -144,8 +140,8 @@ generate = [
     "Gtk.Orientable",
     "Gtk.Orientation",
     "Gtk.Overflow",
+    "Gtk.Overlay",
     "Gtk.OverlayLayout",
-    "Gtk.OverlayLayoutChild",
     "Gtk.PackType",
     "Gtk.PadActionType",
     "Gtk.PageOrientation",
@@ -880,6 +876,11 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.ConstraintLayoutChild"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.CssSection"
 status = "generate"
 trust_return_value_nullability = false
@@ -937,6 +938,7 @@ generate_builder  = false # use glib::Priority
 [[object]]
 name = "Gtk.DragIcon"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1154,6 +1156,11 @@ generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
+name = "Gtk.FixedLayoutChild"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.FlattenListModel"
 status = "generate"
 generate_builder = false
@@ -1228,6 +1235,16 @@ trust_return_value_nullability = false
     name = "create-context"
         [object.signal.return]
         nullable = true
+
+[[object]]
+name = "Gtk.GridLayoutChild"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Gtk.IconPaintable"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.IconTheme"
@@ -1602,8 +1619,9 @@ status = "generate"
     ignore = true # not useful for Rust, conversion From/Into cmp::Ordering is possible
 
 [[object]]
-name = "Gtk.Overlay"
+name = "Gtk.OverlayLayoutChild"
 status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.PadController"
