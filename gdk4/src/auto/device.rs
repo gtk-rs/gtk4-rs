@@ -106,8 +106,6 @@ pub trait DeviceExt: 'static {
 
     fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>);
 
-    fn tool(&self) -> Option<DeviceTool>;
-
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -285,20 +283,6 @@ impl<O: IsA<Device>> DeviceExt for O {
                 b"seat\0".as_ptr() as *const _,
                 seat.to_value().to_glib_none().0,
             );
-        }
-    }
-
-    fn tool(&self) -> Option<DeviceTool> {
-        unsafe {
-            let mut value = glib::Value::from_type(<DeviceTool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"tool\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tool` getter")
         }
     }
 
