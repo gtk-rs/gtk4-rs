@@ -58,9 +58,6 @@ pub trait CellAreaExt: 'static {
         sibling: &impl IsA<CellRenderer>,
     );
 
-    //#[doc(alias = "gtk_cell_area_add_with_properties")]
-    //fn add_with_properties(&self, renderer: &impl IsA<CellRenderer>, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_cell_area_apply_attributes")]
     fn apply_attributes(
         &self,
@@ -320,10 +317,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             );
         }
     }
-
-    //fn add_with_properties(&self, renderer: &impl IsA<CellRenderer>, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_cell_area_add_with_properties() }
-    //}
 
     fn apply_attributes(
         &self,
