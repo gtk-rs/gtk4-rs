@@ -2510,6 +2510,9 @@ manual_traits = ["TreeViewExtManual"]
     [[object.function]]
     name = "set_search_equal_func"
     doc_ignore_parameters = ["search_user_data", "search_destroy"]
+    [[object.function]]
+    name = "insert_column_with_attributes"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeViewColumn"
