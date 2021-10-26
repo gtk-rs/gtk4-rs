@@ -330,7 +330,12 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 }
 </code></pre>
 <p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
-<div style="text-align:center"><img src="img/hello_world_button.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/hello_world_button.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <p>Wasn't that hard to create our first <code>gtk-rs</code> app, right?
 Let us now get a better understanding of what we did here.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
@@ -6431,7 +6436,12 @@ In the end, it clears the vector.</p>
 </span></code></pre>
 <p>That was it, we created a basic To-Do app!
 We will extend it with additional functionality in the following chapters.</p>
-<div style="text-align:center"><img src="img/todo_app_1_animation.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_app_1_animation.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="actions"><a class="header" href="#actions">Actions</a></h1>
 <p>By now, we have already learned many ways to glue our widgets together.
 We can send messages through channels, emit signals, share reference-counted state and bind properties.
@@ -6689,7 +6699,12 @@ Let us see how this works.</p>
 It also takes care of updating the <code>label</code> with the current state.
 The button activates the action with each click while passing &quot;1&quot; as parameter.
 This is how our app works:</p>
-<div style="text-align:center"><img src="img/actions_counter.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_counter.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <h2 id="actionable"><a class="header" href="#actionable">Actionable</a></h2>
 <p>Connecting actions to the &quot;clicked&quot; signal of buttons is a typical use case, which is why all buttons implement the <a href="../docs/gtk4/struct.Actionable.html"><code>Actionable</code></a> interface.
 This way, the action can be specified by setting the &quot;action-name&quot; property.
@@ -7373,7 +7388,12 @@ For example, an <code>i32</code> variable with value &quot;5&quot; would corresp
 <pre><code class="language-xml">&lt;attribute name=&quot;target&quot; type=&quot;i&quot;&gt;5&lt;/attribute&gt;
 </code></pre>
 <p>This is how the app looks in action:</p>
-<div style="text-align:center"><img src="img/actions_menu.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_menu.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <h2 id="settings-1"><a class="header" href="#settings-1">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
@@ -7750,7 +7770,7 @@ Using actions, we can access the filter via the menu as well as via keyboard sho
 This is how we want this to work in the end:</p>
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="img/todo_app_2_animation.webm" type="video/webm">
+  <source src="vid/todo_app_2_animation.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>

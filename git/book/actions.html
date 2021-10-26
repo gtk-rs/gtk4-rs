@@ -394,7 +394,12 @@ Let us see how this works.</p>
 It also takes care of updating the <code>label</code> with the current state.
 The button activates the action with each click while passing &quot;1&quot; as parameter.
 This is how our app works:</p>
-<div style="text-align:center"><img src="img/actions_counter.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_counter.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <h2 id="actionable"><a class="header" href="#actionable">Actionable</a></h2>
 <p>Connecting actions to the &quot;clicked&quot; signal of buttons is a typical use case, which is why all buttons implement the <a href="../docs/gtk4/struct.Actionable.html"><code>Actionable</code></a> interface.
 This way, the action can be specified by setting the &quot;action-name&quot; property.
@@ -1078,7 +1083,12 @@ For example, an <code>i32</code> variable with value &quot;5&quot; would corresp
 <pre><code class="language-xml">&lt;attribute name=&quot;target&quot; type=&quot;i&quot;&gt;5&lt;/attribute&gt;
 </code></pre>
 <p>This is how the app looks in action:</p>
-<div style="text-align:center"><img src="img/actions_menu.gif" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_menu.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 <h2 id="settings"><a class="header" href="#settings">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
