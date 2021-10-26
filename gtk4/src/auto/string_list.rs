@@ -58,13 +58,6 @@ impl StringList {
             );
         }
     }
-
-    #[doc(alias = "gtk_string_list_take")]
-    pub fn take(&self, string: &str) {
-        unsafe {
-            ffi::gtk_string_list_take(self.to_glib_none().0, string.to_glib_full());
-        }
-    }
 }
 
 impl fmt::Display for StringList {
