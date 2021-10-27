@@ -137,6 +137,7 @@ mod flow_box;
 mod font_chooser;
 mod functions;
 mod gesture_stylus;
+mod icon_theme;
 mod im_context;
 mod im_context_simple;
 mod info_bar;

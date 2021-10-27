@@ -1253,8 +1253,7 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
     name = "get_icon_sizes"
-    ignore = true # TODO: implement me
-    # TODO gtk3 ignored some more array functions
+    manual = true
 
 [[object]]
 name = "Gtk.IconView"
