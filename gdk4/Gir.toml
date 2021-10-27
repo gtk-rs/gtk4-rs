@@ -252,8 +252,9 @@ status = "generate"
     name = "print"
     ignore = true # Same as ContentFormats::to_string
     [[object.function]]
-    name = "to_string"
-    rename = "to_str"
+    name = "parse"
+        [object.function.return]
+        nullable_return_is_error = "Can't parse ContentFormats"
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
@@ -491,9 +492,6 @@ boxed_inline = true
     name = "parse"
     # This is a constructor
     manual = true
-    [[object.function]]
-    name = "to_string"
-    rename = "to_str"
 
 [[object]]
 name = "Gdk.Seat"

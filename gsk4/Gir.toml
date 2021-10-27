@@ -154,5 +154,5 @@ status = "generate"
     name = "print"
     ignore = true # Same as Transform::to_string
     [[object.function]]
-    name = "to_string"
-    rename = "to_str"
+    name = "parse"
+    manual = true # bool_return_is_error doesn't seem to work for it

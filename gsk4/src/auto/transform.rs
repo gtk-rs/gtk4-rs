@@ -6,7 +6,6 @@ use crate::TransformCategory;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
-use std::ptr;
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -235,23 +234,6 @@ impl Transform {
                 self.to_glib_full(),
                 point.to_glib_none().0,
             ))
-        }
-    }
-
-    #[doc(alias = "gsk_transform_parse")]
-    pub fn parse(string: &str) -> Option<Transform> {
-        assert_initialized_main_thread!();
-        unsafe {
-            let mut out_transform = ptr::null_mut();
-            let ret = from_glib(ffi::gsk_transform_parse(
-                string.to_glib_none().0,
-                &mut out_transform,
-            ));
-            if ret {
-                Some(from_glib_full(out_transform))
-            } else {
-                None
-            }
         }
     }
 }
