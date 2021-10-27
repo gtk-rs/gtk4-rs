@@ -432,7 +432,7 @@
     <span class="doccomment">/// [`CellLayout`][crate::CellLayout] are attributes. Attributes let you set the properties</span>
     <span class="doccomment">/// in flexible ways. They can just be set to constant values like regular</span>
     <span class="doccomment">/// properties. But they can also be mapped to a column of the underlying</span>
-    <span class="doccomment">/// tree model with `gtk_cell_layout_set_attributes()`, which means that the value</span>
+    <span class="doccomment">/// tree model with [`CellLayoutExtManual::set_attributes()`][crate::prelude::CellLayoutExtManual::set_attributes()], which means that the value</span>
     <span class="doccomment">/// of the attribute can change from cell to cell as they are rendered by</span>
     <span class="doccomment">/// the cell renderer. Finally, it is possible to specify a function with</span>
     <span class="doccomment">/// [`CellLayoutExt::set_cell_data_func()`][crate::prelude::CellLayoutExt::set_cell_data_func()] that is called to determine the</span>
@@ -538,7 +538,7 @@
     <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Clears all existing attributes previously set with</span>
-    <span class="doccomment">/// `gtk_cell_layout_set_attributes()`.</span>
+    <span class="doccomment">/// [`CellLayoutExtManual::set_attributes()`][crate::prelude::CellLayoutExtManual::set_attributes()].</span>
     <span class="doccomment">/// ## `cell`</span>
     <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] to clear the attribute mapping on</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_clear_attributes&quot;</span>)]</span>

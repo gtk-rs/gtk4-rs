@@ -258,7 +258,7 @@
     <span class="doccomment">/// Creates a new [`TreeViewColumn`][crate::TreeViewColumn] with a number of default values.</span>
     <span class="doccomment">/// This is equivalent to calling [`set_title()`][Self::set_title()],</span>
     <span class="doccomment">/// `gtk_tree_view_column_pack_start()`, and</span>
-    <span class="doccomment">/// [`set_attributes()`][Self::set_attributes()] on the newly created [`TreeViewColumn`][crate::TreeViewColumn].</span>
+    <span class="doccomment">/// `gtk_tree_view_column_set_attributes()` on the newly created [`TreeViewColumn`][crate::TreeViewColumn].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here’s a simple example:</span>
     <span class="doccomment">///</span>
@@ -398,7 +398,7 @@
     }
 
     <span class="doccomment">/// Clears all existing attributes previously set with</span>
-    <span class="doccomment">/// [`set_attributes()`][Self::set_attributes()].</span>
+    <span class="doccomment">/// `gtk_tree_view_column_set_attributes()`.</span>
     <span class="doccomment">/// ## `cell_renderer`</span>
     <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] to clear the attribute mapping on.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_view_column_clear_attributes&quot;</span>)]</span>
