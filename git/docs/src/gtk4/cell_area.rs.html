@@ -253,14 +253,52 @@
 <span id="180">180</span>
 <span id="181">181</span>
 <span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">CellArea</span>, <span class="ident">CellAreaContext</span>, <span class="ident">CellRenderer</span>, <span class="ident">CellRendererState</span>, <span class="ident">Widget</span>};
 <span class="kw">use</span> <span class="ident">gdk::Event</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellAreaExtManual</span> {
+    <span class="doccomment">/// Adds `renderer` to `self`, setting cell properties at the same time.</span>
+    <span class="doccomment">/// See [`CellAreaExt::add()`][crate::prelude::CellAreaExt::add()] and `gtk_cell_area_cell_set()` for more details.</span>
+    <span class="doccomment">/// ## `renderer`</span>
+    <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] to be placed inside `self`</span>
+    <span class="doccomment">/// ## `first_prop_name`</span>
+    <span class="doccomment">/// the name of the first cell property to set</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_add_with_properties&quot;</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">add_with_properties</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>,
+        <span class="ident">properties</span>: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)],
+    );
+
     <span class="doccomment">/// This is used by [`CellArea`][crate::CellArea] subclasses when handling events</span>
     <span class="doccomment">/// to activate cells, the base [`CellArea`][crate::CellArea] class activates cells</span>
     <span class="doccomment">/// for keyboard events for free in its own GtkCellArea-&gt;`activate()`</span>
@@ -340,6 +378,16 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">CellAreaExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
+    <span class="kw">fn</span> <span class="ident">add_with_properties</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>,
+        <span class="ident">properties</span>: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)],
+    ) {
+        <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">add</span>(<span class="ident">renderer</span>);
+        <span class="ident">properties</span>.<span class="ident">iter</span>().<span class="ident">for_each</span>(<span class="op">|</span>(<span class="ident">property_name</span>, <span class="ident">value</span>)<span class="op">|</span> {
+            <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">cell_set</span>(<span class="ident">renderer</span>, <span class="ident">property_name</span>, <span class="kw-2">*</span><span class="ident">value</span>);
+        });
+    }
     <span class="kw">fn</span> <span class="ident">activate_cell</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
