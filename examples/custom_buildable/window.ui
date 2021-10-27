@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkApplicationWindow" id="window">
-    <property name="default_width">500</property>
-    <property name="default_height">500</property>
+    <property name="default-width">500</property>
+    <property name="default-height">500</property>
     <property name="title">Custom Buildable</property>
     <child>
       <object class="GtkBox">

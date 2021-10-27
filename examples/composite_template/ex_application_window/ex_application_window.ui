@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="ExApplicationWindow" parent="GtkApplicationWindow">
-    <property name="default_width">600</property>
-    <property name="default_height">300</property>
+    <property name="default-width">600</property>
+    <property name="default-height">300</property>
     <property name="title">Example Application Window</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
-        <property name="show_title_buttons">True</property>
+        <property name="show-title-buttons">True</property>
         <child type="end">
           <object class="ExMenuButton" id="menubutton">
             <property name="halign">center</property>
@@ -19,10 +19,10 @@
         <property name="orientation">vertical</property>
         <property name="valign">center</property>
         <property name="spacing">6</property>
-        <property name="margin_start">12</property>
-        <property name="margin_end">12</property>
-        <property name="margin_top">12</property>
-        <property name="margin_bottom">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
         <child>
           <object class="GtkLabel" id="label">
             <property name="label">Composite Template</property>

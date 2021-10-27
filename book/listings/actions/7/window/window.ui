@@ -25,13 +25,13 @@
   </menu>
   <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
     <property name="title">My GTK App</property>
-    <property name="width_request">360</property>
+    <property name="width-request">360</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type ="end">
           <object class="GtkMenuButton">
-            <property name="icon_name">open-menu-symbolic</property>
-            <property name="menu_model">main-menu</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="menu-model">main-menu</property>
           </object>
         </child>
       </object>
