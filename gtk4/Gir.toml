@@ -473,7 +473,7 @@ trust_return_value_nullability = false
     assertion = "skip"
     [[object.function]]
     name = "show_uri_full"
-    ignore = true # TODO: implement me
+    manual = true # the auto-generated code is wrong
     [[object.function]]
     name = "accelerator_valid"
     manual = true # to make use of gdk::keys::Key
@@ -697,6 +697,9 @@ trust_return_value_nullability = false
     [[object.function]]
     pattern = "cell_(get|set)_valist"
     ignore = true # not useful for bindings
+    [[object.function]]
+    name = "add_with_properties"
+    manual = true # can't be generated manually it uses vargs
 
 [[object]]
 name = "Gtk.CellAreaContext"
@@ -1250,8 +1253,7 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
     name = "get_icon_sizes"
-    ignore = true # TODO: implement me
-    # TODO gtk3 ignored some more array functions
+    manual = true
 
 [[object]]
 name = "Gtk.IconView"
@@ -2507,6 +2509,9 @@ manual_traits = ["TreeViewExtManual"]
     [[object.function]]
     name = "set_search_equal_func"
     doc_ignore_parameters = ["search_user_data", "search_destroy"]
+    [[object.function]]
+    name = "insert_column_with_attributes"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeViewColumn"
@@ -2523,11 +2528,12 @@ trust_return_value_nullability = false
         name = "func"
         nullable = false
     [[object.function]]
-    name = "add_attribute"
-    ignore = true # docs only
+    name = "set_attributes"
+    manual = true
     [[object.function]]
-    name = "pack_start"
-    ignore = true # docs only
+    name = "new_with_attributes"
+    rename = "with_attributes"
+    manual = true
 
 [[object]]
 name = "Gtk.Widget"

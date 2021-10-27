@@ -1,11 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::prelude::*;
 use crate::{CellArea, CellAreaContext, CellRenderer, CellRendererState, Widget};
 use gdk::Event;
 use glib::translate::*;
 use glib::{IsA, ToValue};
 
 pub trait CellAreaExtManual {
+    #[doc(alias = "gtk_cell_area_add_with_properties")]
+    fn add_with_properties(
+        &self,
+        renderer: &impl IsA<CellRenderer>,
+        properties: &[(&str, &dyn ToValue)],
+    );
+
     #[doc(alias = "gtk_cell_area_activate_cell")]
     fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: AsRef<Event>>(
         &self,
@@ -41,6 +49,16 @@ pub trait CellAreaExtManual {
 }
 
 impl<O: IsA<CellArea>> CellAreaExtManual for O {
+    fn add_with_properties(
+        &self,
+        renderer: &impl IsA<CellRenderer>,
+        properties: &[(&str, &dyn ToValue)],
+    ) {
+        self.as_ref().add(renderer);
+        properties.iter().for_each(|(property_name, value)| {
+            self.as_ref().cell_set(renderer, property_name, *value);
+        });
+    }
     fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: AsRef<Event>>(
         &self,
         widget: &P,
