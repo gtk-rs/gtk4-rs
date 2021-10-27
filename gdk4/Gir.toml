@@ -251,6 +251,10 @@ status = "generate"
     [[object.function]]
     name = "print"
     ignore = true # Same as ContentFormats::to_string
+    [[object.function]]
+    name = "parse"
+        [object.function.return]
+        nullable_return_is_error = "Can't parse ContentFormats"
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"

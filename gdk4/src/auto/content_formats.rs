@@ -146,9 +146,12 @@ impl ContentFormats {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_content_formats_parse")]
-    pub fn parse(string: &str) -> Option<ContentFormats> {
+    pub fn parse(string: &str) -> Result<ContentFormats, glib::BoolError> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gdk_content_formats_parse(string.to_glib_none().0)) }
+        unsafe {
+            Option::<_>::from_glib_full(ffi::gdk_content_formats_parse(string.to_glib_none().0))
+                .ok_or_else(|| glib::bool_error!("Can't parse ContentFormats"))
+        }
     }
 }
 
