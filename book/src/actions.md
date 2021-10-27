@@ -159,9 +159,6 @@ We do that by adding the menu in front of the template.
 <span class="filename">Filename: listings/actions/6/window/window.ui</span>
 
 ```diff
---- /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/5/window/window.ui
-+++ /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/6/window/window.ui
-@@ -1,7 +1,41 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <interface>
 +  <menu id="main-menu">
@@ -205,7 +202,10 @@ We do that by adding the menu in front of the template.
          <property name="orientation">vertical</property>
 ```
 
-Note how we specified the target:
+Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
+The documentation for `PopoverMenu` also explains its `xml` syntax for the interface builder.
+
+Also note how we specified the target:
 
 ```xml
 <attribute name="target">Horizontal</attribute>
