@@ -28,8 +28,18 @@ We want to access the window later on, so we also give it an `id`.
 Then we can specify properties which are specified [here](https://docs.gtk.org/gtk4/class.ApplicationWindow.html) for `ApplicationWindow`.
 Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to add a `Button`.
 
-To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](../docs/gtk4/struct.Builder.html)[^1].
+To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](../docs/gtk4/struct.Builder.html).
 All widgets that can be described that way can be found [here](../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1)
+
+> Puh, yet another builder? Let us summarize what we have so far:
+> - [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
+> - [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html), a design pattern used to create objects with many optional parameters and
+> - [`gtk::Builder`](../docs/gtk4/struct.Builder.html), the interface builder which creates widgets from `xml` files.
+>
+> That was it with the builders.
+> Promised!
+
+This is how it then looks in practice:
 
 <span class="filename">Filename: listings/interface_builder/1/main.rs</span>
 ```rust ,no_run,noplayground
@@ -132,6 +142,8 @@ The button is easily available thanks to the stored reference in `self`.
 With composite templates, `main.rs` actually became more concise.
 With regard to capabilities, we also get the best of both worlds.
 
+## Conclusion
+
 Thanks to custom widgets we can
 - keep state and part of it as properties,
 - add signals as well as
@@ -141,14 +153,8 @@ Thanks to composite templates we can
 - describe complex user interfaces concisely, and
 - easily access widgets within the template. 
 
+The API of the interface builder is extensive so especially at the beginning you will want to check out the documentation.
+The basic syntax is explained with [`Builder`](../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions), syntax specific to widgets with [`Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
+If a certain widget accepts additional element, then they are typically explained in the docs of the widget.
+
 In the following chapter, we will see how composite templates help us to create slightly bigger apps such as a To-Do app.
-
--------------------------------------------------
-
-[^1]: Puh, yet another builder? Let us summarize what we have so far:
-- [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
-- [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html), a design pattern used to create objects with many optional parameters and
-- [`gtk::Builder`](../docs/gtk4/struct.Builder.html), the interface builder which creates widgets from `xml` files.
-
-That was it with the builders.
-Promised!
