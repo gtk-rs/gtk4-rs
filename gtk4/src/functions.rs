@@ -20,6 +20,47 @@ pub fn accelerator_valid(keyval: gdk::keys::Key, modifiers: gdk::ModifierType) -
     }
 }
 
+#[doc(alias = "gtk_accelerator_parse_with_keycode")]
+pub fn accelerator_parse_with_keycode(
+    accelerator: &str,
+    display: Option<&impl IsA<gdk::Display>>,
+) -> Option<(u32, Vec<u32>, gdk::ModifierType)> {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut accelerator_key = std::mem::MaybeUninit::uninit();
+        let mut accelerator_codes_ptr = ptr::null_mut();
+        let mut accelerator_mods = std::mem::MaybeUninit::uninit();
+        let success = from_glib(ffi::gtk_accelerator_parse_with_keycode(
+            accelerator.to_glib_none().0,
+            display.map(|p| p.as_ref()).to_glib_none().0,
+            accelerator_key.as_mut_ptr(),
+            &mut accelerator_codes_ptr,
+            accelerator_mods.as_mut_ptr(),
+        ));
+        if success {
+            let mut accelerator_codes = Vec::new();
+            let mut i = 0;
+            loop {
+                // zero-terminated array
+                let ret = std::ptr::read(accelerator_codes_ptr.add(i));
+                if ret == 0 {
+                    break;
+                }
+                accelerator_codes.push(ret);
+                i += 1;
+            }
+            glib::ffi::g_free(accelerator_codes_ptr as *mut _);
+            Some((
+                accelerator_key.assume_init(),
+                accelerator_codes,
+                from_glib(accelerator_mods.assume_init()),
+            ))
+        } else {
+            None
+        }
+    }
+}
+
 #[doc(alias = "gtk_show_uri_full")]
 #[doc(alias = "gtk_show_uri_full_finish")]
 pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
