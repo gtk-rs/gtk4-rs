@@ -473,7 +473,7 @@ trust_return_value_nullability = false
     assertion = "skip"
     [[object.function]]
     name = "show_uri_full"
-    ignore = true # TODO: implement me
+    manual = true # the auto-generated code is wrong
     [[object.function]]
     name = "accelerator_valid"
     manual = true # to make use of gdk::keys::Key
