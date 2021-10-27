@@ -5386,7 +5386,7 @@ Something like this:</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
   &lt;template class=&quot;TodoWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;width_request&quot;&gt;360&lt;/property&gt;
+    &lt;property name=&quot;width-request&quot;&gt;360&lt;/property&gt;
     &lt;property name=&quot;title&quot; translatable=&quot;yes&quot;&gt;To-Do&lt;/property&gt;
     &lt;child&gt;
       &lt;object class=&quot;GtkBox&quot;&gt;
@@ -7441,13 +7441,13 @@ We do that by adding the menu in front of the template.</p>
 +  &lt;/menu&gt;
    &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
      &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
-+    &lt;property name=&quot;width_request&quot;&gt;360&lt;/property&gt;
++    &lt;property name=&quot;width-request&quot;&gt;360&lt;/property&gt;
 +    &lt;child type=&quot;titlebar&quot;&gt;
 +      &lt;object class=&quot;GtkHeaderBar&quot;&gt;
 +        &lt;child type =&quot;end&quot;&gt;
 +          &lt;object class=&quot;GtkMenuButton&quot;&gt;
-+            &lt;property name=&quot;icon_name&quot;&gt;open-menu-symbolic&lt;/property&gt;
-+            &lt;property name=&quot;menu_model&quot;&gt;main-menu&lt;/property&gt;
++            &lt;property name=&quot;icon-name&quot;&gt;open-menu-symbolic&lt;/property&gt;
++            &lt;property name=&quot;menu-model&quot;&gt;main-menu&lt;/property&gt;
 +          &lt;/object&gt;
 +        &lt;/child&gt;
 +      &lt;/object&gt;
@@ -7883,7 +7883,7 @@ The code should feel familiar to the one in the former chapter.</p>
 +    &lt;/item&gt;
 +  &lt;/menu&gt;
    &lt;template class=&quot;TodoWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-     &lt;property name=&quot;width_request&quot;&gt;360&lt;/property&gt;
+     &lt;property name=&quot;width-request&quot;&gt;360&lt;/property&gt;
      &lt;property name=&quot;title&quot; translatable=&quot;yes&quot;&gt;To-Do&lt;/property&gt;
 +    &lt;child type=&quot;titlebar&quot;&gt;
 +      &lt;object class=&quot;GtkHeaderBar&quot;&gt;
@@ -7894,8 +7894,8 @@ The code should feel familiar to the one in the former chapter.</p>
 +        &lt;/child&gt;
 +        &lt;child type =&quot;end&quot;&gt;
 +          &lt;object class=&quot;GtkMenuButton&quot; id=&quot;menu_button&quot;&gt;
-+            &lt;property name=&quot;icon_name&quot;&gt;open-menu-symbolic&lt;/property&gt;
-+            &lt;property name=&quot;menu_model&quot;&gt;main-menu&lt;/property&gt;
++            &lt;property name=&quot;icon-name&quot;&gt;open-menu-symbolic&lt;/property&gt;
++            &lt;property name=&quot;menu-model&quot;&gt;main-menu&lt;/property&gt;
 +          &lt;/object&gt;
 +        &lt;/child&gt;
 +      &lt;/object&gt;
