@@ -51,7 +51,7 @@ The code should feel familiar to the one in the former chapter.
 +    </item>
 +  </menu>
    <template class="TodoWindow" parent="GtkApplicationWindow">
-     <property name="width_request">360</property>
+     <property name="width-request">360</property>
      <property name="title" translatable="yes">To-Do</property>
 +    <child type="titlebar">
 +      <object class="GtkHeaderBar">
@@ -62,8 +62,8 @@ The code should feel familiar to the one in the former chapter.
 +        </child>
 +        <child type ="end">
 +          <object class="GtkMenuButton" id="menu_button">
-+            <property name="icon_name">open-menu-symbolic</property>
-+            <property name="menu_model">main-menu</property>
++            <property name="icon-name">open-menu-symbolic</property>
++            <property name="menu-model">main-menu</property>
 +          </object>
 +        </child>
 +      </object>
