@@ -251,9 +251,6 @@ status = "generate"
     [[object.function]]
     name = "print"
     ignore = true # Same as ContentFormats::to_string
-    [[object.function]]
-    name = "to_string"
-    rename = "to_str"
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
@@ -491,9 +488,6 @@ boxed_inline = true
     name = "parse"
     # This is a constructor
     manual = true
-    [[object.function]]
-    name = "to_string"
-    rename = "to_str"
 
 [[object]]
 name = "Gdk.Seat"
