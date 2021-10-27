@@ -727,7 +727,7 @@ manual_traits = ["CellLayoutExtManual"]
         nullable = false
     [[object.function]]
     name = "set_attributes"
-    ignore = true # TODO: fix me once varargs are supported
+    manual = true # vargs
 
 [[object]]
 name = "Gtk.CellRenderer"
