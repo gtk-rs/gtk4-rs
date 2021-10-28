@@ -47,6 +47,23 @@ jobs:
           command: doc
           args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys -p gtk4-macros --features "dox" --no-deps
 
+      - name: Fix broken URLs
+        run: |
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ColumnView.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ListBox.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ListView.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.GridView.html
+
+          sed -i 's|input-handling.html|https://docs.gtk.org/gtk4/input-handling.html|g' target/doc/gtk4/struct.EventController.html
+
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextBuffer.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextIter.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextMark.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextTag.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextTagTable.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextView.html
+
+          sed -i 's|section-tree-widget.html|https://docs.gtk.org/gtk4/section-tree-widget.html|g' target/doc/gtk4/struct.TreeView.html
       - name: GTK Docs Images
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         run: |
