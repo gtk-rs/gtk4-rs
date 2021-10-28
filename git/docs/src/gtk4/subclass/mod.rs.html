@@ -208,7 +208,25 @@
 <span id="135">135</span>
 <span id="136">136</span>
 <span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
+
+<span class="doccomment">/// Struct to hold a pointer and free it on `Drop::drop`</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">PtrHolder</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*mut</span> <span class="ident">T</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">*mut</span> <span class="ident">T</span>, <span class="ident">F</span>);
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*mut</span> <span class="ident">T</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">PtrHolder</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
+        (<span class="self">self</span>.<span class="number">1</span>)(<span class="self">self</span>.<span class="number">0</span>)
+    }
+}
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">actionable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">adjustment</span>;

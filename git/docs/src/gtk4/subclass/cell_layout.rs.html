@@ -561,6 +561,7 @@
 <span id="488">488</span>
 <span id="489">489</span>
 <span id="490">490</span>
+<span id="491">491</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -1047,9 +1048,10 @@
 
     <span class="kw">let</span> <span class="ident">cells</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">cells</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
 
-    <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ToGlibContainerFromSlice::to_glib_none_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">cells</span>).<span class="number">0</span>;
-    <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(<span class="kw-2">*</span><span class="ident">CELL_LAYOUT_GET_CELLS_QUARK</span>, <span class="ident">ptr</span>);
-    <span class="ident">ptr</span>
+    <span class="comment">// transfer container: list owned by the caller by not the actual content</span>
+    <span class="comment">// so we need to keep the cells around and return a ptr of the list</span>
+    <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(<span class="kw-2">*</span><span class="ident">CELL_LAYOUT_GET_CELLS_QUARK</span>, <span class="ident">cells</span>.<span class="ident">clone</span>());
+    <span class="ident">cells</span>.<span class="ident">to_glib_container</span>().<span class="number">0</span>
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

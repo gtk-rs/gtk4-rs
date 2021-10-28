@@ -439,19 +439,6 @@
 <span id="366">366</span>
 <span id="367">367</span>
 <span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -460,6 +447,8 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>, <span class="ident">IsA</span>, <span class="ident">ObjectExt</span>, <span class="ident">Quark</span>};
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
 <span class="kw">use</span> <span class="ident">pango</span>::{<span class="ident">FontFace</span>, <span class="ident">FontFamily</span>, <span class="ident">FontMap</span>};
+
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::PtrHolder</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FilterCallback</span> {
@@ -701,15 +690,6 @@
 <span class="kw">static</span> <span class="ident">FONT_CHOOSER_GET_FONT_FAMILY_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
     <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-family&quot;</span>));
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">FontFamilyWrapper</span>(<span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFamily</span>);
-
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">FontFamilyWrapper</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">glib::gobject_ffi::g_object_unref</span>(<span class="self">self</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>) }
-    }
-}
-
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_family</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFamily</span> {
@@ -722,7 +702,9 @@
         <span class="kw">let</span> <span class="ident">font_family</span> <span class="op">=</span> <span class="ident">font_family</span>.<span class="ident">to_glib_full</span>();
         <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(
             <span class="kw-2">*</span><span class="ident">FONT_CHOOSER_GET_FONT_FAMILY_QUARK</span>,
-            <span class="ident">FontFamilyWrapper</span>(<span class="ident">font_family</span>),
+            <span class="ident">PtrHolder</span>(<span class="ident">font_family</span>, <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> {
+                <span class="ident">glib::gobject_ffi::g_object_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>)
+            }),
         );
         <span class="ident">font_family</span>
     } <span class="kw">else</span> {
@@ -732,16 +714,6 @@
 
 <span class="kw">static</span> <span class="ident">FONT_CHOOSER_GET_FONT_FACE_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
     <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-face&quot;</span>));
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">FontFaceWrapper</span>(<span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFace</span>);
-
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">FontFaceWrapper</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">glib::gobject_ffi::g_object_unref</span>(<span class="self">self</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>) }
-    }
-}
-
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_face</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFace</span> {
@@ -754,7 +726,9 @@
         <span class="kw">let</span> <span class="ident">font_face</span> <span class="op">=</span> <span class="ident">font_face</span>.<span class="ident">to_glib_full</span>();
         <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(
             <span class="kw-2">*</span><span class="ident">FONT_CHOOSER_GET_FONT_FACE_QUARK</span>,
-            <span class="ident">FontFaceWrapper</span>(<span class="ident">font_face</span>),
+            <span class="ident">PtrHolder</span>(<span class="ident">font_face</span>, <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> {
+                <span class="ident">glib::gobject_ffi::g_object_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
+            }),
         );
         <span class="ident">font_face</span>
     } <span class="kw">else</span> {
