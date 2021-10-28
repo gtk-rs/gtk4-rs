@@ -688,7 +688,7 @@
     <span class="kw">fn</span> <span class="ident">parent_commit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">commit</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -706,7 +706,7 @@
     ) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">delete_surrounding</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -723,7 +723,7 @@
     <span class="kw">fn</span> <span class="ident">parent_filter_keypress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Event</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">filter_keypress</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -739,7 +739,7 @@
     <span class="kw">fn</span> <span class="ident">parent_focus_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">focus_in</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -749,7 +749,7 @@
     <span class="kw">fn</span> <span class="ident">parent_focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">focus_out</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -759,13 +759,13 @@
     <span class="kw">fn</span> <span class="ident">parent_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">get_surrounding</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor_index</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
                 <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">text</span>,
+                    <span class="kw-2">&amp;mut</span> <span class="ident">text</span>,
                     <span class="ident">cursor_index</span>.<span class="ident">as_mut_ptr</span>(),
                 ));
                 <span class="kw">if</span> <span class="ident">ret</span> {
@@ -779,7 +779,7 @@
     <span class="kw">fn</span> <span class="ident">parent_preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">get_preedit_string</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;get_preedit_string\&quot;&quot;</span>);
@@ -788,8 +788,8 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor_pos</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
             <span class="ident">f</span>(
                 <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">string</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">attrs</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">string</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">attrs</span>,
                 <span class="ident">cursor_pos</span>.<span class="ident">as_mut_ptr</span>(),
             );
             (
@@ -803,7 +803,7 @@
     <span class="kw">fn</span> <span class="ident">parent_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">preedit_changed</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -813,7 +813,7 @@
     <span class="kw">fn</span> <span class="ident">parent_preedit_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">preedit_end</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -823,7 +823,7 @@
     <span class="kw">fn</span> <span class="ident">parent_preedit_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">preedit_start</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -833,7 +833,7 @@
     <span class="kw">fn</span> <span class="ident">parent_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">reset</span> {
                 <span class="ident">f</span>(<span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -843,7 +843,7 @@
     <span class="kw">fn</span> <span class="ident">parent_retrieve_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">retrieve_surrounding</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">im_context</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>()
@@ -863,7 +863,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">set_client_widget</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -876,11 +876,11 @@
     <span class="kw">fn</span> <span class="ident">parent_set_cursor_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">set_cursor_location</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">area</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                    <span class="ident">area</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
                 );
             }
         }
@@ -889,7 +889,7 @@
     <span class="kw">fn</span> <span class="ident">parent_set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">set_surrounding</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -904,7 +904,7 @@
     <span class="kw">fn</span> <span class="ident">parent_set_use_preedit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Type</span>, <span class="ident">use_preedit</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContextClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">set_use_preedit</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -916,7 +916,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span> <span class="ident">IsSubclassable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IMContext</span> {
-    <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">class_init</span>(<span class="ident">class</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Class</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="ident"><span class="self">Self</span>::parent_class_init</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">class</span>);
 
         <span class="macro">assert!</span>(
@@ -945,10 +945,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_commit</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">stringptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">stringptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">string</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">stringptr</span>);
@@ -957,11 +957,11 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_delete_surrounding</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
     <span class="ident">offset</span>: <span class="ident">i32</span>,
     <span class="ident">n_chars</span>: <span class="ident">i32</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -970,10 +970,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_filter_keypress</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">eventptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkEvent</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">eventptr</span>: <span class="kw-2">*mut</span> <span class="ident">gdk::ffi::GdkEvent</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">event</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">eventptr</span>);
@@ -981,16 +981,16 @@
         .<span class="ident">into_glib</span>()
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_focus_in</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_focus_in</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">focus_in</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_focus_out</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_focus_out</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -998,12 +998,12 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_get_preedit_string</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">text_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_char</span>,
-    <span class="ident">attrs_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">pango::ffi::PangoAttrList</span>,
-    <span class="ident">cursor_index_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_int</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">text_ptr</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">attrs_ptr</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoAttrList</span>,
+    <span class="ident">cursor_index_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -1015,11 +1015,11 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_get_surrounding</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">text_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_char</span>,
-    <span class="ident">cursor_index_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_int</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">text_ptr</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">cursor_index_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -1034,32 +1034,32 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">preedit_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_end</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_end</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">preedit_end</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_start</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_preedit_start</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">preedit_start</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_reset</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_reset</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>) {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -1067,9 +1067,9 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_retrieve_surrounding</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
@@ -1077,10 +1077,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_set_client_widget</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">widgetptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">widgetptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkWidget</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
@@ -1089,10 +1089,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_set_cursor_location</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">areaptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkRectangle</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">areaptr</span>: <span class="kw-2">*mut</span> <span class="ident">gdk::ffi::GdkRectangle</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">area</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">areaptr</span>);
@@ -1101,12 +1101,12 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_set_surrounding</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
-    <span class="ident">textptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">textptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
     <span class="ident">length</span>: <span class="ident">i32</span>,
     <span class="ident">cursor_index</span>: <span class="ident">i32</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">textptr</span>);
@@ -1122,10 +1122,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_set_use_preedit</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>,
+    <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkIMContext</span>,
     <span class="ident">use_preedit</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 

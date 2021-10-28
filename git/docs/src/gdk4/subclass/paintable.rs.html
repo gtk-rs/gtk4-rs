@@ -339,7 +339,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_current_image</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_current_image\&quot; implementation&quot;</span>);
@@ -354,7 +354,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_flags</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_flags\&quot; implementation&quot;</span>);
@@ -369,7 +369,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_intrinsic_width</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_width\&quot; implementation&quot;</span>);
@@ -382,7 +382,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_intrinsic_height</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_height\&quot; implementation&quot;</span>);
@@ -395,7 +395,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_intrinsic_aspect_ratio</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_aspect_ratio\&quot; implementation&quot;</span>);
@@ -414,7 +414,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GdkPaintableInterface</span>;
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">snapshot</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;snapshot\&quot; implementation&quot;</span>);
@@ -430,7 +430,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Paintable</span> {
-    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="ident">iface</span>.<span class="ident">get_current_image</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_get_current_image</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
@@ -441,13 +441,13 @@
         <span class="ident">iface</span>.<span class="ident">snapshot</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">paintable_snapshot</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_get_current_image</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
+) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">current_image</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
@@ -455,9 +455,9 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_get_flags</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">ffi::GdkPaintableFlags</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">flags</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
@@ -465,39 +465,39 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_get_intrinsic_width</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_width</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_get_intrinsic_height</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_height</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_get_intrinsic_aspect_ratio</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_aspect_ratio</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paintable_snapshot</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">paintable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkPaintable</span>,
-    <span class="ident">snapshotptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkSnapshot</span>,
+    <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
+    <span class="ident">snapshotptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkSnapshot</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
     <span class="ident">height</span>: <span class="ident">f64</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">snapshot</span>(

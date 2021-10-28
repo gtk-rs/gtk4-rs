@@ -897,9 +897,9 @@
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gdk_x11_display_string_to_compound_text</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">str</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">encoding</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">encoding</span>,
                 <span class="ident">format</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ctext</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">ctext</span>,
                 <span class="ident">length</span>.<span class="ident">as_mut_ptr</span>(),
             );
             <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">assume_init</span>();
@@ -947,9 +947,9 @@
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_x11_display_utf8_to_compound_text</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">str</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">encoding</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">encoding</span>,
                 <span class="ident">format</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ctext</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">ctext</span>,
                 <span class="ident">length</span>.<span class="ident">as_mut_ptr</span>(),
             ));
             <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">assume_init</span>();
@@ -1007,7 +1007,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">X11Display</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;X11Display&quot;</span>)
     }
 }

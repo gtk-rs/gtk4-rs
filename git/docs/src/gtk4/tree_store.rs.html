@@ -508,8 +508,8 @@
                 <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">parent</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">position</span>.<span class="ident">map_or</span>(<span class="op">-</span><span class="number">1</span>, <span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">c_int</span>),
-                <span class="ident">mut_override</span>(<span class="ident">columns</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_int</span>),
-                <span class="ident">mut_override</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>),
+                <span class="ident">mut_override</span>(<span class="ident">columns</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_int</span>),
+                <span class="ident">mut_override</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">glib::gobject_ffi::GValue</span>),
                 <span class="ident">columns</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
             );
             <span class="ident">iter</span>
@@ -554,7 +554,7 @@
                 <span class="ident">ffi::gtk_tree_store_reorder</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">mut_override</span>(<span class="ident">parent</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                    <span class="ident">mut_override</span>(<span class="ident">new_order</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_int</span>),
+                    <span class="ident">mut_override</span>(<span class="ident">new_order</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_int</span>),
                 );
             }
         }
@@ -617,8 +617,8 @@
             <span class="ident">ffi::gtk_tree_store_set_valuesv</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                <span class="ident">mut_override</span>(<span class="ident">columns</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_int</span>),
-                <span class="ident">mut_override</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>),
+                <span class="ident">mut_override</span>(<span class="ident">columns</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_int</span>),
+                <span class="ident">mut_override</span>(<span class="ident">values</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">glib::gobject_ffi::GValue</span>),
                 <span class="ident">columns</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
             );
         }

@@ -162,12 +162,12 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RGBA</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">color</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">color</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>) }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ColorStop</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ColorStop&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">offset</span>())
             .<span class="ident">field</span>(<span class="string">&quot;color&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">color</span>())
@@ -176,8 +176,8 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">FromGlibContainerAsVec</span><span class="op">&lt;</span><span class="ident">ffi::GskColorStop</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskColorStop</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorStop</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskColorStop</span>, <span class="ident">num</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">FromGlibContainerAsVec</span><span class="op">&lt;</span><span class="ident">ffi::GskColorStop</span>, <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorStop</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="ident">num</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">num</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="kw">return</span> <span class="ident">Vec::new</span>();
         }
@@ -189,12 +189,12 @@
         <span class="ident">res</span>
     }
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_container_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_container_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// Can&#39;t really free a *const</span>
         <span class="macro">unimplemented!</span>();
     }
 
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="comment">// Can&#39;t really free a *const</span>
         <span class="macro">unimplemented!</span>();
     }

@@ -134,7 +134,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(
                 <span class="ident">ffi::gdk_draw_context_get_frame_region</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
-                    <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cairo::ffi::cairo_region_t</span>,
+                    <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">cairo::ffi::cairo_region_t</span>,
             )
         }
     }

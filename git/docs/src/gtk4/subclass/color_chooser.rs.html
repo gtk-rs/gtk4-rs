@@ -326,7 +326,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">add_palette</span> {
                 <span class="kw">let</span> <span class="ident">colors_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gdk::ffi::GdkRGBA</span><span class="op">&gt;</span> <span class="op">=</span>
@@ -350,7 +350,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">color_activated</span> {
                 <span class="ident">func</span>(
@@ -368,7 +368,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_rgba</span>
@@ -389,7 +389,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkColorChooserInterface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">set_rgba</span> {
                 <span class="ident">func</span>(
@@ -405,7 +405,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ColorChooserImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorChooser</span> {
-    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="macro">assert!</span>(
@@ -419,20 +419,20 @@
         <span class="ident">iface</span>.<span class="ident">set_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">color_chooser_set_rgba</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">color_chooser_add_palette</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ColorChooserImpl</span><span class="op">&gt;</span>(
-    <span class="ident">color_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkColorChooser</span>,
+    <span class="ident">color_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkColorChooser</span>,
     <span class="ident">orientation</span>: <span class="ident">ffi::GtkOrientation</span>,
     <span class="ident">colors_per_line</span>: <span class="ident">i32</span>,
     <span class="ident">total</span>: <span class="ident">i32</span>,
-    <span class="ident">colorsptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
+    <span class="ident">colorsptr</span>: <span class="kw-2">*mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
-    <span class="kw">let</span> <span class="ident">colors</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">colorsptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">RGBA</span>, <span class="ident">total</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    <span class="kw">let</span> <span class="ident">colors</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">colorsptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">RGBA</span>, <span class="ident">total</span> <span class="kw">as</span> <span class="ident">usize</span>);
     <span class="ident">imp</span>.<span class="ident">add_palette</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">ColorChooser</span><span class="op">&gt;</span>(<span class="ident">color_chooser</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="ident">from_glib</span>(<span class="ident">orientation</span>),
@@ -442,10 +442,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">color_chooser_color_activated</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ColorChooserImpl</span><span class="op">&gt;</span>(
-    <span class="ident">color_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkColorChooser</span>,
-    <span class="ident">rgba</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
+    <span class="ident">color_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkColorChooser</span>,
+    <span class="ident">rgba</span>: <span class="kw-2">*const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">color_activated</span>(
@@ -455,21 +455,21 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">color_chooser_get_rgba</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ColorChooserImpl</span><span class="op">&gt;</span>(
-    <span class="ident">color_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkColorChooser</span>,
-    <span class="ident">rgbaptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
+    <span class="ident">color_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkColorChooser</span>,
+    <span class="ident">rgbaptr</span>: <span class="kw-2">*const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">let</span> <span class="ident">rgba</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">rgba</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">ColorChooser</span><span class="op">&gt;</span>(<span class="ident">color_chooser</span>).<span class="ident">unsafe_cast_ref</span>());
-    <span class="kw-2">*</span>(<span class="ident">rgbaptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="ident">rgba</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>;
+    <span class="kw-2">*</span>(<span class="ident">rgbaptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="ident">rgba</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>;
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">color_chooser_set_rgba</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ColorChooserImpl</span><span class="op">&gt;</span>(
-    <span class="ident">color_chooser</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkColorChooser</span>,
-    <span class="ident">rgba</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
+    <span class="ident">color_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkColorChooser</span>,
+    <span class="ident">rgba</span>: <span class="kw-2">*const</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">set_rgba</span>(

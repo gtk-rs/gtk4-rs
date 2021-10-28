@@ -226,8 +226,8 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConicGradientNode</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GskConicGradientNode</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>),
-        <span class="ident">unref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>),
+        <span class="kw-2">ref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GskRenderNode</span>),
+        <span class="ident">unref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GskRenderNode</span>),
     }
 }
 

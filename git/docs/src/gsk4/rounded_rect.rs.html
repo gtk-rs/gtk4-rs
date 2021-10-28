@@ -399,7 +399,7 @@
     <span class="doccomment">/// the initialized rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_init&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">bounds</span>: <span class="ident">Rect</span>,
         <span class="ident">top_left</span>: <span class="ident">Size</span>,
         <span class="ident">top_right</span>: <span class="ident">Size</span>,
@@ -408,7 +408,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gsk_rounded_rect_init</span>(
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>,
+                <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">top_left</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">top_right</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -429,9 +429,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the initialized rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_init_from_rect&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_from_rect</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bounds</span>: <span class="ident">Rect</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_from_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bounds</span>: <span class="ident">Rect</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gsk_rounded_rect_init_from_rect</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">radius</span>);
+            <span class="ident">ffi::gsk_rounded_rect_init_from_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">radius</span>);
         }
     }
 
@@ -445,9 +445,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the normalized rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_normalize&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">normalize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">normalize</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gsk_rounded_rect_normalize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>);
+            <span class="ident">ffi::gsk_rounded_rect_normalize</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>);
         }
     }
 
@@ -463,9 +463,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the offset rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_offset&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">dx</span>: <span class="ident">f32</span>, <span class="ident">dy</span>: <span class="ident">f32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">offset</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">dx</span>: <span class="ident">f32</span>, <span class="ident">dy</span>: <span class="ident">f32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gsk_rounded_rect_offset</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">dx</span>, <span class="ident">dy</span>);
+            <span class="ident">ffi::gsk_rounded_rect_offset</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">dx</span>, <span class="ident">dy</span>);
         }
     }
 
@@ -490,9 +490,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the resized [`RoundedRect`][crate::RoundedRect]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_shrink&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">top</span>: <span class="ident">f32</span>, <span class="ident">right</span>: <span class="ident">f32</span>, <span class="ident">bottom</span>: <span class="ident">f32</span>, <span class="ident">left</span>: <span class="ident">f32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">top</span>: <span class="ident">f32</span>, <span class="ident">right</span>: <span class="ident">f32</span>, <span class="ident">bottom</span>: <span class="ident">f32</span>, <span class="ident">left</span>: <span class="ident">f32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gsk_rounded_rect_shrink</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">top</span>, <span class="ident">right</span>, <span class="ident">bottom</span>, <span class="ident">left</span>);
+            <span class="ident">ffi::gsk_rounded_rect_shrink</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>, <span class="ident">top</span>, <span class="ident">right</span>, <span class="ident">bottom</span>, <span class="ident">left</span>);
         }
     }
 

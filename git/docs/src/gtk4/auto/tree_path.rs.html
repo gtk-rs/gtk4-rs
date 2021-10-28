@@ -419,7 +419,7 @@
     <span class="doccomment">/// ## `index_`</span>
     <span class="doccomment">/// the index</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_append_index&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_index</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index_</span>: <span class="ident">i32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_index</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index_</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_tree_path_append_index</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">index_</span>);
         }
@@ -443,7 +443,7 @@
 
     <span class="doccomment">/// Moves `self` to point to the first child of the current path.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_down&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">down</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">down</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_tree_path_down</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
         }
@@ -496,7 +496,7 @@
 
     <span class="doccomment">/// Moves the `self` to point to the next node at the current depth.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_next&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_tree_path_next</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
         }
@@ -508,7 +508,7 @@
     <span class="doccomment">/// ## `index_`</span>
     <span class="doccomment">/// the index</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_prepend_index&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_index</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index_</span>: <span class="ident">i32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_index</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index_</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_tree_path_prepend_index</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">index_</span>);
         }
@@ -522,7 +522,7 @@
     <span class="doccomment">/// [`true`] if `self` has a previous node, and</span>
     <span class="doccomment">///  the move was made</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_prev&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prev</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prev</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_path_prev</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>)) }
     }
 
@@ -552,7 +552,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if `self` has a parent, and the move was made</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_path_up&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">up</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">up</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_path_up</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>)) }
     }
 }

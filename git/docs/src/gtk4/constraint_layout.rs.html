@@ -192,11 +192,11 @@
             );
 
             <span class="kw">for</span> (<span class="ident">key</span>, <span class="ident">widget</span>) <span class="kw">in</span> <span class="ident">views</span> {
-                <span class="kw">let</span> <span class="ident">key_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">libc::c_char</span> <span class="op">=</span> <span class="ident">key</span>.<span class="ident">to_glib_full</span>();
+                <span class="kw">let</span> <span class="ident">key_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_char</span> <span class="op">=</span> <span class="ident">key</span>.<span class="ident">to_glib_full</span>();
                 <span class="ident">glib::ffi::g_hash_table_insert</span>(
                     <span class="ident">hash_table</span>,
-                    <span class="ident">key_ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-                    <span class="ident">widget</span>.<span class="ident">to_glib_full</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                    <span class="ident">key_ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                    <span class="ident">widget</span>.<span class="ident">to_glib_full</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
                 );
             }
 
@@ -207,7 +207,7 @@
                 <span class="ident">hspacing</span>,
                 <span class="ident">vspacing</span>,
                 <span class="ident">hash_table</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">err</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">err</span>,
             );
             <span class="kw">if</span> <span class="op">!</span><span class="ident">err</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Err</span>(<span class="ident">from_glib_full</span>(<span class="ident">err</span>))

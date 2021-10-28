@@ -270,8 +270,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ops::DerefMut</span> <span class="kw">for</span> <span class="ident">Border</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>
     }
 }
 
@@ -300,7 +300,7 @@
         <span class="self">self</span>.<span class="ident">left</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_left</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">left</span>: <span class="ident">i16</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_left</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">left</span>: <span class="ident">i16</span>) {
         <span class="self">self</span>.<span class="ident">left</span> <span class="op">=</span> <span class="ident">left</span>;
     }
 
@@ -308,7 +308,7 @@
         <span class="self">self</span>.<span class="ident">right</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_right</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">right</span>: <span class="ident">i16</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_right</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">right</span>: <span class="ident">i16</span>) {
         <span class="self">self</span>.<span class="ident">right</span> <span class="op">=</span> <span class="ident">right</span>;
     }
 
@@ -316,7 +316,7 @@
         <span class="self">self</span>.<span class="ident">top</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_top</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">top</span>: <span class="ident">i16</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_top</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">top</span>: <span class="ident">i16</span>) {
         <span class="self">self</span>.<span class="ident">top</span> <span class="op">=</span> <span class="ident">top</span>;
     }
 
@@ -324,7 +324,7 @@
         <span class="self">self</span>.<span class="ident">bottom</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bottom</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bottom</span>: <span class="ident">i16</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bottom</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bottom</span>: <span class="ident">i16</span>) {
         <span class="self">self</span>.<span class="ident">bottom</span> <span class="op">=</span> <span class="ident">bottom</span>;
     }
 }
@@ -336,7 +336,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Border</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
         <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Border&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;left&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">left</span>())
             .<span class="ident">field</span>(<span class="string">&quot;right&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">right</span>())

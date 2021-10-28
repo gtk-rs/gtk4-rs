@@ -165,7 +165,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_keyboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlKeyboard</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_device_get_wl_keyboard</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
+            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
         }
     }
 
@@ -179,7 +179,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlPointer</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_device_get_wl_pointer</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
+            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
         }
     }
 
@@ -193,7 +193,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlSeat</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_device_get_wl_seat</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
+            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
         }
     }
 

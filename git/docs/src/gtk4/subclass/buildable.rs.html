@@ -583,7 +583,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">set_id</span>
@@ -600,7 +600,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_id</span>
@@ -622,7 +622,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">add_child</span>
@@ -647,7 +647,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="comment">// gtk::Builder falls back to using ObjectExt::set_property if the method is not implemented</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">set_buildable_property</span> {
@@ -675,7 +675,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">parser_finished</span> {
                 <span class="ident">func</span>(
@@ -695,7 +695,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">get_internal_child</span> {
                 <span class="ident">from_glib_none</span>(<span class="ident">func</span>(
@@ -718,7 +718,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span>
-                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuildableIface</span>;
+                <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Buildable</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuildableIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">construct_child</span>
@@ -734,7 +734,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Buildable</span> {
-    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="ident">iface</span>.<span class="ident">set_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">buildable_set_id</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
@@ -751,14 +751,14 @@
         */</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_set_id</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">id</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">id</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">id</span>);
 
@@ -769,9 +769,9 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_get_id</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+) -&gt; <span class="kw-2">*const</span> <span class="ident">libc::c_char</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">id</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Buildable</span><span class="op">&gt;</span>(<span class="ident">buildable</span>).<span class="ident">unsafe_cast_ref</span>())
@@ -779,12 +779,12 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_add_child</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">objectptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
-    <span class="ident">typeptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">objectptr</span>: <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
+    <span class="ident">typeptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">typeptr</span>);
 
@@ -797,12 +797,12 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_set_buildable_property</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
-    <span class="ident">valueptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">valueptr</span>: <span class="kw-2">*const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);
 
@@ -815,11 +815,11 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_construct_child</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
+) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);
 
@@ -832,10 +832,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_parser_finished</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
 ) {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">parser_finished</span>(
@@ -847,11 +847,11 @@
 <span class="kw">static</span> <span class="ident">BUILDABLE_GET_INTERNAL_CHILD_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
     <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-buildable-get-internal-child&quot;</span>));
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">buildable_get_internal_child</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuildableImpl</span><span class="op">&gt;</span>(
-    <span class="ident">buildable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuildable</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
+) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Buildable</span><span class="op">&gt;</span>(<span class="ident">buildable</span>);
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);

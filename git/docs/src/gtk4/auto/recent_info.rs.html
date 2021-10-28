@@ -501,7 +501,7 @@
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_recent_info_create_app_info</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">app_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">error</span>,
             );
             <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Ok</span>(<span class="ident">from_glib_full</span>(<span class="ident">ret</span>))
@@ -584,9 +584,9 @@
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_recent_info_get_application_info</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">app_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">app_exec</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">app_exec</span>,
                 <span class="ident">count</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">stamp</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">stamp</span>,
             ));
             <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">count</span>.<span class="ident">assume_init</span>();
             <span class="kw">if</span> <span class="ident">ret</span> {

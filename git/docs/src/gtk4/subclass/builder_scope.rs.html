@@ -381,7 +381,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_type_from_name</span>
@@ -407,7 +407,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">get_type_from_function</span>
@@ -435,7 +435,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">create_closure</span>
@@ -451,7 +451,7 @@
                 <span class="ident">function_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">object</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">error</span>,
             );
             <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Ok</span>(<span class="ident">from_glib_none</span>(<span class="ident">closure</span>))
@@ -463,7 +463,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BuilderScope</span> {
-    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="macro">assert!</span>(
@@ -476,15 +476,15 @@
         <span class="ident">iface</span>.<span class="ident">create_closure</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">builder_scope_create_closure</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">builder_scope_get_type_from_name</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span>(
-    <span class="ident">builder_scope</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">type_nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">builder_scope</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">type_nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) -&gt; <span class="ident">glib::ffi::GType</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">builder</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Builder</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">builderptr</span>);
     <span class="kw">let</span> <span class="ident">type_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">type_nameptr</span>);
@@ -498,11 +498,11 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">builder_scope_get_type_from_function</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span>(
-    <span class="ident">builder_scope</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">func_nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">builder_scope</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">func_nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) -&gt; <span class="ident">glib::ffi::GType</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">builder</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Builder</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">builderptr</span>);
     <span class="kw">let</span> <span class="ident">func_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">func_nameptr</span>);
@@ -516,14 +516,14 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">builder_scope_create_closure</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span>(
-    <span class="ident">builder_scope</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
-    <span class="ident">builderptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBuilder</span>,
-    <span class="ident">func_nameptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc::c_char</span>,
+    <span class="ident">builder_scope</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilderScope</span>,
+    <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
+    <span class="ident">func_nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
     <span class="ident">flags</span>: <span class="ident">ffi::GtkBuilderClosureFlags</span>,
-    <span class="ident">objectptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
-    <span class="ident">errorptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::ffi::GError</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GClosure</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">objectptr</span>: <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
+    <span class="ident">errorptr</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">glib::ffi::GError</span>,
+) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GClosure</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">builder_scope</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">builder</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Builder</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">builderptr</span>);
     <span class="kw">let</span> <span class="ident">func_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">func_nameptr</span>);

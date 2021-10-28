@@ -256,7 +256,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">TreeDragSource</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">row_draggable</span> {
                 <span class="ident">from_glib</span>(<span class="ident">func</span>(
@@ -281,7 +281,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">TreeDragSource</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">drag_data_get</span>
@@ -301,7 +301,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">TreeDragSource</span><span class="op">&gt;</span>()
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
+                <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">ffi::GtkTreeDragSourceIface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
                 .<span class="ident">drag_data_delete</span>
@@ -319,7 +319,7 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragSourceImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TreeDragSource</span> {
-    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="macro">assert!</span>(
@@ -332,14 +332,14 @@
         <span class="ident">iface</span>.<span class="ident">drag_data_delete</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tree_drag_source_drag_data_delete</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_drag_source_row_draggable</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragSourceImpl</span><span class="op">&gt;</span>(
-    <span class="ident">tree_drag_source</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
-    <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
+    <span class="ident">tree_drag_source</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
+    <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
@@ -352,10 +352,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_drag_source_drag_data_get</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragSourceImpl</span><span class="op">&gt;</span>(
-    <span class="ident">tree_drag_source</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
-    <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
-) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkContentProvider</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="ident">tree_drag_source</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
+    <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
+) -&gt; <span class="kw-2">*mut</span> <span class="ident">gdk::ffi::GdkContentProvider</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
 
@@ -367,10 +367,10 @@
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_drag_source_drag_data_delete</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragSourceImpl</span><span class="op">&gt;</span>(
-    <span class="ident">tree_drag_source</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
-    <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
+    <span class="ident">tree_drag_source</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeDragSource</span>,
+    <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
-    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="ident">imp</span>.<span class="ident">drag_data_delete</span>(

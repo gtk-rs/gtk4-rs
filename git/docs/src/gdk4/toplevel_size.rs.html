@@ -236,7 +236,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds_height</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
 
             <span class="ident">ffi::gdk_toplevel_size_get_bounds</span>(
-                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
                 <span class="ident">bounds_width</span>.<span class="ident">as_mut_ptr</span>(),
                 <span class="ident">bounds_height</span>.<span class="ident">as_mut_ptr</span>(),
             );
@@ -258,7 +258,7 @@
     <span class="doccomment">/// ## `min_height`</span>
     <span class="doccomment">/// the minimum height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_size_set_min_size&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_min_size</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_width</span>: <span class="ident">i32</span>, <span class="ident">min_height</span>: <span class="ident">i32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_min_size</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">min_width</span>: <span class="ident">i32</span>, <span class="ident">min_height</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_toplevel_size_set_min_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">min_width</span>, <span class="ident">min_height</span>);
         }
@@ -278,7 +278,7 @@
     <span class="doccomment">/// ## `bottom`</span>
     <span class="doccomment">/// height of the bottom part of the shadow</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_size_set_shadow_width&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_shadow_width</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">left</span>: <span class="ident">i32</span>, <span class="ident">right</span>: <span class="ident">i32</span>, <span class="ident">top</span>: <span class="ident">i32</span>, <span class="ident">bottom</span>: <span class="ident">i32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_shadow_width</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">left</span>: <span class="ident">i32</span>, <span class="ident">right</span>: <span class="ident">i32</span>, <span class="ident">top</span>: <span class="ident">i32</span>, <span class="ident">bottom</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_toplevel_size_set_shadow_width</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
@@ -301,7 +301,7 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// the height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_size_set_size&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_size</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_size</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_toplevel_size_set_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">width</span>, <span class="ident">height</span>);
         }
@@ -309,7 +309,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ToplevelSize</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ToplevelSize&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;bounds&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bounds</span>())
             .<span class="ident">finish</span>()

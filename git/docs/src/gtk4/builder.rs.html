@@ -300,7 +300,7 @@
                 <span class="ident">pspec</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">string</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">error</span>,
             );
             <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
@@ -341,7 +341,7 @@
             <span class="ident">ffi::gtk_builder_add_from_file</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">file_path</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
+                <span class="kw-2">&amp;mut</span> <span class="ident">error</span>,
             );
             <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
                 <span class="prelude-val">Ok</span>(())

@@ -413,7 +413,7 @@
             <span class="kw">let</span> <span class="ident">cell_class</span> <span class="op">=</span> <span class="ident">glib::Class</span>::<span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="ident">::from_type</span>(<span class="ident">O::static_type</span>()).<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">pspec</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::ParamSpec</span><span class="op">&gt;</span> <span class="op">=</span>
                 <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_class_find_cell_property</span>(
-                    <span class="ident">cell_class</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaClass</span>,
+                    <span class="ident">cell_class</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellAreaClass</span>,
                     <span class="ident">property_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ));
             <span class="kw">let</span> <span class="ident">pspec</span> <span class="op">=</span> <span class="ident">pspec</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
@@ -440,7 +440,7 @@
             <span class="kw">let</span> <span class="ident">cell_class</span> <span class="op">=</span> <span class="ident">glib::Class</span>::<span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span><span class="ident">::from_type</span>(<span class="ident">O::static_type</span>()).<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">pspec</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::ParamSpec</span><span class="op">&gt;</span> <span class="op">=</span>
                 <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_class_find_cell_property</span>(
-                    <span class="ident">cell_class</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkCellAreaClass</span>,
+                    <span class="ident">cell_class</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellAreaClass</span>,
                     <span class="ident">property_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ));
             <span class="kw">let</span> <span class="ident">pspec</span> <span class="op">=</span> <span class="ident">pspec</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
