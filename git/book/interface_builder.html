@@ -215,8 +215,19 @@ Luckily, they all convert like this: <code>gtk::ApplicationWindow</code> → <co
 We want to access the window later on, so we also give it an <code>id</code>.
 Then we can specify properties which are specified <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html">here</a> for <code>ApplicationWindow</code>.
 Since <code>ApplicationWindow</code> can contain other widgets we use the <code>&lt;child&gt;</code> tag to add a <code>Button</code>.</p>
-<p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a><sup class="footnote-reference"><a href="#1">1</a></sup>.
+<p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>.
 All widgets that can be described that way can be found <a href="../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1">here</a></p>
+<blockquote>
+<p>Puh, yet another builder? Let us summarize what we have so far:</p>
+<ul>
+<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
+<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
+<li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
+</ul>
+<p>That was it with the builders.
+Promised!</p>
+</blockquote>
+<p>This is how it then looks in practice:</p>
 <p><span class="filename">Filename: listings/interface_builder/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -624,6 +635,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </code></pre>
 <p>With composite templates, <code>main.rs</code> actually became more concise.
 With regard to capabilities, we also get the best of both worlds.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>Thanks to custom widgets we can</p>
 <ul>
 <li>keep state and part of it as properties,</li>
@@ -635,18 +647,10 @@ With regard to capabilities, we also get the best of both worlds.</p>
 <li>describe complex user interfaces concisely, and</li>
 <li>easily access widgets within the template. </li>
 </ul>
+<p>The API of the interface builder is extensive so especially at the beginning you will want to check out the documentation.
+The basic syntax is explained with <a href="../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions"><code>Builder</code></a>, syntax specific to widgets with <a href="../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>Widget</code></a>.
+If a certain widget accepts additional element, then they are typically explained in the docs of the widget.</p>
 <p>In the following chapter, we will see how composite templates help us to create slightly bigger apps such as a To-Do app.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>Puh, yet another builder? Let us summarize what we have so far:</p>
-<ul>
-<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
-<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
-<li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
-</ul>
-<p>That was it with the builders.
-Promised!</p>
-</div>
 
                     </main>
 

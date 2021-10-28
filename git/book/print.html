@@ -4941,8 +4941,19 @@ Luckily, they all convert like this: <code>gtk::ApplicationWindow</code> → <co
 We want to access the window later on, so we also give it an <code>id</code>.
 Then we can specify properties which are specified <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html">here</a> for <code>ApplicationWindow</code>.
 Since <code>ApplicationWindow</code> can contain other widgets we use the <code>&lt;child&gt;</code> tag to add a <code>Button</code>.</p>
-<p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a><sup class="footnote-reference"><a href="#1">1</a></sup>.
+<p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>.
 All widgets that can be described that way can be found <a href="../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1">here</a></p>
+<blockquote>
+<p>Puh, yet another builder? Let us summarize what we have so far:</p>
+<ul>
+<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
+<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
+<li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
+</ul>
+<p>That was it with the builders.
+Promised!</p>
+</blockquote>
+<p>This is how it then looks in practice:</p>
 <p><span class="filename">Filename: listings/interface_builder/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -5350,6 +5361,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </code></pre>
 <p>With composite templates, <code>main.rs</code> actually became more concise.
 With regard to capabilities, we also get the best of both worlds.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>Thanks to custom widgets we can</p>
 <ul>
 <li>keep state and part of it as properties,</li>
@@ -5361,18 +5373,10 @@ With regard to capabilities, we also get the best of both worlds.</p>
 <li>describe complex user interfaces concisely, and</li>
 <li>easily access widgets within the template. </li>
 </ul>
+<p>The API of the interface builder is extensive so especially at the beginning you will want to check out the documentation.
+The basic syntax is explained with <a href="../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions"><code>Builder</code></a>, syntax specific to widgets with <a href="../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>Widget</code></a>.
+If a certain widget accepts additional element, then they are typically explained in the docs of the widget.</p>
 <p>In the following chapter, we will see how composite templates help us to create slightly bigger apps such as a To-Do app.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>Puh, yet another builder? Let us summarize what we have so far:</p>
-<ul>
-<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
-<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
-<li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
-</ul>
-<p>That was it with the builders.
-Promised!</p>
-</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="building-a-simple-to-do-app"><a class="header" href="#building-a-simple-to-do-app">Building a Simple To-Do App</a></h1>
 <p>After we have learned so many concepts, it is finally time to put them into practice.
 We are going to build a To-Do app!</p>
@@ -7411,10 +7415,7 @@ We do not need the action state to implement orientation switching, however it i
 <p>Even though <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html"><code>gio::Menu</code></a> can also be created with the bindings, the most convenient way is to use the interface builder for that.
 We do that by adding the menu in front of the template.</p>
 <p><span class="filename">Filename: listings/actions/6/window/window.ui</span></p>
-<pre><code class="language-diff">--- /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/5/window/window.ui
-+++ /var/home/julian/Projekte/gnome/libraries/gtk4-rs/book/listings/actions/6/window/window.ui
-@@ -1,7 +1,41 @@
- &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  &lt;interface&gt;
 +  &lt;menu id=&quot;main-menu&quot;&gt;
 +    &lt;item&gt;
@@ -7456,7 +7457,9 @@ We do that by adding the menu in front of the template.</p>
        &lt;object class=&quot;GtkBox&quot; id=&quot;gtk_box&quot;&gt;
          &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
 </code></pre>
-<p>Note how we specified the target:</p>
+<p>Since we connect the menu to the <a href="../docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a> via the <a href="https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html">menu-model</a> property, the <code>Menu</code> is expected to be a <a href="../docs/gtk4/struct.PopoverMenu.html"><code>gtk::PopoverMenu</code></a>.
+The documentation for <code>PopoverMenu</code> also explains its <code>xml</code> syntax for the interface builder.</p>
+<p>Also note how we specified the target:</p>
 <pre><code class="language-xml">&lt;attribute name=&quot;target&quot;&gt;Horizontal&lt;/attribute&gt;
 </code></pre>
 <p>String is the default type of the target which is why we did not have to specify a type.
