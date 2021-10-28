@@ -313,12 +313,121 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">keys::Key</span>, <span class="ident">Display</span>, <span class="ident">Event</span>, <span class="ident">KeymapKey</span>, <span class="ident">ModifierType</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">mem</span>, <span class="ident">ptr</span>};
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Backend</span> {
+    <span class="ident">Wayland</span>,
+    <span class="ident">X11</span>,
+    <span class="ident">Win32</span>,
+    <span class="ident">MacOS</span>,
+    <span class="ident">Broadway</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Backend</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Equivalent to the C macro `GDK_IS_WAYLAND_DISPLAY`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_IS_WAYLAND_DISPLAY&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wayland</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::Wayland</span>)
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Equivalent to the C macro `GDK_IS_X11_DISPLAY`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_IS_X11_DISPLAY&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_x11</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::X11</span>)
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Equivalent to the C macro `GDK_IS_WIN32_DISPLAY`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_IS_WIN32_DISPLAY&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_win32</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::Win32</span>)
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Equivalent to the C macro `GDK_IS_MACOS_DISPLAY`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_IS_MACOS_DISPLAY&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_macos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::MacOS</span>)
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Equivalent to the C macro `GDK_IS_BROADWAY_DISPLAY`</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_IS_BROADWAY_DISPLAY&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_broadway</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::Broadway</span>)
+    }
+}
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DisplayExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Translates the contents of a `GdkEventKey` into a keyval, effective group,</span>
@@ -448,6 +557,10 @@
     <span class="doccomment">/// a [`Event`][crate::Event]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_put_event&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">put_event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Get the currently used display backend</span>
+    <span class="kw">fn</span> <span class="ident">backend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Backend</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">DisplayExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
@@ -552,6 +665,17 @@
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">event</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">backend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Backend</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">type_</span>().<span class="ident">name</span>() {
+            <span class="string">&quot;GdkWaylandDisplay&quot;</span> =&gt; <span class="ident">Backend::Wayland</span>,
+            <span class="string">&quot;GdkX11Display&quot;</span> =&gt; <span class="ident">Backend::X11</span>,
+            <span class="string">&quot;GdkMacosDisplay&quot;</span> =&gt; <span class="ident">Backend::MacOS</span>,
+            <span class="string">&quot;GdkWin32Display&quot;</span> =&gt; <span class="ident">Backend::Win32</span>,
+            <span class="string">&quot;GdkBroadwayDisplay&quot;</span> =&gt; <span class="ident">Backend::Broadway</span>,
+            <span class="ident">e</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unsupported display backend {}&quot;</span>, <span class="ident">e</span>),
         }
     }
 }
