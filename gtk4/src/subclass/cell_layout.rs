@@ -484,7 +484,8 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
 
     let cells = imp.cells(wrap.unsafe_cast_ref());
 
-    let ptr = ToGlibContainerFromSlice::to_glib_none_from_slice(&cells).0;
-    wrap.set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, ptr);
-    ptr
+    // transfer container: list owned by the caller by not the actual content
+    // so we need to keep the cells around and return a ptr of the list
+    wrap.set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
+    cells.to_glib_container().0
 }

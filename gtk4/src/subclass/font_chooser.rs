@@ -7,6 +7,8 @@ use glib::{Cast, GString, IsA, ObjectExt, Quark};
 use once_cell::sync::Lazy;
 use pango::{FontFace, FontFamily, FontMap};
 
+use super::PtrHolder;
+
 #[derive(Debug)]
 pub struct FilterCallback {
     filter_func: ffi::GtkFontFilterFunc,
@@ -247,15 +249,6 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
 static FONT_CHOOSER_GET_FONT_FAMILY_QUARK: Lazy<Quark> =
     Lazy::new(|| Quark::from_string("gtk4-rs-subclass-font-chooser-font-family"));
 
-#[derive(Debug)]
-struct FontFamilyWrapper(*mut pango::ffi::PangoFontFamily);
-
-impl Drop for FontFamilyWrapper {
-    fn drop(&mut self) {
-        unsafe { glib::gobject_ffi::g_object_unref(self.0 as *mut _) }
-    }
-}
-
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFamily {
@@ -268,7 +261,9 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
         let font_family = font_family.to_glib_full();
         wrap.set_qdata(
             *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
-            FontFamilyWrapper(font_family),
+            PtrHolder(font_family, |ptr| {
+                glib::gobject_ffi::g_object_unref(ptr as *mut _)
+            }),
         );
         font_family
     } else {
@@ -278,16 +273,6 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
 
 static FONT_CHOOSER_GET_FONT_FACE_QUARK: Lazy<Quark> =
     Lazy::new(|| Quark::from_string("gtk4-rs-subclass-font-chooser-font-face"));
-
-#[derive(Debug)]
-struct FontFaceWrapper(*mut pango::ffi::PangoFontFace);
-
-impl Drop for FontFaceWrapper {
-    fn drop(&mut self) {
-        unsafe { glib::gobject_ffi::g_object_unref(self.0 as *mut _) }
-    }
-}
-
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFace {
@@ -300,7 +285,9 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
         let font_face = font_face.to_glib_full();
         wrap.set_qdata(
             *FONT_CHOOSER_GET_FONT_FACE_QUARK,
-            FontFaceWrapper(font_face),
+            PtrHolder(font_face, |ptr| {
+                glib::gobject_ffi::g_object_unref(ptr as *mut _);
+            }),
         );
         font_face
     } else {

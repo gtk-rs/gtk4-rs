@@ -7,6 +7,8 @@ use glib::translate::*;
 use glib::{Cast, GString, Object, Quark, Value};
 use once_cell::sync::Lazy;
 
+use super::PtrHolder;
+
 pub trait BuildableImpl: ObjectImpl {
     fn set_id(&self, buildable: &Self::Type, id: &str) {
         self.parent_set_id(buildable, id)
@@ -391,6 +393,11 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
 
     // transfer none: ensure the internal child stays alive for as long as the object building it
     let ret = ret.to_glib_full();
-    wrap.set_qdata(*BUILDABLE_GET_INTERNAL_CHILD_QUARK, ret);
+    wrap.set_qdata(
+        *BUILDABLE_GET_INTERNAL_CHILD_QUARK,
+        PtrHolder(ret, |ptr| {
+            glib::gobject_ffi::g_object_unref(ptr as *mut _);
+        }),
+    );
     ret
 }

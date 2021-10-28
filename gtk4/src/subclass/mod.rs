@@ -1,5 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+/// Struct to hold a pointer and free it on `Drop::drop`
+pub(crate) struct PtrHolder<T, F: Fn(*mut T) + 'static>(*mut T, F);
+
+impl<T, F: Fn(*mut T) + 'static> Drop for PtrHolder<T, F> {
+    fn drop(&mut self) {
+        (self.1)(self.0)
+    }
+}
+
 pub mod actionable;
 pub mod adjustment;
 pub mod application;

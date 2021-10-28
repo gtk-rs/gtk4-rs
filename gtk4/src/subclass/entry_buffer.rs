@@ -6,6 +6,8 @@ use glib::translate::*;
 use glib::{Cast, GString, ObjectExt};
 use once_cell::sync::Lazy;
 
+use super::PtrHolder;
+
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     fn delete_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>) -> u32 {
         self.parent_delete_text(entry_buffer, position, n_chars)
@@ -233,7 +235,12 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
     let fullptr = ret.to_glib_full();
-    wrap.set_qdata(*GET_TEXT_QUARK, fullptr);
+    wrap.set_qdata(
+        *GET_TEXT_QUARK,
+        PtrHolder(fullptr, |ptr| {
+            glib::ffi::g_free(ptr as *mut _);
+        }),
+    );
     fullptr
 }
 
