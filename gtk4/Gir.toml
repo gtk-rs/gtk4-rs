@@ -497,7 +497,7 @@ trust_return_value_nullability = false
     ignore = true # error-domain expect _error_quark so it can't be used as ErrorDomain automatically
     [[object.function]]
     name = "accelerator_parse_with_keycode"
-    ignore = true # TODO: fix me
+    manual = true
 
 [[object]]
 name = "Gtk.AboutDialog"
