@@ -1,7 +1,7 @@
 mod integer_object;
 
 use gtk::prelude::*;
-use gtk::{gio, glib};
+use gtk::gio;
 use gtk::{
     Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
     ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
