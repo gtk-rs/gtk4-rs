@@ -1,4 +1,4 @@
-# Prerequisites
+# Project Setup
 
 There are a few recommended ways to set up your workstation in order to develop `gtk-rs` applications.
 Let us go through them one by one.
@@ -17,10 +17,24 @@ Now create a new project by executing:
 cargo new my-gtk-app
 ```
 
-Add the following lines to your dependencies in `Cargo.toml`.
+Add the following lines to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [crate](https://crates.io/crates/gtk4).
+
 ```toml
-gtk = { version = "0.2", package = "gtk4" }
+gtk = { version = "X.X", package = "gtk4" }
 ```
+
+>Per default `gtk4-rs` is compatible with all GTK 4 releases.
+>If you want to use functionality that has been added to later releases, you have to specify this as a feature.
+>If you want to use functionality of GTK 4.6, you would add the following to your gtk dependency in `Cargo.toml`.
+> 
+> ```toml
+>gtk = { version = "X.X", package = "gtk4", features = ["v4_6"]}
+>```
+>This will only work if your available GTK version is indeed >= 4.6.
+>You can get the version by executing the following command:
+>```
+>pkg-config --modversion gtk4
+>```
 
 Now you can run your application by executing:
 ```bash
@@ -31,7 +45,7 @@ cargo run
 
 Cargo is *almost* enough, but it is not well suited for handling resources such as icons or UI definition files.
 That is why we recommend to use [Meson](https://mesonbuild.com/) on top of it.
-It is cross-platform and its syntax is very readable.
+It is cross-platform, and its syntax is very readable.
 Meson takes care of
 - translations,
 - building and installing [resources](resources.html) as well as
@@ -48,26 +62,12 @@ Then configure your project.
 meson setup builddir
 ```
 
-In order to compile and install it run the following commands.
+In order to compile and install it run the following command.
 You have to execute it every time you modify your application.
 ```bash
-meson compile -C builddir && meson install -C builddir
+meson install -C builddir
 ```
 
 Now the application should be in a folder included in your system path.
-You can either start it with the application launcher of your choice or in the terminal.
+You can either start it with the application launcher of your choice or from within your terminal.
 
-## Cargo + Meson + Flatpak
-
-If you develop on Linux, using Flatpak is the most convenient option.
-With Flatpak your whole workflow is containerized, and your users get the very same application you develop on (including all dependencies). 
-First, assure that Flatpak is installed on your system, check this [website](https://flatpak.org/setup/) to see if any steps are necessary on your distribution.
-Then download the [gtk-rust-template](https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template) and follow the instructions in its README.
-
-Then either install
-- [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder) or
-- [VSCodium](https://flathub.org/apps/details/com.vscodium.codium) together with the [rust-analyzer](https://open-vsx.org/extension/matklad/rust-analyzer) and [flatpak](https://open-vsx.org/extension/bilelmoussaoui/flatpak-vscode) extensions.
-
-That is it.
-The build dependencies can be downloaded by the IDE.
-With GNOME Builder, you only have to press the run button for that.

@@ -1,7 +1,11 @@
 # GUI development with Rust and GTK 4
 
 [Introduction](introduction.md)
-- [Prerequisites](prerequisites.md)
+- [Installation](installation.md)
+    - [Linux](installation_linux.md)
+    - [macOS](installation_macos.md)
+    - [Windows](installation_windows.md)
+- [Project Setup](project_setup.md)
 - [Hello World!](hello_world.md)
 - [Widgets](widgets.md)
 - [GObject Concepts](gobject_concepts.md)
