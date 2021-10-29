@@ -31,11 +31,10 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: model
-    // Create a `Vec<glib::Object>` with numbers from 0 to 100_000
-    let vector: Vec<glib::Object> = (0..=100_000)
+    // Create a `Vec<IntegerObject>` with numbers from 0 to 100_000
+    let vector: Vec<IntegerObject> = (0..=100_000)
         .into_iter()
         .map(IntegerObject::new)
-        .map(Cast::upcast)
         .collect();
 
     // Create new model

@@ -100,11 +100,10 @@ impl Window {
             let backup_data: Vec<TodoData> =
                 serde_json::from_reader(file).expect("Could not get backup data from json file.");
 
-            // Convert `Vec<TodoData>` to `Vec<Object>`
-            let todo_objects: Vec<Object> = backup_data
+            // Convert `Vec<TodoData>` to `Vec<TodoObject>`
+            let todo_objects: Vec<TodoObject> = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-                .map(|todo_object| todo_object.upcast())
                 .collect();
 
             // Insert restored objects into model
