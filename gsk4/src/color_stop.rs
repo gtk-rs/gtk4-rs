@@ -3,7 +3,6 @@
 use gdk::RGBA;
 use glib::translate::*;
 use std::fmt;
-use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GskColorStop")]
