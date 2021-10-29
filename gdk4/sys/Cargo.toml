@@ -3,7 +3,7 @@ authors = ["The gtk-rs Project Developers"]
 build = "build.rs"
 description = "FFI bindings of GDK 4"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_sys"
-edition = "2018"
+edition = "2021"
 homepage = "http://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
@@ -11,7 +11,7 @@ name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../../LICENSE"]
 version = "0.3.0"
-rust-version = "1.54"
+rust-version = "1.56"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.gtk4]
