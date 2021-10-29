@@ -5,7 +5,7 @@ use glib::{BindingFlags, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, pango};
-use pango::{AttrList, Attribute};
+use pango::{AttrInt, AttrList};
 
 // ANCHOR: glib_wrapper
 glib::wrapper! {
@@ -63,8 +63,8 @@ impl TodoRow {
                     .expect("The value needs to be of type `bool`.");
                 if active {
                     // If "active" is true, content of the label will be strikethrough
-                    let attribute = Attribute::new_strikethrough(true);
-                    attribute_list.insert(attribute);
+                    let attribute = AttrInt::new_strikethrough(true);
+                    attribute_list.insert(attribute.upcast());
                 }
                 Some(attribute_list.to_value())
             })
