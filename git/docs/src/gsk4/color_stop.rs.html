@@ -109,38 +109,11 @@
 <span id="36">36</span>
 <span id="37">37</span>
 <span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
-<span id="60">60</span>
-<span id="61">61</span>
-<span id="62">62</span>
-<span id="63">63</span>
-<span id="64">64</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">gdk::RGBA</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A color stop in a gradient node.</span>
@@ -172,31 +145,6 @@
             .<span class="ident">field</span>(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">offset</span>())
             .<span class="ident">field</span>(<span class="string">&quot;color&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">color</span>())
             .<span class="ident">finish</span>()
-    }
-}
-
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">FromGlibContainerAsVec</span><span class="op">&lt;</span><span class="ident">ffi::GskColorStop</span>, <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorStop</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_none_num_as_vec</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="ident">num</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">num</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
-            <span class="kw">return</span> <span class="ident">Vec::new</span>();
-        }
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">num</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num</span> {
-            <span class="ident">res</span>.<span class="ident">push</span>(<span class="ident">ColorStop</span>(<span class="ident">ptr::read</span>(<span class="ident">ptr</span>.<span class="ident">add</span>(<span class="ident">i</span>))));
-        }
-        <span class="ident">res</span>
-    }
-
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_container_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="comment">// Can&#39;t really free a *const</span>
-        <span class="macro">unimplemented!</span>();
-    }
-
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full_num_as_vec</span>(<span class="kw">_</span>: <span class="kw-2">*const</span> <span class="ident">ffi::GskColorStop</span>, <span class="kw">_</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="comment">// Can&#39;t really free a *const</span>
-        <span class="macro">unimplemented!</span>();
     }
 }
 </code></pre></div>
