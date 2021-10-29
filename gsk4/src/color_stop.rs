@@ -3,7 +3,6 @@
 use gdk::RGBA;
 use glib::translate::*;
 use std::fmt;
-use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GskColorStop")]
@@ -34,30 +33,5 @@ impl fmt::Debug for ColorStop {
             .field("offset", &self.offset())
             .field("color", &self.color())
             .finish()
-    }
-}
-
-#[doc(hidden)]
-impl FromGlibContainerAsVec<ffi::GskColorStop, *const ffi::GskColorStop> for ColorStop {
-    unsafe fn from_glib_none_num_as_vec(ptr: *const ffi::GskColorStop, num: usize) -> Vec<Self> {
-        if num == 0 || ptr.is_null() {
-            return Vec::new();
-        }
-
-        let mut res = Vec::with_capacity(num);
-        for i in 0..num {
-            res.push(ColorStop(ptr::read(ptr.add(i))));
-        }
-        res
-    }
-
-    unsafe fn from_glib_container_num_as_vec(_: *const ffi::GskColorStop, _: usize) -> Vec<Self> {
-        // Can't really free a *const
-        unimplemented!();
-    }
-
-    unsafe fn from_glib_full_num_as_vec(_: *const ffi::GskColorStop, _: usize) -> Vec<Self> {
-        // Can't really free a *const
-        unimplemented!();
     }
 }
