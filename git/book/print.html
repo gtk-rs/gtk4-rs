@@ -3611,8 +3611,8 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 <p><span class="filename">Filename: listings/list_widgets/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3641,12 +3641,8 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-        .into_iter()
-        .map(IntegerObject::new)
-        .map(Cast::upcast)
-        .collect();
+</span>    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
@@ -3705,8 +3701,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/list_widgets/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3735,12 +3731,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -3796,8 +3788,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 <p><span class="filename">Filename: listings/list_widgets/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3826,12 +3818,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -3889,8 +3877,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 <p><span class="filename">Filename: listings/list_widgets/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -3919,12 +3907,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -3980,8 +3964,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 <p><span class="filename">Filename: listings/list_widgets/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection,
@@ -4010,12 +3994,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4135,12 +4115,8 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4239,12 +4215,8 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4318,8 +4290,8 @@ Let us see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/list_widgets/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, PolicyType,
 </span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, SingleSelection,
@@ -4348,12 +4320,8 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4429,8 +4397,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4460,12 +4428,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4573,8 +4537,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4604,12 +4568,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -4717,8 +4677,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
+</span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
 </span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
@@ -4748,12 +4708,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;glib::Object&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;glib::Object&gt; = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(IntegerObject::new)
-</span><span class="boring">        .map(Cast::upcast)
-</span><span class="boring">        .collect();
+</span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -8322,11 +8278,10 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -8546,11 +8501,10 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -8768,11 +8722,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -8988,11 +8941,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -9208,11 +9160,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -9737,11 +9688,10 @@ It might be the first time that we started the app and therefore there is no for
             let backup_data: Vec&lt;TodoData&gt; =
                 serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 
-            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-            let todo_objects: Vec&lt;Object&gt; = backup_data
+            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-                .map(|todo_object| todo_object.upcast())
                 .collect();
 
             // Insert restored objects into model

@@ -452,11 +452,10 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -676,11 +675,10 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -898,11 +896,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -1118,11 +1115,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -1338,11 +1334,10 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            let backup_data: Vec&lt;TodoData&gt; =
 </span><span class="boring">                serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-</span><span class="boring">            let todo_objects: Vec&lt;Object&gt; = backup_data
+</span><span class="boring">            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+</span><span class="boring">            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
 </span><span class="boring">                .into_iter()
 </span><span class="boring">                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">                .map(|todo_object| todo_object.upcast())
 </span><span class="boring">                .collect();
 </span><span class="boring">
 </span><span class="boring">            // Insert restored objects into model
@@ -1867,11 +1862,10 @@ It might be the first time that we started the app and therefore there is no for
             let backup_data: Vec&lt;TodoData&gt; =
                 serde_json::from_reader(file).expect(&quot;Could not get backup data from json file.&quot;);
 
-            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;Object&gt;`
-            let todo_objects: Vec&lt;Object&gt; = backup_data
+            // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
+            let todo_objects: Vec&lt;TodoObject&gt; = backup_data
                 .into_iter()
                 .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-                .map(|todo_object| todo_object.upcast())
                 .collect();
 
             // Insert restored objects into model
