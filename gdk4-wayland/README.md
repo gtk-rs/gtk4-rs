@@ -10,7 +10,7 @@ GDK Wayland contains functions specific to the Wayland backend.
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.54.0`.
+Currently, the minimum supported Rust version is `1.56.0`.
 
 ## Documentation
 

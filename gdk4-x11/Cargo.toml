@@ -2,7 +2,7 @@
 authors = ["The gtk-rs Project Developers"]
 description = "Rust bindings of the GDK4 X11 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_x11/"
-edition = "2018"
+edition = "2021"
 homepage = "https://gtk-rs.org/"
 keywords = ["gdk4", "gdk4-x11", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
@@ -11,7 +11,7 @@ readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../LICENSE"]
 version = "0.3.0"
-rust-version = "1.54"
+rust-version = "1.56"
 [features]
 v4_4 = ["ffi/v4_4", "khronos-egl"]
 dox = ["ffi/dox", "khronos-egl"]

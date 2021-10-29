@@ -3,7 +3,7 @@ authors = ["The gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
 description = "Macros helpers for GTK 4 bindings"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros"
-edition = "2018"
+edition = "2021"
 homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
@@ -11,7 +11,7 @@ name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../LICENSE"]
 version = "0.3.0"
-rust-version = "1.54"
+rust-version = "1.56"
 [lib]
 proc-macro = true
 
