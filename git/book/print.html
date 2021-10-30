@@ -4827,7 +4827,7 @@ This is why we will skip this topic here.</p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringObject,
+</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -4852,17 +4852,12 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Create a `Vec&lt;String` with number from 0 to 100_000
-    let vector: Vec&lt;String&gt; = (0..=100_000)
+</span>    // Create a `StringList` with number from 0 to 100_000
+    // `StringList` implements FromIterator&lt;String&gt;
+    let model: StringList = (0..=100_000)
         .into_iter()
         .map(|number| format!(&quot;Task number {}&quot;, number))
         .collect();
-
-    // Convert `Vec&lt;String` to `Vec&lt;&amp;str&gt;`
-    let vector: Vec&lt;&amp;str&gt; = vector.iter().map(String::as_str).collect();
-
-    // Create new `StringList` from `vector`
-    let model = gtk::StringList::new(&amp;vector);
 <span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -4899,7 +4894,7 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">    window.show();
 </span><span class="boring">}
 </span></code></pre>
-<p>Note that <a href="../docs/gtk4/struct.StringList.html#method.new"><code>StringList::new</code></a> directly takes <code>&amp;[&amp;str]</code>.
+<p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
 This means we do not have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
 Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://docs.gtk.org/gtk4/property.StringObject.string.html">property &quot;string&quot;</a>.</p>
@@ -4907,7 +4902,7 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringObject,
+</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -4932,17 +4927,12 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Create a `Vec&lt;String` with number from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;String&gt; = (0..=100_000)
+</span><span class="boring">    // Create a `StringList` with number from 0 to 100_000
+</span><span class="boring">    // `StringList` implements FromIterator&lt;String&gt;
+</span><span class="boring">    let model: StringList = (0..=100_000)
 </span><span class="boring">        .into_iter()
 </span><span class="boring">        .map(|number| format!(&quot;Task number {}&quot;, number))
 </span><span class="boring">        .collect();
-</span><span class="boring">
-</span><span class="boring">    // Convert `Vec&lt;String` to `Vec&lt;&amp;str&gt;`
-</span><span class="boring">    let vector: Vec&lt;&amp;str&gt; = vector.iter().map(String::as_str).collect();
-</span><span class="boring">
-</span><span class="boring">    // Create new `StringList` from `vector`
-</span><span class="boring">    let model = gtk::StringList::new(&amp;vector);
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span>    factory.connect_setup(move |_, list_item| {
