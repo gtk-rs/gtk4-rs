@@ -174,6 +174,7 @@ mod shortcuts_section;
 mod snapshot;
 mod spin_button;
 mod string_filter;
+mod string_list;
 mod string_sorter;
 mod text;
 mod text_buffer;
