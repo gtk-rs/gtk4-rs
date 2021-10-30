@@ -620,9 +620,6 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "align-set")]
     fn is_align_set(&self) -> bool;
 
-    #[doc(alias = "align-set")]
-    fn set_align_set(&self, align_set: bool);
-
     fn alignment(&self) -> pango::Alignment;
 
     fn set_alignment(&self, alignment: pango::Alignment);
@@ -642,18 +639,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "background-set")]
     fn is_background_set(&self) -> bool;
 
-    #[doc(alias = "background-set")]
-    fn set_background_set(&self, background_set: bool);
-
     fn is_editable(&self) -> bool;
 
     fn set_editable(&self, editable: bool);
 
     #[doc(alias = "editable-set")]
     fn is_editable_set(&self) -> bool;
-
-    #[doc(alias = "editable-set")]
-    fn set_editable_set(&self, editable_set: bool);
 
     fn ellipsize(&self) -> pango::EllipsizeMode;
 
@@ -662,18 +653,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "ellipsize-set")]
     fn is_ellipsize_set(&self) -> bool;
 
-    #[doc(alias = "ellipsize-set")]
-    fn set_ellipsize_set(&self, ellipsize_set: bool);
-
     fn family(&self) -> Option<glib::GString>;
 
     fn set_family(&self, family: Option<&str>);
 
     #[doc(alias = "family-set")]
     fn is_family_set(&self) -> bool;
-
-    #[doc(alias = "family-set")]
-    fn set_family_set(&self, family_set: bool);
 
     fn font(&self) -> Option<glib::GString>;
 
@@ -696,18 +681,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "foreground-set")]
     fn is_foreground_set(&self) -> bool;
 
-    #[doc(alias = "foreground-set")]
-    fn set_foreground_set(&self, foreground_set: bool);
-
     fn language(&self) -> Option<glib::GString>;
 
     fn set_language(&self, language: Option<&str>);
 
     #[doc(alias = "language-set")]
     fn is_language_set(&self) -> bool;
-
-    #[doc(alias = "language-set")]
-    fn set_language_set(&self, language_set: bool);
 
     fn set_markup(&self, markup: Option<&str>);
 
@@ -730,18 +709,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "rise-set")]
     fn is_rise_set(&self) -> bool;
 
-    #[doc(alias = "rise-set")]
-    fn set_rise_set(&self, rise_set: bool);
-
     fn scale(&self) -> f64;
 
     fn set_scale(&self, scale: f64);
 
     #[doc(alias = "scale-set")]
     fn is_scale_set(&self) -> bool;
-
-    #[doc(alias = "scale-set")]
-    fn set_scale_set(&self, scale_set: bool);
 
     #[doc(alias = "single-paragraph-mode")]
     fn is_single_paragraph_mode(&self) -> bool;
@@ -762,18 +735,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "size-set")]
     fn is_size_set(&self) -> bool;
 
-    #[doc(alias = "size-set")]
-    fn set_size_set(&self, size_set: bool);
-
     fn stretch(&self) -> pango::Stretch;
 
     fn set_stretch(&self, stretch: pango::Stretch);
 
     #[doc(alias = "stretch-set")]
     fn is_stretch_set(&self) -> bool;
-
-    #[doc(alias = "stretch-set")]
-    fn set_stretch_set(&self, stretch_set: bool);
 
     fn is_strikethrough(&self) -> bool;
 
@@ -782,18 +749,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "strikethrough-set")]
     fn is_strikethrough_set(&self) -> bool;
 
-    #[doc(alias = "strikethrough-set")]
-    fn set_strikethrough_set(&self, strikethrough_set: bool);
-
     fn style(&self) -> pango::Style;
 
     fn set_style(&self, style: pango::Style);
 
     #[doc(alias = "style-set")]
     fn is_style_set(&self) -> bool;
-
-    #[doc(alias = "style-set")]
-    fn set_style_set(&self, style_set: bool);
 
     fn text(&self) -> Option<glib::GString>;
 
@@ -806,9 +767,6 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "underline-set")]
     fn is_underline_set(&self) -> bool;
 
-    #[doc(alias = "underline-set")]
-    fn set_underline_set(&self, underline_set: bool);
-
     fn variant(&self) -> pango::Variant;
 
     fn set_variant(&self, variant: pango::Variant);
@@ -816,18 +774,12 @@ pub trait CellRendererTextExt: 'static {
     #[doc(alias = "variant-set")]
     fn is_variant_set(&self) -> bool;
 
-    #[doc(alias = "variant-set")]
-    fn set_variant_set(&self, variant_set: bool);
-
     fn weight(&self) -> i32;
 
     fn set_weight(&self, weight: i32);
 
     #[doc(alias = "weight-set")]
     fn is_weight_set(&self) -> bool;
-
-    #[doc(alias = "weight-set")]
-    fn set_weight_set(&self, weight_set: bool);
 
     #[doc(alias = "width-chars")]
     fn width_chars(&self) -> i32;
@@ -1014,16 +966,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_align_set(&self, align_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"align-set\0".as_ptr() as *const _,
-                align_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn alignment(&self) -> pango::Alignment {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Alignment as StaticType>::static_type());
@@ -1120,16 +1062,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_background_set(&self, background_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-set\0".as_ptr() as *const _,
-                background_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn is_editable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -1165,16 +1097,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `editable-set` getter")
-        }
-    }
-
-    fn set_editable_set(&self, editable_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editable-set\0".as_ptr() as *const _,
-                editable_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1217,16 +1139,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_ellipsize_set(&self, ellipsize_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"ellipsize-set\0".as_ptr() as *const _,
-                ellipsize_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn family(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -1262,16 +1174,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `family-set` getter")
-        }
-    }
-
-    fn set_family_set(&self, family_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"family-set\0".as_ptr() as *const _,
-                family_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1372,16 +1274,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_foreground_set(&self, foreground_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"foreground-set\0".as_ptr() as *const _,
-                foreground_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn language(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -1417,16 +1309,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `language-set` getter")
-        }
-    }
-
-    fn set_language_set(&self, language_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"language-set\0".as_ptr() as *const _,
-                language_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1526,16 +1408,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_rise_set(&self, rise_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"rise-set\0".as_ptr() as *const _,
-                rise_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn scale(&self) -> f64 {
         unsafe {
             let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
@@ -1571,16 +1443,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `scale-set` getter")
-        }
-    }
-
-    fn set_scale_set(&self, scale_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"scale-set\0".as_ptr() as *const _,
-                scale_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1670,16 +1532,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_size_set(&self, size_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size-set\0".as_ptr() as *const _,
-                size_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn stretch(&self) -> pango::Stretch {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Stretch as StaticType>::static_type());
@@ -1715,16 +1567,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `stretch-set` getter")
-        }
-    }
-
-    fn set_stretch_set(&self, stretch_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"stretch-set\0".as_ptr() as *const _,
-                stretch_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1766,16 +1608,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_strikethrough_set(&self, strikethrough_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough-set\0".as_ptr() as *const _,
-                strikethrough_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn style(&self) -> pango::Style {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Style as StaticType>::static_type());
@@ -1811,16 +1643,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `style-set` getter")
-        }
-    }
-
-    fn set_style_set(&self, style_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"style-set\0".as_ptr() as *const _,
-                style_set.to_value().to_glib_none().0,
-            );
         }
     }
 
@@ -1886,16 +1708,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_underline_set(&self, underline_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline-set\0".as_ptr() as *const _,
-                underline_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn variant(&self) -> pango::Variant {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Variant as StaticType>::static_type());
@@ -1934,16 +1746,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
-    fn set_variant_set(&self, variant_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"variant-set\0".as_ptr() as *const _,
-                variant_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     fn weight(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -1979,16 +1781,6 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             value
                 .get()
                 .expect("Return Value for property `weight-set` getter")
-        }
-    }
-
-    fn set_weight_set(&self, weight_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"weight-set\0".as_ptr() as *const _,
-                weight_set.to_value().to_glib_none().0,
-            );
         }
     }
 
