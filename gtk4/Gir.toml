@@ -147,7 +147,6 @@ generate = [
     "Gtk.PageOrientation",
     "Gtk.PageSet",
     "Gtk.PanDirection",
-    "Gtk.Paned",
     "Gtk.PasswordEntryBuffer",
     "Gtk.PickFlags",
     "Gtk.Picture",
@@ -186,7 +185,6 @@ generate = [
     "Gtk.ShortcutManager",
     "Gtk.ShortcutScope",
     "Gtk.ShortcutsGroup",
-    "Gtk.ShortcutsShortcut",
     "Gtk.ShortcutsWindow",
     "Gtk.ShortcutType",
     "Gtk.SignalListItemFactory",
@@ -735,6 +733,9 @@ manual_traits = ["CellLayoutExtManual"]
 name = "Gtk.CellRenderer"
 status = "generate"
 manual_traits = ["CellRendererExtManual"]
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
     [[object.function]]
     name = "activate"
     manual = true # to handle gdk::Event
@@ -782,6 +783,9 @@ status = "generate"
 [[object]]
 name = "Gtk.CellRendererText"
 status = "generate"
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
     [[object.signal]]
     name = "edited"
         [[object.signal.parameter]]
@@ -998,6 +1002,9 @@ manual_traits = ["EditableExtManual"]
 name = "Gtk.Entry"
 status = "generate"
 manual_traits = ["EntryExtManual"]
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
     [[object.function]]
     name = "get_icon_activatable"
     rename = "icon_is_activatable"
@@ -1651,6 +1658,14 @@ name = "Gtk.PageSetupUnixDialog"
 status = "generate"
 cfg_condition = "target_os = \"linux\""
 
+
+[[object]]
+name = "Gtk.Paned"
+status = "generate"
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
+
 [[object]]
 name = "Gtk.PaperSize"
 status = "generate"
@@ -1860,6 +1875,13 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.ShortcutsShortcut"
+status = "generate"
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
+
+[[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
 manual_traits = ["ShortcutTriggerExtManual"]
@@ -1999,6 +2021,9 @@ status = "generate"
 [[object]]
 name = "Gtk.Text"
 status = "generate"
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
     # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
     [[object.function]]
     name = "get_buffer"
@@ -2087,6 +2112,9 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.TextTag"
 status = "generate"
+    [[object.property]]
+    pattern = "*-set" # those properties are read only
+    generate = ["get", "notify"]
     [[object.property]]
     name = "line-height" # the annotation is set on the source code, doesn't get detected by gir
     version = "4.6"

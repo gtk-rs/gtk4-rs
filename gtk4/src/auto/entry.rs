@@ -972,9 +972,6 @@ pub trait EntryExt: 'static {
     #[doc(alias = "invisible-char-set")]
     fn is_invisible_char_set(&self) -> bool;
 
-    #[doc(alias = "invisible-char-set")]
-    fn set_invisible_char_set(&self, invisible_char_set: bool);
-
     #[doc(alias = "primary-icon-activatable")]
     fn is_primary_icon_activatable(&self) -> bool;
 
@@ -1745,16 +1742,6 @@ impl<O: IsA<Entry>> EntryExt for O {
             value
                 .get()
                 .expect("Return Value for property `invisible-char-set` getter")
-        }
-    }
-
-    fn set_invisible_char_set(&self, invisible_char_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"invisible-char-set\0".as_ptr() as *const _,
-                invisible_char_set.to_value().to_glib_none().0,
-            );
         }
     }
 

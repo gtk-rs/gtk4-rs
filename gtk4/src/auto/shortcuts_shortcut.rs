@@ -143,17 +143,6 @@ impl ShortcutsShortcut {
         }
     }
 
-    #[doc(alias = "icon-set")]
-    pub fn set_icon_set(&self, icon_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-set\0".as_ptr() as *const _,
-                icon_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "shortcut-type")]
     pub fn shortcut_type(&self) -> ShortcutType {
         unsafe {
@@ -216,17 +205,6 @@ impl ShortcutsShortcut {
             value
                 .get()
                 .expect("Return Value for property `subtitle-set` getter")
-        }
-    }
-
-    #[doc(alias = "subtitle-set")]
-    pub fn set_subtitle_set(&self, subtitle_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"subtitle-set\0".as_ptr() as *const _,
-                subtitle_set.to_value().to_glib_none().0,
-            );
         }
     }
 

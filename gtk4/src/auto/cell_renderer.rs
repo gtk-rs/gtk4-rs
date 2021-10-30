@@ -150,9 +150,6 @@ pub trait CellRendererExt: 'static {
     #[doc(alias = "cell-background-set")]
     fn is_cell_background_set(&self) -> bool;
 
-    #[doc(alias = "cell-background-set")]
-    fn set_cell_background_set(&self, cell_background_set: bool);
-
     fn is_editing(&self) -> bool;
 
     fn height(&self) -> i32;
@@ -570,16 +567,6 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
             value
                 .get()
                 .expect("Return Value for property `cell-background-set` getter")
-        }
-    }
-
-    fn set_cell_background_set(&self, cell_background_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cell-background-set\0".as_ptr() as *const _,
-                cell_background_set.to_value().to_glib_none().0,
-            );
         }
     }
 

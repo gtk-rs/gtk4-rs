@@ -199,17 +199,6 @@ impl Paned {
         }
     }
 
-    #[doc(alias = "position-set")]
-    pub fn set_position_set(&self, position_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"position-set\0".as_ptr() as *const _,
-                position_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "accept-position")]
     pub fn connect_accept_position<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn accept_position_trampoline<F: Fn(&Paned) -> bool + 'static>(

@@ -360,17 +360,6 @@ impl Text {
         }
     }
 
-    #[doc(alias = "invisible-char-set")]
-    pub fn set_invisible_char_set(&self, invisible_char_set: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"invisible-char-set\0".as_ptr() as *const _,
-                invisible_char_set.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "scroll-offset")]
     pub fn scroll_offset(&self) -> i32 {
         unsafe {
