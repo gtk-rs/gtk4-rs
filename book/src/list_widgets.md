@@ -233,7 +233,7 @@ First, we add a bunch of strings to our model.
 {{#rustdoc_include ../listings/list_widgets/6/main.rs:string_list}}
 ```
 
-Note that [`StringList::new`](../docs/gtk4/struct.StringList.html#method.new) directly takes `&[&str]`.
+Note that we can create a `StringList` directly from an iterator over strings.
 This means we do not have to create a custom GObject for our model anymore.
 
 As usual, we connect the label to the list item via an expression.
