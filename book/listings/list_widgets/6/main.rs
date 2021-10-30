@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
     Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringObject,
+    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
 };
 
 fn main() {
@@ -27,17 +27,12 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: string_list
-    // Create a `Vec<String` with number from 0 to 100_000
-    let vector: Vec<String> = (0..=100_000)
+    // Create a `StringList` with number from 0 to 100_000
+    // `StringList` implements FromIterator<String>
+    let model: StringList = (0..=100_000)
         .into_iter()
         .map(|number| format!("Task number {}", number))
         .collect();
-
-    // Convert `Vec<String` to `Vec<&str>`
-    let vector: Vec<&str> = vector.iter().map(String::as_str).collect();
-
-    // Create new `StringList` from `vector`
-    let model = gtk::StringList::new(&vector);
     // ANCHOR_END: string_list
 
     let factory = SignalListItemFactory::new();
