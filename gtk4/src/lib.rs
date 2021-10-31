@@ -176,6 +176,9 @@ mod spin_button;
 mod string_filter;
 mod string_list;
 mod string_sorter;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+mod symbolic_paintable;
 mod text;
 mod text_buffer;
 mod text_view;
