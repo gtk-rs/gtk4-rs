@@ -134,6 +134,10 @@ name = "squares"
 path = "squares/main.rs"
 
 [[bin]]
+name = "squeezer_bin"
+path = "squeezer_bin/main.rs"
+
+[[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
 
