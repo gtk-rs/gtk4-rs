@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::object::IsA;
-use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
@@ -17,38 +16,9 @@ glib::wrapper! {
 
 pub const NONE_SYMBOLIC_PAINTABLE: Option<&SymbolicPaintable> = None;
 
-pub trait SymbolicPaintableExt: 'static {
-    #[doc(alias = "gtk_symbolic_paintable_snapshot_symbolic")]
-    fn snapshot_symbolic(
-        &self,
-        snapshot: &impl IsA<gdk::Snapshot>,
-        width: f64,
-        height: f64,
-        colors: &[&gdk::RGBA],
-    );
-}
+pub trait SymbolicPaintableExt: 'static {}
 
-impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {
-    fn snapshot_symbolic(
-        &self,
-        snapshot: &impl IsA<gdk::Snapshot>,
-        width: f64,
-        height: f64,
-        colors: &[&gdk::RGBA],
-    ) {
-        let n_colors = colors.len() as usize;
-        unsafe {
-            ffi::gtk_symbolic_paintable_snapshot_symbolic(
-                self.as_ref().to_glib_none().0,
-                snapshot.as_ref().to_glib_none().0,
-                width,
-                height,
-                colors.to_glib_none().0,
-                n_colors,
-            );
-        }
-    }
-}
+impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {}
 
 impl fmt::Display for SymbolicPaintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

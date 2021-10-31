@@ -211,7 +211,6 @@ generate = [
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SymbolicColor",
-    "Gtk.SymbolicPaintable",
     "Gtk.SystemSetting",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
@@ -2021,6 +2020,14 @@ status = "generate"
     [[object.signal]]
     name = "state-set"
     inhibit = true
+
+[[object]]
+name = "Gtk.SymbolicPaintable"
+status = "generate"
+manual_traits = ["SymbolicPaintableExtManual"]
+    [[object.function]]
+    name = "snapshot_symbolic"
+    manual = true # take a &[RGBA] instead of &[&RGBA]
 
 [[object]]
 name = "Gtk.Text"
