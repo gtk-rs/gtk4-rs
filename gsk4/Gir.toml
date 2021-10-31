@@ -79,6 +79,9 @@ manual = [
 [[object]]
 name = "Gsk.*"
 status = "generate"
+    [[object.function]]
+    pattern = "value_(dup|get|set|take)_render_node"
+    ignore = true # used to implement Value traits manually
 
 [[object]]
 name = "Gsk.BroadwayRenderer"
