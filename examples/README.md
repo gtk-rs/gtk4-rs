@@ -40,6 +40,7 @@ cargo run --bin basics
 - [Scale Bin](./scale_bin/)
 - [Search Bar](./search_bar/)
 - [Squares](./squares/)
+- [Squeezer Bin](./squeezer_bin/)
 - [TextView](./text_viewer/)
 - [Video Player](./video_player/)
 - [Virtual Methods](./virtual_methods/)
