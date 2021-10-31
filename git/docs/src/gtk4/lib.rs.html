@@ -324,6 +324,9 @@
 <span id="251">251</span>
 <span id="252">252</span>
 <span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
@@ -541,6 +544,9 @@
 <span class="kw">mod</span> <span class="ident">string_filter</span>;
 <span class="kw">mod</span> <span class="ident">string_list</span>;
 <span class="kw">mod</span> <span class="ident">string_sorter</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
+<span class="kw">mod</span> <span class="ident">symbolic_paintable</span>;
 <span class="kw">mod</span> <span class="ident">text</span>;
 <span class="kw">mod</span> <span class="ident">text_buffer</span>;
 <span class="kw">mod</span> <span class="ident">text_view</span>;
