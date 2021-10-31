@@ -56,6 +56,7 @@ manual = [
     "Gsk.GLShaderNode",
     "Gsk.InsetShadowNode",
     "Gsk.LinearGradientNode",
+    "Gsk.NglRenderer",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
     "Gsk.ParseLocation",
@@ -111,11 +112,6 @@ generate_builder = true
     [[object.function]]
     name = "get_arg_vec4"
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
-
-[[object]]
-name = "Gsk.NglRenderer"
-status = "generate"
-version = "4.2"
 
 [[object]]
 name = "Gsk.Renderer"

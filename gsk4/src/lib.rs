@@ -54,6 +54,9 @@ mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
 mod linear_gradient_node;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+mod ngl_renderer;
 mod opacity_node;
 mod outset_shadow_node;
 mod parse_location;
@@ -82,6 +85,10 @@ pub use debug_node::DebugNode;
 pub use gl_shader_node::GLShaderNode;
 pub use inset_shadow_node::InsetShadowNode;
 pub use linear_gradient_node::LinearGradientNode;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
+pub use ngl_renderer::NglRenderer;
 pub use opacity_node::OpacityNode;
 pub use outset_shadow_node::OutsetShadowNode;
 pub use parse_location::ParseLocation;
