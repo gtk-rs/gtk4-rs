@@ -20,7 +20,7 @@ name = "gtk4"
 dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
-v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_48"]
+v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
