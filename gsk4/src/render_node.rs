@@ -215,5 +215,58 @@ macro_rules! define_render_node {
                 f.write_str(::std::stringify!($rust_type))
             }
         }
+
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        impl glib::value::ValueType for $rust_type {
+            type Type = Self;
+        }
+
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
+            type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
+
+            unsafe fn from_value(value: &'a glib::Value) -> Self {
+                skip_assert_initialized!();
+                from_glib_full(ffi::gsk_value_dup_render_node(value.to_glib_none().0))
+            }
+        }
+
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        impl glib::value::ToValue for $rust_type {
+            fn to_value(&self) -> glib::Value {
+                let mut value = glib::Value::for_value_type::<Self>();
+                unsafe {
+                    ffi::gsk_value_set_render_node(
+                        value.to_glib_none_mut().0,
+                        self.to_glib_none().0 as *mut _,
+                    )
+                }
+                value
+            }
+
+            fn value_type(&self) -> glib::Type {
+                use glib::StaticType;
+                Self::static_type()
+            }
+        }
+
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        impl glib::value::ToValueOptional for $rust_type {
+            fn to_value_optional(s: Option<&Self>) -> glib::Value {
+                skip_assert_initialized!();
+                let mut value = glib::Value::for_value_type::<Self>();
+                unsafe {
+                    ffi::gsk_value_set_render_node(
+                        value.to_glib_none_mut().0,
+                        s.to_glib_none().0 as *mut _,
+                    )
+                }
+                value
+            }
+        }
     };
 }
