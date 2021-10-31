@@ -147,6 +147,18 @@ impl Snapshot {
         unsafe { ffi::gtk_snapshot_push_debug(self.to_glib_none().0, message.to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_snapshot_push_shadow")]
+    pub fn push_shadow(&self, shadow: &[gsk::Shadow]) {
+        let n_shadows = shadow.len() as usize;
+        unsafe {
+            ffi::gtk_snapshot_push_shadow(
+                self.to_glib_none().0,
+                shadow.to_glib_none().0,
+                n_shadows,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_append_node")]
     pub fn append_node<P: AsRef<gsk::RenderNode>>(&self, node: &P) {
         unsafe {
