@@ -1949,6 +1949,10 @@ trust_return_value_nullability = false
     # use &[ColorStop] instead of &[&ColorStop]
     manual = true
     [[object.function]]
+    name = "push_shadow"
+    # use &[Shadow] instead of &[&Shadow]
+    manual = true
+    [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
     [[object.function]]
