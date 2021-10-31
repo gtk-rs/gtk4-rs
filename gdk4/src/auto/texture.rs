@@ -104,22 +104,28 @@ pub trait TextureExt: 'static {
     fn width(&self) -> i32;
 
     #[doc(alias = "gdk_texture_save_to_png")]
-    fn save_to_png(&self, filename: impl AsRef<std::path::Path>) -> bool;
+    fn save_to_png(
+        &self,
+        filename: impl AsRef<std::path::Path>,
+    ) -> Result<(), glib::error::BoolError>;
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_png_bytes")]
-    fn save_to_png_bytes(&self) -> Option<glib::Bytes>;
+    fn save_to_png_bytes(&self) -> Result<glib::Bytes, glib::BoolError>;
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_tiff")]
-    fn save_to_tiff(&self, filename: impl AsRef<std::path::Path>) -> bool;
+    fn save_to_tiff(
+        &self,
+        filename: impl AsRef<std::path::Path>,
+    ) -> Result<(), glib::error::BoolError>;
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_tiff_bytes")]
-    fn save_to_tiff_bytes(&self) -> Option<glib::Bytes>;
+    fn save_to_tiff_bytes(&self) -> Result<glib::Bytes, glib::BoolError>;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
@@ -137,43 +143,57 @@ impl<O: IsA<Texture>> TextureExt for O {
         unsafe { ffi::gdk_texture_get_width(self.as_ref().to_glib_none().0) }
     }
 
-    fn save_to_png(&self, filename: impl AsRef<std::path::Path>) -> bool {
+    fn save_to_png(
+        &self,
+        filename: impl AsRef<std::path::Path>,
+    ) -> Result<(), glib::error::BoolError> {
         unsafe {
-            from_glib(ffi::gdk_texture_save_to_png(
-                self.as_ref().to_glib_none().0,
-                filename.as_ref().to_glib_none().0,
-            ))
+            glib::result_from_gboolean!(
+                ffi::gdk_texture_save_to_png(
+                    self.as_ref().to_glib_none().0,
+                    filename.as_ref().to_glib_none().0
+                ),
+                "Failed to save the texture as png"
+            )
         }
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    fn save_to_png_bytes(&self) -> Option<glib::Bytes> {
+    fn save_to_png_bytes(&self) -> Result<glib::Bytes, glib::BoolError> {
         unsafe {
-            from_glib_full(ffi::gdk_texture_save_to_png_bytes(
+            Option::<_>::from_glib_full(ffi::gdk_texture_save_to_png_bytes(
                 self.as_ref().to_glib_none().0,
             ))
+            .ok_or_else(|| glib::bool_error!("Failed to save the texture as png bytes"))
         }
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    fn save_to_tiff(&self, filename: impl AsRef<std::path::Path>) -> bool {
+    fn save_to_tiff(
+        &self,
+        filename: impl AsRef<std::path::Path>,
+    ) -> Result<(), glib::error::BoolError> {
         unsafe {
-            from_glib(ffi::gdk_texture_save_to_tiff(
-                self.as_ref().to_glib_none().0,
-                filename.as_ref().to_glib_none().0,
-            ))
+            glib::result_from_gboolean!(
+                ffi::gdk_texture_save_to_tiff(
+                    self.as_ref().to_glib_none().0,
+                    filename.as_ref().to_glib_none().0
+                ),
+                "Failed to save the texture as tiff"
+            )
         }
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    fn save_to_tiff_bytes(&self) -> Option<glib::Bytes> {
+    fn save_to_tiff_bytes(&self) -> Result<glib::Bytes, glib::BoolError> {
         unsafe {
-            from_glib_full(ffi::gdk_texture_save_to_tiff_bytes(
+            Option::<_>::from_glib_full(ffi::gdk_texture_save_to_tiff_bytes(
                 self.as_ref().to_glib_none().0,
             ))
+            .ok_or_else(|| glib::bool_error!("Failed to save the texture as tiff bytes"))
         }
     }
 }
