@@ -34,5 +34,7 @@ pub use self::x11_surface::X11Surface;
 mod enums;
 pub use self::enums::X11DeviceType;
 
+pub mod functions;
+
 #[doc(hidden)]
 pub mod traits {}

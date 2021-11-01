@@ -90,6 +90,19 @@ status = "manual"
 final_type = false
 
 [[object]]
+name = "GdkX11.*"
+status = "generate"
+    [[object.function]]
+    name = "x11_free_compound_text"
+    ignore = true
+    [[object.function]]
+    name = "x11_free_text_list"
+    ignore = true
+    [[object.function]]
+    name = "x11_lookup_xdisplay"
+    ignore = true # TODO: manually implementation needed
+
+[[object]]
 name = "GdkX11.X11DeviceManagerXI2"
 status = "generate"
 generate_builder = true

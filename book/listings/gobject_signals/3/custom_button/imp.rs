@@ -86,7 +86,8 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         obj.bind_property("number", obj, "label")
             .flags(BindingFlags::SYNC_CREATE)
-            .build();
+            .build()
+            .expect("Could not bind properties");
     }
 }
 

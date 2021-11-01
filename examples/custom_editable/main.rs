@@ -67,7 +67,8 @@ fn build_ui(application: &gtk::Application) {
         .build();
     show_spinner
         .bind_property("active", &editable, "show-spinner")
-        .build();
+        .build()
+        .unwrap();
     horizontal_container.append(&show_spinner);
 
     container.append(&horizontal_container);
