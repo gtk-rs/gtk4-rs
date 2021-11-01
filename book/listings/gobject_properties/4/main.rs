@@ -53,7 +53,8 @@ fn build_ui(app: &Application) {
             Some(decremented_number.to_value())
         })
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-        .build();
+        .build()
+        .expect("Could not bind properties");
     // ANCHOR_END: bind_numbers
 
     // ANCHOR: connect_notify

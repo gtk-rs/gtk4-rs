@@ -36,7 +36,8 @@ fn build_ui(application: &gtk::Application) {
     search_button
         .bind_property("active", &search_bar, "search-mode-enabled")
         .flags(glib::BindingFlags::SYNC_CREATE | glib::BindingFlags::BIDIRECTIONAL)
-        .build();
+        .build()
+        .unwrap();
 
     let entry = gtk::SearchEntry::new();
     entry.set_hexpand(true);
