@@ -290,7 +290,8 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">    switch_1
 </span><span class="boring">        .bind_property(&quot;state&quot;, &amp;switch_2, &quot;state&quot;)
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">        .build();
+</span><span class="boring">        .build()
+</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Set up box
 </span><span class="boring">    let gtk_box = Box::builder()
@@ -344,7 +345,8 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span>    switch_1
         .bind_property(&quot;state&quot;, &amp;switch_2, &quot;state&quot;)
         .flags(BindingFlags::BIDIRECTIONAL)
-        .build();
+        .build()
+        .expect(&quot;Could not bind properties&quot;);
 <span class="boring">
 </span><span class="boring">    // Set up box
 </span><span class="boring">    let gtk_box = Box::builder()
@@ -455,7 +457,8 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build();
+            .build()
+            .expect(&quot;Could not bind properties&quot;);
     }
 }
 <span class="boring">
@@ -529,7 +532,8 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">            Some(decremented_number.to_value())
 </span><span class="boring">        })
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-</span><span class="boring">        .build();
+</span><span class="boring">        .build()
+</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">
 </span><span class="boring">    // The closure will be called
 </span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
@@ -614,7 +618,8 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
             Some(decremented_number.to_value())
         })
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-        .build();
+        .build()
+        .expect(&quot;Could not bind properties&quot;);
 <span class="boring">
 </span><span class="boring">    // The closure will be called
 </span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
@@ -701,7 +706,8 @@ We can do this like this:</p>
 </span><span class="boring">            Some(decremented_number.to_value())
 </span><span class="boring">        })
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-</span><span class="boring">        .build();
+</span><span class="boring">        .build()
+</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">
 </span>    // The closure will be called
     // whenever the property &quot;number&quot; of `button_1` gets changed

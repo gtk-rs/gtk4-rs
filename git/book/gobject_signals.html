@@ -332,7 +332,8 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build();
+</span><span class="boring">            .build()
+</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -457,7 +458,8 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build();
+</span><span class="boring">            .build()
+</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">

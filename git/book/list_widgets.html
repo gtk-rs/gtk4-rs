@@ -882,7 +882,8 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        integer_object
 </span><span class="boring">            .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build();
+</span><span class="boring">            .build()
+</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
@@ -982,7 +983,8 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
         integer_object
             .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build();
+            .build()
+            .expect(&quot;Could not bind properties&quot;);
     });
 <span class="boring">
 </span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
