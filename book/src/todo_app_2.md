@@ -195,7 +195,7 @@ Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 ```
 
 We plan to store our data as a file, so we create a utility function to provide a suitable file path for us.
-We use [`glib::user_config_dir`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_config_dir.html) to get the path to the config directory and create a new subdirectory for our app.
+We use [`glib::user_data_dir`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_data_dir.html) to get the path to the config directory and create a new subdirectory for our app.
 Then we return the file path.
 
 <span class="filename">Filename: listings/todo_app/2/utils.rs</span>
