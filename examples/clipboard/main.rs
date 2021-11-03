@@ -64,7 +64,7 @@ fn build_ui(application: &gtk::Application) {
 
     let paste_btn = gtk::Button::with_label("Paste");
     paste_btn.connect_clicked(clone!(@weak clipboard, @weak into_entry => move |_btn| {
-        clipboard.read_text_async(gio::NONE_CANCELLABLE, clone!(@weak into_entry => move|res| {
+        clipboard.read_text_async(gio::Cancellable::NONE, clone!(@weak into_entry => move|res| {
             if let Ok(Some(text)) = res {
                 into_entry.set_text(&text);
             }
@@ -115,7 +115,7 @@ fn build_ui(application: &gtk::Application) {
         .valign(gtk::Align::Center)
         .build();
     paste_texture_btn.connect_clicked(clone!(@weak clipboard => move |_btn| {
-        clipboard.read_texture_async(gio::NONE_CANCELLABLE, clone!(@weak image_into => move |res| {
+        clipboard.read_texture_async(gio::Cancellable::NONE, clone!(@weak image_into => move |res| {
             if let Ok(Some(texture)) = res {
                 image_into.set_paintable(Some(&texture));
             }

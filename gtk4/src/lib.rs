@@ -200,7 +200,7 @@ pub use closure_expression::ClosureExpression;
 pub use constant_expression::ConstantExpression;
 pub use css_location::CssLocation;
 pub use directory_list::DirectoryListBuilder;
-pub use expression::{Expression, NONE_EXPRESSION};
+pub use expression::Expression;
 pub use expression_watch::ExpressionWatch;
 pub use functions::*;
 pub use glib::signal::Inhibit;

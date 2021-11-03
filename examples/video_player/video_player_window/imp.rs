@@ -19,7 +19,7 @@ impl ObjectSubclass for VideoPlayerWindow {
     fn new() -> Self {
         let dialog = gtk::FileChooserNative::new(
             Some("Open File"),
-            gtk::NONE_WINDOW,
+            gtk::Window::NONE,
             gtk::FileChooserAction::Open,
             Some("Open"),
             Some("Cancel"),

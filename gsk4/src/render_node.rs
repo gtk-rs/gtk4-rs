@@ -27,6 +27,8 @@ impl StaticType for RenderNode {
 }
 
 impl RenderNode {
+    pub const NONE: Option<&'static RenderNode> = None;
+
     #[doc(alias = "gsk_render_node_deserialize")]
     pub fn deserialize(bytes: &glib::Bytes) -> Option<Self> {
         assert_initialized_main_thread!();
@@ -153,8 +155,6 @@ pub unsafe trait IsRenderNode:
     fn upcast(self) -> RenderNode;
     fn upcast_ref(&self) -> &RenderNode;
 }
-
-pub const NONE_RENDER_NODE: Option<&RenderNode> = None;
 
 impl fmt::Display for RenderNode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

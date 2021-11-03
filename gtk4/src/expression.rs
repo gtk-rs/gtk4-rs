@@ -30,8 +30,6 @@ impl AsRef<Expression> for Expression {
     }
 }
 
-pub const NONE_EXPRESSION: Option<&Expression> = None;
-
 // rustdoc-stripper-ignore-next
 /// A common trait implemented by the various [`gtk::Expression`] types.
 ///
@@ -44,6 +42,8 @@ pub unsafe trait IsExpression:
 }
 
 impl Expression {
+    pub const NONE: Option<&'static Expression> = None;
+
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
             if self.type_() == E::static_type() {
