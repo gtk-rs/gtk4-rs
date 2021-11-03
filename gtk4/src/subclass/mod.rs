@@ -57,6 +57,7 @@ pub mod root;
 pub mod scale;
 pub mod scale_button;
 pub mod scrollable;
+pub mod scrolled_window;
 pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
@@ -127,6 +128,7 @@ pub mod prelude {
     pub use super::scale::{ScaleImpl, ScaleImplExt};
     pub use super::scale_button::{ScaleButtonImpl, ScaleButtonImplExt};
     pub use super::scrollable::{ScrollableImpl, ScrollableImplExt};
+    pub use super::scrolled_window::{ScrolledWindowImpl, ScrolledWindowImplExt};
     pub use super::selection_model::{SelectionModelImpl, SelectionModelImplExt};
     pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
     pub use super::sorter::{SorterImpl, SorterImplExt};
