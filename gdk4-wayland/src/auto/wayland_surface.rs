@@ -15,7 +15,9 @@ glib::wrapper! {
 
 impl WaylandSurface {}
 
-pub const NONE_WAYLAND_SURFACE: Option<&WaylandSurface> = None;
+impl WaylandSurface {
+    pub const NONE: Option<&'static WaylandSurface> = None;
+}
 
 impl fmt::Display for WaylandSurface {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

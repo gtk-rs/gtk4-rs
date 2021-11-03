@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SCROLLABLE: Option<&Scrollable> = None;
+impl Scrollable {
+    pub const NONE: Option<&'static Scrollable> = None;
+}
 
 pub trait ScrollableExt: 'static {
     #[doc(alias = "gtk_scrollable_get_border")]

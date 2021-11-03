@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_CELL_AREA_CONTEXT: Option<&CellAreaContext> = None;
+impl CellAreaContext {
+    pub const NONE: Option<&'static CellAreaContext> = None;
+}
 
 pub trait CellAreaContextExt: 'static {
     #[doc(alias = "gtk_cell_area_context_allocate")]

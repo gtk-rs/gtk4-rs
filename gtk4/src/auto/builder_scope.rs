@@ -14,7 +14,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_BUILDER_SCOPE: Option<&BuilderScope> = None;
+impl BuilderScope {
+    pub const NONE: Option<&'static BuilderScope> = None;
+}
 
 pub trait BuilderScopeExt: 'static {}
 

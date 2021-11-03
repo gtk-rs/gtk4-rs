@@ -16,7 +16,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_DRAG_SURFACE: Option<&DragSurface> = None;
+impl DragSurface {
+    pub const NONE: Option<&'static DragSurface> = None;
+}
 
 pub trait DragSurfaceExt: 'static {
     #[doc(alias = "gdk_drag_surface_present")]

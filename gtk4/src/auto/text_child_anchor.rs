@@ -31,7 +31,9 @@ impl Default for TextChildAnchor {
     }
 }
 
-pub const NONE_TEXT_CHILD_ANCHOR: Option<&TextChildAnchor> = None;
+impl TextChildAnchor {
+    pub const NONE: Option<&'static TextChildAnchor> = None;
+}
 
 pub trait TextChildAnchorExt: 'static {
     #[doc(alias = "gtk_text_child_anchor_get_deleted")]

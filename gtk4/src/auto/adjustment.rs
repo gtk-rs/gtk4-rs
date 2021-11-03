@@ -139,7 +139,9 @@ impl AdjustmentBuilder {
     }
 }
 
-pub const NONE_ADJUSTMENT: Option<&Adjustment> = None;
+impl Adjustment {
+    pub const NONE: Option<&'static Adjustment> = None;
+}
 
 pub trait AdjustmentExt: 'static {
     #[doc(alias = "gtk_adjustment_clamp_page")]

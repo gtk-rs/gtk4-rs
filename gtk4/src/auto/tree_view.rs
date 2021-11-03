@@ -564,7 +564,9 @@ impl TreeViewBuilder {
     }
 }
 
-pub const NONE_TREE_VIEW: Option<&TreeView> = None;
+impl TreeView {
+    pub const NONE: Option<&'static TreeView> = None;
+}
 
 pub trait TreeViewExt: 'static {
     #[doc(alias = "gtk_tree_view_append_column")]

@@ -442,7 +442,9 @@ impl ButtonBuilder {
     }
 }
 
-pub const NONE_BUTTON: Option<&Button> = None;
+impl Button {
+    pub const NONE: Option<&'static Button> = None;
+}
 
 pub trait ButtonExt: 'static {
     #[doc(alias = "gtk_button_get_child")]

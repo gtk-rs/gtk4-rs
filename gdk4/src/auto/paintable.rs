@@ -36,7 +36,9 @@ impl Paintable {
     }
 }
 
-pub const NONE_PAINTABLE: Option<&Paintable> = None;
+impl Paintable {
+    pub const NONE: Option<&'static Paintable> = None;
+}
 
 pub trait PaintableExt: 'static {
     #[doc(alias = "gdk_paintable_compute_concrete_size")]

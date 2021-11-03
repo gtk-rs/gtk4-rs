@@ -85,7 +85,9 @@ impl IMMulticontextBuilder {
     }
 }
 
-pub const NONE_IM_MULTICONTEXT: Option<&IMMulticontext> = None;
+impl IMMulticontext {
+    pub const NONE: Option<&'static IMMulticontext> = None;
+}
 
 pub trait IMMulticontextExt: 'static {
     #[doc(alias = "gtk_im_multicontext_get_context_id")]

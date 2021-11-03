@@ -24,7 +24,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SEAT: Option<&Seat> = None;
+impl Seat {
+    pub const NONE: Option<&'static Seat> = None;
+}
 
 pub trait SeatExt: 'static {
     #[doc(alias = "gdk_seat_get_capabilities")]

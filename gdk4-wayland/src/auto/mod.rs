@@ -21,7 +21,7 @@ mod wayland_seat;
 pub use self::wayland_seat::WaylandSeat;
 
 mod wayland_surface;
-pub use self::wayland_surface::{WaylandSurface, NONE_WAYLAND_SURFACE};
+pub use self::wayland_surface::WaylandSurface;
 
 mod wayland_toplevel;
 pub use self::wayland_toplevel::WaylandToplevel;

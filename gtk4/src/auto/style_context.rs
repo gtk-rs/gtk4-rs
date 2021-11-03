@@ -56,7 +56,9 @@ impl StyleContext {
     }
 }
 
-pub const NONE_STYLE_CONTEXT: Option<&StyleContext> = None;
+impl StyleContext {
+    pub const NONE: Option<&'static StyleContext> = None;
+}
 
 pub trait StyleContextExt: 'static {
     #[doc(alias = "gtk_style_context_add_class")]

@@ -55,7 +55,9 @@ impl Surface {
     }
 }
 
-pub const NONE_SURFACE: Option<&Surface> = None;
+impl Surface {
+    pub const NONE: Option<&'static Surface> = None;
+}
 
 pub trait SurfaceExt: 'static {
     #[doc(alias = "gdk_surface_beep")]

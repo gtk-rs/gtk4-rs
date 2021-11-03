@@ -30,7 +30,9 @@ impl Default for WindowGroup {
     }
 }
 
-pub const NONE_WINDOW_GROUP: Option<&WindowGroup> = None;
+impl WindowGroup {
+    pub const NONE: Option<&'static WindowGroup> = None;
+}
 
 pub trait WindowGroupExt: 'static {
     #[doc(alias = "gtk_window_group_add_window")]

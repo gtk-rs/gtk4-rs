@@ -364,7 +364,9 @@ impl DrawingAreaBuilder {
     }
 }
 
-pub const NONE_DRAWING_AREA: Option<&DrawingArea> = None;
+impl DrawingArea {
+    pub const NONE: Option<&'static DrawingArea> = None;
+}
 
 pub trait DrawingAreaExt: 'static {
     #[doc(alias = "gtk_drawing_area_get_content_height")]

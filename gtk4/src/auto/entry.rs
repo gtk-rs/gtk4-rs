@@ -753,7 +753,9 @@ impl EntryBuilder {
     }
 }
 
-pub const NONE_ENTRY: Option<&Entry> = None;
+impl Entry {
+    pub const NONE: Option<&'static Entry> = None;
+}
 
 pub trait EntryExt: 'static {
     #[doc(alias = "gtk_entry_get_activates_default")]

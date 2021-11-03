@@ -356,7 +356,9 @@ impl FlowBoxChildBuilder {
     }
 }
 
-pub const NONE_FLOW_BOX_CHILD: Option<&FlowBoxChild> = None;
+impl FlowBoxChild {
+    pub const NONE: Option<&'static FlowBoxChild> = None;
+}
 
 pub trait FlowBoxChildExt: 'static {
     #[doc(alias = "gtk_flow_box_child_changed")]

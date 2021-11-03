@@ -16,7 +16,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TREE_DRAG_SOURCE: Option<&TreeDragSource> = None;
+impl TreeDragSource {
+    pub const NONE: Option<&'static TreeDragSource> = None;
+}
 
 pub trait TreeDragSourceExt: 'static {
     #[doc(alias = "gtk_tree_drag_source_drag_data_delete")]

@@ -29,7 +29,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_DEVICE: Option<&Device> = None;
+impl Device {
+    pub const NONE: Option<&'static Device> = None;
+}
 
 pub trait DeviceExt: 'static {
     #[doc(alias = "gdk_device_get_caps_lock_state")]

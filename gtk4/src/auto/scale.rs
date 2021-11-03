@@ -472,7 +472,9 @@ impl ScaleBuilder {
     }
 }
 
-pub const NONE_SCALE: Option<&Scale> = None;
+impl Scale {
+    pub const NONE: Option<&'static Scale> = None;
+}
 
 pub trait ScaleExt: 'static {
     #[doc(alias = "gtk_scale_add_mark")]

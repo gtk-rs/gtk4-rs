@@ -20,7 +20,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_COLOR_CHOOSER: Option<&ColorChooser> = None;
+impl ColorChooser {
+    pub const NONE: Option<&'static ColorChooser> = None;
+}
 
 pub trait ColorChooserExt: 'static {
     #[doc(alias = "gtk_color_chooser_get_rgba")]

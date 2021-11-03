@@ -87,7 +87,9 @@ impl Texture {
     }
 }
 
-pub const NONE_TEXTURE: Option<&Texture> = None;
+impl Texture {
+    pub const NONE: Option<&'static Texture> = None;
+}
 
 pub trait TextureExt: 'static {
     //#[cfg(any(feature = "v4_6", feature = "dox"))]

@@ -17,7 +17,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_DRAW_CONTEXT: Option<&DrawContext> = None;
+impl DrawContext {
+    pub const NONE: Option<&'static DrawContext> = None;
+}
 
 pub trait DrawContextExt: 'static {
     #[doc(alias = "gdk_draw_context_begin_frame")]

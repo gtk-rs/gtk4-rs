@@ -29,7 +29,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_RANGE: Option<&Range> = None;
+impl Range {
+    pub const NONE: Option<&'static Range> = None;
+}
 
 pub trait RangeExt: 'static {
     #[doc(alias = "gtk_range_get_adjustment")]

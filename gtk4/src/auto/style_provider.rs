@@ -20,7 +20,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_STYLE_PROVIDER: Option<&StyleProvider> = None;
+impl StyleProvider {
+    pub const NONE: Option<&'static StyleProvider> = None;
+}
 
 pub trait StyleProviderExt: 'static {
     #[doc(alias = "gtk-private-changed")]

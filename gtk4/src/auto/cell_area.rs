@@ -35,7 +35,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_CELL_AREA: Option<&CellArea> = None;
+impl CellArea {
+    pub const NONE: Option<&'static CellArea> = None;
+}
 
 pub trait CellAreaExt: 'static {
     #[doc(alias = "gtk_cell_area_activate")]

@@ -137,7 +137,9 @@ impl GestureDragBuilder {
     }
 }
 
-pub const NONE_GESTURE_DRAG: Option<&GestureDrag> = None;
+impl GestureDrag {
+    pub const NONE: Option<&'static GestureDrag> = None;
+}
 
 pub trait GestureDragExt: 'static {
     #[doc(alias = "gtk_gesture_drag_get_offset")]

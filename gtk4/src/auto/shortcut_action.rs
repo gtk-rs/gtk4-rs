@@ -36,7 +36,9 @@ impl fmt::Display for ShortcutAction {
     }
 }
 
-pub const NONE_SHORTCUT_ACTION: Option<&ShortcutAction> = None;
+impl ShortcutAction {
+    pub const NONE: Option<&'static ShortcutAction> = None;
+}
 
 pub trait ShortcutActionExt: 'static {
     #[doc(alias = "gtk_shortcut_action_activate")]

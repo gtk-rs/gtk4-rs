@@ -22,7 +22,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_GESTURE_SINGLE: Option<&GestureSingle> = None;
+impl GestureSingle {
+    pub const NONE: Option<&'static GestureSingle> = None;
+}
 
 pub trait GestureSingleExt: 'static {
     #[doc(alias = "gtk_gesture_single_get_button")]

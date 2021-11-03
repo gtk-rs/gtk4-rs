@@ -34,7 +34,9 @@ impl fmt::Display for ShortcutTrigger {
     }
 }
 
-pub const NONE_SHORTCUT_TRIGGER: Option<&ShortcutTrigger> = None;
+impl ShortcutTrigger {
+    pub const NONE: Option<&'static ShortcutTrigger> = None;
+}
 
 pub trait ShortcutTriggerExt: 'static {
     #[doc(alias = "gtk_shortcut_trigger_to_label")]

@@ -14,7 +14,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_CONSTRAINT_TARGET: Option<&ConstraintTarget> = None;
+impl ConstraintTarget {
+    pub const NONE: Option<&'static ConstraintTarget> = None;
+}
 
 pub trait ConstraintTargetExt: 'static {}
 

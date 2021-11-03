@@ -584,7 +584,9 @@ impl ApplicationWindowBuilder {
     }
 }
 
-pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
+impl ApplicationWindow {
+    pub const NONE: Option<&'static ApplicationWindow> = None;
+}
 
 pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "gtk_application_window_get_help_overlay")]

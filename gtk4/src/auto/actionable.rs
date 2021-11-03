@@ -24,7 +24,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_ACTIONABLE: Option<&Actionable> = None;
+impl Actionable {
+    pub const NONE: Option<&'static Actionable> = None;
+}
 
 pub trait ActionableExt: 'static {
     #[doc(alias = "gtk_actionable_get_action_name")]

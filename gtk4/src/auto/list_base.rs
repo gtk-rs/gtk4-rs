@@ -26,7 +26,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_LIST_BASE: Option<&ListBase> = None;
+impl ListBase {
+    pub const NONE: Option<&'static ListBase> = None;
+}
 
 pub trait ListBaseExt: 'static {
     #[doc(alias = "orientation")]

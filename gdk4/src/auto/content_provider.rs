@@ -60,7 +60,9 @@ impl ContentProvider {
     }
 }
 
-pub const NONE_CONTENT_PROVIDER: Option<&ContentProvider> = None;
+impl ContentProvider {
+    pub const NONE: Option<&'static ContentProvider> = None;
+}
 
 pub trait ContentProviderExt: 'static {
     #[doc(alias = "gdk_content_provider_content_changed")]

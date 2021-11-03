@@ -17,7 +17,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_DEVICE_PAD: Option<&DevicePad> = None;
+impl DevicePad {
+    pub const NONE: Option<&'static DevicePad> = None;
+}
 
 pub trait DevicePadExt: 'static {
     #[doc(alias = "gdk_device_pad_get_feature_group")]

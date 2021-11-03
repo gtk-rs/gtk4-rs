@@ -580,7 +580,9 @@ impl DialogBuilder {
     }
 }
 
-pub const NONE_DIALOG: Option<&Dialog> = None;
+impl Dialog {
+    pub const NONE: Option<&'static Dialog> = None;
+}
 
 pub trait DialogExt: 'static {
     #[doc(alias = "gtk_dialog_add_action_widget")]

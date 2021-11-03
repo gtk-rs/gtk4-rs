@@ -14,7 +14,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SHORTCUT_MANAGER: Option<&ShortcutManager> = None;
+impl ShortcutManager {
+    pub const NONE: Option<&'static ShortcutManager> = None;
+}
 
 pub trait ShortcutManagerExt: 'static {}
 

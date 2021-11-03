@@ -396,7 +396,9 @@ impl ScaleButtonBuilder {
     }
 }
 
-pub const NONE_SCALE_BUTTON: Option<&ScaleButton> = None;
+impl ScaleButton {
+    pub const NONE: Option<&'static ScaleButton> = None;
+}
 
 pub trait ScaleButtonExt: 'static {
     #[doc(alias = "gtk_scale_button_get_adjustment")]

@@ -24,7 +24,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_GESTURE: Option<&Gesture> = None;
+impl Gesture {
+    pub const NONE: Option<&'static Gesture> = None;
+}
 
 pub trait GestureExt: 'static {
     #[doc(alias = "gtk_gesture_get_bounding_box")]

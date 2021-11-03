@@ -30,7 +30,9 @@ impl Renderer {
     }
 }
 
-pub const NONE_RENDERER: Option<&Renderer> = None;
+impl Renderer {
+    pub const NONE: Option<&'static Renderer> = None;
+}
 
 pub trait GskRenderer: 'static {
     #[doc(alias = "gsk_renderer_get_surface")]

@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_FONT_CHOOSER: Option<&FontChooser> = None;
+impl FontChooser {
+    pub const NONE: Option<&'static FontChooser> = None;
+}
 
 pub trait FontChooserExt: 'static {
     #[doc(alias = "gtk_font_chooser_get_font")]

@@ -33,7 +33,9 @@ impl TreeModelSort {
     }
 }
 
-pub const NONE_TREE_MODEL_SORT: Option<&TreeModelSort> = None;
+impl TreeModelSort {
+    pub const NONE: Option<&'static TreeModelSort> = None;
+}
 
 pub trait TreeModelSortExt: 'static {
     #[doc(alias = "gtk_tree_model_sort_clear_cache")]

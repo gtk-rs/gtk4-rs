@@ -89,7 +89,9 @@ impl TextMarkBuilder {
     }
 }
 
-pub const NONE_TEXT_MARK: Option<&TextMark> = None;
+impl TextMark {
+    pub const NONE: Option<&'static TextMark> = None;
+}
 
 pub trait TextMarkExt: 'static {
     #[doc(alias = "gtk_text_mark_get_buffer")]

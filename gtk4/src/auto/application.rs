@@ -125,7 +125,9 @@ impl ApplicationBuilder {
     }
 }
 
-pub const NONE_APPLICATION: Option<&Application> = None;
+impl Application {
+    pub const NONE: Option<&'static Application> = None;
+}
 
 pub trait GtkApplicationExt: 'static {
     #[doc(alias = "gtk_application_add_window")]

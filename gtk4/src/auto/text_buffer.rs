@@ -101,7 +101,9 @@ impl TextBufferBuilder {
     }
 }
 
-pub const NONE_TEXT_BUFFER: Option<&TextBuffer> = None;
+impl TextBuffer {
+    pub const NONE: Option<&'static TextBuffer> = None;
+}
 
 pub trait TextBufferExt: 'static {
     #[doc(alias = "gtk_text_buffer_add_mark")]
