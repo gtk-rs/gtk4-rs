@@ -107,7 +107,7 @@ pub use crossing_event::CrossingEvent;
 pub use delete_event::DeleteEvent;
 pub use display::Backend;
 pub use dnd_event::DNDEvent;
-pub use event::{Event, EventKind, NONE_EVENT};
+pub use event::{Event, EventKind};
 pub use focus_event::FocusEvent;
 pub use grab_broken_event::GrabBrokenEvent;
 pub use key_event::KeyEvent;

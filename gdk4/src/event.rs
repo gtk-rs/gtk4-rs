@@ -19,8 +19,6 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_EVENT: Option<&Event> = None;
-
 impl StaticType for Event {
     #[doc(alias = "gdk_event_get_type")]
     fn static_type() -> Type {
@@ -29,6 +27,8 @@ impl StaticType for Event {
 }
 
 impl Event {
+    pub const NONE: Option<&'static Event> = None;
+
     pub fn downcast<T: EventKind>(self) -> Result<T, Event> {
         unsafe {
             if T::event_types().contains(&self.event_type()) {

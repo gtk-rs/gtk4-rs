@@ -76,7 +76,7 @@ impl PropertyExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{test_synced, NONE_EXPRESSION};
+    use crate::test_synced;
     use glib::StaticType;
 
     #[test]
@@ -84,7 +84,7 @@ mod tests {
         test_synced(move || {
             let _prop_expr = PropertyExpression::new(
                 crate::StringObject::static_type(),
-                NONE_EXPRESSION,
+                crate::Expression::NONE,
                 "string",
             );
         });
