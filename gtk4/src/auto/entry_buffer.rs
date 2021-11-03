@@ -74,7 +74,9 @@ impl EntryBufferBuilder {
     }
 }
 
-pub const NONE_ENTRY_BUFFER: Option<&EntryBuffer> = None;
+impl EntryBuffer {
+    pub const NONE: Option<&'static EntryBuffer> = None;
+}
 
 pub trait EntryBufferExt: 'static {
     #[doc(alias = "gtk_entry_buffer_emit_deleted_text")]

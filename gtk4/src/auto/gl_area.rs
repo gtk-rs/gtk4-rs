@@ -382,7 +382,9 @@ impl GLAreaBuilder {
     }
 }
 
-pub const NONE_GL_AREA: Option<&GLArea> = None;
+impl GLArea {
+    pub const NONE: Option<&'static GLArea> = None;
+}
 
 pub trait GLAreaExt: 'static {
     #[doc(alias = "gtk_gl_area_attach_buffers")]

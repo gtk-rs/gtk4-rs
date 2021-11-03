@@ -26,7 +26,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_CELL_EDITABLE: Option<&CellEditable> = None;
+impl CellEditable {
+    pub const NONE: Option<&'static CellEditable> = None;
+}
 
 pub trait CellEditableExt: 'static {
     #[doc(alias = "gtk_cell_editable_editing_done")]

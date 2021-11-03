@@ -84,7 +84,9 @@ impl IMContextSimpleBuilder {
     }
 }
 
-pub const NONE_IM_CONTEXT_SIMPLE: Option<&IMContextSimple> = None;
+impl IMContextSimple {
+    pub const NONE: Option<&'static IMContextSimple> = None;
+}
 
 impl fmt::Display for IMContextSimple {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

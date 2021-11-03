@@ -19,7 +19,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_APP_CHOOSER: Option<&AppChooser> = None;
+impl AppChooser {
+    pub const NONE: Option<&'static AppChooser> = None;
+}
 
 pub trait AppChooserExt: 'static {
     #[doc(alias = "gtk_app_chooser_get_app_info")]

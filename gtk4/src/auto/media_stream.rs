@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_MEDIA_STREAM: Option<&MediaStream> = None;
+impl MediaStream {
+    pub const NONE: Option<&'static MediaStream> = None;
+}
 
 pub trait MediaStreamExt: 'static {
     #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]

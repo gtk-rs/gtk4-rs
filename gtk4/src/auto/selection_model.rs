@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
+impl SelectionModel {
+    pub const NONE: Option<&'static SelectionModel> = None;
+}
 
 pub trait SelectionModelExt: 'static {
     #[doc(alias = "gtk_selection_model_get_selection")]

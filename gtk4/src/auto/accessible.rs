@@ -25,7 +25,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_ACCESSIBLE: Option<&Accessible> = None;
+impl Accessible {
+    pub const NONE: Option<&'static Accessible> = None;
+}
 
 pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_get_accessible_role")]

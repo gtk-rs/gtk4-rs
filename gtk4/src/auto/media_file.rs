@@ -79,7 +79,9 @@ impl Default for MediaFile {
     }
 }
 
-pub const NONE_MEDIA_FILE: Option<&MediaFile> = None;
+impl MediaFile {
+    pub const NONE: Option<&'static MediaFile> = None;
+}
 
 pub trait MediaFileExt: 'static {
     #[doc(alias = "gtk_media_file_clear")]
@@ -97,7 +99,7 @@ pub trait MediaFileExt: 'static {
     fn set_file(&self, file: Option<&impl IsA<gio::File>>);
 
     #[doc(alias = "gtk_media_file_set_filename")]
-    fn set_filename(&self, filename: impl AsRef<std::path::Path>);
+    fn set_filename(&self, filename: Option<impl AsRef<std::path::Path>>);
 
     #[doc(alias = "gtk_media_file_set_input_stream")]
     fn set_input_stream(&self, stream: Option<&impl IsA<gio::InputStream>>);
@@ -140,11 +142,11 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    fn set_filename(&self, filename: impl AsRef<std::path::Path>) {
+    fn set_filename(&self, filename: Option<impl AsRef<std::path::Path>>) {
         unsafe {
             ffi::gtk_media_file_set_filename(
                 self.as_ref().to_glib_none().0,
-                filename.as_ref().to_glib_none().0,
+                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

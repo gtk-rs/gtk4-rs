@@ -422,7 +422,9 @@ impl PopoverBuilder {
     }
 }
 
-pub const NONE_POPOVER: Option<&Popover> = None;
+impl Popover {
+    pub const NONE: Option<&'static Popover> = None;
+}
 
 pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_get_autohide")]

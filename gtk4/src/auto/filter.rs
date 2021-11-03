@@ -22,7 +22,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_FILTER: Option<&Filter> = None;
+impl Filter {
+    pub const NONE: Option<&'static Filter> = None;
+}
 
 pub trait FilterExt: 'static {
     #[doc(alias = "gtk_filter_changed")]

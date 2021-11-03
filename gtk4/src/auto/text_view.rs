@@ -601,7 +601,9 @@ impl TextViewBuilder {
     }
 }
 
-pub const NONE_TEXT_VIEW: Option<&TextView> = None;
+impl TextView {
+    pub const NONE: Option<&'static TextView> = None;
+}
 
 pub trait TextViewExt: 'static {
     #[doc(alias = "gtk_text_view_add_child_at_anchor")]

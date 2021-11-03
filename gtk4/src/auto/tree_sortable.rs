@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TREE_SORTABLE: Option<&TreeSortable> = None;
+impl TreeSortable {
+    pub const NONE: Option<&'static TreeSortable> = None;
+}
 
 pub trait TreeSortableExt: 'static {
     #[doc(alias = "gtk_tree_sortable_has_default_sort_func")]

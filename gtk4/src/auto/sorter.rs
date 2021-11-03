@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SORTER: Option<&Sorter> = None;
+impl Sorter {
+    pub const NONE: Option<&'static Sorter> = None;
+}
 
 pub trait SorterExt: 'static {
     #[doc(alias = "gtk_sorter_changed")]

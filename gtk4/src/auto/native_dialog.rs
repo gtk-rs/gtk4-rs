@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_NATIVE_DIALOG: Option<&NativeDialog> = None;
+impl NativeDialog {
+    pub const NONE: Option<&'static NativeDialog> = None;
+}
 
 pub trait NativeDialogExt: 'static {
     #[doc(alias = "gtk_native_dialog_destroy")]

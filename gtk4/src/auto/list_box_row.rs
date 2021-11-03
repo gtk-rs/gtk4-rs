@@ -393,7 +393,9 @@ impl ListBoxRowBuilder {
     }
 }
 
-pub const NONE_LIST_BOX_ROW: Option<&ListBoxRow> = None;
+impl ListBoxRow {
+    pub const NONE: Option<&'static ListBoxRow> = None;
+}
 
 pub trait ListBoxRowExt: 'static {
     #[doc(alias = "gtk_list_box_row_changed")]

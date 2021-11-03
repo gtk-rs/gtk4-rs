@@ -912,7 +912,9 @@ impl TextTagBuilder {
     }
 }
 
-pub const NONE_TEXT_TAG: Option<&TextTag> = None;
+impl TextTag {
+    pub const NONE: Option<&'static TextTag> = None;
+}
 
 pub trait TextTagExt: 'static {
     #[doc(alias = "gtk_text_tag_changed")]

@@ -27,7 +27,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_IM_CONTEXT: Option<&IMContext> = None;
+impl IMContext {
+    pub const NONE: Option<&'static IMContext> = None;
+}
 
 pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_delete_surrounding")]

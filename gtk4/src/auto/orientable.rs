@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_ORIENTABLE: Option<&Orientable> = None;
+impl Orientable {
+    pub const NONE: Option<&'static Orientable> = None;
+}
 
 pub trait OrientableExt: 'static {
     #[doc(alias = "gtk_orientable_get_orientation")]

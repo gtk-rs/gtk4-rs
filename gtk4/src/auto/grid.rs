@@ -404,7 +404,9 @@ impl GridBuilder {
     }
 }
 
-pub const NONE_GRID: Option<&Grid> = None;
+impl Grid {
+    pub const NONE: Option<&'static Grid> = None;
+}
 
 pub trait GridExt: 'static {
     #[doc(alias = "gtk_grid_attach")]

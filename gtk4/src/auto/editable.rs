@@ -27,7 +27,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_EDITABLE: Option<&Editable> = None;
+impl Editable {
+    pub const NONE: Option<&'static Editable> = None;
+}
 
 pub trait EditableExt: 'static {
     #[doc(alias = "gtk_editable_delete_selection")]

@@ -53,7 +53,9 @@ impl GLContext {
     }
 }
 
-pub const NONE_GL_CONTEXT: Option<&GLContext> = None;
+impl GLContext {
+    pub const NONE: Option<&'static GLContext> = None;
+}
 
 pub trait GLContextExt: 'static {
     #[cfg(any(feature = "v4_6", feature = "dox"))]

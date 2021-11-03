@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_FILE_CHOOSER: Option<&FileChooser> = None;
+impl FileChooser {
+    pub const NONE: Option<&'static FileChooser> = None;
+}
 
 pub trait FileChooserExt: 'static {
     #[doc(alias = "gtk_file_chooser_add_filter")]

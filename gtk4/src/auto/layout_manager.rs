@@ -20,7 +20,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_LAYOUT_MANAGER: Option<&LayoutManager> = None;
+impl LayoutManager {
+    pub const NONE: Option<&'static LayoutManager> = None;
+}
 
 pub trait LayoutManagerExt: 'static {
     #[doc(alias = "gtk_layout_manager_allocate")]

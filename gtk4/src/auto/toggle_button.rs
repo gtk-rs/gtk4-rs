@@ -453,7 +453,9 @@ impl ToggleButtonBuilder {
     }
 }
 
-pub const NONE_TOGGLE_BUTTON: Option<&ToggleButton> = None;
+impl ToggleButton {
+    pub const NONE: Option<&'static ToggleButton> = None;
+}
 
 pub trait ToggleButtonExt: 'static {
     #[doc(alias = "gtk_toggle_button_get_active")]

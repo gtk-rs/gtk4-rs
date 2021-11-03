@@ -52,11 +52,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_filename")]
     #[doc(alias = "new_for_filename")]
-    pub fn for_filename(filename: impl AsRef<std::path::Path>) -> Picture {
+    pub fn for_filename(filename: Option<impl AsRef<std::path::Path>>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_filename(
-                filename.as_ref().to_glib_none().0,
+                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -166,11 +166,11 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_set_filename")]
-    pub fn set_filename(&self, filename: impl AsRef<std::path::Path>) {
+    pub fn set_filename(&self, filename: Option<impl AsRef<std::path::Path>>) {
         unsafe {
             ffi::gtk_picture_set_filename(
                 self.to_glib_none().0,
-                filename.as_ref().to_glib_none().0,
+                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

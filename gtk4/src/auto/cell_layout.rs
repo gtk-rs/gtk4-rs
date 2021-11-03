@@ -20,7 +20,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_CELL_LAYOUT: Option<&CellLayout> = None;
+impl CellLayout {
+    pub const NONE: Option<&'static CellLayout> = None;
+}
 
 pub trait CellLayoutExt: 'static {
     #[doc(alias = "gtk_cell_layout_add_attribute")]

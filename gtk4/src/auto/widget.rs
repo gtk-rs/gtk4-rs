@@ -69,7 +69,9 @@ impl fmt::Display for Widget {
     }
 }
 
-pub const NONE_WIDGET: Option<&Widget> = None;
+impl Widget {
+    pub const NONE: Option<&'static Widget> = None;
+}
 
 pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_action_set_enabled")]

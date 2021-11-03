@@ -342,7 +342,9 @@ impl FixedBuilder {
     }
 }
 
-pub const NONE_FIXED: Option<&Fixed> = None;
+impl Fixed {
+    pub const NONE: Option<&'static Fixed> = None;
+}
 
 pub trait FixedExt: 'static {
     #[doc(alias = "gtk_fixed_get_child_position")]

@@ -16,7 +16,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_APP_LAUNCH_CONTEXT: Option<&AppLaunchContext> = None;
+impl AppLaunchContext {
+    pub const NONE: Option<&'static AppLaunchContext> = None;
+}
 
 pub trait AppLaunchContextExt: 'static {
     #[doc(alias = "gdk_app_launch_context_get_display")]

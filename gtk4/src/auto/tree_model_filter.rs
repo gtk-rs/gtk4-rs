@@ -21,7 +21,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TREE_MODEL_FILTER: Option<&TreeModelFilter> = None;
+impl TreeModelFilter {
+    pub const NONE: Option<&'static TreeModelFilter> = None;
+}
 
 pub trait TreeModelFilterExt: 'static {
     #[doc(alias = "gtk_tree_model_filter_clear_cache")]

@@ -18,7 +18,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_POPUP: Option<&Popup> = None;
+impl Popup {
+    pub const NONE: Option<&'static Popup> = None;
+}
 
 pub trait PopupExt: 'static {
     #[doc(alias = "gdk_popup_get_autohide")]

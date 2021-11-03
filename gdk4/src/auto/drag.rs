@@ -52,7 +52,9 @@ impl Drag {
     }
 }
 
-pub const NONE_DRAG: Option<&Drag> = None;
+impl Drag {
+    pub const NONE: Option<&'static Drag> = None;
+}
 
 pub trait DragExt: 'static {
     #[doc(alias = "gdk_drag_drop_done")]

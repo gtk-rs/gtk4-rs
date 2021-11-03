@@ -14,7 +14,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_SYMBOLIC_PAINTABLE: Option<&SymbolicPaintable> = None;
+impl SymbolicPaintable {
+    pub const NONE: Option<&'static SymbolicPaintable> = None;
+}
 
 pub trait SymbolicPaintableExt: 'static {}
 

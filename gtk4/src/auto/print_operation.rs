@@ -214,7 +214,9 @@ impl PrintOperationBuilder {
     }
 }
 
-pub const NONE_PRINT_OPERATION: Option<&PrintOperation> = None;
+impl PrintOperation {
+    pub const NONE: Option<&'static PrintOperation> = None;
+}
 
 pub trait PrintOperationExt: 'static {
     #[doc(alias = "gtk_print_operation_cancel")]

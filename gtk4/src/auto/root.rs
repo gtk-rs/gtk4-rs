@@ -20,7 +20,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_ROOT: Option<&Root> = None;
+impl Root {
+    pub const NONE: Option<&'static Root> = None;
+}
 
 pub trait RootExt: 'static {
     #[doc(alias = "gtk_root_get_focus")]

@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TREE_MODEL: Option<&TreeModel> = None;
+impl TreeModel {
+    pub const NONE: Option<&'static TreeModel> = None;
+}
 
 pub trait TreeModelExt: 'static {
     #[doc(alias = "gtk_tree_model_foreach")]

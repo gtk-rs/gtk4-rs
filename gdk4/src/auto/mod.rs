@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 mod app_launch_context;
-pub use self::app_launch_context::{AppLaunchContext, NONE_APP_LAUNCH_CONTEXT};
+pub use self::app_launch_context::AppLaunchContext;
 
 mod cairo_context;
 pub use self::cairo_context::CairoContext;
@@ -16,7 +16,7 @@ mod content_deserializer;
 pub use self::content_deserializer::ContentDeserializer;
 
 mod content_provider;
-pub use self::content_provider::{ContentProvider, NONE_CONTENT_PROVIDER};
+pub use self::content_provider::ContentProvider;
 
 mod content_serializer;
 pub use self::content_serializer::ContentSerializer;
@@ -26,29 +26,29 @@ pub use self::cursor::Cursor;
 pub use self::cursor::CursorBuilder;
 
 mod device;
-pub use self::device::{Device, NONE_DEVICE};
+pub use self::device::Device;
 
 mod device_pad;
-pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
+pub use self::device_pad::DevicePad;
 
 mod device_tool;
 pub use self::device_tool::DeviceTool;
 pub use self::device_tool::DeviceToolBuilder;
 
 mod display;
-pub use self::display::{Display, NONE_DISPLAY};
+pub use self::display::Display;
 
 mod display_manager;
 pub use self::display_manager::DisplayManager;
 
 mod drag;
-pub use self::drag::{Drag, NONE_DRAG};
+pub use self::drag::Drag;
 
 mod drag_surface;
-pub use self::drag_surface::{DragSurface, NONE_DRAG_SURFACE};
+pub use self::drag_surface::DragSurface;
 
 mod draw_context;
-pub use self::draw_context::{DrawContext, NONE_DRAW_CONTEXT};
+pub use self::draw_context::DrawContext;
 
 mod drop;
 pub use self::drop::Drop;
@@ -57,7 +57,7 @@ mod frame_clock;
 pub use self::frame_clock::FrameClock;
 
 mod gl_context;
-pub use self::gl_context::{GLContext, NONE_GL_CONTEXT};
+pub use self::gl_context::GLContext;
 
 mod gl_texture;
 pub use self::gl_texture::GLTexture;
@@ -66,28 +66,28 @@ mod memory_texture;
 pub use self::memory_texture::MemoryTexture;
 
 mod monitor;
-pub use self::monitor::{Monitor, NONE_MONITOR};
+pub use self::monitor::Monitor;
 
 mod paintable;
-pub use self::paintable::{Paintable, NONE_PAINTABLE};
+pub use self::paintable::Paintable;
 
 mod popup;
-pub use self::popup::{Popup, NONE_POPUP};
+pub use self::popup::Popup;
 
 mod seat;
-pub use self::seat::{Seat, NONE_SEAT};
+pub use self::seat::Seat;
 
 mod snapshot;
 pub use self::snapshot::Snapshot;
 
 mod surface;
-pub use self::surface::{Surface, NONE_SURFACE};
+pub use self::surface::Surface;
 
 mod texture;
-pub use self::texture::{Texture, NONE_TEXTURE};
+pub use self::texture::Texture;
 
 mod toplevel;
-pub use self::toplevel::{Toplevel, NONE_TOPLEVEL};
+pub use self::toplevel::Toplevel;
 
 mod vulkan_context;
 pub use self::vulkan_context::VulkanContext;

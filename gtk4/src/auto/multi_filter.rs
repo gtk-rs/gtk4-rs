@@ -17,7 +17,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_MULTI_FILTER: Option<&MultiFilter> = None;
+impl MultiFilter {
+    pub const NONE: Option<&'static MultiFilter> = None;
+}
 
 pub trait MultiFilterExt: 'static {
     #[doc(alias = "gtk_multi_filter_append")]

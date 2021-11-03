@@ -162,9 +162,12 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_file")]
-    pub fn set_from_file(&self, filename: impl AsRef<std::path::Path>) {
+    pub fn set_from_file(&self, filename: Option<impl AsRef<std::path::Path>>) {
         unsafe {
-            ffi::gtk_image_set_from_file(self.to_glib_none().0, filename.as_ref().to_glib_none().0);
+            ffi::gtk_image_set_from_file(
+                self.to_glib_none().0,
+                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 

@@ -55,7 +55,9 @@ impl fmt::Display for Display {
     }
 }
 
-pub const NONE_DISPLAY: Option<&Display> = None;
+impl Display {
+    pub const NONE: Option<&'static Display> = None;
+}
 
 pub trait DisplayExt: 'static {
     #[doc(alias = "gdk_display_beep")]

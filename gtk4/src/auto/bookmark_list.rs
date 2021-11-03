@@ -21,11 +21,14 @@ glib::wrapper! {
 
 impl BookmarkList {
     #[doc(alias = "gtk_bookmark_list_new")]
-    pub fn new(filename: impl AsRef<std::path::Path>, attributes: Option<&str>) -> BookmarkList {
+    pub fn new(
+        filename: Option<impl AsRef<std::path::Path>>,
+        attributes: Option<&str>,
+    ) -> BookmarkList {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_bookmark_list_new(
-                filename.as_ref().to_glib_none().0,
+                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
                 attributes.to_glib_none().0,
             ))
         }

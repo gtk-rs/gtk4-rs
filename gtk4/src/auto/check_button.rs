@@ -435,7 +435,9 @@ impl CheckButtonBuilder {
     }
 }
 
-pub const NONE_CHECK_BUTTON: Option<&CheckButton> = None;
+impl CheckButton {
+    pub const NONE: Option<&'static CheckButton> = None;
+}
 
 pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_get_active")]

@@ -22,7 +22,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_PRINT_OPERATION_PREVIEW: Option<&PrintOperationPreview> = None;
+impl PrintOperationPreview {
+    pub const NONE: Option<&'static PrintOperationPreview> = None;
+}
 
 pub trait PrintOperationPreviewExt: 'static {
     #[doc(alias = "gtk_print_operation_preview_end_preview")]

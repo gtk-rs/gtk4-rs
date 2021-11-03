@@ -16,7 +16,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TREE_DRAG_DEST: Option<&TreeDragDest> = None;
+impl TreeDragDest {
+    pub const NONE: Option<&'static TreeDragDest> = None;
+}
 
 pub trait TreeDragDestExt: 'static {
     #[doc(alias = "gtk_tree_drag_dest_drag_data_received")]

@@ -611,7 +611,9 @@ impl CellRendererTextBuilder {
     }
 }
 
-pub const NONE_CELL_RENDERER_TEXT: Option<&CellRendererText> = None;
+impl CellRendererText {
+    pub const NONE: Option<&'static CellRendererText> = None;
+}
 
 pub trait CellRendererTextExt: 'static {
     #[doc(alias = "gtk_cell_renderer_text_set_fixed_height_from_font")]

@@ -483,7 +483,9 @@ impl ComboBoxBuilder {
     }
 }
 
-pub const NONE_COMBO_BOX: Option<&ComboBox> = None;
+impl ComboBox {
+    pub const NONE: Option<&'static ComboBox> = None;
+}
 
 pub trait ComboBoxExt: 'static {
     #[doc(alias = "gtk_combo_box_get_active_id")]

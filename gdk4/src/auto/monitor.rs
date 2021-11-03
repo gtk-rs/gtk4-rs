@@ -23,7 +23,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_MONITOR: Option<&Monitor> = None;
+impl Monitor {
+    pub const NONE: Option<&'static Monitor> = None;
+}
 
 pub trait MonitorExt: 'static {
     #[doc(alias = "gdk_monitor_get_connector")]

@@ -382,7 +382,9 @@ impl FrameBuilder {
     }
 }
 
-pub const NONE_FRAME: Option<&Frame> = None;
+impl Frame {
+    pub const NONE: Option<&'static Frame> = None;
+}
 
 pub trait FrameExt: 'static {
     #[doc(alias = "gtk_frame_get_child")]

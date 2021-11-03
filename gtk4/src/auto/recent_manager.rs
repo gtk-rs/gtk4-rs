@@ -45,7 +45,9 @@ impl Default for RecentManager {
     }
 }
 
-pub const NONE_RECENT_MANAGER: Option<&RecentManager> = None;
+impl RecentManager {
+    pub const NONE: Option<&'static RecentManager> = None;
+}
 
 pub trait RecentManagerExt: 'static {
     #[doc(alias = "gtk_recent_manager_add_full")]

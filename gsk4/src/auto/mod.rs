@@ -20,7 +20,7 @@ pub use self::gl_shader::GLShader;
 pub use self::gl_shader::GLShaderBuilder;
 
 mod renderer;
-pub use self::renderer::{Renderer, NONE_RENDERER};
+pub use self::renderer::Renderer;
 
 mod shader_args_builder;
 pub use self::shader_args_builder::ShaderArgsBuilder;

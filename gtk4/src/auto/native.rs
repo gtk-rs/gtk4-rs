@@ -33,7 +33,9 @@ impl Native {
     }
 }
 
-pub const NONE_NATIVE: Option<&Native> = None;
+impl Native {
+    pub const NONE: Option<&'static Native> = None;
+}
 
 pub trait NativeExt: 'static {
     #[doc(alias = "gtk_native_get_renderer")]

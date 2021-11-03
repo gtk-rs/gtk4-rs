@@ -30,7 +30,9 @@ glib::wrapper! {
     }
 }
 
-pub const NONE_TOPLEVEL: Option<&Toplevel> = None;
+impl Toplevel {
+    pub const NONE: Option<&'static Toplevel> = None;
+}
 
 pub trait ToplevelExt: 'static {
     #[doc(alias = "gdk_toplevel_begin_move")]
