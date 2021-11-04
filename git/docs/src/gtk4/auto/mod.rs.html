@@ -1354,21 +1354,21 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::about_dialog::AboutDialogBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">accessible</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::accessible</span>::{<span class="ident">Accessible</span>, <span class="ident">NONE_ACCESSIBLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::accessible::Accessible</span>;
 
 <span class="kw">mod</span> <span class="ident">action_bar</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::action_bar::ActionBar</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::action_bar::ActionBarBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">actionable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::actionable</span>::{<span class="ident">Actionable</span>, <span class="ident">NONE_ACTIONABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::actionable::Actionable</span>;
 
 <span class="kw">mod</span> <span class="ident">activate_action</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::activate_action::ActivateAction</span>;
 
 <span class="kw">mod</span> <span class="ident">adjustment</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::adjustment::Adjustment</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::adjustment::AdjustmentBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::adjustment</span>::{<span class="ident">Adjustment</span>, <span class="ident">NONE_ADJUSTMENT</span>};
 
 <span class="kw">mod</span> <span class="ident">alternative_trigger</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::alternative_trigger::AlternativeTrigger</span>;
@@ -1378,7 +1378,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::any_filter::AnyFilter</span>;
 
 <span class="kw">mod</span> <span class="ident">app_chooser</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::app_chooser</span>::{<span class="ident">AppChooser</span>, <span class="ident">NONE_APP_CHOOSER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::app_chooser::AppChooser</span>;
 
 <span class="kw">mod</span> <span class="ident">app_chooser_button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::app_chooser_button::AppChooserButton</span>;
@@ -1393,12 +1393,12 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::app_chooser_widget::AppChooserWidgetBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">application</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application::Application</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application::ApplicationBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application</span>::{<span class="ident">Application</span>, <span class="ident">NONE_APPLICATION</span>};
 
 <span class="kw">mod</span> <span class="ident">application_window</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application_window::ApplicationWindow</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application_window::ApplicationWindowBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::application_window</span>::{<span class="ident">ApplicationWindow</span>, <span class="ident">NONE_APPLICATION_WINDOW</span>};
 
 <span class="kw">mod</span> <span class="ident">aspect_frame</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::aspect_frame::AspectFrame</span>;
@@ -1422,15 +1422,15 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::bool_filter::BoolFilterBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">box_</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::box_::Box</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::box_::BoxBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::box_</span>::{<span class="ident">Box</span>, <span class="ident">NONE_BOX</span>};
 
 <span class="kw">mod</span> <span class="ident">box_layout</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::box_layout::BoxLayout</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::box_layout::BoxLayoutBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">buildable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::buildable</span>::{<span class="ident">Buildable</span>, <span class="ident">NONE_BUILDABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::buildable::Buildable</span>;
 
 <span class="kw">mod</span> <span class="ident">builder</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::builder::Builder</span>;
@@ -1439,11 +1439,11 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::builder_list_item_factory::BuilderListItemFactory</span>;
 
 <span class="kw">mod</span> <span class="ident">builder_scope</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::builder_scope</span>::{<span class="ident">BuilderScope</span>, <span class="ident">NONE_BUILDER_SCOPE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::builder_scope::BuilderScope</span>;
 
 <span class="kw">mod</span> <span class="ident">button</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::button::Button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::button::ButtonBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::button</span>::{<span class="ident">Button</span>, <span class="ident">NONE_BUTTON</span>};
 
 <span class="kw">mod</span> <span class="ident">calendar</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::calendar::Calendar</span>;
@@ -1453,23 +1453,23 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::callback_action::CallbackAction</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_area</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area</span>::{<span class="ident">CellArea</span>, <span class="ident">NONE_CELL_AREA</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area::CellArea</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_area_box</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area_box::CellAreaBox</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area_box::CellAreaBoxBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_area_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area_context</span>::{<span class="ident">CellAreaContext</span>, <span class="ident">NONE_CELL_AREA_CONTEXT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_area_context::CellAreaContext</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_editable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_editable</span>::{<span class="ident">CellEditable</span>, <span class="ident">NONE_CELL_EDITABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_editable::CellEditable</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_layout</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_layout</span>::{<span class="ident">CellLayout</span>, <span class="ident">NONE_CELL_LAYOUT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_layout::CellLayout</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_renderer</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer</span>::{<span class="ident">CellRenderer</span>, <span class="ident">NONE_CELL_RENDERER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer::CellRenderer</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_renderer_accel</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_accel::CellRendererAccel</span>;
@@ -1496,8 +1496,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_spinner::CellRendererSpinnerBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">cell_renderer_text</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_text::CellRendererText</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_text::CellRendererTextBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_text</span>::{<span class="ident">CellRendererText</span>, <span class="ident">NONE_CELL_RENDERER_TEXT</span>};
 
 <span class="kw">mod</span> <span class="ident">cell_renderer_toggle</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::cell_renderer_toggle::CellRendererToggle</span>;
@@ -1515,15 +1515,15 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::center_layout::CenterLayout</span>;
 
 <span class="kw">mod</span> <span class="ident">check_button</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::check_button::CheckButton</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::check_button::CheckButtonBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::check_button</span>::{<span class="ident">CheckButton</span>, <span class="ident">NONE_CHECK_BUTTON</span>};
 
 <span class="kw">mod</span> <span class="ident">color_button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::color_button::ColorButton</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::color_button::ColorButtonBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">color_chooser</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::color_chooser</span>::{<span class="ident">ColorChooser</span>, <span class="ident">NONE_COLOR_CHOOSER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::color_chooser::ColorChooser</span>;
 
 <span class="kw">mod</span> <span class="ident">color_chooser_dialog</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::color_chooser_dialog::ColorChooserDialog</span>;
@@ -1542,8 +1542,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::column_view_column::ColumnViewColumnBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">combo_box</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::combo_box::ComboBox</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::combo_box::ComboBoxBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::combo_box</span>::{<span class="ident">ComboBox</span>, <span class="ident">NONE_COMBO_BOX</span>};
 
 <span class="kw">mod</span> <span class="ident">combo_box_text</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::combo_box_text::ComboBoxText</span>;
@@ -1564,7 +1564,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::constraint_layout_child::ConstraintLayoutChild</span>;
 
 <span class="kw">mod</span> <span class="ident">constraint_target</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::constraint_target</span>::{<span class="ident">ConstraintTarget</span>, <span class="ident">NONE_CONSTRAINT_TARGET</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::constraint_target::ConstraintTarget</span>;
 
 <span class="kw">mod</span> <span class="ident">css_provider</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::css_provider::CssProvider</span>;
@@ -1576,8 +1576,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::custom_sorter::CustomSorter</span>;
 
 <span class="kw">mod</span> <span class="ident">dialog</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::dialog::Dialog</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::dialog::DialogBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::dialog</span>::{<span class="ident">Dialog</span>, <span class="ident">NONE_DIALOG</span>};
 
 <span class="kw">mod</span> <span class="ident">directory_list</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::directory_list::DirectoryList</span>;
@@ -1590,8 +1590,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drag_source::DragSourceBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">drawing_area</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drawing_area::DrawingArea</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drawing_area::DrawingAreaBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drawing_area</span>::{<span class="ident">DrawingArea</span>, <span class="ident">NONE_DRAWING_AREA</span>};
 
 <span class="kw">mod</span> <span class="ident">drop_controller_motion</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drop_controller_motion::DropControllerMotion</span>;
@@ -1610,7 +1610,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::drop_target_async::DropTargetAsyncBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">editable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::editable</span>::{<span class="ident">Editable</span>, <span class="ident">NONE_EDITABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::editable::Editable</span>;
 
 <span class="kw">mod</span> <span class="ident">editable_label</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::editable_label::EditableLabel</span>;
@@ -1621,19 +1621,19 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::emoji_chooser::EmojiChooserBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">entry</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry::Entry</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry::EntryBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry</span>::{<span class="ident">Entry</span>, <span class="ident">NONE_ENTRY</span>};
 
 <span class="kw">mod</span> <span class="ident">entry_buffer</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry_buffer::EntryBuffer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry_buffer::EntryBufferBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry_buffer</span>::{<span class="ident">EntryBuffer</span>, <span class="ident">NONE_ENTRY_BUFFER</span>};
 
 <span class="kw">mod</span> <span class="ident">entry_completion</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry_completion::EntryCompletion</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::entry_completion::EntryCompletionBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">event_controller</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::event_controller</span>::{<span class="ident">EventController</span>, <span class="ident">NONE_EVENT_CONTROLLER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::event_controller::EventController</span>;
 
 <span class="kw">mod</span> <span class="ident">event_controller_focus</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::event_controller_focus::EventControllerFocus</span>;
@@ -1663,7 +1663,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::expander::ExpanderBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">file_chooser</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::file_chooser</span>::{<span class="ident">FileChooser</span>, <span class="ident">NONE_FILE_CHOOSER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::file_chooser::FileChooser</span>;
 
 <span class="kw">mod</span> <span class="ident">file_chooser_dialog</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::file_chooser_dialog::FileChooserDialog</span>;
@@ -1681,15 +1681,15 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::file_filter::FileFilter</span>;
 
 <span class="kw">mod</span> <span class="ident">filter</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::filter</span>::{<span class="ident">Filter</span>, <span class="ident">NONE_FILTER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::filter::Filter</span>;
 
 <span class="kw">mod</span> <span class="ident">filter_list_model</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::filter_list_model::FilterListModel</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::filter_list_model::FilterListModelBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">fixed</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::fixed::Fixed</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::fixed::FixedBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::fixed</span>::{<span class="ident">Fixed</span>, <span class="ident">NONE_FIXED</span>};
 
 <span class="kw">mod</span> <span class="ident">fixed_layout</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::fixed_layout::FixedLayout</span>;
@@ -1705,15 +1705,15 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::flow_box::FlowBoxBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">flow_box_child</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::flow_box_child::FlowBoxChild</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::flow_box_child::FlowBoxChildBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::flow_box_child</span>::{<span class="ident">FlowBoxChild</span>, <span class="ident">NONE_FLOW_BOX_CHILD</span>};
 
 <span class="kw">mod</span> <span class="ident">font_button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_button::FontButton</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_button::FontButtonBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">font_chooser</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_chooser</span>::{<span class="ident">FontChooser</span>, <span class="ident">NONE_FONT_CHOOSER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_chooser::FontChooser</span>;
 
 <span class="kw">mod</span> <span class="ident">font_chooser_dialog</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_chooser_dialog::FontChooserDialog</span>;
@@ -1724,23 +1724,23 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::font_chooser_widget::FontChooserWidgetBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">frame</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::frame::Frame</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::frame::FrameBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::frame</span>::{<span class="ident">Frame</span>, <span class="ident">NONE_FRAME</span>};
 
 <span class="kw">mod</span> <span class="ident">gl_area</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gl_area::GLArea</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gl_area::GLAreaBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gl_area</span>::{<span class="ident">GLArea</span>, <span class="ident">NONE_GL_AREA</span>};
 
 <span class="kw">mod</span> <span class="ident">gesture</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture</span>::{<span class="ident">Gesture</span>, <span class="ident">NONE_GESTURE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture::Gesture</span>;
 
 <span class="kw">mod</span> <span class="ident">gesture_click</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_click::GestureClick</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_click::GestureClickBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">gesture_drag</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_drag::GestureDrag</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_drag::GestureDragBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_drag</span>::{<span class="ident">GestureDrag</span>, <span class="ident">NONE_GESTURE_DRAG</span>};
 
 <span class="kw">mod</span> <span class="ident">gesture_long_press</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_long_press::GestureLongPress</span>;
@@ -1755,7 +1755,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_rotate::GestureRotateBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">gesture_single</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_single</span>::{<span class="ident">GestureSingle</span>, <span class="ident">NONE_GESTURE_SINGLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_single::GestureSingle</span>;
 
 <span class="kw">mod</span> <span class="ident">gesture_stylus</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_stylus::GestureStylus</span>;
@@ -1770,8 +1770,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gesture_zoom::GestureZoomBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">grid</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::grid::Grid</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::grid::GridBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::grid</span>::{<span class="ident">Grid</span>, <span class="ident">NONE_GRID</span>};
 
 <span class="kw">mod</span> <span class="ident">grid_layout</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::grid_layout::GridLayout</span>;
@@ -1789,15 +1789,15 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::header_bar::HeaderBarBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">im_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_context</span>::{<span class="ident">IMContext</span>, <span class="ident">NONE_IM_CONTEXT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_context::IMContext</span>;
 
 <span class="kw">mod</span> <span class="ident">im_context_simple</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_context_simple::IMContextSimple</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_context_simple::IMContextSimpleBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_context_simple</span>::{<span class="ident">IMContextSimple</span>, <span class="ident">NONE_IM_CONTEXT_SIMPLE</span>};
 
 <span class="kw">mod</span> <span class="ident">im_multicontext</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_multicontext::IMMulticontext</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_multicontext::IMMulticontextBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::im_multicontext</span>::{<span class="ident">IMMulticontext</span>, <span class="ident">NONE_IM_MULTICONTEXT</span>};
 
 <span class="kw">mod</span> <span class="ident">icon_paintable</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::icon_paintable::IconPaintable</span>;
@@ -1823,10 +1823,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::label::LabelBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">layout_child</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::layout_child</span>::{<span class="ident">LayoutChild</span>, <span class="ident">NONE_LAYOUT_CHILD</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::layout_child::LayoutChild</span>;
 
 <span class="kw">mod</span> <span class="ident">layout_manager</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::layout_manager</span>::{<span class="ident">LayoutManager</span>, <span class="ident">NONE_LAYOUT_MANAGER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::layout_manager::LayoutManager</span>;
 
 <span class="kw">mod</span> <span class="ident">level_bar</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::level_bar::LevelBar</span>;
@@ -1837,21 +1837,21 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::link_button::LinkButtonBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">list_base</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_base</span>::{<span class="ident">ListBase</span>, <span class="ident">NONE_LIST_BASE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_base::ListBase</span>;
 
 <span class="kw">mod</span> <span class="ident">list_box</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_box::ListBox</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_box::ListBoxBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">list_box_row</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_box_row::ListBoxRow</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_box_row::ListBoxRowBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_box_row</span>::{<span class="ident">ListBoxRow</span>, <span class="ident">NONE_LIST_BOX_ROW</span>};
 
 <span class="kw">mod</span> <span class="ident">list_item</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_item::ListItem</span>;
 
 <span class="kw">mod</span> <span class="ident">list_item_factory</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_item_factory</span>::{<span class="ident">ListItemFactory</span>, <span class="ident">NONE_LIST_ITEM_FACTORY</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_item_factory::ListItemFactory</span>;
 
 <span class="kw">mod</span> <span class="ident">list_store</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::list_store::ListStore</span>;
@@ -1872,10 +1872,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::media_controls::MediaControlsBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">media_file</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::media_file</span>::{<span class="ident">MediaFile</span>, <span class="ident">NONE_MEDIA_FILE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::media_file::MediaFile</span>;
 
 <span class="kw">mod</span> <span class="ident">media_stream</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::media_stream</span>::{<span class="ident">MediaStream</span>, <span class="ident">NONE_MEDIA_STREAM</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::media_stream::MediaStream</span>;
 
 <span class="kw">mod</span> <span class="ident">menu_button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::menu_button::MenuButton</span>;
@@ -1889,11 +1889,11 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::mnemonic_action::MnemonicAction</span>;
 
 <span class="kw">mod</span> <span class="ident">mount_operation</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::mount_operation::MountOperation</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::mount_operation::MountOperationBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::mount_operation</span>::{<span class="ident">MountOperation</span>, <span class="ident">NONE_MOUNT_OPERATION</span>};
 
 <span class="kw">mod</span> <span class="ident">multi_filter</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::multi_filter</span>::{<span class="ident">MultiFilter</span>, <span class="ident">NONE_MULTI_FILTER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::multi_filter::MultiFilter</span>;
 
 <span class="kw">mod</span> <span class="ident">multi_selection</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::multi_selection::MultiSelection</span>;
@@ -1905,10 +1905,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::named_action::NamedAction</span>;
 
 <span class="kw">mod</span> <span class="ident">native</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::native</span>::{<span class="ident">Native</span>, <span class="ident">NONE_NATIVE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::native::Native</span>;
 
 <span class="kw">mod</span> <span class="ident">native_dialog</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::native_dialog</span>::{<span class="ident">NativeDialog</span>, <span class="ident">NONE_NATIVE_DIALOG</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::native_dialog::NativeDialog</span>;
 
 <span class="kw">mod</span> <span class="ident">never_trigger</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::never_trigger::NeverTrigger</span>;
@@ -1931,7 +1931,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::numeric_sorter::NumericSorterBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">orientable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::orientable</span>::{<span class="ident">Orientable</span>, <span class="ident">NONE_ORIENTABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::orientable::Orientable</span>;
 
 <span class="kw">mod</span> <span class="ident">overlay</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::overlay::Overlay</span>;
@@ -1983,8 +1983,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::picture::PictureBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">popover</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::popover::Popover</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::popover::PopoverBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::popover</span>::{<span class="ident">Popover</span>, <span class="ident">NONE_POPOVER</span>};
 
 <span class="kw">mod</span> <span class="ident">popover_menu</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::popover_menu::PopoverMenu</span>;
@@ -2008,11 +2008,11 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_job::PrintJobBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">print_operation</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_operation::PrintOperation</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_operation::PrintOperationBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_operation</span>::{<span class="ident">PrintOperation</span>, <span class="ident">NONE_PRINT_OPERATION</span>};
 
 <span class="kw">mod</span> <span class="ident">print_operation_preview</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_operation_preview</span>::{<span class="ident">PrintOperationPreview</span>, <span class="ident">NONE_PRINT_OPERATION_PREVIEW</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_operation_preview::PrintOperationPreview</span>;
 
 <span class="kw">mod</span> <span class="ident">print_settings</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::print_settings::PrintSettings</span>;
@@ -2042,28 +2042,28 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::progress_bar::ProgressBarBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">range</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::range</span>::{<span class="ident">Range</span>, <span class="ident">NONE_RANGE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::range::Range</span>;
 
 <span class="kw">mod</span> <span class="ident">recent_manager</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::recent_manager</span>::{<span class="ident">RecentManager</span>, <span class="ident">NONE_RECENT_MANAGER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::recent_manager::RecentManager</span>;
 
 <span class="kw">mod</span> <span class="ident">revealer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::revealer::Revealer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::revealer::RevealerBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">root</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::root</span>::{<span class="ident">Root</span>, <span class="ident">NONE_ROOT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::root::Root</span>;
 
 <span class="kw">mod</span> <span class="ident">scale</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale::Scale</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale::ScaleBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale</span>::{<span class="ident">Scale</span>, <span class="ident">NONE_SCALE</span>};
 
 <span class="kw">mod</span> <span class="ident">scale_button</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale_button::ScaleButton</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale_button::ScaleButtonBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scale_button</span>::{<span class="ident">ScaleButton</span>, <span class="ident">NONE_SCALE_BUTTON</span>};
 
 <span class="kw">mod</span> <span class="ident">scrollable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scrollable</span>::{<span class="ident">Scrollable</span>, <span class="ident">NONE_SCROLLABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scrollable::Scrollable</span>;
 
 <span class="kw">mod</span> <span class="ident">scrollbar</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::scrollbar::Scrollbar</span>;
@@ -2085,7 +2085,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::selection_filter_model::SelectionFilterModel</span>;
 
 <span class="kw">mod</span> <span class="ident">selection_model</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::selection_model</span>::{<span class="ident">SelectionModel</span>, <span class="ident">NONE_SELECTION_MODEL</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::selection_model::SelectionModel</span>;
 
 <span class="kw">mod</span> <span class="ident">separator</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::separator::Separator</span>;
@@ -2100,7 +2100,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut::ShortcutBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">shortcut_action</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_action</span>::{<span class="ident">ShortcutAction</span>, <span class="ident">NONE_SHORTCUT_ACTION</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_action::ShortcutAction</span>;
 
 <span class="kw">mod</span> <span class="ident">shortcut_controller</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_controller::ShortcutController</span>;
@@ -2111,10 +2111,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_label::ShortcutLabelBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">shortcut_manager</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_manager</span>::{<span class="ident">ShortcutManager</span>, <span class="ident">NONE_SHORTCUT_MANAGER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_manager::ShortcutManager</span>;
 
 <span class="kw">mod</span> <span class="ident">shortcut_trigger</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_trigger</span>::{<span class="ident">ShortcutTrigger</span>, <span class="ident">NONE_SHORTCUT_TRIGGER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcut_trigger::ShortcutTrigger</span>;
 
 <span class="kw">mod</span> <span class="ident">shortcuts_group</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::shortcuts_group::ShortcutsGroup</span>;
@@ -2157,7 +2157,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::sort_list_model::SortListModelBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">sorter</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::sorter</span>::{<span class="ident">Sorter</span>, <span class="ident">NONE_SORTER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::sorter::Sorter</span>;
 
 <span class="kw">mod</span> <span class="ident">spin_button</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::spin_button::SpinButton</span>;
@@ -2201,10 +2201,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::string_sorter::StringSorterBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">style_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::style_context</span>::{<span class="ident">StyleContext</span>, <span class="ident">NONE_STYLE_CONTEXT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::style_context::StyleContext</span>;
 
 <span class="kw">mod</span> <span class="ident">style_provider</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::style_provider</span>::{<span class="ident">StyleProvider</span>, <span class="ident">NONE_STYLE_PROVIDER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::style_provider::StyleProvider</span>;
 
 <span class="kw">mod</span> <span class="ident">switch</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::switch::Switch</span>;
@@ -2215,46 +2215,46 @@
 <span class="kw">mod</span> <span class="ident">symbolic_paintable</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::symbolic_paintable</span>::{<span class="ident">SymbolicPaintable</span>, <span class="ident">NONE_SYMBOLIC_PAINTABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::symbolic_paintable::SymbolicPaintable</span>;
 
 <span class="kw">mod</span> <span class="ident">text</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text::Text</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text::TextBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">text_buffer</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_buffer::TextBuffer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_buffer::TextBufferBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_buffer</span>::{<span class="ident">TextBuffer</span>, <span class="ident">NONE_TEXT_BUFFER</span>};
 
 <span class="kw">mod</span> <span class="ident">text_child_anchor</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_child_anchor</span>::{<span class="ident">TextChildAnchor</span>, <span class="ident">NONE_TEXT_CHILD_ANCHOR</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_child_anchor::TextChildAnchor</span>;
 
 <span class="kw">mod</span> <span class="ident">text_mark</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_mark::TextMark</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_mark::TextMarkBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_mark</span>::{<span class="ident">TextMark</span>, <span class="ident">NONE_TEXT_MARK</span>};
 
 <span class="kw">mod</span> <span class="ident">text_tag</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_tag::TextTag</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_tag::TextTagBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_tag</span>::{<span class="ident">TextTag</span>, <span class="ident">NONE_TEXT_TAG</span>};
 
 <span class="kw">mod</span> <span class="ident">text_tag_table</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_tag_table::TextTagTable</span>;
 
 <span class="kw">mod</span> <span class="ident">text_view</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_view::TextView</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_view::TextViewBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::text_view</span>::{<span class="ident">TextView</span>, <span class="ident">NONE_TEXT_VIEW</span>};
 
 <span class="kw">mod</span> <span class="ident">toggle_button</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::toggle_button::ToggleButton</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::toggle_button::ToggleButtonBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::toggle_button</span>::{<span class="ident">ToggleButton</span>, <span class="ident">NONE_TOGGLE_BUTTON</span>};
 
 <span class="kw">mod</span> <span class="ident">tooltip</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tooltip::Tooltip</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_drag_dest</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_drag_dest</span>::{<span class="ident">TreeDragDest</span>, <span class="ident">NONE_TREE_DRAG_DEST</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_drag_dest::TreeDragDest</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_drag_source</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_drag_source</span>::{<span class="ident">TreeDragSource</span>, <span class="ident">NONE_TREE_DRAG_SOURCE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_drag_source::TreeDragSource</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_expander</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_expander::TreeExpander</span>;
@@ -2271,26 +2271,26 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_list_row_sorter::TreeListRowSorter</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_model</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model</span>::{<span class="ident">TreeModel</span>, <span class="ident">NONE_TREE_MODEL</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model::TreeModel</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_model_filter</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model_filter</span>::{<span class="ident">TreeModelFilter</span>, <span class="ident">NONE_TREE_MODEL_FILTER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model_filter::TreeModelFilter</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_model_sort</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model_sort</span>::{<span class="ident">TreeModelSort</span>, <span class="ident">NONE_TREE_MODEL_SORT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_model_sort::TreeModelSort</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_selection</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_selection::TreeSelection</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_sortable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_sortable</span>::{<span class="ident">TreeSortable</span>, <span class="ident">NONE_TREE_SORTABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_sortable::TreeSortable</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_store</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_store::TreeStore</span>;
 
 <span class="kw">mod</span> <span class="ident">tree_view</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_view::TreeView</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_view::TreeViewBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_view</span>::{<span class="ident">TreeView</span>, <span class="ident">NONE_TREE_VIEW</span>};
 
 <span class="kw">mod</span> <span class="ident">tree_view_column</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::tree_view_column::TreeViewColumn</span>;
@@ -2309,21 +2309,21 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::volume_button::VolumeButtonBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">widget</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::widget</span>::{<span class="ident">Widget</span>, <span class="ident">NONE_WIDGET</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::widget::Widget</span>;
 
 <span class="kw">mod</span> <span class="ident">widget_paintable</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::widget_paintable::WidgetPaintable</span>;
 
 <span class="kw">mod</span> <span class="ident">window</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window::Window</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window::WindowBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window</span>::{<span class="ident">Window</span>, <span class="ident">NONE_WINDOW</span>};
 
 <span class="kw">mod</span> <span class="ident">window_controls</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window_controls::WindowControls</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window_controls::WindowControlsBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">window_group</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window_group</span>::{<span class="ident">WindowGroup</span>, <span class="ident">NONE_WINDOW_GROUP</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window_group::WindowGroup</span>;
 
 <span class="kw">mod</span> <span class="ident">window_handle</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::window_handle::WindowHandle</span>;
