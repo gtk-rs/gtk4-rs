@@ -42,151 +42,55 @@ impl CellRendererProgress {
     }
 
     pub fn is_inverted(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"inverted\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `inverted` getter")
-        }
+        glib::ObjectExt::property(self, "inverted")
     }
 
     pub fn set_inverted(&self, inverted: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"inverted\0".as_ptr() as *const _,
-                inverted.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "inverted", &inverted)
     }
 
     pub fn pulse(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pulse\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pulse` getter")
-        }
+        glib::ObjectExt::property(self, "pulse")
     }
 
     pub fn set_pulse(&self, pulse: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pulse\0".as_ptr() as *const _,
-                pulse.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "pulse", &pulse)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text` getter")
-        }
+        glib::ObjectExt::property(self, "text")
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                text.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "text", &text)
     }
 
     #[doc(alias = "text-xalign")]
     pub fn text_xalign(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-xalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text-xalign` getter")
-        }
+        glib::ObjectExt::property(self, "text-xalign")
     }
 
     #[doc(alias = "text-xalign")]
     pub fn set_text_xalign(&self, text_xalign: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-xalign\0".as_ptr() as *const _,
-                text_xalign.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "text-xalign", &text_xalign)
     }
 
     #[doc(alias = "text-yalign")]
     pub fn text_yalign(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-yalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text-yalign` getter")
-        }
+        glib::ObjectExt::property(self, "text-yalign")
     }
 
     #[doc(alias = "text-yalign")]
     pub fn set_text_yalign(&self, text_yalign: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-yalign\0".as_ptr() as *const _,
-                text_yalign.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "text-yalign", &text_yalign)
     }
 
     pub fn value(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"value\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `value` getter")
-        }
+        glib::ObjectExt::property(self, "value")
     }
 
     pub fn set_value(&self, value: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"value\0".as_ptr() as *const _,
-                value.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "value", &value)
     }
 
     #[doc(alias = "inverted")]

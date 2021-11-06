@@ -67,130 +67,50 @@ impl MessageDialog {
 
     #[doc(alias = "message-type")]
     pub fn message_type(&self) -> MessageType {
-        unsafe {
-            let mut value = glib::Value::from_type(<MessageType as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"message-type\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `message-type` getter")
-        }
+        glib::ObjectExt::property(self, "message-type")
     }
 
     #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"message-type\0".as_ptr() as *const _,
-                message_type.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "message-type", &message_type)
     }
 
     #[doc(alias = "secondary-text")]
     pub fn secondary_text(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"secondary-text\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `secondary-text` getter")
-        }
+        glib::ObjectExt::property(self, "secondary-text")
     }
 
     #[doc(alias = "secondary-text")]
     pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"secondary-text\0".as_ptr() as *const _,
-                secondary_text.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "secondary-text", &secondary_text)
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn is_secondary_use_markup(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"secondary-use-markup\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `secondary-use-markup` getter")
-        }
+        glib::ObjectExt::property(self, "secondary-use-markup")
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"secondary-use-markup\0".as_ptr() as *const _,
-                secondary_use_markup.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "secondary-use-markup", &secondary_use_markup)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text` getter")
-        }
+        glib::ObjectExt::property(self, "text")
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text\0".as_ptr() as *const _,
-                text.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "text", &text)
     }
 
     #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-markup\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `use-markup` getter")
-        }
+        glib::ObjectExt::property(self, "use-markup")
     }
 
     #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-markup\0".as_ptr() as *const _,
-                use_markup.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "use-markup", &use_markup)
     }
 
     #[doc(alias = "message-area")]

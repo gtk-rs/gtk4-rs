@@ -156,13 +156,7 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
     }
 
     fn set_visible(&self, visible: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"visible\0".as_ptr() as *const _,
-                visible.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "visible", &visible)
     }
 
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {

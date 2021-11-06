@@ -307,11 +307,7 @@ impl SpinButton {
     }
 
     pub fn emit_change_value(&self, scroll: ScrollType) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("change-value", &[&scroll])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("change-value", &[&scroll]);
     }
 
     //#[doc(alias = "input")]

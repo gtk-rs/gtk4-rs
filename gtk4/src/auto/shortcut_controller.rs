@@ -115,29 +115,12 @@ impl ShortcutController {
 
     #[doc(alias = "mnemonic-modifiers")]
     pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk::ModifierType as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"mnemonic-modifiers\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `mnemonic-modifiers` getter")
-        }
+        glib::ObjectExt::property(self, "mnemonic-modifiers")
     }
 
     #[doc(alias = "mnemonic-modifiers")]
     pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"mnemonic-modifiers\0".as_ptr() as *const _,
-                mnemonic_modifiers.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "mnemonic-modifiers", &mnemonic_modifiers)
     }
 
     #[doc(alias = "mnemonic-modifiers")]

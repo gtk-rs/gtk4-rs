@@ -314,55 +314,19 @@ impl<O: IsA<Editable>> EditableExt for O {
     }
 
     fn cursor_position(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cursor-position\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cursor-position` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "cursor-position")
     }
 
     fn selection_bound(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"selection-bound\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `selection-bound` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "selection-bound")
     }
 
     fn xalign(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `xalign` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "xalign")
     }
 
     fn set_xalign(&self, xalign: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                xalign.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "xalign", &xalign)
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

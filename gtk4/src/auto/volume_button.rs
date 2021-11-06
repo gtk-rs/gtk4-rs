@@ -52,28 +52,12 @@ impl VolumeButton {
 
     #[doc(alias = "use-symbolic")]
     pub fn uses_symbolic(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-symbolic\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `use-symbolic` getter")
-        }
+        glib::ObjectExt::property(self, "use-symbolic")
     }
 
     #[doc(alias = "use-symbolic")]
     pub fn set_use_symbolic(&self, use_symbolic: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-symbolic\0".as_ptr() as *const _,
-                use_symbolic.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "use-symbolic", &use_symbolic)
     }
 
     #[doc(alias = "use-symbolic")]

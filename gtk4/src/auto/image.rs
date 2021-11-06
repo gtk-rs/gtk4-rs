@@ -224,108 +224,42 @@ impl Image {
     }
 
     pub fn file(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"file\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `file` getter")
-        }
+        glib::ObjectExt::property(self, "file")
     }
 
     pub fn set_file(&self, file: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"file\0".as_ptr() as *const _,
-                file.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "file", &file)
     }
 
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"gicon\0".as_ptr() as *const _,
-                gicon.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "gicon", &gicon)
     }
 
     #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-name\0".as_ptr() as *const _,
-                icon_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "icon-name", &icon_name)
     }
 
     pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"paintable\0".as_ptr() as *const _,
-                paintable.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "paintable", &paintable)
     }
 
     pub fn resource(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"resource\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `resource` getter")
-        }
+        glib::ObjectExt::property(self, "resource")
     }
 
     pub fn set_resource(&self, resource: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"resource\0".as_ptr() as *const _,
-                resource.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "resource", &resource)
     }
 
     #[doc(alias = "use-fallback")]
     pub fn uses_fallback(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-fallback\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `use-fallback` getter")
-        }
+        glib::ObjectExt::property(self, "use-fallback")
     }
 
     #[doc(alias = "use-fallback")]
     pub fn set_use_fallback(&self, use_fallback: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"use-fallback\0".as_ptr() as *const _,
-                use_fallback.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "use-fallback", &use_fallback)
     }
 
     #[doc(alias = "file")]

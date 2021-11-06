@@ -29,59 +29,19 @@ impl X11DeviceManagerXI2 {
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
-        }
+        glib::ObjectExt::property(self, "display")
     }
 
     pub fn major(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"major\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `major` getter")
-        }
+        glib::ObjectExt::property(self, "major")
     }
 
     pub fn minor(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"minor\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `minor` getter")
-        }
+        glib::ObjectExt::property(self, "minor")
     }
 
     pub fn opcode(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"opcode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `opcode` getter")
-        }
+        glib::ObjectExt::property(self, "opcode")
     }
 }
 

@@ -525,233 +525,79 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_cell_background(&self, cell_background: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cell-background\0".as_ptr() as *const _,
-                cell_background.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "cell-background", &cell_background)
     }
 
     fn cell_background_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cell-background-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cell-background-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "cell-background-rgba")
     }
 
     fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cell-background-rgba\0".as_ptr() as *const _,
-                cell_background_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "cell-background-rgba", &cell_background_rgba)
     }
 
     fn is_cell_background_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"cell-background-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cell-background-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "cell-background-set")
     }
 
     fn is_editing(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editing\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `editing` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "editing")
     }
 
     fn height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "height")
     }
 
     fn set_height(&self, height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"height\0".as_ptr() as *const _,
-                height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "height", &height)
     }
 
     fn mode(&self) -> CellRendererMode {
-        unsafe {
-            let mut value = glib::Value::from_type(<CellRendererMode as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `mode` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "mode")
     }
 
     fn set_mode(&self, mode: CellRendererMode) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"mode\0".as_ptr() as *const _,
-                mode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "mode", &mode)
     }
 
     fn width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `width` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "width")
     }
 
     fn set_width(&self, width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"width\0".as_ptr() as *const _,
-                width.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "width", &width)
     }
 
     fn xalign(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `xalign` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "xalign")
     }
 
     fn set_xalign(&self, xalign: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xalign\0".as_ptr() as *const _,
-                xalign.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "xalign", &xalign)
     }
 
     fn xpad(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xpad\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `xpad` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "xpad")
     }
 
     fn set_xpad(&self, xpad: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"xpad\0".as_ptr() as *const _,
-                xpad.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "xpad", &xpad)
     }
 
     fn yalign(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"yalign\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `yalign` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "yalign")
     }
 
     fn set_yalign(&self, yalign: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"yalign\0".as_ptr() as *const _,
-                yalign.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "yalign", &yalign)
     }
 
     fn ypad(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"ypad\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `ypad` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "ypad")
     }
 
     fn set_ypad(&self, ypad: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"ypad\0".as_ptr() as *const _,
-                ypad.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "ypad", &ypad)
     }
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

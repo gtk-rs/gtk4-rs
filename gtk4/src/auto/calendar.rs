@@ -135,73 +135,27 @@ impl Calendar {
     }
 
     pub fn day(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"day\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value.get().expect("Return Value for property `day` getter")
-        }
+        glib::ObjectExt::property(self, "day")
     }
 
     pub fn set_day(&self, day: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"day\0".as_ptr() as *const _,
-                day.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "day", &day)
     }
 
     pub fn month(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"month\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `month` getter")
-        }
+        glib::ObjectExt::property(self, "month")
     }
 
     pub fn set_month(&self, month: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"month\0".as_ptr() as *const _,
-                month.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "month", &month)
     }
 
     pub fn year(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"year\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `year` getter")
-        }
+        glib::ObjectExt::property(self, "year")
     }
 
     pub fn set_year(&self, year: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"year\0".as_ptr() as *const _,
-                year.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "year", &year)
     }
 
     #[doc(alias = "day-selected")]

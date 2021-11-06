@@ -44,106 +44,40 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-key")]
     pub fn accel_key(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-key\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accel-key` getter")
-        }
+        glib::ObjectExt::property(self, "accel-key")
     }
 
     #[doc(alias = "accel-key")]
     pub fn set_accel_key(&self, accel_key: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-key\0".as_ptr() as *const _,
-                accel_key.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accel-key", &accel_key)
     }
 
     #[doc(alias = "accel-mode")]
     pub fn accel_mode(&self) -> CellRendererAccelMode {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<CellRendererAccelMode as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accel-mode` getter")
-        }
+        glib::ObjectExt::property(self, "accel-mode")
     }
 
     #[doc(alias = "accel-mode")]
     pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-mode\0".as_ptr() as *const _,
-                accel_mode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accel-mode", &accel_mode)
     }
 
     #[doc(alias = "accel-mods")]
     pub fn accel_mods(&self) -> gdk::ModifierType {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk::ModifierType as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-mods\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accel-mods` getter")
-        }
+        glib::ObjectExt::property(self, "accel-mods")
     }
 
     #[doc(alias = "accel-mods")]
     pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-mods\0".as_ptr() as *const _,
-                accel_mods.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accel-mods", &accel_mods)
     }
 
     pub fn keycode(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"keycode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `keycode` getter")
-        }
+        glib::ObjectExt::property(self, "keycode")
     }
 
     pub fn set_keycode(&self, keycode: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"keycode\0".as_ptr() as *const _,
-                keycode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "keycode", &keycode)
     }
 
     #[doc(alias = "accel-cleared")]

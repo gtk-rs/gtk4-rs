@@ -173,23 +173,11 @@ impl<O: IsA<Drag>> DragExt for O {
     }
 
     fn set_actions(&self, actions: DragAction) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"actions\0".as_ptr() as *const _,
-                actions.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "actions", &actions)
     }
 
     fn set_selected_action(&self, selected_action: DragAction) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"selected-action\0".as_ptr() as *const _,
-                selected_action.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "selected-action", &selected_action)
     }
 
     fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(&self, f: F) -> SignalHandlerId {

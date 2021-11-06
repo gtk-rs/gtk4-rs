@@ -815,41 +815,15 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn has_frame(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-frame\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-frame` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "has-frame")
     }
 
     fn set_has_frame(&self, has_frame: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-frame\0".as_ptr() as *const _,
-                has_frame.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "has-frame", &has_frame)
     }
 
     fn is_popup_shown(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"popup-shown\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `popup-shown` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "popup-shown")
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -934,11 +908,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_move_active(&self, scroll_type: ScrollType) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-active", &[&scroll_type])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("move-active", &[&scroll_type]);
     }
 
     fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -963,11 +933,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_popdown(&self) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("popdown", &[])
-                .unwrap()
-        };
+        let res = self.emit_by_name("popdown", &[]);
         res.unwrap().get().expect("Return Value for `emit_popdown`")
     }
 
@@ -993,11 +959,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_popup(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("popup", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("popup", &[]);
     }
 
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

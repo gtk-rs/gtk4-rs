@@ -47,86 +47,32 @@ impl ShortcutsGroup {
 
     #[doc(alias = "accel-size-group")]
     pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accel-size-group\0".as_ptr() as *const _,
-                accel_size_group.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accel-size-group", &accel_size_group)
     }
 
     pub fn height(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `height` getter")
-        }
+        glib::ObjectExt::property(self, "height")
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `title` getter")
-        }
+        glib::ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                title.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "title", &title)
     }
 
     #[doc(alias = "title-size-group")]
     pub fn set_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title-size-group\0".as_ptr() as *const _,
-                title_size_group.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "title-size-group", &title_size_group)
     }
 
     pub fn view(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `view` getter")
-        }
+        glib::ObjectExt::property(self, "view")
     }
 
     pub fn set_view(&self, view: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view\0".as_ptr() as *const _,
-                view.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "view", &view)
     }
 
     #[doc(alias = "accel-size-group")]

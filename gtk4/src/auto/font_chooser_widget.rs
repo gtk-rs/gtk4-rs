@@ -50,17 +50,7 @@ impl FontChooserWidget {
 
     #[doc(alias = "tweak-action")]
     pub fn tweak_action(&self) -> Option<gio::Action> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gio::Action as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tweak-action\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tweak-action` getter")
-        }
+        glib::ObjectExt::property(self, "tweak-action")
     }
 
     #[doc(alias = "tweak-action")]

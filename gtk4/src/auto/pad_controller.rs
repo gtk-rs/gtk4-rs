@@ -66,29 +66,11 @@ impl PadController {
 
     #[doc(alias = "action-group")]
     pub fn action_group(&self) -> Option<gio::ActionGroup> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gio::ActionGroup as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"action-group\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `action-group` getter")
-        }
+        glib::ObjectExt::property(self, "action-group")
     }
 
     pub fn pad(&self) -> Option<gdk::Device> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::Device as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pad\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value.get().expect("Return Value for property `pad` getter")
-        }
+        glib::ObjectExt::property(self, "pad")
     }
 }
 

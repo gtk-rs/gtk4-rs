@@ -265,27 +265,11 @@ impl<O: IsA<Device>> DeviceExt for O {
     }
 
     fn n_axes(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"n-axes\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `n-axes` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "n-axes")
     }
 
     fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"seat\0".as_ptr() as *const _,
-                seat.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "seat", &seat)
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -59,37 +59,15 @@ impl ATContext {
 
     #[doc(alias = "accessible-role")]
     pub fn set_accessible_role(&self, accessible_role: AccessibleRole) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accessible-role\0".as_ptr() as *const _,
-                accessible_role.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accessible-role", &accessible_role)
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"display\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `display` getter")
-        }
+        glib::ObjectExt::property(self, "display")
     }
 
     pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"display\0".as_ptr() as *const _,
-                display.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "display", &display)
     }
 
     #[doc(alias = "state-change")]

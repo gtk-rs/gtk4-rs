@@ -329,17 +329,7 @@ impl<O: IsA<Display>> DisplayExt for O {
     }
 
     fn is_input_shapes(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"input-shapes\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `input-shapes` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "input-shapes")
     }
 
     fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {

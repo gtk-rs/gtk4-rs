@@ -30,205 +30,75 @@ impl NotebookPage {
     }
 
     pub fn is_detachable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"detachable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `detachable` getter")
-        }
+        glib::ObjectExt::property(self, "detachable")
     }
 
     pub fn set_detachable(&self, detachable: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"detachable\0".as_ptr() as *const _,
-                detachable.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "detachable", &detachable)
     }
 
     pub fn menu(&self) -> Option<Widget> {
-        unsafe {
-            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"menu\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `menu` getter")
-        }
+        glib::ObjectExt::property(self, "menu")
     }
 
     #[doc(alias = "menu-label")]
     pub fn menu_label(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"menu-label\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `menu-label` getter")
-        }
+        glib::ObjectExt::property(self, "menu-label")
     }
 
     #[doc(alias = "menu-label")]
     pub fn set_menu_label(&self, menu_label: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"menu-label\0".as_ptr() as *const _,
-                menu_label.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "menu-label", &menu_label)
     }
 
     pub fn position(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"position\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `position` getter")
-        }
+        glib::ObjectExt::property(self, "position")
     }
 
     pub fn set_position(&self, position: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"position\0".as_ptr() as *const _,
-                position.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "position", &position)
     }
 
     pub fn is_reorderable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"reorderable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `reorderable` getter")
-        }
+        glib::ObjectExt::property(self, "reorderable")
     }
 
     pub fn set_reorderable(&self, reorderable: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"reorderable\0".as_ptr() as *const _,
-                reorderable.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "reorderable", &reorderable)
     }
 
     pub fn tab(&self) -> Option<Widget> {
-        unsafe {
-            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value.get().expect("Return Value for property `tab` getter")
-        }
+        glib::ObjectExt::property(self, "tab")
     }
 
     #[doc(alias = "tab-expand")]
     pub fn is_tab_expand(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-expand\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tab-expand` getter")
-        }
+        glib::ObjectExt::property(self, "tab-expand")
     }
 
     #[doc(alias = "tab-expand")]
     pub fn set_tab_expand(&self, tab_expand: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-expand\0".as_ptr() as *const _,
-                tab_expand.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "tab-expand", &tab_expand)
     }
 
     #[doc(alias = "tab-fill")]
     pub fn is_tab_fill(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-fill\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tab-fill` getter")
-        }
+        glib::ObjectExt::property(self, "tab-fill")
     }
 
     #[doc(alias = "tab-fill")]
     pub fn set_tab_fill(&self, tab_fill: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-fill\0".as_ptr() as *const _,
-                tab_fill.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "tab-fill", &tab_fill)
     }
 
     #[doc(alias = "tab-label")]
     pub fn tab_label(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-label\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tab-label` getter")
-        }
+        glib::ObjectExt::property(self, "tab-label")
     }
 
     #[doc(alias = "tab-label")]
     pub fn set_tab_label(&self, tab_label: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"tab-label\0".as_ptr() as *const _,
-                tab_label.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "tab-label", &tab_label)
     }
 
     #[doc(alias = "detachable")]

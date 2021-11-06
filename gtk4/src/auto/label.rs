@@ -404,11 +404,7 @@ impl Label {
     }
 
     pub fn emit_activate_current_link(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-current-link", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate-current-link", &[]);
     }
 
     #[doc(alias = "activate-link")]
@@ -466,11 +462,7 @@ impl Label {
     }
 
     pub fn emit_copy_clipboard(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("copy-clipboard", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("copy-clipboard", &[]);
     }
 
     #[doc(alias = "move-cursor")]
@@ -509,11 +501,7 @@ impl Label {
     }
 
     pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend_selection: bool) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-cursor", &[&step, &count, &extend_selection])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("move-cursor", &[&step, &count, &extend_selection]);
     }
 
     #[doc(alias = "attributes")]

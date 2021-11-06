@@ -344,41 +344,15 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
     }
 
     fn is_register_session(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"register-session\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `register-session` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "register-session")
     }
 
     fn set_register_session(&self, register_session: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"register-session\0".as_ptr() as *const _,
-                register_session.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "register-session", &register_session)
     }
 
     fn is_screensaver_active(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"screensaver-active\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `screensaver-active` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "screensaver-active")
     }
 
     fn connect_query_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

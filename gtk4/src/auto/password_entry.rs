@@ -90,54 +90,22 @@ impl PasswordEntry {
 
     #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"activates-default\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `activates-default` getter")
-        }
+        glib::ObjectExt::property(self, "activates-default")
     }
 
     #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"activates-default\0".as_ptr() as *const _,
-                activates_default.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "activates-default", &activates_default)
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"placeholder-text\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `placeholder-text` getter")
-        }
+        glib::ObjectExt::property(self, "placeholder-text")
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"placeholder-text\0".as_ptr() as *const _,
-                placeholder_text.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "placeholder-text", &placeholder_text)
     }
 
     #[doc(alias = "activate")]
@@ -163,11 +131,7 @@ impl PasswordEntry {
     }
 
     pub fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate", &[]);
     }
 
     #[doc(alias = "activates-default")]
