@@ -28,14 +28,8 @@ fn build_ui(app: &Application) {
     let switch = Switch::new();
 
     // Set and then immediately obtain state
-    switch
-        .set_property("state", &true)
-        .expect("Could not set property.");
-    let current_state = switch
-        .property("state")
-        .expect("The property needs to exist and be readable.")
-        .get::<bool>()
-        .expect("The property needs to be of type `bool`.");
+    switch.set_property("state", &true);
+    let current_state = switch.property::<bool>("state");
 
     // This prints: "The current state is true"
     println!("The current state is {}", current_state);

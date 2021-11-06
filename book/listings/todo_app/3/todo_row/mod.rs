@@ -35,8 +35,7 @@ impl TodoRow {
         let completed_button_binding = todo_object
             .bind_property("completed", &completed_button, "active")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-            .build()
-            .expect("Could not bind properties");
+            .build();
         // Save binding
         bindings.push(completed_button_binding);
 
@@ -44,8 +43,7 @@ impl TodoRow {
         let content_label_binding = todo_object
             .bind_property("content", &content_label, "label")
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect("Could not bind properties");
+            .build();
         // Save binding
         bindings.push(content_label_binding);
 
@@ -65,8 +63,7 @@ impl TodoRow {
                 }
                 Some(attribute_list.to_value())
             })
-            .build()
-            .expect("Could not bind properties");
+            .build();
         // Save binding
         bindings.push(content_label_binding);
     }

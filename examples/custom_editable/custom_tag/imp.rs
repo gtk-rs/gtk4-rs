@@ -94,7 +94,7 @@ impl ObjectImpl for CustomTag {
 
         let gesture = gtk::GestureClick::new();
         gesture.connect_released(clone!(@weak tag => move |_gesture, _n_press, _x, _y| {
-            tag.emit_by_name("clicked", &[]).unwrap();
+            tag.emit_by_name("clicked", &[]);
         }));
         tag.add_controller(&gesture);
     }

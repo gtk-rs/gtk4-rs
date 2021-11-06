@@ -59,11 +59,7 @@ fn build_ui(app: &Application) {
             .expect("The item has to be an `IntegerObject`.");
 
         // Get `i32` from `IntegerObject`
-        let number = integer_object
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
+        let number = integer_object.property::<i32>("number");
 
         // Get `Label` from `ListItem`
         let label = list_item

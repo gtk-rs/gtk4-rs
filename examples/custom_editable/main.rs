@@ -52,11 +52,11 @@ fn build_ui(application: &gtk::Application) {
         tag.connect_local_id(custom_tag::imp::CustomTag::signals()[0].signal_id(), None, false, clone!(@weak editable, @weak tag => @default-return None, move |_args| {
             editable.remove_tag(&tag);
             None
-        })).unwrap();
+        }));
         tag.connect_local_id(custom_tag::imp::CustomTag::signals()[1].signal_id(), None, false, move |_args| {
             println!("Tag clicked");
             None
-        }).unwrap();
+        });
         editable.add_tag(&tag);
     }));
     horizontal_container.append(&add_tag_button);
@@ -67,8 +67,7 @@ fn build_ui(application: &gtk::Application) {
         .build();
     show_spinner
         .bind_property("active", &editable, "show-spinner")
-        .build()
-        .unwrap();
+        .build();
     horizontal_container.append(&show_spinner);
 
     container.append(&horizontal_container);

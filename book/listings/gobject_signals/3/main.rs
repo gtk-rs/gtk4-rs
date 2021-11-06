@@ -32,17 +32,15 @@ fn build_ui(app: &Application) {
     button.set_margin_end(12);
 
     // ANCHOR: signal_handling
-    button
-        .connect_local("max-number-reached", false, move |args| {
-            // Get the number from the arguments
-            // args[0] would return the `CustomButton` instance
-            let number = args[1]
-                .get::<i32>()
-                .expect("The value needs to be of type `i32`.");
-            println!("The maximum number {} has been reached", number);
-            None
-        })
-        .expect("Could not connect to signal.");
+    button.connect_local("max-number-reached", false, move |args| {
+        // Get the number from the arguments
+        // args[0] would return the `CustomButton` instance
+        let number = args[1]
+            .get::<i32>()
+            .expect("The value needs to be of type `i32`.");
+        println!("The maximum number {} has been reached", number);
+        None
+    });
     // ANCHOR_END: signal_handling
 
     window.set_child(Some(&button));
