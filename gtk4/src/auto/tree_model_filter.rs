@@ -163,17 +163,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
     }
 
     fn child_model(&self) -> Option<TreeModel> {
-        unsafe {
-            let mut value = glib::Value::from_type(<TreeModel as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"child-model\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `child-model` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "child-model")
     }
 }
 

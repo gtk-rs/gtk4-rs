@@ -208,59 +208,19 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
     }
 
     fn minimum_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"minimum-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `minimum-height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "minimum-height")
     }
 
     fn minimum_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"minimum-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `minimum-width` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "minimum-width")
     }
 
     fn natural_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"natural-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `natural-height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "natural-height")
     }
 
     fn natural_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"natural-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `natural-width` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "natural-width")
     }
 
     fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

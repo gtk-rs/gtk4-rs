@@ -42,167 +42,63 @@ impl CellRendererPixbuf {
     }
 
     pub fn gicon(&self) -> Option<gio::Icon> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gio::Icon as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"gicon\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `gicon` getter")
-        }
+        glib::ObjectExt::property(self, "gicon")
     }
 
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"gicon\0".as_ptr() as *const _,
-                gicon.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "gicon", &gicon)
     }
 
     #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `icon-name` getter")
-        }
+        glib::ObjectExt::property(self, "icon-name")
     }
 
     #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-name\0".as_ptr() as *const _,
-                icon_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "icon-name", &icon_name)
     }
 
     #[doc(alias = "icon-size")]
     pub fn icon_size(&self) -> IconSize {
-        unsafe {
-            let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-size\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `icon-size` getter")
-        }
+        glib::ObjectExt::property(self, "icon-size")
     }
 
     #[doc(alias = "icon-size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"icon-size\0".as_ptr() as *const _,
-                icon_size.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "icon-size", &icon_size)
     }
 
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pixbuf\0".as_ptr() as *const _,
-                pixbuf.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "pixbuf", &pixbuf)
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pixbuf-expander-closed\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixbuf-expander-closed` getter")
-        }
+        glib::ObjectExt::property(self, "pixbuf-expander-closed")
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn set_pixbuf_expander_closed(&self, pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pixbuf-expander-closed\0".as_ptr() as *const _,
-                pixbuf_expander_closed.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "pixbuf-expander-closed", &pixbuf_expander_closed)
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<gdk_pixbuf::Pixbuf as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pixbuf-expander-open\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixbuf-expander-open` getter")
-        }
+        glib::ObjectExt::property(self, "pixbuf-expander-open")
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn set_pixbuf_expander_open(&self, pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pixbuf-expander-open\0".as_ptr() as *const _,
-                pixbuf_expander_open.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "pixbuf-expander-open", &pixbuf_expander_open)
     }
 
     pub fn texture(&self) -> Option<gdk::Texture> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::Texture as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"texture\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `texture` getter")
-        }
+        glib::ObjectExt::property(self, "texture")
     }
 
     pub fn set_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"texture\0".as_ptr() as *const _,
-                texture.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "texture", &texture)
     }
 
     #[doc(alias = "gicon")]

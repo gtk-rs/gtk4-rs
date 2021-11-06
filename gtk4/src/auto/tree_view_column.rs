@@ -467,17 +467,7 @@ impl TreeViewColumn {
 
     #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
-        unsafe {
-            let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"cell-area\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cell-area` getter")
-        }
+        glib::ObjectExt::property(self, "cell-area")
     }
 
     #[doc(alias = "clicked")]

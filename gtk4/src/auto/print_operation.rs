@@ -704,143 +704,43 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
     }
 
     fn allows_async(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"allow-async\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `allow-async` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "allow-async")
     }
 
     fn current_page(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"current-page\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `current-page` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "current-page")
     }
 
     fn custom_tab_label(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"custom-tab-label\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `custom-tab-label` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "custom-tab-label")
     }
 
     fn export_filename(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"export-filename\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `export-filename` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "export-filename")
     }
 
     fn job_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"job-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `job-name` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "job-name")
     }
 
     fn n_pages(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"n-pages\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `n-pages` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "n-pages")
     }
 
     fn shows_progress(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"show-progress\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `show-progress` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "show-progress")
     }
 
     fn tracks_print_status(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"track-print-status\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `track-print-status` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "track-print-status")
     }
 
     fn unit(&self) -> Unit {
-        unsafe {
-            let mut value = glib::Value::from_type(<Unit as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"unit\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `unit` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "unit")
     }
 
     fn uses_full_page(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"use-full-page\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `use-full-page` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "use-full-page")
     }
 
     fn connect_begin_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {

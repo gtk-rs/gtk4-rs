@@ -112,28 +112,12 @@ impl PopoverMenu {
 
     #[doc(alias = "visible-submenu")]
     pub fn visible_submenu(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"visible-submenu\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `visible-submenu` getter")
-        }
+        glib::ObjectExt::property(self, "visible-submenu")
     }
 
     #[doc(alias = "visible-submenu")]
     pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"visible-submenu\0".as_ptr() as *const _,
-                visible_submenu.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "visible-submenu", &visible_submenu)
     }
 
     #[doc(alias = "menu-model")]

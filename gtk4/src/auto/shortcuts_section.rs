@@ -46,104 +46,40 @@ impl ShortcutsSection {
 
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-height` getter")
-        }
+        glib::ObjectExt::property(self, "max-height")
     }
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                max_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "max-height", &max_height)
     }
 
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `section-name` getter")
-        }
+        glib::ObjectExt::property(self, "section-name")
     }
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                section_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "section-name", &section_name)
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `title` getter")
-        }
+        glib::ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                title.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "title", &title)
     }
 
     #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `view-name` getter")
-        }
+        glib::ObjectExt::property(self, "view-name")
     }
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                view_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "view-name", &view_name)
     }
 
     #[doc(alias = "max-height")]

@@ -282,17 +282,7 @@ impl PrintJob {
 
     #[doc(alias = "page-setup")]
     pub fn page_setup(&self) -> Option<PageSetup> {
-        unsafe {
-            let mut value = glib::Value::from_type(<PageSetup as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"page-setup\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `page-setup` getter")
-        }
+        glib::ObjectExt::property(self, "page-setup")
     }
 
     #[doc(alias = "status-changed")]

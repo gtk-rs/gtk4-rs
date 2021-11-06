@@ -67,27 +67,11 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
     }
 
     fn is_editing_canceled(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editing-canceled\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `editing-canceled` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "editing-canceled")
     }
 
     fn set_editing_canceled(&self, editing_canceled: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editing-canceled\0".as_ptr() as *const _,
-                editing_canceled.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "editing-canceled", &editing_canceled)
     }
 
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

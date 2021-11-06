@@ -46,78 +46,30 @@ impl CellRendererCombo {
 
     #[doc(alias = "has-entry")]
     pub fn has_entry(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"has-entry\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-entry` getter")
-        }
+        glib::ObjectExt::property(self, "has-entry")
     }
 
     #[doc(alias = "has-entry")]
     pub fn set_has_entry(&self, has_entry: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"has-entry\0".as_ptr() as *const _,
-                has_entry.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "has-entry", &has_entry)
     }
 
     pub fn model(&self) -> Option<TreeModel> {
-        unsafe {
-            let mut value = glib::Value::from_type(<TreeModel as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"model\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `model` getter")
-        }
+        glib::ObjectExt::property(self, "model")
     }
 
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"model\0".as_ptr() as *const _,
-                model.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "model", &model)
     }
 
     #[doc(alias = "text-column")]
     pub fn text_column(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-column\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text-column` getter")
-        }
+        glib::ObjectExt::property(self, "text-column")
     }
 
     #[doc(alias = "text-column")]
     pub fn set_text_column(&self, text_column: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"text-column\0".as_ptr() as *const _,
-                text_column.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "text-column", &text_column)
     }
 
     #[doc(alias = "changed")]

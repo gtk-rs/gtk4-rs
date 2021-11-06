@@ -41,75 +41,27 @@ impl CellRendererSpinner {
     }
 
     pub fn is_active(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"active\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `active` getter")
-        }
+        glib::ObjectExt::property(self, "active")
     }
 
     pub fn set_active(&self, active: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"active\0".as_ptr() as *const _,
-                active.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "active", &active)
     }
 
     pub fn pulse(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pulse\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pulse` getter")
-        }
+        glib::ObjectExt::property(self, "pulse")
     }
 
     pub fn set_pulse(&self, pulse: u32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"pulse\0".as_ptr() as *const _,
-                pulse.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "pulse", &pulse)
     }
 
     pub fn size(&self) -> IconSize {
-        unsafe {
-            let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"size\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `size` getter")
-        }
+        glib::ObjectExt::property(self, "size")
     }
 
     pub fn set_size(&self, size: IconSize) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"size\0".as_ptr() as *const _,
-                size.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "size", &size)
     }
 
     #[doc(alias = "active")]

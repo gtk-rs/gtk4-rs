@@ -295,51 +295,19 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     }
 
     fn input_hints(&self) -> InputHints {
-        unsafe {
-            let mut value = glib::Value::from_type(<InputHints as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"input-hints\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `input-hints` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "input-hints")
     }
 
     fn set_input_hints(&self, input_hints: InputHints) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"input-hints\0".as_ptr() as *const _,
-                input_hints.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "input-hints", &input_hints)
     }
 
     fn input_purpose(&self) -> InputPurpose {
-        unsafe {
-            let mut value = glib::Value::from_type(<InputPurpose as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"input-purpose\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `input-purpose` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "input-purpose")
     }
 
     fn set_input_purpose(&self, input_purpose: InputPurpose) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"input-purpose\0".as_ptr() as *const _,
-                input_purpose.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "input-purpose", &input_purpose)
     }
 
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {

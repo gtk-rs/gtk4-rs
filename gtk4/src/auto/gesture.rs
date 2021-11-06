@@ -292,17 +292,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
     }
 
     fn n_points(&self) -> u32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"n-points\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `n-points` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "n-points")
     }
 
     fn connect_begin<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(

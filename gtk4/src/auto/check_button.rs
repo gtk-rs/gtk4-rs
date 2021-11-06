@@ -597,11 +597,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate", &[]);
     }
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

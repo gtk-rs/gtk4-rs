@@ -696,17 +696,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
     }
 
     fn use_header_bar(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"use-header-bar\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `use-header-bar` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "use-header-bar")
     }
 
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -731,11 +721,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
     }
 
     fn emit_close(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("close", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("close", &[]);
     }
 
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {

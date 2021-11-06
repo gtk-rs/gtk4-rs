@@ -691,17 +691,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn default_widget(&self) -> Option<Widget> {
-        unsafe {
-            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"default-widget\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `default-widget` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "default-widget")
     }
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -726,11 +716,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn emit_activate_default(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-default", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate-default", &[]);
     }
 
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

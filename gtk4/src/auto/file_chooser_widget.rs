@@ -55,42 +55,16 @@ impl FileChooserWidget {
 
     #[doc(alias = "search-mode")]
     pub fn is_search_mode(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"search-mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `search-mode` getter")
-        }
+        glib::ObjectExt::property(self, "search-mode")
     }
 
     #[doc(alias = "search-mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"search-mode\0".as_ptr() as *const _,
-                search_mode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "search-mode", &search_mode)
     }
 
     pub fn subtitle(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"subtitle\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `subtitle` getter")
-        }
+        glib::ObjectExt::property(self, "subtitle")
     }
 
     #[doc(alias = "desktop-folder")]
@@ -116,11 +90,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_desktop_folder(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("desktop-folder", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("desktop-folder", &[]);
     }
 
     #[doc(alias = "down-folder")]
@@ -146,11 +116,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_down_folder(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("down-folder", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("down-folder", &[]);
     }
 
     #[doc(alias = "home-folder")]
@@ -176,11 +142,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_home_folder(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("home-folder", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("home-folder", &[]);
     }
 
     #[doc(alias = "location-popup")]
@@ -212,11 +174,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_popup(&self, path: &str) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("location-popup", &[&path])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("location-popup", &[&path]);
     }
 
     #[doc(alias = "location-popup-on-paste")]
@@ -244,11 +202,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_popup_on_paste(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("location-popup-on-paste", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("location-popup-on-paste", &[]);
     }
 
     #[doc(alias = "location-toggle-popup")]
@@ -276,11 +230,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_toggle_popup(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("location-toggle-popup", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("location-toggle-popup", &[]);
     }
 
     #[doc(alias = "places-shortcut")]
@@ -306,11 +256,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_places_shortcut(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("places-shortcut", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("places-shortcut", &[]);
     }
 
     #[doc(alias = "quick-bookmark")]
@@ -337,11 +283,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_quick_bookmark(&self, bookmark_index: i32) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("quick-bookmark", &[&bookmark_index])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("quick-bookmark", &[&bookmark_index]);
     }
 
     #[doc(alias = "recent-shortcut")]
@@ -367,11 +309,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_recent_shortcut(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("recent-shortcut", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("recent-shortcut", &[]);
     }
 
     #[doc(alias = "search-shortcut")]
@@ -397,11 +335,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_search_shortcut(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("search-shortcut", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("search-shortcut", &[]);
     }
 
     #[doc(alias = "show-hidden")]
@@ -427,11 +361,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_show_hidden(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("show-hidden", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("show-hidden", &[]);
     }
 
     #[doc(alias = "up-folder")]
@@ -457,11 +387,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_up_folder(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("up-folder", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("up-folder", &[]);
     }
 
     #[doc(alias = "search-mode")]

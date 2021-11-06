@@ -31,78 +31,29 @@ impl AssistantPage {
     }
 
     pub fn is_complete(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"complete\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `complete` getter")
-        }
+        glib::ObjectExt::property(self, "complete")
     }
 
     pub fn set_complete(&self, complete: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"complete\0".as_ptr() as *const _,
-                complete.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "complete", &complete)
     }
 
     #[doc(alias = "page-type")]
     pub fn page_type(&self) -> AssistantPageType {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<AssistantPageType as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"page-type\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `page-type` getter")
-        }
+        glib::ObjectExt::property(self, "page-type")
     }
 
     #[doc(alias = "page-type")]
     pub fn set_page_type(&self, page_type: AssistantPageType) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"page-type\0".as_ptr() as *const _,
-                page_type.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "page-type", &page_type)
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `title` getter")
-        }
+        glib::ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                title.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "title", &title)
     }
 
     #[doc(alias = "complete")]

@@ -30,17 +30,7 @@ impl X11DeviceXI2 {
 
     #[doc(alias = "device-id")]
     pub fn device_id(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"device-id\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `device-id` getter")
-        }
+        glib::ObjectExt::property(self, "device-id")
     }
 }
 

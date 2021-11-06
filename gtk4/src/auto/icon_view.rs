@@ -707,17 +707,7 @@ impl IconView {
 
     #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
-        unsafe {
-            let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"cell-area\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `cell-area` getter")
-        }
+        glib::ObjectExt::property(self, "cell-area")
     }
 
     #[doc(alias = "activate-cursor-item")]
@@ -746,11 +736,7 @@ impl IconView {
     }
 
     pub fn emit_activate_cursor_item(&self) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-cursor-item", &[])
-                .unwrap()
-        };
+        let res = self.emit_by_name("activate-cursor-item", &[]);
         res.unwrap()
             .get()
             .expect("Return Value for `emit_activate_cursor_item`")
@@ -827,11 +813,7 @@ impl IconView {
         extend: bool,
         modify: bool,
     ) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-cursor", &[&step, &count, &extend, &modify])
-                .unwrap()
-        };
+        let res = self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify]);
         res.unwrap()
             .get()
             .expect("Return Value for `emit_move_cursor`")
@@ -860,11 +842,7 @@ impl IconView {
     }
 
     pub fn emit_select_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("select-all", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("select-all", &[]);
     }
 
     #[doc(alias = "select-cursor-item")]
@@ -890,11 +868,7 @@ impl IconView {
     }
 
     pub fn emit_select_cursor_item(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("select-cursor-item", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("select-cursor-item", &[]);
     }
 
     #[doc(alias = "selection-changed")]
@@ -942,11 +916,7 @@ impl IconView {
     }
 
     pub fn emit_toggle_cursor_item(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("toggle-cursor-item", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("toggle-cursor-item", &[]);
     }
 
     #[doc(alias = "unselect-all")]
@@ -972,11 +942,7 @@ impl IconView {
     }
 
     pub fn emit_unselect_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("unselect-all", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("unselect-all", &[]);
     }
 
     #[doc(alias = "activate-on-single-click")]

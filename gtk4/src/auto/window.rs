@@ -1294,109 +1294,39 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn default_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"default-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `default-height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "default-height")
     }
 
     fn set_default_height(&self, default_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"default-height\0".as_ptr() as *const _,
-                default_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "default-height", &default_height)
     }
 
     fn default_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"default-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `default-width` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "default-width")
     }
 
     fn set_default_width(&self, default_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"default-width\0".as_ptr() as *const _,
-                default_width.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "default-width", &default_width)
     }
 
     fn focus_widget(&self) -> Option<Widget> {
-        unsafe {
-            let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"focus-widget\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `focus-widget` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "focus-widget")
     }
 
     fn set_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"focus-widget\0".as_ptr() as *const _,
-                focus_widget.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "focus-widget", &focus_widget)
     }
 
     fn is_fullscreened(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreened\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `fullscreened` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "fullscreened")
     }
 
     fn set_fullscreened(&self, fullscreened: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreened\0".as_ptr() as *const _,
-                fullscreened.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "fullscreened", &fullscreened)
     }
 
     fn set_maximized(&self, maximized: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"maximized\0".as_ptr() as *const _,
-                maximized.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "maximized", &maximized)
     }
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -1421,11 +1351,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_activate_default(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-default", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate-default", &[]);
     }
 
     fn connect_activate_focus<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -1450,11 +1376,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_activate_focus(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-focus", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate-focus", &[]);
     }
 
     fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
@@ -1517,11 +1439,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_enable_debugging(&self, toggle: bool) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("enable-debugging", &[&toggle])
-                .unwrap()
-        };
+        let res = self.emit_by_name("enable-debugging", &[&toggle]);
         res.unwrap()
             .get()
             .expect("Return Value for `emit_enable_debugging`")

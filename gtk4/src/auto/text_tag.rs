@@ -1629,1713 +1629,571 @@ impl<O: IsA<TextTag>> TextTagExt for O {
     }
 
     fn is_accumulative_margin(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"accumulative-margin\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accumulative-margin` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "accumulative-margin")
     }
 
     fn set_accumulative_margin(&self, accumulative_margin: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"accumulative-margin\0".as_ptr() as *const _,
-                accumulative_margin.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "accumulative-margin", &accumulative_margin)
     }
 
     fn allows_breaks(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"allow-breaks\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `allow-breaks` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "allow-breaks")
     }
 
     fn set_allow_breaks(&self, allow_breaks: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"allow-breaks\0".as_ptr() as *const _,
-                allow_breaks.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "allow-breaks", &allow_breaks)
     }
 
     fn allows_breaks_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"allow-breaks-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `allow-breaks-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "allow-breaks-set")
     }
 
     fn set_background(&self, background: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background\0".as_ptr() as *const _,
-                background.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "background", &background)
     }
 
     fn is_background_full_height(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-full-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `background-full-height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "background-full-height")
     }
 
     fn set_background_full_height(&self, background_full_height: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-full-height\0".as_ptr() as *const _,
-                background_full_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(
+            self.as_ref(),
+            "background-full-height",
+            &background_full_height,
+        )
     }
 
     fn is_background_full_height_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-full-height-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `background-full-height-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "background-full-height-set")
     }
 
     fn background_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `background-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "background-rgba")
     }
 
     fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-rgba\0".as_ptr() as *const _,
-                background_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "background-rgba", &background_rgba)
     }
 
     fn is_background_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"background-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `background-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "background-set")
     }
 
     fn direction(&self) -> TextDirection {
-        unsafe {
-            let mut value = glib::Value::from_type(<TextDirection as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"direction\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `direction` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "direction")
     }
 
     fn set_direction(&self, direction: TextDirection) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"direction\0".as_ptr() as *const _,
-                direction.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "direction", &direction)
     }
 
     fn is_editable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `editable` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "editable")
     }
 
     fn set_editable(&self, editable: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editable\0".as_ptr() as *const _,
-                editable.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "editable", &editable)
     }
 
     fn is_editable_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"editable-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `editable-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "editable-set")
     }
 
     fn is_fallback(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fallback\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `fallback` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "fallback")
     }
 
     fn set_fallback(&self, fallback: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fallback\0".as_ptr() as *const _,
-                fallback.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "fallback", &fallback)
     }
 
     fn is_fallback_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fallback-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `fallback-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "fallback-set")
     }
 
     fn family(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"family\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `family` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "family")
     }
 
     fn set_family(&self, family: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"family\0".as_ptr() as *const _,
-                family.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "family", &family)
     }
 
     fn is_family_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"family-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `family-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "family-set")
     }
 
     fn font(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `font` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "font")
     }
 
     fn set_font(&self, font: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font\0".as_ptr() as *const _,
-                font.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "font", &font)
     }
 
     fn font_desc(&self) -> Option<pango::FontDescription> {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<pango::FontDescription as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font-desc\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `font-desc` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "font-desc")
     }
 
     fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font-desc\0".as_ptr() as *const _,
-                font_desc.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "font-desc", &font_desc)
     }
 
     fn font_features(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font-features\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `font-features` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "font-features")
     }
 
     fn set_font_features(&self, font_features: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font-features\0".as_ptr() as *const _,
-                font_features.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "font-features", &font_features)
     }
 
     fn is_font_features_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"font-features-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `font-features-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "font-features-set")
     }
 
     fn set_foreground(&self, foreground: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"foreground\0".as_ptr() as *const _,
-                foreground.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "foreground", &foreground)
     }
 
     fn foreground_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"foreground-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `foreground-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "foreground-rgba")
     }
 
     fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"foreground-rgba\0".as_ptr() as *const _,
-                foreground_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "foreground-rgba", &foreground_rgba)
     }
 
     fn is_foreground_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"foreground-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `foreground-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "foreground-set")
     }
 
     fn indent(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"indent\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `indent` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "indent")
     }
 
     fn set_indent(&self, indent: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"indent\0".as_ptr() as *const _,
-                indent.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "indent", &indent)
     }
 
     fn is_indent_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"indent-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `indent-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "indent-set")
     }
 
     fn is_insert_hyphens(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"insert-hyphens\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `insert-hyphens` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "insert-hyphens")
     }
 
     fn set_insert_hyphens(&self, insert_hyphens: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"insert-hyphens\0".as_ptr() as *const _,
-                insert_hyphens.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "insert-hyphens", &insert_hyphens)
     }
 
     fn is_insert_hyphens_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"insert-hyphens-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `insert-hyphens-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "insert-hyphens-set")
     }
 
     fn is_invisible(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"invisible\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `invisible` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "invisible")
     }
 
     fn set_invisible(&self, invisible: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"invisible\0".as_ptr() as *const _,
-                invisible.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "invisible", &invisible)
     }
 
     fn is_invisible_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"invisible-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `invisible-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "invisible-set")
     }
 
     fn justification(&self) -> Justification {
-        unsafe {
-            let mut value = glib::Value::from_type(<Justification as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"justification\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `justification` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "justification")
     }
 
     fn set_justification(&self, justification: Justification) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"justification\0".as_ptr() as *const _,
-                justification.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "justification", &justification)
     }
 
     fn is_justification_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"justification-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `justification-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "justification-set")
     }
 
     fn language(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"language\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `language` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "language")
     }
 
     fn set_language(&self, language: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"language\0".as_ptr() as *const _,
-                language.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "language", &language)
     }
 
     fn is_language_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"language-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `language-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "language-set")
     }
 
     fn left_margin(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"left-margin\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `left-margin` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "left-margin")
     }
 
     fn set_left_margin(&self, left_margin: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"left-margin\0".as_ptr() as *const _,
-                left_margin.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "left-margin", &left_margin)
     }
 
     fn is_left_margin_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"left-margin-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `left-margin-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "left-margin-set")
     }
 
     fn letter_spacing(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"letter-spacing\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `letter-spacing` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "letter-spacing")
     }
 
     fn set_letter_spacing(&self, letter_spacing: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"letter-spacing\0".as_ptr() as *const _,
-                letter_spacing.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "letter-spacing", &letter_spacing)
     }
 
     fn is_letter_spacing_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"letter-spacing-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `letter-spacing-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "letter-spacing-set")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn line_height(&self) -> f32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"line-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `line-height` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "line-height")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn set_line_height(&self, line_height: f32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"line-height\0".as_ptr() as *const _,
-                line_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "line-height", &line_height)
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_line_height_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"line-height-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `line-height-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "line-height-set")
     }
 
     fn name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `name` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "name")
     }
 
     fn overline(&self) -> pango::Overline {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::Overline as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `overline` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "overline")
     }
 
     fn set_overline(&self, overline: pango::Overline) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline\0".as_ptr() as *const _,
-                overline.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "overline", &overline)
     }
 
     fn overline_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `overline-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "overline-rgba")
     }
 
     fn set_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline-rgba\0".as_ptr() as *const _,
-                overline_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "overline-rgba", &overline_rgba)
     }
 
     fn is_overline_rgba_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline-rgba-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `overline-rgba-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "overline-rgba-set")
     }
 
     fn is_overline_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"overline-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `overline-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "overline-set")
     }
 
     fn set_paragraph_background(&self, paragraph_background: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"paragraph-background\0".as_ptr() as *const _,
-                paragraph_background.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "paragraph-background", &paragraph_background)
     }
 
     fn paragraph_background_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"paragraph-background-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `paragraph-background-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "paragraph-background-rgba")
     }
 
     fn set_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"paragraph-background-rgba\0".as_ptr() as *const _,
-                paragraph_background_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(
+            self.as_ref(),
+            "paragraph-background-rgba",
+            &paragraph_background_rgba,
+        )
     }
 
     fn is_paragraph_background_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"paragraph-background-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `paragraph-background-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "paragraph-background-set")
     }
 
     fn pixels_above_lines(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-above-lines\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-above-lines` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-above-lines")
     }
 
     fn set_pixels_above_lines(&self, pixels_above_lines: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-above-lines\0".as_ptr() as *const _,
-                pixels_above_lines.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "pixels-above-lines", &pixels_above_lines)
     }
 
     fn is_pixels_above_lines_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-above-lines-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-above-lines-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-above-lines-set")
     }
 
     fn pixels_below_lines(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-below-lines\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-below-lines` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-below-lines")
     }
 
     fn set_pixels_below_lines(&self, pixels_below_lines: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-below-lines\0".as_ptr() as *const _,
-                pixels_below_lines.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "pixels-below-lines", &pixels_below_lines)
     }
 
     fn is_pixels_below_lines_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-below-lines-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-below-lines-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-below-lines-set")
     }
 
     fn pixels_inside_wrap(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-inside-wrap\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-inside-wrap` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-inside-wrap")
     }
 
     fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-inside-wrap\0".as_ptr() as *const _,
-                pixels_inside_wrap.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "pixels-inside-wrap", &pixels_inside_wrap)
     }
 
     fn is_pixels_inside_wrap_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"pixels-inside-wrap-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `pixels-inside-wrap-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "pixels-inside-wrap-set")
     }
 
     fn right_margin(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"right-margin\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `right-margin` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "right-margin")
     }
 
     fn set_right_margin(&self, right_margin: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"right-margin\0".as_ptr() as *const _,
-                right_margin.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "right-margin", &right_margin)
     }
 
     fn is_right_margin_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"right-margin-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `right-margin-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "right-margin-set")
     }
 
     fn rise(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"rise\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `rise` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "rise")
     }
 
     fn set_rise(&self, rise: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"rise\0".as_ptr() as *const _,
-                rise.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "rise", &rise)
     }
 
     fn is_rise_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"rise-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `rise-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "rise-set")
     }
 
     fn scale(&self) -> f64 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"scale\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `scale` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "scale")
     }
 
     fn set_scale(&self, scale: f64) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"scale\0".as_ptr() as *const _,
-                scale.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "scale", &scale)
     }
 
     fn is_scale_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"scale-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `scale-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "scale-set")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_sentence(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"sentence\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `sentence` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "sentence")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn set_sentence(&self, sentence: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"sentence\0".as_ptr() as *const _,
-                sentence.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "sentence", &sentence)
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_sentence_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"sentence-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `sentence-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "sentence-set")
     }
 
     fn show_spaces(&self) -> pango::ShowFlags {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::ShowFlags as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"show-spaces\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `show-spaces` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "show-spaces")
     }
 
     fn set_show_spaces(&self, show_spaces: pango::ShowFlags) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"show-spaces\0".as_ptr() as *const _,
-                show_spaces.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "show-spaces", &show_spaces)
     }
 
     fn shows_spaces_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"show-spaces-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `show-spaces-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "show-spaces-set")
     }
 
     fn size(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `size` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "size")
     }
 
     fn set_size(&self, size: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size\0".as_ptr() as *const _,
-                size.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "size", &size)
     }
 
     fn size_points(&self) -> f64 {
-        unsafe {
-            let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size-points\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `size-points` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "size-points")
     }
 
     fn set_size_points(&self, size_points: f64) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size-points\0".as_ptr() as *const _,
-                size_points.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "size-points", &size_points)
     }
 
     fn is_size_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"size-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `size-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "size-set")
     }
 
     fn stretch(&self) -> pango::Stretch {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::Stretch as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"stretch\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `stretch` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "stretch")
     }
 
     fn set_stretch(&self, stretch: pango::Stretch) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"stretch\0".as_ptr() as *const _,
-                stretch.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "stretch", &stretch)
     }
 
     fn is_stretch_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"stretch-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `stretch-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "stretch-set")
     }
 
     fn is_strikethrough(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `strikethrough` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "strikethrough")
     }
 
     fn set_strikethrough(&self, strikethrough: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough\0".as_ptr() as *const _,
-                strikethrough.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "strikethrough", &strikethrough)
     }
 
     fn strikethrough_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `strikethrough-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "strikethrough-rgba")
     }
 
     fn set_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough-rgba\0".as_ptr() as *const _,
-                strikethrough_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "strikethrough-rgba", &strikethrough_rgba)
     }
 
     fn is_strikethrough_rgba_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough-rgba-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `strikethrough-rgba-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "strikethrough-rgba-set")
     }
 
     fn is_strikethrough_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"strikethrough-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `strikethrough-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "strikethrough-set")
     }
 
     fn style(&self) -> pango::Style {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::Style as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"style\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `style` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "style")
     }
 
     fn set_style(&self, style: pango::Style) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"style\0".as_ptr() as *const _,
-                style.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "style", &style)
     }
 
     fn is_style_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"style-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `style-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "style-set")
     }
 
     fn tabs(&self) -> Option<pango::TabArray> {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::TabArray as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"tabs\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tabs` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "tabs")
     }
 
     fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"tabs\0".as_ptr() as *const _,
-                tabs.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "tabs", &tabs)
     }
 
     fn is_tabs_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"tabs-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `tabs-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "tabs-set")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn text_transform(&self) -> pango::TextTransform {
-        unsafe {
-            let mut value =
-                glib::Value::from_type(<pango::TextTransform as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"text-transform\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text-transform` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "text-transform")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn set_text_transform(&self, text_transform: pango::TextTransform) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"text-transform\0".as_ptr() as *const _,
-                text_transform.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "text-transform", &text_transform)
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_text_transform_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"text-transform-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `text-transform-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "text-transform-set")
     }
 
     fn underline(&self) -> pango::Underline {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::Underline as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `underline` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "underline")
     }
 
     fn set_underline(&self, underline: pango::Underline) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline\0".as_ptr() as *const _,
-                underline.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "underline", &underline)
     }
 
     fn underline_rgba(&self) -> Option<gdk::RGBA> {
-        unsafe {
-            let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline-rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `underline-rgba` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "underline-rgba")
     }
 
     fn set_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline-rgba\0".as_ptr() as *const _,
-                underline_rgba.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "underline-rgba", &underline_rgba)
     }
 
     fn is_underline_rgba_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline-rgba-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `underline-rgba-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "underline-rgba-set")
     }
 
     fn is_underline_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"underline-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `underline-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "underline-set")
     }
 
     fn variant(&self) -> pango::Variant {
-        unsafe {
-            let mut value = glib::Value::from_type(<pango::Variant as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"variant\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `variant` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "variant")
     }
 
     fn set_variant(&self, variant: pango::Variant) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"variant\0".as_ptr() as *const _,
-                variant.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "variant", &variant)
     }
 
     fn is_variant_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"variant-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `variant-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "variant-set")
     }
 
     fn weight(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"weight\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `weight` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "weight")
     }
 
     fn set_weight(&self, weight: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"weight\0".as_ptr() as *const _,
-                weight.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "weight", &weight)
     }
 
     fn is_weight_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"weight-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `weight-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "weight-set")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_word(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"word\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `word` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "word")
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn set_word(&self, word: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"word\0".as_ptr() as *const _,
-                word.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "word", &word)
     }
 
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn is_word_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"word-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `word-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "word-set")
     }
 
     fn wrap_mode(&self) -> WrapMode {
-        unsafe {
-            let mut value = glib::Value::from_type(<WrapMode as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"wrap-mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `wrap-mode` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "wrap-mode")
     }
 
     fn set_wrap_mode(&self, wrap_mode: WrapMode) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"wrap-mode\0".as_ptr() as *const _,
-                wrap_mode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "wrap-mode", &wrap_mode)
     }
 
     fn wraps_mode_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"wrap-mode-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `wrap-mode-set` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "wrap-mode-set")
     }
 
     fn connect_accumulative_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

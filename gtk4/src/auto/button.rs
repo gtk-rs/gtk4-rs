@@ -602,11 +602,7 @@ impl<O: IsA<Button>> ButtonExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate", &[]);
     }
 
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -631,11 +627,7 @@ impl<O: IsA<Button>> ButtonExt for O {
     }
 
     fn emit_clicked(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("clicked", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("clicked", &[]);
     }
 
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -376,28 +376,12 @@ impl FlowBox {
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn accepts_unpaired_release(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accept-unpaired-release\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accept-unpaired-release` getter")
-        }
+        glib::ObjectExt::property(self, "accept-unpaired-release")
     }
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accept-unpaired-release\0".as_ptr() as *const _,
-                accept_unpaired_release.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "accept-unpaired-release", &accept_unpaired_release)
     }
 
     #[doc(alias = "activate-cursor-child")]
@@ -423,11 +407,7 @@ impl FlowBox {
     }
 
     pub fn emit_activate_cursor_child(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate-cursor-child", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate-cursor-child", &[]);
     }
 
     #[doc(alias = "child-activated")]
@@ -503,11 +483,7 @@ impl FlowBox {
         extend: bool,
         modify: bool,
     ) -> bool {
-        let res = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-cursor", &[&step, &count, &extend, &modify])
-                .unwrap()
-        };
+        let res = self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify]);
         res.unwrap()
             .get()
             .expect("Return Value for `emit_move_cursor`")
@@ -536,11 +512,7 @@ impl FlowBox {
     }
 
     pub fn emit_select_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("select-all", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("select-all", &[]);
     }
 
     #[doc(alias = "selected-children-changed")]
@@ -591,11 +563,7 @@ impl FlowBox {
     }
 
     pub fn emit_toggle_cursor_child(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("toggle-cursor-child", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("toggle-cursor-child", &[]);
     }
 
     #[doc(alias = "unselect-all")]
@@ -621,11 +589,7 @@ impl FlowBox {
     }
 
     pub fn emit_unselect_all(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("unselect-all", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("unselect-all", &[]);
     }
 
     #[doc(alias = "accept-unpaired-release")]

@@ -48,54 +48,22 @@ impl ShortcutsWindow {
 
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `section-name` getter")
-        }
+        glib::ObjectExt::property(self, "section-name")
     }
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"section-name\0".as_ptr() as *const _,
-                section_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "section-name", &section_name)
     }
 
     #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `view-name` getter")
-        }
+        glib::ObjectExt::property(self, "view-name")
     }
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"view-name\0".as_ptr() as *const _,
-                view_name.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "view-name", &view_name)
     }
 
     #[doc(alias = "close")]
@@ -121,11 +89,7 @@ impl ShortcutsWindow {
     }
 
     pub fn emit_close(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("close", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("close", &[]);
     }
 
     #[doc(alias = "search")]
@@ -151,11 +115,7 @@ impl ShortcutsWindow {
     }
 
     pub fn emit_search(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("search", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("search", &[]);
     }
 
     #[doc(alias = "section-name")]

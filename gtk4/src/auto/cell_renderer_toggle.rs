@@ -95,27 +95,11 @@ impl CellRendererToggle {
     }
 
     pub fn is_inconsistent(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"inconsistent\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `inconsistent` getter")
-        }
+        glib::ObjectExt::property(self, "inconsistent")
     }
 
     pub fn set_inconsistent(&self, inconsistent: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"inconsistent\0".as_ptr() as *const _,
-                inconsistent.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "inconsistent", &inconsistent)
     }
 
     #[doc(alias = "toggled")]

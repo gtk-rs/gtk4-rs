@@ -88,28 +88,12 @@ impl ColorButton {
 
     #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"show-editor\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `show-editor` getter")
-        }
+        glib::ObjectExt::property(self, "show-editor")
     }
 
     #[doc(alias = "show-editor")]
     pub fn set_show_editor(&self, show_editor: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"show-editor\0".as_ptr() as *const _,
-                show_editor.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "show-editor", &show_editor)
     }
 
     #[cfg(any(feature = "v4_4", feature = "dox"))]
@@ -139,11 +123,7 @@ impl ColorButton {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn emit_activate(&self) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("activate", &[]);
     }
 
     #[doc(alias = "color-set")]

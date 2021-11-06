@@ -228,28 +228,12 @@ impl PrintUnixDialog {
 
     #[doc(alias = "print-settings")]
     pub fn print_settings(&self) -> Option<PrintSettings> {
-        unsafe {
-            let mut value = glib::Value::from_type(<PrintSettings as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"print-settings\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `print-settings` getter")
-        }
+        glib::ObjectExt::property(self, "print-settings")
     }
 
     #[doc(alias = "print-settings")]
     pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"print-settings\0".as_ptr() as *const _,
-                print_settings.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "print-settings", &print_settings)
     }
 
     #[doc(alias = "current-page")]

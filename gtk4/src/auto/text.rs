@@ -321,58 +321,22 @@ impl Text {
 
     #[doc(alias = "im-module")]
     pub fn im_module(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"im-module\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `im-module` getter")
-        }
+        glib::ObjectExt::property(self, "im-module")
     }
 
     #[doc(alias = "im-module")]
     pub fn set_im_module(&self, im_module: Option<&str>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"im-module\0".as_ptr() as *const _,
-                im_module.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "im-module", &im_module)
     }
 
     #[doc(alias = "invisible-char-set")]
     pub fn is_invisible_char_set(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"invisible-char-set\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `invisible-char-set` getter")
-        }
+        glib::ObjectExt::property(self, "invisible-char-set")
     }
 
     #[doc(alias = "scroll-offset")]
     pub fn scroll_offset(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"scroll-offset\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `scroll-offset` getter")
-        }
+        glib::ObjectExt::property(self, "scroll-offset")
     }
 
     #[doc(alias = "activates-default")]

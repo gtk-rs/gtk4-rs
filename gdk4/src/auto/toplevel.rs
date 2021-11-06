@@ -287,133 +287,43 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     }
 
     fn is_decorated(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"decorated\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `decorated` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "decorated")
     }
 
     fn is_deletable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"deletable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `deletable` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "deletable")
     }
 
     fn fullscreen_mode(&self) -> FullscreenMode {
-        unsafe {
-            let mut value = glib::Value::from_type(<FullscreenMode as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreen-mode\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `fullscreen-mode` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "fullscreen-mode")
     }
 
     fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"fullscreen-mode\0".as_ptr() as *const _,
-                fullscreen_mode.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "fullscreen-mode", &fullscreen_mode)
     }
 
     //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
-    //    unsafe {
-    //        let mut value = glib::Value::from_type(</*Unknown type*/ as StaticType>::static_type());
-    //        glib::gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut glib::gobject_ffi::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().expect("Return Value for property `icon-list` getter")
-    //    }
+    //    glib::ObjectExt::property(self.as_ref(), "icon-list")
     //}
 
     fn is_modal(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"modal\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `modal` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "modal")
     }
 
     fn is_shortcuts_inhibited(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"shortcuts-inhibited\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `shortcuts-inhibited` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "shortcuts-inhibited")
     }
 
     fn startup_id(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"startup-id\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `startup-id` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "startup-id")
     }
 
     fn title(&self) -> Option<glib::GString> {
-        unsafe {
-            let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"title\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `title` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "title")
     }
 
     fn transient_for(&self) -> Option<Surface> {
-        unsafe {
-            let mut value = glib::Value::from_type(<Surface as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"transient-for\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `transient-for` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "transient-for")
     }
 
     fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

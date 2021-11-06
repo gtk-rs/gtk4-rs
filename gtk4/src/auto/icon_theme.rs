@@ -188,13 +188,7 @@ impl IconTheme {
     }
 
     pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"display\0".as_ptr() as *const _,
-                display.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "display", &display)
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]

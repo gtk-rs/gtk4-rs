@@ -1956,51 +1956,19 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn height_request(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"height-request\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `height-request` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "height-request")
     }
 
     fn set_height_request(&self, height_request: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"height-request\0".as_ptr() as *const _,
-                height_request.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "height-request", &height_request)
     }
 
     fn width_request(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"width-request\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `width-request` getter")
-        }
+        glib::ObjectExt::property(self.as_ref(), "width-request")
     }
 
     fn set_width_request(&self, width_request: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"width-request\0".as_ptr() as *const _,
-                width_request.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self.as_ref(), "width-request", &width_request)
     }
 
     fn connect_destroy<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -2190,11 +2158,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn emit_move_focus(&self, direction: DirectionType) {
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-focus", &[&direction])
-                .unwrap()
-        };
+        let _ = self.emit_by_name("move-focus", &[&direction]);
     }
 
     fn connect_query_tooltip<F: Fn(&Self, i32, i32, bool, &Tooltip) -> bool + 'static>(

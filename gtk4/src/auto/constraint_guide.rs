@@ -92,158 +92,62 @@ impl ConstraintGuide {
 
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-height` getter")
-        }
+        glib::ObjectExt::property(self, "max-height")
     }
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-height\0".as_ptr() as *const _,
-                max_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "max-height", &max_height)
     }
 
     #[doc(alias = "max-width")]
     pub fn max_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `max-width` getter")
-        }
+        glib::ObjectExt::property(self, "max-width")
     }
 
     #[doc(alias = "max-width")]
     pub fn set_max_width(&self, max_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"max-width\0".as_ptr() as *const _,
-                max_width.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "max-width", &max_width)
     }
 
     #[doc(alias = "min-height")]
     pub fn min_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"min-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `min-height` getter")
-        }
+        glib::ObjectExt::property(self, "min-height")
     }
 
     #[doc(alias = "min-height")]
     pub fn set_min_height(&self, min_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"min-height\0".as_ptr() as *const _,
-                min_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "min-height", &min_height)
     }
 
     #[doc(alias = "min-width")]
     pub fn min_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"min-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `min-width` getter")
-        }
+        glib::ObjectExt::property(self, "min-width")
     }
 
     #[doc(alias = "min-width")]
     pub fn set_min_width(&self, min_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"min-width\0".as_ptr() as *const _,
-                min_width.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "min-width", &min_width)
     }
 
     #[doc(alias = "nat-height")]
     pub fn nat_height(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"nat-height\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `nat-height` getter")
-        }
+        glib::ObjectExt::property(self, "nat-height")
     }
 
     #[doc(alias = "nat-height")]
     pub fn set_nat_height(&self, nat_height: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"nat-height\0".as_ptr() as *const _,
-                nat_height.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "nat-height", &nat_height)
     }
 
     #[doc(alias = "nat-width")]
     pub fn nat_width(&self) -> i32 {
-        unsafe {
-            let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"nat-width\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `nat-width` getter")
-        }
+        glib::ObjectExt::property(self, "nat-width")
     }
 
     #[doc(alias = "nat-width")]
     pub fn set_nat_width(&self, nat_width: i32) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"nat-width\0".as_ptr() as *const _,
-                nat_width.to_value().to_glib_none().0,
-            );
-        }
+        glib::ObjectExt::set_property(self, "nat-width", &nat_width)
     }
 
     #[doc(alias = "max-height")]
