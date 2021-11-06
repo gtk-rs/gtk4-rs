@@ -13,7 +13,7 @@ That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch
 {{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
 Alternatively, we can use the general [`property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property) and [`set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
-Because they can be used for properties of different types, they operate with `glib::Value`.
+We use the [turbofish](https://matematikaadit.github.io/posts/rust-turbofish.html) syntax to specify the type if it cannot be inferred.
 
 <span class="filename">Filename: listings/gobject_properties/2/main.rs</span>
 
@@ -21,8 +21,9 @@ Because they can be used for properties of different types, they operate with `g
 {{#rustdoc_include ../listings/gobject_properties/2/main.rs:switch}}
 ```
 
-Dealing with a `glib::Value` is quite verbose.
-This is why you only want to use the generic methods for accessing properties you have added to your custom GObjects.
+Both `property` and `set_property` panic if the property does not exist, has the wrong type or has the wrong permissions.
+This is fine in most situations where these cases are hardcoded within the program.
+If this does not apply for your program you might want to use [`try_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property) and [`try_set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property) instead.
 
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
 Let us see how that would look like for two `Switch` instances.
