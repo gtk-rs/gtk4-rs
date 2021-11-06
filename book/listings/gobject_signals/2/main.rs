@@ -32,17 +32,15 @@ fn build_ui(app: &Application) {
 
     // ANCHOR: callback
     // Connect callback
-    button
-        .connect_local("clicked", false, move |args| {
-            // Get the button from the arguments
-            let button = args[0]
-                .get::<Button>()
-                .expect("The value needs to be of type `Button`.");
-            // Set the label to "Hello World!" after the button has been clicked on
-            button.set_label("Hello World!");
-            None
-        })
-        .expect("Could not connect to signal.");
+    button.connect_local("clicked", false, move |args| {
+        // Get the button from the arguments
+        let button = args[0]
+            .get::<Button>()
+            .expect("The value needs to be of type `Button`.");
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
+        None
+    });
     // ANCHOR_END: callback
 
     // Add button

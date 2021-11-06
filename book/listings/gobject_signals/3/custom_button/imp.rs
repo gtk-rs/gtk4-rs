@@ -86,8 +86,7 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         obj.bind_property("number", obj, "label")
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect("Could not bind properties");
+            .build();
     }
 }
 
@@ -104,16 +103,10 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button
-                .emit_by_name("max-number-reached", &[&incremented_number])
-                .expect("Could not emit signal.");
-            button
-                .set_property("number", &0)
-                .expect("Could not set property.");
+            button.emit_by_name("max-number-reached", &[&incremented_number]);
+            button.set_property("number", &0);
         } else {
-            button
-                .set_property("number", &incremented_number)
-                .expect("Could not set property.");
+            button.set_property("number", &incremented_number);
         }
     }
 }

@@ -14,13 +14,8 @@ impl IntegerObject {
     }
 
     pub fn increase_number(self) {
-        let old_number = self
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
+        let old_number = self.property::<i32>("number");
 
-        self.set_property("number", old_number + 1)
-            .expect("Could not set property.");
+        self.set_property("number", old_number + 1);
     }
 }

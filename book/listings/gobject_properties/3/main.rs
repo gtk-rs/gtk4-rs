@@ -34,8 +34,7 @@ fn build_ui(app: &Application) {
     switch_1
         .bind_property("state", &switch_2, "state")
         .flags(BindingFlags::BIDIRECTIONAL)
-        .build()
-        .expect("Could not bind properties");
+        .build();
     // ANCHOR_END: bind_state
 
     // Set up box

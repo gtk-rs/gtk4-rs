@@ -192,7 +192,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 )
             } else {
                 buildable
-                    .set_property_from_value(name, value)
+                    .try_set_property_from_value(name, value)
                     .unwrap_or_else(|err| {
                         panic!(
                             "Buildable property `{}` was not found {}",

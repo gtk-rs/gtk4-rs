@@ -28,7 +28,7 @@ impl CustomTag {
                 .has_frame(false)
                 .build();
             button.connect_clicked(clone!(@weak self as tag => move |_btn| {
-                tag.emit_by_name("closed", &[]).unwrap();
+                tag.emit_by_name("closed", &[]);
             }));
             let icon = gtk::Image::from_icon_name(Some("window-close-symbolic"));
             button.set_child(Some(&icon));

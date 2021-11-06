@@ -53,19 +53,14 @@ fn build_ui(app: &Application) {
             Some(decremented_number.to_value())
         })
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-        .build()
-        .expect("Could not bind properties");
+        .build();
     // ANCHOR_END: bind_numbers
 
     // ANCHOR: connect_notify
     // The closure will be called
     // whenever the property "number" of `button_1` gets changed
     button_1.connect_notify_local(Some("number"), move |button, _| {
-        let number = button
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
+        let number = button.property::<i32>("number");
         println!("The current number of `button_1` is {}.", number);
     });
     // ANCHOR_END: connect_notify

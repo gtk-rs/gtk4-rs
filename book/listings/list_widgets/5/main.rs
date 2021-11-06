@@ -73,11 +73,7 @@ fn build_ui(app: &Application) {
             .expect("The object needs to be of type `IntegerObject`.");
 
         // Get property "number" from `IntegerObject`
-        let number = integer_object
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
+        let number = integer_object.property::<i32>("number");
 
         // Only allow even numbers
         number % 2 == 0
@@ -96,16 +92,8 @@ fn build_ui(app: &Application) {
             .expect("The object needs to be of type `IntegerObject`.");
 
         // Get property "number" from `IntegerObject`
-        let number_1 = integer_object_1
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
-        let number_2 = integer_object_2
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
+        let number_1 = integer_object_1.property::<i32>("number");
+        let number_2 = integer_object_2.property::<i32>("number");
 
         // Reverse sorting order -> large numbers come first
         number_2.cmp(&number_1).into()

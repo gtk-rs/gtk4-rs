@@ -262,101 +262,46 @@ impl Text {
     }
 
     pub fn emit_activate(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("activate", &[])
-                .unwrap()
-        };
+        self.emit_by_name("activate", &[]);
     }
 
     pub fn emit_backspace(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("backspace", &[])
-                .unwrap()
-        };
+        self.emit_by_name("backspace", &[]);
     }
 
     pub fn emit_copy_clipboard(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("copy-clipboard", &[])
-                .unwrap()
-        };
+        self.emit_by_name("copy-clipboard", &[]);
     }
 
     pub fn emit_cut_clipboard(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("cut-clipboard", &[])
-                .unwrap()
-        };
+        self.emit_by_name("cut-clipboard", &[]);
     }
 
     pub fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("delete-from-cursor", &[&type_, &count])
-                .unwrap()
-        };
+        self.emit_by_name("delete-from-cursor", &[&type_, &count]);
     }
 
     pub fn emit_insert_at_cursor(&self, string: &str) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("insert-at-cursor", &[&string])
-                .unwrap()
-        };
+        self.emit_by_name("insert-at-cursor", &[&string]);
     }
 
     pub fn emit_insert_emoji(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("insert-emoji", &[])
-                .unwrap()
-        };
+        self.emit_by_name("insert-emoji", &[]);
     }
 
     pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend: bool) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("move-cursor", &[&step, &count, &extend])
-                .unwrap()
-        };
+        self.emit_by_name("move-cursor", &[&step, &count, &extend]);
     }
 
     pub fn emit_paste_clipboard(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("paste-clipboard", &[])
-                .unwrap()
-        };
+        self.emit_by_name("paste-clipboard", &[]);
     }
 
     pub fn emit_preedit_changed(&self, preedit: &str) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("preedit-changed", &[&preedit])
-                .unwrap()
-        };
+        self.emit_by_name("preedit-changed", &[&preedit]);
     }
 
     pub fn emit_toggle_overwrite(&self) {
-        let stash: Stash<*mut ffi::GtkText, _> = self.to_glib_none();
-        let _ = unsafe {
-            glib::Object::from_glib_borrow(stash.0 as *mut glib::gobject_ffi::GObject)
-                .emit_by_name("toggle-overwrite", &[])
-                .unwrap()
-        };
+        self.emit_by_name("toggle-overwrite", &[]);
     }
 }
