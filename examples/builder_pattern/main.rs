@@ -3,7 +3,7 @@ use gtk::{Align, Application, ApplicationWindow, Button};
 
 fn main() {
     let application = Application::new(
-        Some("com.github.gtk-rs.examples.builder_pattern"),
+        Some("com.github.gtk_rs.examples.builder_pattern"),
         Default::default(),
     );
     application.connect_activate(build_ui);

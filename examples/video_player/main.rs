@@ -5,7 +5,7 @@ use video_player_window::VideoPlayerWindow;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.video_player"),
+        Some("com.github.gtk_rs.examples.video_player"),
         Default::default(),
     );
 

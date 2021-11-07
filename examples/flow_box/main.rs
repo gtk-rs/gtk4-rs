@@ -6,7 +6,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.flowbox"),
+        Some("com.github.gtk_rs.examples.flowbox"),
         Default::default(),
     );
 

@@ -3,7 +3,7 @@ use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, Respon
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.builder_basics"),
+        Some("com.github.gtk_rs.examples.builder_basics"),
         Default::default(),
     );
     application.connect_activate(build_ui);

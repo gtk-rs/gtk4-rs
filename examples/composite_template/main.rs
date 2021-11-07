@@ -6,7 +6,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.composite_template"),
+        Some("com.github.gtk_rs.examples.composite_template"),
         Default::default(),
     );
 

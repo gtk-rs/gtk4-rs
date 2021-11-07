@@ -7,7 +7,7 @@ use gtk::{Application, Entry, EntryCompletion, Label, ListStore, Orientation};
 
 fn main() {
     let application = Application::new(
-        Some("com.github.gtk-rs.examples.entry-completion"),
+        Some("com.github.gtk_rs.examples.entry_completion"),
         Default::default(),
     );
     application.connect_activate(build_ui);

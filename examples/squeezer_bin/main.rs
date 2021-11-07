@@ -6,7 +6,7 @@ use squeezer_bin::SqueezerBin;
 
 fn main() {
     let application = gtk::Application::builder()
-        .application_id("com.github.gtk-rs.examples.squeezer_bin")
+        .application_id("com.github.gtk_rs.examples.squeezer_bin")
         .build();
 
     application.connect_activate(|app| {

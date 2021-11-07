@@ -28,7 +28,7 @@ const TOTAL_COLORS: i32 = COLORS.len() as i32;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.custom_layout"),
+        Some("com.github.gtk_rs.examples.custom_layout"),
         Default::default(),
     );
 

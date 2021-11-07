@@ -5,7 +5,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.apps_launcher"),
+        Some("com.github.gtk_rs.examples.apps_launcher"),
         Default::default(),
     );
 

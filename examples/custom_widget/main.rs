@@ -5,7 +5,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.widget_subclass"),
+        Some("com.github.gtk_rs.examples.widget_subclass"),
         Default::default(),
     );
     application.connect_activate(|app| {

@@ -12,7 +12,7 @@ use gtk::{
 
 fn main() {
     let application = Application::new(
-        Some("com.github.gtk-rs.examples.text_viewer"),
+        Some("com.github.gtk_rs.examples.text_viewer"),
         Default::default(),
     );
     application.connect_activate(build_ui);

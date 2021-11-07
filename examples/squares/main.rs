@@ -6,7 +6,7 @@ use squares_widget::SquaresWidget;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.squares"),
+        Some("com.github.gtk_rs.examples.squares"),
         Default::default(),
     );
     application.connect_activate(build_ui);

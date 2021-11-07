@@ -5,7 +5,7 @@ use scale_bin::ScaleBin;
 
 fn main() {
     let application = gtk::Application::builder()
-        .application_id("com.github.gtk-rs.examples.scale_bin")
+        .application_id("com.github.gtk_rs.examples.scale_bin")
         .build();
 
     application.connect_activate(|app| {

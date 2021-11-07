@@ -5,7 +5,7 @@ use gtk::{Application, ApplicationWindow, Label};
 
 fn main() {
     let application =
-        Application::new(Some("com.github.gtk-rs.examples.clock"), Default::default());
+        Application::new(Some("com.github.gtk_rs.examples.clock"), Default::default());
     application.connect_activate(build_ui);
     application.run();
 }

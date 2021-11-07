@@ -4,7 +4,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.search_bar"),
+        Some("com.github.gtk_rs.examples.search_bar"),
         Default::default(),
     );
     application.connect_activate(build_ui);

@@ -24,7 +24,7 @@ fn main() {
     }
 
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.glium-gl-area"),
+        Some("com.github.gtk_rs.examples.glium_gl_area"),
         Default::default(),
     );
     application.connect_activate(build_ui);

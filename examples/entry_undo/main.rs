@@ -2,7 +2,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.entry-undo"),
+        Some("com.github.gtk_rs.examples.entry_undo"),
         Default::default(),
     );
     application.connect_activate(build_ui);

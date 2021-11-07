@@ -10,7 +10,7 @@ use gtk::{gdk, glib};
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.editable"),
+        Some("com.github.gtk_rs.examples.editable"),
         Default::default(),
     );
 

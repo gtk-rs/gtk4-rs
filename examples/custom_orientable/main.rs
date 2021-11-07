@@ -6,7 +6,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.orientable_subclass"),
+        Some("com.github.gtk_rs.examples.orientable_subclass"),
         Default::default(),
     );
     application.connect_activate(|app| {

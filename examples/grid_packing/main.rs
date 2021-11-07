@@ -4,7 +4,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.grid-packing"),
+        Some("com.github.gtk_rs.examples.grid_packing"),
         Default::default(),
     );
 

@@ -15,7 +15,10 @@ impl Default for ExApplication {
 impl ExApplication {
     pub fn new() -> Self {
         glib::Object::new(&[
-            ("application-id", &"org.gtk_rs.application-subclass"),
+            (
+                "application-id",
+                &"com.github.gtk_rs.examples.application_subclass",
+            ),
             ("flags", &gio::ApplicationFlags::empty()),
         ])
         .expect("Failed to create ExApplication")

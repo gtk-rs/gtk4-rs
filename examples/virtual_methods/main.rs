@@ -9,7 +9,7 @@ use gtk::{
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.virtual_methods"),
+        Some("com.github.gtk_rs.examples.virtual_methods"),
         Default::default(),
     );
 

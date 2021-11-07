@@ -5,7 +5,7 @@ use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.paintable"),
+        Some("com.github.gtk_rs.examples.paintable"),
         Default::default(),
     );
     application.connect_activate(build_ui);

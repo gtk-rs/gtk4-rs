@@ -6,7 +6,7 @@ use std::rc::Rc;
 
 fn main() {
     let application = gtk::Application::builder()
-        .application_id("com.github.gtk-rs.examples.dialog")
+        .application_id("com.github.gtk_rs.examples.dialog")
         .build();
 
     application.connect_activate(build_ui);

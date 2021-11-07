@@ -7,7 +7,7 @@ use gtk::{
 };
 
 fn main() {
-    let application = Application::new(Some("com.github.css"), Default::default());
+    let application = Application::new(Some("com.github.gtk_rs.examples.css"), Default::default());
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
         let provider = CssProvider::new();

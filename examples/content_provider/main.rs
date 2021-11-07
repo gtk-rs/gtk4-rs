@@ -5,7 +5,10 @@ use gtk::glib;
 use gtk::prelude::*;
 
 fn main() {
-    let app = gtk::Application::new(Some("org.gtk.content-provider"), Default::default());
+    let app = gtk::Application::new(
+        Some("com.github.gtk_rs.examples.content_provider"),
+        Default::default(),
+    );
     app.connect_activate(on_activate);
     app.run();
 }
