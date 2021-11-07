@@ -1,0 +1,45 @@
+{
+    "app-id" : "com.github.gtk_rs.examples.example_apps_launcher",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "command" : "list_view_example_apps_launcher",
+    "finish-args" : [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--socket=session-bus",
+        "--socket=system-bus",
+        "--device=dri",
+        "--talk-name=org.a11y.Bus",
+        "--env=RUST_LOG=squeezer_bin=debug",
+        "--env=G_MESSAGES_DEBUG=none"
+    ],
+    "build-options" : {
+        "append-path" : "/usr/lib/sdk/rust-stable/bin",
+        "build-args" : [
+            "--share=network"
+        ],
+        "test-args" : [
+            "--socket=x11",
+            "--share=network"
+        ],
+        "env" : {
+            "RUST_BACKTRACE" : "1"
+        }
+    },
+    "modules" : [
+        {
+            "name" : "squeezer-bin-example",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "../../"
+                }
+            ]
+        }
+    ]
+}
