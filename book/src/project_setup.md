@@ -1,6 +1,6 @@
 # Project Setup
 
-There are a few recommended ways to set up your workstation in order to develop `gtk-rs` applications.
+There are two recommended ways to set up your workstation in order to develop `gtk-rs` applications.
 Let us go through them one by one.
 
 ## Cargo
@@ -9,15 +9,15 @@ Let us go through them one by one.
 If following the book is all you care about, using only Cargo will work fine for you.
 
 Let us begin by installing all necessary tools.
-First follow the instructions on the [GTK website](https://www.gtk.org/docs/installations/) in order to install GTK 4.
+First, follow the instructions on the [GTK website](https://www.gtk.org/docs/installations/) in order to install GTK 4.
 Then install Rust with [rustup](https://rustup.rs/).
 
-Now create a new project by executing:
+Now, create a new project by executing:
 ```bash
 cargo new my-gtk-app
 ```
 
-Add the following lines to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [crate](https://crates.io/crates/gtk4).
+Add the following lines to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [gtk4 crate](https://crates.io/crates/gtk4).
 
 ```toml
 gtk = { version = "X.X", package = "gtk4" }
@@ -36,7 +36,7 @@ gtk = { version = "X.X", package = "gtk4" }
 >pkg-config --modversion gtk4
 >```
 
-Now you can run your application by executing:
+Now, you can run your application by executing:
 ```bash
 cargo run
 ```
@@ -68,6 +68,6 @@ You have to execute it every time you modify your application.
 meson install -C builddir
 ```
 
-Now the application should be in a folder included in your system path.
+Now, the application should be in a folder included in your system path.
 You can either start it with the application launcher of your choice or from within your terminal.
 

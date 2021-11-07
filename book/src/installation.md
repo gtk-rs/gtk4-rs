@@ -1,6 +1,6 @@
 # Installation
 
-In order to develop a `gtk-rs` app you basically need two things on your workstation:
+In order to develop a `gtk-rs` app, you basically need two things on your workstation:
 
 - the Rust toolchain, and
 - the GTK 4 library.
