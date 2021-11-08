@@ -601,8 +601,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">        let completed_button_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(completed_button_binding);
 </span><span class="boring">
@@ -610,8 +609,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">        let content_label_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">
@@ -631,8 +629,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">    }
@@ -1140,8 +1137,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
         let completed_button_binding = todo_object
             .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(completed_button_binding);
 
@@ -1149,8 +1145,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
         let content_label_binding = todo_object
             .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(content_label_binding);
 
@@ -1170,8 +1165,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
                 }
                 Some(attribute_list.to_value())
             })
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(content_label_binding);
     }
@@ -1228,8 +1222,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">        let completed_button_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(completed_button_binding);
 </span><span class="boring">
@@ -1237,8 +1230,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">        let content_label_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">
@@ -1258,8 +1250,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">    }

@@ -223,24 +223,25 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Connect callback
-    button
-        .connect_local(&quot;clicked&quot;, false, move |args| {
-            // Get the button from the arguments
-            let button = args[0]
-                .get::&lt;Button&gt;()
-                .expect(&quot;The value needs to be of type `Button`.&quot;);
-            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-            button.set_label(&quot;Hello World!&quot;);
-            None
-        })
-        .expect(&quot;Could not connect to signal.&quot;);
+    button.connect_local(&quot;clicked&quot;, false, move |args| {
+        // Get the button from the arguments
+        let button = args[0]
+            .get::&lt;Button&gt;()
+            .expect(&quot;The value needs to be of type `Button`.&quot;);
+        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
+        button.set_label(&quot;Hello World!&quot;);
+        None
+    });
 <span class="boring">
 </span><span class="boring">    // Add button
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals.</p>
+<blockquote>
+<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
+</blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
 <p>Let us see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
@@ -332,8 +333,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -349,16 +349,10 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // If `number` reached `MAX_NUMBER`,
 </span><span class="boring">        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
 </span><span class="boring">        if incremented_number == MAX_NUMBER {
-</span><span class="boring">            button
-</span><span class="boring">                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number])
-</span><span class="boring">                .expect(&quot;Could not emit signal.&quot;);
-</span><span class="boring">            button
-</span><span class="boring">                .set_property(&quot;number&quot;, &amp;0)
-</span><span class="boring">                .expect(&quot;Could not set property.&quot;);
+</span><span class="boring">            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+</span><span class="boring">            button.set_property(&quot;number&quot;, &amp;0);
 </span><span class="boring">        } else {
-</span><span class="boring">            button
-</span><span class="boring">                .set_property(&quot;number&quot;, &amp;incremented_number)
-</span><span class="boring">                .expect(&quot;Could not set property.&quot;);
+</span><span class="boring">            button.set_property(&quot;number&quot;, &amp;incremented_number);
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -458,8 +452,7 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -475,16 +468,10 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit &quot;max-number-reached&quot; signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button
-                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number])
-                .expect(&quot;Could not emit signal.&quot;);
-            button
-                .set_property(&quot;number&quot;, &amp;0)
-                .expect(&quot;Could not set property.&quot;);
+            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+            button.set_property(&quot;number&quot;, &amp;0);
         } else {
-            button
-                .set_property(&quot;number&quot;, &amp;incremented_number)
-                .expect(&quot;Could not set property.&quot;);
+            button.set_property(&quot;number&quot;, &amp;incremented_number);
         }
     }
 }
@@ -526,17 +513,15 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    button.set_margin_start(12);
 </span><span class="boring">    button.set_margin_end(12);
 </span><span class="boring">
-</span>    button
-        .connect_local(&quot;max-number-reached&quot;, false, move |args| {
-            // Get the number from the arguments
-            // args[0] would return the `CustomButton` instance
-            let number = args[1]
-                .get::&lt;i32&gt;()
-                .expect(&quot;The value needs to be of type `i32`.&quot;);
-            println!(&quot;The maximum number {} has been reached&quot;, number);
-            None
-        })
-        .expect(&quot;Could not connect to signal.&quot;);
+</span>    button.connect_local(&quot;max-number-reached&quot;, false, move |args| {
+        // Get the number from the arguments
+        // args[0] would return the `CustomButton` instance
+        let number = args[1]
+            .get::&lt;i32&gt;()
+            .expect(&quot;The value needs to be of type `i32`.&quot;);
+        println!(&quot;The maximum number {} has been reached&quot;, number);
+        None
+    });
 <span class="boring">
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
@@ -544,10 +529,6 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span></code></pre>
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
-</div>
 
                     </main>
 

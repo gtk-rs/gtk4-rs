@@ -1558,7 +1558,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">}
 </span></code></pre>
 <p>Alternatively, we can use the general <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
-Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
+We use the <a href="https://matematikaadit.github.io/posts/rust-turbofish.html">turbofish</a> syntax to specify the type if it cannot be inferred.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
@@ -1588,14 +1588,8 @@ Because they can be used for properties of different types, they operate with <c
     let switch = Switch::new();
 
     // Set and then immediately obtain state
-    switch
-        .set_property(&quot;state&quot;, &amp;true)
-        .expect(&quot;Could not set property.&quot;);
-    let current_state = switch
-        .property(&quot;state&quot;)
-        .expect(&quot;The property needs to exist and be readable.&quot;)
-        .get::&lt;bool&gt;()
-        .expect(&quot;The property needs to be of type `bool`.&quot;);
+    switch.set_property(&quot;state&quot;, &amp;true);
+    let current_state = switch.property::&lt;bool&gt;(&quot;state&quot;);
 
     // This prints: &quot;The current state is true&quot;
     println!(&quot;The current state is {}&quot;, current_state);
@@ -1616,8 +1610,9 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>Dealing with a <code>glib::Value</code> is quite verbose.
-This is why you only want to use the generic methods for accessing properties you have added to your custom GObjects.</p>
+<p>Both <code>property</code> and <code>set_property</code> panic if the property does not exist, has the wrong type or has the wrong permissions.
+This is fine in most situations where these cases are hardcoded within the program.
+If this does not apply for your program you might want to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property"><code>try_property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property"><code>try_set_property</code></a> instead.</p>
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
 Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
@@ -1653,8 +1648,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">    switch_1
 </span><span class="boring">        .bind_property(&quot;state&quot;, &amp;switch_2, &quot;state&quot;)
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">        .build()
-</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Set up box
 </span><span class="boring">    let gtk_box = Box::builder()
@@ -1708,8 +1702,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span>    switch_1
         .bind_property(&quot;state&quot;, &amp;switch_2, &quot;state&quot;)
         .flags(BindingFlags::BIDIRECTIONAL)
-        .build()
-        .expect(&quot;Could not bind properties&quot;);
+        .build();
 <span class="boring">
 </span><span class="boring">    // Set up box
 </span><span class="boring">    let gtk_box = Box::builder()
@@ -1820,8 +1813,7 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
     }
 }
 <span class="boring">
@@ -1832,9 +1824,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">impl ButtonImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
 </span><span class="boring">        let incremented_number = self.number.get() + 1;
-</span><span class="boring">        button
-</span><span class="boring">            .set_property(&quot;number&quot;, &amp;incremented_number)
-</span><span class="boring">            .expect(&quot;Could not set property.&quot;);
+</span><span class="boring">        button.set_property(&quot;number&quot;, &amp;incremented_number);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
@@ -1895,17 +1885,12 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">            Some(decremented_number.to_value())
 </span><span class="boring">        })
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-</span><span class="boring">        .build()
-</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // The closure will be called
 </span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
-</span><span class="boring">        let number = button
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = button.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">        println!(&quot;The current number of `button_1` is {}.&quot;, number);
 </span><span class="boring">    });
 </span><span class="boring">
@@ -1981,17 +1966,12 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
             Some(decremented_number.to_value())
         })
         .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-        .build()
-        .expect(&quot;Could not bind properties&quot;);
+        .build();
 <span class="boring">
 </span><span class="boring">    // The closure will be called
 </span><span class="boring">    // whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
-</span><span class="boring">        let number = button
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = button.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">        println!(&quot;The current number of `button_1` is {}.&quot;, number);
 </span><span class="boring">    });
 </span><span class="boring">
@@ -2069,17 +2049,12 @@ We can do this like this:</p>
 </span><span class="boring">            Some(decremented_number.to_value())
 </span><span class="boring">        })
 </span><span class="boring">        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
-</span><span class="boring">        .build()
-</span><span class="boring">        .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // The closure will be called
     // whenever the property &quot;number&quot; of `button_1` gets changed
     button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
-        let number = button
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
+        let number = button.property::&lt;i32&gt;(&quot;number&quot;);
         println!(&quot;The current number of `button_1` is {}.&quot;, number);
     });
 <span class="boring">
@@ -2193,24 +2168,25 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Connect callback
-    button
-        .connect_local(&quot;clicked&quot;, false, move |args| {
-            // Get the button from the arguments
-            let button = args[0]
-                .get::&lt;Button&gt;()
-                .expect(&quot;The value needs to be of type `Button`.&quot;);
-            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-            button.set_label(&quot;Hello World!&quot;);
-            None
-        })
-        .expect(&quot;Could not connect to signal.&quot;);
+    button.connect_local(&quot;clicked&quot;, false, move |args| {
+        // Get the button from the arguments
+        let button = args[0]
+            .get::&lt;Button&gt;()
+            .expect(&quot;The value needs to be of type `Button`.&quot;);
+        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
+        button.set_label(&quot;Hello World!&quot;);
+        None
+    });
 <span class="boring">
 </span><span class="boring">    // Add button
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals.</p>
+<blockquote>
+<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
+</blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
 <p>Let us see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
@@ -2302,8 +2278,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -2319,16 +2294,10 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // If `number` reached `MAX_NUMBER`,
 </span><span class="boring">        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
 </span><span class="boring">        if incremented_number == MAX_NUMBER {
-</span><span class="boring">            button
-</span><span class="boring">                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number])
-</span><span class="boring">                .expect(&quot;Could not emit signal.&quot;);
-</span><span class="boring">            button
-</span><span class="boring">                .set_property(&quot;number&quot;, &amp;0)
-</span><span class="boring">                .expect(&quot;Could not set property.&quot;);
+</span><span class="boring">            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+</span><span class="boring">            button.set_property(&quot;number&quot;, &amp;0);
 </span><span class="boring">        } else {
-</span><span class="boring">            button
-</span><span class="boring">                .set_property(&quot;number&quot;, &amp;incremented_number)
-</span><span class="boring">                .expect(&quot;Could not set property.&quot;);
+</span><span class="boring">            button.set_property(&quot;number&quot;, &amp;incremented_number);
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -2428,8 +2397,7 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -2445,16 +2413,10 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit &quot;max-number-reached&quot; signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button
-                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number])
-                .expect(&quot;Could not emit signal.&quot;);
-            button
-                .set_property(&quot;number&quot;, &amp;0)
-                .expect(&quot;Could not set property.&quot;);
+            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+            button.set_property(&quot;number&quot;, &amp;0);
         } else {
-            button
-                .set_property(&quot;number&quot;, &amp;incremented_number)
-                .expect(&quot;Could not set property.&quot;);
+            button.set_property(&quot;number&quot;, &amp;incremented_number);
         }
     }
 }
@@ -2496,17 +2458,15 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    button.set_margin_start(12);
 </span><span class="boring">    button.set_margin_end(12);
 </span><span class="boring">
-</span>    button
-        .connect_local(&quot;max-number-reached&quot;, false, move |args| {
-            // Get the number from the arguments
-            // args[0] would return the `CustomButton` instance
-            let number = args[1]
-                .get::&lt;i32&gt;()
-                .expect(&quot;The value needs to be of type `i32`.&quot;);
-            println!(&quot;The maximum number {} has been reached&quot;, number);
-            None
-        })
-        .expect(&quot;Could not connect to signal.&quot;);
+</span>    button.connect_local(&quot;max-number-reached&quot;, false, move |args| {
+        // Get the number from the arguments
+        // args[0] would return the `CustomButton` instance
+        let number = args[1]
+            .get::&lt;i32&gt;()
+            .expect(&quot;The value needs to be of type `i32`.&quot;);
+        println!(&quot;The maximum number {} has been reached&quot;, number);
+        None
+    });
 <span class="boring">
 </span><span class="boring">    window.set_child(Some(&amp;button));
 </span><span class="boring">    window.present();
@@ -2514,10 +2474,6 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span></code></pre>
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
-</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-main-event-loop"><a class="header" href="#the-main-event-loop">The main event loop</a></h1>
 <p>We now got comfortable using callbacks, but how do they actually work?
 All of this happens asynchronously, so there must be something managing the events and scheduling the responses.
@@ -3673,11 +3629,7 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
@@ -3763,11 +3715,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
@@ -3850,11 +3798,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
             .expect(&quot;The item has to be an `IntegerObject`.&quot;);
 
         // Get `i32` from `IntegerObject`
-        let number = integer_object
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
+        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 
         // Get `Label` from `ListItem`
         let label = list_item
@@ -3939,11 +3883,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
@@ -4026,11 +3966,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
@@ -4077,14 +4013,8 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
     }
 
     pub fn increase_number(self) {
-        let old_number = self
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
-
-        self.set_property(&quot;number&quot;, old_number + 1)
-            .expect(&quot;Could not set property.&quot;);
+        let old_number = self.property::&lt;i32&gt;(&quot;number&quot;);
+        self.set_property(&quot;number&quot;, old_number + 1);
     }
 }
 </code></pre>
@@ -4157,8 +4087,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        integer_object
 </span><span class="boring">            .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
@@ -4258,8 +4187,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
         integer_object
             .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
     });
 <span class="boring">
 </span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
@@ -4477,11 +4405,7 @@ We can, for example, filter our model to only allow even numbers.</p>
             .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 
         // Get property &quot;number&quot; from `IntegerObject`
-        let number = integer_object
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
+        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 
         // Only allow even numbers
         number % 2 == 0
@@ -4498,16 +4422,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number_1 = integer_object_1
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
-</span><span class="boring">        let number_2 = integer_object_2
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Reverse sorting order -&gt; large numbers come first
 </span><span class="boring">        number_2.cmp(&amp;number_1).into()
@@ -4617,11 +4533,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Only allow even numbers
 </span><span class="boring">        number % 2 == 0
@@ -4638,16 +4550,8 @@ We can, for example, filter our model to only allow even numbers.</p>
             .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 
         // Get property &quot;number&quot; from `IntegerObject`
-        let number_1 = integer_object_1
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
-        let number_2 = integer_object_2
-            .property(&quot;number&quot;)
-            .expect(&quot;The property needs to exist and be readable.&quot;)
-            .get::&lt;i32&gt;()
-            .expect(&quot;The property needs to be of type `i32`.&quot;);
+        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
+        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
 
         // Reverse sorting order -&gt; large numbers come first
         number_2.cmp(&amp;number_1).into()
@@ -4757,11 +4661,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number = integer_object
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Only allow even numbers
 </span><span class="boring">        number % 2 == 0
@@ -4778,16 +4678,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number_1 = integer_object_1
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
-</span><span class="boring">        let number_2 = integer_object_2
-</span><span class="boring">            .property(&quot;number&quot;)
-</span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
-</span><span class="boring">            .get::&lt;i32&gt;()
-</span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
+</span><span class="boring">        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Reverse sorting order -&gt; large numbers come first
 </span><span class="boring">        number_2.cmp(&amp;number_1).into()
@@ -5963,8 +5855,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">        let completed_button_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(completed_button_binding);
 </span><span class="boring">
@@ -5972,8 +5863,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">        let content_label_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">
@@ -5993,8 +5883,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">    }
@@ -6502,8 +6391,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
         let completed_button_binding = todo_object
             .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(completed_button_binding);
 
@@ -6511,8 +6399,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
         let content_label_binding = todo_object
             .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
             .flags(BindingFlags::SYNC_CREATE)
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(content_label_binding);
 
@@ -6532,8 +6419,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
                 }
                 Some(attribute_list.to_value())
             })
-            .build()
-            .expect(&quot;Could not bind properties&quot;);
+            .build();
         // Save binding
         bindings.push(content_label_binding);
     }
@@ -6590,8 +6476,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">        let completed_button_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;completed&quot;, &amp;completed_button, &quot;active&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(completed_button_binding);
 </span><span class="boring">
@@ -6599,8 +6484,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">        let content_label_binding = todo_object
 </span><span class="boring">            .bind_property(&quot;content&quot;, &amp;content_label, &quot;label&quot;)
 </span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">
@@ -6620,8 +6504,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
-</span><span class="boring">            .build()
-</span><span class="boring">            .expect(&quot;Could not bind properties&quot;);
+</span><span class="boring">            .build();
 </span><span class="boring">        // Save binding
 </span><span class="boring">        bindings.push(content_label_binding);
 </span><span class="boring">    }
