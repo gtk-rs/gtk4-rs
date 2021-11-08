@@ -23,3 +23,11 @@ status = "generate"
     [[object.function]]
     name = "is_shared"
     version = "4.4"
+
+
+[[object]]
+name = "Gdk.MemoryFormat"
+status = "generate"
+    [[object.member]]
+    name = "n_formats"
+    alias = true # not useful

@@ -1367,8 +1367,6 @@ pub enum MemoryFormat {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT")]
     R32g32b32a32Float,
-    #[doc(alias = "GDK_MEMORY_N_FORMATS")]
-    NFormats,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1406,7 +1404,6 @@ impl fmt::Display for MemoryFormat {
                 Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
                 #[cfg(any(feature = "v4_6", feature = "dox"))]
                 Self::R32g32b32a32Float => "R32g32b32a32Float",
-                Self::NFormats => "NFormats",
                 _ => "Unknown",
             }
         )
@@ -1450,7 +1447,6 @@ impl IntoGlib for MemoryFormat {
             }
             #[cfg(any(feature = "v4_6", feature = "dox"))]
             Self::R32g32b32a32Float => ffi::GDK_MEMORY_R32G32B32A32_FLOAT,
-            Self::NFormats => ffi::GDK_MEMORY_N_FORMATS,
             Self::__Unknown(value) => value,
         }
     }
@@ -1492,7 +1488,6 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             }
             #[cfg(any(feature = "v4_6", feature = "dox"))]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT => Self::R32g32b32a32Float,
-            ffi::GDK_MEMORY_N_FORMATS => Self::NFormats,
             value => Self::__Unknown(value),
         }
     }
