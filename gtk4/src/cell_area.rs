@@ -4,7 +4,7 @@ use crate::prelude::*;
 use crate::{CellArea, CellAreaContext, CellRenderer, CellRendererState, Widget};
 use gdk::Event;
 use glib::translate::*;
-use glib::{IsA, ToValue};
+use glib::{value::FromValue, IsA, ToValue};
 
 pub trait CellAreaExtManual {
     #[doc(alias = "gtk_cell_area_add_with_properties")]
@@ -36,7 +36,21 @@ pub trait CellAreaExtManual {
 
     #[doc(alias = "gtk_cell_area_cell_get_valist")]
     #[doc(alias = "gtk_cell_area_cell_get_property")]
-    fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str) -> glib::Value;
+    fn cell_get_value<P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+    ) -> glib::Value;
+
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::cell_get_value`] but panics if the value is of a different type.
+    #[doc(alias = "gtk_cell_area_cell_get_valist")]
+    #[doc(alias = "gtk_cell_area_cell_get_property")]
+    fn cell_get<V: for<'b> FromValue<'b> + 'static, P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+    ) -> V;
 
     #[doc(alias = "gtk_cell_area_cell_set_valist")]
     #[doc(alias = "gtk_cell_area_cell_set_property")]
@@ -79,7 +93,11 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 
-    fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str) -> glib::Value {
+    fn cell_get_value<P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+    ) -> glib::Value {
         unsafe {
             let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
             let pspec: Option<glib::ParamSpec> =
@@ -99,6 +117,17 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             );
             value
         }
+    }
+
+    fn cell_get<V: for<'b> FromValue<'b> + 'static, P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+    ) -> V {
+        let value = self.cell_get_value(renderer, property_name);
+        value
+            .get_owned::<V>()
+            .expect("Failed to get value of renderer")
     }
 
     fn cell_set<P: IsA<CellRenderer>>(
