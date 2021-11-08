@@ -3,7 +3,7 @@
 use crate::DropTarget;
 use glib::signal::connect_raw;
 use glib::Type;
-use glib::{translate::*, ObjectType, SignalHandlerId};
+use glib::{translate::*, value::FromValue, ObjectType, SignalHandlerId};
 use std::boxed::Box as Box_;
 use std::mem::transmute;
 
@@ -18,6 +18,17 @@ impl DropTarget {
                 types.len(),
             )
         }
+    }
+
+    #[doc(alias = "gtk_drop_target_get_value")]
+    #[doc(alias = "get_value")]
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::value`] but panics if the value is of a different type.
+    pub fn value_as<V: for<'b> FromValue<'b> + 'static>(&self) -> Option<V> {
+        self.value().map(|v| {
+            v.get_owned::<V>()
+                .expect("Failed to get value as this type")
+        })
     }
 
     #[doc(alias = "gtk_drop_target_get_gtypes")]
