@@ -3,17 +3,25 @@
 use crate::prelude::*;
 use crate::{TreeIter, TreeModel};
 use glib::translate::*;
+use glib::value::FromValue;
 use glib::IsA;
 
 pub trait TreeModelExtManual: 'static {
     #[doc(alias = "gtk_tree_model_get")]
     #[doc(alias = "gtk_tree_model_get_value")]
     #[doc(alias = "gtk_tree_model_get_valist")]
-    fn get(&self, iter: &TreeIter, column: i32) -> glib::Value;
+    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
+
+    #[doc(alias = "gtk_tree_model_get")]
+    #[doc(alias = "gtk_tree_model_get_value")]
+    #[doc(alias = "gtk_tree_model_get_valist")]
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::get_value`] but panics if the value is of a different type.
+    fn get<V: for<'b> FromValue<'b> + 'static>(&self, iter: &TreeIter, column: i32) -> V;
 }
 
 impl<O: IsA<TreeModel>> TreeModelExtManual for O {
-    fn get(&self, iter: &TreeIter, column: i32) -> glib::Value {
+    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
         let total_columns = self.as_ref().n_columns();
         assert!(
             column < total_columns,
@@ -31,5 +39,12 @@ impl<O: IsA<TreeModel>> TreeModelExtManual for O {
             );
             value
         }
+    }
+
+    fn get<V: for<'b> FromValue<'b> + 'static>(&self, iter: &TreeIter, column: i32) -> V {
+        let value = self.get_value(iter, column);
+        value
+            .get_owned::<V>()
+            .expect("Failed to get TreeModel value")
     }
 }
