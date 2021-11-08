@@ -130,4 +130,4 @@ To switch to `stable-gnu`, run the following commands from your terminal:
 2. `rustup default stable-gnu`
 
 Please note that this command might change in the future.
-If it does not work anymore, please open an [issue]((https://github.com/gtk-rs/gtk4-rs/issues/new/choose)) on our repo.
+If it does not work anymore, please open an [issue](https://github.com/gtk-rs/gtk4-rs/issues/new/choose) on our repo.
