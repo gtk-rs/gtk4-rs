@@ -108,28 +108,6 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ContentFormats</span>;
@@ -154,28 +132,6 @@
                 <span class="ident">ffi::gdk_content_formats_get_gtypes</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">n_types</span>.<span class="ident">as_mut_ptr</span>());
 
             <span class="ident">FromGlibContainer::from_glib_none_num</span>(<span class="ident">types</span>, <span class="ident">n_types</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>)
-        }
-    }
-
-    <span class="doccomment">/// Gets the mime types included in `self`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `self` may not contain any mime types, in particular</span>
-    <span class="doccomment">/// when they are empty. In that case [`None`] will be returned.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">///  [`None`]-terminated array of interned strings of mime types included</span>
-    <span class="doccomment">///  in `self`</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_get_mime_types&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n_mime_types</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
-            <span class="kw">let</span> <span class="ident">mime_types</span> <span class="op">=</span> <span class="ident">ffi::gdk_content_formats_get_mime_types</span>(
-                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">n_mime_types</span>.<span class="ident">as_mut_ptr</span>(),
-            );
-            <span class="ident">FromGlibContainer::from_glib_none_num</span>(<span class="ident">mime_types</span>, <span class="ident">n_mime_types</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>)
         }
     }
 }
