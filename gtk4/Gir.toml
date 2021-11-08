@@ -1281,9 +1281,6 @@ manual_traits = ["IMContextExtManual"]
     name = "filter_keypress"
     manual = true # to handle gdk::Event
     doc_trait_name = "IMContextExtManual"
-    [[object.function]]
-    pattern = "(get|set)_surrounding_with_selection"
-    version = "4.2" # remove once 4.2 is released
 
 [[object]]
 name = "Gtk.IMContextSimple"
