@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
-use glib::{ToValue, Value};
+use glib::{value::FromValue, ToValue, Value};
 
 glib::wrapper! {
     #[derive(Debug)]
@@ -52,6 +52,17 @@ impl ConstantExpression {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::value`] but panics if the value is of a different type.
+    #[doc(alias = "gtk_constant_expression_get_value")]
+    #[doc(alias = "get_value")]
+    pub fn value_as<V: for<'b> FromValue<'b> + 'static>(&self) -> V {
+        let value = self.value();
+        value
+            .get_owned::<V>()
+            .expect("Failed to get ConstantExpression value")
+    }
 }
 
 #[cfg(test)]
@@ -68,8 +79,10 @@ mod tests {
             assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
             let expr1 = ConstantExpression::new(&23);
             assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+            assert_eq!(expr1.value_as::<i32>(), 23);
             let expr2 = ConstantExpression::for_value(&"hello".to_value());
             assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+            assert_eq!(expr2.value_as::<String>(), "hello");
         });
     }
 }
