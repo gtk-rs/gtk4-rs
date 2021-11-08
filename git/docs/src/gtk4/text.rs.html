@@ -476,61 +476,6 @@
 <span id="403">403</span>
 <span id="404">404</span>
 <span id="405">405</span>
-<span id="406">406</span>
-<span id="407">407</span>
-<span id="408">408</span>
-<span id="409">409</span>
-<span id="410">410</span>
-<span id="411">411</span>
-<span id="412">412</span>
-<span id="413">413</span>
-<span id="414">414</span>
-<span id="415">415</span>
-<span id="416">416</span>
-<span id="417">417</span>
-<span id="418">418</span>
-<span id="419">419</span>
-<span id="420">420</span>
-<span id="421">421</span>
-<span id="422">422</span>
-<span id="423">423</span>
-<span id="424">424</span>
-<span id="425">425</span>
-<span id="426">426</span>
-<span id="427">427</span>
-<span id="428">428</span>
-<span id="429">429</span>
-<span id="430">430</span>
-<span id="431">431</span>
-<span id="432">432</span>
-<span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
-<span id="438">438</span>
-<span id="439">439</span>
-<span id="440">440</span>
-<span id="441">441</span>
-<span id="442">442</span>
-<span id="443">443</span>
-<span id="444">444</span>
-<span id="445">445</span>
-<span id="446">446</span>
-<span id="447">447</span>
-<span id="448">448</span>
-<span id="449">449</span>
-<span id="450">450</span>
-<span id="451">451</span>
-<span id="452">452</span>
-<span id="453">453</span>
-<span id="454">454</span>
-<span id="455">455</span>
-<span id="456">456</span>
-<span id="457">457</span>
-<span id="458">458</span>
-<span id="459">459</span>
-<span id="460">460</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -893,102 +838,47 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;activate&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;activate&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;backspace&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;backspace&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;copy-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;copy-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_cut_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;cut-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;cut-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;delete-from-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">type_</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;delete-from-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">type_</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;insert-at-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">string</span>])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;insert-at-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">string</span>]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_insert_emoji</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;insert-emoji&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;insert-emoji&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_move_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">step</span>: <span class="ident">MovementStep</span>, <span class="ident">count</span>: <span class="ident">i32</span>, <span class="ident">extend</span>: <span class="ident">bool</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;move-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">step</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>, <span class="kw-2">&amp;</span><span class="ident">extend</span>])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;move-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">step</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>, <span class="kw-2">&amp;</span><span class="ident">extend</span>]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_paste_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;paste-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;paste-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_preedit_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">preedit</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;preedit-changed&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">preedit</span>])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;preedit-changed&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">preedit</span>]);
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_toggle_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">stash</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*mut</span> <span class="ident">ffi::GtkText</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_glib_none</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">glib::Object::from_glib_borrow</span>(<span class="ident">stash</span>.<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span>)
-                .<span class="ident">emit_by_name</span>(<span class="string">&quot;toggle-overwrite&quot;</span>, <span class="kw-2">&amp;</span>[])
-                .<span class="ident">unwrap</span>()
-        };
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;toggle-overwrite&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 }
 </code></pre></div>

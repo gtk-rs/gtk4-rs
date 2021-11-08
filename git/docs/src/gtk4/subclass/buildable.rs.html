@@ -668,7 +668,7 @@
                 )
             } <span class="kw">else</span> {
                 <span class="ident">buildable</span>
-                    .<span class="ident">set_property_from_value</span>(<span class="ident">name</span>, <span class="ident">value</span>)
+                    .<span class="ident">try_set_property_from_value</span>(<span class="ident">name</span>, <span class="ident">value</span>)
                     .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> {
                         <span class="macro">panic!</span>(
                             <span class="string">&quot;Buildable property `{}` was not found {}&quot;</span>,
