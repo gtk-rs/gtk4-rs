@@ -19,6 +19,7 @@ impl ObjectSubclass for ExMenuButton {
 
     fn class_init(klass: &mut Self::Class) {
         Self::bind_template(klass);
+        Self::bind_template_callbacks(klass);
     }
 
     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -26,25 +27,21 @@ impl ObjectSubclass for ExMenuButton {
     }
 }
 
-impl ObjectImpl for ExMenuButton {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
-
-        let popover = &*self.popover;
-        self.toggle
-            .connect_toggled(glib::clone!(@weak popover => move |toggle| {
-                if toggle.is_active() {
-                    popover.popup();
-                }
-            }));
-
-        let toggle = &*self.toggle;
-        self.popover
-            .connect_closed(glib::clone!(@weak toggle => move |_| {
-                toggle.set_active(false);
-            }));
+#[gtk::template_callbacks]
+impl ExMenuButton {
+    #[template_callback]
+    fn toggle_toggled(&self, toggle: &gtk::ToggleButton) {
+        if toggle.is_active() {
+            self.popover.popup();
+        }
     }
+    #[template_callback(name = "popover_closed")]
+    fn unset_toggle(&self) {
+        self.toggle.set_active(false);
+    }
+}
 
+impl ObjectImpl for ExMenuButton {
     // Needed for direct subclasses of GtkWidget;
     // Here you need to unparent all direct children
     // of your template.

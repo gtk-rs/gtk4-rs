@@ -17,27 +17,125 @@
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="valign">center</property>
-        <property name="spacing">6</property>
-        <property name="margin-start">12</property>
-        <property name="margin-end">12</property>
-        <property name="margin-top">12</property>
-        <property name="margin-bottom">12</property>
         <child>
-          <object class="GtkLabel" id="label">
-            <property name="label">Composite Template</property>
-            <style>
-              <class name="large-title"/>
-            </style>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="valign">center</property>
+            <property name="vexpand">1</property>
+            <property name="spacing">6</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <property name="margin-top">12</property>
+            <property name="margin-bottom">12</property>
+            <child>
+              <object class="GtkLabel" id="label">
+                <property name="label">Composite Template</property>
+                <style>
+                  <class name="large-title"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="subtitle_label">
+                <property name="wrap">True</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="subtitle_label">
-            <property name="wrap">True</property>
-            <property name="justify">center</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
+          <object class="GtkGrid">
+            <property name="halign">center</property>
+            <property name="vexpand">1</property>
+            <property name="column-spacing">6</property>
+            <property name="row-spacing">6</property>
+            <child>
+              <object class="GtkEntry" id="entry_a">
+                <property name="text">Hello</property>
+                <property name="placeholder-text">First</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_b">
+                <property name="text">World</property>
+                <property name="placeholder-text">Second</property>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="halign">start</property>
+                <binding name="label">
+                  <closure type="gchararray" function="concat_strs">
+                    <constant type="gchararray">Result: </constant>
+                    <lookup type="GtkEntry" name="text">entry_a</lookup>
+                    <constant type="gchararray">, </constant>
+                    <lookup type="GtkEntry" name="text">entry_b</lookup>
+                  </closure>
+                </binding>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">1</property>
+                  <property name="column-span">2</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="halign">start</property>
+                <binding name="label">
+                  <closure type="gchararray" function="concat_strs">
+                    <constant type="gchararray">Lengths: </constant>
+                    <closure type="gchararray" function="to_string">
+                      <closure type="guint64" function="strlen">
+                        <lookup type="GtkEntry" name="text">entry_a</lookup>
+                      </closure>
+                    </closure>
+                    <constant type="gchararray">, </constant>
+                    <closure type="gchararray" function="to_string">
+                      <closure type="guint64" function="strlen">
+                        <lookup type="GtkEntry" name="text">entry_b</lookup>
+                      </closure>
+                    </closure>
+                  </closure>
+                </binding>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">2</property>
+                  <property name="column-span">2</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Reset First</property>
+                <signal name="clicked" handler="reset_entry" object="entry_a" swapped="true"/>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">3</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Reset Second</property>
+                <signal name="clicked" handler="reset_entry" object="entry_b" swapped="true"/>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">3</property>
+                </layout>
+              </object>
+            </child>
           </object>
         </child>
       </object>
