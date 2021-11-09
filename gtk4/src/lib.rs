@@ -107,6 +107,7 @@ mod bookmark_list;
 mod bool_filter;
 mod border;
 mod builder;
+mod builder_rust_scope;
 mod cell_area;
 mod cell_editable;
 mod cell_layout;
@@ -197,6 +198,7 @@ mod widget;
 
 pub use bitset_iter::BitsetIter;
 pub use border::Border;
+pub use builder_rust_scope::BuilderRustScope;
 pub use closure_expression::ClosureExpression;
 pub use constant_expression::ConstantExpression;
 pub use css_location::CssLocation;
