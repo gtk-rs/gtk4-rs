@@ -225,12 +225,6 @@ impl Builder {
         }
     }
 
-    #[doc(alias = "gtk_builder_get_current_object")]
-    #[doc(alias = "get_current_object")]
-    pub fn current_object(&self) -> Option<glib::Object> {
-        unsafe { from_glib_none(ffi::gtk_builder_get_current_object(self.to_glib_none().0)) }
-    }
-
     #[doc(alias = "gtk_builder_get_objects")]
     #[doc(alias = "get_objects")]
     pub fn objects(&self) -> Vec<glib::Object> {
