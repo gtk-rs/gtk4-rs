@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
+use glib::value::FromValue;
 use glib::Value;
 
 glib::wrapper! {
@@ -30,6 +31,16 @@ impl ExpressionWatch {
                 None
             }
         }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::evaluate`] but panics if the value is of a different type.
+    #[doc(alias = "gtk_expression_evaluate")]
+    pub fn evaluate_as<V: for<'b> FromValue<'b> + 'static>(&self) -> Option<V> {
+        self.evaluate().map(|v| {
+            v.get_owned::<V>()
+                .expect("Failed to evaluate to this value type")
+        })
     }
 
     #[doc(alias = "gtk_expression_watch_unwatch")]
