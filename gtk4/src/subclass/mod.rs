@@ -151,6 +151,7 @@ pub mod prelude {
     pub use super::tree_model_filter::{TreeModelFilterImpl, TreeModelFilterImplExt};
     pub use super::tree_view::{TreeViewImpl, TreeViewImplExt};
     pub use super::widget::CompositeTemplate;
+    pub use super::widget::CompositeTemplateCallbacks;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::{WidgetImpl, WidgetImplExt};

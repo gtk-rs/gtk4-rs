@@ -6,8 +6,8 @@
 use crate::prelude::*;
 use crate::subclass::prelude::*;
 use crate::{
-    AccessibleRole, BuilderScope, DirectionType, LayoutManager, Orientation, Shortcut,
-    SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
+    AccessibleRole, BuilderRustScope, BuilderScope, DirectionType, LayoutManager, Orientation,
+    Shortcut, SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
 };
 use glib::subclass::SignalId;
 use glib::translate::*;
@@ -17,9 +17,12 @@ use std::collections::HashMap;
 use std::fmt;
 
 #[derive(Debug, Default)]
-struct Actions(pub(crate) HashMap<String, glib::ffi::gpointer>);
-unsafe impl Sync for Actions {}
-unsafe impl Send for Actions {}
+struct Internal {
+    pub(crate) actions: HashMap<String, glib::ffi::gpointer>,
+    pub(crate) scope: Option<*mut <<BuilderRustScope as glib::object::ObjectSubclassIs>::Subclass as ObjectSubclass>::Instance>,
+}
+unsafe impl Sync for Internal {}
+unsafe impl Send for Internal {}
 
 pub struct WidgetActionIter(*mut ffi::GtkWidgetClass, u32);
 
@@ -595,8 +598,8 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
         unsafe {
             let mut data = T::type_data();
             let data = data.as_mut();
-            // Used to store actions for `install_action`
-            data.set_class_data(<T as ObjectSubclassType>::type_(), Actions::default());
+            // Used to store actions for `install_action` and `rust_builder_scope`
+            data.set_class_data(<T as ObjectSubclassType>::type_(), Internal::default());
         }
 
         klass.compute_expand = Some(widget_compute_expand::<T>);
@@ -968,11 +971,13 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
             let f: Box_<F> = Box_::new(activate);
 
-            let actions = data
-                .class_data_mut::<Actions>(<Self::Type as ObjectSubclassType>::type_())
-                .expect("Something bad happened at class_init, the actions class_data is missing");
+            let internal = data
+                .class_data_mut::<Internal>(<Self::Type as ObjectSubclassType>::type_())
+                .expect("Something bad happened at class_init, the internal class_data is missing");
             let callback_ptr = Box_::into_raw(f) as glib::ffi::gpointer;
-            actions.0.insert(action_name.to_string(), callback_ptr);
+            internal
+                .actions
+                .insert(action_name.to_string(), callback_ptr);
 
             unsafe extern "C" fn activate_trampoline<F, S>(
                 this: *mut ffi::GtkWidget,
@@ -987,12 +992,14 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 let action_name = GString::from_glib_borrow(action_name);
 
                 let data = <S::Type as ObjectSubclassType>::type_data();
-                let actions = data
+                let internal = data
                     .as_ref()
-                    .class_data::<Actions>(<S::Type as ObjectSubclassType>::type_())
+                    .class_data::<Internal>(<S::Type as ObjectSubclassType>::type_())
                     .unwrap();
-                let activate_callback =
-                    *actions.0.get(&action_name.to_string()).unwrap_or_else(|| {
+                let activate_callback = *internal
+                    .actions
+                    .get(&action_name.to_string())
+                    .unwrap_or_else(|| {
                         panic!("Action name '{}' was not found", action_name.as_str());
                     });
 
@@ -1242,6 +1249,22 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             private_offset + (offset.get_byte_offset() as isize),
         )
     }
+
+    fn rust_template_scope(&mut self) -> BuilderRustScope {
+        assert_initialized_main_thread!();
+        let mut data = <Self::Type as ObjectSubclassType>::type_data();
+        let internal = unsafe {
+            data.as_mut()
+                .class_data_mut::<Internal>(<Self::Type as ObjectSubclassType>::type_())
+                .expect("Something bad happened at class_init, the internal class_data is missing")
+        };
+        let scope = internal.scope.get_or_insert_with(|| {
+            let scope = BuilderRustScope::new();
+            self.set_template_scope(&scope);
+            scope.to_glib_full()
+        });
+        unsafe { from_glib_none(*scope) }
+    }
 }
 
 unsafe impl<T: ClassStruct> WidgetClassSubclassExt for T where T::Type: WidgetImpl {}
@@ -1316,4 +1339,37 @@ where
 
 pub trait CompositeTemplate: WidgetImpl {
     fn bind_template(klass: &mut Self::Class);
+}
+
+pub type TemplateCallback = (&'static str, fn(&[glib::Value]) -> Option<glib::Value>);
+
+pub trait CompositeTemplateCallbacks {
+    const CALLBACKS: &'static [TemplateCallback];
+
+    // rustdoc-stripper-ignore-next
+    /// Binds the template callbacks from this type into the default template scope for `klass`.
+    fn bind_template_callbacks<T: WidgetClassSubclassExt>(klass: &mut T) {
+        Self::add_callbacks_to_scope(&klass.rust_template_scope());
+    }
+    // rustdoc-stripper-ignore-next
+    /// Binds the template callbacks from this type into the default template scope for `klass`,
+    /// prepending `prefix` to each callback name.
+    fn bind_template_callbacks_prefixed<T: WidgetClassSubclassExt>(klass: &mut T, prefix: &str) {
+        Self::add_callbacks_to_scope_prefixed(&klass.rust_template_scope(), prefix);
+    }
+    // rustdoc-stripper-ignore-next
+    /// Binds the template callbacks from this type into `scope`.
+    fn add_callbacks_to_scope(scope: &BuilderRustScope) {
+        for (name, func) in Self::CALLBACKS {
+            scope.add_callback(*name, func);
+        }
+    }
+    // rustdoc-stripper-ignore-next
+    /// Binds the template callbacks from this type into `scope`, prepending `prefix` to each
+    /// callback name.
+    fn add_callbacks_to_scope_prefixed(scope: &BuilderRustScope, prefix: &str) {
+        for (name, func) in Self::CALLBACKS {
+            scope.add_callback(format!("{}{}", prefix, name), func);
+        }
+    }
 }
