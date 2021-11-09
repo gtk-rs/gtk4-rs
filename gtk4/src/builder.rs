@@ -18,6 +18,20 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_get_current_object")]
+    #[doc(alias = "get_current_object")]
+    pub fn current_object(&self) -> Option<glib::Object> {
+        unsafe {
+            let ptr = ffi::gtk_builder_get_current_object(self.to_glib_none().0);
+            if ptr.is_null() {
+                None
+            } else {
+                glib::gobject_ffi::g_object_ref(ptr as *mut glib::gobject_ffi::GObject);
+                Some(from_glib_full(ptr))
+            }
+        }
+    }
+
     #[doc(alias = "gtk_builder_get_object")]
     #[doc(alias = "get_object")]
     pub fn object<T: IsA<Object>>(&self, name: &str) -> Option<T> {
