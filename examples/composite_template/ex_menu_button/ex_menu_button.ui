@@ -6,6 +6,7 @@
     </property>
     <child>
       <object class="GtkToggleButton" id="toggle">
+        <signal name="toggled" handler="toggle_toggled" swapped="true"/>
         <property name="child">
           <object class="GtkBox">
             <property name="spacing">6</property>
@@ -28,6 +29,7 @@
     </child>
     <child>
       <object class="GtkPopover" id="popover">
+        <signal name="closed" handler="popover_closed" swapped="true"/>
         <property name="child">
           <object class="GtkLabel">
             <property name="label">Hello from a custom child widget!</property>

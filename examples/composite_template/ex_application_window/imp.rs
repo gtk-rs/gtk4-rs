@@ -33,11 +33,46 @@ impl ObjectSubclass for ExApplicationWindow {
     // bind_template() to set the template and bind all children at once.
     fn class_init(klass: &mut Self::Class) {
         Self::bind_template(klass);
+        UtilityCallbacks::bind_template_callbacks(klass);
     }
 
     // You must call `Widget`'s `init_template()` within `instance_init()`.
     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
         obj.init_template();
+    }
+}
+
+struct UtilityCallbacks {}
+
+#[gtk::template_callbacks(functions)]
+impl UtilityCallbacks {
+    #[template_callback]
+    fn to_string(value: &glib::Value) -> String {
+        if let Ok(value) = value.get::<u64>() {
+            value.to_string()
+        } else if let Ok(value) = value.get::<&str>() {
+            value.to_owned()
+        } else {
+            "".into()
+        }
+    }
+    #[template_callback]
+    fn strlen(s: &str) -> u64 {
+        s.len() as u64
+    }
+    #[template_callback(name = "concat_strs")]
+    fn concat(#[rest] values: &[glib::Value]) -> String {
+        let mut res = String::new();
+        for (index, value) in values.iter().enumerate() {
+            res.push_str(value.get::<&str>().unwrap_or_else(|e| {
+                panic!("Expected string value for argument {}: {}", index, e);
+            }));
+        }
+        res
+    }
+    #[template_callback(function = false, name = "reset_entry")]
+    fn reset(entry: &gtk::Entry) {
+        entry.set_text("Nothing");
     }
 }
 
