@@ -8,7 +8,7 @@ pub trait SymbolicPaintableExtManual: 'static {
     #[doc(alias = "gtk_symbolic_paintable_snapshot_symbolic")]
     fn snapshot_symbolic(
         &self,
-        snapshot: &impl IsA<gdk::Snapshot>,
+        snapshot: &gdk::Snapshot,
         width: f64,
         height: f64,
         colors: &[gdk::RGBA],
@@ -18,7 +18,7 @@ pub trait SymbolicPaintableExtManual: 'static {
 impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExtManual for O {
     fn snapshot_symbolic(
         &self,
-        snapshot: &impl IsA<gdk::Snapshot>,
+        snapshot: &gdk::Snapshot,
         width: f64,
         height: f64,
         colors: &[gdk::RGBA],
@@ -27,7 +27,7 @@ impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExtManual for O {
         unsafe {
             ffi::gtk_symbolic_paintable_snapshot_symbolic(
                 self.as_ref().to_glib_none().0,
-                snapshot.as_ref().to_glib_none().0,
+                snapshot.to_glib_none().0,
                 width,
                 height,
                 colors.to_glib_none().0,
