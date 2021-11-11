@@ -137,9 +137,21 @@
 <span id="64">64</span>
 <span id="65">65</span>
 <span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::value::FromValue</span>;
 <span class="kw">use</span> <span class="ident">glib::Value</span>;
 
 <span class="macro">glib::wrapper!</span> {
@@ -184,6 +196,16 @@
                 <span class="prelude-val">None</span>
             }
         }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Similar to [`Self::evaluate`] but panics if the value is of a different type.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_evaluate&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">evaluate_as</span><span class="op">&lt;</span><span class="ident">V</span>: <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">FromValue</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">evaluate</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> {
+            <span class="ident">v</span>.<span class="ident">get_owned</span>::<span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span>()
+                .<span class="ident">expect</span>(<span class="string">&quot;Failed to evaluate to this value type&quot;</span>)
+        })
     }
 
     <span class="doccomment">/// Stops watching an expression.</span>
