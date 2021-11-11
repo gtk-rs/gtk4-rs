@@ -1,4 +1,18 @@
 [workspace]
+
+default-members = [
+  "book/listings",
+  "examples",
+  "gdk4",
+  "gdk4/sys",
+  "gsk4",
+  "gsk4/sys",
+  "gtk4",
+  "gtk4/sys",
+  "gtk4-macros",
+]
+
+
 members = [
   "book/listings",
   "examples",
