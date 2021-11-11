@@ -32,6 +32,7 @@ cargo run --bin basics
 - [Dialog](./dialog/)
 - [Entry Completion](./entry_completion/)
 - [Entry Undo](./entry_undo/)
+- [Expressions](./expressions/)
 - [FlowBox](./flow_box/)
 - [Glium GL-Area](./glium_gl_area/)
 - [Grid Packing](./grid_packing)

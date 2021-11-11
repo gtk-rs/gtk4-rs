@@ -89,6 +89,10 @@ name = "entry_undo"
 path = "entry_undo/main.rs"
 
 [[bin]]
+name = "expressions"
+path = "expressions/main.rs"
+
+[[bin]]
 name = "flow_box"
 path = "flow_box/main.rs"
 
