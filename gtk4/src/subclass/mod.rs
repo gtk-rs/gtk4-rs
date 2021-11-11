@@ -61,6 +61,9 @@ pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
 pub mod style_context;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub mod symbolic_paintable;
 pub mod text_buffer;
 pub mod text_view;
 pub mod toggle_button;
@@ -131,6 +134,9 @@ pub mod prelude {
     pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
     pub use super::sorter::{SorterImpl, SorterImplExt};
     pub use super::style_context::{StyleContextImpl, StyleContextImplExt};
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub use super::symbolic_paintable::{SymbolicPaintableImpl, SymbolicPaintableImplExt};
     pub use super::text_buffer::{TextBufferImpl, TextBufferImplExt};
     pub use super::text_view::{TextViewImpl, TextViewImplExt};
     pub use super::toggle_button::{ToggleButtonImpl, ToggleButtonImplExt};
