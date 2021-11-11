@@ -159,6 +159,28 @@ impl Expression {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Create a [`gtk::PropertyExpression`] that looks up for `property_name`
+    /// with self as parameter. This is useful in long chains of [`gtk::Expression`]s.
+    pub fn chain_property<T: IsA<glib::Object>>(
+        &self,
+        property_name: &str,
+    ) -> crate::PropertyExpression {
+        crate::PropertyExpression::new(T::static_type(), Some(self), property_name)
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Create a [`gtk::ClosureExpression`] with self as a parameter. This is useful in long
+    /// chains of [`gtk::Expression`]s.
+    pub fn chain_closure<F, R>(&self, f: F) -> crate::ClosureExpression
+    where
+        F: Fn(&[glib::Value]) -> R + 'static,
+        R: glib::value::ValueType,
+    {
+        // FIXME Pass an owned self to avoid cloning
+        crate::ClosureExpression::new(&[self.clone()], f)
+    }
 }
 
 impl glib::value::ValueType for Expression {
@@ -192,6 +214,46 @@ impl glib::value::ToValueOptional for Expression {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0) }
         value
+    }
+}
+
+// rustdoc-stripper-ignore-next
+/// Trait containing convenience methods in creating [`gtk::PropertyExpression`] that
+/// looks up a property of a [`glib::Object`].
+///
+/// # Example
+///
+/// `label_expression` is a [`gtk::Expression`] that looks up at Button's `label`
+/// property.
+///
+/// ```no_run
+/// # use gtk4 as gtk;
+/// use gtk::prelude::*;
+///
+/// let button = gtk::Button::new();
+/// button.set_label("Label property");
+///
+/// let label_expression = button.property_expression("label");
+/// ```
+pub trait GObjectPropertyExpressionExt {
+    // rustdoc-stripper-ignore-next
+    /// Create an expression looking up an object's property.
+    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression;
+
+    // rustdoc-stripper-ignore-next
+    /// Create an expression looking up an object's property with a weak reference.
+    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression;
+}
+
+impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
+    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ConstantExpression::new(self);
+        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
+    }
+
+    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ObjectExpression::new(self);
+        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
     }
 }
 
