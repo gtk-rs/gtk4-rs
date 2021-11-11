@@ -23,7 +23,7 @@ define_expression!(
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<F, R>(params: &[Expression], callback: F) -> Self
+    pub fn new<F, R>(params: impl IntoIterator<Item = Expression>, callback: F) -> Self
     where
         F: Fn(&[Value]) -> R + 'static,
         R: ValueType,
@@ -33,6 +33,9 @@ impl ClosureExpression {
             let ret = callback(values);
             Some(ret.to_value())
         });
+
+        let params = params.into_iter().collect::<Vec<_>>();
+
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
                 R::Type::static_type().into_glib(),
@@ -44,11 +47,17 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure<R>(params: &[Expression], closure: glib::Closure) -> Self
+    pub fn with_closure<R>(
+        params: impl IntoIterator<Item = Expression>,
+        closure: glib::Closure,
+    ) -> Self
     where
         R: ValueType,
     {
         assert_initialized_main_thread!();
+
+        let params = params.into_iter().collect::<Vec<_>>();
+
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
                 R::Type::static_type().into_glib(),
