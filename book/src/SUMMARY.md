@@ -23,7 +23,7 @@
 - [Actions](actions.md)
 - [Manipulating State of To-Do App](todo_app_2.md)
 - [CSS]()
-- [Resources]()
+- [Resources](resources.md)
 - [Internationalization]()
 - [Accessibility]()
 
