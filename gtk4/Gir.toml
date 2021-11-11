@@ -1,3 +1,6 @@
+[external_libraries]
+Gio = {min_version = "2.66"}
+
 [options]
 girs_directories = ["../gir-files"]
 library = "Gtk"
