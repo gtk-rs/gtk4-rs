@@ -32,33 +32,51 @@ pub type GdkWaylandToplevelExported =
 
 // Records
 #[repr(C)]
-pub struct _GdkWaylandDeviceClass(c_void);
+pub struct _GdkWaylandDeviceClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkWaylandDeviceClass = *mut _GdkWaylandDeviceClass;
 
 #[repr(C)]
-pub struct _GdkWaylandDisplayClass(c_void);
+pub struct _GdkWaylandDisplayClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkWaylandDisplayClass = *mut _GdkWaylandDisplayClass;
 
 #[repr(C)]
-pub struct _GdkWaylandGLContextClass(c_void);
+pub struct _GdkWaylandGLContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkWaylandGLContextClass = *mut _GdkWaylandGLContextClass;
 
 #[repr(C)]
-pub struct _GdkWaylandMonitorClass(c_void);
+pub struct _GdkWaylandMonitorClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkWaylandMonitorClass = *mut _GdkWaylandMonitorClass;
 
 #[repr(C)]
-pub struct _GdkWaylandSeatClass(c_void);
+pub struct _GdkWaylandSeatClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkWaylandSeatClass = *mut _GdkWaylandSeatClass;
 
 // Classes
 #[repr(C)]
-pub struct GdkWaylandDevice(c_void);
+pub struct GdkWaylandDevice {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandDevice {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -68,7 +86,10 @@ impl ::std::fmt::Debug for GdkWaylandDevice {
 }
 
 #[repr(C)]
-pub struct GdkWaylandDisplay(c_void);
+pub struct GdkWaylandDisplay {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandDisplay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -78,7 +99,10 @@ impl ::std::fmt::Debug for GdkWaylandDisplay {
 }
 
 #[repr(C)]
-pub struct GdkWaylandGLContext(c_void);
+pub struct GdkWaylandGLContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandGLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -88,7 +112,10 @@ impl ::std::fmt::Debug for GdkWaylandGLContext {
 }
 
 #[repr(C)]
-pub struct GdkWaylandMonitor(c_void);
+pub struct GdkWaylandMonitor {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandMonitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -98,7 +125,10 @@ impl ::std::fmt::Debug for GdkWaylandMonitor {
 }
 
 #[repr(C)]
-pub struct GdkWaylandPopup(c_void);
+pub struct GdkWaylandPopup {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandPopup {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -108,7 +138,10 @@ impl ::std::fmt::Debug for GdkWaylandPopup {
 }
 
 #[repr(C)]
-pub struct GdkWaylandSeat(c_void);
+pub struct GdkWaylandSeat {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandSeat {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -118,7 +151,10 @@ impl ::std::fmt::Debug for GdkWaylandSeat {
 }
 
 #[repr(C)]
-pub struct GdkWaylandSurface(c_void);
+pub struct GdkWaylandSurface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandSurface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -128,7 +164,10 @@ impl ::std::fmt::Debug for GdkWaylandSurface {
 }
 
 #[repr(C)]
-pub struct GdkWaylandToplevel(c_void);
+pub struct GdkWaylandToplevel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkWaylandToplevel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {

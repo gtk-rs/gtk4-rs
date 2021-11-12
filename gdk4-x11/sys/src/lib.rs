@@ -35,53 +35,83 @@ pub const GDK_X11_DEVICE_TYPE_FLOATING: GdkX11DeviceType = 2;
 
 // Records
 #[repr(C)]
-pub struct _GdkX11AppLaunchContextClass(c_void);
+pub struct _GdkX11AppLaunchContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11AppLaunchContextClass = *mut _GdkX11AppLaunchContextClass;
 
 #[repr(C)]
-pub struct _GdkX11DeviceManagerXI2Class(c_void);
+pub struct _GdkX11DeviceManagerXI2Class {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11DeviceManagerXI2Class = *mut _GdkX11DeviceManagerXI2Class;
 
 #[repr(C)]
-pub struct _GdkX11DeviceXI2Class(c_void);
+pub struct _GdkX11DeviceXI2Class {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11DeviceXI2Class = *mut _GdkX11DeviceXI2Class;
 
 #[repr(C)]
-pub struct _GdkX11DisplayClass(c_void);
+pub struct _GdkX11DisplayClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11DisplayClass = *mut _GdkX11DisplayClass;
 
 #[repr(C)]
-pub struct _GdkX11DragClass(c_void);
+pub struct _GdkX11DragClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11DragClass = *mut _GdkX11DragClass;
 
 #[repr(C)]
-pub struct _GdkX11GLContextClass(c_void);
+pub struct _GdkX11GLContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11GLContextClass = *mut _GdkX11GLContextClass;
 
 #[repr(C)]
-pub struct _GdkX11MonitorClass(c_void);
+pub struct _GdkX11MonitorClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11MonitorClass = *mut _GdkX11MonitorClass;
 
 #[repr(C)]
-pub struct _GdkX11ScreenClass(c_void);
+pub struct _GdkX11ScreenClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11ScreenClass = *mut _GdkX11ScreenClass;
 
 #[repr(C)]
-pub struct _GdkX11SurfaceClass(c_void);
+pub struct _GdkX11SurfaceClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GdkX11SurfaceClass = *mut _GdkX11SurfaceClass;
 
 // Classes
 #[repr(C)]
-pub struct GdkX11AppLaunchContext(c_void);
+pub struct GdkX11AppLaunchContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11AppLaunchContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -91,7 +121,10 @@ impl ::std::fmt::Debug for GdkX11AppLaunchContext {
 }
 
 #[repr(C)]
-pub struct GdkX11DeviceManagerXI2(c_void);
+pub struct GdkX11DeviceManagerXI2 {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11DeviceManagerXI2 {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -101,7 +134,10 @@ impl ::std::fmt::Debug for GdkX11DeviceManagerXI2 {
 }
 
 #[repr(C)]
-pub struct GdkX11DeviceXI2(c_void);
+pub struct GdkX11DeviceXI2 {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11DeviceXI2 {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -111,7 +147,10 @@ impl ::std::fmt::Debug for GdkX11DeviceXI2 {
 }
 
 #[repr(C)]
-pub struct GdkX11Display(c_void);
+pub struct GdkX11Display {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11Display {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -121,7 +160,10 @@ impl ::std::fmt::Debug for GdkX11Display {
 }
 
 #[repr(C)]
-pub struct GdkX11Drag(c_void);
+pub struct GdkX11Drag {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11Drag {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -130,7 +172,10 @@ impl ::std::fmt::Debug for GdkX11Drag {
 }
 
 #[repr(C)]
-pub struct GdkX11GLContext(c_void);
+pub struct GdkX11GLContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11GLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -140,7 +185,10 @@ impl ::std::fmt::Debug for GdkX11GLContext {
 }
 
 #[repr(C)]
-pub struct GdkX11Monitor(c_void);
+pub struct GdkX11Monitor {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11Monitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -150,7 +198,10 @@ impl ::std::fmt::Debug for GdkX11Monitor {
 }
 
 #[repr(C)]
-pub struct GdkX11Screen(c_void);
+pub struct GdkX11Screen {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11Screen {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -160,7 +211,10 @@ impl ::std::fmt::Debug for GdkX11Screen {
 }
 
 #[repr(C)]
-pub struct GdkX11Surface(c_void);
+pub struct GdkX11Surface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GdkX11Surface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
