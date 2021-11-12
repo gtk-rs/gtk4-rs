@@ -217,6 +217,12 @@
 <span id="144">144</span>
 <span id="145">145</span>
 <span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="doccomment">/// Struct to hold a pointer and free it on `Drop::drop`</span>
@@ -280,6 +286,9 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shortcut_manager</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sorter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_context</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">symbolic_paintable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_buffer</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">toggle_button</span>;
@@ -350,6 +359,9 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::shortcut_manager</span>::{<span class="ident">ShortcutManagerImpl</span>, <span class="ident">ShortcutManagerImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::sorter</span>::{<span class="ident">SorterImpl</span>, <span class="ident">SorterImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::style_context</span>::{<span class="ident">StyleContextImpl</span>, <span class="ident">StyleContextImplExt</span>};
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::symbolic_paintable</span>::{<span class="ident">SymbolicPaintableImpl</span>, <span class="ident">SymbolicPaintableImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::text_buffer</span>::{<span class="ident">TextBufferImpl</span>, <span class="ident">TextBufferImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::text_view</span>::{<span class="ident">TextViewImpl</span>, <span class="ident">TextViewImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::toggle_button</span>::{<span class="ident">ToggleButtonImpl</span>, <span class="ident">ToggleButtonImplExt</span>};
