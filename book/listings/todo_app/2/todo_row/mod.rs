@@ -59,7 +59,7 @@ impl TodoRow {
                 if active {
                     // If "active" is true, content of the label will be strikethrough
                     let attribute = AttrInt::new_strikethrough(true);
-                    attribute_list.insert(attribute.upcast());
+                    attribute_list.insert(attribute);
                 }
                 Some(attribute_list.to_value())
             })
