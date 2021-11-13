@@ -121,17 +121,23 @@ pub type GskParseErrorFunc = Option<
 
 // Records
 #[repr(C)]
-pub struct _GskBroadwayRendererClass(c_void);
+pub struct _GskBroadwayRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GskBroadwayRendererClass = *mut _GskBroadwayRendererClass;
 
 #[repr(C)]
-pub struct _GskCairoRendererClass(c_void);
+pub struct _GskCairoRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GskCairoRendererClass = *mut _GskCairoRendererClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GskColorStop {
     pub offset: c_float,
     pub color: gdk::GdkRGBA,
@@ -147,12 +153,15 @@ impl ::std::fmt::Debug for GskColorStop {
 }
 
 #[repr(C)]
-pub struct _GskGLRendererClass(c_void);
+pub struct _GskGLRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GskGLRendererClass = *mut _GskGLRendererClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GskGLShaderClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -165,8 +174,8 @@ impl ::std::fmt::Debug for GskGLShaderClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GskParseLocation {
     pub bytes: size_t,
     pub chars: size_t,
@@ -188,12 +197,15 @@ impl ::std::fmt::Debug for GskParseLocation {
 }
 
 #[repr(C)]
-pub struct _GskRendererClass(c_void);
+pub struct _GskRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GskRendererClass = *mut _GskRendererClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GskRoundedRect {
     pub bounds: graphene::graphene_rect_t,
     pub corner: [graphene::graphene_size_t; 4],
@@ -209,7 +221,10 @@ impl ::std::fmt::Debug for GskRoundedRect {
 }
 
 #[repr(C)]
-pub struct GskShaderArgsBuilder(c_void);
+pub struct GskShaderArgsBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskShaderArgsBuilder {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -218,8 +233,8 @@ impl ::std::fmt::Debug for GskShaderArgsBuilder {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GskShadow {
     pub color: gdk::GdkRGBA,
     pub dx: c_float,
@@ -239,7 +254,10 @@ impl ::std::fmt::Debug for GskShadow {
 }
 
 #[repr(C)]
-pub struct GskTransform(c_void);
+pub struct GskTransform {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskTransform {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -250,7 +268,10 @@ impl ::std::fmt::Debug for GskTransform {
 
 // Classes
 #[repr(C)]
-pub struct GskBlendNode(c_void);
+pub struct GskBlendNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskBlendNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -260,7 +281,10 @@ impl ::std::fmt::Debug for GskBlendNode {
 }
 
 #[repr(C)]
-pub struct GskBlurNode(c_void);
+pub struct GskBlurNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskBlurNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -270,7 +294,10 @@ impl ::std::fmt::Debug for GskBlurNode {
 }
 
 #[repr(C)]
-pub struct GskBorderNode(c_void);
+pub struct GskBorderNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskBorderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -280,7 +307,10 @@ impl ::std::fmt::Debug for GskBorderNode {
 }
 
 #[repr(C)]
-pub struct GskBroadwayRenderer(c_void);
+pub struct GskBroadwayRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskBroadwayRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -290,7 +320,10 @@ impl ::std::fmt::Debug for GskBroadwayRenderer {
 }
 
 #[repr(C)]
-pub struct GskCairoNode(c_void);
+pub struct GskCairoNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskCairoNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -300,7 +333,10 @@ impl ::std::fmt::Debug for GskCairoNode {
 }
 
 #[repr(C)]
-pub struct GskCairoRenderer(c_void);
+pub struct GskCairoRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskCairoRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -310,7 +346,10 @@ impl ::std::fmt::Debug for GskCairoRenderer {
 }
 
 #[repr(C)]
-pub struct GskClipNode(c_void);
+pub struct GskClipNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskClipNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -320,7 +359,10 @@ impl ::std::fmt::Debug for GskClipNode {
 }
 
 #[repr(C)]
-pub struct GskColorMatrixNode(c_void);
+pub struct GskColorMatrixNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskColorMatrixNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -330,7 +372,10 @@ impl ::std::fmt::Debug for GskColorMatrixNode {
 }
 
 #[repr(C)]
-pub struct GskColorNode(c_void);
+pub struct GskColorNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskColorNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -340,7 +385,10 @@ impl ::std::fmt::Debug for GskColorNode {
 }
 
 #[repr(C)]
-pub struct GskConicGradientNode(c_void);
+pub struct GskConicGradientNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskConicGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -350,7 +398,10 @@ impl ::std::fmt::Debug for GskConicGradientNode {
 }
 
 #[repr(C)]
-pub struct GskContainerNode(c_void);
+pub struct GskContainerNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskContainerNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -360,7 +411,10 @@ impl ::std::fmt::Debug for GskContainerNode {
 }
 
 #[repr(C)]
-pub struct GskCrossFadeNode(c_void);
+pub struct GskCrossFadeNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskCrossFadeNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -370,7 +424,10 @@ impl ::std::fmt::Debug for GskCrossFadeNode {
 }
 
 #[repr(C)]
-pub struct GskDebugNode(c_void);
+pub struct GskDebugNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskDebugNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -380,7 +437,10 @@ impl ::std::fmt::Debug for GskDebugNode {
 }
 
 #[repr(C)]
-pub struct GskGLRenderer(c_void);
+pub struct GskGLRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskGLRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -390,7 +450,10 @@ impl ::std::fmt::Debug for GskGLRenderer {
 }
 
 #[repr(C)]
-pub struct GskGLShader(c_void);
+pub struct GskGLShader {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskGLShader {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -400,7 +463,10 @@ impl ::std::fmt::Debug for GskGLShader {
 }
 
 #[repr(C)]
-pub struct GskGLShaderNode(c_void);
+pub struct GskGLShaderNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskGLShaderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -410,7 +476,10 @@ impl ::std::fmt::Debug for GskGLShaderNode {
 }
 
 #[repr(C)]
-pub struct GskInsetShadowNode(c_void);
+pub struct GskInsetShadowNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskInsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -420,7 +489,10 @@ impl ::std::fmt::Debug for GskInsetShadowNode {
 }
 
 #[repr(C)]
-pub struct GskLinearGradientNode(c_void);
+pub struct GskLinearGradientNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskLinearGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -430,7 +502,10 @@ impl ::std::fmt::Debug for GskLinearGradientNode {
 }
 
 #[repr(C)]
-pub struct GskNglRenderer(c_void);
+pub struct GskNglRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskNglRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -440,7 +515,10 @@ impl ::std::fmt::Debug for GskNglRenderer {
 }
 
 #[repr(C)]
-pub struct GskOpacityNode(c_void);
+pub struct GskOpacityNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskOpacityNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -450,7 +528,10 @@ impl ::std::fmt::Debug for GskOpacityNode {
 }
 
 #[repr(C)]
-pub struct GskOutsetShadowNode(c_void);
+pub struct GskOutsetShadowNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskOutsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -460,7 +541,10 @@ impl ::std::fmt::Debug for GskOutsetShadowNode {
 }
 
 #[repr(C)]
-pub struct GskRadialGradientNode(c_void);
+pub struct GskRadialGradientNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRadialGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -470,7 +554,10 @@ impl ::std::fmt::Debug for GskRadialGradientNode {
 }
 
 #[repr(C)]
-pub struct GskRenderNode(c_void);
+pub struct GskRenderNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRenderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -480,7 +567,10 @@ impl ::std::fmt::Debug for GskRenderNode {
 }
 
 #[repr(C)]
-pub struct GskRenderer(c_void);
+pub struct GskRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -490,7 +580,10 @@ impl ::std::fmt::Debug for GskRenderer {
 }
 
 #[repr(C)]
-pub struct GskRepeatNode(c_void);
+pub struct GskRepeatNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRepeatNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -500,7 +593,10 @@ impl ::std::fmt::Debug for GskRepeatNode {
 }
 
 #[repr(C)]
-pub struct GskRepeatingLinearGradientNode(c_void);
+pub struct GskRepeatingLinearGradientNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -510,7 +606,10 @@ impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
 }
 
 #[repr(C)]
-pub struct GskRepeatingRadialGradientNode(c_void);
+pub struct GskRepeatingRadialGradientNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRepeatingRadialGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -520,7 +619,10 @@ impl ::std::fmt::Debug for GskRepeatingRadialGradientNode {
 }
 
 #[repr(C)]
-pub struct GskRoundedClipNode(c_void);
+pub struct GskRoundedClipNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskRoundedClipNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -530,7 +632,10 @@ impl ::std::fmt::Debug for GskRoundedClipNode {
 }
 
 #[repr(C)]
-pub struct GskShadowNode(c_void);
+pub struct GskShadowNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -540,7 +645,10 @@ impl ::std::fmt::Debug for GskShadowNode {
 }
 
 #[repr(C)]
-pub struct GskTextNode(c_void);
+pub struct GskTextNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskTextNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -550,7 +658,10 @@ impl ::std::fmt::Debug for GskTextNode {
 }
 
 #[repr(C)]
-pub struct GskTextureNode(c_void);
+pub struct GskTextureNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskTextureNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -560,7 +671,10 @@ impl ::std::fmt::Debug for GskTextureNode {
 }
 
 #[repr(C)]
-pub struct GskTransformNode(c_void);
+pub struct GskTransformNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GskTransformNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {

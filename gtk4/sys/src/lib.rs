@@ -1185,17 +1185,23 @@ pub type GtkWidgetActionActivateFunc =
 
 // Records
 #[repr(C)]
-pub struct _GtkATContextClass(c_void);
+pub struct _GtkATContextClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkATContextClass = *mut _GtkATContextClass;
 
 #[repr(C)]
-pub struct _GtkAccessibleInterface(c_void);
+pub struct _GtkAccessibleInterface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkAccessibleInterface = *mut _GtkAccessibleInterface;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkActionableInterface {
     pub g_iface: gobject::GTypeInterface,
     pub get_action_name: Option<unsafe extern "C" fn(*mut GtkActionable) -> *const c_char>,
@@ -1218,12 +1224,15 @@ impl ::std::fmt::Debug for GtkActionableInterface {
 }
 
 #[repr(C)]
-pub struct _GtkActivateActionClass(c_void);
+pub struct _GtkActivateActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkActivateActionClass = *mut _GtkActivateActionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkAdjustmentClass {
     pub parent_class: gobject::GInitiallyUnownedClass,
     pub changed: Option<unsafe extern "C" fn(*mut GtkAdjustment)>,
@@ -1249,17 +1258,23 @@ impl ::std::fmt::Debug for GtkAdjustmentClass {
 }
 
 #[repr(C)]
-pub struct _GtkAlternativeTriggerClass(c_void);
+pub struct _GtkAlternativeTriggerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkAlternativeTriggerClass = *mut _GtkAlternativeTriggerClass;
 
 #[repr(C)]
-pub struct _GtkAnyFilterClass(c_void);
+pub struct _GtkAnyFilterClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkAnyFilterClass = *mut _GtkAnyFilterClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkApplicationClass {
     pub parent_class: gio::GApplicationClass,
     pub window_added: Option<unsafe extern "C" fn(*mut GtkApplication, *mut GtkWindow)>,
@@ -1277,8 +1292,8 @@ impl ::std::fmt::Debug for GtkApplicationClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkApplicationWindowClass {
     pub parent_class: GtkWindowClass,
     pub padding: [gpointer; 8],
@@ -1292,8 +1307,8 @@ impl ::std::fmt::Debug for GtkApplicationWindowClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBinLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -1307,7 +1322,10 @@ impl ::std::fmt::Debug for GtkBinLayoutClass {
 }
 
 #[repr(C)]
-pub struct GtkBitset(c_void);
+pub struct GtkBitset {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBitset {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -1315,8 +1333,8 @@ impl ::std::fmt::Debug for GtkBitset {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBitsetIter {
     pub private_data: [gpointer; 10],
 }
@@ -1328,8 +1346,8 @@ impl ::std::fmt::Debug for GtkBitsetIter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBookmarkListClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -1342,8 +1360,8 @@ impl ::std::fmt::Debug for GtkBookmarkListClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBoolFilterClass {
     pub parent_class: GtkFilterClass,
 }
@@ -1356,8 +1374,8 @@ impl ::std::fmt::Debug for GtkBoolFilterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBorder {
     pub left: i16,
     pub right: i16,
@@ -1376,8 +1394,8 @@ impl ::std::fmt::Debug for GtkBorder {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBoxClass {
     pub parent_class: GtkWidgetClass,
     pub padding: [gpointer; 8],
@@ -1391,8 +1409,8 @@ impl ::std::fmt::Debug for GtkBoxClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBoxLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -1405,8 +1423,8 @@ impl ::std::fmt::Debug for GtkBoxLayoutClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBuildableIface {
     pub g_iface: gobject::GTypeInterface,
     pub set_id: Option<unsafe extern "C" fn(*mut GtkBuildable, *const c_char)>,
@@ -1491,12 +1509,15 @@ impl ::std::fmt::Debug for GtkBuildableIface {
 }
 
 #[repr(C)]
-pub struct _GtkBuildableParseContext(c_void);
+pub struct _GtkBuildableParseContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkBuildableParseContext = *mut _GtkBuildableParseContext;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBuildableParser {
     pub start_element: Option<
         unsafe extern "C" fn(
@@ -1541,8 +1562,8 @@ impl ::std::fmt::Debug for GtkBuildableParser {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBuilderCScopeClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -1556,17 +1577,23 @@ impl ::std::fmt::Debug for GtkBuilderCScopeClass {
 }
 
 #[repr(C)]
-pub struct _GtkBuilderClass(c_void);
+pub struct _GtkBuilderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkBuilderClass = *mut _GtkBuilderClass;
 
 #[repr(C)]
-pub struct _GtkBuilderListItemFactoryClass(c_void);
+pub struct _GtkBuilderListItemFactoryClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkBuilderListItemFactoryClass = *mut _GtkBuilderListItemFactoryClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBuilderScopeInterface {
     pub g_iface: gobject::GTypeInterface,
     pub get_type_from_name:
@@ -1595,8 +1622,8 @@ impl ::std::fmt::Debug for GtkBuilderScopeInterface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkButtonClass {
     pub parent_class: GtkWidgetClass,
     pub clicked: Option<unsafe extern "C" fn(*mut GtkButton)>,
@@ -1615,17 +1642,23 @@ impl ::std::fmt::Debug for GtkButtonClass {
 }
 
 #[repr(C)]
-pub struct _GtkButtonPrivate(c_void);
+pub struct _GtkButtonPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkButtonPrivate = *mut _GtkButtonPrivate;
 
 #[repr(C)]
-pub struct _GtkCallbackActionClass(c_void);
+pub struct _GtkCallbackActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCallbackActionClass = *mut _GtkCallbackActionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellAreaClass {
     pub parent_class: gobject::GInitiallyUnownedClass,
     pub add: Option<unsafe extern "C" fn(*mut GtkCellArea, *mut GtkCellRenderer)>,
@@ -1781,8 +1814,8 @@ impl ::std::fmt::Debug for GtkCellAreaClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellAreaContextClass {
     pub parent_class: gobject::GObjectClass,
     pub allocate: Option<unsafe extern "C" fn(*mut GtkCellAreaContext, c_int, c_int)>,
@@ -1812,12 +1845,15 @@ impl ::std::fmt::Debug for GtkCellAreaContextClass {
 }
 
 #[repr(C)]
-pub struct _GtkCellAreaContextPrivate(c_void);
+pub struct _GtkCellAreaContextPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCellAreaContextPrivate = *mut _GtkCellAreaContextPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellEditableIface {
     pub g_iface: gobject::GTypeInterface,
     pub editing_done: Option<unsafe extern "C" fn(*mut GtkCellEditable)>,
@@ -1835,8 +1871,8 @@ impl ::std::fmt::Debug for GtkCellEditableIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellLayoutIface {
     pub g_iface: gobject::GTypeInterface,
     pub pack_start:
@@ -1877,8 +1913,8 @@ impl ::std::fmt::Debug for GtkCellLayoutIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellRendererClass {
     pub parent_class: gobject::GInitiallyUnownedClass,
     pub get_request_mode: Option<unsafe extern "C" fn(*mut GtkCellRenderer) -> GtkSizeRequestMode>,
@@ -1964,17 +2000,23 @@ impl ::std::fmt::Debug for GtkCellRendererClass {
 }
 
 #[repr(C)]
-pub struct _GtkCellRendererClassPrivate(c_void);
+pub struct _GtkCellRendererClassPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCellRendererClassPrivate = *mut _GtkCellRendererClassPrivate;
 
 #[repr(C)]
-pub struct _GtkCellRendererPrivate(c_void);
+pub struct _GtkCellRendererPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCellRendererPrivate = *mut _GtkCellRendererPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellRendererTextClass {
     pub parent_class: GtkCellRendererClass,
     pub edited:
@@ -1992,12 +2034,15 @@ impl ::std::fmt::Debug for GtkCellRendererTextClass {
 }
 
 #[repr(C)]
-pub struct _GtkCenterBoxClass(c_void);
+pub struct _GtkCenterBoxClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCenterBoxClass = *mut _GtkCenterBoxClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCenterLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -2010,8 +2055,8 @@ impl ::std::fmt::Debug for GtkCenterLayoutClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCheckButtonClass {
     pub parent_class: GtkWidgetClass,
     pub toggled: Option<unsafe extern "C" fn(*mut GtkCheckButton)>,
@@ -2029,8 +2074,8 @@ impl ::std::fmt::Debug for GtkCheckButtonClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkColorChooserInterface {
     pub base_interface: gobject::GTypeInterface,
     pub get_rgba: Option<unsafe extern "C" fn(*mut GtkColorChooser, *const gdk::GdkRGBA)>,
@@ -2055,17 +2100,23 @@ impl ::std::fmt::Debug for GtkColorChooserInterface {
 }
 
 #[repr(C)]
-pub struct _GtkColumnViewClass(c_void);
+pub struct _GtkColumnViewClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkColumnViewClass = *mut _GtkColumnViewClass;
 
 #[repr(C)]
-pub struct _GtkColumnViewColumnClass(c_void);
+pub struct _GtkColumnViewColumnClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkColumnViewColumnClass = *mut _GtkColumnViewColumnClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkComboBoxClass {
     pub parent_class: GtkWidgetClass,
     pub changed: Option<unsafe extern "C" fn(*mut GtkComboBox)>,
@@ -2084,8 +2135,8 @@ impl ::std::fmt::Debug for GtkComboBoxClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkConstraintClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2098,8 +2149,8 @@ impl ::std::fmt::Debug for GtkConstraintClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkConstraintGuideClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2112,8 +2163,8 @@ impl ::std::fmt::Debug for GtkConstraintGuideClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkConstraintLayoutChildClass {
     pub parent_class: GtkLayoutChildClass,
 }
@@ -2126,8 +2177,8 @@ impl ::std::fmt::Debug for GtkConstraintLayoutChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkConstraintLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -2141,12 +2192,15 @@ impl ::std::fmt::Debug for GtkConstraintLayoutClass {
 }
 
 #[repr(C)]
-pub struct _GtkConstraintTargetInterface(c_void);
+pub struct _GtkConstraintTargetInterface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkConstraintTargetInterface = *mut _GtkConstraintTargetInterface;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCssLocation {
     pub bytes: size_t,
     pub chars: size_t,
@@ -2168,17 +2222,26 @@ impl ::std::fmt::Debug for GtkCssLocation {
 }
 
 #[repr(C)]
-pub struct _GtkCssProviderClass(c_void);
+pub struct _GtkCssProviderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCssProviderClass = *mut _GtkCssProviderClass;
 
 #[repr(C)]
-pub struct _GtkCssProviderPrivate(c_void);
+pub struct _GtkCssProviderPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCssProviderPrivate = *mut _GtkCssProviderPrivate;
 
 #[repr(C)]
-pub struct GtkCssSection(c_void);
+pub struct GtkCssSection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCssSection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -2188,12 +2251,15 @@ impl ::std::fmt::Debug for GtkCssSection {
 }
 
 #[repr(C)]
-pub struct _GtkCssStyleChange(c_void);
+pub struct _GtkCssStyleChange {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkCssStyleChange = *mut _GtkCssStyleChange;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCustomFilterClass {
     pub parent_class: GtkFilterClass,
 }
@@ -2206,8 +2272,8 @@ impl ::std::fmt::Debug for GtkCustomFilterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCustomLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -2220,8 +2286,8 @@ impl ::std::fmt::Debug for GtkCustomLayoutClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCustomSorterClass {
     pub parent_class: GtkSorterClass,
 }
@@ -2234,8 +2300,8 @@ impl ::std::fmt::Debug for GtkCustomSorterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDialogClass {
     pub parent_class: GtkWindowClass,
     pub response: Option<unsafe extern "C" fn(*mut GtkDialog, GtkResponseType)>,
@@ -2253,8 +2319,8 @@ impl ::std::fmt::Debug for GtkDialogClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDirectoryListClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2267,8 +2333,8 @@ impl ::std::fmt::Debug for GtkDirectoryListClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDragIconClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -2282,12 +2348,15 @@ impl ::std::fmt::Debug for GtkDragIconClass {
 }
 
 #[repr(C)]
-pub struct _GtkDragSourceClass(c_void);
+pub struct _GtkDragSourceClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkDragSourceClass = *mut _GtkDragSourceClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDrawingAreaClass {
     pub parent_class: GtkWidgetClass,
     pub resize: Option<unsafe extern "C" fn(*mut GtkDrawingArea, c_int, c_int)>,
@@ -2304,12 +2373,15 @@ impl ::std::fmt::Debug for GtkDrawingAreaClass {
 }
 
 #[repr(C)]
-pub struct _GtkDropControllerMotionClass(c_void);
+pub struct _GtkDropControllerMotionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkDropControllerMotionClass = *mut _GtkDropControllerMotionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDropDownClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -2323,17 +2395,23 @@ impl ::std::fmt::Debug for GtkDropDownClass {
 }
 
 #[repr(C)]
-pub struct _GtkDropTargetAsyncClass(c_void);
+pub struct _GtkDropTargetAsyncClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkDropTargetAsyncClass = *mut _GtkDropTargetAsyncClass;
 
 #[repr(C)]
-pub struct _GtkDropTargetClass(c_void);
+pub struct _GtkDropTargetClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkDropTargetClass = *mut _GtkDropTargetClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEditableInterface {
     pub base_iface: gobject::GTypeInterface,
     pub insert_text:
@@ -2367,8 +2445,8 @@ impl ::std::fmt::Debug for GtkEditableInterface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEditableLabelClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -2382,12 +2460,15 @@ impl ::std::fmt::Debug for GtkEditableLabelClass {
 }
 
 #[repr(C)]
-pub struct _GtkEmojiChooserClass(c_void);
+pub struct _GtkEmojiChooserClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEmojiChooserClass = *mut _GtkEmojiChooserClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEntryBufferClass {
     pub parent_class: gobject::GObjectClass,
     pub inserted_text:
@@ -2430,8 +2511,8 @@ impl ::std::fmt::Debug for GtkEntryBufferClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEntryClass {
     pub parent_class: GtkWidgetClass,
     pub activate: Option<unsafe extern "C" fn(*mut GtkEntry)>,
@@ -2448,42 +2529,66 @@ impl ::std::fmt::Debug for GtkEntryClass {
 }
 
 #[repr(C)]
-pub struct _GtkEventControllerClass(c_void);
+pub struct _GtkEventControllerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerClass = *mut _GtkEventControllerClass;
 
 #[repr(C)]
-pub struct _GtkEventControllerFocusClass(c_void);
+pub struct _GtkEventControllerFocusClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerFocusClass = *mut _GtkEventControllerFocusClass;
 
 #[repr(C)]
-pub struct _GtkEventControllerKeyClass(c_void);
+pub struct _GtkEventControllerKeyClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerKeyClass = *mut _GtkEventControllerKeyClass;
 
 #[repr(C)]
-pub struct _GtkEventControllerLegacyClass(c_void);
+pub struct _GtkEventControllerLegacyClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerLegacyClass = *mut _GtkEventControllerLegacyClass;
 
 #[repr(C)]
-pub struct _GtkEventControllerMotionClass(c_void);
+pub struct _GtkEventControllerMotionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerMotionClass = *mut _GtkEventControllerMotionClass;
 
 #[repr(C)]
-pub struct _GtkEventControllerScrollClass(c_void);
+pub struct _GtkEventControllerScrollClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEventControllerScrollClass = *mut _GtkEventControllerScrollClass;
 
 #[repr(C)]
-pub struct _GtkEveryFilterClass(c_void);
+pub struct _GtkEveryFilterClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkEveryFilterClass = *mut _GtkEveryFilterClass;
 
 #[repr(C)]
-pub struct GtkExpressionWatch(c_void);
+pub struct GtkExpressionWatch {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkExpressionWatch {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -2492,8 +2597,8 @@ impl ::std::fmt::Debug for GtkExpressionWatch {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFileChooserNativeClass {
     pub parent_class: GtkNativeDialogClass,
 }
@@ -2506,8 +2611,8 @@ impl ::std::fmt::Debug for GtkFileChooserNativeClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFilterClass {
     pub parent_class: gobject::GObjectClass,
     pub match_: Option<unsafe extern "C" fn(*mut GtkFilter, *mut gobject::GObject) -> gboolean>,
@@ -2540,8 +2645,8 @@ impl ::std::fmt::Debug for GtkFilterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFilterListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2554,8 +2659,8 @@ impl ::std::fmt::Debug for GtkFilterListModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFixedClass {
     pub parent_class: GtkWidgetClass,
     pub padding: [gpointer; 8],
@@ -2569,8 +2674,8 @@ impl ::std::fmt::Debug for GtkFixedClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFixedLayoutChildClass {
     pub parent_class: GtkLayoutChildClass,
 }
@@ -2583,8 +2688,8 @@ impl ::std::fmt::Debug for GtkFixedLayoutChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFixedLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -2597,8 +2702,8 @@ impl ::std::fmt::Debug for GtkFixedLayoutClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFlattenListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2611,8 +2716,8 @@ impl ::std::fmt::Debug for GtkFlattenListModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFlowBoxChildClass {
     pub parent_class: GtkWidgetClass,
     pub activate: Option<unsafe extern "C" fn(*mut GtkFlowBoxChild)>,
@@ -2627,8 +2732,8 @@ impl ::std::fmt::Debug for GtkFlowBoxChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFontChooserIface {
     pub base_iface: gobject::GTypeInterface,
     pub get_font_family:
@@ -2665,8 +2770,8 @@ impl ::std::fmt::Debug for GtkFontChooserIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFrameClass {
     pub parent_class: GtkWidgetClass,
     pub compute_child_allocation: Option<unsafe extern "C" fn(*mut GtkFrame, *mut GtkAllocation)>,
@@ -2682,8 +2787,8 @@ impl ::std::fmt::Debug for GtkFrameClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGLAreaClass {
     pub parent_class: GtkWidgetClass,
     pub render: Option<unsafe extern "C" fn(*mut GtkGLArea, *mut gdk::GdkGLContext) -> gboolean>,
@@ -2703,57 +2808,87 @@ impl ::std::fmt::Debug for GtkGLAreaClass {
 }
 
 #[repr(C)]
-pub struct _GtkGestureClass(c_void);
+pub struct _GtkGestureClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureClass = *mut _GtkGestureClass;
 
 #[repr(C)]
-pub struct _GtkGestureClickClass(c_void);
+pub struct _GtkGestureClickClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureClickClass = *mut _GtkGestureClickClass;
 
 #[repr(C)]
-pub struct _GtkGestureDragClass(c_void);
+pub struct _GtkGestureDragClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureDragClass = *mut _GtkGestureDragClass;
 
 #[repr(C)]
-pub struct _GtkGestureLongPressClass(c_void);
+pub struct _GtkGestureLongPressClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureLongPressClass = *mut _GtkGestureLongPressClass;
 
 #[repr(C)]
-pub struct _GtkGesturePanClass(c_void);
+pub struct _GtkGesturePanClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGesturePanClass = *mut _GtkGesturePanClass;
 
 #[repr(C)]
-pub struct _GtkGestureRotateClass(c_void);
+pub struct _GtkGestureRotateClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureRotateClass = *mut _GtkGestureRotateClass;
 
 #[repr(C)]
-pub struct _GtkGestureSingleClass(c_void);
+pub struct _GtkGestureSingleClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureSingleClass = *mut _GtkGestureSingleClass;
 
 #[repr(C)]
-pub struct _GtkGestureStylusClass(c_void);
+pub struct _GtkGestureStylusClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureStylusClass = *mut _GtkGestureStylusClass;
 
 #[repr(C)]
-pub struct _GtkGestureSwipeClass(c_void);
+pub struct _GtkGestureSwipeClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureSwipeClass = *mut _GtkGestureSwipeClass;
 
 #[repr(C)]
-pub struct _GtkGestureZoomClass(c_void);
+pub struct _GtkGestureZoomClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGestureZoomClass = *mut _GtkGestureZoomClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGridClass {
     pub parent_class: GtkWidgetClass,
     pub padding: [gpointer; 8],
@@ -2767,8 +2902,8 @@ impl ::std::fmt::Debug for GtkGridClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGridLayoutChildClass {
     pub parent_class: GtkLayoutChildClass,
 }
@@ -2781,8 +2916,8 @@ impl ::std::fmt::Debug for GtkGridLayoutChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGridLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -2796,12 +2931,15 @@ impl ::std::fmt::Debug for GtkGridLayoutClass {
 }
 
 #[repr(C)]
-pub struct _GtkGridViewClass(c_void);
+pub struct _GtkGridViewClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkGridViewClass = *mut _GtkGridViewClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMContextClass {
     pub parent_class: gobject::GObjectClass,
     pub preedit_start: Option<unsafe extern "C" fn(*mut GtkIMContext)>,
@@ -2885,8 +3023,8 @@ impl ::std::fmt::Debug for GtkIMContextClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMContextSimpleClass {
     pub parent_class: GtkIMContextClass,
 }
@@ -2900,12 +3038,15 @@ impl ::std::fmt::Debug for GtkIMContextSimpleClass {
 }
 
 #[repr(C)]
-pub struct _GtkIMContextSimplePrivate(c_void);
+pub struct _GtkIMContextSimplePrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkIMContextSimplePrivate = *mut _GtkIMContextSimplePrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMMulticontextClass {
     pub parent_class: GtkIMContextClass,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
@@ -2927,17 +3068,23 @@ impl ::std::fmt::Debug for GtkIMMulticontextClass {
 }
 
 #[repr(C)]
-pub struct _GtkIMMulticontextPrivate(c_void);
+pub struct _GtkIMMulticontextPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkIMMulticontextPrivate = *mut _GtkIMMulticontextPrivate;
 
 #[repr(C)]
-pub struct _GtkKeyvalTriggerClass(c_void);
+pub struct _GtkKeyvalTriggerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkKeyvalTriggerClass = *mut _GtkKeyvalTriggerClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkLayoutChildClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -2949,8 +3096,8 @@ impl ::std::fmt::Debug for GtkLayoutChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkLayoutManagerClass {
     pub parent_class: gobject::GObjectClass,
     pub get_request_mode:
@@ -2997,12 +3144,15 @@ impl ::std::fmt::Debug for GtkLayoutManagerClass {
 }
 
 #[repr(C)]
-pub struct _GtkListBaseClass(c_void);
+pub struct _GtkListBaseClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkListBaseClass = *mut _GtkListBaseClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkListBoxRowClass {
     pub parent_class: GtkWidgetClass,
     pub activate: Option<unsafe extern "C" fn(*mut GtkListBoxRow)>,
@@ -3019,17 +3169,23 @@ impl ::std::fmt::Debug for GtkListBoxRowClass {
 }
 
 #[repr(C)]
-pub struct _GtkListItemClass(c_void);
+pub struct _GtkListItemClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkListItemClass = *mut _GtkListItemClass;
 
 #[repr(C)]
-pub struct _GtkListItemFactoryClass(c_void);
+pub struct _GtkListItemFactoryClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkListItemFactoryClass = *mut _GtkListItemFactoryClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkListStoreClass {
     pub parent_class: gobject::GObjectClass,
     pub padding: [gpointer; 8],
@@ -3044,17 +3200,23 @@ impl ::std::fmt::Debug for GtkListStoreClass {
 }
 
 #[repr(C)]
-pub struct _GtkListStorePrivate(c_void);
+pub struct _GtkListStorePrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkListStorePrivate = *mut _GtkListStorePrivate;
 
 #[repr(C)]
-pub struct _GtkListViewClass(c_void);
+pub struct _GtkListViewClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkListViewClass = *mut _GtkListViewClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMapListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3067,8 +3229,8 @@ impl ::std::fmt::Debug for GtkMapListModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMediaControlsClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -3081,8 +3243,8 @@ impl ::std::fmt::Debug for GtkMediaControlsClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMediaFileClass {
     pub parent_class: GtkMediaStreamClass,
     pub open: Option<unsafe extern "C" fn(*mut GtkMediaFile)>,
@@ -3107,8 +3269,8 @@ impl ::std::fmt::Debug for GtkMediaFileClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMediaStreamClass {
     pub parent_class: gobject::GObjectClass,
     pub play: Option<unsafe extern "C" fn(*mut GtkMediaStream) -> gboolean>,
@@ -3150,22 +3312,31 @@ impl ::std::fmt::Debug for GtkMediaStreamClass {
 }
 
 #[repr(C)]
-pub struct _GtkMessageDialogClass(c_void);
+pub struct _GtkMessageDialogClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkMessageDialogClass = *mut _GtkMessageDialogClass;
 
 #[repr(C)]
-pub struct _GtkMnemonicActionClass(c_void);
+pub struct _GtkMnemonicActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkMnemonicActionClass = *mut _GtkMnemonicActionClass;
 
 #[repr(C)]
-pub struct _GtkMnemonicTriggerClass(c_void);
+pub struct _GtkMnemonicTriggerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkMnemonicTriggerClass = *mut _GtkMnemonicTriggerClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMountOperationClass {
     pub parent_class: gio::GMountOperationClass,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
@@ -3187,17 +3358,23 @@ impl ::std::fmt::Debug for GtkMountOperationClass {
 }
 
 #[repr(C)]
-pub struct _GtkMountOperationPrivate(c_void);
+pub struct _GtkMountOperationPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkMountOperationPrivate = *mut _GtkMountOperationPrivate;
 
 #[repr(C)]
-pub struct _GtkMultiFilterClass(c_void);
+pub struct _GtkMultiFilterClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkMultiFilterClass = *mut _GtkMultiFilterClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMultiSelectionClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3210,8 +3387,8 @@ impl ::std::fmt::Debug for GtkMultiSelectionClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMultiSorterClass {
     pub parent_class: GtkSorterClass,
 }
@@ -3225,12 +3402,15 @@ impl ::std::fmt::Debug for GtkMultiSorterClass {
 }
 
 #[repr(C)]
-pub struct _GtkNamedActionClass(c_void);
+pub struct _GtkNamedActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkNamedActionClass = *mut _GtkNamedActionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkNativeDialogClass {
     pub parent_class: gobject::GObjectClass,
     pub response: Option<unsafe extern "C" fn(*mut GtkNativeDialog, GtkResponseType)>,
@@ -3257,17 +3437,23 @@ impl ::std::fmt::Debug for GtkNativeDialogClass {
 }
 
 #[repr(C)]
-pub struct _GtkNativeInterface(c_void);
+pub struct _GtkNativeInterface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkNativeInterface = *mut _GtkNativeInterface;
 
 #[repr(C)]
-pub struct _GtkNeverTriggerClass(c_void);
+pub struct _GtkNeverTriggerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkNeverTriggerClass = *mut _GtkNeverTriggerClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkNoSelectionClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3281,12 +3467,15 @@ impl ::std::fmt::Debug for GtkNoSelectionClass {
 }
 
 #[repr(C)]
-pub struct _GtkNothingActionClass(c_void);
+pub struct _GtkNothingActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkNothingActionClass = *mut _GtkNothingActionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkNumericSorterClass {
     pub parent_class: GtkSorterClass,
 }
@@ -3299,8 +3488,8 @@ impl ::std::fmt::Debug for GtkNumericSorterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkOrientableIface {
     pub base_iface: gobject::GTypeInterface,
 }
@@ -3313,8 +3502,8 @@ impl ::std::fmt::Debug for GtkOrientableIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkOverlayLayoutChildClass {
     pub parent_class: GtkLayoutChildClass,
 }
@@ -3327,8 +3516,8 @@ impl ::std::fmt::Debug for GtkOverlayLayoutChildClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkOverlayLayoutClass {
     pub parent_class: GtkLayoutManagerClass,
 }
@@ -3341,8 +3530,8 @@ impl ::std::fmt::Debug for GtkOverlayLayoutClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPadActionEntry {
     pub type_: GtkPadActionType,
     pub index: c_int,
@@ -3364,12 +3553,15 @@ impl ::std::fmt::Debug for GtkPadActionEntry {
 }
 
 #[repr(C)]
-pub struct _GtkPadControllerClass(c_void);
+pub struct _GtkPadControllerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkPadControllerClass = *mut _GtkPadControllerClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPageRange {
     pub start: c_int,
     pub end: c_int,
@@ -3385,7 +3577,10 @@ impl ::std::fmt::Debug for GtkPageRange {
 }
 
 #[repr(C)]
-pub struct GtkPaperSize(c_void);
+pub struct GtkPaperSize {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPaperSize {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -3394,8 +3589,8 @@ impl ::std::fmt::Debug for GtkPaperSize {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPasswordEntryBufferClass {
     pub parent_class: GtkEntryBufferClass,
 }
@@ -3409,12 +3604,15 @@ impl ::std::fmt::Debug for GtkPasswordEntryBufferClass {
 }
 
 #[repr(C)]
-pub struct _GtkPasswordEntryClass(c_void);
+pub struct _GtkPasswordEntryClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkPasswordEntryClass = *mut _GtkPasswordEntryClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPictureClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -3427,8 +3625,8 @@ impl ::std::fmt::Debug for GtkPictureClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPopoverClass {
     pub parent_class: GtkWidgetClass,
     pub closed: Option<unsafe extern "C" fn(*mut GtkPopover)>,
@@ -3447,12 +3645,15 @@ impl ::std::fmt::Debug for GtkPopoverClass {
 }
 
 #[repr(C)]
-pub struct _GtkPrintBackend(c_void);
+pub struct _GtkPrintBackend {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkPrintBackend = *mut _GtkPrintBackend;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPrintOperationClass {
     pub parent_class: gobject::GObjectClass,
     pub done: Option<unsafe extern "C" fn(*mut GtkPrintOperation, GtkPrintOperationResult)>,
@@ -3512,8 +3713,8 @@ impl ::std::fmt::Debug for GtkPrintOperationClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPrintOperationPreviewIface {
     pub g_iface: gobject::GTypeInterface,
     pub ready: Option<unsafe extern "C" fn(*mut GtkPrintOperationPreview, *mut GtkPrintContext)>,
@@ -3559,12 +3760,15 @@ impl ::std::fmt::Debug for GtkPrintOperationPreviewIface {
 }
 
 #[repr(C)]
-pub struct _GtkPrintOperationPrivate(c_void);
+pub struct _GtkPrintOperationPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkPrintOperationPrivate = *mut _GtkPrintOperationPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRangeClass {
     pub parent_class: GtkWidgetClass,
     pub value_changed: Option<unsafe extern "C" fn(*mut GtkRange)>,
@@ -3589,8 +3793,8 @@ impl ::std::fmt::Debug for GtkRangeClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRecentData {
     pub display_name: *mut c_char,
     pub description: *mut c_char,
@@ -3616,7 +3820,10 @@ impl ::std::fmt::Debug for GtkRecentData {
 }
 
 #[repr(C)]
-pub struct GtkRecentInfo(c_void);
+pub struct GtkRecentInfo {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkRecentInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -3625,8 +3832,8 @@ impl ::std::fmt::Debug for GtkRecentInfo {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRecentManagerClass {
     pub parent_class: gobject::GObjectClass,
     pub changed: Option<unsafe extern "C" fn(*mut GtkRecentManager)>,
@@ -3649,12 +3856,15 @@ impl ::std::fmt::Debug for GtkRecentManagerClass {
 }
 
 #[repr(C)]
-pub struct _GtkRecentManagerPrivate(c_void);
+pub struct _GtkRecentManagerPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkRecentManagerPrivate = *mut _GtkRecentManagerPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRequestedSize {
     pub data: gpointer,
     pub minimum_size: c_int,
@@ -3671,8 +3881,8 @@ impl ::std::fmt::Debug for GtkRequestedSize {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRequisition {
     pub width: c_int,
     pub height: c_int,
@@ -3688,12 +3898,15 @@ impl ::std::fmt::Debug for GtkRequisition {
 }
 
 #[repr(C)]
-pub struct _GtkRootInterface(c_void);
+pub struct _GtkRootInterface {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkRootInterface = *mut _GtkRootInterface;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkScaleButtonClass {
     pub parent_class: GtkWidgetClass,
     pub value_changed: Option<unsafe extern "C" fn(*mut GtkScaleButton, c_double)>,
@@ -3709,8 +3922,8 @@ impl ::std::fmt::Debug for GtkScaleButtonClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkScaleClass {
     pub parent_class: GtkRangeClass,
     pub get_layout_offsets: Option<unsafe extern "C" fn(*mut GtkScale, *mut c_int, *mut c_int)>,
@@ -3726,8 +3939,8 @@ impl ::std::fmt::Debug for GtkScaleClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkScrollableInterface {
     pub base_iface: gobject::GTypeInterface,
     pub get_border: Option<unsafe extern "C" fn(*mut GtkScrollable, *mut GtkBorder) -> gboolean>,
@@ -3742,8 +3955,8 @@ impl ::std::fmt::Debug for GtkScrollableInterface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSelectionFilterModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3756,8 +3969,8 @@ impl ::std::fmt::Debug for GtkSelectionFilterModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSelectionModelInterface {
     pub g_iface: gobject::GTypeInterface,
     pub is_selected: Option<unsafe extern "C" fn(*mut GtkSelectionModel, c_uint) -> gboolean>,
@@ -3794,12 +4007,15 @@ impl ::std::fmt::Debug for GtkSelectionModelInterface {
 }
 
 #[repr(C)]
-pub struct _GtkShortcutActionClass(c_void);
+pub struct _GtkShortcutActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutActionClass = *mut _GtkShortcutActionClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkShortcutClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3813,17 +4029,23 @@ impl ::std::fmt::Debug for GtkShortcutClass {
 }
 
 #[repr(C)]
-pub struct _GtkShortcutControllerClass(c_void);
+pub struct _GtkShortcutControllerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutControllerClass = *mut _GtkShortcutControllerClass;
 
 #[repr(C)]
-pub struct _GtkShortcutLabelClass(c_void);
+pub struct _GtkShortcutLabelClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutLabelClass = *mut _GtkShortcutLabelClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkShortcutManagerInterface {
     pub g_iface: gobject::GTypeInterface,
     pub add_controller:
@@ -3842,37 +4064,55 @@ impl ::std::fmt::Debug for GtkShortcutManagerInterface {
 }
 
 #[repr(C)]
-pub struct _GtkShortcutTriggerClass(c_void);
+pub struct _GtkShortcutTriggerClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutTriggerClass = *mut _GtkShortcutTriggerClass;
 
 #[repr(C)]
-pub struct _GtkShortcutsGroupClass(c_void);
+pub struct _GtkShortcutsGroupClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutsGroupClass = *mut _GtkShortcutsGroupClass;
 
 #[repr(C)]
-pub struct _GtkShortcutsSectionClass(c_void);
+pub struct _GtkShortcutsSectionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutsSectionClass = *mut _GtkShortcutsSectionClass;
 
 #[repr(C)]
-pub struct _GtkShortcutsShortcutClass(c_void);
+pub struct _GtkShortcutsShortcutClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkShortcutsShortcutClass = *mut _GtkShortcutsShortcutClass;
 
 #[repr(C)]
-pub struct _GtkSignalActionClass(c_void);
+pub struct _GtkSignalActionClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkSignalActionClass = *mut _GtkSignalActionClass;
 
 #[repr(C)]
-pub struct _GtkSignalListItemFactoryClass(c_void);
+pub struct _GtkSignalListItemFactoryClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkSignalListItemFactoryClass = *mut _GtkSignalListItemFactoryClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSingleSelectionClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3885,8 +4125,8 @@ impl ::std::fmt::Debug for GtkSingleSelectionClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSliceListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3900,12 +4140,15 @@ impl ::std::fmt::Debug for GtkSliceListModelClass {
 }
 
 #[repr(C)]
-pub struct _GtkSnapshotClass(c_void);
+pub struct _GtkSnapshotClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkSnapshotClass = *mut _GtkSnapshotClass;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSortListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3918,8 +4161,8 @@ impl ::std::fmt::Debug for GtkSortListModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSorterClass {
     pub parent_class: gobject::GObjectClass,
     pub compare: Option<
@@ -3958,8 +4201,8 @@ impl ::std::fmt::Debug for GtkSorterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStringFilterClass {
     pub parent_class: GtkFilterClass,
 }
@@ -3972,8 +4215,8 @@ impl ::std::fmt::Debug for GtkStringFilterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStringListClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -3986,8 +4229,8 @@ impl ::std::fmt::Debug for GtkStringListClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStringObjectClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -4000,8 +4243,8 @@ impl ::std::fmt::Debug for GtkStringObjectClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStringSorterClass {
     pub parent_class: GtkSorterClass,
 }
@@ -4014,8 +4257,8 @@ impl ::std::fmt::Debug for GtkStringSorterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStyleContextClass {
     pub parent_class: gobject::GObjectClass,
     pub changed: Option<unsafe extern "C" fn(*mut GtkStyleContext)>,
@@ -4038,8 +4281,8 @@ impl ::std::fmt::Debug for GtkStyleContextClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSymbolicPaintableInterface {
     pub g_iface: gobject::GTypeInterface,
     pub snapshot_symbolic: Option<
@@ -4062,8 +4305,8 @@ impl ::std::fmt::Debug for GtkSymbolicPaintableInterface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextBufferClass {
     pub parent_class: gobject::GObjectClass,
     pub insert_text:
@@ -4134,12 +4377,15 @@ impl ::std::fmt::Debug for GtkTextBufferClass {
 }
 
 #[repr(C)]
-pub struct _GtkTextBufferPrivate(c_void);
+pub struct _GtkTextBufferPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTextBufferPrivate = *mut _GtkTextBufferPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextChildAnchorClass {
     pub parent_class: gobject::GObjectClass,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
@@ -4160,8 +4406,8 @@ impl ::std::fmt::Debug for GtkTextChildAnchorClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextIter {
     pub dummy1: gpointer,
     pub dummy2: gpointer,
@@ -4186,8 +4432,8 @@ impl ::std::fmt::Debug for GtkTextIter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextMarkClass {
     pub parent_class: gobject::GObjectClass,
     pub padding: [gpointer; 8],
@@ -4201,8 +4447,8 @@ impl ::std::fmt::Debug for GtkTextMarkClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextTagClass {
     pub parent_class: gobject::GObjectClass,
     pub padding: [gpointer; 8],
@@ -4217,12 +4463,15 @@ impl ::std::fmt::Debug for GtkTextTagClass {
 }
 
 #[repr(C)]
-pub struct _GtkTextTagPrivate(c_void);
+pub struct _GtkTextTagPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTextTagPrivate = *mut _GtkTextTagPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextViewClass {
     pub parent_class: GtkWidgetClass,
     pub move_cursor:
@@ -4273,12 +4522,15 @@ impl ::std::fmt::Debug for GtkTextViewClass {
 }
 
 #[repr(C)]
-pub struct _GtkTextViewPrivate(c_void);
+pub struct _GtkTextViewPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTextViewPrivate = *mut _GtkTextViewPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkToggleButtonClass {
     pub parent_class: GtkButtonClass,
     pub toggled: Option<unsafe extern "C" fn(*mut GtkToggleButton)>,
@@ -4294,8 +4546,8 @@ impl ::std::fmt::Debug for GtkToggleButtonClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeDragDestIface {
     pub g_iface: gobject::GTypeInterface,
     pub drag_data_received: Option<
@@ -4323,8 +4575,8 @@ impl ::std::fmt::Debug for GtkTreeDragDestIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeDragSourceIface {
     pub g_iface: gobject::GTypeInterface,
     pub row_draggable:
@@ -4349,8 +4601,8 @@ impl ::std::fmt::Debug for GtkTreeDragSourceIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeExpanderClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -4363,8 +4615,8 @@ impl ::std::fmt::Debug for GtkTreeExpanderClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeIter {
     pub stamp: c_int,
     pub user_data: gpointer,
@@ -4383,8 +4635,8 @@ impl ::std::fmt::Debug for GtkTreeIter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeListModelClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -4397,8 +4649,8 @@ impl ::std::fmt::Debug for GtkTreeListModelClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeListRowClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -4411,8 +4663,8 @@ impl ::std::fmt::Debug for GtkTreeListRowClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeListRowSorterClass {
     pub parent_class: GtkSorterClass,
 }
@@ -4425,8 +4677,8 @@ impl ::std::fmt::Debug for GtkTreeListRowSorterClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeModelFilterClass {
     pub parent_class: gobject::GObjectClass,
     pub visible: Option<
@@ -4459,12 +4711,15 @@ impl ::std::fmt::Debug for GtkTreeModelFilterClass {
 }
 
 #[repr(C)]
-pub struct _GtkTreeModelFilterPrivate(c_void);
+pub struct _GtkTreeModelFilterPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTreeModelFilterPrivate = *mut _GtkTreeModelFilterPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeModelIface {
     pub g_iface: gobject::GTypeInterface,
     pub row_changed:
@@ -4539,8 +4794,8 @@ impl ::std::fmt::Debug for GtkTreeModelIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeModelSortClass {
     pub parent_class: gobject::GObjectClass,
     pub padding: [gpointer; 8],
@@ -4555,12 +4810,18 @@ impl ::std::fmt::Debug for GtkTreeModelSortClass {
 }
 
 #[repr(C)]
-pub struct _GtkTreeModelSortPrivate(c_void);
+pub struct _GtkTreeModelSortPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTreeModelSortPrivate = *mut _GtkTreeModelSortPrivate;
 
 #[repr(C)]
-pub struct GtkTreePath(c_void);
+pub struct GtkTreePath {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreePath {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4570,7 +4831,10 @@ impl ::std::fmt::Debug for GtkTreePath {
 }
 
 #[repr(C)]
-pub struct GtkTreeRowReference(c_void);
+pub struct GtkTreeRowReference {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeRowReference {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4579,8 +4843,8 @@ impl ::std::fmt::Debug for GtkTreeRowReference {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeSortableIface {
     pub g_iface: gobject::GTypeInterface,
     pub sort_column_changed: Option<unsafe extern "C" fn(*mut GtkTreeSortable)>,
@@ -4621,8 +4885,8 @@ impl ::std::fmt::Debug for GtkTreeSortableIface {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeStoreClass {
     pub parent_class: gobject::GObjectClass,
     pub padding: [gpointer; 8],
@@ -4637,12 +4901,15 @@ impl ::std::fmt::Debug for GtkTreeStoreClass {
 }
 
 #[repr(C)]
-pub struct _GtkTreeStorePrivate(c_void);
+pub struct _GtkTreeStorePrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkTreeStorePrivate = *mut _GtkTreeStorePrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeViewClass {
     pub parent_class: GtkWidgetClass,
     pub row_activated:
@@ -4705,8 +4972,8 @@ impl ::std::fmt::Debug for GtkTreeViewClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkVideoClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -4719,8 +4986,8 @@ impl ::std::fmt::Debug for GtkVideoClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWidgetClass {
     pub parent_class: gobject::GInitiallyUnownedClass,
     pub show: Option<unsafe extern "C" fn(*mut GtkWidget)>,
@@ -4798,12 +5065,15 @@ impl ::std::fmt::Debug for GtkWidgetClass {
 }
 
 #[repr(C)]
-pub struct _GtkWidgetClassPrivate(c_void);
+pub struct _GtkWidgetClassPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkWidgetClassPrivate = *mut _GtkWidgetClassPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWidgetPaintableClass {
     pub parent_class: gobject::GObjectClass,
 }
@@ -4817,12 +5087,15 @@ impl ::std::fmt::Debug for GtkWidgetPaintableClass {
 }
 
 #[repr(C)]
-pub struct _GtkWidgetPrivate(c_void);
+pub struct _GtkWidgetPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkWidgetPrivate = *mut _GtkWidgetPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindowClass {
     pub parent_class: GtkWidgetClass,
     pub activate_focus: Option<unsafe extern "C" fn(*mut GtkWindow)>,
@@ -4846,8 +5119,8 @@ impl ::std::fmt::Debug for GtkWindowClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindowControlsClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -4860,8 +5133,8 @@ impl ::std::fmt::Debug for GtkWindowControlsClass {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindowGroupClass {
     pub parent_class: gobject::GObjectClass,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
@@ -4883,12 +5156,15 @@ impl ::std::fmt::Debug for GtkWindowGroupClass {
 }
 
 #[repr(C)]
-pub struct _GtkWindowGroupPrivate(c_void);
+pub struct _GtkWindowGroupPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 pub type GtkWindowGroupPrivate = *mut _GtkWindowGroupPrivate;
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindowHandleClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -4903,7 +5179,10 @@ impl ::std::fmt::Debug for GtkWindowHandleClass {
 
 // Classes
 #[repr(C)]
-pub struct GtkATContext(c_void);
+pub struct GtkATContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkATContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4913,7 +5192,10 @@ impl ::std::fmt::Debug for GtkATContext {
 }
 
 #[repr(C)]
-pub struct GtkAboutDialog(c_void);
+pub struct GtkAboutDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAboutDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4923,7 +5205,10 @@ impl ::std::fmt::Debug for GtkAboutDialog {
 }
 
 #[repr(C)]
-pub struct GtkActionBar(c_void);
+pub struct GtkActionBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkActionBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4933,7 +5218,10 @@ impl ::std::fmt::Debug for GtkActionBar {
 }
 
 #[repr(C)]
-pub struct GtkActivateAction(c_void);
+pub struct GtkActivateAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkActivateAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4942,8 +5230,8 @@ impl ::std::fmt::Debug for GtkActivateAction {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkAdjustment {
     pub parent_instance: gobject::GInitiallyUnowned,
 }
@@ -4957,7 +5245,10 @@ impl ::std::fmt::Debug for GtkAdjustment {
 }
 
 #[repr(C)]
-pub struct GtkAlternativeTrigger(c_void);
+pub struct GtkAlternativeTrigger {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAlternativeTrigger {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4967,7 +5258,10 @@ impl ::std::fmt::Debug for GtkAlternativeTrigger {
 }
 
 #[repr(C)]
-pub struct GtkAnyFilter(c_void);
+pub struct GtkAnyFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAnyFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4977,7 +5271,10 @@ impl ::std::fmt::Debug for GtkAnyFilter {
 }
 
 #[repr(C)]
-pub struct GtkAppChooserButton(c_void);
+pub struct GtkAppChooserButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAppChooserButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4987,7 +5284,10 @@ impl ::std::fmt::Debug for GtkAppChooserButton {
 }
 
 #[repr(C)]
-pub struct GtkAppChooserDialog(c_void);
+pub struct GtkAppChooserDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAppChooserDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -4997,7 +5297,10 @@ impl ::std::fmt::Debug for GtkAppChooserDialog {
 }
 
 #[repr(C)]
-pub struct GtkAppChooserWidget(c_void);
+pub struct GtkAppChooserWidget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAppChooserWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5006,8 +5309,8 @@ impl ::std::fmt::Debug for GtkAppChooserWidget {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkApplication {
     pub parent_instance: gio::GApplication,
 }
@@ -5020,8 +5323,8 @@ impl ::std::fmt::Debug for GtkApplication {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkApplicationWindow {
     pub parent_instance: GtkWindow,
 }
@@ -5035,7 +5338,10 @@ impl ::std::fmt::Debug for GtkApplicationWindow {
 }
 
 #[repr(C)]
-pub struct GtkAspectFrame(c_void);
+pub struct GtkAspectFrame {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAspectFrame {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5045,7 +5351,10 @@ impl ::std::fmt::Debug for GtkAspectFrame {
 }
 
 #[repr(C)]
-pub struct GtkAssistant(c_void);
+pub struct GtkAssistant {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAssistant {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5055,7 +5364,10 @@ impl ::std::fmt::Debug for GtkAssistant {
 }
 
 #[repr(C)]
-pub struct GtkAssistantPage(c_void);
+pub struct GtkAssistantPage {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAssistantPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5065,7 +5377,10 @@ impl ::std::fmt::Debug for GtkAssistantPage {
 }
 
 #[repr(C)]
-pub struct GtkBinLayout(c_void);
+pub struct GtkBinLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBinLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5075,7 +5390,10 @@ impl ::std::fmt::Debug for GtkBinLayout {
 }
 
 #[repr(C)]
-pub struct GtkBookmarkList(c_void);
+pub struct GtkBookmarkList {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBookmarkList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5085,7 +5403,10 @@ impl ::std::fmt::Debug for GtkBookmarkList {
 }
 
 #[repr(C)]
-pub struct GtkBoolFilter(c_void);
+pub struct GtkBoolFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBoolFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5094,8 +5415,8 @@ impl ::std::fmt::Debug for GtkBoolFilter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBox {
     pub parent_instance: GtkWidget,
 }
@@ -5109,7 +5430,10 @@ impl ::std::fmt::Debug for GtkBox {
 }
 
 #[repr(C)]
-pub struct GtkBoxLayout(c_void);
+pub struct GtkBoxLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBoxLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5119,7 +5443,10 @@ impl ::std::fmt::Debug for GtkBoxLayout {
 }
 
 #[repr(C)]
-pub struct GtkBuilder(c_void);
+pub struct GtkBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBuilder {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5127,8 +5454,8 @@ impl ::std::fmt::Debug for GtkBuilder {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkBuilderCScope {
     pub parent_instance: gobject::GObject,
 }
@@ -5142,7 +5469,10 @@ impl ::std::fmt::Debug for GtkBuilderCScope {
 }
 
 #[repr(C)]
-pub struct GtkBuilderListItemFactory(c_void);
+pub struct GtkBuilderListItemFactory {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBuilderListItemFactory {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5151,8 +5481,8 @@ impl ::std::fmt::Debug for GtkBuilderListItemFactory {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkButton {
     pub parent_instance: GtkWidget,
 }
@@ -5164,7 +5494,10 @@ impl ::std::fmt::Debug for GtkButton {
 }
 
 #[repr(C)]
-pub struct GtkCClosureExpression(c_void);
+pub struct GtkCClosureExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCClosureExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5174,7 +5507,10 @@ impl ::std::fmt::Debug for GtkCClosureExpression {
 }
 
 #[repr(C)]
-pub struct GtkCalendar(c_void);
+pub struct GtkCalendar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCalendar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5184,7 +5520,10 @@ impl ::std::fmt::Debug for GtkCalendar {
 }
 
 #[repr(C)]
-pub struct GtkCallbackAction(c_void);
+pub struct GtkCallbackAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCallbackAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5193,8 +5532,8 @@ impl ::std::fmt::Debug for GtkCallbackAction {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellArea {
     pub parent_instance: gobject::GInitiallyUnowned,
 }
@@ -5207,7 +5546,10 @@ impl ::std::fmt::Debug for GtkCellArea {
 }
 
 #[repr(C)]
-pub struct GtkCellAreaBox(c_void);
+pub struct GtkCellAreaBox {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellAreaBox {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5216,8 +5558,8 @@ impl ::std::fmt::Debug for GtkCellAreaBox {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellAreaContext {
     pub parent_instance: gobject::GObject,
 }
@@ -5229,8 +5571,8 @@ impl ::std::fmt::Debug for GtkCellAreaContext {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellRenderer {
     pub parent_instance: gobject::GInitiallyUnowned,
     pub priv_: *mut GtkCellRendererPrivate,
@@ -5245,7 +5587,10 @@ impl ::std::fmt::Debug for GtkCellRenderer {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererAccel(c_void);
+pub struct GtkCellRendererAccel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererAccel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5255,7 +5600,10 @@ impl ::std::fmt::Debug for GtkCellRendererAccel {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererCombo(c_void);
+pub struct GtkCellRendererCombo {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererCombo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5265,7 +5613,10 @@ impl ::std::fmt::Debug for GtkCellRendererCombo {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererPixbuf(c_void);
+pub struct GtkCellRendererPixbuf {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererPixbuf {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5275,7 +5626,10 @@ impl ::std::fmt::Debug for GtkCellRendererPixbuf {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererProgress(c_void);
+pub struct GtkCellRendererProgress {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererProgress {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5285,7 +5639,10 @@ impl ::std::fmt::Debug for GtkCellRendererProgress {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererSpin(c_void);
+pub struct GtkCellRendererSpin {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererSpin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5295,7 +5652,10 @@ impl ::std::fmt::Debug for GtkCellRendererSpin {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererSpinner(c_void);
+pub struct GtkCellRendererSpinner {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererSpinner {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5304,8 +5664,8 @@ impl ::std::fmt::Debug for GtkCellRendererSpinner {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCellRendererText {
     pub parent: GtkCellRenderer,
 }
@@ -5319,7 +5679,10 @@ impl ::std::fmt::Debug for GtkCellRendererText {
 }
 
 #[repr(C)]
-pub struct GtkCellRendererToggle(c_void);
+pub struct GtkCellRendererToggle {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellRendererToggle {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5329,7 +5692,10 @@ impl ::std::fmt::Debug for GtkCellRendererToggle {
 }
 
 #[repr(C)]
-pub struct GtkCellView(c_void);
+pub struct GtkCellView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5339,7 +5705,10 @@ impl ::std::fmt::Debug for GtkCellView {
 }
 
 #[repr(C)]
-pub struct GtkCenterBox(c_void);
+pub struct GtkCenterBox {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCenterBox {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5349,7 +5718,10 @@ impl ::std::fmt::Debug for GtkCenterBox {
 }
 
 #[repr(C)]
-pub struct GtkCenterLayout(c_void);
+pub struct GtkCenterLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCenterLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5358,8 +5730,8 @@ impl ::std::fmt::Debug for GtkCenterLayout {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCheckButton {
     pub parent_instance: GtkWidget,
 }
@@ -5373,7 +5745,10 @@ impl ::std::fmt::Debug for GtkCheckButton {
 }
 
 #[repr(C)]
-pub struct GtkClosureExpression(c_void);
+pub struct GtkClosureExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkClosureExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5383,7 +5758,10 @@ impl ::std::fmt::Debug for GtkClosureExpression {
 }
 
 #[repr(C)]
-pub struct GtkColorButton(c_void);
+pub struct GtkColorButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColorButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5393,7 +5771,10 @@ impl ::std::fmt::Debug for GtkColorButton {
 }
 
 #[repr(C)]
-pub struct GtkColorChooserDialog(c_void);
+pub struct GtkColorChooserDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColorChooserDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5403,7 +5784,10 @@ impl ::std::fmt::Debug for GtkColorChooserDialog {
 }
 
 #[repr(C)]
-pub struct GtkColorChooserWidget(c_void);
+pub struct GtkColorChooserWidget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColorChooserWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5413,7 +5797,10 @@ impl ::std::fmt::Debug for GtkColorChooserWidget {
 }
 
 #[repr(C)]
-pub struct GtkColumnView(c_void);
+pub struct GtkColumnView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColumnView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5423,7 +5810,10 @@ impl ::std::fmt::Debug for GtkColumnView {
 }
 
 #[repr(C)]
-pub struct GtkColumnViewColumn(c_void);
+pub struct GtkColumnViewColumn {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColumnViewColumn {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5432,8 +5822,8 @@ impl ::std::fmt::Debug for GtkColumnViewColumn {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkComboBox {
     pub parent_instance: GtkWidget,
 }
@@ -5447,7 +5837,10 @@ impl ::std::fmt::Debug for GtkComboBox {
 }
 
 #[repr(C)]
-pub struct GtkComboBoxText(c_void);
+pub struct GtkComboBoxText {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkComboBoxText {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5457,7 +5850,10 @@ impl ::std::fmt::Debug for GtkComboBoxText {
 }
 
 #[repr(C)]
-pub struct GtkConstantExpression(c_void);
+pub struct GtkConstantExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstantExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5467,7 +5863,10 @@ impl ::std::fmt::Debug for GtkConstantExpression {
 }
 
 #[repr(C)]
-pub struct GtkConstraint(c_void);
+pub struct GtkConstraint {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstraint {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5477,7 +5876,10 @@ impl ::std::fmt::Debug for GtkConstraint {
 }
 
 #[repr(C)]
-pub struct GtkConstraintGuide(c_void);
+pub struct GtkConstraintGuide {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstraintGuide {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5487,7 +5889,10 @@ impl ::std::fmt::Debug for GtkConstraintGuide {
 }
 
 #[repr(C)]
-pub struct GtkConstraintLayout(c_void);
+pub struct GtkConstraintLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstraintLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5497,7 +5902,10 @@ impl ::std::fmt::Debug for GtkConstraintLayout {
 }
 
 #[repr(C)]
-pub struct GtkConstraintLayoutChild(c_void);
+pub struct GtkConstraintLayoutChild {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstraintLayoutChild {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5506,8 +5914,8 @@ impl ::std::fmt::Debug for GtkConstraintLayoutChild {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkCssProvider {
     pub parent_instance: gobject::GObject,
 }
@@ -5521,7 +5929,10 @@ impl ::std::fmt::Debug for GtkCssProvider {
 }
 
 #[repr(C)]
-pub struct GtkCustomFilter(c_void);
+pub struct GtkCustomFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCustomFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5531,7 +5942,10 @@ impl ::std::fmt::Debug for GtkCustomFilter {
 }
 
 #[repr(C)]
-pub struct GtkCustomLayout(c_void);
+pub struct GtkCustomLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCustomLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5541,7 +5955,10 @@ impl ::std::fmt::Debug for GtkCustomLayout {
 }
 
 #[repr(C)]
-pub struct GtkCustomSorter(c_void);
+pub struct GtkCustomSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCustomSorter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5550,8 +5967,8 @@ impl ::std::fmt::Debug for GtkCustomSorter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDialog {
     pub parent_instance: GtkWindow,
 }
@@ -5565,7 +5982,10 @@ impl ::std::fmt::Debug for GtkDialog {
 }
 
 #[repr(C)]
-pub struct GtkDirectoryList(c_void);
+pub struct GtkDirectoryList {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDirectoryList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5575,7 +5995,10 @@ impl ::std::fmt::Debug for GtkDirectoryList {
 }
 
 #[repr(C)]
-pub struct GtkDragIcon(c_void);
+pub struct GtkDragIcon {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDragIcon {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5585,7 +6008,10 @@ impl ::std::fmt::Debug for GtkDragIcon {
 }
 
 #[repr(C)]
-pub struct GtkDragSource(c_void);
+pub struct GtkDragSource {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDragSource {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5594,8 +6020,8 @@ impl ::std::fmt::Debug for GtkDragSource {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkDrawingArea {
     pub widget: GtkWidget,
 }
@@ -5609,7 +6035,10 @@ impl ::std::fmt::Debug for GtkDrawingArea {
 }
 
 #[repr(C)]
-pub struct GtkDropControllerMotion(c_void);
+pub struct GtkDropControllerMotion {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDropControllerMotion {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5619,7 +6048,10 @@ impl ::std::fmt::Debug for GtkDropControllerMotion {
 }
 
 #[repr(C)]
-pub struct GtkDropDown(c_void);
+pub struct GtkDropDown {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDropDown {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5629,7 +6061,10 @@ impl ::std::fmt::Debug for GtkDropDown {
 }
 
 #[repr(C)]
-pub struct GtkDropTarget(c_void);
+pub struct GtkDropTarget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDropTarget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5639,7 +6074,10 @@ impl ::std::fmt::Debug for GtkDropTarget {
 }
 
 #[repr(C)]
-pub struct GtkDropTargetAsync(c_void);
+pub struct GtkDropTargetAsync {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkDropTargetAsync {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5649,7 +6087,10 @@ impl ::std::fmt::Debug for GtkDropTargetAsync {
 }
 
 #[repr(C)]
-pub struct GtkEditableLabel(c_void);
+pub struct GtkEditableLabel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEditableLabel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5659,7 +6100,10 @@ impl ::std::fmt::Debug for GtkEditableLabel {
 }
 
 #[repr(C)]
-pub struct GtkEmojiChooser(c_void);
+pub struct GtkEmojiChooser {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEmojiChooser {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5668,8 +6112,8 @@ impl ::std::fmt::Debug for GtkEmojiChooser {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEntry {
     pub parent_instance: GtkWidget,
 }
@@ -5680,8 +6124,8 @@ impl ::std::fmt::Debug for GtkEntry {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkEntryBuffer {
     pub parent_instance: gobject::GObject,
 }
@@ -5695,7 +6139,10 @@ impl ::std::fmt::Debug for GtkEntryBuffer {
 }
 
 #[repr(C)]
-pub struct GtkEntryCompletion(c_void);
+pub struct GtkEntryCompletion {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEntryCompletion {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5705,7 +6152,10 @@ impl ::std::fmt::Debug for GtkEntryCompletion {
 }
 
 #[repr(C)]
-pub struct GtkEventController(c_void);
+pub struct GtkEventController {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventController {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5715,7 +6165,10 @@ impl ::std::fmt::Debug for GtkEventController {
 }
 
 #[repr(C)]
-pub struct GtkEventControllerFocus(c_void);
+pub struct GtkEventControllerFocus {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventControllerFocus {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5725,7 +6178,10 @@ impl ::std::fmt::Debug for GtkEventControllerFocus {
 }
 
 #[repr(C)]
-pub struct GtkEventControllerKey(c_void);
+pub struct GtkEventControllerKey {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventControllerKey {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5735,7 +6191,10 @@ impl ::std::fmt::Debug for GtkEventControllerKey {
 }
 
 #[repr(C)]
-pub struct GtkEventControllerLegacy(c_void);
+pub struct GtkEventControllerLegacy {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventControllerLegacy {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5745,7 +6204,10 @@ impl ::std::fmt::Debug for GtkEventControllerLegacy {
 }
 
 #[repr(C)]
-pub struct GtkEventControllerMotion(c_void);
+pub struct GtkEventControllerMotion {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventControllerMotion {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5755,7 +6217,10 @@ impl ::std::fmt::Debug for GtkEventControllerMotion {
 }
 
 #[repr(C)]
-pub struct GtkEventControllerScroll(c_void);
+pub struct GtkEventControllerScroll {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEventControllerScroll {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5765,7 +6230,10 @@ impl ::std::fmt::Debug for GtkEventControllerScroll {
 }
 
 #[repr(C)]
-pub struct GtkEveryFilter(c_void);
+pub struct GtkEveryFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEveryFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5775,7 +6243,10 @@ impl ::std::fmt::Debug for GtkEveryFilter {
 }
 
 #[repr(C)]
-pub struct GtkExpander(c_void);
+pub struct GtkExpander {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkExpander {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5785,7 +6256,10 @@ impl ::std::fmt::Debug for GtkExpander {
 }
 
 #[repr(C)]
-pub struct GtkExpression(c_void);
+pub struct GtkExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5795,7 +6269,10 @@ impl ::std::fmt::Debug for GtkExpression {
 }
 
 #[repr(C)]
-pub struct GtkFileChooserDialog(c_void);
+pub struct GtkFileChooserDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFileChooserDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5805,7 +6282,10 @@ impl ::std::fmt::Debug for GtkFileChooserDialog {
 }
 
 #[repr(C)]
-pub struct GtkFileChooserNative(c_void);
+pub struct GtkFileChooserNative {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFileChooserNative {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5815,7 +6295,10 @@ impl ::std::fmt::Debug for GtkFileChooserNative {
 }
 
 #[repr(C)]
-pub struct GtkFileChooserWidget(c_void);
+pub struct GtkFileChooserWidget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFileChooserWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5825,7 +6308,10 @@ impl ::std::fmt::Debug for GtkFileChooserWidget {
 }
 
 #[repr(C)]
-pub struct GtkFileFilter(c_void);
+pub struct GtkFileFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFileFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5834,8 +6320,8 @@ impl ::std::fmt::Debug for GtkFileFilter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFilter {
     pub parent_instance: gobject::GObject,
 }
@@ -5849,7 +6335,10 @@ impl ::std::fmt::Debug for GtkFilter {
 }
 
 #[repr(C)]
-pub struct GtkFilterListModel(c_void);
+pub struct GtkFilterListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFilterListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5858,8 +6347,8 @@ impl ::std::fmt::Debug for GtkFilterListModel {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFixed {
     pub parent_instance: GtkWidget,
 }
@@ -5873,7 +6362,10 @@ impl ::std::fmt::Debug for GtkFixed {
 }
 
 #[repr(C)]
-pub struct GtkFixedLayout(c_void);
+pub struct GtkFixedLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFixedLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5883,7 +6375,10 @@ impl ::std::fmt::Debug for GtkFixedLayout {
 }
 
 #[repr(C)]
-pub struct GtkFixedLayoutChild(c_void);
+pub struct GtkFixedLayoutChild {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFixedLayoutChild {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5893,7 +6388,10 @@ impl ::std::fmt::Debug for GtkFixedLayoutChild {
 }
 
 #[repr(C)]
-pub struct GtkFlattenListModel(c_void);
+pub struct GtkFlattenListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFlattenListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5903,7 +6401,10 @@ impl ::std::fmt::Debug for GtkFlattenListModel {
 }
 
 #[repr(C)]
-pub struct GtkFlowBox(c_void);
+pub struct GtkFlowBox {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFlowBox {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5911,8 +6412,8 @@ impl ::std::fmt::Debug for GtkFlowBox {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFlowBoxChild {
     pub parent_instance: GtkWidget,
 }
@@ -5925,7 +6426,10 @@ impl ::std::fmt::Debug for GtkFlowBoxChild {
 }
 
 #[repr(C)]
-pub struct GtkFontButton(c_void);
+pub struct GtkFontButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFontButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5935,7 +6439,10 @@ impl ::std::fmt::Debug for GtkFontButton {
 }
 
 #[repr(C)]
-pub struct GtkFontChooserDialog(c_void);
+pub struct GtkFontChooserDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFontChooserDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5945,7 +6452,10 @@ impl ::std::fmt::Debug for GtkFontChooserDialog {
 }
 
 #[repr(C)]
-pub struct GtkFontChooserWidget(c_void);
+pub struct GtkFontChooserWidget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFontChooserWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5954,8 +6464,8 @@ impl ::std::fmt::Debug for GtkFontChooserWidget {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFrame {
     pub parent_instance: GtkWidget,
 }
@@ -5968,8 +6478,8 @@ impl ::std::fmt::Debug for GtkFrame {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGLArea {
     pub parent_instance: GtkWidget,
 }
@@ -5981,7 +6491,10 @@ impl ::std::fmt::Debug for GtkGLArea {
 }
 
 #[repr(C)]
-pub struct GtkGesture(c_void);
+pub struct GtkGesture {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGesture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -5990,7 +6503,10 @@ impl ::std::fmt::Debug for GtkGesture {
 }
 
 #[repr(C)]
-pub struct GtkGestureClick(c_void);
+pub struct GtkGestureClick {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureClick {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6000,7 +6516,10 @@ impl ::std::fmt::Debug for GtkGestureClick {
 }
 
 #[repr(C)]
-pub struct GtkGestureDrag(c_void);
+pub struct GtkGestureDrag {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureDrag {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6010,7 +6529,10 @@ impl ::std::fmt::Debug for GtkGestureDrag {
 }
 
 #[repr(C)]
-pub struct GtkGestureLongPress(c_void);
+pub struct GtkGestureLongPress {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureLongPress {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6020,7 +6542,10 @@ impl ::std::fmt::Debug for GtkGestureLongPress {
 }
 
 #[repr(C)]
-pub struct GtkGesturePan(c_void);
+pub struct GtkGesturePan {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGesturePan {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6030,7 +6555,10 @@ impl ::std::fmt::Debug for GtkGesturePan {
 }
 
 #[repr(C)]
-pub struct GtkGestureRotate(c_void);
+pub struct GtkGestureRotate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureRotate {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6040,7 +6568,10 @@ impl ::std::fmt::Debug for GtkGestureRotate {
 }
 
 #[repr(C)]
-pub struct GtkGestureSingle(c_void);
+pub struct GtkGestureSingle {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureSingle {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6050,7 +6581,10 @@ impl ::std::fmt::Debug for GtkGestureSingle {
 }
 
 #[repr(C)]
-pub struct GtkGestureStylus(c_void);
+pub struct GtkGestureStylus {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureStylus {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6060,7 +6594,10 @@ impl ::std::fmt::Debug for GtkGestureStylus {
 }
 
 #[repr(C)]
-pub struct GtkGestureSwipe(c_void);
+pub struct GtkGestureSwipe {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureSwipe {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6070,7 +6607,10 @@ impl ::std::fmt::Debug for GtkGestureSwipe {
 }
 
 #[repr(C)]
-pub struct GtkGestureZoom(c_void);
+pub struct GtkGestureZoom {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGestureZoom {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6079,8 +6619,8 @@ impl ::std::fmt::Debug for GtkGestureZoom {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGrid {
     pub parent_instance: GtkWidget,
 }
@@ -6092,7 +6632,10 @@ impl ::std::fmt::Debug for GtkGrid {
 }
 
 #[repr(C)]
-pub struct GtkGridLayout(c_void);
+pub struct GtkGridLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGridLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6102,7 +6645,10 @@ impl ::std::fmt::Debug for GtkGridLayout {
 }
 
 #[repr(C)]
-pub struct GtkGridLayoutChild(c_void);
+pub struct GtkGridLayoutChild {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGridLayoutChild {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6112,7 +6658,10 @@ impl ::std::fmt::Debug for GtkGridLayoutChild {
 }
 
 #[repr(C)]
-pub struct GtkGridView(c_void);
+pub struct GtkGridView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkGridView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6122,7 +6671,10 @@ impl ::std::fmt::Debug for GtkGridView {
 }
 
 #[repr(C)]
-pub struct GtkHeaderBar(c_void);
+pub struct GtkHeaderBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkHeaderBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6131,8 +6683,8 @@ impl ::std::fmt::Debug for GtkHeaderBar {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMContext {
     pub parent_instance: gobject::GObject,
 }
@@ -6145,8 +6697,8 @@ impl ::std::fmt::Debug for GtkIMContext {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMContextSimple {
     pub object: GtkIMContext,
     pub priv_: *mut GtkIMContextSimplePrivate,
@@ -6160,8 +6712,8 @@ impl ::std::fmt::Debug for GtkIMContextSimple {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkIMMulticontext {
     pub object: GtkIMContext,
     pub priv_: *mut GtkIMMulticontextPrivate,
@@ -6176,7 +6728,10 @@ impl ::std::fmt::Debug for GtkIMMulticontext {
 }
 
 #[repr(C)]
-pub struct GtkIconPaintable(c_void);
+pub struct GtkIconPaintable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkIconPaintable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6186,7 +6741,10 @@ impl ::std::fmt::Debug for GtkIconPaintable {
 }
 
 #[repr(C)]
-pub struct GtkIconTheme(c_void);
+pub struct GtkIconTheme {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkIconTheme {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6196,7 +6754,10 @@ impl ::std::fmt::Debug for GtkIconTheme {
 }
 
 #[repr(C)]
-pub struct GtkIconView(c_void);
+pub struct GtkIconView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkIconView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6206,7 +6767,10 @@ impl ::std::fmt::Debug for GtkIconView {
 }
 
 #[repr(C)]
-pub struct GtkImage(c_void);
+pub struct GtkImage {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkImage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6215,7 +6779,10 @@ impl ::std::fmt::Debug for GtkImage {
 }
 
 #[repr(C)]
-pub struct GtkInfoBar(c_void);
+pub struct GtkInfoBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkInfoBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6224,7 +6791,10 @@ impl ::std::fmt::Debug for GtkInfoBar {
 }
 
 #[repr(C)]
-pub struct GtkKeyvalTrigger(c_void);
+pub struct GtkKeyvalTrigger {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkKeyvalTrigger {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6234,7 +6804,10 @@ impl ::std::fmt::Debug for GtkKeyvalTrigger {
 }
 
 #[repr(C)]
-pub struct GtkLabel(c_void);
+pub struct GtkLabel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkLabel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6242,8 +6815,8 @@ impl ::std::fmt::Debug for GtkLabel {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkLayoutChild {
     pub parent_instance: gobject::GObject,
 }
@@ -6256,8 +6829,8 @@ impl ::std::fmt::Debug for GtkLayoutChild {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkLayoutManager {
     pub parent_instance: gobject::GObject,
 }
@@ -6271,7 +6844,10 @@ impl ::std::fmt::Debug for GtkLayoutManager {
 }
 
 #[repr(C)]
-pub struct GtkLevelBar(c_void);
+pub struct GtkLevelBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkLevelBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6281,7 +6857,10 @@ impl ::std::fmt::Debug for GtkLevelBar {
 }
 
 #[repr(C)]
-pub struct GtkLinkButton(c_void);
+pub struct GtkLinkButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkLinkButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6291,7 +6870,10 @@ impl ::std::fmt::Debug for GtkLinkButton {
 }
 
 #[repr(C)]
-pub struct GtkListBase(c_void);
+pub struct GtkListBase {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkListBase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6301,7 +6883,10 @@ impl ::std::fmt::Debug for GtkListBase {
 }
 
 #[repr(C)]
-pub struct GtkListBox(c_void);
+pub struct GtkListBox {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkListBox {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6309,8 +6894,8 @@ impl ::std::fmt::Debug for GtkListBox {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkListBoxRow {
     pub parent_instance: GtkWidget,
 }
@@ -6324,7 +6909,10 @@ impl ::std::fmt::Debug for GtkListBoxRow {
 }
 
 #[repr(C)]
-pub struct GtkListItem(c_void);
+pub struct GtkListItem {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkListItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6334,7 +6922,10 @@ impl ::std::fmt::Debug for GtkListItem {
 }
 
 #[repr(C)]
-pub struct GtkListItemFactory(c_void);
+pub struct GtkListItemFactory {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkListItemFactory {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6343,8 +6934,8 @@ impl ::std::fmt::Debug for GtkListItemFactory {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkListStore {
     pub parent: gobject::GObject,
     pub priv_: *mut GtkListStorePrivate,
@@ -6359,7 +6950,10 @@ impl ::std::fmt::Debug for GtkListStore {
 }
 
 #[repr(C)]
-pub struct GtkListView(c_void);
+pub struct GtkListView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkListView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6369,7 +6963,10 @@ impl ::std::fmt::Debug for GtkListView {
 }
 
 #[repr(C)]
-pub struct GtkLockButton(c_void);
+pub struct GtkLockButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkLockButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6379,7 +6976,10 @@ impl ::std::fmt::Debug for GtkLockButton {
 }
 
 #[repr(C)]
-pub struct GtkMapListModel(c_void);
+pub struct GtkMapListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMapListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6389,7 +6989,10 @@ impl ::std::fmt::Debug for GtkMapListModel {
 }
 
 #[repr(C)]
-pub struct GtkMediaControls(c_void);
+pub struct GtkMediaControls {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMediaControls {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6398,8 +7001,8 @@ impl ::std::fmt::Debug for GtkMediaControls {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMediaFile {
     pub parent_instance: GtkMediaStream,
 }
@@ -6412,8 +7015,8 @@ impl ::std::fmt::Debug for GtkMediaFile {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMediaStream {
     pub parent_instance: gobject::GObject,
 }
@@ -6427,7 +7030,10 @@ impl ::std::fmt::Debug for GtkMediaStream {
 }
 
 #[repr(C)]
-pub struct GtkMenuButton(c_void);
+pub struct GtkMenuButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMenuButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6436,8 +7042,8 @@ impl ::std::fmt::Debug for GtkMenuButton {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMessageDialog {
     pub parent_instance: GtkDialog,
 }
@@ -6451,7 +7057,10 @@ impl ::std::fmt::Debug for GtkMessageDialog {
 }
 
 #[repr(C)]
-pub struct GtkMnemonicAction(c_void);
+pub struct GtkMnemonicAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMnemonicAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6461,7 +7070,10 @@ impl ::std::fmt::Debug for GtkMnemonicAction {
 }
 
 #[repr(C)]
-pub struct GtkMnemonicTrigger(c_void);
+pub struct GtkMnemonicTrigger {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMnemonicTrigger {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6470,8 +7082,8 @@ impl ::std::fmt::Debug for GtkMnemonicTrigger {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkMountOperation {
     pub parent_instance: gio::GMountOperation,
     pub priv_: *mut GtkMountOperationPrivate,
@@ -6487,7 +7099,10 @@ impl ::std::fmt::Debug for GtkMountOperation {
 }
 
 #[repr(C)]
-pub struct GtkMultiFilter(c_void);
+pub struct GtkMultiFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMultiFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6497,7 +7112,10 @@ impl ::std::fmt::Debug for GtkMultiFilter {
 }
 
 #[repr(C)]
-pub struct GtkMultiSelection(c_void);
+pub struct GtkMultiSelection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMultiSelection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6507,7 +7125,10 @@ impl ::std::fmt::Debug for GtkMultiSelection {
 }
 
 #[repr(C)]
-pub struct GtkMultiSorter(c_void);
+pub struct GtkMultiSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkMultiSorter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6517,7 +7138,10 @@ impl ::std::fmt::Debug for GtkMultiSorter {
 }
 
 #[repr(C)]
-pub struct GtkNamedAction(c_void);
+pub struct GtkNamedAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNamedAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6526,8 +7150,8 @@ impl ::std::fmt::Debug for GtkNamedAction {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkNativeDialog {
     pub parent_instance: gobject::GObject,
 }
@@ -6541,7 +7165,10 @@ impl ::std::fmt::Debug for GtkNativeDialog {
 }
 
 #[repr(C)]
-pub struct GtkNeverTrigger(c_void);
+pub struct GtkNeverTrigger {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNeverTrigger {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6551,7 +7178,10 @@ impl ::std::fmt::Debug for GtkNeverTrigger {
 }
 
 #[repr(C)]
-pub struct GtkNoSelection(c_void);
+pub struct GtkNoSelection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNoSelection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6561,7 +7191,10 @@ impl ::std::fmt::Debug for GtkNoSelection {
 }
 
 #[repr(C)]
-pub struct GtkNotebook(c_void);
+pub struct GtkNotebook {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNotebook {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6571,7 +7204,10 @@ impl ::std::fmt::Debug for GtkNotebook {
 }
 
 #[repr(C)]
-pub struct GtkNotebookPage(c_void);
+pub struct GtkNotebookPage {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNotebookPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6581,7 +7217,10 @@ impl ::std::fmt::Debug for GtkNotebookPage {
 }
 
 #[repr(C)]
-pub struct GtkNothingAction(c_void);
+pub struct GtkNothingAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNothingAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6591,7 +7230,10 @@ impl ::std::fmt::Debug for GtkNothingAction {
 }
 
 #[repr(C)]
-pub struct GtkNumericSorter(c_void);
+pub struct GtkNumericSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNumericSorter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6601,7 +7243,10 @@ impl ::std::fmt::Debug for GtkNumericSorter {
 }
 
 #[repr(C)]
-pub struct GtkObjectExpression(c_void);
+pub struct GtkObjectExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkObjectExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6611,7 +7256,10 @@ impl ::std::fmt::Debug for GtkObjectExpression {
 }
 
 #[repr(C)]
-pub struct GtkOverlay(c_void);
+pub struct GtkOverlay {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkOverlay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6620,7 +7268,10 @@ impl ::std::fmt::Debug for GtkOverlay {
 }
 
 #[repr(C)]
-pub struct GtkOverlayLayout(c_void);
+pub struct GtkOverlayLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkOverlayLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6630,7 +7281,10 @@ impl ::std::fmt::Debug for GtkOverlayLayout {
 }
 
 #[repr(C)]
-pub struct GtkOverlayLayoutChild(c_void);
+pub struct GtkOverlayLayoutChild {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkOverlayLayoutChild {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6640,7 +7294,10 @@ impl ::std::fmt::Debug for GtkOverlayLayoutChild {
 }
 
 #[repr(C)]
-pub struct GtkPadController(c_void);
+pub struct GtkPadController {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPadController {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6650,7 +7307,10 @@ impl ::std::fmt::Debug for GtkPadController {
 }
 
 #[repr(C)]
-pub struct GtkPageSetup(c_void);
+pub struct GtkPageSetup {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPageSetup {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6660,7 +7320,10 @@ impl ::std::fmt::Debug for GtkPageSetup {
 }
 
 #[repr(C)]
-pub struct GtkPageSetupUnixDialog(c_void);
+pub struct GtkPageSetupUnixDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPageSetupUnixDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6670,7 +7333,10 @@ impl ::std::fmt::Debug for GtkPageSetupUnixDialog {
 }
 
 #[repr(C)]
-pub struct GtkPaned(c_void);
+pub struct GtkPaned {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPaned {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6678,8 +7344,8 @@ impl ::std::fmt::Debug for GtkPaned {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkParamSpecExpression {
     pub parent_instance: gobject::GParamSpec,
 }
@@ -6692,7 +7358,10 @@ impl ::std::fmt::Debug for GtkParamSpecExpression {
 }
 
 #[repr(C)]
-pub struct GtkPasswordEntry(c_void);
+pub struct GtkPasswordEntry {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPasswordEntry {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6702,7 +7371,10 @@ impl ::std::fmt::Debug for GtkPasswordEntry {
 }
 
 #[repr(C)]
-pub struct GtkPasswordEntryBuffer(c_void);
+pub struct GtkPasswordEntryBuffer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPasswordEntryBuffer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6712,7 +7384,10 @@ impl ::std::fmt::Debug for GtkPasswordEntryBuffer {
 }
 
 #[repr(C)]
-pub struct GtkPicture(c_void);
+pub struct GtkPicture {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPicture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6720,8 +7395,8 @@ impl ::std::fmt::Debug for GtkPicture {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPopover {
     pub parent: GtkWidget,
 }
@@ -6735,7 +7410,10 @@ impl ::std::fmt::Debug for GtkPopover {
 }
 
 #[repr(C)]
-pub struct GtkPopoverMenu(c_void);
+pub struct GtkPopoverMenu {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPopoverMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6745,7 +7423,10 @@ impl ::std::fmt::Debug for GtkPopoverMenu {
 }
 
 #[repr(C)]
-pub struct GtkPopoverMenuBar(c_void);
+pub struct GtkPopoverMenuBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPopoverMenuBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6755,7 +7436,10 @@ impl ::std::fmt::Debug for GtkPopoverMenuBar {
 }
 
 #[repr(C)]
-pub struct GtkPrintContext(c_void);
+pub struct GtkPrintContext {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrintContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6765,7 +7449,10 @@ impl ::std::fmt::Debug for GtkPrintContext {
 }
 
 #[repr(C)]
-pub struct GtkPrintJob(c_void);
+pub struct GtkPrintJob {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrintJob {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6774,8 +7461,8 @@ impl ::std::fmt::Debug for GtkPrintJob {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPrintOperation {
     pub parent_instance: gobject::GObject,
     pub priv_: *mut GtkPrintOperationPrivate,
@@ -6790,7 +7477,10 @@ impl ::std::fmt::Debug for GtkPrintOperation {
 }
 
 #[repr(C)]
-pub struct GtkPrintSettings(c_void);
+pub struct GtkPrintSettings {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrintSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6800,7 +7490,10 @@ impl ::std::fmt::Debug for GtkPrintSettings {
 }
 
 #[repr(C)]
-pub struct GtkPrintUnixDialog(c_void);
+pub struct GtkPrintUnixDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrintUnixDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6810,7 +7503,10 @@ impl ::std::fmt::Debug for GtkPrintUnixDialog {
 }
 
 #[repr(C)]
-pub struct GtkPrinter(c_void);
+pub struct GtkPrinter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrinter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6819,7 +7515,10 @@ impl ::std::fmt::Debug for GtkPrinter {
 }
 
 #[repr(C)]
-pub struct GtkProgressBar(c_void);
+pub struct GtkProgressBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkProgressBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6829,7 +7528,10 @@ impl ::std::fmt::Debug for GtkProgressBar {
 }
 
 #[repr(C)]
-pub struct GtkPropertyExpression(c_void);
+pub struct GtkPropertyExpression {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPropertyExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6838,8 +7540,8 @@ impl ::std::fmt::Debug for GtkPropertyExpression {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRange {
     pub parent_instance: GtkWidget,
 }
@@ -6852,8 +7554,8 @@ impl ::std::fmt::Debug for GtkRange {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkRecentManager {
     pub parent_instance: gobject::GObject,
     pub priv_: *mut GtkRecentManagerPrivate,
@@ -6867,7 +7569,10 @@ impl ::std::fmt::Debug for GtkRecentManager {
 }
 
 #[repr(C)]
-pub struct GtkRevealer(c_void);
+pub struct GtkRevealer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkRevealer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6876,8 +7581,8 @@ impl ::std::fmt::Debug for GtkRevealer {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkScale {
     pub parent_instance: GtkRange,
 }
@@ -6890,8 +7595,8 @@ impl ::std::fmt::Debug for GtkScale {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkScaleButton {
     pub parent_instance: GtkWidget,
 }
@@ -6905,7 +7610,10 @@ impl ::std::fmt::Debug for GtkScaleButton {
 }
 
 #[repr(C)]
-pub struct GtkScrollbar(c_void);
+pub struct GtkScrollbar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkScrollbar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6915,7 +7623,10 @@ impl ::std::fmt::Debug for GtkScrollbar {
 }
 
 #[repr(C)]
-pub struct GtkScrolledWindow(c_void);
+pub struct GtkScrolledWindow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkScrolledWindow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6925,7 +7636,10 @@ impl ::std::fmt::Debug for GtkScrolledWindow {
 }
 
 #[repr(C)]
-pub struct GtkSearchBar(c_void);
+pub struct GtkSearchBar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSearchBar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6935,7 +7649,10 @@ impl ::std::fmt::Debug for GtkSearchBar {
 }
 
 #[repr(C)]
-pub struct GtkSearchEntry(c_void);
+pub struct GtkSearchEntry {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSearchEntry {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6945,7 +7662,10 @@ impl ::std::fmt::Debug for GtkSearchEntry {
 }
 
 #[repr(C)]
-pub struct GtkSelectionFilterModel(c_void);
+pub struct GtkSelectionFilterModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSelectionFilterModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6955,7 +7675,10 @@ impl ::std::fmt::Debug for GtkSelectionFilterModel {
 }
 
 #[repr(C)]
-pub struct GtkSeparator(c_void);
+pub struct GtkSeparator {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSeparator {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6965,7 +7688,10 @@ impl ::std::fmt::Debug for GtkSeparator {
 }
 
 #[repr(C)]
-pub struct GtkSettings(c_void);
+pub struct GtkSettings {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6975,7 +7701,10 @@ impl ::std::fmt::Debug for GtkSettings {
 }
 
 #[repr(C)]
-pub struct GtkShortcut(c_void);
+pub struct GtkShortcut {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcut {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6985,7 +7714,10 @@ impl ::std::fmt::Debug for GtkShortcut {
 }
 
 #[repr(C)]
-pub struct GtkShortcutAction(c_void);
+pub struct GtkShortcutAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -6995,7 +7727,10 @@ impl ::std::fmt::Debug for GtkShortcutAction {
 }
 
 #[repr(C)]
-pub struct GtkShortcutController(c_void);
+pub struct GtkShortcutController {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutController {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7005,7 +7740,10 @@ impl ::std::fmt::Debug for GtkShortcutController {
 }
 
 #[repr(C)]
-pub struct GtkShortcutLabel(c_void);
+pub struct GtkShortcutLabel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutLabel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7015,7 +7753,10 @@ impl ::std::fmt::Debug for GtkShortcutLabel {
 }
 
 #[repr(C)]
-pub struct GtkShortcutTrigger(c_void);
+pub struct GtkShortcutTrigger {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutTrigger {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7025,7 +7766,10 @@ impl ::std::fmt::Debug for GtkShortcutTrigger {
 }
 
 #[repr(C)]
-pub struct GtkShortcutsGroup(c_void);
+pub struct GtkShortcutsGroup {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutsGroup {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7035,7 +7779,10 @@ impl ::std::fmt::Debug for GtkShortcutsGroup {
 }
 
 #[repr(C)]
-pub struct GtkShortcutsSection(c_void);
+pub struct GtkShortcutsSection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutsSection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7045,7 +7792,10 @@ impl ::std::fmt::Debug for GtkShortcutsSection {
 }
 
 #[repr(C)]
-pub struct GtkShortcutsShortcut(c_void);
+pub struct GtkShortcutsShortcut {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutsShortcut {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7055,7 +7805,10 @@ impl ::std::fmt::Debug for GtkShortcutsShortcut {
 }
 
 #[repr(C)]
-pub struct GtkShortcutsWindow(c_void);
+pub struct GtkShortcutsWindow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutsWindow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7065,7 +7818,10 @@ impl ::std::fmt::Debug for GtkShortcutsWindow {
 }
 
 #[repr(C)]
-pub struct GtkSignalAction(c_void);
+pub struct GtkSignalAction {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSignalAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7075,7 +7831,10 @@ impl ::std::fmt::Debug for GtkSignalAction {
 }
 
 #[repr(C)]
-pub struct GtkSignalListItemFactory(c_void);
+pub struct GtkSignalListItemFactory {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSignalListItemFactory {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7085,7 +7844,10 @@ impl ::std::fmt::Debug for GtkSignalListItemFactory {
 }
 
 #[repr(C)]
-pub struct GtkSingleSelection(c_void);
+pub struct GtkSingleSelection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSingleSelection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7094,8 +7856,8 @@ impl ::std::fmt::Debug for GtkSingleSelection {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSizeGroup {
     pub parent_instance: gobject::GObject,
 }
@@ -7109,7 +7871,10 @@ impl ::std::fmt::Debug for GtkSizeGroup {
 }
 
 #[repr(C)]
-pub struct GtkSliceListModel(c_void);
+pub struct GtkSliceListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSliceListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7119,7 +7884,10 @@ impl ::std::fmt::Debug for GtkSliceListModel {
 }
 
 #[repr(C)]
-pub struct GtkSnapshot(c_void);
+pub struct GtkSnapshot {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSnapshot {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7129,7 +7897,10 @@ impl ::std::fmt::Debug for GtkSnapshot {
 }
 
 #[repr(C)]
-pub struct GtkSortListModel(c_void);
+pub struct GtkSortListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSortListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7138,8 +7909,8 @@ impl ::std::fmt::Debug for GtkSortListModel {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkSorter {
     pub parent_instance: gobject::GObject,
 }
@@ -7153,7 +7924,10 @@ impl ::std::fmt::Debug for GtkSorter {
 }
 
 #[repr(C)]
-pub struct GtkSpinButton(c_void);
+pub struct GtkSpinButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSpinButton {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7163,7 +7937,10 @@ impl ::std::fmt::Debug for GtkSpinButton {
 }
 
 #[repr(C)]
-pub struct GtkSpinner(c_void);
+pub struct GtkSpinner {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSpinner {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7172,7 +7949,10 @@ impl ::std::fmt::Debug for GtkSpinner {
 }
 
 #[repr(C)]
-pub struct GtkStack(c_void);
+pub struct GtkStack {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStack {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7181,7 +7961,10 @@ impl ::std::fmt::Debug for GtkStack {
 }
 
 #[repr(C)]
-pub struct GtkStackPage(c_void);
+pub struct GtkStackPage {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStackPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7191,7 +7974,10 @@ impl ::std::fmt::Debug for GtkStackPage {
 }
 
 #[repr(C)]
-pub struct GtkStackSidebar(c_void);
+pub struct GtkStackSidebar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStackSidebar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7201,7 +7987,10 @@ impl ::std::fmt::Debug for GtkStackSidebar {
 }
 
 #[repr(C)]
-pub struct GtkStackSwitcher(c_void);
+pub struct GtkStackSwitcher {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStackSwitcher {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7211,7 +8000,10 @@ impl ::std::fmt::Debug for GtkStackSwitcher {
 }
 
 #[repr(C)]
-pub struct GtkStatusbar(c_void);
+pub struct GtkStatusbar {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStatusbar {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7221,7 +8013,10 @@ impl ::std::fmt::Debug for GtkStatusbar {
 }
 
 #[repr(C)]
-pub struct GtkStringFilter(c_void);
+pub struct GtkStringFilter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStringFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7231,7 +8026,10 @@ impl ::std::fmt::Debug for GtkStringFilter {
 }
 
 #[repr(C)]
-pub struct GtkStringList(c_void);
+pub struct GtkStringList {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStringList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7241,7 +8039,10 @@ impl ::std::fmt::Debug for GtkStringList {
 }
 
 #[repr(C)]
-pub struct GtkStringObject(c_void);
+pub struct GtkStringObject {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStringObject {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7251,7 +8052,10 @@ impl ::std::fmt::Debug for GtkStringObject {
 }
 
 #[repr(C)]
-pub struct GtkStringSorter(c_void);
+pub struct GtkStringSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStringSorter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7260,8 +8064,8 @@ impl ::std::fmt::Debug for GtkStringSorter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkStyleContext {
     pub parent_object: gobject::GObject,
 }
@@ -7275,7 +8079,10 @@ impl ::std::fmt::Debug for GtkStyleContext {
 }
 
 #[repr(C)]
-pub struct GtkSwitch(c_void);
+pub struct GtkSwitch {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSwitch {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7283,8 +8090,8 @@ impl ::std::fmt::Debug for GtkSwitch {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkText {
     pub parent_instance: GtkWidget,
 }
@@ -7295,8 +8102,8 @@ impl ::std::fmt::Debug for GtkText {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextBuffer {
     pub parent_instance: gobject::GObject,
     pub priv_: *mut GtkTextBufferPrivate,
@@ -7311,8 +8118,8 @@ impl ::std::fmt::Debug for GtkTextBuffer {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextChildAnchor {
     pub parent_instance: gobject::GObject,
     pub segment: gpointer,
@@ -7326,8 +8133,8 @@ impl ::std::fmt::Debug for GtkTextChildAnchor {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextMark {
     pub parent_instance: gobject::GObject,
     pub segment: gpointer,
@@ -7341,8 +8148,8 @@ impl ::std::fmt::Debug for GtkTextMark {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextTag {
     pub parent_instance: gobject::GObject,
     pub priv_: *mut GtkTextTagPrivate,
@@ -7358,7 +8165,10 @@ impl ::std::fmt::Debug for GtkTextTag {
 }
 
 #[repr(C)]
-pub struct GtkTextTagTable(c_void);
+pub struct GtkTextTagTable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTextTagTable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7367,8 +8177,8 @@ impl ::std::fmt::Debug for GtkTextTagTable {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTextView {
     pub parent_instance: GtkWidget,
     pub priv_: *mut GtkTextViewPrivate,
@@ -7382,8 +8192,8 @@ impl ::std::fmt::Debug for GtkTextView {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkToggleButton {
     pub button: GtkButton,
 }
@@ -7396,7 +8206,10 @@ impl ::std::fmt::Debug for GtkToggleButton {
 }
 
 #[repr(C)]
-pub struct GtkTooltip(c_void);
+pub struct GtkTooltip {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTooltip {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7405,7 +8218,10 @@ impl ::std::fmt::Debug for GtkTooltip {
 }
 
 #[repr(C)]
-pub struct GtkTreeExpander(c_void);
+pub struct GtkTreeExpander {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeExpander {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7415,7 +8231,10 @@ impl ::std::fmt::Debug for GtkTreeExpander {
 }
 
 #[repr(C)]
-pub struct GtkTreeListModel(c_void);
+pub struct GtkTreeListModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeListModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7425,7 +8244,10 @@ impl ::std::fmt::Debug for GtkTreeListModel {
 }
 
 #[repr(C)]
-pub struct GtkTreeListRow(c_void);
+pub struct GtkTreeListRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeListRow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7435,7 +8257,10 @@ impl ::std::fmt::Debug for GtkTreeListRow {
 }
 
 #[repr(C)]
-pub struct GtkTreeListRowSorter(c_void);
+pub struct GtkTreeListRowSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeListRowSorter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7444,8 +8269,8 @@ impl ::std::fmt::Debug for GtkTreeListRowSorter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeModelFilter {
     pub parent: gobject::GObject,
     pub priv_: *mut GtkTreeModelFilterPrivate,
@@ -7459,8 +8284,8 @@ impl ::std::fmt::Debug for GtkTreeModelFilter {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeModelSort {
     pub parent: gobject::GObject,
     pub priv_: *mut GtkTreeModelSortPrivate,
@@ -7475,7 +8300,10 @@ impl ::std::fmt::Debug for GtkTreeModelSort {
 }
 
 #[repr(C)]
-pub struct GtkTreeSelection(c_void);
+pub struct GtkTreeSelection {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeSelection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7484,8 +8312,8 @@ impl ::std::fmt::Debug for GtkTreeSelection {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeStore {
     pub parent: gobject::GObject,
     pub priv_: *mut GtkTreeStorePrivate,
@@ -7500,8 +8328,8 @@ impl ::std::fmt::Debug for GtkTreeStore {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkTreeView {
     pub parent_instance: GtkWidget,
 }
@@ -7515,7 +8343,10 @@ impl ::std::fmt::Debug for GtkTreeView {
 }
 
 #[repr(C)]
-pub struct GtkTreeViewColumn(c_void);
+pub struct GtkTreeViewColumn {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeViewColumn {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7525,7 +8356,10 @@ impl ::std::fmt::Debug for GtkTreeViewColumn {
 }
 
 #[repr(C)]
-pub struct GtkVideo(c_void);
+pub struct GtkVideo {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkVideo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7534,7 +8368,10 @@ impl ::std::fmt::Debug for GtkVideo {
 }
 
 #[repr(C)]
-pub struct GtkViewport(c_void);
+pub struct GtkViewport {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkViewport {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7543,8 +8380,8 @@ impl ::std::fmt::Debug for GtkViewport {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkVolumeButton {
     pub parent: GtkScaleButton,
 }
@@ -7557,8 +8394,8 @@ impl ::std::fmt::Debug for GtkVolumeButton {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWidget {
     pub parent_instance: gobject::GInitiallyUnowned,
     pub priv_: *mut GtkWidgetPrivate,
@@ -7573,7 +8410,10 @@ impl ::std::fmt::Debug for GtkWidget {
 }
 
 #[repr(C)]
-pub struct GtkWidgetPaintable(c_void);
+pub struct GtkWidgetPaintable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkWidgetPaintable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7582,8 +8422,8 @@ impl ::std::fmt::Debug for GtkWidgetPaintable {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindow {
     pub parent_instance: GtkWidget,
 }
@@ -7597,7 +8437,10 @@ impl ::std::fmt::Debug for GtkWindow {
 }
 
 #[repr(C)]
-pub struct GtkWindowControls(c_void);
+pub struct GtkWindowControls {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkWindowControls {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7606,8 +8449,8 @@ impl ::std::fmt::Debug for GtkWindowControls {
     }
 }
 
-#[repr(C)]
 #[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkWindowGroup {
     pub parent_instance: gobject::GObject,
     pub priv_: *mut GtkWindowGroupPrivate,
@@ -7623,7 +8466,10 @@ impl ::std::fmt::Debug for GtkWindowGroup {
 }
 
 #[repr(C)]
-pub struct GtkWindowHandle(c_void);
+pub struct GtkWindowHandle {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkWindowHandle {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7634,7 +8480,10 @@ impl ::std::fmt::Debug for GtkWindowHandle {
 
 // Interfaces
 #[repr(C)]
-pub struct GtkAccessible(c_void);
+pub struct GtkAccessible {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAccessible {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7643,7 +8492,10 @@ impl ::std::fmt::Debug for GtkAccessible {
 }
 
 #[repr(C)]
-pub struct GtkActionable(c_void);
+pub struct GtkActionable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkActionable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7652,7 +8504,10 @@ impl ::std::fmt::Debug for GtkActionable {
 }
 
 #[repr(C)]
-pub struct GtkAppChooser(c_void);
+pub struct GtkAppChooser {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkAppChooser {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7661,7 +8516,10 @@ impl ::std::fmt::Debug for GtkAppChooser {
 }
 
 #[repr(C)]
-pub struct GtkBuildable(c_void);
+pub struct GtkBuildable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBuildable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7670,7 +8528,10 @@ impl ::std::fmt::Debug for GtkBuildable {
 }
 
 #[repr(C)]
-pub struct GtkBuilderScope(c_void);
+pub struct GtkBuilderScope {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkBuilderScope {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7679,7 +8540,10 @@ impl ::std::fmt::Debug for GtkBuilderScope {
 }
 
 #[repr(C)]
-pub struct GtkCellEditable(c_void);
+pub struct GtkCellEditable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellEditable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7688,7 +8552,10 @@ impl ::std::fmt::Debug for GtkCellEditable {
 }
 
 #[repr(C)]
-pub struct GtkCellLayout(c_void);
+pub struct GtkCellLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkCellLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7697,7 +8564,10 @@ impl ::std::fmt::Debug for GtkCellLayout {
 }
 
 #[repr(C)]
-pub struct GtkColorChooser(c_void);
+pub struct GtkColorChooser {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkColorChooser {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7706,7 +8576,10 @@ impl ::std::fmt::Debug for GtkColorChooser {
 }
 
 #[repr(C)]
-pub struct GtkConstraintTarget(c_void);
+pub struct GtkConstraintTarget {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkConstraintTarget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7715,7 +8588,10 @@ impl ::std::fmt::Debug for GtkConstraintTarget {
 }
 
 #[repr(C)]
-pub struct GtkEditable(c_void);
+pub struct GtkEditable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkEditable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7724,7 +8600,10 @@ impl ::std::fmt::Debug for GtkEditable {
 }
 
 #[repr(C)]
-pub struct GtkFileChooser(c_void);
+pub struct GtkFileChooser {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFileChooser {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7733,7 +8612,10 @@ impl ::std::fmt::Debug for GtkFileChooser {
 }
 
 #[repr(C)]
-pub struct GtkFontChooser(c_void);
+pub struct GtkFontChooser {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkFontChooser {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7742,7 +8624,10 @@ impl ::std::fmt::Debug for GtkFontChooser {
 }
 
 #[repr(C)]
-pub struct GtkNative(c_void);
+pub struct GtkNative {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkNative {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7751,7 +8636,10 @@ impl ::std::fmt::Debug for GtkNative {
 }
 
 #[repr(C)]
-pub struct GtkOrientable(c_void);
+pub struct GtkOrientable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkOrientable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7760,7 +8648,10 @@ impl ::std::fmt::Debug for GtkOrientable {
 }
 
 #[repr(C)]
-pub struct GtkPrintOperationPreview(c_void);
+pub struct GtkPrintOperationPreview {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkPrintOperationPreview {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7769,7 +8660,10 @@ impl ::std::fmt::Debug for GtkPrintOperationPreview {
 }
 
 #[repr(C)]
-pub struct GtkRoot(c_void);
+pub struct GtkRoot {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkRoot {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7778,7 +8672,10 @@ impl ::std::fmt::Debug for GtkRoot {
 }
 
 #[repr(C)]
-pub struct GtkScrollable(c_void);
+pub struct GtkScrollable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkScrollable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7787,7 +8684,10 @@ impl ::std::fmt::Debug for GtkScrollable {
 }
 
 #[repr(C)]
-pub struct GtkSelectionModel(c_void);
+pub struct GtkSelectionModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSelectionModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7796,7 +8696,10 @@ impl ::std::fmt::Debug for GtkSelectionModel {
 }
 
 #[repr(C)]
-pub struct GtkShortcutManager(c_void);
+pub struct GtkShortcutManager {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkShortcutManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7805,7 +8708,10 @@ impl ::std::fmt::Debug for GtkShortcutManager {
 }
 
 #[repr(C)]
-pub struct GtkStyleProvider(c_void);
+pub struct GtkStyleProvider {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkStyleProvider {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7814,7 +8720,10 @@ impl ::std::fmt::Debug for GtkStyleProvider {
 }
 
 #[repr(C)]
-pub struct GtkSymbolicPaintable(c_void);
+pub struct GtkSymbolicPaintable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkSymbolicPaintable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7823,7 +8732,10 @@ impl ::std::fmt::Debug for GtkSymbolicPaintable {
 }
 
 #[repr(C)]
-pub struct GtkTreeDragDest(c_void);
+pub struct GtkTreeDragDest {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeDragDest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7832,7 +8744,10 @@ impl ::std::fmt::Debug for GtkTreeDragDest {
 }
 
 #[repr(C)]
-pub struct GtkTreeDragSource(c_void);
+pub struct GtkTreeDragSource {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeDragSource {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7841,7 +8756,10 @@ impl ::std::fmt::Debug for GtkTreeDragSource {
 }
 
 #[repr(C)]
-pub struct GtkTreeModel(c_void);
+pub struct GtkTreeModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
@@ -7850,7 +8768,10 @@ impl ::std::fmt::Debug for GtkTreeModel {
 }
 
 #[repr(C)]
-pub struct GtkTreeSortable(c_void);
+pub struct GtkTreeSortable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
 
 impl ::std::fmt::Debug for GtkTreeSortable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
