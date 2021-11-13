@@ -472,7 +472,6 @@ pub struct TodoObject {
 impl ObjectSubclass for TodoObject {
     const NAME: &amp;'static str = &quot;TodoObject&quot;;
     type Type = super::TodoObject;
-    type ParentType = glib::Object;
 }
 <span class="boring">
 </span><span class="boring">// Trait shared by all GObjects
@@ -625,7 +624,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">                if active {
 </span><span class="boring">                    // If &quot;active&quot; is true, content of the label will be strikethrough
 </span><span class="boring">                    let attribute = AttrInt::new_strikethrough(true);
-</span><span class="boring">                    attribute_list.insert(attribute.upcast());
+</span><span class="boring">                    attribute_list.insert(attribute);
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
@@ -1161,7 +1160,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
                 if active {
                     // If &quot;active&quot; is true, content of the label will be strikethrough
                     let attribute = AttrInt::new_strikethrough(true);
-                    attribute_list.insert(attribute.upcast());
+                    attribute_list.insert(attribute);
                 }
                 Some(attribute_list.to_value())
             })
@@ -1246,7 +1245,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">                if active {
 </span><span class="boring">                    // If &quot;active&quot; is true, content of the label will be strikethrough
 </span><span class="boring">                    let attribute = AttrInt::new_strikethrough(true);
-</span><span class="boring">                    attribute_list.insert(attribute.upcast());
+</span><span class="boring">                    attribute_list.insert(attribute);
 </span><span class="boring">                }
 </span><span class="boring">                Some(attribute_list.to_value())
 </span><span class="boring">            })
