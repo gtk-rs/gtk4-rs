@@ -169,24 +169,18 @@ Let us see how the "setup" step now works.
 {{#rustdoc_include ../listings/list_widgets/4/main.rs:factory_setup}}
 ```
 
-An expression describes a reference to a value.
-So when we create a [`ConstantExpression`](../docs/gtk4/struct.ConstantExpression.html) of `list_item`, we create a reference to a `ListItem`.
-We then create a [`PropertyExpression`](../docs/gtk4/struct.PropertyExpression.html) to get a reference to the "item" property of `list_item`.
-With another `PropertyExpression` we get a reference to the "number" property of the "item" property of `list_item`.
-That already makes the first power of expressions obvious: It allows nested relationships.
-Finally, we bind "number" to "label".
-In pseudo code that would be `label->label = list_item->item->number`.
-Unfortunately, expression bindings only work in one direction.
-If you need bidirectional bindings, property bindings are still your best bet.
+An expression provides a way to describe references to values.
+One interesting part here is that these references can be several steps away.
+This allowed us in the snippet above to bind the property "number" of the property "item" of `list_item` to the property "label" of `label`.
 
-It is worth noting that at the "setup" stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
-This is the power of expressions!
-We do not have to define a fixed relationship, the object and properties might not even exist yet.
+It is also worth noting that at the "setup" stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
+Here, another power of expressions becomes evident.
+Expressions allow us to describe relationships between objects or properties that might not even exist yet.
 We just had to tell it to change the label whenever the number that belongs to it changes.
 That way, we also do not face the problem that multiple labels are bound to the same number.
 When we now activate a label, only the corresponding number visibly changes.
 
-That is still not everything we can do.
+Let us extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.
 
 <span class="filename">Filename: listings/list_widgets/5/main.rs</span>
