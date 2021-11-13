@@ -17,7 +17,6 @@ pub struct IntegerObject {
 impl ObjectSubclass for IntegerObject {
     const NAME: &'static str = "MyGtkAppIntegerObject";
     type Type = super::IntegerObject;
-    type ParentType = glib::Object;
 }
 
 // ANCHOR: object_impl

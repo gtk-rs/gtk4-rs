@@ -14,7 +14,6 @@ pub struct Metadata {
 impl ObjectSubclass for Metadata {
     const NAME: &'static str = "Metadata";
     type Type = super::Metadata;
-    type ParentType = glib::Object;
 
     fn new() -> Self {
         let now = glib::DateTime::new_now_local().unwrap();

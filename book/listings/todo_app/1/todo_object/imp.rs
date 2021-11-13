@@ -21,7 +21,6 @@ pub struct TodoObject {
 impl ObjectSubclass for TodoObject {
     const NAME: &'static str = "TodoObject";
     type Type = super::TodoObject;
-    type ParentType = glib::Object;
 }
 // ANCHOR_END: struct_and_subclass
 
