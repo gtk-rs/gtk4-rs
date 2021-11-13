@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
+    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
+    SignalListItemFactory, StringList, StringObject, Widget,
 };
 
 fn main() {
@@ -42,21 +42,11 @@ fn build_ui(app: &Application) {
         let label = Label::new(None);
         list_item.set_child(Some(&label));
 
-        // Create expression describing `list_item->item->number`
-        let list_item_expression = ConstantExpression::new(list_item);
-        let string_object_expression = PropertyExpression::new(
-            gtk::ListItem::static_type(),
-            Some(&list_item_expression),
-            "item",
-        );
-        let string_expression = PropertyExpression::new(
-            StringObject::static_type(),
-            Some(&string_object_expression),
-            "string",
-        );
-
-        // Bind "string" to "label"
-        string_expression.bind(&label, "label", Some(&label));
+        // Bind `list_item->item->string` to `label->label`
+        list_item
+            .property_expression("item")
+            .chain_property::<StringObject>("string")
+            .bind(&label, "label", Widget::NONE);
     });
     // ANCHOR_END: factory_setup
 

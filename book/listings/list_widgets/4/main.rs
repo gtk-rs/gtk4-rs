@@ -3,8 +3,8 @@ mod integer_object;
 use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, ConstantExpression, Label, ListView, PolicyType,
-    PropertyExpression, ScrolledWindow, SignalListItemFactory, SingleSelection,
+    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+    SignalListItemFactory, SingleSelection, Widget,
 };
 use integer_object::IntegerObject;
 
@@ -46,21 +46,11 @@ fn build_ui(app: &Application) {
         let label = Label::new(None);
         list_item.set_child(Some(&label));
 
-        // Create expression describing `list_item->item->number`
-        let list_item_expression = ConstantExpression::new(list_item);
-        let integer_object_expression = PropertyExpression::new(
-            gtk::ListItem::static_type(),
-            Some(&list_item_expression),
-            "item",
-        );
-        let number_expression = PropertyExpression::new(
-            IntegerObject::static_type(),
-            Some(&integer_object_expression),
-            "number",
-        );
-
-        // Bind "number" to "label"
-        number_expression.bind(&label, "label", Some(&label));
+        // Bind `list_item->item->number` to `label->label`
+        list_item
+            .property_expression("item")
+            .chain_property::<IntegerObject>("number")
+            .bind(&label, "label", Widget::NONE);
     });
     // ANCHOR_END: factory_setup
 
