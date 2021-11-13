@@ -15,7 +15,6 @@ pub struct Note {
 impl ObjectSubclass for Note {
     const NAME: &'static str = "Note";
     type Type = super::Note;
-    type ParentType = glib::Object;
 }
 
 impl ObjectImpl for Note {

@@ -9,7 +9,6 @@ pub struct CustomPaintable {}
 impl ObjectSubclass for CustomPaintable {
     const NAME: &'static str = "CustomPaintable";
     type Type = super::CustomPaintable;
-    type ParentType = glib::Object;
     type Interfaces = (gdk::Paintable,);
 }
 

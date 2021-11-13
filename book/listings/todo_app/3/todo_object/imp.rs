@@ -19,7 +19,6 @@ pub struct TodoObject {
 impl ObjectSubclass for TodoObject {
     const NAME: &'static str = "TodoObject";
     type Type = super::TodoObject;
-    type ParentType = glib::Object;
 }
 
 // Trait shared by all GObjects
