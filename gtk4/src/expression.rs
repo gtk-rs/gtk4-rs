@@ -178,8 +178,7 @@ impl Expression {
         F: Fn(&[glib::Value]) -> R + 'static,
         R: glib::value::ValueType,
     {
-        // FIXME Pass an owned self to avoid cloning
-        crate::ClosureExpression::new(&[self.clone()], f)
+        crate::ClosureExpression::new(&[self], f)
     }
 }
 
