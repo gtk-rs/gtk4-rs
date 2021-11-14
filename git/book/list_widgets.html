@@ -161,14 +161,6 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `ListBox` and add labels with integers from 0 to 100
     let list_box = ListBox::new();
     for number in 0..=100 {
@@ -181,8 +173,18 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_box)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>We cannot display so many widgets at once.
@@ -206,14 +208,6 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `ListBox` and add labels with integers from 0 to 100
 </span><span class="boring">    let list_box = ListBox::new();
 </span><span class="boring">    for number in 0..=100 {
@@ -226,8 +220,18 @@ Now we can scroll through our elements.</p>
         .min_content_width(360)
         .child(&amp;list_box)
         .build();
-    window.set_child(Some(&amp;scrolled_window));
-    window.show();
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .default_width(600)
+        .default_height(300)
+        .child(&amp;scrolled_window)
+        .build();
+
+    // Present window
+    window.present();
 <span class="boring">}
 </span></code></pre>
 <div style="text-align:center"><img src="img/lists_list_box.png"/></div>
@@ -365,14 +369,6 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
     let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 
@@ -418,8 +414,18 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>The <code>ListItemFactory</code> takes care of the widgets as well as their relationship to the model.
@@ -451,14 +457,6 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -504,8 +502,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>In the &quot;bind&quot; step we bind the data in our model to the individual list items.</p>
@@ -534,14 +542,6 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -587,8 +587,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
@@ -619,14 +629,6 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -672,8 +674,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Every <code>ListView</code> has to be a direct child of a <code>ScrolledWindow</code>, so we are adding it to one.</p>
@@ -702,14 +714,6 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -755,8 +759,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
         .min_content_width(360)
         .child(&amp;list_view)
         .build();
-    window.set_child(Some(&amp;scrolled_window));
-    window.show();
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .default_width(600)
+        .default_height(300)
+        .child(&amp;scrolled_window)
+        .build();
+
+    // Present window
+    window.present();
 <span class="boring">}
 </span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
@@ -813,14 +827,6 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -879,8 +885,18 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Now every time we activate an element, for example by double-clicking on it,
@@ -913,14 +929,6 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -979,8 +987,18 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>At first glance, that seems to work.
@@ -1018,14 +1036,6 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -1079,8 +1089,18 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>An expression describes a reference to a value.
@@ -1126,14 +1146,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -1223,8 +1235,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Additionally, we can reverse the order of our model.</p>
@@ -1254,14 +1276,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -1351,8 +1365,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>To ensure that our filter and sorter get updated when we modify the numbers, we call the <code>changed</code> method on them.</p>
@@ -1382,14 +1406,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -1479,8 +1495,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>After our changes, the application looks like this:</p>
@@ -1514,14 +1540,6 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `StringList` with number from 0 to 100_000
     // `StringList` implements FromIterator&lt;String&gt;
     let model: StringList = (0..=100_000)
@@ -1560,8 +1578,18 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
@@ -1589,14 +1617,6 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `StringList` with number from 0 to 100_000
 </span><span class="boring">    // `StringList` implements FromIterator&lt;String&gt;
 </span><span class="boring">    let model: StringList = (0..=100_000)
@@ -1635,8 +1655,18 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>

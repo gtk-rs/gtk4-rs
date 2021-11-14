@@ -159,12 +159,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window and set the title
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -180,10 +174,14 @@ fn build_ui(app: &amp;Application) {
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>

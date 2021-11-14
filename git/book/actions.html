@@ -181,7 +181,7 @@ Let us check out the simplest case where we activate an action without a paramet
     }));
     window.add_action(&amp;action_quit);
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre></pre>
@@ -225,7 +225,7 @@ We also connected a callback which closes the window.</p>
 </span><span class="boring">    }));
 </span><span class="boring">    window.add_action(&amp;action_quit);
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
@@ -286,7 +286,7 @@ The answer is that it is so common to add actions to windows and applications th
     window.insert_action_group(&quot;win&quot;, Some(&amp;actions));
     actions.add_action(&amp;action_quit);
 <span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -386,7 +386,7 @@ Let us see how this works.</p>
     // Add `gtk_box` to the window
     window.set_child(Some(&amp;gtk_box));
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -491,7 +491,7 @@ With <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>ButtonBuilder</code>
 </span><span class="boring">    // Add button
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>

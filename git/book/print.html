@@ -399,7 +399,7 @@ fn build_ui(app: &amp;Application) {
         .title(&quot;My GTK App&quot;)
         .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -425,12 +425,6 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window and set the title
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -446,10 +440,14 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -502,12 +500,6 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/pre
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window and set the title
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -523,10 +515,14 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/pre
         button.set_label(&quot;Hello World!&quot;);
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -550,12 +546,6 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window and set the title
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button with label and margins
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -571,10 +561,14 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -715,12 +709,6 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // … create a new window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -745,11 +733,21 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
     button_increase.connect_clicked(move |_| number_copy_1.set(number_copy_1.get() + 1));
     button_decrease.connect_clicked(move |_| number.set(number.get() - 1));
 <span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -775,12 +773,6 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -808,11 +800,21 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
         number.set(number.get() - 1);
     });
 <span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -840,12 +842,6 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -877,10 +873,21 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
             button_increase.set_label(&amp;number.get().to_string());
     }));
 <span class="boring">
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -915,12 +922,6 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -953,11 +954,21 @@ Since we want our apps to free unneeded memory, we should use weak references fo
             button_increase.set_label(&amp;number.get().to_string());
     }));
 <span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -993,12 +1004,6 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -1031,12 +1036,22 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
 </span><span class="boring">    }));
 </span><span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
-</span>    gtk_box.append(&amp;button_increase);
-    gtk_box.append(&amp;button_decrease);
-<span class="boring">    window.present();
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
+</span><span class="boring">    gtk_box.append(&amp;button_increase);
+</span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
@@ -1062,12 +1077,6 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -1100,11 +1109,21 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
 </span><span class="boring">    }));
 </span><span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span>    window.set_child(Some(&amp;gtk_box));
-<span class="boring">    gtk_box.append(&amp;button_increase);
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
+</span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1131,12 +1150,6 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span>    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-<span class="boring">
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
@@ -1169,11 +1182,21 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
 </span><span class="boring">    }));
 </span><span class="boring">
-</span><span class="boring">    // Add buttons
-</span><span class="boring">    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">    // Add buttons to `gtk_box`
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_increase);
 </span><span class="boring">    gtk_box.append(&amp;button_decrease);
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1288,12 +1311,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = CustomButton::with_label(&quot;Press me!&quot;);
     button.set_margin_top(12);
@@ -1307,8 +1324,14 @@ fn build_ui(app: &amp;Application) {
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>
@@ -1379,12 +1402,6 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = CustomButton::new();
     button.set_margin_top(12);
@@ -1392,8 +1409,14 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>
@@ -1649,12 +1672,6 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create the switch
     let switch = Switch::new();
 
@@ -1677,7 +1694,15 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">        .orientation(Orientation::Vertical)
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;switch);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1702,12 +1727,6 @@ We use the <a href="https://matematikaadit.github.io/posts/rust-turbofish.html">
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create the switch
     let switch = Switch::new();
 
@@ -1730,7 +1749,15 @@ We use the <a href="https://matematikaadit.github.io/posts/rust-turbofish.html">
 </span><span class="boring">        .orientation(Orientation::Vertical)
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;switch);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1759,12 +1786,6 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create the switches
     let switch_1 = Switch::new();
     let switch_2 = Switch::new();
@@ -1787,7 +1808,15 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;switch_1);
 </span><span class="boring">    gtk_box.append(&amp;switch_2);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1813,12 +1842,6 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create the switches
 </span><span class="boring">    let switch_1 = Switch::new();
 </span><span class="boring">    let switch_2 = Switch::new();
@@ -1841,7 +1864,15 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;switch_1);
 </span><span class="boring">    gtk_box.append(&amp;switch_2);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -1979,12 +2010,6 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create the buttons
     let button_1 = CustomButton::new();
     let button_2 = CustomButton::new();
@@ -2031,7 +2056,15 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_1);
 </span><span class="boring">    gtk_box.append(&amp;button_2);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2060,12 +2093,6 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create the buttons
 </span><span class="boring">    let button_1 = CustomButton::new();
 </span><span class="boring">    let button_2 = CustomButton::new();
@@ -2112,7 +2139,15 @@ By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/obj
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_1);
 </span><span class="boring">    gtk_box.append(&amp;button_2);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2143,12 +2178,6 @@ We can do this like this:</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create the buttons
 </span><span class="boring">    let button_1 = CustomButton::new();
 </span><span class="boring">    let button_2 = CustomButton::new();
@@ -2195,7 +2224,15 @@ We can do this like this:</p>
 </span><span class="boring">        .build();
 </span><span class="boring">    gtk_box.append(&amp;button_1);
 </span><span class="boring">    gtk_box.append(&amp;button_2);
-</span><span class="boring">    window.set_child(Some(&amp;gtk_box));
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2230,12 +2267,6 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
-</span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2251,8 +2282,14 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
         button.set_label(&quot;Hello World!&quot;);
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2276,12 +2313,6 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
-</span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2302,8 +2333,14 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
         None
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2569,12 +2606,6 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = CustomButton::new();
 </span><span class="boring">    button.set_margin_top(12);
@@ -2592,7 +2623,14 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
         None
     });
 <span class="boring">
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2630,12 +2668,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -2652,8 +2684,14 @@ fn build_ui(app: &amp;Application) {
         std::thread::sleep(five_seconds);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>
@@ -2683,12 +2721,6 @@ but it is not unusual wanting to run a slightly longer operation in one go.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2707,8 +2739,14 @@ but it is not unusual wanting to run a slightly longer operation in one go.</p>
         });
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2741,12 +2779,6 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2782,8 +2814,14 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
         ),
     );
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2811,12 +2849,6 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2851,8 +2883,14 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
         ),
     );
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -2877,12 +2915,6 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -2905,8 +2937,14 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
         }));
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3020,12 +3058,6 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -3052,8 +3084,14 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3089,12 +3127,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Initialize settings
     let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 <span class="boring">
@@ -3121,8 +3153,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3147,12 +3185,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -3179,8 +3211,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3205,12 +3243,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -3237,8 +3269,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
         Inhibit(false)
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3269,12 +3307,6 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -3293,8 +3325,14 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
         .flags(SettingsBindFlags::DEFAULT)
         .build();
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -3516,14 +3554,6 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `ListBox` and add labels with integers from 0 to 100
     let list_box = ListBox::new();
     for number in 0..=100 {
@@ -3536,8 +3566,18 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_box)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>We cannot display so many widgets at once.
@@ -3561,14 +3601,6 @@ Now we can scroll through our elements.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `ListBox` and add labels with integers from 0 to 100
 </span><span class="boring">    let list_box = ListBox::new();
 </span><span class="boring">    for number in 0..=100 {
@@ -3581,8 +3613,18 @@ Now we can scroll through our elements.</p>
         .min_content_width(360)
         .child(&amp;list_box)
         .build();
-    window.set_child(Some(&amp;scrolled_window));
-    window.show();
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .default_width(600)
+        .default_height(300)
+        .child(&amp;scrolled_window)
+        .build();
+
+    // Present window
+    window.present();
 <span class="boring">}
 </span></code></pre>
 <div style="text-align:center"><img src="img/lists_list_box.png"/></div>
@@ -3720,14 +3762,6 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
     let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 
@@ -3773,8 +3807,18 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>The <code>ListItemFactory</code> takes care of the widgets as well as their relationship to the model.
@@ -3806,14 +3850,6 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -3859,8 +3895,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>In the &quot;bind&quot; step we bind the data in our model to the individual list items.</p>
@@ -3889,14 +3935,6 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -3942,8 +3980,18 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
@@ -3974,14 +4022,6 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4027,8 +4067,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Every <code>ListView</code> has to be a direct child of a <code>ScrolledWindow</code>, so we are adding it to one.</p>
@@ -4057,14 +4107,6 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4110,8 +4152,18 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
         .min_content_width(360)
         .child(&amp;list_view)
         .build();
-    window.set_child(Some(&amp;scrolled_window));
-    window.show();
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .default_width(600)
+        .default_height(300)
+        .child(&amp;scrolled_window)
+        .build();
+
+    // Present window
+    window.present();
 <span class="boring">}
 </span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
@@ -4168,14 +4220,6 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4234,8 +4278,18 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Now every time we activate an element, for example by double-clicking on it,
@@ -4268,14 +4322,6 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4334,8 +4380,18 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>At first glance, that seems to work.
@@ -4373,14 +4429,6 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4434,8 +4482,18 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>An expression describes a reference to a value.
@@ -4481,14 +4539,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4578,8 +4628,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Additionally, we can reverse the order of our model.</p>
@@ -4609,14 +4669,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4706,8 +4758,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>To ensure that our filter and sorter get updated when we modify the numbers, we call the <code>changed</code> method on them.</p>
@@ -4737,14 +4799,6 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
 </span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
@@ -4834,8 +4888,18 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>After our changes, the application looks like this:</p>
@@ -4869,14 +4933,6 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a `StringList` with number from 0 to 100_000
     // `StringList` implements FromIterator&lt;String&gt;
     let model: StringList = (0..=100_000)
@@ -4915,8 +4971,18 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
@@ -4944,14 +5010,6 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .default_width(600)
-</span><span class="boring">        .default_height(300)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a `StringList` with number from 0 to 100_000
 </span><span class="boring">    // `StringList` implements FromIterator&lt;String&gt;
 </span><span class="boring">    let model: StringList = (0..=100_000)
@@ -4990,8 +5048,18 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">        .min_content_width(360)
 </span><span class="boring">        .child(&amp;list_view)
 </span><span class="boring">        .build();
-</span><span class="boring">    window.set_child(Some(&amp;scrolled_window));
-</span><span class="boring">    window.show();
+</span><span class="boring">
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .default_width(600)
+</span><span class="boring">        .default_height(300)
+</span><span class="boring">        .child(&amp;scrolled_window)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
@@ -5022,12 +5090,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window and set the title
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -5043,10 +5105,14 @@ fn build_ui(app: &amp;Application) {
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -5759,7 +5825,7 @@ impl ObjectSubclass for Window {
 fn build_ui(app: &amp;Application) {
     // Create a new custom window and show it
     let window = Window::new(app);
-    window.show();
+    window.present();
 }
 </code></pre>
 <h2 id="to-do-object"><a class="header" href="#to-do-object">To-Do Object</a></h2>
@@ -6694,7 +6760,7 @@ Let us check out the simplest case where we activate an action without a paramet
     }));
     window.add_action(&amp;action_quit);
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre></pre>
@@ -6738,7 +6804,7 @@ We also connected a callback which closes the window.</p>
 </span><span class="boring">    }));
 </span><span class="boring">    window.add_action(&amp;action_quit);
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
@@ -6799,7 +6865,7 @@ The answer is that it is so common to add actions to windows and applications th
     window.insert_action_group(&quot;win&quot;, Some(&amp;actions));
     actions.add_action(&amp;action_quit);
 <span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -6899,7 +6965,7 @@ Let us see how this works.</p>
     // Add `gtk_box` to the window
     window.set_child(Some(&amp;gtk_box));
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -7004,7 +7070,7 @@ With <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>ButtonBuilder</code>
 </span><span class="boring">    // Add button
 </span><span class="boring">    window.set_child(Some(&amp;gtk_box));
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -9379,7 +9445,7 @@ fn setup_shortcuts(app: &amp;Application) {
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a new custom window and show it
 </span><span class="boring">    let window = Window::new(app);
-</span><span class="boring">    window.show();
+</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
 <h2 id="saving-and-restoring-tasks"><a class="header" href="#saving-and-restoring-tasks">Saving and Restoring Tasks</a></h2>

@@ -177,12 +177,6 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/pre
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window and set the title
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -198,10 +192,14 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/pre
         button.set_label(&quot;Hello World!&quot;);
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -225,12 +223,6 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window and set the title
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button with label and margins
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -246,10 +238,14 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Present window to the user
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>

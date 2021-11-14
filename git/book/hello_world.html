@@ -182,7 +182,7 @@ fn build_ui(app: &amp;Application) {
         .title(&quot;My GTK App&quot;)
         .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>
@@ -208,12 +208,6 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window and set the title
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button with label and margins
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -229,10 +223,14 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 </code></pre>

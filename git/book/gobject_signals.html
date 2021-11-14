@@ -161,12 +161,6 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
-</span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -182,8 +176,14 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
         button.set_label(&quot;Hello World!&quot;);
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present the window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -207,12 +207,6 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::new(app);
-</span><span class="boring">
-</span><span class="boring">    // Set the window title
-</span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -233,8 +227,14 @@ connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/l
         None
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -500,12 +500,6 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    app.run();
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = CustomButton::new();
 </span><span class="boring">    button.set_margin_top(12);
@@ -523,7 +517,14 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
         None
     });
 <span class="boring">
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>

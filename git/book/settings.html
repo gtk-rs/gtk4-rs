@@ -175,12 +175,6 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -207,8 +201,14 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -244,12 +244,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span>    // Initialize settings
     let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 <span class="boring">
@@ -276,8 +270,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -302,12 +302,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -334,8 +328,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -360,12 +360,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -392,8 +386,14 @@ That is why we probably want to use a build system like <a href="https://mesonbu
         Inhibit(false)
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -424,12 +424,6 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Initialize settings
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk-rs.example&quot;);
 </span><span class="boring">
@@ -448,8 +442,14 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
         .flags(SettingsBindFlags::DEFAULT)
         .build();
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;switch));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;switch)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>

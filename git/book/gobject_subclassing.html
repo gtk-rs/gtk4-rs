@@ -233,12 +233,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = CustomButton::with_label(&quot;Press me!&quot;);
     button.set_margin_top(12);
@@ -252,8 +246,14 @@ fn build_ui(app: &amp;Application) {
         button.set_label(&quot;Hello World!&quot;);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>
@@ -324,12 +324,6 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = CustomButton::new();
     button.set_margin_top(12);
@@ -337,8 +331,14 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>

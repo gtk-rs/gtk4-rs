@@ -169,12 +169,6 @@ fn main() {
 }
 
 fn build_ui(app: &amp;Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title(&quot;My GTK App&quot;)
-        .build();
-
     // Create a button
     let button = Button::builder()
         .label(&quot;Press me!&quot;)
@@ -191,8 +185,14 @@ fn build_ui(app: &amp;Application) {
         std::thread::sleep(five_seconds);
     });
 
-    // Add button
-    window.set_child(Some(&amp;button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
     window.present();
 }
 </code></pre>
@@ -222,12 +222,6 @@ but it is not unusual wanting to run a slightly longer operation in one go.</p>
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -246,8 +240,14 @@ but it is not unusual wanting to run a slightly longer operation in one go.</p>
         });
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -280,12 +280,6 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -321,8 +315,14 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
         ),
     );
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -350,12 +350,6 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -390,8 +384,14 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
         ),
     );
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
@@ -416,12 +416,6 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
@@ -444,8 +438,14 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
         }));
     });
 <span class="boring">
-</span><span class="boring">    // Add button
-</span><span class="boring">    window.set_child(Some(&amp;button));
+</span><span class="boring">    // Create a window
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .child(&amp;button)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
