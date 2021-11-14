@@ -42,7 +42,7 @@ fn build_ui(app: &gtk::Application) {
 
         metadata_expression
             .chain_property::<Metadata>("title")
-            .chain_closure(|args| {
+            .chain_closure_with_callback(|args| {
                 let title: String = args[1].get().unwrap();
                 format!("Title: {}", title)
             })
@@ -50,7 +50,7 @@ fn build_ui(app: &gtk::Application) {
 
         metadata_expression
             .chain_property::<Metadata>("last-modified")
-            .chain_closure_obj::<String>(closure!(
+            .chain_closure::<String>(closure!(
                 |_: gtk::ListItem, last_modified: glib::DateTime| {
                     format!("Last Modified: {}", last_modified.format_iso8601().unwrap())
                 }
