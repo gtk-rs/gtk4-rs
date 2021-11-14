@@ -36,11 +36,9 @@ fn build_ui(app: &gtk::Application) {
 
         // Instead of binding properties and manually unbinding them, you can create expressions.
         // The value can be obtained even if it is several steps away.
-        let metadata_expression = list_item
+        list_item
             .property_expression("item")
-            .chain_property::<Note>("metadata");
-
-        metadata_expression
+            .chain_property::<Note>("metadata")
             .chain_property::<Metadata>("title")
             .chain_closure_with_callback(|args| {
                 let title: String = args[1].get().unwrap();
@@ -48,7 +46,10 @@ fn build_ui(app: &gtk::Application) {
             })
             .bind(&title_label, "label", gtk::Widget::NONE);
 
-        metadata_expression
+        // Property expressions can also start from the `this` value, which is set as the last
+        // argument to the `bind` function.
+        gtk::ListItem::this_expression("item")
+            .chain_property::<Note>("metadata")
             .chain_property::<Metadata>("last-modified")
             .chain_closure::<String>(closure!(
                 |_: gtk::ListItem, last_modified: glib::DateTime| {

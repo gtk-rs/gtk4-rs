@@ -277,6 +277,10 @@ pub trait GObjectPropertyExpressionExt {
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up an object's property with a weak reference.
     fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression;
+
+    // rustdoc-stripper-ignore-next
+    /// Create an expression looking up a property in the bound `this` object.
+    fn this_expression(property_name: &str) -> crate::PropertyExpression;
 }
 
 impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
@@ -288,6 +292,11 @@ impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
     fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
         let obj_expr = crate::ObjectExpression::new(self);
         crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
+    }
+
+    fn this_expression(property_name: &str) -> crate::PropertyExpression {
+        skip_assert_initialized!();
+        crate::PropertyExpression::new(T::static_type(), Expression::NONE, property_name)
     }
 }
 
