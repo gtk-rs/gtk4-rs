@@ -171,14 +171,47 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Create a [`gtk::ClosureExpression`] with self as a parameter. This is useful in long
-    /// chains of [`gtk::Expression`]s.
-    pub fn chain_closure<F, R>(&self, f: F) -> crate::ClosureExpression
+    /// Create a [`ClosureExpression`](crate::ClosureExpression) from a [`glib::Closure`] with self
+    /// as the second parameter and `R` as the return type. The return type is checked at run-time
+    /// and must always be specified. This is useful in long chains of
+    /// [`Expression`](crate::Expression)s when using the [`glib::closure!`] macro.
+    ///
+    /// Note that the first parameter will always be the `this` object bound to the expression. If
+    /// `None` is passed as `this` then the type of the first parameter must be
+    /// `Option<glib::Object>` otherwise type checking will panic.
+    ///
+    /// ```no_run
+    /// # use gtk4 as gtk;
+    /// use gtk::prelude::*;
+    /// use gtk::glib;
+    /// use glib::{closure, Object};
+    ///
+    /// let button = gtk::Button::new();
+    /// button.set_label("Hello");
+    /// let label = button
+    ///     .property_expression("label")
+    ///     .chain_closure::<String>(closure!(|_: Option<Object>, label: &str| {
+    ///         format!("{} World", label)
+    ///     }))
+    ///     .evaluate_as::<String, _>(gtk::Widget::NONE);
+    /// assert_eq!(label.unwrap(), "Hello World");
+    /// ```
+    pub fn chain_closure<R>(&self, closure: glib::RustClosure) -> crate::ClosureExpression
+    where
+        R: glib::value::ValueType,
+    {
+        crate::ClosureExpression::new::<R, _, _>(&[self], closure)
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Create a [`ClosureExpression`](crate::ClosureExpression) with self as the second parameter.
+    /// This is useful in long chains of [`Expression`](crate::Expression)s.
+    pub fn chain_closure_with_callback<F, R>(&self, f: F) -> crate::ClosureExpression
     where
         F: Fn(&[glib::Value]) -> R + 'static,
         R: glib::value::ValueType,
     {
-        crate::ClosureExpression::new(&[self], f)
+        crate::ClosureExpression::with_callback(&[self], f)
     }
 }
 
