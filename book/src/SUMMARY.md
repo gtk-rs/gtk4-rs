@@ -22,7 +22,7 @@
 - [Building a Simple To-Do App](todo_app_1.md)
 - [Actions](actions.md)
 - [Manipulating State of To-Do App](todo_app_2.md)
-- [CSS]()
+- [CSS](css.md)
 - [Resources](resources.md)
 - [Internationalization]()
 - [Accessibility]()
