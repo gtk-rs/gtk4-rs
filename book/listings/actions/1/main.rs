@@ -38,7 +38,7 @@ fn build_ui(app: &Application) {
     }));
     window.add_action(&action_quit);
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 // ANCHOR: build_ui

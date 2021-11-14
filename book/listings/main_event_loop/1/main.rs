@@ -17,12 +17,6 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .build();
-
     // Create a button
     let button = Button::builder()
         .label("Press me!")
@@ -39,7 +33,13 @@ fn build_ui(app: &Application) {
         std::thread::sleep(five_seconds);
     });
 
-    // Add button
-    window.set_child(Some(&button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&button)
+        .build();
+
+    // Present window
     window.present();
 }

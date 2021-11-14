@@ -18,12 +18,6 @@ fn main() {
 
 // ANCHOR: activate
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .build();
-
     // ANCHOR: switches
     // Create the switches
     let switch_1 = Switch::new();
@@ -50,7 +44,15 @@ fn build_ui(app: &Application) {
         .build();
     gtk_box.append(&switch_1);
     gtk_box.append(&switch_2);
-    window.set_child(Some(&gtk_box));
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&gtk_box)
+        .build();
+
+    // Present the window
     window.present();
 }
 // ANCHOR_END: activate

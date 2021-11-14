@@ -19,12 +19,6 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .build();
-
     // ANCHOR: settings
     // Initialize settings
     let settings = Settings::new("org.gtk-rs.example");
@@ -57,7 +51,13 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: connect_state_set
 
-    // Add button
-    window.set_child(Some(&switch));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&switch)
+        .build();
+
+    // Present window
     window.present();
 }

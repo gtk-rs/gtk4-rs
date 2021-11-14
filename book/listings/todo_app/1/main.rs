@@ -27,6 +27,6 @@ fn main() {
 fn build_ui(app: &Application) {
     // Create a new custom window and show it
     let window = Window::new(app);
-    window.show();
+    window.present();
 }
 // ANCHOR_END: main
