@@ -15,12 +15,6 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::new(app);
-
-    // Set the window title
-    window.set_title(Some("My GTK App"));
-
     // Create a button
     let button = Button::builder()
         .label("Press me!")
@@ -43,7 +37,13 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: callback
 
-    // Add button
-    window.set_child(Some(&button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&button)
+        .build();
+
+    // Present window
     window.present();
 }

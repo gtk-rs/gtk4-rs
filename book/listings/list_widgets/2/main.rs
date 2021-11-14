@@ -22,14 +22,6 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .default_width(600)
-        .default_height(300)
-        .build();
-
     // ANCHOR: model
     // Create a `Vec<IntegerObject>` with numbers from 0 to 100_000
     let vector: Vec<IntegerObject> = (0..=100_000).into_iter().map(IntegerObject::new).collect();
@@ -84,7 +76,17 @@ fn build_ui(app: &Application) {
         .min_content_width(360)
         .child(&list_view)
         .build();
-    window.set_child(Some(&scrolled_window));
-    window.show();
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .default_width(600)
+        .default_height(300)
+        .child(&scrolled_window)
+        .build();
+
+    // Present window
+    window.present();
     // ANCHOR_END: scrolled_window
 }

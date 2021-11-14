@@ -46,7 +46,7 @@ fn build_ui(app: &Application) {
     actions.add_action(&action_quit);
     // ANCHOR_END: action_group
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 // ANCHOR: build_ui

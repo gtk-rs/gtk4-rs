@@ -17,12 +17,6 @@ fn main() {
     app.run();
 }
 fn build_ui(app: &Application) {
-    // Create a window
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .build();
-
     // Create two buttons
     let button_increase = Button::builder()
         .label("Increase")
@@ -52,10 +46,20 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: callback
 
-    // Add buttons
-    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-    window.set_child(Some(&gtk_box));
+    // Add buttons to `gtk_box`
+    let gtk_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .build();
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&gtk_box)
+        .build();
+
+    // Present the window
     window.present();
 }

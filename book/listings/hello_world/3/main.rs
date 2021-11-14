@@ -19,12 +19,6 @@ fn main() {
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {
-    // Create a window and set the title
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("My GTK App")
-        .build();
-
     // ANCHOR: button
     // Create a button with label and margins
     let button = Button::builder()
@@ -42,10 +36,14 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: button
 
-    // Add button
-    window.set_child(Some(&button));
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&button)
+        .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 // ANCHOR_END: build_ui

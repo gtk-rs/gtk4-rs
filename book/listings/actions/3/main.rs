@@ -86,7 +86,7 @@ fn build_ui(app: &Application) {
     // Add `gtk_box` to the window
     window.set_child(Some(&gtk_box));
 
-    // Present window to the user
+    // Present window
     window.present();
 }
 // ANCHOR: build_ui

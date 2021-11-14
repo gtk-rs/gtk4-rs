@@ -21,6 +21,6 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .build();
 
-    // Present window to the user
+    // Present window
     window.present();
 }
