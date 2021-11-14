@@ -1,6 +1,8 @@
 mod metadata;
 mod note;
 
+use glib::closure;
+
 use gtk::gio;
 use gtk::glib;
 use gtk::prelude::*;
@@ -48,11 +50,12 @@ fn build_ui(app: &gtk::Application) {
 
         metadata_expression
             .chain_property::<Metadata>("last-modified")
-            .chain_closure(|args| {
-                let last_modified: glib::DateTime = args[1].get().unwrap();
-                format!("Last Modified: {}", last_modified.format_iso8601().unwrap())
-            })
-            .bind(&last_modified_label, "label", gtk::Widget::NONE);
+            .chain_closure_obj::<String>(closure!(
+                |_: gtk::ListItem, last_modified: glib::DateTime| {
+                    format!("Last Modified: {}", last_modified.format_iso8601().unwrap())
+                }
+            ))
+            .bind(&last_modified_label, "label", Some(list_item));
 
         list_item.set_child(Some(&hbox));
     });

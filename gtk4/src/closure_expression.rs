@@ -23,16 +23,13 @@ define_expression!(
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<F, R>(params: impl IntoIterator<Item = impl AsRef<Expression>>, callback: F) -> Self
+    pub fn new<R, I, E>(params: I, closure: glib::RustClosure) -> Self
     where
-        F: Fn(&[Value]) -> R + 'static,
         R: ValueType,
+        I: IntoIterator<Item = E>,
+        E: AsRef<Expression>,
     {
         assert_initialized_main_thread!();
-        let closure = glib::Closure::new_local(move |values| {
-            let ret = callback(values);
-            Some(ret.to_value())
-        });
 
         let params = params
             .into_iter()
@@ -42,7 +39,7 @@ impl ClosureExpression {
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
                 R::Type::static_type().into_glib(),
-                closure.to_glib_none().0,
+                closure.as_ref().to_glib_none().0,
                 params.len() as u32,
                 params.to_glib_full(),
             ))
@@ -50,13 +47,19 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure<R, I, E>(params: I, closure: glib::Closure) -> Self
+    pub fn with_callback<F, R>(
+        params: impl IntoIterator<Item = impl AsRef<Expression>>,
+        callback: F,
+    ) -> Self
     where
+        F: Fn(&[Value]) -> R + 'static,
         R: ValueType,
-        I: IntoIterator<Item = E>,
-        E: AsRef<Expression>,
     {
         assert_initialized_main_thread!();
+        let closure = glib::Closure::new_local(move |values| {
+            let ret = callback(values);
+            Some(ret.to_value())
+        });
 
         let params = params
             .into_iter()
