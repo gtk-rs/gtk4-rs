@@ -161,8 +161,9 @@ impl Expression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Create a [`gtk::PropertyExpression`] that looks up for `property_name`
-    /// with self as parameter. This is useful in long chains of [`gtk::Expression`]s.
+    /// Create a [`PropertyExpression`](crate::PropertyExpression) that looks up for
+    /// `property_name` with self as parameter. This is useful in long chains of
+    /// [`Expression`](crate::Expression)s.
     pub fn chain_property<T: IsA<glib::Object>>(
         &self,
         property_name: &str,
@@ -250,12 +251,13 @@ impl glib::value::ToValueOptional for Expression {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing convenience methods in creating [`gtk::PropertyExpression`] that
+/// Trait containing convenience methods in creating
+/// [`PropertyExpression`](crate::PropertyExpression) that
 /// looks up a property of a [`glib::Object`].
 ///
 /// # Example
 ///
-/// `label_expression` is a [`gtk::Expression`] that looks up at Button's `label`
+/// `label_expression` is an [`Expression`](crate::Expression) that looks up at Button's `label`
 /// property.
 ///
 /// ```no_run
