@@ -50,12 +50,11 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure<R>(
-        params: impl IntoIterator<Item = impl AsRef<Expression>>,
-        closure: glib::Closure,
-    ) -> Self
+    pub fn with_closure<R, I, E>(params: I, closure: glib::Closure) -> Self
     where
         R: ValueType,
+        I: IntoIterator<Item = E>,
+        E: AsRef<Expression>,
     {
         assert_initialized_main_thread!();
 
