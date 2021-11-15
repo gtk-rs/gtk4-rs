@@ -3,7 +3,7 @@
 use crate::prelude::*;
 use crate::{AboutDialog, Window};
 use glib::translate::*;
-use glib::{IsA, Quark, ToValue};
+use glib::{IsA, Quark, Slice, ToValue};
 use once_cell::sync::Lazy;
 use std::boxed::Box as Box_;
 use std::pin::Pin;
@@ -24,7 +24,7 @@ pub fn accelerator_valid(keyval: gdk::keys::Key, modifiers: gdk::ModifierType) -
 pub fn accelerator_parse_with_keycode(
     accelerator: &str,
     display: Option<&impl IsA<gdk::Display>>,
-) -> Option<(u32, Vec<u32>, gdk::ModifierType)> {
+) -> Option<(u32, Slice<u32>, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
         let mut accelerator_key = std::mem::MaybeUninit::uninit();
@@ -38,18 +38,13 @@ pub fn accelerator_parse_with_keycode(
             accelerator_mods.as_mut_ptr(),
         ));
         if success {
-            let mut accelerator_codes = Vec::new();
-            let mut i = 0;
-            loop {
-                // zero-terminated array
-                let ret = std::ptr::read(accelerator_codes_ptr.add(i));
-                if ret == 0 {
-                    break;
+            let mut len = 0;
+            if !accelerator_codes_ptr.is_null() {
+                while ptr::read(accelerator_codes_ptr.add(len)) != 0 {
+                    len += 1;
                 }
-                accelerator_codes.push(ret);
-                i += 1;
             }
-            glib::ffi::g_free(accelerator_codes_ptr as *mut _);
+            let accelerator_codes = Slice::from_glib_full_num(accelerator_codes_ptr, len);
             Some((
                 accelerator_key.assume_init(),
                 accelerator_codes,
