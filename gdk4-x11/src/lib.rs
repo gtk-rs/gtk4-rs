@@ -16,6 +16,8 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
+pub mod builders;
+
 mod x11_display;
 
 pub use auto::*;

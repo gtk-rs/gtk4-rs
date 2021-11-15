@@ -58,6 +58,7 @@ mod auto;
 #[macro_use]
 mod event;
 
+pub mod builders;
 pub mod prelude;
 pub mod subclass;
 
