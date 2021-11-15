@@ -108,9 +108,17 @@
 <span id="35">35</span>
 <span id="36">36</span>
 <span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ContentFormats</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ContentFormats</span>, <span class="ident">ContentFormatsBuilder</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">impl</span> <span class="ident">ContentFormats</span> {
@@ -133,6 +141,14 @@
 
             <span class="ident">FromGlibContainer::from_glib_none_num</span>(<span class="ident">types</span>, <span class="ident">n_types</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>)
         }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`ContentFormats`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`ContentFormatsBuilder`] which can be used to create [`ContentFormats`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">ContentFormatsBuilder</span> {
+        <span class="ident">ContentFormatsBuilder::default</span>()
     }
 }
 

@@ -241,6 +241,14 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -370,6 +378,14 @@
     <span class="doccomment">/// Create a new [`BorderBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::default</span>()
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`Border`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`BorderBuilder`] which can be used to create [`Border`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">BorderBuilder</span> {
+        <span class="ident">BorderBuilder::default</span>()
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">left</span>: <span class="ident">i16</span>) -&gt; <span class="self">Self</span> {

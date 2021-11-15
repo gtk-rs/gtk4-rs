@@ -148,6 +148,14 @@
 <span id="75">75</span>
 <span id="76">76</span>
 <span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BookmarkList</span>;
@@ -180,6 +188,14 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_bookmark_list_set_io_priority</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">io_priority</span>.<span class="ident">into_glib</span>());
         }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-pattern struct instance to construct [`BookmarkList`] objects.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`BookmarkListBuilder`] which can be used to create [`BookmarkList`] objects.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() -&gt; <span class="ident">BookmarkListBuilder</span> {
+        <span class="ident">BookmarkListBuilder::default</span>()
     }
 }
 
