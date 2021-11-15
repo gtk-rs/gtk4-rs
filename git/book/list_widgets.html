@@ -1017,8 +1017,8 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, PolicyType,
-</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, SingleSelection,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1051,21 +1051,11 @@ Let us see how the &quot;setup&quot; step now works.</p>
         let label = Label::new(None);
         list_item.set_child(Some(&amp;label));
 
-        // Create expression describing `list_item-&gt;item-&gt;number`
-        let list_item_expression = ConstantExpression::new(list_item);
-        let integer_object_expression = PropertyExpression::new(
-            gtk::ListItem::static_type(),
-            Some(&amp;list_item_expression),
-            &quot;item&quot;,
-        );
-        let number_expression = PropertyExpression::new(
-            IntegerObject::static_type(),
-            Some(&amp;integer_object_expression),
-            &quot;number&quot;,
-        );
-
-        // Bind &quot;number&quot; to &quot;label&quot;
-        number_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
+        list_item
+            .property_expression(&quot;item&quot;)
+            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
+            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
     });
 <span class="boring">
 </span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
@@ -1103,22 +1093,16 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>An expression describes a reference to a value.
-So when we create a <a href="../docs/gtk4/struct.ConstantExpression.html"><code>ConstantExpression</code></a> of <code>list_item</code>, we create a reference to a <code>ListItem</code>.
-We then create a <a href="../docs/gtk4/struct.PropertyExpression.html"><code>PropertyExpression</code></a> to get a reference to the &quot;item&quot; property of <code>list_item</code>.
-With another <code>PropertyExpression</code> we get a reference to the &quot;number&quot; property of the &quot;item&quot; property of <code>list_item</code>.
-That already makes the first power of expressions obvious: It allows nested relationships.
-Finally, we bind &quot;number&quot; to &quot;label&quot;.
-In pseudo code that would be <code>label-&gt;label = list_item-&gt;item-&gt;number</code>.
-Unfortunately, expression bindings only work in one direction.
-If you need bidirectional bindings, property bindings are still your best bet.</p>
-<p>It is worth noting that at the &quot;setup&quot; stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
-This is the power of expressions!
-We do not have to define a fixed relationship, the object and properties might not even exist yet.
+<p>An expression provides a way to describe references to values.
+One interesting part here is that these references can be several steps away.
+This allowed us in the snippet above to bind the property &quot;number&quot; of the property &quot;item&quot; of <code>list_item</code> to the property &quot;label&quot; of <code>label</code>.</p>
+<p>It is also worth noting that at the &quot;setup&quot; stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
+Here, another power of expressions becomes evident.
+Expressions allow us to describe relationships between objects or properties that might not even exist yet.
 We just had to tell it to change the label whenever the number that belongs to it changes.
 That way, we also do not face the problem that multiple labels are bound to the same number.
 When we now activate a label, only the corresponding number visibly changes.</p>
-<p>That is still not everything we can do.
+<p>Let us extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
@@ -1126,9 +1110,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
-</span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
-</span><span class="boring">    SingleSelection, SortListModel, SorterChange,
+</span><span class="boring">    Application, ApplicationWindow, CustomSorter, FilterChange, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1161,21 +1144,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
-</span><span class="boring">        // Create expression describing `list_item-&gt;item-&gt;number`
-</span><span class="boring">        let list_item_expression = ConstantExpression::new(list_item);
-</span><span class="boring">        let integer_object_expression = PropertyExpression::new(
-</span><span class="boring">            gtk::ListItem::static_type(),
-</span><span class="boring">            Some(&amp;list_item_expression),
-</span><span class="boring">            &quot;item&quot;,
-</span><span class="boring">        );
-</span><span class="boring">        let number_expression = PropertyExpression::new(
-</span><span class="boring">            IntegerObject::static_type(),
-</span><span class="boring">            Some(&amp;integer_object_expression),
-</span><span class="boring">            &quot;number&quot;,
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        // Bind &quot;number&quot; to &quot;label&quot;
-</span><span class="boring">        number_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+</span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
+</span><span class="boring">        list_item
+</span><span class="boring">            .property_expression(&quot;item&quot;)
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
+</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span>    let filter = gtk::CustomFilter::new(move |obj| {
@@ -1256,9 +1229,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
-</span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
-</span><span class="boring">    SingleSelection, SortListModel, SorterChange,
+</span><span class="boring">    Application, ApplicationWindow, CustomSorter, FilterChange, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1291,21 +1263,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
-</span><span class="boring">        // Create expression describing `list_item-&gt;item-&gt;number`
-</span><span class="boring">        let list_item_expression = ConstantExpression::new(list_item);
-</span><span class="boring">        let integer_object_expression = PropertyExpression::new(
-</span><span class="boring">            gtk::ListItem::static_type(),
-</span><span class="boring">            Some(&amp;list_item_expression),
-</span><span class="boring">            &quot;item&quot;,
-</span><span class="boring">        );
-</span><span class="boring">        let number_expression = PropertyExpression::new(
-</span><span class="boring">            IntegerObject::static_type(),
-</span><span class="boring">            Some(&amp;integer_object_expression),
-</span><span class="boring">            &quot;number&quot;,
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        // Bind &quot;number&quot; to &quot;label&quot;
-</span><span class="boring">        number_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+</span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
+</span><span class="boring">        list_item
+</span><span class="boring">            .property_expression(&quot;item&quot;)
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
+</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let filter = gtk::CustomFilter::new(move |obj| {
@@ -1386,9 +1348,8 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, CustomSorter, FilterChange, Label,
-</span><span class="boring">    ListView, PolicyType, PropertyExpression, ScrolledWindow, SignalListItemFactory,
-</span><span class="boring">    SingleSelection, SortListModel, SorterChange,
+</span><span class="boring">    Application, ApplicationWindow, CustomSorter, FilterChange, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1421,21 +1382,11 @@ We can, for example, filter our model to only allow even numbers.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
-</span><span class="boring">        // Create expression describing `list_item-&gt;item-&gt;number`
-</span><span class="boring">        let list_item_expression = ConstantExpression::new(list_item);
-</span><span class="boring">        let integer_object_expression = PropertyExpression::new(
-</span><span class="boring">            gtk::ListItem::static_type(),
-</span><span class="boring">            Some(&amp;list_item_expression),
-</span><span class="boring">            &quot;item&quot;,
-</span><span class="boring">        );
-</span><span class="boring">        let number_expression = PropertyExpression::new(
-</span><span class="boring">            IntegerObject::static_type(),
-</span><span class="boring">            Some(&amp;integer_object_expression),
-</span><span class="boring">            &quot;number&quot;,
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        // Bind &quot;number&quot; to &quot;label&quot;
-</span><span class="boring">        number_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+</span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
+</span><span class="boring">        list_item
+</span><span class="boring">            .property_expression(&quot;item&quot;)
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
+</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let filter = gtk::CustomFilter::new(move |obj| {
@@ -1522,8 +1473,8 @@ This is why we will skip this topic here.</p>
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -1553,21 +1504,11 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
-</span><span class="boring">        // Create expression describing `list_item-&gt;item-&gt;number`
-</span><span class="boring">        let list_item_expression = ConstantExpression::new(list_item);
-</span><span class="boring">        let string_object_expression = PropertyExpression::new(
-</span><span class="boring">            gtk::ListItem::static_type(),
-</span><span class="boring">            Some(&amp;list_item_expression),
-</span><span class="boring">            &quot;item&quot;,
-</span><span class="boring">        );
-</span><span class="boring">        let string_expression = PropertyExpression::new(
-</span><span class="boring">            StringObject::static_type(),
-</span><span class="boring">            Some(&amp;string_object_expression),
-</span><span class="boring">            &quot;string&quot;,
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        // Bind &quot;string&quot; to &quot;label&quot;
-</span><span class="boring">        string_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+</span><span class="boring">        // Bind `list_item-&gt;item-&gt;string` to `label-&gt;label`
+</span><span class="boring">        list_item
+</span><span class="boring">            .property_expression(&quot;item&quot;)
+</span><span class="boring">            .chain_property::&lt;StringObject&gt;(&quot;string&quot;)
+</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let selection_model = NoSelection::new(Some(&amp;model));
@@ -1599,8 +1540,8 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, ConstantExpression, Label, ListView, NoSelection, PolicyType,
-</span><span class="boring">    PropertyExpression, ScrolledWindow, SignalListItemFactory, StringList, StringObject,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -1630,21 +1571,11 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
         let label = Label::new(None);
         list_item.set_child(Some(&amp;label));
 
-        // Create expression describing `list_item-&gt;item-&gt;number`
-        let list_item_expression = ConstantExpression::new(list_item);
-        let string_object_expression = PropertyExpression::new(
-            gtk::ListItem::static_type(),
-            Some(&amp;list_item_expression),
-            &quot;item&quot;,
-        );
-        let string_expression = PropertyExpression::new(
-            StringObject::static_type(),
-            Some(&amp;string_object_expression),
-            &quot;string&quot;,
-        );
-
-        // Bind &quot;string&quot; to &quot;label&quot;
-        string_expression.bind(&amp;label, &quot;label&quot;, Some(&amp;label));
+        // Bind `list_item-&gt;item-&gt;string` to `label-&gt;label`
+        list_item
+            .property_expression(&quot;item&quot;)
+            .chain_property::&lt;StringObject&gt;(&quot;string&quot;)
+            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
     });
 <span class="boring">
 </span><span class="boring">    let selection_model = NoSelection::new(Some(&amp;model));
