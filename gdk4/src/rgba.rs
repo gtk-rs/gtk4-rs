@@ -45,16 +45,16 @@ impl RGBABuilder {
     pub fn build(self) -> RGBA {
         let mut rgba = RGBA::WHITE;
         if let Some(blue) = self.blue {
-            rgba.0.blue = blue;
+            rgba.set_blue(blue);
         }
         if let Some(red) = self.red {
-            rgba.0.red = red;
+            rgba.set_red(red);
         }
         if let Some(green) = self.green {
-            rgba.0.green = green;
+            rgba.set_green(green);
         }
         if let Some(alpha) = self.alpha {
-            rgba.0.alpha = alpha;
+            rgba.set_alpha(alpha);
         }
         rgba
     }
@@ -75,16 +75,32 @@ impl RGBA {
         self.0.red
     }
 
+    pub fn set_red(&mut self, red: f32) {
+        self.0.red = red;
+    }
+
     pub fn green(&self) -> f32 {
         self.0.green
+    }
+
+    pub fn set_green(&mut self, green: f32) {
+        self.0.green = green;
     }
 
     pub fn blue(&self) -> f32 {
         self.0.blue
     }
 
+    pub fn set_blue(&mut self, blue: f32) {
+        self.0.blue = blue;
+    }
+
     pub fn alpha(&self) -> f32 {
         self.0.alpha
+    }
+
+    pub fn set_alpha(&mut self, alpha: f32) {
+        self.0.alpha = alpha;
     }
 
     #[doc(alias = "gdk_rgba_parse")]
