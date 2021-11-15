@@ -149,6 +149,7 @@ impl TreeViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TreeView`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> TreeView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activate_on_single_click) = self.activate_on_single_click {

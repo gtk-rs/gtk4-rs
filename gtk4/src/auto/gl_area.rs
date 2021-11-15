@@ -104,6 +104,7 @@ impl GLAreaBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GLArea`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> GLArea {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref auto_render) = self.auto_render {

@@ -101,6 +101,7 @@ impl SeparatorBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Separator`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Separator {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

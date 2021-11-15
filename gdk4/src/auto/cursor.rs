@@ -112,6 +112,7 @@ impl CursorBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Cursor`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Cursor {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref fallback) = self.fallback {

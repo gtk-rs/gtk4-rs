@@ -79,6 +79,7 @@ impl MountOperationBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MountOperation`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> MountOperation {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

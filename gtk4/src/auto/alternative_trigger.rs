@@ -90,6 +90,7 @@ impl AlternativeTriggerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AlternativeTrigger`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> AlternativeTrigger {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref first) = self.first {

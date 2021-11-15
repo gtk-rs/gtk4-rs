@@ -137,6 +137,7 @@ impl ColorChooserWidgetBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ColorChooserWidget`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ColorChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref show_editor) = self.show_editor {

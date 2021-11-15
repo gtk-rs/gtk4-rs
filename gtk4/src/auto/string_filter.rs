@@ -197,6 +197,7 @@ impl StringFilterBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`StringFilter`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> StringFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

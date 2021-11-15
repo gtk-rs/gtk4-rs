@@ -598,6 +598,7 @@ impl MenuButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MenuButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> MenuButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         #[cfg(any(feature = "v4_4", feature = "dox"))]

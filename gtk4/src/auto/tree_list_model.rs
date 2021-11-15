@@ -203,6 +203,7 @@ impl TreeListModelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TreeListModel`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> TreeListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoexpand) = self.autoexpand {

@@ -183,6 +183,7 @@ impl SliceListModelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SliceListModel`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> SliceListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

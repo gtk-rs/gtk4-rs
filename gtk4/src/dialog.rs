@@ -52,7 +52,7 @@ pub trait DialogExtManual: 'static {
     /// use gtk4::prelude::*;
     ///
     /// # async fn run() {
-    /// let dialog = gtk4::MessageDialogBuilder::new()
+    /// let dialog = gtk4::MessageDialog::builder()
     ///    .buttons(gtk4::ButtonsType::OkCancel)
     ///    .text("What is your answer?")
     ///    .build();
@@ -72,7 +72,7 @@ pub trait DialogExtManual: 'static {
     /// ```no_run
     /// use gtk4::prelude::*;
     ///
-    /// let dialog = gtk4::MessageDialogBuilder::new()
+    /// let dialog = gtk4::MessageDialog::builder()
     ///    .buttons(gtk4::ButtonsType::OkCancel)
     ///    .text("What is your answer?")
     ///    .build();

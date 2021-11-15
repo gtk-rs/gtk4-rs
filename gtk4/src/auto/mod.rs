@@ -7,14 +7,12 @@ pub use self::at_context::ATContext;
 
 mod about_dialog;
 pub use self::about_dialog::AboutDialog;
-pub use self::about_dialog::AboutDialogBuilder;
 
 mod accessible;
 pub use self::accessible::Accessible;
 
 mod action_bar;
 pub use self::action_bar::ActionBar;
-pub use self::action_bar::ActionBarBuilder;
 
 mod actionable;
 pub use self::actionable::Actionable;
@@ -24,11 +22,9 @@ pub use self::activate_action::ActivateAction;
 
 mod adjustment;
 pub use self::adjustment::Adjustment;
-pub use self::adjustment::AdjustmentBuilder;
 
 mod alternative_trigger;
 pub use self::alternative_trigger::AlternativeTrigger;
-pub use self::alternative_trigger::AlternativeTriggerBuilder;
 
 mod any_filter;
 pub use self::any_filter::AnyFilter;
@@ -38,31 +34,24 @@ pub use self::app_chooser::AppChooser;
 
 mod app_chooser_button;
 pub use self::app_chooser_button::AppChooserButton;
-pub use self::app_chooser_button::AppChooserButtonBuilder;
 
 mod app_chooser_dialog;
 pub use self::app_chooser_dialog::AppChooserDialog;
-pub use self::app_chooser_dialog::AppChooserDialogBuilder;
 
 mod app_chooser_widget;
 pub use self::app_chooser_widget::AppChooserWidget;
-pub use self::app_chooser_widget::AppChooserWidgetBuilder;
 
 mod application;
 pub use self::application::Application;
-pub use self::application::ApplicationBuilder;
 
 mod application_window;
 pub use self::application_window::ApplicationWindow;
-pub use self::application_window::ApplicationWindowBuilder;
 
 mod aspect_frame;
 pub use self::aspect_frame::AspectFrame;
-pub use self::aspect_frame::AspectFrameBuilder;
 
 mod assistant;
 pub use self::assistant::Assistant;
-pub use self::assistant::AssistantBuilder;
 
 mod assistant_page;
 pub use self::assistant_page::AssistantPage;
@@ -75,15 +64,12 @@ pub use self::bookmark_list::BookmarkList;
 
 mod bool_filter;
 pub use self::bool_filter::BoolFilter;
-pub use self::bool_filter::BoolFilterBuilder;
 
 mod box_;
 pub use self::box_::Box;
-pub use self::box_::BoxBuilder;
 
 mod box_layout;
 pub use self::box_layout::BoxLayout;
-pub use self::box_layout::BoxLayoutBuilder;
 
 mod buildable;
 pub use self::buildable::Buildable;
@@ -99,11 +85,9 @@ pub use self::builder_scope::BuilderScope;
 
 mod button;
 pub use self::button::Button;
-pub use self::button::ButtonBuilder;
 
 mod calendar;
 pub use self::calendar::Calendar;
-pub use self::calendar::CalendarBuilder;
 
 mod callback_action;
 pub use self::callback_action::CallbackAction;
@@ -113,7 +97,6 @@ pub use self::cell_area::CellArea;
 
 mod cell_area_box;
 pub use self::cell_area_box::CellAreaBox;
-pub use self::cell_area_box::CellAreaBoxBuilder;
 
 mod cell_area_context;
 pub use self::cell_area_context::CellAreaContext;
@@ -129,89 +112,69 @@ pub use self::cell_renderer::CellRenderer;
 
 mod cell_renderer_accel;
 pub use self::cell_renderer_accel::CellRendererAccel;
-pub use self::cell_renderer_accel::CellRendererAccelBuilder;
 
 mod cell_renderer_combo;
 pub use self::cell_renderer_combo::CellRendererCombo;
-pub use self::cell_renderer_combo::CellRendererComboBuilder;
 
 mod cell_renderer_pixbuf;
 pub use self::cell_renderer_pixbuf::CellRendererPixbuf;
-pub use self::cell_renderer_pixbuf::CellRendererPixbufBuilder;
 
 mod cell_renderer_progress;
 pub use self::cell_renderer_progress::CellRendererProgress;
-pub use self::cell_renderer_progress::CellRendererProgressBuilder;
 
 mod cell_renderer_spin;
 pub use self::cell_renderer_spin::CellRendererSpin;
-pub use self::cell_renderer_spin::CellRendererSpinBuilder;
 
 mod cell_renderer_spinner;
 pub use self::cell_renderer_spinner::CellRendererSpinner;
-pub use self::cell_renderer_spinner::CellRendererSpinnerBuilder;
 
 mod cell_renderer_text;
 pub use self::cell_renderer_text::CellRendererText;
-pub use self::cell_renderer_text::CellRendererTextBuilder;
 
 mod cell_renderer_toggle;
 pub use self::cell_renderer_toggle::CellRendererToggle;
-pub use self::cell_renderer_toggle::CellRendererToggleBuilder;
 
 mod cell_view;
 pub use self::cell_view::CellView;
-pub use self::cell_view::CellViewBuilder;
 
 mod center_box;
 pub use self::center_box::CenterBox;
-pub use self::center_box::CenterBoxBuilder;
 
 mod center_layout;
 pub use self::center_layout::CenterLayout;
 
 mod check_button;
 pub use self::check_button::CheckButton;
-pub use self::check_button::CheckButtonBuilder;
 
 mod color_button;
 pub use self::color_button::ColorButton;
-pub use self::color_button::ColorButtonBuilder;
 
 mod color_chooser;
 pub use self::color_chooser::ColorChooser;
 
 mod color_chooser_dialog;
 pub use self::color_chooser_dialog::ColorChooserDialog;
-pub use self::color_chooser_dialog::ColorChooserDialogBuilder;
 
 mod color_chooser_widget;
 pub use self::color_chooser_widget::ColorChooserWidget;
-pub use self::color_chooser_widget::ColorChooserWidgetBuilder;
 
 mod column_view;
 pub use self::column_view::ColumnView;
-pub use self::column_view::ColumnViewBuilder;
 
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
-pub use self::column_view_column::ColumnViewColumnBuilder;
 
 mod combo_box;
 pub use self::combo_box::ComboBox;
-pub use self::combo_box::ComboBoxBuilder;
 
 mod combo_box_text;
 pub use self::combo_box_text::ComboBoxText;
-pub use self::combo_box_text::ComboBoxTextBuilder;
 
 mod constraint;
 pub use self::constraint::Constraint;
-pub use self::constraint::ConstraintBuilder;
 
 mod constraint_guide;
 pub use self::constraint_guide::ConstraintGuide;
-pub use self::constraint_guide::ConstraintGuideBuilder;
 
 mod constraint_layout;
 pub use self::constraint_layout::ConstraintLayout;
@@ -233,7 +196,6 @@ pub use self::custom_sorter::CustomSorter;
 
 mod dialog;
 pub use self::dialog::Dialog;
-pub use self::dialog::DialogBuilder;
 
 mod directory_list;
 pub use self::directory_list::DirectoryList;
@@ -243,95 +205,75 @@ pub use self::drag_icon::DragIcon;
 
 mod drag_source;
 pub use self::drag_source::DragSource;
-pub use self::drag_source::DragSourceBuilder;
 
 mod drawing_area;
 pub use self::drawing_area::DrawingArea;
-pub use self::drawing_area::DrawingAreaBuilder;
 
 mod drop_controller_motion;
 pub use self::drop_controller_motion::DropControllerMotion;
-pub use self::drop_controller_motion::DropControllerMotionBuilder;
 
 mod drop_down;
 pub use self::drop_down::DropDown;
-pub use self::drop_down::DropDownBuilder;
 
 mod drop_target;
 pub use self::drop_target::DropTarget;
-pub use self::drop_target::DropTargetBuilder;
 
 mod drop_target_async;
 pub use self::drop_target_async::DropTargetAsync;
-pub use self::drop_target_async::DropTargetAsyncBuilder;
 
 mod editable;
 pub use self::editable::Editable;
 
 mod editable_label;
 pub use self::editable_label::EditableLabel;
-pub use self::editable_label::EditableLabelBuilder;
 
 mod emoji_chooser;
 pub use self::emoji_chooser::EmojiChooser;
-pub use self::emoji_chooser::EmojiChooserBuilder;
 
 mod entry;
 pub use self::entry::Entry;
-pub use self::entry::EntryBuilder;
 
 mod entry_buffer;
 pub use self::entry_buffer::EntryBuffer;
-pub use self::entry_buffer::EntryBufferBuilder;
 
 mod entry_completion;
 pub use self::entry_completion::EntryCompletion;
-pub use self::entry_completion::EntryCompletionBuilder;
 
 mod event_controller;
 pub use self::event_controller::EventController;
 
 mod event_controller_focus;
 pub use self::event_controller_focus::EventControllerFocus;
-pub use self::event_controller_focus::EventControllerFocusBuilder;
 
 mod event_controller_key;
 pub use self::event_controller_key::EventControllerKey;
-pub use self::event_controller_key::EventControllerKeyBuilder;
 
 mod event_controller_legacy;
 pub use self::event_controller_legacy::EventControllerLegacy;
-pub use self::event_controller_legacy::EventControllerLegacyBuilder;
 
 mod event_controller_motion;
 pub use self::event_controller_motion::EventControllerMotion;
-pub use self::event_controller_motion::EventControllerMotionBuilder;
 
 mod event_controller_scroll;
 pub use self::event_controller_scroll::EventControllerScroll;
-pub use self::event_controller_scroll::EventControllerScrollBuilder;
 
 mod every_filter;
 pub use self::every_filter::EveryFilter;
 
 mod expander;
 pub use self::expander::Expander;
-pub use self::expander::ExpanderBuilder;
 
 mod file_chooser;
 pub use self::file_chooser::FileChooser;
 
 mod file_chooser_dialog;
 pub use self::file_chooser_dialog::FileChooserDialog;
-pub use self::file_chooser_dialog::FileChooserDialogBuilder;
 
 mod file_chooser_native;
 pub use self::file_chooser_native::FileChooserNative;
-pub use self::file_chooser_native::FileChooserNativeBuilder;
 
 mod file_chooser_widget;
 pub use self::file_chooser_widget::FileChooserWidget;
-pub use self::file_chooser_widget::FileChooserWidgetBuilder;
 
 mod file_filter;
 pub use self::file_filter::FileFilter;
@@ -341,11 +283,9 @@ pub use self::filter::Filter;
 
 mod filter_list_model;
 pub use self::filter_list_model::FilterListModel;
-pub use self::filter_list_model::FilterListModelBuilder;
 
 mod fixed;
 pub use self::fixed::Fixed;
-pub use self::fixed::FixedBuilder;
 
 mod fixed_layout;
 pub use self::fixed_layout::FixedLayout;
@@ -358,125 +298,99 @@ pub use self::flatten_list_model::FlattenListModel;
 
 mod flow_box;
 pub use self::flow_box::FlowBox;
-pub use self::flow_box::FlowBoxBuilder;
 
 mod flow_box_child;
 pub use self::flow_box_child::FlowBoxChild;
-pub use self::flow_box_child::FlowBoxChildBuilder;
 
 mod font_button;
 pub use self::font_button::FontButton;
-pub use self::font_button::FontButtonBuilder;
 
 mod font_chooser;
 pub use self::font_chooser::FontChooser;
 
 mod font_chooser_dialog;
 pub use self::font_chooser_dialog::FontChooserDialog;
-pub use self::font_chooser_dialog::FontChooserDialogBuilder;
 
 mod font_chooser_widget;
 pub use self::font_chooser_widget::FontChooserWidget;
-pub use self::font_chooser_widget::FontChooserWidgetBuilder;
 
 mod frame;
 pub use self::frame::Frame;
-pub use self::frame::FrameBuilder;
 
 mod gl_area;
 pub use self::gl_area::GLArea;
-pub use self::gl_area::GLAreaBuilder;
 
 mod gesture;
 pub use self::gesture::Gesture;
 
 mod gesture_click;
 pub use self::gesture_click::GestureClick;
-pub use self::gesture_click::GestureClickBuilder;
 
 mod gesture_drag;
 pub use self::gesture_drag::GestureDrag;
-pub use self::gesture_drag::GestureDragBuilder;
 
 mod gesture_long_press;
 pub use self::gesture_long_press::GestureLongPress;
-pub use self::gesture_long_press::GestureLongPressBuilder;
 
 mod gesture_pan;
 pub use self::gesture_pan::GesturePan;
-pub use self::gesture_pan::GesturePanBuilder;
 
 mod gesture_rotate;
 pub use self::gesture_rotate::GestureRotate;
-pub use self::gesture_rotate::GestureRotateBuilder;
 
 mod gesture_single;
 pub use self::gesture_single::GestureSingle;
 
 mod gesture_stylus;
 pub use self::gesture_stylus::GestureStylus;
-pub use self::gesture_stylus::GestureStylusBuilder;
 
 mod gesture_swipe;
 pub use self::gesture_swipe::GestureSwipe;
-pub use self::gesture_swipe::GestureSwipeBuilder;
 
 mod gesture_zoom;
 pub use self::gesture_zoom::GestureZoom;
-pub use self::gesture_zoom::GestureZoomBuilder;
 
 mod grid;
 pub use self::grid::Grid;
-pub use self::grid::GridBuilder;
 
 mod grid_layout;
 pub use self::grid_layout::GridLayout;
-pub use self::grid_layout::GridLayoutBuilder;
 
 mod grid_layout_child;
 pub use self::grid_layout_child::GridLayoutChild;
 
 mod grid_view;
 pub use self::grid_view::GridView;
-pub use self::grid_view::GridViewBuilder;
 
 mod header_bar;
 pub use self::header_bar::HeaderBar;
-pub use self::header_bar::HeaderBarBuilder;
 
 mod im_context;
 pub use self::im_context::IMContext;
 
 mod im_context_simple;
 pub use self::im_context_simple::IMContextSimple;
-pub use self::im_context_simple::IMContextSimpleBuilder;
 
 mod im_multicontext;
 pub use self::im_multicontext::IMMulticontext;
-pub use self::im_multicontext::IMMulticontextBuilder;
 
 mod icon_paintable;
 pub use self::icon_paintable::IconPaintable;
 
 mod icon_theme;
 pub use self::icon_theme::IconTheme;
-pub use self::icon_theme::IconThemeBuilder;
 
 mod icon_view;
 pub use self::icon_view::IconView;
-pub use self::icon_view::IconViewBuilder;
 
 mod image;
 pub use self::image::Image;
-pub use self::image::ImageBuilder;
 
 mod info_bar;
 pub use self::info_bar::InfoBar;
-pub use self::info_bar::InfoBarBuilder;
 
 mod label;
 pub use self::label::Label;
-pub use self::label::LabelBuilder;
 
 mod layout_child;
 pub use self::layout_child::LayoutChild;
@@ -486,22 +400,18 @@ pub use self::layout_manager::LayoutManager;
 
 mod level_bar;
 pub use self::level_bar::LevelBar;
-pub use self::level_bar::LevelBarBuilder;
 
 mod link_button;
 pub use self::link_button::LinkButton;
-pub use self::link_button::LinkButtonBuilder;
 
 mod list_base;
 pub use self::list_base::ListBase;
 
 mod list_box;
 pub use self::list_box::ListBox;
-pub use self::list_box::ListBoxBuilder;
 
 mod list_box_row;
 pub use self::list_box_row::ListBoxRow;
-pub use self::list_box_row::ListBoxRowBuilder;
 
 mod list_item;
 pub use self::list_item::ListItem;
@@ -514,18 +424,15 @@ pub use self::list_store::ListStore;
 
 mod list_view;
 pub use self::list_view::ListView;
-pub use self::list_view::ListViewBuilder;
 
 mod lock_button;
 pub use self::lock_button::LockButton;
-pub use self::lock_button::LockButtonBuilder;
 
 mod map_list_model;
 pub use self::map_list_model::MapListModel;
 
 mod media_controls;
 pub use self::media_controls::MediaControls;
-pub use self::media_controls::MediaControlsBuilder;
 
 mod media_file;
 pub use self::media_file::MediaFile;
@@ -535,18 +442,15 @@ pub use self::media_stream::MediaStream;
 
 mod menu_button;
 pub use self::menu_button::MenuButton;
-pub use self::menu_button::MenuButtonBuilder;
 
 mod message_dialog;
 pub use self::message_dialog::MessageDialog;
-pub use self::message_dialog::MessageDialogBuilder;
 
 mod mnemonic_action;
 pub use self::mnemonic_action::MnemonicAction;
 
 mod mount_operation;
 pub use self::mount_operation::MountOperation;
-pub use self::mount_operation::MountOperationBuilder;
 
 mod multi_filter;
 pub use self::multi_filter::MultiFilter;
@@ -574,7 +478,6 @@ pub use self::no_selection::NoSelection;
 
 mod notebook;
 pub use self::notebook::Notebook;
-pub use self::notebook::NotebookBuilder;
 
 mod notebook_page;
 pub use self::notebook_page::NotebookPage;
@@ -584,14 +487,12 @@ pub use self::nothing_action::NothingAction;
 
 mod numeric_sorter;
 pub use self::numeric_sorter::NumericSorter;
-pub use self::numeric_sorter::NumericSorterBuilder;
 
 mod orientable;
 pub use self::orientable::Orientable;
 
 mod overlay;
 pub use self::overlay::Overlay;
-pub use self::overlay::OverlayBuilder;
 
 mod overlay_layout;
 pub use self::overlay_layout::OverlayLayout;
@@ -601,7 +502,6 @@ pub use self::overlay_layout_child::OverlayLayoutChild;
 
 mod pad_controller;
 pub use self::pad_controller::PadController;
-pub use self::pad_controller::PadControllerBuilder;
 
 mod page_setup;
 pub use self::page_setup::PageSetup;
@@ -612,17 +512,12 @@ mod page_setup_unix_dialog;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::page_setup_unix_dialog::PageSetupUnixDialog;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-pub use self::page_setup_unix_dialog::PageSetupUnixDialogBuilder;
 
 mod paned;
 pub use self::paned::Paned;
-pub use self::paned::PanedBuilder;
 
 mod password_entry;
 pub use self::password_entry::PasswordEntry;
-pub use self::password_entry::PasswordEntryBuilder;
 
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
@@ -630,25 +525,18 @@ mod password_entry_buffer;
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 pub use self::password_entry_buffer::PasswordEntryBuffer;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-pub use self::password_entry_buffer::PasswordEntryBufferBuilder;
 
 mod picture;
 pub use self::picture::Picture;
-pub use self::picture::PictureBuilder;
 
 mod popover;
 pub use self::popover::Popover;
-pub use self::popover::PopoverBuilder;
 
 mod popover_menu;
 pub use self::popover_menu::PopoverMenu;
-pub use self::popover_menu::PopoverMenuBuilder;
 
 mod popover_menu_bar;
 pub use self::popover_menu_bar::PopoverMenuBar;
-pub use self::popover_menu_bar::PopoverMenuBarBuilder;
 
 mod print_context;
 pub use self::print_context::PrintContext;
@@ -659,13 +547,9 @@ mod print_job;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_job::PrintJob;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-pub use self::print_job::PrintJobBuilder;
 
 mod print_operation;
 pub use self::print_operation::PrintOperation;
-pub use self::print_operation::PrintOperationBuilder;
 
 mod print_operation_preview;
 pub use self::print_operation_preview::PrintOperationPreview;
@@ -679,9 +563,6 @@ mod print_unix_dialog;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_unix_dialog::PrintUnixDialog;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-pub use self::print_unix_dialog::PrintUnixDialogBuilder;
 
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
@@ -689,13 +570,9 @@ mod printer;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::printer::Printer;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-pub use self::printer::PrinterBuilder;
 
 mod progress_bar;
 pub use self::progress_bar::ProgressBar;
-pub use self::progress_bar::ProgressBarBuilder;
 
 mod range;
 pub use self::range::Range;
@@ -705,37 +582,30 @@ pub use self::recent_manager::RecentManager;
 
 mod revealer;
 pub use self::revealer::Revealer;
-pub use self::revealer::RevealerBuilder;
 
 mod root;
 pub use self::root::Root;
 
 mod scale;
 pub use self::scale::Scale;
-pub use self::scale::ScaleBuilder;
 
 mod scale_button;
 pub use self::scale_button::ScaleButton;
-pub use self::scale_button::ScaleButtonBuilder;
 
 mod scrollable;
 pub use self::scrollable::Scrollable;
 
 mod scrollbar;
 pub use self::scrollbar::Scrollbar;
-pub use self::scrollbar::ScrollbarBuilder;
 
 mod scrolled_window;
 pub use self::scrolled_window::ScrolledWindow;
-pub use self::scrolled_window::ScrolledWindowBuilder;
 
 mod search_bar;
 pub use self::search_bar::SearchBar;
-pub use self::search_bar::SearchBarBuilder;
 
 mod search_entry;
 pub use self::search_entry::SearchEntry;
-pub use self::search_entry::SearchEntryBuilder;
 
 mod selection_filter_model;
 pub use self::selection_filter_model::SelectionFilterModel;
@@ -745,26 +615,21 @@ pub use self::selection_model::SelectionModel;
 
 mod separator;
 pub use self::separator::Separator;
-pub use self::separator::SeparatorBuilder;
 
 mod settings;
 pub use self::settings::Settings;
-pub use self::settings::SettingsBuilder;
 
 mod shortcut;
 pub use self::shortcut::Shortcut;
-pub use self::shortcut::ShortcutBuilder;
 
 mod shortcut_action;
 pub use self::shortcut_action::ShortcutAction;
 
 mod shortcut_controller;
 pub use self::shortcut_controller::ShortcutController;
-pub use self::shortcut_controller::ShortcutControllerBuilder;
 
 mod shortcut_label;
 pub use self::shortcut_label::ShortcutLabel;
-pub use self::shortcut_label::ShortcutLabelBuilder;
 
 mod shortcut_manager;
 pub use self::shortcut_manager::ShortcutManager;
@@ -774,19 +639,15 @@ pub use self::shortcut_trigger::ShortcutTrigger;
 
 mod shortcuts_group;
 pub use self::shortcuts_group::ShortcutsGroup;
-pub use self::shortcuts_group::ShortcutsGroupBuilder;
 
 mod shortcuts_section;
 pub use self::shortcuts_section::ShortcutsSection;
-pub use self::shortcuts_section::ShortcutsSectionBuilder;
 
 mod shortcuts_shortcut;
 pub use self::shortcuts_shortcut::ShortcutsShortcut;
-pub use self::shortcuts_shortcut::ShortcutsShortcutBuilder;
 
 mod shortcuts_window;
 pub use self::shortcuts_window::ShortcutsWindow;
-pub use self::shortcuts_window::ShortcutsWindowBuilder;
 
 mod signal_action;
 pub use self::signal_action::SignalAction;
@@ -796,55 +657,45 @@ pub use self::signal_list_item_factory::SignalListItemFactory;
 
 mod single_selection;
 pub use self::single_selection::SingleSelection;
-pub use self::single_selection::SingleSelectionBuilder;
 
 mod size_group;
 pub use self::size_group::SizeGroup;
 
 mod slice_list_model;
 pub use self::slice_list_model::SliceListModel;
-pub use self::slice_list_model::SliceListModelBuilder;
 
 mod snapshot;
 pub use self::snapshot::Snapshot;
 
 mod sort_list_model;
 pub use self::sort_list_model::SortListModel;
-pub use self::sort_list_model::SortListModelBuilder;
 
 mod sorter;
 pub use self::sorter::Sorter;
 
 mod spin_button;
 pub use self::spin_button::SpinButton;
-pub use self::spin_button::SpinButtonBuilder;
 
 mod spinner;
 pub use self::spinner::Spinner;
-pub use self::spinner::SpinnerBuilder;
 
 mod stack;
 pub use self::stack::Stack;
-pub use self::stack::StackBuilder;
 
 mod stack_page;
 pub use self::stack_page::StackPage;
 
 mod stack_sidebar;
 pub use self::stack_sidebar::StackSidebar;
-pub use self::stack_sidebar::StackSidebarBuilder;
 
 mod stack_switcher;
 pub use self::stack_switcher::StackSwitcher;
-pub use self::stack_switcher::StackSwitcherBuilder;
 
 mod statusbar;
 pub use self::statusbar::Statusbar;
-pub use self::statusbar::StatusbarBuilder;
 
 mod string_filter;
 pub use self::string_filter::StringFilter;
-pub use self::string_filter::StringFilterBuilder;
 
 mod string_list;
 pub use self::string_list::StringList;
@@ -854,7 +705,6 @@ pub use self::string_object::StringObject;
 
 mod string_sorter;
 pub use self::string_sorter::StringSorter;
-pub use self::string_sorter::StringSorterBuilder;
 
 mod style_context;
 pub use self::style_context::StyleContext;
@@ -864,7 +714,6 @@ pub use self::style_provider::StyleProvider;
 
 mod switch;
 pub use self::switch::Switch;
-pub use self::switch::SwitchBuilder;
 
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
@@ -875,33 +724,27 @@ pub use self::symbolic_paintable::SymbolicPaintable;
 
 mod text;
 pub use self::text::Text;
-pub use self::text::TextBuilder;
 
 mod text_buffer;
 pub use self::text_buffer::TextBuffer;
-pub use self::text_buffer::TextBufferBuilder;
 
 mod text_child_anchor;
 pub use self::text_child_anchor::TextChildAnchor;
 
 mod text_mark;
 pub use self::text_mark::TextMark;
-pub use self::text_mark::TextMarkBuilder;
 
 mod text_tag;
 pub use self::text_tag::TextTag;
-pub use self::text_tag::TextTagBuilder;
 
 mod text_tag_table;
 pub use self::text_tag_table::TextTagTable;
 
 mod text_view;
 pub use self::text_view::TextView;
-pub use self::text_view::TextViewBuilder;
 
 mod toggle_button;
 pub use self::toggle_button::ToggleButton;
-pub use self::toggle_button::ToggleButtonBuilder;
 
 mod tooltip;
 pub use self::tooltip::Tooltip;
@@ -914,11 +757,9 @@ pub use self::tree_drag_source::TreeDragSource;
 
 mod tree_expander;
 pub use self::tree_expander::TreeExpander;
-pub use self::tree_expander::TreeExpanderBuilder;
 
 mod tree_list_model;
 pub use self::tree_list_model::TreeListModel;
-pub use self::tree_list_model::TreeListModelBuilder;
 
 mod tree_list_row;
 pub use self::tree_list_row::TreeListRow;
@@ -946,23 +787,18 @@ pub use self::tree_store::TreeStore;
 
 mod tree_view;
 pub use self::tree_view::TreeView;
-pub use self::tree_view::TreeViewBuilder;
 
 mod tree_view_column;
 pub use self::tree_view_column::TreeViewColumn;
-pub use self::tree_view_column::TreeViewColumnBuilder;
 
 mod video;
 pub use self::video::Video;
-pub use self::video::VideoBuilder;
 
 mod viewport;
 pub use self::viewport::Viewport;
-pub use self::viewport::ViewportBuilder;
 
 mod volume_button;
 pub use self::volume_button::VolumeButton;
-pub use self::volume_button::VolumeButtonBuilder;
 
 mod widget;
 pub use self::widget::Widget;
@@ -972,18 +808,15 @@ pub use self::widget_paintable::WidgetPaintable;
 
 mod window;
 pub use self::window::Window;
-pub use self::window::WindowBuilder;
 
 mod window_controls;
 pub use self::window_controls::WindowControls;
-pub use self::window_controls::WindowControlsBuilder;
 
 mod window_group;
 pub use self::window_group::WindowGroup;
 
 mod window_handle;
 pub use self::window_handle::WindowHandle;
-pub use self::window_handle::WindowHandleBuilder;
 
 mod bitset;
 pub use self::bitset::Bitset;

@@ -59,6 +59,7 @@ impl PasswordEntryBufferBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PasswordEntryBuffer`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PasswordEntryBuffer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref max_length) = self.max_length {

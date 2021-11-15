@@ -323,6 +323,7 @@ impl FontButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FontButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> FontButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref modal) = self.modal {

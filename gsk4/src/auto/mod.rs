@@ -17,7 +17,6 @@ pub use self::gl_renderer::GLRenderer;
 
 mod gl_shader;
 pub use self::gl_shader::GLShader;
-pub use self::gl_shader::GLShaderBuilder;
 
 mod renderer;
 pub use self::renderer::Renderer;

@@ -400,6 +400,7 @@ impl DropDownBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`DropDown`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> DropDown {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_search) = self.enable_search {

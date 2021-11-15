@@ -424,6 +424,7 @@ impl AppChooserWidgetBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AppChooserWidget`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> AppChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref default_text) = self.default_text {

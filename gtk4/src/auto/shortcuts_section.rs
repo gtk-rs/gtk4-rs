@@ -230,6 +230,7 @@ impl ShortcutsSectionBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ShortcutsSection`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ShortcutsSection {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref max_height) = self.max_height {

@@ -165,6 +165,7 @@ impl PopoverMenuBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PopoverMenuBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PopoverMenuBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref menu_model) = self.menu_model {

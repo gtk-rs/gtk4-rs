@@ -174,6 +174,7 @@ impl CellRendererSpinnerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererSpinner`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> CellRendererSpinner {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

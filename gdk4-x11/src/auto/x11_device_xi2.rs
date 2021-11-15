@@ -60,6 +60,7 @@ impl X11DeviceXI2Builder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`X11DeviceXI2`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> X11DeviceXI2 {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref device_id) = self.device_id {

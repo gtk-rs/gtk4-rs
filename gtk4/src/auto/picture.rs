@@ -386,6 +386,7 @@ impl PictureBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Picture`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Picture {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref alternative_text) = self.alternative_text {

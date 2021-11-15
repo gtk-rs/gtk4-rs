@@ -263,6 +263,7 @@ impl SingleSelectionBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SingleSelection`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> SingleSelection {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoselect) = self.autoselect {

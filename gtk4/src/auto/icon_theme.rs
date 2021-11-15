@@ -367,6 +367,7 @@ impl IconThemeBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`IconTheme`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> IconTheme {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

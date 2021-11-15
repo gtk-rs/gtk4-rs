@@ -947,6 +947,7 @@ impl TreeViewColumnBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TreeViewColumn`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> TreeViewColumn {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref alignment) = self.alignment {

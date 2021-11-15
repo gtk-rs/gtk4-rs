@@ -122,6 +122,7 @@ impl StringSorterBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`StringSorter`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> StringSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

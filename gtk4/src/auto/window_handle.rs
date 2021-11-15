@@ -140,6 +140,7 @@ impl WindowHandleBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WindowHandle`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> WindowHandle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

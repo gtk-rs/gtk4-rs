@@ -226,6 +226,7 @@ impl LinkButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`LinkButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> LinkButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref uri) = self.uri {

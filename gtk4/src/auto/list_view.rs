@@ -364,6 +364,7 @@ impl ListViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ListView`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ListView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_rubberband) = self.enable_rubberband {

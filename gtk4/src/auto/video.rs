@@ -320,6 +320,7 @@ impl VideoBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Video`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Video {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoplay) = self.autoplay {

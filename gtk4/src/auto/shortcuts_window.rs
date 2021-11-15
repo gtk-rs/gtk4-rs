@@ -241,6 +241,7 @@ impl ShortcutsWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ShortcutsWindow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ShortcutsWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref section_name) = self.section_name {

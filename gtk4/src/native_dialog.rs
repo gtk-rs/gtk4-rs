@@ -17,7 +17,7 @@ pub trait NativeDialogExtManual {
     /// use gtk::prelude::*;
     ///
     /// # async fn run() {
-    /// let dialog = gtk::FileChooserNativeBuilder::new()
+    /// let dialog = gtk::FileChooserNative::builder()
     ///    .title("Select a File")
     ///    .build();
     ///

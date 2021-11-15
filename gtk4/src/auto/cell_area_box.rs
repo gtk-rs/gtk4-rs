@@ -145,6 +145,7 @@ impl CellAreaBoxBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellAreaBox`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> CellAreaBox {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref spacing) = self.spacing {

@@ -162,6 +162,7 @@ impl EntryBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Entry`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Entry {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

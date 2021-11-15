@@ -96,6 +96,7 @@ impl FixedBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Fixed`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Fixed {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

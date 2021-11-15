@@ -156,6 +156,7 @@ impl GestureLongPressBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GestureLongPress`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> GestureLongPress {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref delay_factor) = self.delay_factor {

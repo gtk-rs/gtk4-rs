@@ -499,6 +499,7 @@ impl AssistantBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Assistant`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Assistant {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref use_header_bar) = self.use_header_bar {

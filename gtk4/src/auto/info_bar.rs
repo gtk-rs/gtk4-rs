@@ -342,6 +342,7 @@ impl InfoBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`InfoBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> InfoBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref message_type) = self.message_type {

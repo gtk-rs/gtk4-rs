@@ -845,6 +845,7 @@ impl TextBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Text`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Text {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

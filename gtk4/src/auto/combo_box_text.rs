@@ -201,6 +201,7 @@ impl ComboBoxTextBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ComboBoxText`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ComboBoxText {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

@@ -103,6 +103,7 @@ impl PadControllerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PadController`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PadController {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref action_group) = self.action_group {

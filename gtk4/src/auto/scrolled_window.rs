@@ -959,6 +959,7 @@ impl ScrolledWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ScrolledWindow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ScrolledWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {
