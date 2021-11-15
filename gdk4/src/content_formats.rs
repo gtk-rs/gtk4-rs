@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ContentFormats;
+use crate::{ContentFormats, ContentFormatsBuilder};
 use glib::translate::*;
 
 impl ContentFormats {
@@ -14,6 +14,14 @@ impl ContentFormats {
 
             FromGlibContainer::from_glib_none_num(types, n_types.assume_init() as usize)
         }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`ContentFormats`] objects.
+    ///
+    /// This method returns an instance of [`ContentFormatsBuilder`] which can be used to create [`ContentFormats`] objects.
+    pub fn builder() -> ContentFormatsBuilder {
+        ContentFormatsBuilder::default()
     }
 }
 

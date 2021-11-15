@@ -21,6 +21,14 @@ impl BookmarkList {
             ffi::gtk_bookmark_list_set_io_priority(self.to_glib_none().0, io_priority.into_glib());
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`BookmarkList`] objects.
+    ///
+    /// This method returns an instance of [`BookmarkListBuilder`] which can be used to create [`BookmarkList`] objects.
+    pub fn builder() -> BookmarkListBuilder {
+        BookmarkListBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]
