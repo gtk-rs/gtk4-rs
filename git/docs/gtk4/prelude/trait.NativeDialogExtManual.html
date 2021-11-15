@@ -78,7 +78,7 @@
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
 
-<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk::FileChooserNativeBuilder::new</span>()
+<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk::FileChooserNative::builder</span>()
    .<span class="ident">title</span>(<span class="string">&quot;Select a File&quot;</span>)
    .<span class="ident">build</span>();
 

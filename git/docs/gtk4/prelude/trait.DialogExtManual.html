@@ -95,7 +95,7 @@ if <code>widget</code> doesn’t have a response id set.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">gtk4::prelude</span>::<span class="kw-2">*</span>;
 
-<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialogBuilder::new</span>()
+<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialog::builder</span>()
    .<span class="ident">buttons</span>(<span class="ident">gtk4::ButtonsType::OkCancel</span>)
    .<span class="ident">text</span>(<span class="string">&quot;What is your answer?&quot;</span>)
    .<span class="ident">build</span>();
@@ -108,7 +108,7 @@ if <code>widget</code> doesn’t have a response id set.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">gtk4::prelude</span>::<span class="kw-2">*</span>;
 
-<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialogBuilder::new</span>()
+<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialog::builder</span>()
    .<span class="ident">buttons</span>(<span class="ident">gtk4::ButtonsType::OkCancel</span>)
    .<span class="ident">text</span>(<span class="string">&quot;What is your answer?&quot;</span>)
    .<span class="ident">build</span>();
