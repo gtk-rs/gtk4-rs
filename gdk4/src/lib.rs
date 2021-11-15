@@ -115,7 +115,6 @@ pub use keymap_key::KeymapKey;
 pub use motion_event::MotionEvent;
 pub use pad_event::PadEvent;
 pub use proximity_event::ProximityEvent;
-pub use rgba::RGBABuilder;
 pub use scroll_event::ScrollEvent;
 pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
