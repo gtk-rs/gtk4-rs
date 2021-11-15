@@ -252,6 +252,7 @@ impl HeaderBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`HeaderBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> HeaderBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref decoration_layout) = self.decoration_layout {

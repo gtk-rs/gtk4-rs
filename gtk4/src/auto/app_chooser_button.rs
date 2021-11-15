@@ -405,6 +405,7 @@ impl AppChooserButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AppChooserButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> AppChooserButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref heading) = self.heading {

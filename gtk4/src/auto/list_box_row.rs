@@ -106,6 +106,7 @@ impl ListBoxRowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ListBoxRow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ListBoxRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable) = self.activatable {

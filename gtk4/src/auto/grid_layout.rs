@@ -287,6 +287,7 @@ impl GridLayoutBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GridLayout`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> GridLayout {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_row) = self.baseline_row {

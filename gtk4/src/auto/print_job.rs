@@ -363,6 +363,7 @@ impl PrintJobBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PrintJob`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PrintJob {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref page_setup) = self.page_setup {

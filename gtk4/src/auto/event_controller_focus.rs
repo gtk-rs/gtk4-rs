@@ -179,6 +179,7 @@ impl EventControllerFocusBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`EventControllerFocus`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> EventControllerFocus {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

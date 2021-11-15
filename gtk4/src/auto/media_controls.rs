@@ -151,6 +151,7 @@ impl MediaControlsBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MediaControls`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> MediaControls {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref media_stream) = self.media_stream {

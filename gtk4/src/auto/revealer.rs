@@ -284,6 +284,7 @@ impl RevealerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Revealer`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Revealer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

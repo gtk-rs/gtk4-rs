@@ -280,6 +280,7 @@ impl CellRendererProgressBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererProgress`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> CellRendererProgress {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref inverted) = self.inverted {

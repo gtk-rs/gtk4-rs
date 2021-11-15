@@ -87,6 +87,7 @@ impl PrintOperationBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PrintOperation`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> PrintOperation {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_async) = self.allow_async {

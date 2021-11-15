@@ -188,6 +188,7 @@ impl GLShaderBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GLShader`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> GLShader {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref resource) = self.resource {

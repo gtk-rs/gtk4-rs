@@ -225,6 +225,7 @@ impl FilterListModelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FilterListModel`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> FilterListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref filter) = self.filter {

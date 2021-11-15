@@ -295,6 +295,7 @@ impl DragSourceBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`DragSource`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> DragSource {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref actions) = self.actions {

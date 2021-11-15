@@ -51,6 +51,7 @@ impl EntryBufferBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`EntryBuffer`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> EntryBuffer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref max_length) = self.max_length {

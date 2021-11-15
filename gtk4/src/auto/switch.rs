@@ -232,6 +232,7 @@ impl SwitchBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Switch`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Switch {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

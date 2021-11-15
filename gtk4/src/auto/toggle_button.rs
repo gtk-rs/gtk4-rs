@@ -134,6 +134,7 @@ impl ToggleButtonBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ToggleButton`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ToggleButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

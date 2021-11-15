@@ -225,6 +225,7 @@ impl SortListModelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SortListModel`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> SortListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref incremental) = self.incremental {

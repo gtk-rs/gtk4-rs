@@ -2005,6 +2005,7 @@ impl SettingsBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Settings`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Settings {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref gtk_alternative_button_order) = self.gtk_alternative_button_order {

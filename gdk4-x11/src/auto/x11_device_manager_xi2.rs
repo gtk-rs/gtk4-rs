@@ -66,6 +66,7 @@ impl X11DeviceManagerXI2Builder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`X11DeviceManagerXI2`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> X11DeviceManagerXI2 {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

@@ -10,7 +10,6 @@ pub use self::cairo_context::CairoContext;
 
 mod clipboard;
 pub use self::clipboard::Clipboard;
-pub use self::clipboard::ClipboardBuilder;
 
 mod content_deserializer;
 pub use self::content_deserializer::ContentDeserializer;
@@ -23,7 +22,6 @@ pub use self::content_serializer::ContentSerializer;
 
 mod cursor;
 pub use self::cursor::Cursor;
-pub use self::cursor::CursorBuilder;
 
 mod device;
 pub use self::device::Device;
@@ -33,7 +31,6 @@ pub use self::device_pad::DevicePad;
 
 mod device_tool;
 pub use self::device_tool::DeviceTool;
-pub use self::device_tool::DeviceToolBuilder;
 
 mod display;
 pub use self::display::Display;

@@ -118,6 +118,7 @@ impl BoolFilterBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`BoolFilter`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> BoolFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

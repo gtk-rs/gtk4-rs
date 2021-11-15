@@ -250,6 +250,7 @@ impl ShortcutsGroupBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ShortcutsGroup`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ShortcutsGroup {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accel_size_group) = self.accel_size_group {

@@ -7,11 +7,9 @@ pub use self::x11_app_launch_context::X11AppLaunchContext;
 
 mod x11_device_manager_xi2;
 pub use self::x11_device_manager_xi2::X11DeviceManagerXI2;
-pub use self::x11_device_manager_xi2::X11DeviceManagerXI2Builder;
 
 mod x11_device_xi2;
 pub use self::x11_device_xi2::X11DeviceXI2;
-pub use self::x11_device_xi2::X11DeviceXI2Builder;
 
 mod x11_display;
 pub use self::x11_display::X11Display;

@@ -317,6 +317,7 @@ impl CellRendererPixbufBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererPixbuf`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> CellRendererPixbuf {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref gicon) = self.gicon {

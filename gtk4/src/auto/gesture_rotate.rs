@@ -99,6 +99,7 @@ impl GestureRotateBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GestureRotate`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> GestureRotate {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref n_points) = self.n_points {

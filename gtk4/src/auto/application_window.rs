@@ -139,6 +139,7 @@ impl ApplicationWindowBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ApplicationWindow`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ApplicationWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref show_menubar) = self.show_menubar {

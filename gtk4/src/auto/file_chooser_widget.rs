@@ -496,6 +496,7 @@ impl FileChooserWidgetBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FileChooserWidget`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> FileChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref search_mode) = self.search_mode {

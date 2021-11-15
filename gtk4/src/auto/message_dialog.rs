@@ -338,6 +338,7 @@ impl MessageDialogBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MessageDialog`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> MessageDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref buttons) = self.buttons {

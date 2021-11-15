@@ -332,6 +332,7 @@ impl ProgressBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ProgressBar`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ProgressBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref ellipsize) = self.ellipsize {
