@@ -21,6 +21,14 @@ impl DirectoryList {
             ffi::gtk_directory_list_set_io_priority(self.to_glib_none().0, io_priority.into_glib());
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`DirectoryList`] objects.
+    ///
+    /// This method returns an instance of [`DirectoryListBuilder`] which can be used to create [`DirectoryList`] objects.
+    pub fn builder() -> DirectoryListBuilder {
+        DirectoryListBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]
