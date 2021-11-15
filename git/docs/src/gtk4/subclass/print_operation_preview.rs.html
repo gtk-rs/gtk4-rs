@@ -304,8 +304,6 @@
 <span id="231">231</span>
 <span id="232">232</span>
 <span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -468,8 +466,6 @@
         <span class="ident">iface</span>.<span class="ident">is_selected</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">print_operation_preview_is_selected</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">end_preview</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">print_operation_preview_end_preview</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
-
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">print_operation_preview_ready</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrintOperationPreviewImpl</span><span class="op">&gt;</span>(

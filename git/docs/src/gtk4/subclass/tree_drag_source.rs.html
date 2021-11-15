@@ -223,8 +223,6 @@
 <span id="150">150</span>
 <span id="151">151</span>
 <span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::subclass::prelude</span>::<span class="kw-2">*</span>;
@@ -331,8 +329,6 @@
         <span class="ident">iface</span>.<span class="ident">drag_data_get</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tree_drag_source_drag_data_get</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">drag_data_delete</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tree_drag_source_drag_data_delete</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
     }
-
-    <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;mut</span> <span class="ident">glib::subclass::InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_drag_source_row_draggable</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeDragSourceImpl</span><span class="op">&gt;</span>(
