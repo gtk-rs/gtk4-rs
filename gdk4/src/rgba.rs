@@ -42,6 +42,7 @@ impl RGBABuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`RGBA`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> RGBA {
         let mut rgba = RGBA::WHITE;
         if let Some(blue) = self.blue {

@@ -38,6 +38,7 @@ impl ContentFormatsBuilder {
     }
 
     #[doc(alias = "gdk_content_formats_builder_to_formats")]
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_builder_to_formats(
