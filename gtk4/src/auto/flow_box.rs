@@ -48,7 +48,7 @@ impl FlowBox {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FlowBox`] objects.
     ///
-    /// This method returns an instance of [`FlowBoxBuilder`] which can be used to create [`FlowBox`] objects.
+    /// This method returns an instance of [`FlowBoxBuilder`](crate::builders::FlowBoxBuilder) which can be used to create [`FlowBox`] objects.
     pub fn builder() -> FlowBoxBuilder {
         FlowBoxBuilder::default()
     }

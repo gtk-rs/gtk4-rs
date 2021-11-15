@@ -45,7 +45,7 @@ impl EmojiChooser {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EmojiChooser`] objects.
     ///
-    /// This method returns an instance of [`EmojiChooserBuilder`] which can be used to create [`EmojiChooser`] objects.
+    /// This method returns an instance of [`EmojiChooserBuilder`](crate::builders::EmojiChooserBuilder) which can be used to create [`EmojiChooser`] objects.
     pub fn builder() -> EmojiChooserBuilder {
         EmojiChooserBuilder::default()
     }

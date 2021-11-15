@@ -37,7 +37,7 @@ impl DropControllerMotion {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DropControllerMotion`] objects.
     ///
-    /// This method returns an instance of [`DropControllerMotionBuilder`] which can be used to create [`DropControllerMotion`] objects.
+    /// This method returns an instance of [`DropControllerMotionBuilder`](crate::builders::DropControllerMotionBuilder) which can be used to create [`DropControllerMotion`] objects.
     pub fn builder() -> DropControllerMotionBuilder {
         DropControllerMotionBuilder::default()
     }

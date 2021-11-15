@@ -37,7 +37,7 @@ impl GestureLongPress {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureLongPress`] objects.
     ///
-    /// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create [`GestureLongPress`] objects.
+    /// This method returns an instance of [`GestureLongPressBuilder`](crate::builders::GestureLongPressBuilder) which can be used to create [`GestureLongPress`] objects.
     pub fn builder() -> GestureLongPressBuilder {
         GestureLongPressBuilder::default()
     }

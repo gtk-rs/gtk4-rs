@@ -25,6 +25,3 @@ pub use self::wayland_surface::WaylandSurface;
 
 mod wayland_toplevel;
 pub use self::wayland_toplevel::WaylandToplevel;
-
-#[doc(hidden)]
-pub mod traits {}

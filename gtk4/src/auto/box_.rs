@@ -45,7 +45,7 @@ impl Box {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Box`] objects.
     ///
-    /// This method returns an instance of [`BoxBuilder`] which can be used to create [`Box`] objects.
+    /// This method returns an instance of [`BoxBuilder`](crate::builders::BoxBuilder) which can be used to create [`Box`] objects.
     pub fn builder() -> BoxBuilder {
         BoxBuilder::default()
     }

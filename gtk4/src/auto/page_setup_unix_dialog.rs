@@ -50,7 +50,7 @@ impl PageSetupUnixDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PageSetupUnixDialog`] objects.
     ///
-    /// This method returns an instance of [`PageSetupUnixDialogBuilder`] which can be used to create [`PageSetupUnixDialog`] objects.
+    /// This method returns an instance of [`PageSetupUnixDialogBuilder`](crate::builders::PageSetupUnixDialogBuilder) which can be used to create [`PageSetupUnixDialog`] objects.
     pub fn builder() -> PageSetupUnixDialogBuilder {
         PageSetupUnixDialogBuilder::default()
     }

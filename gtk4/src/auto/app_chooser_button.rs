@@ -50,7 +50,7 @@ impl AppChooserButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AppChooserButton`] objects.
     ///
-    /// This method returns an instance of [`AppChooserButtonBuilder`] which can be used to create [`AppChooserButton`] objects.
+    /// This method returns an instance of [`AppChooserButtonBuilder`](crate::builders::AppChooserButtonBuilder) which can be used to create [`AppChooserButton`] objects.
     pub fn builder() -> AppChooserButtonBuilder {
         AppChooserButtonBuilder::default()
     }

@@ -44,7 +44,7 @@ impl CenterBox {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CenterBox`] objects.
     ///
-    /// This method returns an instance of [`CenterBoxBuilder`] which can be used to create [`CenterBox`] objects.
+    /// This method returns an instance of [`CenterBoxBuilder`](crate::builders::CenterBoxBuilder) which can be used to create [`CenterBox`] objects.
     pub fn builder() -> CenterBoxBuilder {
         CenterBoxBuilder::default()
     }

@@ -49,7 +49,7 @@ impl Dialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Dialog`] objects.
     ///
-    /// This method returns an instance of [`DialogBuilder`] which can be used to create [`Dialog`] objects.
+    /// This method returns an instance of [`DialogBuilder`](crate::builders::DialogBuilder) which can be used to create [`Dialog`] objects.
     pub fn builder() -> DialogBuilder {
         DialogBuilder::default()
     }

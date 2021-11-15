@@ -58,7 +58,7 @@ impl GridView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GridView`] objects.
     ///
-    /// This method returns an instance of [`GridViewBuilder`] which can be used to create [`GridView`] objects.
+    /// This method returns an instance of [`GridViewBuilder`](crate::builders::GridViewBuilder) which can be used to create [`GridView`] objects.
     pub fn builder() -> GridViewBuilder {
         GridViewBuilder::default()
     }

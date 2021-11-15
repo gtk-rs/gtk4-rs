@@ -40,7 +40,7 @@ impl DropTarget {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DropTarget`] objects.
     ///
-    /// This method returns an instance of [`DropTargetBuilder`] which can be used to create [`DropTarget`] objects.
+    /// This method returns an instance of [`DropTargetBuilder`](crate::builders::DropTargetBuilder) which can be used to create [`DropTarget`] objects.
     pub fn builder() -> DropTargetBuilder {
         DropTargetBuilder::default()
     }

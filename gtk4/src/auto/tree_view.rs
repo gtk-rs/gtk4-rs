@@ -69,7 +69,7 @@ impl TreeView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TreeView`] objects.
     ///
-    /// This method returns an instance of [`TreeViewBuilder`] which can be used to create [`TreeView`] objects.
+    /// This method returns an instance of [`TreeViewBuilder`](crate::builders::TreeViewBuilder) which can be used to create [`TreeView`] objects.
     pub fn builder() -> TreeViewBuilder {
         TreeViewBuilder::default()
     }

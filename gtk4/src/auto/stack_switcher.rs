@@ -44,7 +44,7 @@ impl StackSwitcher {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`StackSwitcher`] objects.
     ///
-    /// This method returns an instance of [`StackSwitcherBuilder`] which can be used to create [`StackSwitcher`] objects.
+    /// This method returns an instance of [`StackSwitcherBuilder`](crate::builders::StackSwitcherBuilder) which can be used to create [`StackSwitcher`] objects.
     pub fn builder() -> StackSwitcherBuilder {
         StackSwitcherBuilder::default()
     }

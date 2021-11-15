@@ -35,7 +35,7 @@ impl TextTag {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TextTag`] objects.
     ///
-    /// This method returns an instance of [`TextTagBuilder`] which can be used to create [`TextTag`] objects.
+    /// This method returns an instance of [`TextTagBuilder`](crate::builders::TextTagBuilder) which can be used to create [`TextTag`] objects.
     pub fn builder() -> TextTagBuilder {
         TextTagBuilder::default()
     }

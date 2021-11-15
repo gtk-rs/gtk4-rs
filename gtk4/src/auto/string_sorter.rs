@@ -28,7 +28,7 @@ impl StringSorter {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`StringSorter`] objects.
     ///
-    /// This method returns an instance of [`StringSorterBuilder`] which can be used to create [`StringSorter`] objects.
+    /// This method returns an instance of [`StringSorterBuilder`](crate::builders::StringSorterBuilder) which can be used to create [`StringSorter`] objects.
     pub fn builder() -> StringSorterBuilder {
         StringSorterBuilder::default()
     }

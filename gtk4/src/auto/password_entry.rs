@@ -43,7 +43,7 @@ impl PasswordEntry {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PasswordEntry`] objects.
     ///
-    /// This method returns an instance of [`PasswordEntryBuilder`] which can be used to create [`PasswordEntry`] objects.
+    /// This method returns an instance of [`PasswordEntryBuilder`](crate::builders::PasswordEntryBuilder) which can be used to create [`PasswordEntry`] objects.
     pub fn builder() -> PasswordEntryBuilder {
         PasswordEntryBuilder::default()
     }

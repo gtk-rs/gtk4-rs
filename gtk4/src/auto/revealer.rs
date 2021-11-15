@@ -42,7 +42,7 @@ impl Revealer {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Revealer`] objects.
     ///
-    /// This method returns an instance of [`RevealerBuilder`] which can be used to create [`Revealer`] objects.
+    /// This method returns an instance of [`RevealerBuilder`](crate::builders::RevealerBuilder) which can be used to create [`Revealer`] objects.
     pub fn builder() -> RevealerBuilder {
         RevealerBuilder::default()
     }

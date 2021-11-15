@@ -39,7 +39,7 @@ impl EventControllerScroll {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EventControllerScroll`] objects.
     ///
-    /// This method returns an instance of [`EventControllerScrollBuilder`] which can be used to create [`EventControllerScroll`] objects.
+    /// This method returns an instance of [`EventControllerScrollBuilder`](crate::builders::EventControllerScrollBuilder) which can be used to create [`EventControllerScroll`] objects.
     pub fn builder() -> EventControllerScrollBuilder {
         EventControllerScrollBuilder::default()
     }

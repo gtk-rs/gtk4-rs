@@ -54,7 +54,7 @@ impl Expander {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Expander`] objects.
     ///
-    /// This method returns an instance of [`ExpanderBuilder`] which can be used to create [`Expander`] objects.
+    /// This method returns an instance of [`ExpanderBuilder`](crate::builders::ExpanderBuilder) which can be used to create [`Expander`] objects.
     pub fn builder() -> ExpanderBuilder {
         ExpanderBuilder::default()
     }

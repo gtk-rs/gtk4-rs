@@ -45,7 +45,7 @@ impl VolumeButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`VolumeButton`] objects.
     ///
-    /// This method returns an instance of [`VolumeButtonBuilder`] which can be used to create [`VolumeButton`] objects.
+    /// This method returns an instance of [`VolumeButtonBuilder`](crate::builders::VolumeButtonBuilder) which can be used to create [`VolumeButton`] objects.
     pub fn builder() -> VolumeButtonBuilder {
         VolumeButtonBuilder::default()
     }

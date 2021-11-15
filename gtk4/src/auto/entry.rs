@@ -61,7 +61,7 @@ impl Entry {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Entry`] objects.
     ///
-    /// This method returns an instance of [`EntryBuilder`] which can be used to create [`Entry`] objects.
+    /// This method returns an instance of [`EntryBuilder`](crate::builders::EntryBuilder) which can be used to create [`Entry`] objects.
     pub fn builder() -> EntryBuilder {
         EntryBuilder::default()
     }

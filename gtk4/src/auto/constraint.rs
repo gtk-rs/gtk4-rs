@@ -71,7 +71,7 @@ impl Constraint {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Constraint`] objects.
     ///
-    /// This method returns an instance of [`ConstraintBuilder`] which can be used to create [`Constraint`] objects.
+    /// This method returns an instance of [`ConstraintBuilder`](crate::builders::ConstraintBuilder) which can be used to create [`Constraint`] objects.
     pub fn builder() -> ConstraintBuilder {
         ConstraintBuilder::default()
     }

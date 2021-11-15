@@ -90,7 +90,7 @@ impl Video {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Video`] objects.
     ///
-    /// This method returns an instance of [`VideoBuilder`] which can be used to create [`Video`] objects.
+    /// This method returns an instance of [`VideoBuilder`](crate::builders::VideoBuilder) which can be used to create [`Video`] objects.
     pub fn builder() -> VideoBuilder {
         VideoBuilder::default()
     }

@@ -40,7 +40,7 @@ impl EventControllerKey {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EventControllerKey`] objects.
     ///
-    /// This method returns an instance of [`EventControllerKeyBuilder`] which can be used to create [`EventControllerKey`] objects.
+    /// This method returns an instance of [`EventControllerKeyBuilder`](crate::builders::EventControllerKeyBuilder) which can be used to create [`EventControllerKey`] objects.
     pub fn builder() -> EventControllerKeyBuilder {
         EventControllerKeyBuilder::default()
     }

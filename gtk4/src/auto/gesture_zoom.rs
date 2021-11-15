@@ -36,7 +36,7 @@ impl GestureZoom {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureZoom`] objects.
     ///
-    /// This method returns an instance of [`GestureZoomBuilder`] which can be used to create [`GestureZoom`] objects.
+    /// This method returns an instance of [`GestureZoomBuilder`](crate::builders::GestureZoomBuilder) which can be used to create [`GestureZoom`] objects.
     pub fn builder() -> GestureZoomBuilder {
         GestureZoomBuilder::default()
     }

@@ -37,7 +37,7 @@ impl EventControllerLegacy {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EventControllerLegacy`] objects.
     ///
-    /// This method returns an instance of [`EventControllerLegacyBuilder`] which can be used to create [`EventControllerLegacy`] objects.
+    /// This method returns an instance of [`EventControllerLegacyBuilder`](crate::builders::EventControllerLegacyBuilder) which can be used to create [`EventControllerLegacy`] objects.
     pub fn builder() -> EventControllerLegacyBuilder {
         EventControllerLegacyBuilder::default()
     }

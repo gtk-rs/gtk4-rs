@@ -43,7 +43,7 @@ impl SearchEntry {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SearchEntry`] objects.
     ///
-    /// This method returns an instance of [`SearchEntryBuilder`] which can be used to create [`SearchEntry`] objects.
+    /// This method returns an instance of [`SearchEntryBuilder`](crate::builders::SearchEntryBuilder) which can be used to create [`SearchEntry`] objects.
     pub fn builder() -> SearchEntryBuilder {
         SearchEntryBuilder::default()
     }

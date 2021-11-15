@@ -36,7 +36,7 @@ impl IconTheme {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`IconTheme`] objects.
     ///
-    /// This method returns an instance of [`IconThemeBuilder`] which can be used to create [`IconTheme`] objects.
+    /// This method returns an instance of [`IconThemeBuilder`](crate::builders::IconThemeBuilder) which can be used to create [`IconTheme`] objects.
     pub fn builder() -> IconThemeBuilder {
         IconThemeBuilder::default()
     }

@@ -48,7 +48,7 @@ impl Adjustment {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Adjustment`] objects.
     ///
-    /// This method returns an instance of [`AdjustmentBuilder`] which can be used to create [`Adjustment`] objects.
+    /// This method returns an instance of [`AdjustmentBuilder`](crate::builders::AdjustmentBuilder) which can be used to create [`Adjustment`] objects.
     pub fn builder() -> AdjustmentBuilder {
         AdjustmentBuilder::default()
     }

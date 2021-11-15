@@ -70,7 +70,7 @@ impl TreeListModel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TreeListModel`] objects.
     ///
-    /// This method returns an instance of [`TreeListModelBuilder`] which can be used to create [`TreeListModel`] objects.
+    /// This method returns an instance of [`TreeListModelBuilder`](crate::builders::TreeListModelBuilder) which can be used to create [`TreeListModel`] objects.
     pub fn builder() -> TreeListModelBuilder {
         TreeListModelBuilder::default()
     }

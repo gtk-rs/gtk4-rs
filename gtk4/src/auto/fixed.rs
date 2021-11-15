@@ -37,7 +37,7 @@ impl Fixed {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Fixed`] objects.
     ///
-    /// This method returns an instance of [`FixedBuilder`] which can be used to create [`Fixed`] objects.
+    /// This method returns an instance of [`FixedBuilder`](crate::builders::FixedBuilder) which can be used to create [`Fixed`] objects.
     pub fn builder() -> FixedBuilder {
         FixedBuilder::default()
     }

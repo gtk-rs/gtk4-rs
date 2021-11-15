@@ -38,7 +38,7 @@ impl FileChooserDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FileChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`FileChooserDialogBuilder`] which can be used to create [`FileChooserDialog`] objects.
+    /// This method returns an instance of [`FileChooserDialogBuilder`](crate::builders::FileChooserDialogBuilder) which can be used to create [`FileChooserDialog`] objects.
     pub fn builder() -> FileChooserDialogBuilder {
         FileChooserDialogBuilder::default()
     }

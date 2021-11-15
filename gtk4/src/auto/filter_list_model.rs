@@ -42,7 +42,7 @@ impl FilterListModel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FilterListModel`] objects.
     ///
-    /// This method returns an instance of [`FilterListModelBuilder`] which can be used to create [`FilterListModel`] objects.
+    /// This method returns an instance of [`FilterListModelBuilder`](crate::builders::FilterListModelBuilder) which can be used to create [`FilterListModel`] objects.
     pub fn builder() -> FilterListModelBuilder {
         FilterListModelBuilder::default()
     }

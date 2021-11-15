@@ -35,7 +35,7 @@ impl Printer {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Printer`] objects.
     ///
-    /// This method returns an instance of [`PrinterBuilder`] which can be used to create [`Printer`] objects.
+    /// This method returns an instance of [`PrinterBuilder`](crate::builders::PrinterBuilder) which can be used to create [`Printer`] objects.
     pub fn builder() -> PrinterBuilder {
         PrinterBuilder::default()
     }

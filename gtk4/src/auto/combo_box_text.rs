@@ -48,7 +48,7 @@ impl ComboBoxText {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ComboBoxText`] objects.
     ///
-    /// This method returns an instance of [`ComboBoxTextBuilder`] which can be used to create [`ComboBoxText`] objects.
+    /// This method returns an instance of [`ComboBoxTextBuilder`](crate::builders::ComboBoxTextBuilder) which can be used to create [`ComboBoxText`] objects.
     pub fn builder() -> ComboBoxTextBuilder {
         ComboBoxTextBuilder::default()
     }

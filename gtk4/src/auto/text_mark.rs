@@ -34,7 +34,7 @@ impl TextMark {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TextMark`] objects.
     ///
-    /// This method returns an instance of [`TextMarkBuilder`] which can be used to create [`TextMark`] objects.
+    /// This method returns an instance of [`TextMarkBuilder`](crate::builders::TextMarkBuilder) which can be used to create [`TextMark`] objects.
     pub fn builder() -> TextMarkBuilder {
         TextMarkBuilder::default()
     }

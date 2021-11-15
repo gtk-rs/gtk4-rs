@@ -47,7 +47,7 @@ impl Window {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Window`] objects.
     ///
-    /// This method returns an instance of [`WindowBuilder`] which can be used to create [`Window`] objects.
+    /// This method returns an instance of [`WindowBuilder`](crate::builders::WindowBuilder) which can be used to create [`Window`] objects.
     pub fn builder() -> WindowBuilder {
         WindowBuilder::default()
     }

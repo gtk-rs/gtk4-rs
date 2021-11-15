@@ -41,7 +41,7 @@ impl ActionBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ActionBar`] objects.
     ///
-    /// This method returns an instance of [`ActionBarBuilder`] which can be used to create [`ActionBar`] objects.
+    /// This method returns an instance of [`ActionBarBuilder`](crate::builders::ActionBarBuilder) which can be used to create [`ActionBar`] objects.
     pub fn builder() -> ActionBarBuilder {
         ActionBarBuilder::default()
     }

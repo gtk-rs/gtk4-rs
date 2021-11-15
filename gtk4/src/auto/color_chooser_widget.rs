@@ -42,7 +42,7 @@ impl ColorChooserWidget {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ColorChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`ColorChooserWidgetBuilder`] which can be used to create [`ColorChooserWidget`] objects.
+    /// This method returns an instance of [`ColorChooserWidgetBuilder`](crate::builders::ColorChooserWidgetBuilder) which can be used to create [`ColorChooserWidget`] objects.
     pub fn builder() -> ColorChooserWidgetBuilder {
         ColorChooserWidgetBuilder::default()
     }

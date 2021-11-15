@@ -38,7 +38,7 @@ impl SingleSelection {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SingleSelection`] objects.
     ///
-    /// This method returns an instance of [`SingleSelectionBuilder`] which can be used to create [`SingleSelection`] objects.
+    /// This method returns an instance of [`SingleSelectionBuilder`](crate::builders::SingleSelectionBuilder) which can be used to create [`SingleSelection`] objects.
     pub fn builder() -> SingleSelectionBuilder {
         SingleSelectionBuilder::default()
     }

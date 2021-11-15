@@ -39,7 +39,7 @@ impl CellRendererCombo {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererCombo`] objects.
     ///
-    /// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create [`CellRendererCombo`] objects.
+    /// This method returns an instance of [`CellRendererComboBuilder`](crate::builders::CellRendererComboBuilder) which can be used to create [`CellRendererCombo`] objects.
     pub fn builder() -> CellRendererComboBuilder {
         CellRendererComboBuilder::default()
     }

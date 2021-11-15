@@ -57,7 +57,7 @@ impl PrintUnixDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PrintUnixDialog`] objects.
     ///
-    /// This method returns an instance of [`PrintUnixDialogBuilder`] which can be used to create [`PrintUnixDialog`] objects.
+    /// This method returns an instance of [`PrintUnixDialogBuilder`](crate::builders::PrintUnixDialogBuilder) which can be used to create [`PrintUnixDialog`] objects.
     pub fn builder() -> PrintUnixDialogBuilder {
         PrintUnixDialogBuilder::default()
     }

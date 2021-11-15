@@ -53,7 +53,7 @@ impl ScaleButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ScaleButton`] objects.
     ///
-    /// This method returns an instance of [`ScaleButtonBuilder`] which can be used to create [`ScaleButton`] objects.
+    /// This method returns an instance of [`ScaleButtonBuilder`](crate::builders::ScaleButtonBuilder) which can be used to create [`ScaleButton`] objects.
     pub fn builder() -> ScaleButtonBuilder {
         ScaleButtonBuilder::default()
     }

@@ -45,7 +45,7 @@ impl Paned {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Paned`] objects.
     ///
-    /// This method returns an instance of [`PanedBuilder`] which can be used to create [`Paned`] objects.
+    /// This method returns an instance of [`PanedBuilder`](crate::builders::PanedBuilder) which can be used to create [`Paned`] objects.
     pub fn builder() -> PanedBuilder {
         PanedBuilder::default()
     }

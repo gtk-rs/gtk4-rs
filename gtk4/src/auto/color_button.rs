@@ -55,7 +55,7 @@ impl ColorButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ColorButton`] objects.
     ///
-    /// This method returns an instance of [`ColorButtonBuilder`] which can be used to create [`ColorButton`] objects.
+    /// This method returns an instance of [`ColorButtonBuilder`](crate::builders::ColorButtonBuilder) which can be used to create [`ColorButton`] objects.
     pub fn builder() -> ColorButtonBuilder {
         ColorButtonBuilder::default()
     }

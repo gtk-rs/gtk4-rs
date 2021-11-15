@@ -28,7 +28,7 @@ impl Application {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Application`] objects.
     ///
-    /// This method returns an instance of [`ApplicationBuilder`] which can be used to create [`Application`] objects.
+    /// This method returns an instance of [`ApplicationBuilder`](crate::builders::ApplicationBuilder) which can be used to create [`Application`] objects.
     pub fn builder() -> ApplicationBuilder {
         ApplicationBuilder::default()
     }

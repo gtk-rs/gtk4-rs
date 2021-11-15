@@ -42,7 +42,7 @@ impl SearchBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SearchBar`] objects.
     ///
-    /// This method returns an instance of [`SearchBarBuilder`] which can be used to create [`SearchBar`] objects.
+    /// This method returns an instance of [`SearchBarBuilder`](crate::builders::SearchBarBuilder) which can be used to create [`SearchBar`] objects.
     pub fn builder() -> SearchBarBuilder {
         SearchBarBuilder::default()
     }

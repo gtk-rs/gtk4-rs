@@ -78,7 +78,7 @@ impl ComboBox {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ComboBox`] objects.
     ///
-    /// This method returns an instance of [`ComboBoxBuilder`] which can be used to create [`ComboBox`] objects.
+    /// This method returns an instance of [`ComboBoxBuilder`](crate::builders::ComboBoxBuilder) which can be used to create [`ComboBox`] objects.
     pub fn builder() -> ComboBoxBuilder {
         ComboBoxBuilder::default()
     }

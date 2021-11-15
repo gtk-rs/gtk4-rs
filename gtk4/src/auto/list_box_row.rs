@@ -42,7 +42,7 @@ impl ListBoxRow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ListBoxRow`] objects.
     ///
-    /// This method returns an instance of [`ListBoxRowBuilder`] which can be used to create [`ListBoxRow`] objects.
+    /// This method returns an instance of [`ListBoxRowBuilder`](crate::builders::ListBoxRowBuilder) which can be used to create [`ListBoxRow`] objects.
     pub fn builder() -> ListBoxRowBuilder {
         ListBoxRowBuilder::default()
     }

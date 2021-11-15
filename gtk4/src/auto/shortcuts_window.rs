@@ -41,7 +41,7 @@ impl ShortcutsWindow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ShortcutsWindow`] objects.
     ///
-    /// This method returns an instance of [`ShortcutsWindowBuilder`] which can be used to create [`ShortcutsWindow`] objects.
+    /// This method returns an instance of [`ShortcutsWindowBuilder`](crate::builders::ShortcutsWindowBuilder) which can be used to create [`ShortcutsWindow`] objects.
     pub fn builder() -> ShortcutsWindowBuilder {
         ShortcutsWindowBuilder::default()
     }

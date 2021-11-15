@@ -23,7 +23,7 @@ impl X11DeviceManagerXI2 {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`X11DeviceManagerXI2`] objects.
     ///
-    /// This method returns an instance of [`X11DeviceManagerXI2Builder`] which can be used to create [`X11DeviceManagerXI2`] objects.
+    /// This method returns an instance of [`X11DeviceManagerXI2Builder`](crate::builders::X11DeviceManagerXI2Builder) which can be used to create [`X11DeviceManagerXI2`] objects.
     pub fn builder() -> X11DeviceManagerXI2Builder {
         X11DeviceManagerXI2Builder::default()
     }

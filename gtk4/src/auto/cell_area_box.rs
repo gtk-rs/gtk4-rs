@@ -39,7 +39,7 @@ impl CellAreaBox {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellAreaBox`] objects.
     ///
-    /// This method returns an instance of [`CellAreaBoxBuilder`] which can be used to create [`CellAreaBox`] objects.
+    /// This method returns an instance of [`CellAreaBoxBuilder`](crate::builders::CellAreaBoxBuilder) which can be used to create [`CellAreaBox`] objects.
     pub fn builder() -> CellAreaBoxBuilder {
         CellAreaBoxBuilder::default()
     }

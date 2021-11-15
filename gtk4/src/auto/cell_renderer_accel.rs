@@ -37,7 +37,7 @@ impl CellRendererAccel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererAccel`] objects.
     ///
-    /// This method returns an instance of [`CellRendererAccelBuilder`] which can be used to create [`CellRendererAccel`] objects.
+    /// This method returns an instance of [`CellRendererAccelBuilder`](crate::builders::CellRendererAccelBuilder) which can be used to create [`CellRendererAccel`] objects.
     pub fn builder() -> CellRendererAccelBuilder {
         CellRendererAccelBuilder::default()
     }

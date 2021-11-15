@@ -43,7 +43,7 @@ impl Switch {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Switch`] objects.
     ///
-    /// This method returns an instance of [`SwitchBuilder`] which can be used to create [`Switch`] objects.
+    /// This method returns an instance of [`SwitchBuilder`](crate::builders::SwitchBuilder) which can be used to create [`Switch`] objects.
     pub fn builder() -> SwitchBuilder {
         SwitchBuilder::default()
     }

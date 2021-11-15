@@ -39,7 +39,7 @@ impl BoxLayout {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`BoxLayout`] objects.
     ///
-    /// This method returns an instance of [`BoxLayoutBuilder`] which can be used to create [`BoxLayout`] objects.
+    /// This method returns an instance of [`BoxLayoutBuilder`](crate::builders::BoxLayoutBuilder) which can be used to create [`BoxLayout`] objects.
     pub fn builder() -> BoxLayoutBuilder {
         BoxLayoutBuilder::default()
     }

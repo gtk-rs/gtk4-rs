@@ -49,7 +49,7 @@ impl DropDown {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DropDown`] objects.
     ///
-    /// This method returns an instance of [`DropDownBuilder`] which can be used to create [`DropDown`] objects.
+    /// This method returns an instance of [`DropDownBuilder`](crate::builders::DropDownBuilder) which can be used to create [`DropDown`] objects.
     pub fn builder() -> DropDownBuilder {
         DropDownBuilder::default()
     }

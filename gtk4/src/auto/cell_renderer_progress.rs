@@ -36,7 +36,7 @@ impl CellRendererProgress {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererProgress`] objects.
     ///
-    /// This method returns an instance of [`CellRendererProgressBuilder`] which can be used to create [`CellRendererProgress`] objects.
+    /// This method returns an instance of [`CellRendererProgressBuilder`](crate::builders::CellRendererProgressBuilder) which can be used to create [`CellRendererProgress`] objects.
     pub fn builder() -> CellRendererProgressBuilder {
         CellRendererProgressBuilder::default()
     }

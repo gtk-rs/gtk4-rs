@@ -49,7 +49,7 @@ impl AspectFrame {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AspectFrame`] objects.
     ///
-    /// This method returns an instance of [`AspectFrameBuilder`] which can be used to create [`AspectFrame`] objects.
+    /// This method returns an instance of [`AspectFrameBuilder`](crate::builders::AspectFrameBuilder) which can be used to create [`AspectFrame`] objects.
     pub fn builder() -> AspectFrameBuilder {
         AspectFrameBuilder::default()
     }

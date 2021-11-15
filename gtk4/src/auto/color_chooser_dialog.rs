@@ -54,7 +54,7 @@ impl ColorChooserDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ColorChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`ColorChooserDialogBuilder`] which can be used to create [`ColorChooserDialog`] objects.
+    /// This method returns an instance of [`ColorChooserDialogBuilder`](crate::builders::ColorChooserDialogBuilder) which can be used to create [`ColorChooserDialog`] objects.
     pub fn builder() -> ColorChooserDialogBuilder {
         ColorChooserDialogBuilder::default()
     }

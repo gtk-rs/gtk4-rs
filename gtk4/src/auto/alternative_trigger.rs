@@ -38,7 +38,7 @@ impl AlternativeTrigger {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AlternativeTrigger`] objects.
     ///
-    /// This method returns an instance of [`AlternativeTriggerBuilder`] which can be used to create [`AlternativeTrigger`] objects.
+    /// This method returns an instance of [`AlternativeTriggerBuilder`](crate::builders::AlternativeTriggerBuilder) which can be used to create [`AlternativeTrigger`] objects.
     pub fn builder() -> AlternativeTriggerBuilder {
         AlternativeTriggerBuilder::default()
     }

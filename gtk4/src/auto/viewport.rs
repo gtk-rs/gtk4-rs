@@ -53,7 +53,7 @@ impl Viewport {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Viewport`] objects.
     ///
-    /// This method returns an instance of [`ViewportBuilder`] which can be used to create [`Viewport`] objects.
+    /// This method returns an instance of [`ViewportBuilder`](crate::builders::ViewportBuilder) which can be used to create [`Viewport`] objects.
     pub fn builder() -> ViewportBuilder {
         ViewportBuilder::default()
     }

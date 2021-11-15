@@ -51,7 +51,7 @@ impl ApplicationWindow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ApplicationWindow`] objects.
     ///
-    /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create [`ApplicationWindow`] objects.
+    /// This method returns an instance of [`ApplicationWindowBuilder`](crate::builders::ApplicationWindowBuilder) which can be used to create [`ApplicationWindow`] objects.
     pub fn builder() -> ApplicationWindowBuilder {
         ApplicationWindowBuilder::default()
     }

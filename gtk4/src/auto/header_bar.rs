@@ -41,7 +41,7 @@ impl HeaderBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`HeaderBar`] objects.
     ///
-    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create [`HeaderBar`] objects.
+    /// This method returns an instance of [`HeaderBarBuilder`](crate::builders::HeaderBarBuilder) which can be used to create [`HeaderBar`] objects.
     pub fn builder() -> HeaderBarBuilder {
         HeaderBarBuilder::default()
     }

@@ -29,7 +29,7 @@ impl StringFilter {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`StringFilter`] objects.
     ///
-    /// This method returns an instance of [`StringFilterBuilder`] which can be used to create [`StringFilter`] objects.
+    /// This method returns an instance of [`StringFilterBuilder`](crate::builders::StringFilterBuilder) which can be used to create [`StringFilter`] objects.
     pub fn builder() -> StringFilterBuilder {
         StringFilterBuilder::default()
     }

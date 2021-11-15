@@ -37,7 +37,7 @@ impl TextBuffer {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TextBuffer`] objects.
     ///
-    /// This method returns an instance of [`TextBufferBuilder`] which can be used to create [`TextBuffer`] objects.
+    /// This method returns an instance of [`TextBufferBuilder`](crate::builders::TextBufferBuilder) which can be used to create [`TextBuffer`] objects.
     pub fn builder() -> TextBufferBuilder {
         TextBufferBuilder::default()
     }

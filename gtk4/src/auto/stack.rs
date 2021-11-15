@@ -44,7 +44,7 @@ impl Stack {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Stack`] objects.
     ///
-    /// This method returns an instance of [`StackBuilder`] which can be used to create [`Stack`] objects.
+    /// This method returns an instance of [`StackBuilder`](crate::builders::StackBuilder) which can be used to create [`Stack`] objects.
     pub fn builder() -> StackBuilder {
         StackBuilder::default()
     }

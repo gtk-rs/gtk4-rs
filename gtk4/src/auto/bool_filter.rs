@@ -28,7 +28,7 @@ impl BoolFilter {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`BoolFilter`] objects.
     ///
-    /// This method returns an instance of [`BoolFilterBuilder`] which can be used to create [`BoolFilter`] objects.
+    /// This method returns an instance of [`BoolFilterBuilder`](crate::builders::BoolFilterBuilder) which can be used to create [`BoolFilter`] objects.
     pub fn builder() -> BoolFilterBuilder {
         BoolFilterBuilder::default()
     }

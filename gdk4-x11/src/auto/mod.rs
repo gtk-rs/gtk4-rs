@@ -35,4 +35,7 @@ pub use self::enums::X11DeviceType;
 pub mod functions;
 
 #[doc(hidden)]
-pub mod traits {}
+pub mod builders {
+    pub use super::x11_device_manager_xi2::X11DeviceManagerXI2Builder;
+    pub use super::x11_device_xi2::X11DeviceXI2Builder;
+}

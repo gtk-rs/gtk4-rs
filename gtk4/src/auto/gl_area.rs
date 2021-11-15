@@ -41,7 +41,7 @@ impl GLArea {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GLArea`] objects.
     ///
-    /// This method returns an instance of [`GLAreaBuilder`] which can be used to create [`GLArea`] objects.
+    /// This method returns an instance of [`GLAreaBuilder`](crate::builders::GLAreaBuilder) which can be used to create [`GLArea`] objects.
     pub fn builder() -> GLAreaBuilder {
         GLAreaBuilder::default()
     }

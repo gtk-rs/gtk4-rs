@@ -54,7 +54,7 @@ impl Cursor {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Cursor`] objects.
     ///
-    /// This method returns an instance of [`CursorBuilder`] which can be used to create [`Cursor`] objects.
+    /// This method returns an instance of [`CursorBuilder`](crate::builders::CursorBuilder) which can be used to create [`Cursor`] objects.
     pub fn builder() -> CursorBuilder {
         CursorBuilder::default()
     }

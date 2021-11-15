@@ -38,7 +38,7 @@ impl GestureDrag {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureDrag`] objects.
     ///
-    /// This method returns an instance of [`GestureDragBuilder`] which can be used to create [`GestureDrag`] objects.
+    /// This method returns an instance of [`GestureDragBuilder`](crate::builders::GestureDragBuilder) which can be used to create [`GestureDrag`] objects.
     pub fn builder() -> GestureDragBuilder {
         GestureDragBuilder::default()
     }

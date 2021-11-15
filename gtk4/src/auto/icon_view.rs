@@ -82,7 +82,7 @@ impl IconView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`IconView`] objects.
     ///
-    /// This method returns an instance of [`IconViewBuilder`] which can be used to create [`IconView`] objects.
+    /// This method returns an instance of [`IconViewBuilder`](crate::builders::IconViewBuilder) which can be used to create [`IconView`] objects.
     pub fn builder() -> IconViewBuilder {
         IconViewBuilder::default()
     }

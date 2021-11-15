@@ -47,7 +47,7 @@ impl AboutDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AboutDialog`] objects.
     ///
-    /// This method returns an instance of [`AboutDialogBuilder`] which can be used to create [`AboutDialog`] objects.
+    /// This method returns an instance of [`AboutDialogBuilder`](crate::builders::AboutDialogBuilder) which can be used to create [`AboutDialog`] objects.
     pub fn builder() -> AboutDialogBuilder {
         AboutDialogBuilder::default()
     }

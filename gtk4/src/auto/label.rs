@@ -55,7 +55,7 @@ impl Label {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Label`] objects.
     ///
-    /// This method returns an instance of [`LabelBuilder`] which can be used to create [`Label`] objects.
+    /// This method returns an instance of [`LabelBuilder`](crate::builders::LabelBuilder) which can be used to create [`Label`] objects.
     pub fn builder() -> LabelBuilder {
         LabelBuilder::default()
     }
