@@ -150,6 +150,7 @@ impl BorderBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Border`].
+    #[must_use = "The builder must be built to be used"]
     pub fn build(self) -> Border {
         let mut border = Border::default();
         if let Some(left) = self.left {

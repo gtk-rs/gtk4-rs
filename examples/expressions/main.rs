@@ -21,7 +21,7 @@ fn main() {
 fn build_ui(app: &gtk::Application) {
     let factory = gtk::SignalListItemFactory::new();
     factory.connect_setup(|_, list_item| {
-        let hbox = gtk::BoxBuilder::new()
+        let hbox = gtk::Box::builder()
             .orientation(gtk::Orientation::Horizontal)
             .spacing(24)
             .build();
@@ -60,12 +60,12 @@ fn build_ui(app: &gtk::Application) {
     let model = gtk::NoSelection::new(Some(&data()));
     let list_view = gtk::ListView::new(Some(&model), Some(&factory));
 
-    let scrolled_window = gtk::ScrolledWindowBuilder::new()
+    let scrolled_window = gtk::ScrolledWindow::builder()
         .child(&list_view)
         .hscrollbar_policy(gtk::PolicyType::Never)
         .build();
 
-    let window = gtk::ApplicationWindowBuilder::new()
+    let window = gtk::ApplicationWindow::builder()
         .application(app)
         .title("Expressions")
         .default_height(500)
