@@ -12,6 +12,4 @@ unsafe impl<T: ConstraintTargetImpl> IsImplementable<T> for ConstraintTarget {
             "GTK has to be initialized first"
         );
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }

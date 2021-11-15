@@ -71,8 +71,6 @@ unsafe impl<T: SymbolicPaintableImpl> IsImplementable<T> for SymbolicPaintable {
 
         iface.snapshot_symbolic = Some(symbolic_paintable_snapshot_symbolic::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn symbolic_paintable_snapshot_symbolic<T: SymbolicPaintableImpl>(

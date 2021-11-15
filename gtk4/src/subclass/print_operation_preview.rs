@@ -160,8 +160,6 @@ unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationP
         iface.is_selected = Some(print_operation_preview_is_selected::<T>);
         iface.end_preview = Some(print_operation_preview_end_preview::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn print_operation_preview_ready<T: PrintOperationPreviewImpl>(

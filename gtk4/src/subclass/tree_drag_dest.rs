@@ -97,8 +97,6 @@ unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
         iface.drag_data_received = Some(tree_drag_dest_drag_data_received::<T>);
         iface.row_drop_possible = Some(tree_drag_dest_row_drop_possible::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(

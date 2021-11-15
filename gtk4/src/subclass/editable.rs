@@ -311,8 +311,6 @@ unsafe impl<T: EditableImpl + ObjectSubclass> IsImplementable<T> for Editable {
             ffi::gtk_editable_install_properties(object_class, first_prop);
         }
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn editable_insert_text<T: EditableImpl>(

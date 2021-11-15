@@ -88,8 +88,6 @@ unsafe impl<T: CellEditableImpl> IsImplementable<T> for CellEditable {
         iface.remove_widget = Some(cell_editable_remove_widget::<T>);
         iface.start_editing = Some(cell_editable_start_editing::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn cell_editable_editing_done<T: CellEditableImpl>(

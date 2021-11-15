@@ -48,8 +48,6 @@ unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
 
         iface.get_border = Some(scrollable_get_border::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
