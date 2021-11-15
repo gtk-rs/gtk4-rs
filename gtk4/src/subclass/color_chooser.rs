@@ -142,8 +142,6 @@ unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {
         iface.get_rgba = Some(color_chooser_get_rgba::<T>);
         iface.set_rgba = Some(color_chooser_set_rgba::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn color_chooser_add_palette<T: ColorChooserImpl>(

@@ -242,8 +242,6 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
         iface.get_font_map = Some(font_chooser_get_font_map::<T>);
         iface.set_filter_func = Some(font_chooser_set_filter_func::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 static FONT_CHOOSER_GET_FONT_FAMILY_QUARK: Lazy<Quark> =

@@ -104,8 +104,6 @@ unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
         iface.drag_data_get = Some(tree_drag_source_drag_data_get::<T>);
         iface.drag_data_delete = Some(tree_drag_source_drag_data_delete::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn tree_drag_source_row_draggable<T: TreeDragSourceImpl>(

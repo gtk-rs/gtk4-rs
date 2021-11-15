@@ -12,6 +12,4 @@ unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {
             "GTK has to be initialized first"
         );
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }

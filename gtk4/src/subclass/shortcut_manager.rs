@@ -86,8 +86,6 @@ unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
         iface.add_controller = Some(shortcut_manager_add_controller::<T>);
         iface.remove_controller = Some(shortcut_manager_remove_controller::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn shortcut_manager_add_controller<T: ShortcutManagerImpl>(

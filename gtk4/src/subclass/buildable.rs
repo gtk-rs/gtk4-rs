@@ -283,8 +283,6 @@ unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
         iface.custom_finished = Some(buildable_custom_finished::<T>);
         */
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn buildable_set_id<T: BuildableImpl>(

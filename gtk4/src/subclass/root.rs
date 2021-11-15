@@ -6,7 +6,10 @@ use crate::Root;
 pub trait RootImpl: NativeImpl {}
 
 unsafe impl<T: RootImpl> IsImplementable<T> for Root {
-    fn interface_init(_iface: &mut glib::Interface<Self>) {}
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
+    fn interface_init(_iface: &mut glib::Interface<Self>) {
+        assert!(
+            crate::rt::is_initialized(),
+            "GTK has to be initialized first"
+        );
+    }
 }

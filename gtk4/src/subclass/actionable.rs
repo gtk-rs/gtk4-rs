@@ -98,8 +98,6 @@ unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
         iface.set_action_name = Some(actionable_set_action_name::<T>);
         iface.set_action_target_value = Some(actionable_set_action_target_value::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(

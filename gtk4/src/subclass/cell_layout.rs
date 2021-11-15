@@ -335,8 +335,6 @@ unsafe impl<T: CellLayoutImpl> IsImplementable<T> for CellLayout {
         iface.set_cell_data_func = Some(cell_layout_set_cell_data_func::<T>);
         iface.get_cells = Some(cell_layout_get_cells::<T>);
     }
-
-    fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }
 
 unsafe extern "C" fn cell_layout_get_area<T: CellLayoutImpl>(
