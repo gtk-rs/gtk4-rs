@@ -23,7 +23,7 @@ impl X11DeviceXI2 {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`X11DeviceXI2`] objects.
     ///
-    /// This method returns an instance of [`X11DeviceXI2Builder`] which can be used to create [`X11DeviceXI2`] objects.
+    /// This method returns an instance of [`X11DeviceXI2Builder`](crate::builders::X11DeviceXI2Builder) which can be used to create [`X11DeviceXI2`] objects.
     pub fn builder() -> X11DeviceXI2Builder {
         X11DeviceXI2Builder::default()
     }

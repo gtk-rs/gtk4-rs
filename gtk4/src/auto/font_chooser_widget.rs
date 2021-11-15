@@ -43,7 +43,7 @@ impl FontChooserWidget {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FontChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`FontChooserWidgetBuilder`] which can be used to create [`FontChooserWidget`] objects.
+    /// This method returns an instance of [`FontChooserWidgetBuilder`](crate::builders::FontChooserWidgetBuilder) which can be used to create [`FontChooserWidget`] objects.
     pub fn builder() -> FontChooserWidgetBuilder {
         FontChooserWidgetBuilder::default()
     }

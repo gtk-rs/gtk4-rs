@@ -49,7 +49,7 @@ impl EntryCompletion {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EntryCompletion`] objects.
     ///
-    /// This method returns an instance of [`EntryCompletionBuilder`] which can be used to create [`EntryCompletion`] objects.
+    /// This method returns an instance of [`EntryCompletionBuilder`](crate::builders::EntryCompletionBuilder) which can be used to create [`EntryCompletion`] objects.
     pub fn builder() -> EntryCompletionBuilder {
         EntryCompletionBuilder::default()
     }

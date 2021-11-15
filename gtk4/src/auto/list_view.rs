@@ -58,7 +58,7 @@ impl ListView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ListView`] objects.
     ///
-    /// This method returns an instance of [`ListViewBuilder`] which can be used to create [`ListView`] objects.
+    /// This method returns an instance of [`ListViewBuilder`](crate::builders::ListViewBuilder) which can be used to create [`ListView`] objects.
     pub fn builder() -> ListViewBuilder {
         ListViewBuilder::default()
     }

@@ -26,7 +26,7 @@ impl EntryBuffer {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EntryBuffer`] objects.
     ///
-    /// This method returns an instance of [`EntryBufferBuilder`] which can be used to create [`EntryBuffer`] objects.
+    /// This method returns an instance of [`EntryBufferBuilder`](crate::builders::EntryBufferBuilder) which can be used to create [`EntryBuffer`] objects.
     pub fn builder() -> EntryBufferBuilder {
         EntryBufferBuilder::default()
     }

@@ -178,3 +178,9 @@ pub mod traits {
     pub use super::texture::TextureExt;
     pub use super::toplevel::ToplevelExt;
 }
+#[doc(hidden)]
+pub mod builders {
+    pub use super::clipboard::ClipboardBuilder;
+    pub use super::cursor::CursorBuilder;
+    pub use super::device_tool::DeviceToolBuilder;
+}

@@ -40,7 +40,7 @@ impl Frame {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Frame`] objects.
     ///
-    /// This method returns an instance of [`FrameBuilder`] which can be used to create [`Frame`] objects.
+    /// This method returns an instance of [`FrameBuilder`](crate::builders::FrameBuilder) which can be used to create [`Frame`] objects.
     pub fn builder() -> FrameBuilder {
         FrameBuilder::default()
     }

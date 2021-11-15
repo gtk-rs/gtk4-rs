@@ -43,7 +43,7 @@ impl Shortcut {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Shortcut`] objects.
     ///
-    /// This method returns an instance of [`ShortcutBuilder`] which can be used to create [`Shortcut`] objects.
+    /// This method returns an instance of [`ShortcutBuilder`](crate::builders::ShortcutBuilder) which can be used to create [`Shortcut`] objects.
     pub fn builder() -> ShortcutBuilder {
         ShortcutBuilder::default()
     }

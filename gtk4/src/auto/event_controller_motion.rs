@@ -37,7 +37,7 @@ impl EventControllerMotion {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EventControllerMotion`] objects.
     ///
-    /// This method returns an instance of [`EventControllerMotionBuilder`] which can be used to create [`EventControllerMotion`] objects.
+    /// This method returns an instance of [`EventControllerMotionBuilder`](crate::builders::EventControllerMotionBuilder) which can be used to create [`EventControllerMotion`] objects.
     pub fn builder() -> EventControllerMotionBuilder {
         EventControllerMotionBuilder::default()
     }

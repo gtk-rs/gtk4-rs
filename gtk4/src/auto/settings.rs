@@ -28,7 +28,7 @@ impl Settings {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Settings`] objects.
     ///
-    /// This method returns an instance of [`SettingsBuilder`] which can be used to create [`Settings`] objects.
+    /// This method returns an instance of [`SettingsBuilder`](crate::builders::SettingsBuilder) which can be used to create [`Settings`] objects.
     pub fn builder() -> SettingsBuilder {
         SettingsBuilder::default()
     }

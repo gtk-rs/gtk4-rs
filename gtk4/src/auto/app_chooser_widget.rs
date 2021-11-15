@@ -47,7 +47,7 @@ impl AppChooserWidget {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AppChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`AppChooserWidgetBuilder`] which can be used to create [`AppChooserWidget`] objects.
+    /// This method returns an instance of [`AppChooserWidgetBuilder`](crate::builders::AppChooserWidgetBuilder) which can be used to create [`AppChooserWidget`] objects.
     pub fn builder() -> AppChooserWidgetBuilder {
         AppChooserWidgetBuilder::default()
     }

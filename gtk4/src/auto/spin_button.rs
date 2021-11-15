@@ -72,7 +72,7 @@ impl SpinButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SpinButton`] objects.
     ///
-    /// This method returns an instance of [`SpinButtonBuilder`] which can be used to create [`SpinButton`] objects.
+    /// This method returns an instance of [`SpinButtonBuilder`](crate::builders::SpinButtonBuilder) which can be used to create [`SpinButton`] objects.
     pub fn builder() -> SpinButtonBuilder {
         SpinButtonBuilder::default()
     }

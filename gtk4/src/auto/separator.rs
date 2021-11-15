@@ -40,7 +40,7 @@ impl Separator {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Separator`] objects.
     ///
-    /// This method returns an instance of [`SeparatorBuilder`] which can be used to create [`Separator`] objects.
+    /// This method returns an instance of [`SeparatorBuilder`](crate::builders::SeparatorBuilder) which can be used to create [`Separator`] objects.
     pub fn builder() -> SeparatorBuilder {
         SeparatorBuilder::default()
     }

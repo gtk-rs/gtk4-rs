@@ -39,7 +39,7 @@ impl SliceListModel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SliceListModel`] objects.
     ///
-    /// This method returns an instance of [`SliceListModelBuilder`] which can be used to create [`SliceListModel`] objects.
+    /// This method returns an instance of [`SliceListModelBuilder`](crate::builders::SliceListModelBuilder) which can be used to create [`SliceListModel`] objects.
     pub fn builder() -> SliceListModelBuilder {
         SliceListModelBuilder::default()
     }

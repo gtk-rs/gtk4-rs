@@ -48,7 +48,7 @@ impl FileChooserWidget {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FileChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`FileChooserWidgetBuilder`] which can be used to create [`FileChooserWidget`] objects.
+    /// This method returns an instance of [`FileChooserWidgetBuilder`](crate::builders::FileChooserWidgetBuilder) which can be used to create [`FileChooserWidget`] objects.
     pub fn builder() -> FileChooserWidgetBuilder {
         FileChooserWidgetBuilder::default()
     }

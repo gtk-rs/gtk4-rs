@@ -43,7 +43,7 @@ impl PrintOperation {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PrintOperation`] objects.
     ///
-    /// This method returns an instance of [`PrintOperationBuilder`] which can be used to create [`PrintOperation`] objects.
+    /// This method returns an instance of [`PrintOperationBuilder`](crate::builders::PrintOperationBuilder) which can be used to create [`PrintOperation`] objects.
     pub fn builder() -> PrintOperationBuilder {
         PrintOperationBuilder::default()
     }

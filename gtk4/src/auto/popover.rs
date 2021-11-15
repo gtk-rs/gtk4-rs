@@ -45,7 +45,7 @@ impl Popover {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Popover`] objects.
     ///
-    /// This method returns an instance of [`PopoverBuilder`] which can be used to create [`Popover`] objects.
+    /// This method returns an instance of [`PopoverBuilder`](crate::builders::PopoverBuilder) which can be used to create [`Popover`] objects.
     pub fn builder() -> PopoverBuilder {
         PopoverBuilder::default()
     }

@@ -40,7 +40,7 @@ impl ShortcutsGroup {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ShortcutsGroup`] objects.
     ///
-    /// This method returns an instance of [`ShortcutsGroupBuilder`] which can be used to create [`ShortcutsGroup`] objects.
+    /// This method returns an instance of [`ShortcutsGroupBuilder`](crate::builders::ShortcutsGroupBuilder) which can be used to create [`ShortcutsGroup`] objects.
     pub fn builder() -> ShortcutsGroupBuilder {
         ShortcutsGroupBuilder::default()
     }

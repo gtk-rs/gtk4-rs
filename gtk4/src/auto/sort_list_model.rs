@@ -42,7 +42,7 @@ impl SortListModel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`SortListModel`] objects.
     ///
-    /// This method returns an instance of [`SortListModelBuilder`] which can be used to create [`SortListModel`] objects.
+    /// This method returns an instance of [`SortListModelBuilder`](crate::builders::SortListModelBuilder) which can be used to create [`SortListModel`] objects.
     pub fn builder() -> SortListModelBuilder {
         SortListModelBuilder::default()
     }

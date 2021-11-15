@@ -55,7 +55,7 @@ impl LevelBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`LevelBar`] objects.
     ///
-    /// This method returns an instance of [`LevelBarBuilder`] which can be used to create [`LevelBar`] objects.
+    /// This method returns an instance of [`LevelBarBuilder`](crate::builders::LevelBarBuilder) which can be used to create [`LevelBar`] objects.
     pub fn builder() -> LevelBarBuilder {
         LevelBarBuilder::default()
     }

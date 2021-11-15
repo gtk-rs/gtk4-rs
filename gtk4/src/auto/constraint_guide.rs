@@ -34,7 +34,7 @@ impl ConstraintGuide {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ConstraintGuide`] objects.
     ///
-    /// This method returns an instance of [`ConstraintGuideBuilder`] which can be used to create [`ConstraintGuide`] objects.
+    /// This method returns an instance of [`ConstraintGuideBuilder`](crate::builders::ConstraintGuideBuilder) which can be used to create [`ConstraintGuide`] objects.
     pub fn builder() -> ConstraintGuideBuilder {
         ConstraintGuideBuilder::default()
     }

@@ -47,7 +47,7 @@ impl Notebook {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Notebook`] objects.
     ///
-    /// This method returns an instance of [`NotebookBuilder`] which can be used to create [`Notebook`] objects.
+    /// This method returns an instance of [`NotebookBuilder`](crate::builders::NotebookBuilder) which can be used to create [`Notebook`] objects.
     pub fn builder() -> NotebookBuilder {
         NotebookBuilder::default()
     }

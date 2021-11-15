@@ -49,7 +49,7 @@ impl Assistant {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Assistant`] objects.
     ///
-    /// This method returns an instance of [`AssistantBuilder`] which can be used to create [`Assistant`] objects.
+    /// This method returns an instance of [`AssistantBuilder`](crate::builders::AssistantBuilder) which can be used to create [`Assistant`] objects.
     pub fn builder() -> AssistantBuilder {
         AssistantBuilder::default()
     }

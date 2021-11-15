@@ -38,7 +38,7 @@ impl MountOperation {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`MountOperation`] objects.
     ///
-    /// This method returns an instance of [`MountOperationBuilder`] which can be used to create [`MountOperation`] objects.
+    /// This method returns an instance of [`MountOperationBuilder`](crate::builders::MountOperationBuilder) which can be used to create [`MountOperation`] objects.
     pub fn builder() -> MountOperationBuilder {
         MountOperationBuilder::default()
     }

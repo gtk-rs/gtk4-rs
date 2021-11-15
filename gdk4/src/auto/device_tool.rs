@@ -23,7 +23,7 @@ impl DeviceTool {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DeviceTool`] objects.
     ///
-    /// This method returns an instance of [`DeviceToolBuilder`] which can be used to create [`DeviceTool`] objects.
+    /// This method returns an instance of [`DeviceToolBuilder`](crate::builders::DeviceToolBuilder) which can be used to create [`DeviceTool`] objects.
     pub fn builder() -> DeviceToolBuilder {
         DeviceToolBuilder::default()
     }

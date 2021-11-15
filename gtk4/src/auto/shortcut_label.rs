@@ -44,7 +44,7 @@ impl ShortcutLabel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ShortcutLabel`] objects.
     ///
-    /// This method returns an instance of [`ShortcutLabelBuilder`] which can be used to create [`ShortcutLabel`] objects.
+    /// This method returns an instance of [`ShortcutLabelBuilder`](crate::builders::ShortcutLabelBuilder) which can be used to create [`ShortcutLabel`] objects.
     pub fn builder() -> ShortcutLabelBuilder {
         ShortcutLabelBuilder::default()
     }

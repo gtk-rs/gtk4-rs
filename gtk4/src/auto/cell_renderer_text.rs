@@ -35,7 +35,7 @@ impl CellRendererText {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererText`] objects.
     ///
-    /// This method returns an instance of [`CellRendererTextBuilder`] which can be used to create [`CellRendererText`] objects.
+    /// This method returns an instance of [`CellRendererTextBuilder`](crate::builders::CellRendererTextBuilder) which can be used to create [`CellRendererText`] objects.
     pub fn builder() -> CellRendererTextBuilder {
         CellRendererTextBuilder::default()
     }

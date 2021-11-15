@@ -35,7 +35,7 @@ impl CellRendererToggle {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererToggle`] objects.
     ///
-    /// This method returns an instance of [`CellRendererToggleBuilder`] which can be used to create [`CellRendererToggle`] objects.
+    /// This method returns an instance of [`CellRendererToggleBuilder`](crate::builders::CellRendererToggleBuilder) which can be used to create [`CellRendererToggle`] objects.
     pub fn builder() -> CellRendererToggleBuilder {
         CellRendererToggleBuilder::default()
     }

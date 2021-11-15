@@ -46,7 +46,7 @@ impl MenuButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`MenuButton`] objects.
     ///
-    /// This method returns an instance of [`MenuButtonBuilder`] which can be used to create [`MenuButton`] objects.
+    /// This method returns an instance of [`MenuButtonBuilder`](crate::builders::MenuButtonBuilder) which can be used to create [`MenuButton`] objects.
     pub fn builder() -> MenuButtonBuilder {
         MenuButtonBuilder::default()
     }

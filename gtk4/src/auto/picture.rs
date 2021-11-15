@@ -99,7 +99,7 @@ impl Picture {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Picture`] objects.
     ///
-    /// This method returns an instance of [`PictureBuilder`] which can be used to create [`Picture`] objects.
+    /// This method returns an instance of [`PictureBuilder`](crate::builders::PictureBuilder) which can be used to create [`Picture`] objects.
     pub fn builder() -> PictureBuilder {
         PictureBuilder::default()
     }

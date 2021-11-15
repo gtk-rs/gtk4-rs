@@ -29,7 +29,7 @@ impl NumericSorter {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`NumericSorter`] objects.
     ///
-    /// This method returns an instance of [`NumericSorterBuilder`] which can be used to create [`NumericSorter`] objects.
+    /// This method returns an instance of [`NumericSorterBuilder`](crate::builders::NumericSorterBuilder) which can be used to create [`NumericSorter`] objects.
     pub fn builder() -> NumericSorterBuilder {
         NumericSorterBuilder::default()
     }

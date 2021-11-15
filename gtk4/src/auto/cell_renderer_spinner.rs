@@ -35,7 +35,7 @@ impl CellRendererSpinner {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererSpinner`] objects.
     ///
-    /// This method returns an instance of [`CellRendererSpinnerBuilder`] which can be used to create [`CellRendererSpinner`] objects.
+    /// This method returns an instance of [`CellRendererSpinnerBuilder`](crate::builders::CellRendererSpinnerBuilder) which can be used to create [`CellRendererSpinner`] objects.
     pub fn builder() -> CellRendererSpinnerBuilder {
         CellRendererSpinnerBuilder::default()
     }

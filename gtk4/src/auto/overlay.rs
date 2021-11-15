@@ -41,7 +41,7 @@ impl Overlay {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Overlay`] objects.
     ///
-    /// This method returns an instance of [`OverlayBuilder`] which can be used to create [`Overlay`] objects.
+    /// This method returns an instance of [`OverlayBuilder`](crate::builders::OverlayBuilder) which can be used to create [`Overlay`] objects.
     pub fn builder() -> OverlayBuilder {
         OverlayBuilder::default()
     }

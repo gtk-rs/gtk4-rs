@@ -40,7 +40,7 @@ impl DrawingArea {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DrawingArea`] objects.
     ///
-    /// This method returns an instance of [`DrawingAreaBuilder`] which can be used to create [`DrawingArea`] objects.
+    /// This method returns an instance of [`DrawingAreaBuilder`](crate::builders::DrawingAreaBuilder) which can be used to create [`DrawingArea`] objects.
     pub fn builder() -> DrawingAreaBuilder {
         DrawingAreaBuilder::default()
     }

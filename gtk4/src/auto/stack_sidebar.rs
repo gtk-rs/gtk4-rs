@@ -42,7 +42,7 @@ impl StackSidebar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`StackSidebar`] objects.
     ///
-    /// This method returns an instance of [`StackSidebarBuilder`] which can be used to create [`StackSidebar`] objects.
+    /// This method returns an instance of [`StackSidebarBuilder`](crate::builders::StackSidebarBuilder) which can be used to create [`StackSidebar`] objects.
     pub fn builder() -> StackSidebarBuilder {
         StackSidebarBuilder::default()
     }

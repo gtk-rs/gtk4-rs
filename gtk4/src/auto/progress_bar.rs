@@ -43,7 +43,7 @@ impl ProgressBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ProgressBar`] objects.
     ///
-    /// This method returns an instance of [`ProgressBarBuilder`] which can be used to create [`ProgressBar`] objects.
+    /// This method returns an instance of [`ProgressBarBuilder`](crate::builders::ProgressBarBuilder) which can be used to create [`ProgressBar`] objects.
     pub fn builder() -> ProgressBarBuilder {
         ProgressBarBuilder::default()
     }

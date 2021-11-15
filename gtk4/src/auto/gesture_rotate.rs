@@ -36,7 +36,7 @@ impl GestureRotate {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureRotate`] objects.
     ///
-    /// This method returns an instance of [`GestureRotateBuilder`] which can be used to create [`GestureRotate`] objects.
+    /// This method returns an instance of [`GestureRotateBuilder`](crate::builders::GestureRotateBuilder) which can be used to create [`GestureRotate`] objects.
     pub fn builder() -> GestureRotateBuilder {
         GestureRotateBuilder::default()
     }

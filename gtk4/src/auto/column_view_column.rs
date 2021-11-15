@@ -44,7 +44,7 @@ impl ColumnViewColumn {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ColumnViewColumn`] objects.
     ///
-    /// This method returns an instance of [`ColumnViewColumnBuilder`] which can be used to create [`ColumnViewColumn`] objects.
+    /// This method returns an instance of [`ColumnViewColumnBuilder`](crate::builders::ColumnViewColumnBuilder) which can be used to create [`ColumnViewColumn`] objects.
     pub fn builder() -> ColumnViewColumnBuilder {
         ColumnViewColumnBuilder::default()
     }

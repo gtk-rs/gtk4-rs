@@ -66,7 +66,7 @@ impl CheckButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CheckButton`] objects.
     ///
-    /// This method returns an instance of [`CheckButtonBuilder`] which can be used to create [`CheckButton`] objects.
+    /// This method returns an instance of [`CheckButtonBuilder`](crate::builders::CheckButtonBuilder) which can be used to create [`CheckButton`] objects.
     pub fn builder() -> CheckButtonBuilder {
         CheckButtonBuilder::default()
     }

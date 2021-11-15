@@ -42,7 +42,7 @@ impl GesturePan {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GesturePan`] objects.
     ///
-    /// This method returns an instance of [`GesturePanBuilder`] which can be used to create [`GesturePan`] objects.
+    /// This method returns an instance of [`GesturePanBuilder`](crate::builders::GesturePanBuilder) which can be used to create [`GesturePan`] objects.
     pub fn builder() -> GesturePanBuilder {
         GesturePanBuilder::default()
     }

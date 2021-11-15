@@ -58,7 +58,7 @@ impl FontButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FontButton`] objects.
     ///
-    /// This method returns an instance of [`FontButtonBuilder`] which can be used to create [`FontButton`] objects.
+    /// This method returns an instance of [`FontButtonBuilder`](crate::builders::FontButtonBuilder) which can be used to create [`FontButton`] objects.
     pub fn builder() -> FontButtonBuilder {
         FontButtonBuilder::default()
     }

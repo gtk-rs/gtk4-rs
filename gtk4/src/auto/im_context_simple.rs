@@ -30,7 +30,7 @@ impl IMContextSimple {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`IMContextSimple`] objects.
     ///
-    /// This method returns an instance of [`IMContextSimpleBuilder`] which can be used to create [`IMContextSimple`] objects.
+    /// This method returns an instance of [`IMContextSimpleBuilder`](crate::builders::IMContextSimpleBuilder) which can be used to create [`IMContextSimple`] objects.
     pub fn builder() -> IMContextSimpleBuilder {
         IMContextSimpleBuilder::default()
     }

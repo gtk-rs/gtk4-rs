@@ -36,7 +36,7 @@ impl CellRendererPixbuf {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellRendererPixbuf`] objects.
     ///
-    /// This method returns an instance of [`CellRendererPixbufBuilder`] which can be used to create [`CellRendererPixbuf`] objects.
+    /// This method returns an instance of [`CellRendererPixbufBuilder`](crate::builders::CellRendererPixbufBuilder) which can be used to create [`CellRendererPixbuf`] objects.
     pub fn builder() -> CellRendererPixbufBuilder {
         CellRendererPixbufBuilder::default()
     }

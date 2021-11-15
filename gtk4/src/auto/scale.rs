@@ -67,7 +67,7 @@ impl Scale {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Scale`] objects.
     ///
-    /// This method returns an instance of [`ScaleBuilder`] which can be used to create [`Scale`] objects.
+    /// This method returns an instance of [`ScaleBuilder`](crate::builders::ScaleBuilder) which can be used to create [`Scale`] objects.
     pub fn builder() -> ScaleBuilder {
         ScaleBuilder::default()
     }

@@ -42,7 +42,7 @@ impl TreeExpander {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TreeExpander`] objects.
     ///
-    /// This method returns an instance of [`TreeExpanderBuilder`] which can be used to create [`TreeExpander`] objects.
+    /// This method returns an instance of [`TreeExpanderBuilder`](crate::builders::TreeExpanderBuilder) which can be used to create [`TreeExpander`] objects.
     pub fn builder() -> TreeExpanderBuilder {
         TreeExpanderBuilder::default()
     }

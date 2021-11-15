@@ -38,7 +38,7 @@ impl PadController {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PadController`] objects.
     ///
-    /// This method returns an instance of [`PadControllerBuilder`] which can be used to create [`PadController`] objects.
+    /// This method returns an instance of [`PadControllerBuilder`](crate::builders::PadControllerBuilder) which can be used to create [`PadController`] objects.
     pub fn builder() -> PadControllerBuilder {
         PadControllerBuilder::default()
     }

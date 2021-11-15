@@ -45,7 +45,7 @@ impl Grid {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Grid`] objects.
     ///
-    /// This method returns an instance of [`GridBuilder`] which can be used to create [`Grid`] objects.
+    /// This method returns an instance of [`GridBuilder`](crate::builders::GridBuilder) which can be used to create [`Grid`] objects.
     pub fn builder() -> GridBuilder {
         GridBuilder::default()
     }

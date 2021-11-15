@@ -43,7 +43,7 @@ impl MessageDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`MessageDialog`] objects.
     ///
-    /// This method returns an instance of [`MessageDialogBuilder`] which can be used to create [`MessageDialog`] objects.
+    /// This method returns an instance of [`MessageDialogBuilder`](crate::builders::MessageDialogBuilder) which can be used to create [`MessageDialog`] objects.
     pub fn builder() -> MessageDialogBuilder {
         MessageDialogBuilder::default()
     }

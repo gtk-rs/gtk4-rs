@@ -96,7 +96,7 @@ impl CellView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`CellView`] objects.
     ///
-    /// This method returns an instance of [`CellViewBuilder`] which can be used to create [`CellView`] objects.
+    /// This method returns an instance of [`CellViewBuilder`](crate::builders::CellViewBuilder) which can be used to create [`CellView`] objects.
     pub fn builder() -> CellViewBuilder {
         CellViewBuilder::default()
     }

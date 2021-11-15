@@ -47,7 +47,7 @@ impl GLShader {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GLShader`] objects.
     ///
-    /// This method returns an instance of [`GLShaderBuilder`] which can be used to create [`GLShader`] objects.
+    /// This method returns an instance of [`GLShaderBuilder`](crate::builders::GLShaderBuilder) which can be used to create [`GLShader`] objects.
     pub fn builder() -> GLShaderBuilder {
         GLShaderBuilder::default()
     }

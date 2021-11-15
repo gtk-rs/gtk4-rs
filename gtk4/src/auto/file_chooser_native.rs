@@ -52,7 +52,7 @@ impl FileChooserNative {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FileChooserNative`] objects.
     ///
-    /// This method returns an instance of [`FileChooserNativeBuilder`] which can be used to create [`FileChooserNative`] objects.
+    /// This method returns an instance of [`FileChooserNativeBuilder`](crate::builders::FileChooserNativeBuilder) which can be used to create [`FileChooserNative`] objects.
     pub fn builder() -> FileChooserNativeBuilder {
         FileChooserNativeBuilder::default()
     }

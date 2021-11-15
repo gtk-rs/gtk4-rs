@@ -45,7 +45,7 @@ impl InfoBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`InfoBar`] objects.
     ///
-    /// This method returns an instance of [`InfoBarBuilder`] which can be used to create [`InfoBar`] objects.
+    /// This method returns an instance of [`InfoBarBuilder`](crate::builders::InfoBarBuilder) which can be used to create [`InfoBar`] objects.
     pub fn builder() -> InfoBarBuilder {
         InfoBarBuilder::default()
     }

@@ -38,7 +38,7 @@ impl GestureSwipe {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureSwipe`] objects.
     ///
-    /// This method returns an instance of [`GestureSwipeBuilder`] which can be used to create [`GestureSwipe`] objects.
+    /// This method returns an instance of [`GestureSwipeBuilder`](crate::builders::GestureSwipeBuilder) which can be used to create [`GestureSwipe`] objects.
     pub fn builder() -> GestureSwipeBuilder {
         GestureSwipeBuilder::default()
     }

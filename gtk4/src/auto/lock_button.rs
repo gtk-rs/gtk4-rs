@@ -48,7 +48,7 @@ impl LockButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`LockButton`] objects.
     ///
-    /// This method returns an instance of [`LockButtonBuilder`] which can be used to create [`LockButton`] objects.
+    /// This method returns an instance of [`LockButtonBuilder`](crate::builders::LockButtonBuilder) which can be used to create [`LockButton`] objects.
     pub fn builder() -> LockButtonBuilder {
         LockButtonBuilder::default()
     }

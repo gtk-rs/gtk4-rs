@@ -38,7 +38,7 @@ impl DragSource {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DragSource`] objects.
     ///
-    /// This method returns an instance of [`DragSourceBuilder`] which can be used to create [`DragSource`] objects.
+    /// This method returns an instance of [`DragSourceBuilder`](crate::builders::DragSourceBuilder) which can be used to create [`DragSource`] objects.
     pub fn builder() -> DragSourceBuilder {
         DragSourceBuilder::default()
     }

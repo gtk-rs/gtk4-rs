@@ -31,7 +31,7 @@ impl Clipboard {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Clipboard`] objects.
     ///
-    /// This method returns an instance of [`ClipboardBuilder`] which can be used to create [`Clipboard`] objects.
+    /// This method returns an instance of [`ClipboardBuilder`](crate::builders::ClipboardBuilder) which can be used to create [`Clipboard`] objects.
     pub fn builder() -> ClipboardBuilder {
         ClipboardBuilder::default()
     }

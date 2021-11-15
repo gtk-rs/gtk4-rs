@@ -41,7 +41,7 @@ impl Spinner {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Spinner`] objects.
     ///
-    /// This method returns an instance of [`SpinnerBuilder`] which can be used to create [`Spinner`] objects.
+    /// This method returns an instance of [`SpinnerBuilder`](crate::builders::SpinnerBuilder) which can be used to create [`Spinner`] objects.
     pub fn builder() -> SpinnerBuilder {
         SpinnerBuilder::default()
     }

@@ -70,7 +70,7 @@ impl TextView {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`TextView`] objects.
     ///
-    /// This method returns an instance of [`TextViewBuilder`] which can be used to create [`TextView`] objects.
+    /// This method returns an instance of [`TextViewBuilder`](crate::builders::TextViewBuilder) which can be used to create [`TextView`] objects.
     pub fn builder() -> TextViewBuilder {
         TextViewBuilder::default()
     }

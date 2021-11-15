@@ -42,3 +42,7 @@ pub mod functions;
 pub mod traits {
     pub use super::renderer::GskRenderer;
 }
+#[doc(hidden)]
+pub mod builders {
+    pub use super::gl_shader::GLShaderBuilder;
+}

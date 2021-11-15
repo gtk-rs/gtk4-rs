@@ -47,7 +47,7 @@ impl MediaControls {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`MediaControls`] objects.
     ///
-    /// This method returns an instance of [`MediaControlsBuilder`] which can be used to create [`MediaControls`] objects.
+    /// This method returns an instance of [`MediaControlsBuilder`](crate::builders::MediaControlsBuilder) which can be used to create [`MediaControls`] objects.
     pub fn builder() -> MediaControlsBuilder {
         MediaControlsBuilder::default()
     }

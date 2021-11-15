@@ -78,7 +78,7 @@ impl AppChooserDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`AppChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`AppChooserDialogBuilder`] which can be used to create [`AppChooserDialog`] objects.
+    /// This method returns an instance of [`AppChooserDialogBuilder`](crate::builders::AppChooserDialogBuilder) which can be used to create [`AppChooserDialog`] objects.
     pub fn builder() -> AppChooserDialogBuilder {
         AppChooserDialogBuilder::default()
     }

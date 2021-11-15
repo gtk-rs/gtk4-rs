@@ -41,7 +41,7 @@ impl Calendar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Calendar`] objects.
     ///
-    /// This method returns an instance of [`CalendarBuilder`] which can be used to create [`Calendar`] objects.
+    /// This method returns an instance of [`CalendarBuilder`](crate::builders::CalendarBuilder) which can be used to create [`Calendar`] objects.
     pub fn builder() -> CalendarBuilder {
         CalendarBuilder::default()
     }

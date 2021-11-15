@@ -39,7 +39,7 @@ impl GestureStylus {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureStylus`] objects.
     ///
-    /// This method returns an instance of [`GestureStylusBuilder`] which can be used to create [`GestureStylus`] objects.
+    /// This method returns an instance of [`GestureStylusBuilder`](crate::builders::GestureStylusBuilder) which can be used to create [`GestureStylus`] objects.
     pub fn builder() -> GestureStylusBuilder {
         GestureStylusBuilder::default()
     }

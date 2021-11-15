@@ -50,7 +50,7 @@ impl FontChooserDialog {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`FontChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`FontChooserDialogBuilder`] which can be used to create [`FontChooserDialog`] objects.
+    /// This method returns an instance of [`FontChooserDialogBuilder`](crate::builders::FontChooserDialogBuilder) which can be used to create [`FontChooserDialog`] objects.
     pub fn builder() -> FontChooserDialogBuilder {
         FontChooserDialogBuilder::default()
     }

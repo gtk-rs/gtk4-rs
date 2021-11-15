@@ -49,7 +49,7 @@ impl ScrolledWindow {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ScrolledWindow`] objects.
     ///
-    /// This method returns an instance of [`ScrolledWindowBuilder`] which can be used to create [`ScrolledWindow`] objects.
+    /// This method returns an instance of [`ScrolledWindowBuilder`](crate::builders::ScrolledWindowBuilder) which can be used to create [`ScrolledWindow`] objects.
     pub fn builder() -> ScrolledWindowBuilder {
         ScrolledWindowBuilder::default()
     }

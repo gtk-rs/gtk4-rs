@@ -44,7 +44,7 @@ impl WindowControls {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`WindowControls`] objects.
     ///
-    /// This method returns an instance of [`WindowControlsBuilder`] which can be used to create [`WindowControls`] objects.
+    /// This method returns an instance of [`WindowControlsBuilder`](crate::builders::WindowControlsBuilder) which can be used to create [`WindowControls`] objects.
     pub fn builder() -> WindowControlsBuilder {
         WindowControlsBuilder::default()
     }

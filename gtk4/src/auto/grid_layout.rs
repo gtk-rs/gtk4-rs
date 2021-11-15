@@ -34,7 +34,7 @@ impl GridLayout {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GridLayout`] objects.
     ///
-    /// This method returns an instance of [`GridLayoutBuilder`] which can be used to create [`GridLayout`] objects.
+    /// This method returns an instance of [`GridLayoutBuilder`](crate::builders::GridLayoutBuilder) which can be used to create [`GridLayout`] objects.
     pub fn builder() -> GridLayoutBuilder {
         GridLayoutBuilder::default()
     }

@@ -41,7 +41,7 @@ impl Statusbar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Statusbar`] objects.
     ///
-    /// This method returns an instance of [`StatusbarBuilder`] which can be used to create [`Statusbar`] objects.
+    /// This method returns an instance of [`StatusbarBuilder`](crate::builders::StatusbarBuilder) which can be used to create [`Statusbar`] objects.
     pub fn builder() -> StatusbarBuilder {
         StatusbarBuilder::default()
     }

@@ -47,7 +47,7 @@ impl PopoverMenuBar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PopoverMenuBar`] objects.
     ///
-    /// This method returns an instance of [`PopoverMenuBarBuilder`] which can be used to create [`PopoverMenuBar`] objects.
+    /// This method returns an instance of [`PopoverMenuBarBuilder`](crate::builders::PopoverMenuBarBuilder) which can be used to create [`PopoverMenuBar`] objects.
     pub fn builder() -> PopoverMenuBarBuilder {
         PopoverMenuBarBuilder::default()
     }

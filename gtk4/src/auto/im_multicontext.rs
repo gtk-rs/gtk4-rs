@@ -31,7 +31,7 @@ impl IMMulticontext {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`IMMulticontext`] objects.
     ///
-    /// This method returns an instance of [`IMMulticontextBuilder`] which can be used to create [`IMMulticontext`] objects.
+    /// This method returns an instance of [`IMMulticontextBuilder`](crate::builders::IMMulticontextBuilder) which can be used to create [`IMMulticontext`] objects.
     pub fn builder() -> IMMulticontextBuilder {
         IMMulticontextBuilder::default()
     }

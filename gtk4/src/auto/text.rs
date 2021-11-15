@@ -57,7 +57,7 @@ impl Text {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Text`] objects.
     ///
-    /// This method returns an instance of [`TextBuilder`] which can be used to create [`Text`] objects.
+    /// This method returns an instance of [`TextBuilder`](crate::builders::TextBuilder) which can be used to create [`Text`] objects.
     pub fn builder() -> TextBuilder {
         TextBuilder::default()
     }

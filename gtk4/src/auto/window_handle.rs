@@ -41,7 +41,7 @@ impl WindowHandle {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`WindowHandle`] objects.
     ///
-    /// This method returns an instance of [`WindowHandleBuilder`] which can be used to create [`WindowHandle`] objects.
+    /// This method returns an instance of [`WindowHandleBuilder`](crate::builders::WindowHandleBuilder) which can be used to create [`WindowHandle`] objects.
     pub fn builder() -> WindowHandleBuilder {
         WindowHandleBuilder::default()
     }

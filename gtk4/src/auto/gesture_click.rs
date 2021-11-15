@@ -37,7 +37,7 @@ impl GestureClick {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`GestureClick`] objects.
     ///
-    /// This method returns an instance of [`GestureClickBuilder`] which can be used to create [`GestureClick`] objects.
+    /// This method returns an instance of [`GestureClickBuilder`](crate::builders::GestureClickBuilder) which can be used to create [`GestureClick`] objects.
     pub fn builder() -> GestureClickBuilder {
         GestureClickBuilder::default()
     }

@@ -44,7 +44,7 @@ impl EditableLabel {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EditableLabel`] objects.
     ///
-    /// This method returns an instance of [`EditableLabelBuilder`] which can be used to create [`EditableLabel`] objects.
+    /// This method returns an instance of [`EditableLabelBuilder`](crate::builders::EditableLabelBuilder) which can be used to create [`EditableLabel`] objects.
     pub fn builder() -> EditableLabelBuilder {
         EditableLabelBuilder::default()
     }

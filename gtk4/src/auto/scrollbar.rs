@@ -50,7 +50,7 @@ impl Scrollbar {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Scrollbar`] objects.
     ///
-    /// This method returns an instance of [`ScrollbarBuilder`] which can be used to create [`Scrollbar`] objects.
+    /// This method returns an instance of [`ScrollbarBuilder`](crate::builders::ScrollbarBuilder) which can be used to create [`Scrollbar`] objects.
     pub fn builder() -> ScrollbarBuilder {
         ScrollbarBuilder::default()
     }

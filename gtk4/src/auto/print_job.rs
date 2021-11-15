@@ -54,7 +54,7 @@ impl PrintJob {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`PrintJob`] objects.
     ///
-    /// This method returns an instance of [`PrintJobBuilder`] which can be used to create [`PrintJob`] objects.
+    /// This method returns an instance of [`PrintJobBuilder`](crate::builders::PrintJobBuilder) which can be used to create [`PrintJob`] objects.
     pub fn builder() -> PrintJobBuilder {
         PrintJobBuilder::default()
     }

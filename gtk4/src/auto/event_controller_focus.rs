@@ -37,7 +37,7 @@ impl EventControllerFocus {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EventControllerFocus`] objects.
     ///
-    /// This method returns an instance of [`EventControllerFocusBuilder`] which can be used to create [`EventControllerFocus`] objects.
+    /// This method returns an instance of [`EventControllerFocusBuilder`](crate::builders::EventControllerFocusBuilder) which can be used to create [`EventControllerFocus`] objects.
     pub fn builder() -> EventControllerFocusBuilder {
         EventControllerFocusBuilder::default()
     }

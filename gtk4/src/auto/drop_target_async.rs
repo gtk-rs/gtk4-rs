@@ -40,7 +40,7 @@ impl DropTargetAsync {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DropTargetAsync`] objects.
     ///
-    /// This method returns an instance of [`DropTargetAsyncBuilder`] which can be used to create [`DropTargetAsync`] objects.
+    /// This method returns an instance of [`DropTargetAsyncBuilder`](crate::builders::DropTargetAsyncBuilder) which can be used to create [`DropTargetAsync`] objects.
     pub fn builder() -> DropTargetAsyncBuilder {
         DropTargetAsyncBuilder::default()
     }

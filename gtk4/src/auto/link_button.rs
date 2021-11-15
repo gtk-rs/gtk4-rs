@@ -58,7 +58,7 @@ impl LinkButton {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`LinkButton`] objects.
     ///
-    /// This method returns an instance of [`LinkButtonBuilder`] which can be used to create [`LinkButton`] objects.
+    /// This method returns an instance of [`LinkButtonBuilder`](crate::builders::LinkButtonBuilder) which can be used to create [`LinkButton`] objects.
     pub fn builder() -> LinkButtonBuilder {
         LinkButtonBuilder::default()
     }
