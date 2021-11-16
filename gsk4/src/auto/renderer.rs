@@ -32,7 +32,7 @@ impl Renderer {
     }
 }
 
-pub trait GskRenderer: 'static {
+pub trait GskRendererExt: 'static {
     #[doc(alias = "gsk_renderer_get_surface")]
     #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<gdk::Surface>;
@@ -53,7 +53,7 @@ pub trait GskRenderer: 'static {
     fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Renderer>> GskRenderer for O {
+impl<O: IsA<Renderer>> GskRendererExt for O {
     fn surface(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gsk_renderer_get_surface(
