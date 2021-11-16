@@ -40,6 +40,8 @@ glib::wrapper! {
 }
 
 impl Entry {
+    pub const NONE: Option<&'static Entry> = None;
+
     #[doc(alias = "gtk_entry_new")]
     pub fn new() -> Entry {
         assert_initialized_main_thread!();
@@ -752,10 +754,6 @@ impl EntryBuilder {
         self.xalign = Some(xalign);
         self
     }
-}
-
-impl Entry {
-    pub const NONE: Option<&'static Entry> = None;
 }
 
 pub trait EntryExt: 'static {

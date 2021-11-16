@@ -34,6 +34,8 @@ glib::wrapper! {
 }
 
 impl PrintOperation {
+    pub const NONE: Option<&'static PrintOperation> = None;
+
     #[doc(alias = "gtk_print_operation_new")]
     pub fn new() -> PrintOperation {
         assert_initialized_main_thread!();
@@ -213,10 +215,6 @@ impl PrintOperationBuilder {
         self.use_full_page = Some(use_full_page);
         self
     }
-}
-
-impl PrintOperation {
-    pub const NONE: Option<&'static PrintOperation> = None;
 }
 
 pub trait PrintOperationExt: 'static {

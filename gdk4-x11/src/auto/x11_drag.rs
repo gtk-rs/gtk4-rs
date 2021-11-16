@@ -13,8 +13,6 @@ glib::wrapper! {
     }
 }
 
-impl X11Drag {}
-
 impl fmt::Display for X11Drag {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("X11Drag")

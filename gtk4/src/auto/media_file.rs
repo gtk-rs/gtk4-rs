@@ -22,6 +22,8 @@ glib::wrapper! {
 }
 
 impl MediaFile {
+    pub const NONE: Option<&'static MediaFile> = None;
+
     #[doc(alias = "gtk_media_file_new")]
     pub fn new() -> MediaFile {
         assert_initialized_main_thread!();
@@ -77,10 +79,6 @@ impl Default for MediaFile {
     fn default() -> Self {
         Self::new()
     }
-}
-
-impl MediaFile {
-    pub const NONE: Option<&'static MediaFile> = None;
 }
 
 pub trait MediaFileExt: 'static {

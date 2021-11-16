@@ -13,8 +13,6 @@ glib::wrapper! {
     }
 }
 
-impl X11GLContext {}
-
 impl fmt::Display for X11GLContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("X11GLContext")

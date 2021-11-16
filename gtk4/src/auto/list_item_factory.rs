@@ -13,8 +13,6 @@ glib::wrapper! {
     }
 }
 
-impl ListItemFactory {}
-
 impl ListItemFactory {
     pub const NONE: Option<&'static ListItemFactory> = None;
 }

@@ -21,6 +21,8 @@ glib::wrapper! {
 }
 
 impl TreeModelSort {
+    pub const NONE: Option<&'static TreeModelSort> = None;
+
     #[doc(alias = "gtk_tree_model_sort_new_with_model")]
     #[doc(alias = "new_with_model")]
     pub fn with_model(child_model: &impl IsA<TreeModel>) -> TreeModelSort {
@@ -31,10 +33,6 @@ impl TreeModelSort {
             ))
         }
     }
-}
-
-impl TreeModelSort {
-    pub const NONE: Option<&'static TreeModelSort> = None;
 }
 
 pub trait TreeModelSortExt: 'static {

@@ -18,6 +18,8 @@ glib::wrapper! {
 }
 
 impl Texture {
+    pub const NONE: Option<&'static Texture> = None;
+
     #[doc(alias = "gdk_texture_new_for_pixbuf")]
     #[doc(alias = "new_for_pixbuf")]
     pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Texture {
@@ -85,10 +87,6 @@ impl Texture {
             ))
         }
     }
-}
-
-impl Texture {
-    pub const NONE: Option<&'static Texture> = None;
 }
 
 pub trait TextureExt: 'static {

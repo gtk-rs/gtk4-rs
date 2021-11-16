@@ -48,6 +48,8 @@ glib::wrapper! {
 }
 
 impl TreeView {
+    pub const NONE: Option<&'static TreeView> = None;
+
     #[doc(alias = "gtk_tree_view_new")]
     pub fn new() -> TreeView {
         assert_initialized_main_thread!();
@@ -563,10 +565,6 @@ impl TreeViewBuilder {
         self.vscroll_policy = Some(vscroll_policy);
         self
     }
-}
-
-impl TreeView {
-    pub const NONE: Option<&'static TreeView> = None;
 }
 
 pub trait TreeViewExt: 'static {

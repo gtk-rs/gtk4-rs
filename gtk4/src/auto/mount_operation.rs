@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl MountOperation {
+    pub const NONE: Option<&'static MountOperation> = None;
+
     #[doc(alias = "gtk_mount_operation_new")]
     pub fn new(parent: Option<&impl IsA<Window>>) -> MountOperation {
         assert_initialized_main_thread!();
@@ -173,10 +175,6 @@ impl MountOperationBuilder {
         self.username = Some(username.to_string());
         self
     }
-}
-
-impl MountOperation {
-    pub const NONE: Option<&'static MountOperation> = None;
 }
 
 pub trait MountOperationExt: 'static {

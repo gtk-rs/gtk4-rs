@@ -20,6 +20,8 @@ glib::wrapper! {
 }
 
 impl TextMark {
+    pub const NONE: Option<&'static TextMark> = None;
+
     #[doc(alias = "gtk_text_mark_new")]
     pub fn new(name: Option<&str>, left_gravity: bool) -> TextMark {
         assert_initialized_main_thread!();
@@ -88,10 +90,6 @@ impl TextMarkBuilder {
         self.name = Some(name.to_string());
         self
     }
-}
-
-impl TextMark {
-    pub const NONE: Option<&'static TextMark> = None;
 }
 
 pub trait TextMarkExt: 'static {

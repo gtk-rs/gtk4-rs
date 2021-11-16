@@ -25,6 +25,8 @@ glib::wrapper! {
 }
 
 impl StyleContext {
+    pub const NONE: Option<&'static StyleContext> = None;
+
     #[doc(alias = "gtk_style_context_add_provider_for_display")]
     pub fn add_provider_for_display(
         display: &impl IsA<gdk::Display>,
@@ -54,10 +56,6 @@ impl StyleContext {
             );
         }
     }
-}
-
-impl StyleContext {
-    pub const NONE: Option<&'static StyleContext> = None;
 }
 
 pub trait StyleContextExt: 'static {

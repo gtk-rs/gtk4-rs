@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl ContentProvider {
+    pub const NONE: Option<&'static ContentProvider> = None;
+
     #[doc(alias = "gdk_content_provider_new_for_bytes")]
     #[doc(alias = "new_for_bytes")]
     pub fn for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
@@ -58,10 +60,6 @@ impl ContentProvider {
             ))
         }
     }
-}
-
-impl ContentProvider {
-    pub const NONE: Option<&'static ContentProvider> = None;
 }
 
 pub trait ContentProviderExt: 'static {

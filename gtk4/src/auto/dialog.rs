@@ -40,6 +40,8 @@ glib::wrapper! {
 }
 
 impl Dialog {
+    pub const NONE: Option<&'static Dialog> = None;
+
     #[doc(alias = "gtk_dialog_new")]
     pub fn new() -> Dialog {
         assert_initialized_main_thread!();
@@ -579,10 +581,6 @@ impl DialogBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl Dialog {
-    pub const NONE: Option<&'static Dialog> = None;
 }
 
 pub trait DialogExt: 'static {

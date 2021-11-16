@@ -37,6 +37,8 @@ glib::wrapper! {
 }
 
 impl GLContext {
+    pub const NONE: Option<&'static GLContext> = None;
+
     #[doc(alias = "gdk_gl_context_clear_current")]
     pub fn clear_current() {
         assert_initialized_main_thread!();
@@ -51,10 +53,6 @@ impl GLContext {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_gl_context_get_current()) }
     }
-}
-
-impl GLContext {
-    pub const NONE: Option<&'static GLContext> = None;
 }
 
 pub trait GLContextExt: 'static {

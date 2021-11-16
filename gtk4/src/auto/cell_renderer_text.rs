@@ -26,6 +26,8 @@ glib::wrapper! {
 }
 
 impl CellRendererText {
+    pub const NONE: Option<&'static CellRendererText> = None;
+
     #[doc(alias = "gtk_cell_renderer_text_new")]
     pub fn new() -> CellRendererText {
         assert_initialized_main_thread!();
@@ -610,10 +612,6 @@ impl CellRendererTextBuilder {
         self.ypad = Some(ypad);
         self
     }
-}
-
-impl CellRendererText {
-    pub const NONE: Option<&'static CellRendererText> = None;
 }
 
 pub trait CellRendererTextExt: 'static {

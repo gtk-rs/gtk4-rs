@@ -38,6 +38,8 @@ glib::wrapper! {
 }
 
 impl Window {
+    pub const NONE: Option<&'static Window> = None;
+
     #[doc(alias = "gtk_window_new")]
     pub fn new() -> Window {
         assert_initialized_main_thread!();
@@ -612,10 +614,6 @@ impl WindowBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl Window {
-    pub const NONE: Option<&'static Window> = None;
 }
 
 pub trait GtkWindowExt: 'static {

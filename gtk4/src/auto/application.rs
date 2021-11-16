@@ -25,6 +25,8 @@ glib::wrapper! {
 }
 
 impl Application {
+    pub const NONE: Option<&'static Application> = None;
+
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Application`] objects.
     ///
@@ -124,10 +126,6 @@ impl ApplicationBuilder {
         self.resource_base_path = Some(resource_base_path.to_string());
         self
     }
-}
-
-impl Application {
-    pub const NONE: Option<&'static Application> = None;
 }
 
 pub trait GtkApplicationExt: 'static {

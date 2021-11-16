@@ -21,6 +21,8 @@ glib::wrapper! {
 }
 
 impl Native {
+    pub const NONE: Option<&'static Native> = None;
+
     #[doc(alias = "gtk_native_get_for_surface")]
     #[doc(alias = "get_for_surface")]
     pub fn for_surface(surface: &impl IsA<gdk::Surface>) -> Option<Native> {
@@ -31,10 +33,6 @@ impl Native {
             ))
         }
     }
-}
-
-impl Native {
-    pub const NONE: Option<&'static Native> = None;
 }
 
 pub trait NativeExt: 'static {

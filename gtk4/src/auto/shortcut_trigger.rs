@@ -16,6 +16,8 @@ glib::wrapper! {
 }
 
 impl ShortcutTrigger {
+    pub const NONE: Option<&'static ShortcutTrigger> = None;
+
     #[doc(alias = "gtk_shortcut_trigger_parse_string")]
     pub fn parse_string(string: &str) -> Option<ShortcutTrigger> {
         assert_initialized_main_thread!();
@@ -32,10 +34,6 @@ impl fmt::Display for ShortcutTrigger {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&ShortcutTriggerExt::to_str(self))
     }
-}
-
-impl ShortcutTrigger {
-    pub const NONE: Option<&'static ShortcutTrigger> = None;
 }
 
 pub trait ShortcutTriggerExt: 'static {

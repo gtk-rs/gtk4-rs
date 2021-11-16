@@ -18,6 +18,8 @@ glib::wrapper! {
 }
 
 impl ShortcutAction {
+    pub const NONE: Option<&'static ShortcutAction> = None;
+
     #[doc(alias = "gtk_shortcut_action_parse_string")]
     pub fn parse_string(string: &str) -> Option<ShortcutAction> {
         assert_initialized_main_thread!();
@@ -34,10 +36,6 @@ impl fmt::Display for ShortcutAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&ShortcutActionExt::to_str(self))
     }
-}
-
-impl ShortcutAction {
-    pub const NONE: Option<&'static ShortcutAction> = None;
 }
 
 pub trait ShortcutActionExt: 'static {

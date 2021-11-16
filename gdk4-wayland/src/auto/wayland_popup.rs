@@ -14,8 +14,6 @@ glib::wrapper! {
     }
 }
 
-impl WaylandPopup {}
-
 impl fmt::Display for WaylandPopup {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("WaylandPopup")

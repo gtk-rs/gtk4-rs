@@ -37,6 +37,8 @@ glib::wrapper! {
 }
 
 impl ApplicationWindow {
+    pub const NONE: Option<&'static ApplicationWindow> = None;
+
     #[doc(alias = "gtk_application_window_new")]
     pub fn new(application: &impl IsA<Application>) -> ApplicationWindow {
         skip_assert_initialized!();
@@ -583,10 +585,6 @@ impl ApplicationWindowBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl ApplicationWindow {
-    pub const NONE: Option<&'static ApplicationWindow> = None;
 }
 
 pub trait ApplicationWindowExt: 'static {

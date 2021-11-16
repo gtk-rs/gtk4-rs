@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 impl Paintable {
+    pub const NONE: Option<&'static Paintable> = None;
+
     #[doc(alias = "gdk_paintable_new_empty")]
     pub fn new_empty(intrinsic_width: i32, intrinsic_height: i32) -> Option<Paintable> {
         assert_initialized_main_thread!();
@@ -34,10 +36,6 @@ impl Paintable {
             ))
         }
     }
-}
-
-impl Paintable {
-    pub const NONE: Option<&'static Paintable> = None;
 }
 
 pub trait PaintableExt: 'static {
