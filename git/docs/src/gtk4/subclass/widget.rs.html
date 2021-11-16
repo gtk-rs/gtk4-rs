@@ -1388,6 +1388,8 @@
 <span id="1315">1315</span>
 <span id="1316">1316</span>
 <span id="1317">1317</span>
+<span id="1318">1318</span>
+<span id="1319">1319</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="comment">// rustdoc-stripper-ignore-next</span>
@@ -2690,12 +2692,14 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to retrieve template child. Please check that it has been bound.&quot;</span>)
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Determines if the child has been bound. This is primarily</span>
     <span class="doccomment">/// useful for implementing the [`Buildable`][`crate::Buildable`] interface.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_bound</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="op">!</span><span class="self">self</span>.<span class="ident">ptr</span>.<span class="ident">is_null</span>()
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Returns Some(child) if the widget has been bound.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::from_glib_none</span>(<span class="self">self</span>.<span class="ident">ptr</span>) }
