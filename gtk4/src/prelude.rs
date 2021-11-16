@@ -18,7 +18,7 @@ pub use crate::drawing_area::DrawingAreaExtManual;
 pub use crate::editable::EditableExtManual;
 pub use crate::entry::EntryExtManual;
 pub use crate::entry_buffer::EntryBufferExtManual;
-pub use crate::expression::GObjectPropertyExpressionExt;
+pub use crate::expression::{GObjectPropertyExpressionExt, IsExpression};
 pub use crate::file_chooser::FileChooserExtManual;
 pub use crate::font_chooser::FontChooserExtManual;
 pub use crate::im_context::IMContextExtManual;
