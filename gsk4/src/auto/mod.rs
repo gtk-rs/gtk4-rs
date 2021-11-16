@@ -36,8 +36,6 @@ pub use self::enums::ScalingFilter;
 pub use self::enums::SerializationError;
 pub use self::enums::TransformCategory;
 
-pub mod functions;
-
 #[doc(hidden)]
 pub mod traits {
     pub use super::renderer::GskRenderer;
