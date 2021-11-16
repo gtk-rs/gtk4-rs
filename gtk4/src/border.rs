@@ -123,7 +123,7 @@ impl BorderBuilder {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Border`] objects.
     ///
-    /// This method returns an instance of [`BorderBuilder`] which can be used to create [`Border`] objects.
+    /// This method returns an instance of [`BorderBuilder`](crate::builders::BorderBuilder) which can be used to create [`Border`] objects.
     pub fn builder() -> BorderBuilder {
         BorderBuilder::default()
     }

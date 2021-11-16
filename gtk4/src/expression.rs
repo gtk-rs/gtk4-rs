@@ -31,7 +31,7 @@ impl AsRef<Expression> for Expression {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`gtk::Expression`] types.
+/// A common trait implemented by the various [`Expression`](crate::Expression) types.
 ///
 /// # Safety
 ///

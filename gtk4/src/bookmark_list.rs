@@ -25,7 +25,7 @@ impl BookmarkList {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`BookmarkList`] objects.
     ///
-    /// This method returns an instance of [`BookmarkListBuilder`] which can be used to create [`BookmarkList`] objects.
+    /// This method returns an instance of [`BookmarkListBuilder`](crate::builders::BookmarkListBuilder) which can be used to create [`BookmarkList`] objects.
     pub fn builder() -> BookmarkListBuilder {
         BookmarkListBuilder::default()
     }

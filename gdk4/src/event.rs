@@ -281,7 +281,7 @@ impl AsRef<Event> for Event {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`gdk::Event`] types.
+/// A common trait implemented by the various [`Event`](crate::Event) types.
 ///
 /// # Safety
 ///

@@ -19,7 +19,7 @@ impl ContentFormats {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ContentFormats`] objects.
     ///
-    /// This method returns an instance of [`ContentFormatsBuilder`] which can be used to create [`ContentFormats`] objects.
+    /// This method returns an instance of [`ContentFormatsBuilder`](crate::builders::ContentFormatsBuilder) which can be used to create [`ContentFormats`] objects.
     pub fn builder() -> ContentFormatsBuilder {
         ContentFormatsBuilder::default()
     }
