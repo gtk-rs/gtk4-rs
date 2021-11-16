@@ -32,6 +32,10 @@ impl BookmarkList {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`BookmarkList`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BookmarkListBuilder {
     attributes: Option<String>,
     filename: Option<String>,

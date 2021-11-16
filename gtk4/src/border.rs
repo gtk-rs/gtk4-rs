@@ -106,6 +106,10 @@ impl PartialEq for Border {
 impl Eq for Border {}
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`Border`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BorderBuilder {
     left: Option<i16>,
     right: Option<i16>,

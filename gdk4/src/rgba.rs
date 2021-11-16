@@ -6,6 +6,10 @@ use std::fmt;
 use std::str::FromStr;
 
 #[derive(Debug, Default)]
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`RGBA`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct RGBABuilder {
     red: Option<f32>,
     green: Option<f32>,
