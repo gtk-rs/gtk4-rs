@@ -38,7 +38,7 @@ pub use self::enums::TransformCategory;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::renderer::GskRenderer;
+    pub use super::renderer::GskRendererExt;
 }
 #[doc(hidden)]
 pub mod builders {

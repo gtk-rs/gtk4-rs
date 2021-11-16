@@ -116,7 +116,7 @@ generate_builder = true
 [[object]]
 name = "Gsk.Renderer"
 status = "generate"
-trait_name = "GskRenderer"
+trait_name = "GskRendererExt"
 manual_traits = ["GskRendererExtManual"]
     [[object.function]]
     name = "render"
