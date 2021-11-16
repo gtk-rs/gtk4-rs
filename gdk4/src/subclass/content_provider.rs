@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`ContentProvider`](crate::ContentProvider).
+
 use crate::{Clipboard, ContentFormats, ContentProvider};
 
 use crate::subclass::prelude::*;

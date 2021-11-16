@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for creating custom types.
+
 /// Struct to hold a pointer and free it on `Drop::drop`
 pub(crate) struct PtrHolder<T, F: Fn(*mut T) + 'static>(*mut T, F);
 
@@ -74,6 +77,7 @@ pub mod tree_view;
 pub mod widget;
 pub mod window;
 
+/// Traits intended for blanket imports.
 pub mod prelude {
     #[doc(hidden)]
     pub use gdk::subclass::prelude::*;

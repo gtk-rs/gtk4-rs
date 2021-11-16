@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`CellRenderer`](crate::CellRenderer).
+
 use libc::{c_char, c_int};
 use std::mem;
 

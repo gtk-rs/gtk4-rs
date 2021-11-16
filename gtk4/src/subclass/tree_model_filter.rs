@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`TreeModelFilter`](crate::TreeModelFilter).
+
 use crate::subclass::prelude::*;
 use crate::{TreeIter, TreeModel, TreeModelFilter};
 use glib::translate::*;
