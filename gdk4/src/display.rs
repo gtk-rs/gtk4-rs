@@ -52,6 +52,8 @@ impl Backend {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Display`](crate::Display).
 pub trait DisplayExtManual: 'static {
     #[doc(alias = "gdk_display_translate_key")]
     fn translate_key(

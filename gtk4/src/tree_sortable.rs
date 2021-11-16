@@ -59,6 +59,8 @@ impl fmt::Display for SortColumn {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TreeSortable`](crate::TreeSortable).
 pub trait TreeSortableExtManual: 'static {
     #[doc(alias = "gtk_tree_sortable_set_default_sort_func")]
     fn set_default_sort_func<F>(&self, sort_func: F)

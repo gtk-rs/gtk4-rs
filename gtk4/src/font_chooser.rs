@@ -4,6 +4,8 @@ use crate::FontChooser;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`FontChooser`](crate::FontChooser).
 pub trait FontChooserExtManual: 'static {
     #[doc(alias = "gtk_font_chooser_set_filter_func")]
     #[doc(alias = "set_filter_func")]

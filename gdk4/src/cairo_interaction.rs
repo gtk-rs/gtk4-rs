@@ -5,6 +5,8 @@ use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing integration methods with [`cairo::Surface`].
 pub trait GdkCairoSurfaceExt {
     #[doc(alias = "gdk_cairo_region_create_from_surface")]
     fn create_region(&self) -> Option<Region>;
@@ -20,6 +22,8 @@ impl GdkCairoSurfaceExt for cairo::Surface {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing integration methods with [`cairo::Context`].
 pub trait GdkCairoContextExt {
     // rustdoc-stripper-ignore-next
     /// # Safety

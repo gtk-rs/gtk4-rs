@@ -5,6 +5,8 @@ use crate::{CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).
 pub trait TreeViewExtManual: 'static {
     #[doc(alias = "gtk_tree_view_insert_column_with_attributes")]
     fn insert_column_with_attributes(

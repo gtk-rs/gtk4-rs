@@ -8,6 +8,8 @@ use glib::IsA;
 use std::boxed::Box as Box_;
 use std::mem::transmute;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Toplevel`](crate::Toplevel).
 pub trait ToplevelExtManual {
     #[doc(alias = "gdk_toplevel_inhibit_system_shortcuts")]
     fn inhibit_system_shortcuts<P: AsRef<Event>>(&self, event: Option<&P>);

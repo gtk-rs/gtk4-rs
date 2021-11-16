@@ -4,6 +4,8 @@ use crate::Surface;
 use glib::object::IsA;
 use glib::translate::*;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Surface`](crate::Surface).
 pub trait SurfaceExtManual: 'static {
     #[doc(alias = "gdk_surface_create_similar_surface")]
     fn create_similar_surface(

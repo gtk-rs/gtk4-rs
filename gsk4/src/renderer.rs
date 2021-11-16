@@ -4,6 +4,8 @@ use crate::{RenderNode, Renderer};
 use glib::object::IsA;
 use glib::translate::*;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Renderer`](crate::Renderer).
 pub trait GskRendererExtManual: 'static {
     #[doc(alias = "gsk_renderer_render")]
     fn render<P: AsRef<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);

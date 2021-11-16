@@ -5,6 +5,8 @@ use glib::object::IsA;
 use glib::translate::*;
 use libc::c_char;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).
 pub trait ActionableExtManual: 'static {
     #[doc(alias = "gtk_actionable_set_action_target")]
     fn set_action_target(&self, string: &str);

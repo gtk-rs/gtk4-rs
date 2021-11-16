@@ -4,6 +4,8 @@ use crate::Texture;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Texture`](crate::Texture).
 pub trait TextureExtManual: 'static {
     #[doc(alias = "gdk_texture_download")]
     fn download(&self, data: &mut [u8], stride: usize);

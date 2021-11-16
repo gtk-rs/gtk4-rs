@@ -4,6 +4,8 @@ use crate::ContentProvider;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`ContentProvider`](crate::ContentProvider).
 pub trait ContentProviderExtManual {
     #[doc(alias = "gdk_content_provider_get_value")]
     fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error>;

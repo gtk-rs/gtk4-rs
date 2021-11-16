@@ -4,6 +4,8 @@ use crate::TextView;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TextView`](crate::TextView).
 pub trait TextViewExtManual {
     #[doc(alias = "gtk_text_view_im_context_filter_keypress")]
     fn im_context_filter_keypress<R: AsRef<gdk::Event>>(&self, event: &R) -> bool;

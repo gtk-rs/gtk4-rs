@@ -8,6 +8,8 @@ use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;
 use glib::Continue;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Widget`](crate::Widget).
 pub trait WidgetExtManual: 'static {
     #[doc(alias = "gtk_widget_add_tick_callback")]
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(

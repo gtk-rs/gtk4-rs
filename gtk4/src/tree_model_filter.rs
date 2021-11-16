@@ -20,6 +20,8 @@ impl TreeModelFilter {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TreeModelFilter`](crate::TreeModelFilter).
 pub trait TreeModelFilterExtManual: 'static {
     #[doc(alias = "gtk_tree_model_filter_set_modify_func")]
     fn set_modify_func<F: Fn(&TreeModel, &TreeIter, i32) -> glib::Value + 'static>(

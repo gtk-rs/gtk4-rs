@@ -5,6 +5,8 @@ use crate::{CellLayout, CellRenderer};
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`CellLayout`](crate::CellLayout).
 pub trait CellLayoutExtManual: 'static {
     #[doc(alias = "gtk_cell_layout_set_attributes")]
     fn set_attributes(&self, cell: &impl IsA<CellRenderer>, attributes: &[(&str, i32)]);

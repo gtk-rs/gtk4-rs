@@ -6,6 +6,8 @@ use glib::translate::*;
 use std::cell::RefCell;
 use std::ptr;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`DrawingArea`](crate::DrawingArea).
 pub trait DrawingAreaExtManual: 'static {
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
     #[doc(alias = "set_draw_func")]
