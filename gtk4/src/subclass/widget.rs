@@ -1300,12 +1300,14 @@ where
             .expect("Failed to retrieve template child. Please check that it has been bound.")
     }
 
+    // rustdoc-stripper-ignore-next
     /// Determines if the child has been bound. This is primarily
     /// useful for implementing the [`Buildable`][`crate::Buildable`] interface.
     pub fn is_bound(&self) -> bool {
         !self.ptr.is_null()
     }
 
+    // rustdoc-stripper-ignore-next
     /// Returns Some(child) if the widget has been bound.
     pub fn try_get(&self) -> Option<T> {
         unsafe { Option::<T>::from_glib_none(self.ptr) }
