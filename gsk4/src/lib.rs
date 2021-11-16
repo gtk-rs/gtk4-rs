@@ -93,7 +93,7 @@ pub use opacity_node::OpacityNode;
 pub use outset_shadow_node::OutsetShadowNode;
 pub use parse_location::ParseLocation;
 pub use radial_gradient_node::RadialGradientNode;
-pub use render_node::{IsRenderNode, RenderNode};
+pub use render_node::RenderNode;
 pub use repeat_node::RepeatNode;
 pub use repeating_linear_gradient_node::RepeatingLinearGradientNode;
 pub use repeating_radial_gradient_node::RepeatingRadialGradientNode;

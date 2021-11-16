@@ -5,6 +5,7 @@
 
 pub use crate::auto::traits::*;
 
+pub use crate::render_node::IsRenderNode;
 pub use crate::renderer::GskRendererExtManual;
 
 #[doc(hidden)]
