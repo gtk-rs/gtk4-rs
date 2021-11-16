@@ -37,6 +37,8 @@ glib::wrapper! {
 }
 
 impl Scale {
+    pub const NONE: Option<&'static Scale> = None;
+
     #[doc(alias = "gtk_scale_new")]
     pub fn new(orientation: Orientation, adjustment: Option<&impl IsA<Adjustment>>) -> Scale {
         assert_initialized_main_thread!();
@@ -471,10 +473,6 @@ impl ScaleBuilder {
         self.orientation = Some(orientation);
         self
     }
-}
-
-impl Scale {
-    pub const NONE: Option<&'static Scale> = None;
 }
 
 pub trait ScaleExt: 'static {

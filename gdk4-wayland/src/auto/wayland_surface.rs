@@ -13,8 +13,6 @@ glib::wrapper! {
     }
 }
 
-impl WaylandSurface {}
-
 impl WaylandSurface {
     pub const NONE: Option<&'static WaylandSurface> = None;
 }

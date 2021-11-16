@@ -23,6 +23,8 @@ glib::wrapper! {
 }
 
 impl EntryBuffer {
+    pub const NONE: Option<&'static EntryBuffer> = None;
+
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`EntryBuffer`] objects.
     ///
@@ -73,10 +75,6 @@ impl EntryBufferBuilder {
         self.text = Some(text.to_string());
         self
     }
-}
-
-impl EntryBuffer {
-    pub const NONE: Option<&'static EntryBuffer> = None;
 }
 
 pub trait EntryBufferExt: 'static {

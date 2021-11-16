@@ -33,6 +33,8 @@ glib::wrapper! {
 }
 
 impl ListBoxRow {
+    pub const NONE: Option<&'static ListBoxRow> = None;
+
     #[doc(alias = "gtk_list_box_row_new")]
     pub fn new() -> ListBoxRow {
         assert_initialized_main_thread!();
@@ -392,10 +394,6 @@ impl ListBoxRowBuilder {
         self.action_target = Some(action_target.clone());
         self
     }
-}
-
-impl ListBoxRow {
-    pub const NONE: Option<&'static ListBoxRow> = None;
 }
 
 pub trait ListBoxRowExt: 'static {

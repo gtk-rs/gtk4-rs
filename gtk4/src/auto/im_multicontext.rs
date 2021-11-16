@@ -22,6 +22,8 @@ glib::wrapper! {
 }
 
 impl IMMulticontext {
+    pub const NONE: Option<&'static IMMulticontext> = None;
+
     #[doc(alias = "gtk_im_multicontext_new")]
     pub fn new() -> IMMulticontext {
         assert_initialized_main_thread!();
@@ -84,10 +86,6 @@ impl IMMulticontextBuilder {
         self.input_purpose = Some(input_purpose);
         self
     }
-}
-
-impl IMMulticontext {
-    pub const NONE: Option<&'static IMMulticontext> = None;
 }
 
 pub trait IMMulticontextExt: 'static {

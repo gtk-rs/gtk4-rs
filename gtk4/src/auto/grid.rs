@@ -36,6 +36,8 @@ glib::wrapper! {
 }
 
 impl Grid {
+    pub const NONE: Option<&'static Grid> = None;
+
     #[doc(alias = "gtk_grid_new")]
     pub fn new() -> Grid {
         assert_initialized_main_thread!();
@@ -403,10 +405,6 @@ impl GridBuilder {
         self.orientation = Some(orientation);
         self
     }
-}
-
-impl Grid {
-    pub const NONE: Option<&'static Grid> = None;
 }
 
 pub trait GridExt: 'static {

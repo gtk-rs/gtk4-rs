@@ -29,6 +29,8 @@ glib::wrapper! {
 }
 
 impl Drag {
+    pub const NONE: Option<&'static Drag> = None;
+
     #[doc(alias = "gdk_drag_begin")]
     pub fn begin(
         surface: &impl IsA<Surface>,
@@ -50,10 +52,6 @@ impl Drag {
             ))
         }
     }
-}
-
-impl Drag {
-    pub const NONE: Option<&'static Drag> = None;
 }
 
 pub trait DragExt: 'static {

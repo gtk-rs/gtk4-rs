@@ -31,6 +31,8 @@ glib::wrapper! {
 }
 
 impl Frame {
+    pub const NONE: Option<&'static Frame> = None;
+
     #[doc(alias = "gtk_frame_new")]
     pub fn new(label: Option<&str>) -> Frame {
         assert_initialized_main_thread!();
@@ -381,10 +383,6 @@ impl FrameBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl Frame {
-    pub const NONE: Option<&'static Frame> = None;
 }
 
 pub trait FrameExt: 'static {

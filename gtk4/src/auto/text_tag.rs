@@ -26,6 +26,8 @@ glib::wrapper! {
 }
 
 impl TextTag {
+    pub const NONE: Option<&'static TextTag> = None;
+
     #[doc(alias = "gtk_text_tag_new")]
     pub fn new(name: Option<&str>) -> TextTag {
         assert_initialized_main_thread!();
@@ -911,10 +913,6 @@ impl TextTagBuilder {
         self.wrap_mode_set = Some(wrap_mode_set);
         self
     }
-}
-
-impl TextTag {
-    pub const NONE: Option<&'static TextTag> = None;
 }
 
 pub trait TextTagExt: 'static {

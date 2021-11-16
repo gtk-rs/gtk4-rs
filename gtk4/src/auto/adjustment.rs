@@ -23,6 +23,8 @@ glib::wrapper! {
 }
 
 impl Adjustment {
+    pub const NONE: Option<&'static Adjustment> = None;
+
     #[doc(alias = "gtk_adjustment_new")]
     pub fn new(
         value: f64,
@@ -138,10 +140,6 @@ impl AdjustmentBuilder {
         self.value = Some(value);
         self
     }
-}
-
-impl Adjustment {
-    pub const NONE: Option<&'static Adjustment> = None;
 }
 
 pub trait AdjustmentExt: 'static {

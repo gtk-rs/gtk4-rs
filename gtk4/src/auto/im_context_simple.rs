@@ -21,6 +21,8 @@ glib::wrapper! {
 }
 
 impl IMContextSimple {
+    pub const NONE: Option<&'static IMContextSimple> = None;
+
     #[doc(alias = "gtk_im_context_simple_new")]
     pub fn new() -> IMContextSimple {
         assert_initialized_main_thread!();
@@ -83,10 +85,6 @@ impl IMContextSimpleBuilder {
         self.input_purpose = Some(input_purpose);
         self
     }
-}
-
-impl IMContextSimple {
-    pub const NONE: Option<&'static IMContextSimple> = None;
 }
 
 impl fmt::Display for IMContextSimple {

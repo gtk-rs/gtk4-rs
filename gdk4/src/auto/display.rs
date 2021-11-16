@@ -34,6 +34,8 @@ glib::wrapper! {
 }
 
 impl Display {
+    pub const NONE: Option<&'static Display> = None;
+
     #[doc(alias = "gdk_display_get_default")]
     #[doc(alias = "get_default")]
     pub fn default() -> Option<Display> {
@@ -53,10 +55,6 @@ impl fmt::Display for Display {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&DisplayExt::name(self))
     }
-}
-
-impl Display {
-    pub const NONE: Option<&'static Display> = None;
 }
 
 pub trait DisplayExt: 'static {

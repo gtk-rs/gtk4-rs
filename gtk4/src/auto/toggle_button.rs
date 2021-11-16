@@ -33,6 +33,8 @@ glib::wrapper! {
 }
 
 impl ToggleButton {
+    pub const NONE: Option<&'static ToggleButton> = None;
+
     #[doc(alias = "gtk_toggle_button_new")]
     pub fn new() -> ToggleButton {
         assert_initialized_main_thread!();
@@ -452,10 +454,6 @@ impl ToggleButtonBuilder {
         self.action_target = Some(action_target.clone());
         self
     }
-}
-
-impl ToggleButton {
-    pub const NONE: Option<&'static ToggleButton> = None;
 }
 
 pub trait ToggleButtonExt: 'static {

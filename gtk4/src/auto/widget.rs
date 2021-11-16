@@ -46,6 +46,8 @@ glib::wrapper! {
 }
 
 impl Widget {
+    pub const NONE: Option<&'static Widget> = None;
+
     #[doc(alias = "gtk_widget_get_default_direction")]
     #[doc(alias = "get_default_direction")]
     pub fn default_direction() -> TextDirection {
@@ -67,10 +69,6 @@ impl fmt::Display for Widget {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&WidgetExt::widget_name(self))
     }
-}
-
-impl Widget {
-    pub const NONE: Option<&'static Widget> = None;
 }
 
 pub trait WidgetExt: 'static {

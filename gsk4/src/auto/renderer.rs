@@ -22,16 +22,14 @@ glib::wrapper! {
 }
 
 impl Renderer {
+    pub const NONE: Option<&'static Renderer> = None;
+
     #[doc(alias = "gsk_renderer_new_for_surface")]
     #[doc(alias = "new_for_surface")]
     pub fn for_surface(surface: &gdk::Surface) -> Option<Renderer> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_renderer_new_for_surface(surface.to_glib_none().0)) }
     }
-}
-
-impl Renderer {
-    pub const NONE: Option<&'static Renderer> = None;
 }
 
 pub trait GskRenderer: 'static {

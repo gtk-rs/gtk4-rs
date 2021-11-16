@@ -32,6 +32,8 @@ glib::wrapper! {
 }
 
 impl FlowBoxChild {
+    pub const NONE: Option<&'static FlowBoxChild> = None;
+
     #[doc(alias = "gtk_flow_box_child_new")]
     pub fn new() -> FlowBoxChild {
         assert_initialized_main_thread!();
@@ -355,10 +357,6 @@ impl FlowBoxChildBuilder {
         self.accessible_role = Some(accessible_role);
         self
     }
-}
-
-impl FlowBoxChild {
-    pub const NONE: Option<&'static FlowBoxChild> = None;
 }
 
 pub trait FlowBoxChildExt: 'static {

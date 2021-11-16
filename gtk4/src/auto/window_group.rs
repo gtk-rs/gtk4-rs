@@ -17,6 +17,8 @@ glib::wrapper! {
 }
 
 impl WindowGroup {
+    pub const NONE: Option<&'static WindowGroup> = None;
+
     #[doc(alias = "gtk_window_group_new")]
     pub fn new() -> WindowGroup {
         assert_initialized_main_thread!();
@@ -28,10 +30,6 @@ impl Default for WindowGroup {
     fn default() -> Self {
         Self::new()
     }
-}
-
-impl WindowGroup {
-    pub const NONE: Option<&'static WindowGroup> = None;
 }
 
 pub trait WindowGroupExt: 'static {

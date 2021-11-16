@@ -33,6 +33,8 @@ glib::wrapper! {
 }
 
 impl Surface {
+    pub const NONE: Option<&'static Surface> = None;
+
     #[doc(alias = "gdk_surface_new_popup")]
     pub fn new_popup(parent: &impl IsA<Surface>, autohide: bool) -> Surface {
         skip_assert_initialized!();
@@ -53,10 +55,6 @@ impl Surface {
             ))
         }
     }
-}
-
-impl Surface {
-    pub const NONE: Option<&'static Surface> = None;
 }
 
 pub trait SurfaceExt: 'static {
