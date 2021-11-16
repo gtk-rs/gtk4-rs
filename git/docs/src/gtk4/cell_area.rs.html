@@ -307,6 +307,8 @@
 <span id="234">234</span>
 <span id="235">235</span>
 <span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -315,6 +317,8 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">value::FromValue</span>, <span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellAreaExtManual</span> {
     <span class="doccomment">/// Adds `renderer` to `self`, setting cell properties at the same time.</span>
     <span class="doccomment">/// See [`CellAreaExt::add()`][crate::prelude::CellAreaExt::add()] and `gtk_cell_area_cell_set()` for more details.</span>

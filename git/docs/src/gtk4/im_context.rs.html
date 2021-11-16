@@ -104,12 +104,16 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IMContext</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`IMContext`](crate::IMContext).</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextExtManual</span> {
     <span class="doccomment">/// Allow an input method to internally handle key press and release</span>

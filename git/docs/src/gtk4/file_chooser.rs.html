@@ -132,12 +132,16 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::FileChooser</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`FileChooser`](crate::FileChooser).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FileChooserExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds a &#39;choice&#39; to the file chooser.</span>
     <span class="doccomment">///</span>

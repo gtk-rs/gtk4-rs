@@ -121,12 +121,16 @@
 <span id="48">48</span>
 <span id="49">49</span>
 <span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::SymbolicPaintable</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`SymbolicPaintable`](crate::SymbolicPaintable).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SymbolicPaintableExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Snapshots the paintable with the given colors.</span>
     <span class="doccomment">///</span>

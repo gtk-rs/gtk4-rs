@@ -105,12 +105,16 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DrawContext</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DrawContextExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves the region that is currently being repainted.</span>
     <span class="doccomment">///</span>

@@ -99,6 +99,8 @@
 <span id="26">26</span>
 <span id="27">27</span>
 <span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::WaylandSurface</span>;
@@ -108,6 +110,8 @@
 <span class="kw">use</span> <span class="ident">wayland_client::sys::client::wl_proxy</span>;
 <span class="kw">use</span> <span class="ident">wayland_client::Proxy</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`WaylandSurface`](crate::WaylandSurface).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WaylandSurfaceExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns the Wayland `wl_surface` of a [`gdk::Surface`][crate::gdk::Surface].</span>
     <span class="doccomment">///</span>

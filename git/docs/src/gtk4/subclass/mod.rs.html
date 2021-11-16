@@ -223,7 +223,14 @@
 <span id="150">150</span>
 <span id="151">151</span>
 <span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
+
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">//! Traits intended for creating custom types.</span>
 
 <span class="doccomment">/// Struct to hold a pointer and free it on `Drop::drop`</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">PtrHolder</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*mut</span> <span class="ident">T</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">*mut</span> <span class="ident">T</span>, <span class="ident">F</span>);
@@ -299,6 +306,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
 
+<span class="doccomment">/// Traits intended for blanket imports.</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">prelude</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk::subclass::prelude</span>::<span class="kw-2">*</span>;

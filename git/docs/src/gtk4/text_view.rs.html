@@ -131,12 +131,16 @@
 <span id="58">58</span>
 <span id="59">59</span>
 <span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TextView</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`TextView`](crate::TextView).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewExtManual</span> {
     <span class="doccomment">/// Allow the [`TextView`][crate::TextView] input method to internally handle key press</span>
     <span class="doccomment">/// and release events.</span>

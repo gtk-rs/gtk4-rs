@@ -139,6 +139,8 @@
 <span id="66">66</span>
 <span id="67">67</span>
 <span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -146,6 +148,8 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeViewExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Creates a new [`TreeViewColumn`][crate::TreeViewColumn] and inserts it into the `self` at</span>
     <span class="doccomment">/// `position`. If `position` is -1, then the newly created column is inserted at</span>

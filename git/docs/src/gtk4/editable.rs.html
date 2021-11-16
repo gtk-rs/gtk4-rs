@@ -144,6 +144,8 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Editable</span>;
@@ -157,6 +159,8 @@
 <span class="kw">use</span> <span class="ident">std::slice</span>;
 <span class="kw">use</span> <span class="ident">std::str</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Editable`](crate::Editable).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EditableExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Emitted when text is inserted into the widget by the user.</span>
     <span class="doccomment">///</span>

@@ -202,6 +202,8 @@
 <span id="129">129</span>
 <span id="130">130</span>
 <span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -212,6 +214,8 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::Continue</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Widget`](crate::Widget).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Queues an animation frame update and adds a callback to be called</span>
     <span class="doccomment">/// before each frame.</span>

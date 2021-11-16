@@ -176,12 +176,16 @@
 <span id="103">103</span>
 <span id="104">104</span>
 <span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Accessible</span>, <span class="ident">AccessibleProperty</span>, <span class="ident">AccessibleRelation</span>, <span class="ident">AccessibleState</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Accessible`](crate::Accessible).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AccessibleExtManual</span> {
     <span class="doccomment">/// Updates an array of accessible properties.</span>
     <span class="doccomment">///</span>

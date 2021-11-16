@@ -186,12 +186,16 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">CellEditable</span>, <span class="ident">CellRenderer</span>, <span class="ident">CellRendererState</span>, <span class="ident">Widget</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`CellRenderer`](crate::CellRenderer).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellRendererExtManual</span> {
     <span class="doccomment">/// Passes an activate event to the cell renderer for possible processing.</span>
     <span class="doccomment">/// Some cell renderers may use events; for example, [`CellRendererToggle`][crate::CellRendererToggle]</span>

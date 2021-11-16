@@ -147,12 +147,16 @@
 <span id="74">74</span>
 <span id="75">75</span>
 <span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">RenderNode</span>, <span class="ident">Renderer</span>};
 <span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Renderer`](crate::Renderer).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GskRendererExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Renders the scene graph, described by a tree of [`RenderNode`][crate::RenderNode] instances</span>
     <span class="doccomment">/// to the renderer&#39;s surface, ensuring that the given `region` gets redrawn.</span>

@@ -140,6 +140,8 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">TextBuffer</span>, <span class="ident">TextIter</span>};
@@ -151,6 +153,8 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">slice</span>, <span class="ident">str</span>};
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextBufferExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Emitted to insert text in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>

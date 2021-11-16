@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["GskRenderer","Trait containing all [`struct@Renderer`] methods."],["GskRendererExtManual",""]]});
+initSidebarItems({"trait":[["GskRenderer","Trait containing all [`struct@Renderer`] methods."],["GskRendererExtManual","Trait containing manually implemented methods of `Renderer`."]]});

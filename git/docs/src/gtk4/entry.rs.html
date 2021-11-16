@@ -100,6 +100,8 @@
 <span id="27">27</span>
 <span id="28">28</span>
 <span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Entry</span>;
@@ -107,6 +109,8 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 <span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Entry`](crate::Entry).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves the character displayed in place of the actual text</span>
     <span class="doccomment">/// in “password mode”.</span>

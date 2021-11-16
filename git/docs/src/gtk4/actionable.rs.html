@@ -106,6 +106,8 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Actionable</span>;
@@ -113,6 +115,8 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">libc::c_char</span>;
 
+<span class="comment">// rustdoc-stripper-ignore-next</span>
+<span class="doccomment">/// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Sets the target of an actionable widget.</span>
     <span class="doccomment">///</span>
