@@ -216,11 +216,29 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::cell::Cell</span>;
 <span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>};
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>)]</span>
+<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="kw">fn</span> <span class="ident">pthread_main_np</span>() -&gt; <span class="ident">i32</span>;
+}
 
 <span class="macro">thread_local!</span> {
     <span class="kw">static</span> <span class="ident">IS_MAIN_THREAD</span>: <span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Cell::new</span>(<span class="bool-val">false</span>)
@@ -299,7 +317,15 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span>{ <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_is_initialized</span>()) } {
         <span class="macro">panic!</span>(<span class="string">&quot;GTK was not actually initialized&quot;</span>);
     }
-
+    <span class="comment">//  OS X has its own notion of the main thread and init must be called on that thread.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>)]</span>
+    {
+        <span class="macro">assert_eq!</span>(
+            <span class="ident">pthread_main_np</span>(),
+            <span class="number">1</span>,
+            <span class="string">&quot;Attempted to initialize GTK on OSX from non-main thread&quot;</span>
+        );
+    }
     <span class="ident">INITIALIZED</span>.<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">Ordering::Release</span>);
     <span class="ident">IS_MAIN_THREAD</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">set</span>(<span class="bool-val">true</span>));
 }
