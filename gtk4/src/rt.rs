@@ -4,6 +4,11 @@ use glib::translate::*;
 use std::cell::Cell;
 use std::sync::atomic::{AtomicBool, Ordering};
 
+#[cfg(target_os = "macos")]
+extern "C" {
+    fn pthread_main_np() -> i32;
+}
+
 thread_local! {
     static IS_MAIN_THREAD: Cell<bool> = Cell::new(false)
 }
@@ -81,7 +86,15 @@ pub unsafe fn set_initialized() {
     } else if !{ from_glib(ffi::gtk_is_initialized()) } {
         panic!("GTK was not actually initialized");
     }
-
+    //  OS X has its own notion of the main thread and init must be called on that thread.
+    #[cfg(target_os = "macos")]
+    {
+        assert_eq!(
+            pthread_main_np(),
+            1,
+            "Attempted to initialize GTK on OSX from non-main thread"
+        );
+    }
     INITIALIZED.store(true, Ordering::Release);
     IS_MAIN_THREAD.with(|c| c.set(true));
 }
