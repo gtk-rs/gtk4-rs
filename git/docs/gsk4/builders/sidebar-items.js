@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ShaderArgsBuilder","An object to build the uniforms data for a [`GLShader`][crate::GLShader]."]]});
