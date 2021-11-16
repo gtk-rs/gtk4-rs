@@ -75,7 +75,7 @@ impl RGBA {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`RGBA`] objects.
     ///
-    /// This method returns an instance of [`RGBABuilder`] which can be used to create [`RGBA`] objects.
+    /// This method returns an instance of [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to create [`RGBA`] objects.
     pub fn builder() -> RGBABuilder {
         RGBABuilder::default()
     }

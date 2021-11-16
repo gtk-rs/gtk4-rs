@@ -25,7 +25,7 @@ impl DirectoryList {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DirectoryList`] objects.
     ///
-    /// This method returns an instance of [`DirectoryListBuilder`] which can be used to create [`DirectoryList`] objects.
+    /// This method returns an instance of [`DirectoryListBuilder`](crate::builders::DirectoryListBuilder) which can be used to create [`DirectoryList`] objects.
     pub fn builder() -> DirectoryListBuilder {
         DirectoryListBuilder::default()
     }

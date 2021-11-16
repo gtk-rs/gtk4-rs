@@ -140,7 +140,7 @@ impl RenderNode {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`gsk::RenderNode`] types.
+/// A common trait implemented by the various [`RenderNode`](crate::RenderNode) types.
 ///
 /// # Safety
 ///
