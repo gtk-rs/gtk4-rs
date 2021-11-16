@@ -9,6 +9,7 @@ pub use crate::cairo_interaction::{GdkCairoContextExt, GdkCairoSurfaceExt};
 pub use crate::content_provider::ContentProviderExtManual;
 pub use crate::display::DisplayExtManual;
 pub use crate::draw_context::DrawContextExtManual;
+pub use crate::event::EventKind;
 pub use crate::surface::SurfaceExtManual;
 pub use crate::texture::TextureExtManual;
 pub use crate::toplevel::ToplevelExtManual;
