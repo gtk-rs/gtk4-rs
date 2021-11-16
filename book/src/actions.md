@@ -77,7 +77,7 @@ Your browser does not support the video tag.
 Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](../docs/gtk4/struct.Actionable.html) interface.
 This way, the action can be specified by setting the "action-name" property.
 If the action accepts a parameter, it can be set via the "action-target" property.
-With [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html), we can set everything up by calling its methods.
+With [`ButtonBuilder`](../docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
 
 <span class="filename">Filename: listings/actions/4/main.rs</span>
 
