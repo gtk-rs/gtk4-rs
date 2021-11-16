@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`CellRendererText`](crate::CellRendererText).
+
 use crate::subclass::prelude::*;
 use crate::CellRendererText;
 use glib::translate::*;

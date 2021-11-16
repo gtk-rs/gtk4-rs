@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`FlowBoxChild`](crate::FlowBoxChild).
+
 use crate::subclass::prelude::*;
 use crate::FlowBoxChild;
 use glib::translate::*;

@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for implementing the [`CellEditable`](crate::CellEditable) interface.
+
 use crate::subclass::prelude::*;
 use crate::CellEditable;
 use glib::translate::*;

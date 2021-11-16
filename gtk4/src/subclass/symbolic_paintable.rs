@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for implementing the [`SymbolicPaintable`](crate::SymbolicPaintable) interface.
+
 use crate::subclass::prelude::*;
 use crate::SymbolicPaintable;
 use gdk::subclass::prelude::PaintableImpl;

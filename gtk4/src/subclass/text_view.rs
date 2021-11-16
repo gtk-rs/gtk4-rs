@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for subclassing [`TextView`](crate::TextView).
+
 use crate::subclass::prelude::*;
 use crate::{
     DeleteType, MovementStep, Snapshot, TextExtendSelection, TextIter, TextView, TextViewLayer,

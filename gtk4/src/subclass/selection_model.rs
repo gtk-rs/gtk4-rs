@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! Traits intended for implementing the [`SelectionModel`](crate::SelectionModel) interface.
+
 use crate::{Bitset, SelectionModel};
 use gio::subclass::prelude::*;
 use glib::translate::*;
