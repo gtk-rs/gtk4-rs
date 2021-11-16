@@ -4,6 +4,8 @@ use crate::{Accessible, AccessibleProperty, AccessibleRelation, AccessibleState}
 use glib::translate::*;
 use glib::{IsA, ToValue};
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Accessible`](crate::Accessible).
 pub trait AccessibleExtManual {
     #[doc(alias = "gtk_accessible_update_property")]
     #[doc(alias = "gtk_accessible_update_property_value")]

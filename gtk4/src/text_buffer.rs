@@ -9,6 +9,8 @@ use std::boxed::Box as Box_;
 use std::mem::transmute;
 use std::{slice, str};
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).
 pub trait TextBufferExtManual: 'static {
     fn connect_insert_text<F: Fn(&Self, &mut TextIter, &str) + 'static>(
         &self,

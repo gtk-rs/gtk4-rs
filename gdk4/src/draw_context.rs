@@ -4,6 +4,8 @@ use crate::DrawContext;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).
 pub trait DrawContextExtManual: 'static {
     #[doc(alias = "gdk_draw_context_get_frame_region")]
     #[doc(alias = "get_frame_region")]

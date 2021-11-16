@@ -11,6 +11,8 @@ use std::mem::transmute;
 use std::slice;
 use std::str;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Editable`](crate::Editable).
 pub trait EditableExtManual: 'static {
     fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
     where

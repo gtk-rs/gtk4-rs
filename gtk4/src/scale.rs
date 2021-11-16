@@ -4,6 +4,8 @@ use crate::Scale;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Scale`](crate::Scale).
 pub trait ScaleExtManual: 'static {
     #[doc(alias = "gtk_scale_set_format_value_func")]
     #[doc(alias = "set_format_value_func")]

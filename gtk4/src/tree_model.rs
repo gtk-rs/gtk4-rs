@@ -6,6 +6,8 @@ use glib::translate::*;
 use glib::value::FromValue;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`TreeModel`](crate::TreeModel).
 pub trait TreeModelExtManual: 'static {
     #[doc(alias = "gtk_tree_model_get")]
     #[doc(alias = "gtk_tree_model_get_value")]

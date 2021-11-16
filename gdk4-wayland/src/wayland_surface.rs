@@ -7,6 +7,8 @@ use wayland_client::protocol::wl_surface::WlSurface;
 use wayland_client::sys::client::wl_proxy;
 use wayland_client::Proxy;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`WaylandSurface`](crate::WaylandSurface).
 pub trait WaylandSurfaceExtManual: 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]

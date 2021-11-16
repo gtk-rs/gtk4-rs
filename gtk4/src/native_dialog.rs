@@ -7,6 +7,8 @@ use std::cell::Cell;
 use std::future::Future;
 use std::pin::Pin;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`NativeDialog`](crate::NativeDialog).
 pub trait NativeDialogExtManual {
     // rustdoc-stripper-ignore-next
     /// Shows the dialog and returns a `Future` that resolves to the

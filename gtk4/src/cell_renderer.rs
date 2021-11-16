@@ -4,6 +4,8 @@ use crate::{CellEditable, CellRenderer, CellRendererState, Widget};
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`CellRenderer`](crate::CellRenderer).
 pub trait CellRendererExtManual {
     #[doc(alias = "gtk_cell_renderer_activate")]
     fn activate<Q: IsA<Widget>, R: AsRef<gdk::Event>>(

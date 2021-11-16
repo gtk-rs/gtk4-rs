@@ -4,6 +4,8 @@ use crate::IMContext;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`IMContext`](crate::IMContext).
 #[allow(clippy::upper_case_acronyms)]
 pub trait IMContextExtManual {
     #[doc(alias = "gtk_im_context_filter_keypress")]

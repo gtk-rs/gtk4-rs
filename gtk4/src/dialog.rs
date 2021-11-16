@@ -36,6 +36,8 @@ impl Dialog {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Dialog`](crate::Dialog).
 pub trait DialogExtManual: 'static {
     #[doc(alias = "gtk_dialog_add_buttons")]
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);

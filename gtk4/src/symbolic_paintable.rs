@@ -4,6 +4,8 @@ use crate::SymbolicPaintable;
 use glib::translate::*;
 use glib::IsA;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`SymbolicPaintable`](crate::SymbolicPaintable).
 pub trait SymbolicPaintableExtManual: 'static {
     #[doc(alias = "gtk_symbolic_paintable_snapshot_symbolic")]
     fn snapshot_symbolic(

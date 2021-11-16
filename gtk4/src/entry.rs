@@ -5,6 +5,8 @@ use glib::translate::*;
 use glib::IsA;
 use std::convert::TryFrom;
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`Entry`](crate::Entry).
 pub trait EntryExtManual: 'static {
     #[doc(alias = "gtk_entry_get_invisible_char")]
     #[doc(alias = "get_invisible_char")]

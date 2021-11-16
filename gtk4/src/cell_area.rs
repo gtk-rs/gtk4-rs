@@ -6,6 +6,8 @@ use gdk::Event;
 use glib::translate::*;
 use glib::{value::FromValue, IsA, ToValue};
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).
 pub trait CellAreaExtManual {
     #[doc(alias = "gtk_cell_area_add_with_properties")]
     fn add_with_properties(

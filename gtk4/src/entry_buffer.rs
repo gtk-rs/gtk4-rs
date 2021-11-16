@@ -18,6 +18,8 @@ impl EntryBuffer {
     }
 }
 
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`EntryBuffer`](crate::EntryBuffer).
 pub trait EntryBufferExtManual: 'static {
     #[doc(alias = "gtk_entry_buffer_delete_text")]
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16;
