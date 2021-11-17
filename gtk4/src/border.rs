@@ -45,35 +45,35 @@ impl Border {
     }
 
     pub fn left(&self) -> i16 {
-        self.left
+        self.0.left
     }
 
     pub fn set_left(&mut self, left: i16) {
-        self.left = left;
+        self.0.left = left;
     }
 
     pub fn right(&self) -> i16 {
-        self.right
+        self.0.right
     }
 
     pub fn set_right(&mut self, right: i16) {
-        self.right = right;
+        self.0.right = right;
     }
 
     pub fn top(&self) -> i16 {
-        self.top
+        self.0.top
     }
 
     pub fn set_top(&mut self, top: i16) {
-        self.top = top;
+        self.0.top = top;
     }
 
     pub fn bottom(&self) -> i16 {
-        self.bottom
+        self.0.bottom
     }
 
     pub fn set_bottom(&mut self, bottom: i16) {
-        self.bottom = bottom;
+        self.0.bottom = bottom;
     }
 }
 
@@ -96,10 +96,10 @@ impl fmt::Debug for Border {
 
 impl PartialEq for Border {
     fn eq(&self, other: &Self) -> bool {
-        self.left == other.left
-            && self.right == other.right
-            && self.top == other.top
-            && self.bottom == other.bottom
+        self.left() == other.left()
+            && self.right() == other.right()
+            && self.top() == other.top()
+            && self.bottom() == other.bottom()
     }
 }
 

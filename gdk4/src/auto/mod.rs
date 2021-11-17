@@ -180,7 +180,5 @@ pub mod traits {
 }
 #[doc(hidden)]
 pub mod builders {
-    pub use super::clipboard::ClipboardBuilder;
     pub use super::cursor::CursorBuilder;
-    pub use super::device_tool::DeviceToolBuilder;
 }
