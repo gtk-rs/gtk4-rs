@@ -7,6 +7,6 @@ impl Label {
     #[doc(alias = "gtk_label_get_mnemonic_keyval")]
     #[doc(alias = "get_mnemonic_keyval")]
     pub fn mnemonic_keyval(&self) -> gdk::keys::Key {
-        unsafe { ffi::gtk_label_get_mnemonic_keyval(self.to_glib_none().0).into() }
+        unsafe { from_glib(ffi::gtk_label_get_mnemonic_keyval(self.to_glib_none().0)) }
     }
 }

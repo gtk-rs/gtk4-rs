@@ -2,9 +2,8 @@
 
 use glib::translate::*;
 use glib::GString;
-use libc::c_uint;
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Key(u32);
 
 impl ::std::ops::Deref for Key {
@@ -12,13 +11,6 @@ impl ::std::ops::Deref for Key {
 
     fn deref(&self) -> &u32 {
         &self.0
-    }
-}
-
-impl ::std::convert::From<u32> for Key {
-    fn from(value: u32) -> Self {
-        skip_assert_initialized!();
-        Self(value)
     }
 }
 
@@ -41,7 +33,7 @@ impl Key {
     #[doc(alias = "gdk_keyval_from_name")]
     pub fn from_name(name: &str) -> Self {
         skip_assert_initialized!();
-        unsafe { ffi::gdk_keyval_from_name(name.to_glib_none().0) }.into()
+        unsafe { from_glib(ffi::gdk_keyval_from_name(name.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_keyval_convert_case")]
@@ -50,47 +42,50 @@ impl Key {
         unsafe {
             let mut lower = std::mem::MaybeUninit::uninit();
             let mut upper = std::mem::MaybeUninit::uninit();
-            ffi::gdk_keyval_convert_case(**self, lower.as_mut_ptr(), upper.as_mut_ptr());
-            let lower = Self(lower.assume_init());
-            let upper = Self(upper.assume_init());
-            (lower, upper)
+            ffi::gdk_keyval_convert_case(self.into_glib(), lower.as_mut_ptr(), upper.as_mut_ptr());
+            let lower = lower.assume_init();
+            let upper = upper.assume_init();
+            (from_glib(lower), from_glib(upper))
         }
     }
 
     #[doc(alias = "gdk_keyval_to_unicode")]
     pub fn to_unicode(&self) -> Option<char> {
         skip_assert_initialized!();
-        unsafe { ::std::char::from_u32(ffi::gdk_keyval_to_unicode(**self)).filter(|x| *x != '\0') }
+        unsafe {
+            ::std::char::from_u32(ffi::gdk_keyval_to_unicode(self.into_glib()))
+                .filter(|x| *x != '\0')
+        }
     }
 
     #[doc(alias = "gdk_keyval_name")]
     pub fn name(&self) -> Option<GString> {
         skip_assert_initialized!();
-        unsafe { from_glib_none(ffi::gdk_keyval_name(**self as c_uint)) }
+        unsafe { from_glib_none(ffi::gdk_keyval_name(self.into_glib())) }
     }
 
     #[doc(alias = "gdk_keyval_is_upper")]
     pub fn is_upper(&self) -> bool {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gdk_keyval_is_upper(**self)) }
+        unsafe { from_glib(ffi::gdk_keyval_is_upper(self.into_glib())) }
     }
 
     #[doc(alias = "gdk_keyval_is_lower")]
     pub fn is_lower(&self) -> bool {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gdk_keyval_is_lower(**self)) }
+        unsafe { from_glib(ffi::gdk_keyval_is_lower(self.into_glib())) }
     }
 
     #[doc(alias = "gdk_keyval_to_upper")]
     pub fn to_upper(&self) -> Self {
         skip_assert_initialized!();
-        unsafe { ffi::gdk_keyval_to_upper(**self) }.into()
+        unsafe { from_glib(ffi::gdk_keyval_to_upper(self.into_glib())) }
     }
 
     #[doc(alias = "gdk_keyval_to_lower")]
     pub fn to_lower(&self) -> Self {
         skip_assert_initialized!();
-        unsafe { ffi::gdk_keyval_to_lower(**self) }.into()
+        unsafe { from_glib(ffi::gdk_keyval_to_lower(self.into_glib())) }
     }
 }
 
@@ -4660,5 +4655,6 @@ pub mod constants {
     pub const zerosubscript: Key = Key(ffi::GDK_KEY_zerosubscript as u32);
     #[doc(alias = "GDK_KEY_zerosuperior")]
     pub const zerosuperior: Key = Key(ffi::GDK_KEY_zerosuperior as u32);
+    #[doc(alias = "GDK_KEY_zstroke")]
     pub const zstroke: Key = Key(ffi::GDK_KEY_zstroke as u32);
 }

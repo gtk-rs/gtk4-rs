@@ -41,7 +41,7 @@ impl KeyEvent {
     #[doc(alias = "gdk_key_event_get_keyval")]
     #[doc(alias = "get_keyval")]
     pub fn keyval(&self) -> Key {
-        unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0).into() }
+        unsafe { from_glib(ffi::gdk_key_event_get_keyval(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_key_event_get_layout")]
@@ -68,9 +68,9 @@ impl KeyEvent {
                 modifiers.as_mut_ptr(),
             ));
             if ret {
-                let keyval: Key = keyval.assume_init().into();
+                let keyval = keyval.assume_init();
                 let modifiers = modifiers.assume_init();
-                Some((keyval, from_glib(modifiers)))
+                Some((from_glib(keyval), from_glib(modifiers)))
             } else {
                 None
             }

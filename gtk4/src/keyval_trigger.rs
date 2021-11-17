@@ -30,7 +30,7 @@ impl KeyvalTrigger {
     #[doc(alias = "gtk_keyval_trigger_get_keyval")]
     #[doc(alias = "get_keyval")]
     pub fn keyval(&self) -> Key {
-        unsafe { ffi::gtk_keyval_trigger_get_keyval(self.to_glib_none().0).into() }
+        unsafe { from_glib(ffi::gtk_keyval_trigger_get_keyval(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_keyval_trigger_get_modifiers")]
