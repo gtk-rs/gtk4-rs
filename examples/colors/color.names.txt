@@ -1,0 +1,81 @@
+#################################################################
+#
+# Comprehensive list of color names and their color space coordinates
+#
+# 9,284 colors
+#
+# Sources: bang-v2, colorhexa, crayola, n3, 
+#          ntc, pantone, raveling, resene, rgb.txt,
+#          steve.hollasch, wikipedia, xkcd
+#
+# Martin Krzywinski
+# http://mkweb.bcgsc.ca/colornames
+# v0.33
+# 16 Oct 2017
+#
+# The fields are
+#
+# rgb R G B hex HEX h s v H S V xyz X Y Z lab L A B lch L C H cmyk C M Y K 
+#   NEIGHBOUR_STR NUM_NEIGHBOURS_MAXDE WORD_TAGS
+#
+# where
+#
+#    R G B components in RGB color space
+#      HEX encoding of RGB values (without leading #)
+#    H S V components in HSV color space
+#    X Y Z components in XYZ color space
+#    L A B components in Lab color space
+#    L C H components in LCH (LCHab) color space
+#  C M Y K components in CMYK color space
+#
+#  NEIGHBOUR_STR list of 5 nearest colors from the color name database (see below)
+#    as a list using : separator
+#
+#    n1:n2:n3:n4:n5
+#
+#  where each ni entry is
+#
+#    NAME[IDX][R,G,B](DELTAE)
+#
+#    NAME   name of neighbour
+#    IDX    index of neighbour, as used in the color name lookup file
+#    R G B   components of neighbour in RGB color space
+#    deltaE  distance between the color and the neighbour in Lab color space
+#
+#  NUM_NEIGHBOURS_MAXDE number of neighbours with deltaE <= 5. These are used for WORDS_TAGS below
+#
+#  WORD_TAGS list of unique words seen in names of neighbours with deltaE < 5. If
+#  no neighbours within deltaE < 5 are found, the nearest neighbour is used.
+#
+#
+# The WORD_TAGS are your best bet for the name of the RGB color. 
+# Depending on the neighbours, similar hues may appear (e.g. red, rose).
+#
+################################################################
+#
+# The color name database is always available at
+#
+# http://mkweb.bcgsc.ca/colornames/color.names.txt
+#
+################################################################
+0 PMS100 rgb 244 237 124 hex #F4ED7C hsv 57 49 96 xyz 0.71 0.81 0.31 lab 92 -12 55 lch 92 56 103 cmyk 0 3 47 4 manz[5518][238,239,120](4.5):texas[8315][236,230,126](4.5):sunny[8138][242,242,122](4.6):spring_fever[7916][227,223,110](5.1):PMS393[470][242,239,135](5.2) 3 PMS393:fever:manz:spring:sunny:texas
+1 PMS101 rgb 244 237 71 hex #F4ED47 hsv 58 71 96 xyz 0.69 0.8 0.18 lab 92 -16 76 lch 92 78 102 cmyk 0 3 68 4 gorse[3951][255,241,79](3.6):holiday[4522][245,235,79](3.7):lemon_yellow[4982][255,244,79](3.7):buzz[1963][251,235,80](4.5):paris_daisy[6486][251,235,80](4.5) 6 buzz:daisy:gorse:holiday:paris:lemon:yellow
+2 PMS102 rgb 249 232 20 hex #F9E814 hsv 56 92 98 xyz 0.68 0.78 0.12 lab 91 -13 88 lch 91 89 98 cmyk 0 7 90 2 lemon[4962][253,233,16](1.4):broom[1831][255,236,19](1.7):turbo[8568][250,230,0](1.7):aureolin[1197][253,238,0](3.7):canary_yellow[2038][255,239,0](3.7) 10 aureolin:broom:canary:turbo:lemon:yellow
+3 PMS103 rgb 198 173 15 hex #C6AD0F hsv 52 92 78 xyz 0.38 0.42 0.07 lab 71 -5 71 lch 71 72 94 cmyk 0 10 72 22 brownish_yellow[1870][201,176,3](3.2):muddy_yellow[5931][191,172,5](3.3):gold[3893][205,173,0](4.2):mustard[5953][206,179,1](4.5):funk[3810][198,170,36](5.5) 4 brownish:funk:gold:muddy:mustard:yellow
+4 PMS104 rgb 173 155 12 hex #AD9B0C hsv 53 93 68 xyz 0.29 0.32 0.05 lab 64 -7 65 lch 64 66 96 cmyk 0 7 63 32 lucky[5351][175,159,28](2.2):PMS613[792][175,160,12](2.4):sahara[7416][183,162,20](3.0):lucky[5350][171,154,28](3.2):strong_gold[8034][168,147,0](3.6) 9 strong:PMS613:gold:lucky:sahara
+5 PMS105 rgb 130 117 15 hex #82750F hsv 53 88 51 xyz 0.16 0.18 0.03 lab 49 -6 51 lch 49 52 96 cmyk 0 5 45 49 PMS620[799][132,119,17](1.4):ugly_brown[8630][125,113,3](2.8):PMS119[20][137,119,25](3.3):bronze_yellow[1827][115,112,0](5.1):hazel[4444][142,118,24](6.1) 3 PMS119:PMS620:bronze:hazel:ugly:brown:yellow
+6 PMS106 rgb 247 232 89 hex #F7E859 hsv 54 64 97 xyz 0.69 0.78 0.21 lab 91 -11 69 lch 91 70 99 cmyk 0 6 62 3 candy_corn[2043][251,236,93](1.0):corn[2520][251,236,93](1.0):maize[5471][251,236,93](1.0):PMS113[13][249,229,91](2.4):yellowish[9226][250,238,102](3.7) 10 PMS113:candy:corn:maize:yellowish
+7 PMS107 rgb 249 229 38 hex #F9E526 hsv 54 85 98 xyz 0.67 0.76 0.13 lab 90 -11 84 lch 90 85 97 cmyk 0 8 83 2 PMS803[916][255,237,56](3.7):PMS102[2][249,232,20](4.6):PMS108[8][249,221,22](4.6):PMS3955[475][237,226,17](4.9):dandelion[2667][240,225,48](4.9) 7 PMS102:PMS108:PMS3955:PMS803:dandelion
+8 PMS108 rgb 249 221 22 hex #F9DD16 hsv 53 91 98 xyz 0.65 0.72 0.11 lab 88 -7 85 lch 88 86 95 cmyk 0 11 89 2 sun_yellow[8122][255,223,34](1.7):lemon[4961][244,216,28](2.8):ripe_lemon[7230][244,216,28](2.8):candlelight[2041][252,217,23](3.2):moon_yellow[5890][252,217,23](3.2) 16 candlelight:moon:ripe:sun:lemon:yellow
+9 PMS109 rgb 249 214 22 hex #F9D616 hsv 51 91 98 xyz 0.63 0.68 0.11 lab 86 -4 84 lch 86 84 93 cmyk 0 14 89 2 candlelight[2041][252,217,23](1.4):moon_yellow[5890][252,217,23](1.4):PMS803_2X[917][255,216,22](2.4):lemon[4961][244,216,28](3.2):ripe_lemon[7230][244,216,28](3.2) 19 2X:PMS803:candlelight:moon:ripe:lemon:yellow
+10 PMS110 rgb 216 181 17 hex #D8B511 hsv 49 92 85 xyz 0.45 0.48 0.07 lab 75 -1 75 lch 75 75 91 cmyk 0 14 78 15 gold_tips[3907][222,186,19](1.4):dark_yellow[2920][213,182,10](2.0):gold[3895][219,180,12](2.2):galliano[3826][220,178,12](3.2):gold[3893][205,173,0](4.2) 7 dark:galliano:gold:tips:yellow
+11 PMS111 rgb 170 147 10 hex #AA930A hsv 51 94 67 xyz 0.27 0.29 0.05 lab 61 -4 64 lch 61 64 93 cmyk 0 9 63 33 strong_gold[8034][168,147,0](1.4):baby_poo[1245][171,144,4](2.2):baby_shit_brown[1251][173,144,13](3.2):PMS118[19][170,142,10](3.3):brown_yellow[1860][178,151,5](3.5) 8 strong:PMS118:baby:gold:poo:shit:brown:yellow
+12 PMS112 rgb 153 132 10 hex #99840A hsv 51 93 60 xyz 0.21 0.23 0.04 lab 55 -3 59 lch 55 59 93 cmyk 0 8 56 40 dark_yellow[2919][155,135,12](1.4):baby_poop[1246][147,124,0](2.4):PMS456[548][153,135,20](3.0):diarrhea[3120][159,131,3](3.3):hacienda[4268][152,129,27](5.1) 4 dark:PMS456:baby:diarrhea:hacienda:poop:yellow
+13 PMS113 rgb 249 229 91 hex #F9E55B hsv 52 63 98 xyz 0.69 0.77 0.21 lab 90 -9 68 lch 90 68 97 cmyk 0 8 62 2 PMS106[6][247,232,89](2.4):candy_corn[2043][251,236,93](3.0):corn[2520][251,236,93](3.0):maize[5471][251,236,93](3.0):minion_yellow[5759][245,220,80](3.0) 11 PMS106:candy:corn:maize:minion:yellow
+14 PMS114 rgb 249 226 76 hex #F9E24C hsv 52 69 98 xyz 0.68 0.75 0.18 lab 89 -8 72 lch 89 73 96 cmyk 0 9 68 2 PMS115[15][249,224,76](1.0):minion_yellow[5759][245,220,80](3.3):sandstorm[7470][236,213,64](4.0):PMS113[13][249,229,91](4.2):PMS106[6][247,232,89](4.7) 6 PMS106:PMS113:PMS115:minion:sandstorm:yellow
+15 PMS115 rgb 249 224 76 hex #F9E04C hsv 51 69 98 xyz 0.67 0.74 0.18 lab 89 -7 72 lch 89 72 96 cmyk 0 10 68 2 PMS114[14][249,226,76](1.0):minion_yellow[5759][245,220,80](3.2):sandstorm[7470][236,213,64](4.1):gargoyle_gas[3831][255,223,70](4.2):PMS113[13][249,229,91](4.6) 5 PMS113:PMS114:gargoyle:gas:minion:sandstorm:yellow
+16 PMS116 rgb 252 209 22 hex #FCD116 hsv 49 91 99 xyz 0.63 0.66 0.1 lab 85 0 83 lch 85 83 90 cmyk 0 17 90 1 jonquil[4777][244,202,22](2.8):cyber_yellow[2649][255,211,0](3.2):yellow[9200][255,211,0](3.2):PMS803_2X[917][255,216,22](3.5):gold[3897][238,201,0](3.6) 18 2X:PMS803:cyber:gold:jonquil:yellow
+17 PMS116_2X rgb 247 181 12 hex #F7B50C hsv 43 95 97 xyz 0.55 0.53 0.08 lab 78 12 79 lch 78 80 81 cmyk 0 26 92 3 orangey_yellow[6229][253,185,21](1.4):PMS1235[28][252,181,20](2.0):PMS810_2X[931][255,188,33](2.2):dark_goldenrod[2733][255,185,15](3.0):medium_goldenrod[5612][255,185,15](3.0) 15 medium:dark:2X:PMS1235:PMS810:goldenrod:orangey:yellow
+18 PMS117 rgb 198 160 12 hex #C6A00C hsv 48 94 78 xyz 0.36 0.37 0.06 lab 67 2 69 lch 67 69 88 cmyk 0 15 73 22 buddha_gold[1890][193,160,4](2.2):ocre[6104][198,156,4](2.4):ocher[6101][191,155,12](2.8):lemon_curry[4969][204,160,29](3.7):yellow_ochre[9214][203,157,6](4.1) 6 buddha:curry:gold:ocher:ochre:ocre:lemon:yellow
+19 PMS118 rgb 170 142 10 hex #AA8E0A hsv 50 94 67 xyz 0.26 0.28 0.04 lab 60 -1 63 lch 60 63 91 cmyk 0 11 63 33 baby_shit_brown[1251][173,144,13](1.0):baby_poo[1245][171,144,4](1.4):dark_mustard[2805][168,137,5](3.0):PMS111[11][170,147,10](3.3):dark_gold[2728][181,148,16](3.7) 8 dark:PMS111:baby:gold:mustard:poo:shit:brown
+20 PMS119 rgb 137 119 25 hex #897719 hsv 50 82 54 xyz 0.17 0.19 0.04 lab 50 -3 50 lch 50 50 94 cmyk 0 7 44 46 hazel[4444][142,118,24](3.2):PMS105[5][130,117,15](3.3):PMS620[799][132,119,17](3.6):lemon_ginger[4970][150,132,40](5.1):ugly_brown[8630][125,113,3](5.2) 3 PMS105:PMS620:ginger:hazel:ugly:brown:lemon

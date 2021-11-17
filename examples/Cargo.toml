@@ -29,6 +29,10 @@ name = "builder_pattern"
 path = "builder_pattern/main.rs"
 
 [[bin]]
+name = "colors"
+path = "colors/main.rs"
+
+[[bin]]
 name = "clipboard"
 path = "clipboard/main.rs"
 
