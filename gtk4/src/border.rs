@@ -2,7 +2,6 @@
 
 use glib::translate::*;
 use std::fmt;
-use std::ops;
 
 glib::wrapper! {
     #[doc(alias = "GtkBorder")]
@@ -12,20 +11,6 @@ glib::wrapper! {
         copy => |ptr| ffi::gtk_border_copy(mut_override(ptr)),
         free => |ptr| ffi::gtk_border_free(ptr),
         type_ => || ffi::gtk_border_get_type(),
-    }
-}
-
-impl ops::Deref for Border {
-    type Target = ffi::GtkBorder;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ops::DerefMut for Border {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
     }
 }
 
