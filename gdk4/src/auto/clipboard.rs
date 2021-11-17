@@ -6,14 +6,11 @@ use crate::ContentFormats;
 use crate::ContentProvider;
 use crate::Display;
 use crate::Texture;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -28,14 +25,6 @@ glib::wrapper! {
 }
 
 impl Clipboard {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Clipboard`] objects.
-    ///
-    /// This method returns an instance of [`ClipboardBuilder`](crate::builders::ClipboardBuilder) which can be used to create [`Clipboard`] objects.
-    pub fn builder() -> ClipboardBuilder {
-        ClipboardBuilder::default()
-    }
-
     #[doc(alias = "gdk_clipboard_get_content")]
     #[doc(alias = "get_content")]
     pub fn content(&self) -> Option<ContentProvider> {
@@ -181,40 +170,6 @@ impl Clipboard {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Clipboard`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-pub struct ClipboardBuilder {
-    display: Option<Display>,
-}
-
-impl ClipboardBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ClipboardBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Clipboard`].
-    #[must_use = "The builder must be built to be used"]
-    pub fn build(self) -> Clipboard {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        glib::Object::new::<Clipboard>(&properties)
-            .expect("Failed to create an instance of Clipboard")
-    }
-
-    pub fn display(mut self, display: &impl IsA<Display>) -> Self {
-        self.display = Some(display.clone().upcast());
-        self
     }
 }
 

@@ -176,7 +176,7 @@ final_type = false
 [[object]]
 name = "Gdk.Clipboard"
 status = "generate"
-generate_builder = true
+generate_builder = false
     [[object.function]]
     pattern = "set_(value|valist)"
     ignore = true
@@ -360,7 +360,7 @@ final_type = false
 [[object]]
 name = "Gdk.DeviceTool"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "Gdk.Display"
@@ -583,10 +583,6 @@ manual_traits = ["TextureExtManual"]
     name = "save_to_tiff_bytes"
         [object.function.return]
         nullable_return_is_error = "Failed to save the texture as tiff bytes"
-
-
-
-
 
 [[object]]
 name = "Gdk.Toplevel"
