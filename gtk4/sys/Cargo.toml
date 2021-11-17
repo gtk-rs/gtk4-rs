@@ -40,31 +40,40 @@ v4_6 = ["v4_4"]
 [dependencies]
 libc = "0.2"
 
-[dependencies.cairo-sys-rs]
+[dependencies.cairo]
+package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gdk-pixbuf-sys]
+[dependencies.gdk-pixbuf]
+package = "gdk-pixbuf-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gdk4-sys]
+[dependencies.gdk]
+package = "gdk4-sys"
 path = "../../gdk4/sys"
 
-[dependencies.gio-sys]
+[dependencies.gio]
+package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.glib-sys]
+[dependencies.glib]
+package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gobject-sys]
+[dependencies.gobject]
+package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.graphene-sys]
+[dependencies.graphene]
+package = "graphene-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gsk4-sys]
+[dependencies.gsk]
+package = "gsk4-sys"
 path = "../../gsk4/sys"
 
-[dependencies.pango-sys]
+[dependencies.pango]
+package = "pango-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [build-dependencies]
