@@ -11,9 +11,6 @@
 )]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
-use gdk4_sys as gdk;
-use glib_sys as glib;
-
 mod manual;
 
 pub use manual::*;
