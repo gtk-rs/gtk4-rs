@@ -377,6 +377,11 @@
 <span id="304">304</span>
 <span id="305">305</span>
 <span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -590,11 +595,16 @@
                 <span class="ident">consumed</span>.<span class="ident">as_mut_ptr</span>(),
             ));
             <span class="kw">if</span> <span class="ident">ret</span> {
-                <span class="kw">let</span> <span class="ident">keyval</span>: <span class="ident">Key</span> <span class="op">=</span> <span class="ident">keyval</span>.<span class="ident">assume_init</span>().<span class="ident">into</span>();
+                <span class="kw">let</span> <span class="ident">keyval</span> <span class="op">=</span> <span class="ident">keyval</span>.<span class="ident">assume_init</span>();
                 <span class="kw">let</span> <span class="ident">effective_group</span> <span class="op">=</span> <span class="ident">effective_group</span>.<span class="ident">assume_init</span>();
                 <span class="kw">let</span> <span class="ident">level</span> <span class="op">=</span> <span class="ident">level</span>.<span class="ident">assume_init</span>();
                 <span class="kw">let</span> <span class="ident">consumed</span> <span class="op">=</span> <span class="ident">consumed</span>.<span class="ident">assume_init</span>();
-                <span class="prelude-val">Some</span>((<span class="ident">keyval</span>, <span class="ident">effective_group</span>, <span class="ident">level</span>, <span class="ident">from_glib</span>(<span class="ident">consumed</span>)))
+                <span class="prelude-val">Some</span>((
+                    <span class="ident">from_glib</span>(<span class="ident">keyval</span>),
+                    <span class="ident">effective_group</span>,
+                    <span class="ident">level</span>,
+                    <span class="ident">from_glib</span>(<span class="ident">consumed</span>),
+                ))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
             }
@@ -653,7 +663,7 @@
             <span class="kw">if</span> <span class="ident">ret</span> {
                 <span class="kw">let</span> <span class="ident">n_keys</span> <span class="op">=</span> <span class="ident">n_entries</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>;
                 <span class="kw">let</span> <span class="ident">keyvals</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">FromGlibContainer::from_glib_full_num</span>(<span class="ident">keyvals</span>, <span class="ident">n_keys</span>);
-                <span class="kw">let</span> <span class="ident">keyvals</span> <span class="op">=</span> <span class="ident">keyvals</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">k</span><span class="op">|</span> <span class="ident">k</span>.<span class="ident">into</span>());
+                <span class="kw">let</span> <span class="ident">keyvals</span> <span class="op">=</span> <span class="ident">keyvals</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">k</span><span class="op">|</span> <span class="ident">from_glib</span>(<span class="ident">k</span>));
                 <span class="kw">let</span> <span class="ident">keys</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeymapKey</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">FromGlibContainer::from_glib_full_num</span>(<span class="ident">keys</span>, <span class="ident">n_keys</span>);
 
                 <span class="prelude-val">Some</span>(<span class="ident">keys</span>.<span class="ident">into_iter</span>().<span class="ident">zip</span>(<span class="ident">keyvals</span>).<span class="ident">collect</span>())

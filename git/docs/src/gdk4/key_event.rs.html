@@ -300,7 +300,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_keyval&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_keyval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Key</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_key_event_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="doccomment">/// Extracts the layout from a key event.</span>
@@ -351,9 +351,9 @@
                 <span class="ident">modifiers</span>.<span class="ident">as_mut_ptr</span>(),
             ));
             <span class="kw">if</span> <span class="ident">ret</span> {
-                <span class="kw">let</span> <span class="ident">keyval</span>: <span class="ident">Key</span> <span class="op">=</span> <span class="ident">keyval</span>.<span class="ident">assume_init</span>().<span class="ident">into</span>();
+                <span class="kw">let</span> <span class="ident">keyval</span> <span class="op">=</span> <span class="ident">keyval</span>.<span class="ident">assume_init</span>();
                 <span class="kw">let</span> <span class="ident">modifiers</span> <span class="op">=</span> <span class="ident">modifiers</span>.<span class="ident">assume_init</span>();
-                <span class="prelude-val">Some</span>((<span class="ident">keyval</span>, <span class="ident">from_glib</span>(<span class="ident">modifiers</span>)))
+                <span class="prelude-val">Some</span>((<span class="ident">from_glib</span>(<span class="ident">keyval</span>), <span class="ident">from_glib</span>(<span class="ident">modifiers</span>)))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
             }
