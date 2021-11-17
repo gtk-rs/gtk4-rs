@@ -32,10 +32,12 @@ v4_4 = []
 libc = "0.2"
 x11 = "2.18"
 
-[dependencies.gdk4-sys]
+[dependencies.gdk]
+package = "gdk4-sys"
 path = "../../gdk4/sys"
 
-[dependencies.glib-sys]
+[dependencies.glib]
+package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
 [build-dependencies]
