@@ -27,7 +27,7 @@ impl EventControllerKey {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
-                keyval.into(),
+                from_glib(keyval),
                 keycode,
                 from_glib(state),
             )
@@ -64,7 +64,7 @@ impl EventControllerKey {
             let f: &F = &*(f as *const F);
             f(
                 &from_glib_borrow(this),
-                keyval.into(),
+                from_glib(keyval),
                 keycode,
                 from_glib(state),
             )

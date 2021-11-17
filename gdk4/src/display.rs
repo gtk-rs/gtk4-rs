@@ -103,11 +103,16 @@ impl<O: IsA<Display>> DisplayExtManual for O {
                 consumed.as_mut_ptr(),
             ));
             if ret {
-                let keyval: Key = keyval.assume_init().into();
+                let keyval = keyval.assume_init();
                 let effective_group = effective_group.assume_init();
                 let level = level.assume_init();
                 let consumed = consumed.assume_init();
-                Some((keyval, effective_group, level, from_glib(consumed)))
+                Some((
+                    from_glib(keyval),
+                    effective_group,
+                    level,
+                    from_glib(consumed),
+                ))
             } else {
                 None
             }
@@ -166,7 +171,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
             if ret {
                 let n_keys = n_entries.assume_init() as usize;
                 let keyvals: Vec<u32> = FromGlibContainer::from_glib_full_num(keyvals, n_keys);
-                let keyvals = keyvals.into_iter().map(|k| k.into());
+                let keyvals = keyvals.into_iter().map(|k| from_glib(k));
                 let keys: Vec<KeymapKey> = FromGlibContainer::from_glib_full_num(keys, n_keys);
 
                 Some(keys.into_iter().zip(keyvals).collect())
