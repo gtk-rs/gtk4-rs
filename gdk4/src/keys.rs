@@ -15,12 +15,6 @@ impl ::std::ops::Deref for Key {
     }
 }
 
-impl ::std::ops::DerefMut for Key {
-    fn deref_mut(&mut self) -> &mut u32 {
-        &mut self.0
-    }
-}
-
 impl ::std::convert::From<u32> for Key {
     fn from(value: u32) -> Self {
         skip_assert_initialized!();
