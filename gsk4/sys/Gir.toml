@@ -16,10 +16,3 @@ external_libraries = [
 
 [external_libraries]
 gdk4 = "Gdk"
-
-[[object]]
-name = "Gsk.TextNode"
-status = "generate"
-    [[object.function]]
-    name = "has_color_glyphs"
-    version = "4.2"
