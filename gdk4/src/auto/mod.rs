@@ -140,6 +140,8 @@ pub use self::enums::SurfaceEdge;
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 pub use self::enums::TextureError;
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 pub use self::enums::TitlebarGesture;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
