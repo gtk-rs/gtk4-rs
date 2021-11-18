@@ -34,10 +34,3 @@ status = "generate"
     [[object.function]]
     name = "get_type"
     version = "4.2"
-
-[[object]]
-name = "Gtk.Ordering"
-status = "generate"
-    [[object.function]]
-    name = "from_cmpfunc"
-    version = "4.2"
