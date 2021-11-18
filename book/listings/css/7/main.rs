@@ -1,7 +1,10 @@
 use gdk::Display;
 use gtk::gdk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button, CssProvider, StyleContext};
+use gtk::{
+    Application, ApplicationWindow, Button, ComboBoxText, CssProvider, Entry, Orientation,
+    StyleContext,
+};
 
 fn main() {
     // Create a new application
@@ -31,19 +34,30 @@ fn load_css() {
 }
 
 fn build_ui(app: &Application) {
-    // Create button
-    let button = Button::builder()
-        .label("Press me!")
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
+    // The container container.
+    let vbox = gtk::Box::new(Orientation::Vertical, 0);
+
+    let button = Button::with_label("hover me!");
+    button.add_css_class("button1");
+
+    let entry = Entry::new();
+    entry.add_css_class("entry1");
+    entry.set_text("Some text");
+
+    let combo = ComboBoxText::new();
+    combo.append_text("option 1");
+    combo.append_text("option 2");
+    combo.append_text("option 3");
+    combo.set_active(Some(0));
+
+    vbox.append(&button);
+    vbox.append(&entry);
+    vbox.append(&combo);
 
     // Create a new window and show it
     let window = ApplicationWindow::builder()
         .application(app)
-        .child(&button)
+        .child(&vbox)
         .build();
     window.show();
 }

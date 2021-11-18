@@ -57,6 +57,18 @@ path = "css/3/main.rs"
 name = "css_4"
 path = "css/4/main.rs"
 
+[[bin]]
+name = "css_5"
+path = "css/5/main.rs"
+
+[[bin]]
+name = "css_6"
+path = "css/6/main.rs"
+
+[[bin]]
+name = "css_7"
+path = "css/7/main.rs"
+
 # gobject_memory_management
 [[bin]]
 name = "gobject_memory_management_1"
