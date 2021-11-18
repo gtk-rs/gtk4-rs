@@ -9,6 +9,10 @@ use glib::translate::*;
 use glib::{Cast, GString};
 
 pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    fn activate(&self, combo_box: &Self::Type) {
+        self.parent_activate(combo_box)
+    }
     fn changed(&self, combo_box: &Self::Type) {
         self.parent_changed(combo_box)
     }
@@ -18,12 +22,25 @@ pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
 }
 
 pub trait ComboBoxImplExt: ObjectSubclass {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    fn parent_activate(&self, combo_box: &Self::Type);
+
     fn parent_changed(&self, combo_box: &Self::Type);
 
     fn parent_format_entry_text(&self, combo_box: &Self::Type, path: &str) -> Option<GString>;
 }
 
 impl<T: ComboBoxImpl> ComboBoxImplExt for T {
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    fn parent_activate(&self, combo_box: &Self::Type) {
+        unsafe {
+            let data = T::type_data();
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
+            if let Some(f) = (*parent_class).activate {
+                f(combo_box.unsafe_cast_ref::<ComboBox>().to_glib_none().0)
+            }
+        }
+    }
     fn parent_changed(&self, combo_box: &Self::Type) {
         unsafe {
             let data = T::type_data();
@@ -55,6 +72,10 @@ unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
         let klass = class.as_mut();
         klass.changed = Some(combo_box_changed::<T>);
         klass.format_entry_text = Some(combo_box_format_entry_text::<T>);
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        {
+            klass.activate = Some(combo_box_activate::<T>);
+        };
     }
 }
 
@@ -78,4 +99,13 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
 
     imp.format_entry_text(wrap.unsafe_cast_ref(), path.as_str())
         .to_glib_full()
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+unsafe extern "C" fn combo_box_activate<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.impl_();
+    let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
+
+    imp.activate(wrap.unsafe_cast_ref())
 }
