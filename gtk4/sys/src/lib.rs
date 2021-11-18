@@ -2112,7 +2112,8 @@ pub struct GtkComboBoxClass {
     pub changed: Option<unsafe extern "C" fn(*mut GtkComboBox)>,
     pub format_entry_text:
         Option<unsafe extern "C" fn(*mut GtkComboBox, *const c_char) -> *mut c_char>,
-    pub padding: [gpointer; 8],
+    pub activate: Option<unsafe extern "C" fn(*mut GtkComboBox)>,
+    pub padding: [gpointer; 7],
 }
 
 impl ::std::fmt::Debug for GtkComboBoxClass {
@@ -2121,6 +2122,7 @@ impl ::std::fmt::Debug for GtkComboBoxClass {
             .field("parent_class", &self.parent_class)
             .field("changed", &self.changed)
             .field("format_entry_text", &self.format_entry_text)
+            .field("activate", &self.activate)
             .finish()
     }
 }

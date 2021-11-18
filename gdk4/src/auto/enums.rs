@@ -2082,6 +2082,8 @@ impl ToValue for TextureError {
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTitlebarGesture")]
@@ -2096,6 +2098,8 @@ pub enum TitlebarGesture {
     __Unknown(i32),
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl fmt::Display for TitlebarGesture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -2111,6 +2115,8 @@ impl fmt::Display for TitlebarGesture {
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl IntoGlib for TitlebarGesture {
     type GlibType = ffi::GdkTitlebarGesture;
@@ -2125,6 +2131,8 @@ impl IntoGlib for TitlebarGesture {
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     unsafe fn from_glib(value: ffi::GdkTitlebarGesture) -> Self {
@@ -2138,16 +2146,22 @@ impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl StaticType for TitlebarGesture {
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_titlebar_gesture_get_type()) }
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl glib::value::ValueType for TitlebarGesture {
     type Type = Self;
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2157,6 +2171,8 @@ unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     }
 }
 
+#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl ToValue for TitlebarGesture {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();

@@ -3595,6 +3595,8 @@ extern "C" {
     //=========================================================================
     // GdkTitlebarGesture
     //=========================================================================
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gdk_titlebar_gesture_get_type() -> GType;
 
     //=========================================================================
@@ -4870,6 +4872,8 @@ extern "C" {
         event: *mut GdkEvent,
     ) -> gboolean;
     pub fn gdk_toplevel_supports_edge_constraints(toplevel: *mut GdkToplevel) -> gboolean;
+    #[cfg(any(feature = "v4_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gdk_toplevel_titlebar_gesture(
         toplevel: *mut GdkToplevel,
         gesture: GdkTitlebarGesture,
