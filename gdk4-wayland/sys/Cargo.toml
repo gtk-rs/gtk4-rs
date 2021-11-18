@@ -40,7 +40,7 @@ package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
 [build-dependencies]
-system-deps = "5"
+system-deps = "6"
 
 [dev-dependencies]
 shell-words = "1.0.0"
