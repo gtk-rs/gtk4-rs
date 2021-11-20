@@ -388,7 +388,7 @@ We also declare that the property can be read and be written to.
 <code>property</code> takes care of returning the underlying value.
 The formerly private <code>number</code> is now accessible via the <code>property</code> and <code>set_property</code> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -414,7 +414,7 @@ The formerly private <code>number</code> is now accessible via the <code>propert
 impl ObjectImpl for CustomButton {
     fn properties() -&gt; &amp;'static [ParamSpec] {
         static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
-            vec![ParamSpec::new_int(
+            vec![ParamSpecInt::new(
                 // Name
                 &quot;number&quot;,
                 // Nickname

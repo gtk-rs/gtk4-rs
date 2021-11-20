@@ -277,7 +277,7 @@ impl IntegerObject {
 </span></code></pre>
 <p>The <code>imp</code> module can stay the same apart from the rename from <code>CustomButton</code> to <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/list_widgets/2/integer_object/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, Value};
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -302,7 +302,7 @@ pub struct IntegerObject {
 </span><span class="boring">impl ObjectImpl for IntegerObject {
 </span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
 </span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
-</span><span class="boring">            vec![ParamSpec::new_int(
+</span><span class="boring">            vec![ParamSpecInt::new(
 </span><span class="boring">                // Name
 </span><span class="boring">                &quot;number&quot;,
 </span><span class="boring">                // Nickname

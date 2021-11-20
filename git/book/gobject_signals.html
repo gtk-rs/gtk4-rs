@@ -248,7 +248,7 @@ Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
-</span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
+</span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -289,7 +289,7 @@ impl ObjectImpl for CustomButton {
 <span class="boring">
 </span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
 </span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
-</span><span class="boring">            vec![ParamSpec::new_int(
+</span><span class="boring">            vec![ParamSpecInt::new(
 </span><span class="boring">                // Name
 </span><span class="boring">                &quot;number&quot;,
 </span><span class="boring">                // Nickname
@@ -367,7 +367,7 @@ Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
-</span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
+</span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -408,7 +408,7 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">
 </span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
 </span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
-</span><span class="boring">            vec![ParamSpec::new_int(
+</span><span class="boring">            vec![ParamSpecInt::new(
 </span><span class="boring">                // Name
 </span><span class="boring">                &quot;number&quot;,
 </span><span class="boring">                // Nickname
