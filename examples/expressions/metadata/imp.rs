@@ -16,7 +16,7 @@ impl ObjectSubclass for Metadata {
     type Type = super::Metadata;
 
     fn new() -> Self {
-        let now = glib::DateTime::new_now_local().unwrap();
+        let now = glib::DateTime::now_local().unwrap();
 
         Self {
             title: RefCell::new(String::new()),
@@ -30,14 +30,14 @@ impl ObjectImpl for Metadata {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpec::new_string(
+                glib::ParamSpecString::new(
                     "title",
                     "Title",
                     "Title of the note",
                     None,
                     glib::ParamFlags::READWRITE,
                 ),
-                glib::ParamSpec::new_boxed(
+                glib::ParamSpecBoxed::new(
                     "last-modified",
                     "Last Modified",
                     "Last modified datetime of the note",

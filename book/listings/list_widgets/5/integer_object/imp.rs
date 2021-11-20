@@ -1,4 +1,4 @@
-use glib::{ParamFlags, ParamSpec, Value};
+use glib::{ParamFlags, ParamSpec, ParamSpecInt, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -24,7 +24,7 @@ impl ObjectSubclass for IntegerObject {
 impl ObjectImpl for IntegerObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpec::new_int(
+            vec![ParamSpecInt::new(
                 // Name
                 "number",
                 // Nickname

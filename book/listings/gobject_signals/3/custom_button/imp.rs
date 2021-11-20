@@ -1,5 +1,5 @@
 use glib::subclass::Signal;
-use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
+use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -42,7 +42,7 @@ impl ObjectImpl for CustomButton {
 
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpec::new_int(
+            vec![ParamSpecInt::new(
                 // Name
                 "number",
                 // Nickname

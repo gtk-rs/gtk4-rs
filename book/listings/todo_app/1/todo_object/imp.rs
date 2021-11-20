@@ -1,4 +1,4 @@
-use glib::{ParamFlags, ParamSpec, Value};
+use glib::{ParamFlags, ParamSpec, ParamSpecBoolean, ParamSpecString, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -29,7 +29,7 @@ impl ObjectImpl for TodoObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpec::new_boolean(
+                ParamSpecBoolean::new(
                     // Name
                     "completed",
                     // Nickname
@@ -41,7 +41,7 @@ impl ObjectImpl for TodoObject {
                     // The property can be read and written to
                     ParamFlags::READWRITE,
                 ),
-                ParamSpec::new_string(
+                ParamSpecString::new(
                     // Name
                     "content",
                     // Nickname

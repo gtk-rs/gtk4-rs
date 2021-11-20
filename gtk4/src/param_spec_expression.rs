@@ -37,24 +37,9 @@ impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
 }
 
 impl ParamSpecExpression {
-    pub fn upcast(self) -> ParamSpec {
-        unsafe { from_glib_full(self.to_glib_full() as *mut gobject_ffi::GParamSpec) }
-    }
-
-    pub fn upcast_ref(&self) -> &ParamSpec {
-        &*self
-    }
-}
-
-// rustdoc-stripper-ignore-next
-/// Register Expression's ParamSpec support
-pub trait GtkParamSpecExt {
-    fn new_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self;
-}
-
-impl GtkParamSpecExt for ParamSpec {
+    #[allow(clippy::new_ret_no_self)]
     #[doc(alias = "gtk_param_spec_expression")]
-    fn new_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self {
+    pub fn new(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> ParamSpec {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_param_spec_expression(
@@ -64,6 +49,14 @@ impl GtkParamSpecExt for ParamSpec {
                 flags.into_glib(),
             ))
         }
+    }
+
+    pub fn upcast(self) -> ParamSpec {
+        unsafe { from_glib_full(self.to_glib_full() as *mut gobject_ffi::GParamSpec) }
+    }
+
+    pub fn upcast_ref(&self) -> &ParamSpec {
+        &*self
     }
 }
 
@@ -75,7 +68,7 @@ mod tests {
     #[test]
     fn test_paramspec_expression() {
         test_synced(move || {
-            let pspec = ParamSpec::new_expression(
+            let pspec = ParamSpecExpression::new(
                 "expression",
                 "Expression",
                 "Some Expression",

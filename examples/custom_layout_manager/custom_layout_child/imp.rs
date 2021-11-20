@@ -28,7 +28,7 @@ impl ObjectSubclass for CustomLayoutChild {
 impl ObjectImpl for CustomLayoutChild {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpec::new_boxed(
+            vec![glib::ParamSpecBoxed::new(
                 "color",
                 "color",
                 "Background color",

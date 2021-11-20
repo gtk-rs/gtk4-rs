@@ -24,7 +24,6 @@ pub use crate::font_chooser::FontChooserExtManual;
 pub use crate::im_context::IMContextExtManual;
 pub use crate::media_stream::MediaStreamExtManual;
 pub use crate::native_dialog::NativeDialogExtManual;
-pub use crate::param_spec_expression::GtkParamSpecExt;
 pub use crate::scale::ScaleExtManual;
 pub use crate::shortcut_trigger::ShortcutTriggerExtManual;
 #[cfg(any(feature = "v4_6", feature = "dox"))]

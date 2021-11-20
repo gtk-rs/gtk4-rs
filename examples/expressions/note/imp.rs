@@ -21,7 +21,7 @@ impl ObjectImpl for Note {
     fn properties() -> &'static [glib::ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpec::new_object(
+            vec![glib::ParamSpecObject::new(
                 "metadata",
                 "Metadata",
                 "Metadata containing info of note",
