@@ -360,8 +360,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Alignments of [`CellRenderer`][crate::CellRenderer]s rendered in adjacent rows can be</span>
     <span class="doccomment">/// configured by configuring the [`CellAreaBox`][crate::CellAreaBox] align child cell property</span>
-    <span class="doccomment">/// with [`CellAreaExtManual::cell_set_property()`][crate::prelude::CellAreaExtManual::cell_set_property()] or by specifying the &quot;align&quot;</span>
-    <span class="doccomment">/// argument to [`pack_start()`][Self::pack_start()] and [`pack_end()`][Self::pack_end()].</span>
+    <span class="doccomment">/// with gtk_cell_area_cell_set_property() or by specifying the &quot;align&quot;</span>
+    <span class="doccomment">/// argument to gtk_cell_area_box_pack_start() and gtk_cell_area_box_pack_end().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -398,26 +398,26 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the space added between cell renderers in `self`.</span>
+    <span class="doccomment">/// the space added between cell renderers in @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_box_get_spacing&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_spacing&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spacing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_cell_area_box_get_spacing</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Adds `renderer` to `self`, packed with reference to the end of `self`.</span>
+    <span class="doccomment">/// Adds @renderer to @self, packed with reference to the end of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `renderer` is packed after (away from end of) any other</span>
-    <span class="doccomment">/// [`CellRenderer`][crate::CellRenderer] packed with reference to the end of `self`.</span>
+    <span class="doccomment">/// The @renderer is packed after (away from end of) any other</span>
+    <span class="doccomment">/// [`CellRenderer`][crate::CellRenderer] packed with reference to the end of @self.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add</span>
     <span class="doccomment">/// ## `expand`</span>
-    <span class="doccomment">/// whether `renderer` should receive extra space when the area receives</span>
+    <span class="doccomment">/// whether @renderer should receive extra space when the area receives</span>
     <span class="doccomment">/// more than its natural size</span>
     <span class="doccomment">/// ## `align`</span>
-    <span class="doccomment">/// whether `renderer` should be aligned in adjacent rows</span>
+    <span class="doccomment">/// whether @renderer should be aligned in adjacent rows</span>
     <span class="doccomment">/// ## `fixed`</span>
-    <span class="doccomment">/// whether `renderer` should have the same size in all rows</span>
+    <span class="doccomment">/// whether @renderer should have the same size in all rows</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_box_pack_end&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pack_end</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -437,19 +437,19 @@
         }
     }
 
-    <span class="doccomment">/// Adds `renderer` to `self`, packed with reference to the start of `self`.</span>
+    <span class="doccomment">/// Adds @renderer to @self, packed with reference to the start of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `renderer` is packed after any other [`CellRenderer`][crate::CellRenderer] packed</span>
-    <span class="doccomment">/// with reference to the start of `self`.</span>
+    <span class="doccomment">/// The @renderer is packed after any other [`CellRenderer`][crate::CellRenderer] packed</span>
+    <span class="doccomment">/// with reference to the start of @self.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add</span>
     <span class="doccomment">/// ## `expand`</span>
-    <span class="doccomment">/// whether `renderer` should receive extra space when the area receives</span>
+    <span class="doccomment">/// whether @renderer should receive extra space when the area receives</span>
     <span class="doccomment">/// more than its natural size</span>
     <span class="doccomment">/// ## `align`</span>
-    <span class="doccomment">/// whether `renderer` should be aligned in adjacent rows</span>
+    <span class="doccomment">/// whether @renderer should be aligned in adjacent rows</span>
     <span class="doccomment">/// ## `fixed`</span>
-    <span class="doccomment">/// whether `renderer` should have the same size in all rows</span>
+    <span class="doccomment">/// whether @renderer should have the same size in all rows</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_box_pack_start&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pack_start</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -469,7 +469,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the spacing to add between cell renderers in `self`.</span>
+    <span class="doccomment">/// Sets the spacing to add between cell renderers in @self.</span>
     <span class="doccomment">/// ## `spacing`</span>
     <span class="doccomment">/// the space to add between [`CellRenderer`][crate::CellRenderer]s</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_box_set_spacing&quot;</span>)]</span>

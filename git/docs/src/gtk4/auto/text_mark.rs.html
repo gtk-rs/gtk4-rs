@@ -363,7 +363,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`TextMark`][crate::TextMark] is like a bookmark in a text buffer; it preserves</span>
     <span class="doccomment">/// a position in the text. You can convert the mark to an iterator using</span>
-    <span class="doccomment">/// [``TextBufferExt::iter_at_mark()``][crate::prelude::`TextBufferExt::iter_at_mark()`]. Unlike iterators, marks remain</span>
+    <span class="doccomment">/// [`TextBufferExt::iter_at_mark()`][crate::prelude::TextBufferExt::iter_at_mark()]. Unlike iterators, marks remain</span>
     <span class="doccomment">/// valid across buffer mutations, because their behavior is defined when</span>
     <span class="doccomment">/// text is inserted or deleted. When text containing a mark is deleted,</span>
     <span class="doccomment">/// the mark remains in the position originally occupied by the deleted</span>
@@ -378,13 +378,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks are reference counted, but the reference count only controls</span>
     <span class="doccomment">/// the validity of the memory; marks can be deleted from the buffer at</span>
-    <span class="doccomment">/// any time with [``TextBufferExt::delete_mark()``][crate::prelude::`TextBufferExt::delete_mark()`]. Once deleted from</span>
+    <span class="doccomment">/// any time with [`TextBufferExt::delete_mark()`][crate::prelude::TextBufferExt::delete_mark()]. Once deleted from</span>
     <span class="doccomment">/// the buffer, a mark is essentially useless.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks optionally have names; these can be convenient to avoid passing</span>
     <span class="doccomment">/// the [`TextMark`][crate::TextMark] object around.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Marks are typically created using the [``TextBufferExt::create_mark()``][crate::prelude::`TextBufferExt::create_mark()`]</span>
+    <span class="doccomment">/// Marks are typically created using the [`TextBufferExt::create_mark()`][crate::prelude::TextBufferExt::create_mark()]</span>
     <span class="doccomment">/// function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -403,12 +403,12 @@
 
     <span class="doccomment">/// Creates a text mark.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Add it to a buffer using [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`].</span>
-    <span class="doccomment">/// If `name` is [`None`], the mark is anonymous; otherwise, the mark can be</span>
-    <span class="doccomment">/// retrieved by name using [``TextBufferExt::mark()``][crate::prelude::`TextBufferExt::mark()`]. If a mark</span>
+    <span class="doccomment">/// Add it to a buffer using [`TextBufferExt::add_mark()`][crate::prelude::TextBufferExt::add_mark()].</span>
+    <span class="doccomment">/// If @name is [`None`], the mark is anonymous; otherwise, the mark can be</span>
+    <span class="doccomment">/// retrieved by name using [`TextBufferExt::mark()`][crate::prelude::TextBufferExt::mark()]. If a mark</span>
     <span class="doccomment">/// has left gravity, and text is inserted at the mark’s current location,</span>
     <span class="doccomment">/// the mark will be moved to the left of the newly-inserted text. If the</span>
-    <span class="doccomment">/// mark has right gravity (`left_gravity` = [`false`]), the mark will end up</span>
+    <span class="doccomment">/// mark has right gravity (@left_gravity = [`false`]), the mark will end up</span>
     <span class="doccomment">/// on the right of newly-inserted text. The standard left-to-right cursor</span>
     <span class="doccomment">/// is a mark with right gravity (when you type, the cursor stays on the</span>
     <span class="doccomment">/// right side of the text you’re typing).</span>
@@ -515,7 +515,7 @@
 
     <span class="doccomment">/// Returns [`true`] if the mark has been removed from its buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`] for a way to add it</span>
+    <span class="doccomment">/// See [`TextBufferExt::add_mark()`][crate::prelude::TextBufferExt::add_mark()] for a way to add it</span>
     <span class="doccomment">/// to a buffer again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

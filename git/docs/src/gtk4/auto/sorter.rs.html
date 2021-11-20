@@ -279,13 +279,13 @@
     <span class="doccomment">/// Its primary user is [`SortListModel`][crate::SortListModel]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model will use a sorter to determine the order in which</span>
-    <span class="doccomment">/// its items should appear by calling `Gtk::`Sorter::compare()``</span>
+    <span class="doccomment">/// its items should appear by calling `Gtk::Sorter::compare()`</span>
     <span class="doccomment">/// for pairs of items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sorters may change their sorting behavior through their lifetime.</span>
     <span class="doccomment">/// In that case, they will emit the `signal::Sorter::changed` signal</span>
     <span class="doccomment">/// to notify that the sort order is no longer valid and should be updated</span>
-    <span class="doccomment">/// by calling `gtk_sorter_compare()` again.</span>
+    <span class="doccomment">/// by calling gtk_sorter_compare() again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various pre-made sorter implementations for common sorting</span>
     <span class="doccomment">/// operations. [`ColumnView`][crate::ColumnView] has built-in support for sorting lists</span>
@@ -320,9 +320,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This emits the `signal::Sorter::changed` signal. Users</span>
     <span class="doccomment">/// of the sorter should then update the sort order via</span>
-    <span class="doccomment">/// `Gtk::`Sorter::compare()``.</span>
+    <span class="doccomment">/// `Gtk::Sorter::compare()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Depending on the `change` parameter, it may be possible to</span>
+    <span class="doccomment">/// Depending on the @change parameter, it may be possible to</span>
     <span class="doccomment">/// update the sort order without a full resorting. Refer to</span>
     <span class="doccomment">/// the [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">///</span>
@@ -341,10 +341,10 @@
     <span class="doccomment">/// * It is reflexive, ie a = a</span>
     <span class="doccomment">/// * It is antisymmetric, ie if a &lt; b and b &lt; a, then a = b</span>
     <span class="doccomment">/// * It is transitive, ie given any 3 items with a ≤ b and b ≤ c,</span>
-    <span class="doccomment">///  then a ≤ c</span>
+    <span class="doccomment">///   then a ≤ c</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The sorter may signal it conforms to additional constraints</span>
-    <span class="doccomment">/// via the return value of [``order()``][`Self::order()`].</span>
+    <span class="doccomment">/// via the return value of [`order()`][Self::order()].</span>
     <span class="doccomment">/// ## `item1`</span>
     <span class="doccomment">/// first item to compare</span>
     <span class="doccomment">/// ## `item2`</span>
@@ -352,13 +352,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Ordering::Equal`][crate::Ordering::Equal] if `item1` == `item2`,</span>
-    <span class="doccomment">///  [`Ordering::Smaller`][crate::Ordering::Smaller] if `item1` &lt; `item2`,</span>
-    <span class="doccomment">///  [`Ordering::Larger`][crate::Ordering::Larger] if `item1` &gt; `item2`</span>
+    <span class="doccomment">/// [`Ordering::Equal`][crate::Ordering::Equal] if @item1 == @item2,</span>
+    <span class="doccomment">///   [`Ordering::Smaller`][crate::Ordering::Smaller] if @item1 &lt; @item2,</span>
+    <span class="doccomment">///   [`Ordering::Larger`][crate::Ordering::Larger] if @item1 &gt; @item2</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sorter_compare&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">compare</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item1</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">item2</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>) -&gt; <span class="ident">Ordering</span>;
 
-    <span class="doccomment">/// Gets the order that `self` conforms to.</span>
+    <span class="doccomment">/// Gets the order that @self conforms to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [`SorterOrder`][crate::SorterOrder] for details</span>
     <span class="doccomment">/// of the possible return values.</span>
@@ -375,11 +375,11 @@
     <span class="doccomment">/// Emitted whenever the sorter changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order</span>
-    <span class="doccomment">/// again via `gtk_sorter_compare()`.</span>
+    <span class="doccomment">/// again via gtk_sorter_compare().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`SortListModel`][crate::SortListModel] handles this signal automatically.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
+    <span class="doccomment">/// Depending on the @change parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
     <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">/// ## `change`</span>

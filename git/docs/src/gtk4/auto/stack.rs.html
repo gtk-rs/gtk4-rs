@@ -1274,15 +1274,15 @@
     <span class="doccomment">/// be used with [`Stack`][crate::Stack] to provide this functionality.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Transitions between pages can be animated as slides or fades. This</span>
-    <span class="doccomment">/// can be controlled with [``set_transition_type()``][`Self::set_transition_type()`].</span>
+    <span class="doccomment">/// can be controlled with [`set_transition_type()`][Self::set_transition_type()].</span>
     <span class="doccomment">/// These animations respect the `property::Settings::gtk-enable-animations`</span>
     <span class="doccomment">/// setting.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Stack`][crate::Stack] maintains a [`StackPage`][crate::StackPage] object for each added</span>
     <span class="doccomment">/// child, which holds additional per-child properties. You</span>
-    <span class="doccomment">/// obtain the [`StackPage`][crate::StackPage] for a child with [``page()``][`Self::page()`]</span>
+    <span class="doccomment">/// obtain the [`StackPage`][crate::StackPage] for a child with [`page()`][Self::page()]</span>
     <span class="doccomment">/// and you can obtain a [`SelectionModel`][crate::SelectionModel] containing all the pages</span>
-    <span class="doccomment">/// with [``pages()``][`Self::pages()`].</span>
+    <span class="doccomment">/// with [`pages()`][Self::pages()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # GtkStack as GtkBuildable</span>
     <span class="doccomment">///</span>
@@ -1344,13 +1344,13 @@
         <span class="ident">StackBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Adds a child to `self`.</span>
+    <span class="doccomment">/// Adds a child to @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for `child`</span>
+    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_add_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="ident">StackPage</span> {
         <span class="kw">unsafe</span> {
@@ -1361,17 +1361,17 @@
         }
     }
 
-    <span class="doccomment">/// Adds a child to `self`.</span>
+    <span class="doccomment">/// Adds a child to @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The child is identified by the `name`.</span>
+    <span class="doccomment">/// The child is identified by the @name.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// the name for `child`</span>
+    <span class="doccomment">/// the name for @child</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for `child`</span>
+    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_add_named&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_named</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="ident">StackPage</span> {
         <span class="kw">unsafe</span> {
@@ -1383,21 +1383,21 @@
         }
     }
 
-    <span class="doccomment">/// Adds a child to `self`.</span>
+    <span class="doccomment">/// Adds a child to @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The child is identified by the `name`. The `title`</span>
+    <span class="doccomment">/// The child is identified by the @name. The @title</span>
     <span class="doccomment">/// will be used by [`StackSwitcher`][crate::StackSwitcher] to represent</span>
-    <span class="doccomment">/// `child` in a tab bar, so it should be short.</span>
+    <span class="doccomment">/// @child in a tab bar, so it should be short.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// the name for `child`</span>
+    <span class="doccomment">/// the name for @child</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// a human-readable title for `child`</span>
+    <span class="doccomment">/// a human-readable title for @child</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for `child`</span>
+    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_add_titled&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_titled</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1424,7 +1424,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the requested child</span>
-    <span class="doccomment">///  of the [`Stack`][crate::Stack]</span>
+    <span class="doccomment">///   of the [`Stack`][crate::Stack]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_child_by_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_by_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_by_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
@@ -1436,11 +1436,11 @@
         }
     }
 
-    <span class="doccomment">/// Gets whether `self` is horizontally homogeneous.</span>
+    <span class="doccomment">/// Gets whether @self is horizontally homogeneous.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether `self` is horizontally homogeneous.</span>
+    <span class="doccomment">/// whether @self is horizontally homogeneous.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_hhomogeneous&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_hhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_hhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
@@ -1459,13 +1459,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_interpolate_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the [`StackPage`][crate::StackPage] object for `child`.</span>
+    <span class="doccomment">/// Returns the [`StackPage`][crate::StackPage] object for @child.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a child of `self`</span>
+    <span class="doccomment">/// a child of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for `child`</span>
+    <span class="doccomment">/// the [`StackPage`][crate::StackPage] for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StackPage</span><span class="op">&gt;</span> {
@@ -1493,7 +1493,7 @@
     }
 
     <span class="doccomment">/// Returns the amount of time (in milliseconds) that</span>
-    <span class="doccomment">/// transitions between pages in `self` will take.</span>
+    <span class="doccomment">/// transitions between pages in @self will take.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1504,7 +1504,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_stack_get_transition_duration</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns whether the `self` is currently in a transition from one page to</span>
+    <span class="doccomment">/// Returns whether the @self is currently in a transition from one page to</span>
     <span class="doccomment">/// another.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1517,29 +1517,29 @@
     }
 
     <span class="doccomment">/// Gets the type of animation that will be used</span>
-    <span class="doccomment">/// for transitions between pages in `self`.</span>
+    <span class="doccomment">/// for transitions between pages in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the current transition type of `self`</span>
+    <span class="doccomment">/// the current transition type of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_transition_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_transition_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">transition_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">StackTransitionType</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_transition_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets whether `self` is vertically homogeneous.</span>
+    <span class="doccomment">/// Gets whether @self is vertically homogeneous.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether `self` is vertically homogeneous.</span>
+    <span class="doccomment">/// whether @self is vertically homogeneous.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_vhomogeneous&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_vhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_vhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_vhomogeneous</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the currently visible child of `self`.</span>
+    <span class="doccomment">/// Gets the currently visible child of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns [`None`] if there are no visible children.</span>
     <span class="doccomment">///</span>
@@ -1552,21 +1552,21 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_stack_get_visible_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the name of the currently visible child of `self`.</span>
+    <span class="doccomment">/// Returns the name of the currently visible child of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns [`None`] if there is no visible child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the name of the visible child</span>
-    <span class="doccomment">///  of the [`Stack`][crate::Stack]</span>
+    <span class="doccomment">///   of the [`Stack`][crate::Stack]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_visible_child_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visible_child_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible_child_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_stack_get_visible_child_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Removes a child widget from `self`.</span>
+    <span class="doccomment">/// Removes a child widget from @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_remove&quot;</span>)]</span>
@@ -1582,7 +1582,7 @@
     <span class="doccomment">/// width for all its children. If it isn&#39;t, the stack</span>
     <span class="doccomment">/// may change width when a different child becomes visible.</span>
     <span class="doccomment">/// ## `hhomogeneous`</span>
-    <span class="doccomment">/// [`true`] to make `self` horizontally homogeneous</span>
+    <span class="doccomment">/// [`true`] to make @self horizontally homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_hhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_hhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hhomogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1590,11 +1590,11 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether or not `self` will interpolate its size when</span>
+    <span class="doccomment">/// Sets whether or not @self will interpolate its size when</span>
     <span class="doccomment">/// changing the visible child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `property::Stack::interpolate-size` property is set</span>
-    <span class="doccomment">/// to [`true`], `self` will interpolate its size between the current</span>
+    <span class="doccomment">/// to [`true`], @self will interpolate its size between the current</span>
     <span class="doccomment">/// one and the one it&#39;ll take after changing the visible child,</span>
     <span class="doccomment">/// according to the set transition duration.</span>
     <span class="doccomment">/// ## `interpolate_size`</span>
@@ -1609,7 +1609,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the duration that transitions between pages in `self`</span>
+    <span class="doccomment">/// Sets the duration that transitions between pages in @self</span>
     <span class="doccomment">/// will take.</span>
     <span class="doccomment">/// ## `duration`</span>
     <span class="doccomment">/// the new duration, in milliseconds</span>
@@ -1621,7 +1621,7 @@
     }
 
     <span class="doccomment">/// Sets the type of animation that will be used for</span>
-    <span class="doccomment">/// transitions between pages in `self`.</span>
+    <span class="doccomment">/// transitions between pages in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Available types include various kinds of fades and slides.</span>
     <span class="doccomment">///</span>
@@ -1643,7 +1643,7 @@
     <span class="doccomment">/// height for all its children. If it isn&#39;t, the stack</span>
     <span class="doccomment">/// may change height when a different child becomes visible.</span>
     <span class="doccomment">/// ## `vhomogeneous`</span>
-    <span class="doccomment">/// [`true`] to make `self` vertically homogeneous</span>
+    <span class="doccomment">/// [`true`] to make @self vertically homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_vhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">vhomogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1651,17 +1651,17 @@
         }
     }
 
-    <span class="doccomment">/// Makes `child` the visible child of `self`.</span>
+    <span class="doccomment">/// Makes @child the visible child of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `child` is different from the currently visible child,</span>
+    <span class="doccomment">/// If @child is different from the currently visible child,</span>
     <span class="doccomment">/// the transition between the two will be animated with the</span>
-    <span class="doccomment">/// current transition type of `self`.</span>
+    <span class="doccomment">/// current transition type of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the `child` widget has to be visible itself</span>
-    <span class="doccomment">/// (see [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`]) in order to become the visible</span>
-    <span class="doccomment">/// child of `self`.</span>
+    <span class="doccomment">/// Note that the @child widget has to be visible itself</span>
+    <span class="doccomment">/// (see [`WidgetExt::show()`][crate::prelude::WidgetExt::show()]) in order to become the visible</span>
+    <span class="doccomment">/// child of @self.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a child of `self`</span>
+    <span class="doccomment">/// a child of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_visible_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_visible_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1675,8 +1675,8 @@
     <span class="doccomment">/// Makes the child with the given name visible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the child widget has to be visible itself</span>
-    <span class="doccomment">/// (see [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`]) in order to become the visible</span>
-    <span class="doccomment">/// child of `self`.</span>
+    <span class="doccomment">/// (see [`WidgetExt::show()`][crate::prelude::WidgetExt::show()]) in order to become the visible</span>
+    <span class="doccomment">/// child of @self.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the child to make visible</span>
     <span class="doccomment">/// ## `transition`</span>
@@ -1694,13 +1694,13 @@
 
     <span class="doccomment">/// Makes the child with the given name visible.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `child` is different from the currently visible child,</span>
+    <span class="doccomment">/// If @child is different from the currently visible child,</span>
     <span class="doccomment">/// the transition between the two will be animated with the</span>
-    <span class="doccomment">/// current transition type of `self`.</span>
+    <span class="doccomment">/// current transition type of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the child widget has to be visible itself</span>
-    <span class="doccomment">/// (see [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`]) in order to become the visible</span>
-    <span class="doccomment">/// child of `self`.</span>
+    <span class="doccomment">/// (see [`WidgetExt::show()`][crate::prelude::WidgetExt::show()]) in order to become the visible</span>
+    <span class="doccomment">/// child of @self.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the child to make visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_visible_child_name&quot;</span>)]</span>
@@ -2177,7 +2177,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -2203,9 +2203,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -2247,7 +2247,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -2260,7 +2260,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -2273,7 +2273,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -2283,7 +2283,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -2325,7 +2325,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2342,7 +2342,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

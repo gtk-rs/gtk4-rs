@@ -613,7 +613,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: the [`DeviceTool`][crate::DeviceTool] will be constant during</span>
     <span class="doccomment">/// the application lifetime, if settings must be stored</span>
-    <span class="doccomment">/// persistently across runs, see [``DeviceTool::serial()``][crate::`DeviceTool::serial()`].</span>
+    <span class="doccomment">/// persistently across runs, see [`DeviceTool::serial()`][crate::DeviceTool::serial()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -772,7 +772,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_device</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the display associated to the `self`.</span>
+    <span class="doccomment">/// Retrieves the display associated to the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -794,11 +794,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_event_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the history of the device that `self` is for, as a list of</span>
+    <span class="doccomment">/// Retrieves the history of the device that @self is for, as a list of</span>
     <span class="doccomment">/// time and coordinates.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The history includes positions that are not delivered as separate events</span>
-    <span class="doccomment">/// to the application because they occurred in the same frame as `self`.</span>
+    <span class="doccomment">/// to the application because they occurred in the same frame as @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that only motion and scroll events record history, and motion</span>
     <span class="doccomment">/// events do it only if one of the mouse buttons is down.</span>
@@ -806,7 +806,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// an</span>
-    <span class="doccomment">///  array of time and coordinates</span>
+    <span class="doccomment">///   array of time and coordinates</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_history&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_history&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">history</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TimeCoord</span><span class="op">&gt;</span> {
@@ -824,7 +824,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the modifier state of `self`</span>
+    <span class="doccomment">/// the modifier state of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_modifier_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_modifier_state&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">modifier_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ModifierType</span> {
@@ -897,14 +897,14 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_surface</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the timestamp of `self`.</span>
+    <span class="doccomment">/// Returns the timestamp of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Not all events have timestamps. In that case, this function</span>
     <span class="doccomment">/// returns `GDK_CURRENT_TIME`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// timestamp field from `self`</span>
+    <span class="doccomment">/// timestamp field from @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_time&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_time&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {

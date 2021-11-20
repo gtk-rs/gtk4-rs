@@ -228,8 +228,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Beyond the [`gdk::Toplevel`][crate::gdk::Toplevel] API, the Wayland implementation</span>
     <span class="doccomment">/// has API to set up cross-process parent-child relationships between</span>
-    <span class="doccomment">/// surfaces with [``export_handle()``][`Self::export_handle()`] and</span>
-    <span class="doccomment">/// [``set_transient_for_exported()``][`Self::set_transient_for_exported()`].</span>
+    <span class="doccomment">/// surfaces with [`export_handle()`][Self::export_handle()] and</span>
+    <span class="doccomment">/// [`set_transient_for_exported()`][Self::set_transient_for_exported()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -246,17 +246,17 @@
     <span class="doccomment">/// Asynchronously obtains a handle for a surface that can be passed</span>
     <span class="doccomment">/// to other processes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the handle has been obtained, `callback` will be called.</span>
+    <span class="doccomment">/// When the handle has been obtained, @callback will be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is an error to call this function on a surface that is already</span>
     <span class="doccomment">/// exported.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the handle is no longer needed, [``unexport_handle()``][`Self::unexport_handle()`]</span>
+    <span class="doccomment">/// When the handle is no longer needed, [`unexport_handle()`][Self::unexport_handle()]</span>
     <span class="doccomment">/// should be called to clean up resources.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The main purpose for obtaining a handle is to mark a surface</span>
     <span class="doccomment">/// from another surface as transient for this one, see</span>
-    <span class="doccomment">/// [``set_transient_for_exported()``][`Self::set_transient_for_exported()`].</span>
+    <span class="doccomment">/// [`set_transient_for_exported()`][Self::set_transient_for_exported()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this API depends on an unstable Wayland protocol,</span>
     <span class="doccomment">/// and thus may require changes in the future.</span>
@@ -266,7 +266,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the handle has been requested, [`false`] if</span>
-    <span class="doccomment">///  an error occurred.</span>
+    <span class="doccomment">///   an error occurred.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_export_handle&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">export_handle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">WaylandToplevel</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">callback_data</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">callback</span>);
@@ -300,7 +300,7 @@
 
     <span class="doccomment">/// Sets the application id on a [`gdk::Toplevel`][crate::gdk::Toplevel].</span>
     <span class="doccomment">/// ## `application_id`</span>
-    <span class="doccomment">/// the application id for the `self`</span>
+    <span class="doccomment">/// the application id for the @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_set_application_id&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_application_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">application_id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
@@ -311,11 +311,11 @@
         }
     }
 
-    <span class="doccomment">/// Marks `self` as transient for the surface to which the given</span>
-    <span class="doccomment">/// `parent_handle_str` refers.</span>
+    <span class="doccomment">/// Marks @self as transient for the surface to which the given</span>
+    <span class="doccomment">/// @parent_handle_str refers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typically, the handle will originate from a</span>
-    <span class="doccomment">/// [``export_handle()``][`Self::export_handle()`] call in another process.</span>
+    <span class="doccomment">/// [`export_handle()`][Self::export_handle()] call in another process.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this API depends on an unstable Wayland protocol,</span>
     <span class="doccomment">/// and thus may require changes in the future.</span>
@@ -325,7 +325,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the surface has been marked as transient,</span>
-    <span class="doccomment">///  [`false`] if an error occurred.</span>
+    <span class="doccomment">///   [`false`] if an error occurred.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_set_transient_for_exported&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_transient_for_exported</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent_handle_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -337,7 +337,7 @@
     }
 
     <span class="doccomment">/// Destroys the handle that was obtained with</span>
-    <span class="doccomment">/// [`export_handle()`][Self::export_handle()].</span>
+    <span class="doccomment">/// gdk_wayland_toplevel_export_handle().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is an error to call this function on a surface that</span>
     <span class="doccomment">/// does not have a handle.</span>

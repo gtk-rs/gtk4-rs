@@ -449,7 +449,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The behavior of the event controller can be modified by the flags</span>
     <span class="doccomment">/// given at creation time, or modified at a later point through</span>
-    <span class="doccomment">/// [``set_flags()``][`Self::set_flags()`] (e.g. because the scrolling</span>
+    <span class="doccomment">/// [`set_flags()`][Self::set_flags()] (e.g. because the scrolling</span>
     <span class="doccomment">/// conditions of the widget changed).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The controller can be set up to emit motion for either/both vertical</span>
@@ -533,8 +533,8 @@
     <span class="doccomment">/// Emitted after scroll is finished if the</span>
     <span class="doccomment">/// [`EventControllerScrollFlags::KINETIC`][crate::EventControllerScrollFlags::KINETIC] flag is set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `vel_x` and `vel_y` express the initial velocity that was</span>
-    <span class="doccomment">/// imprinted by the scroll events. `vel_x` and `vel_y` are expressed in</span>
+    <span class="doccomment">/// @vel_x and @vel_y express the initial velocity that was</span>
+    <span class="doccomment">/// imprinted by the scroll events. @vel_x and @vel_y are expressed in</span>
     <span class="doccomment">/// pixels/ms.</span>
     <span class="doccomment">/// ## `vel_x`</span>
     <span class="doccomment">/// X velocity</span>
@@ -567,7 +567,7 @@
     }
 
     <span class="doccomment">/// Signals that the widget should scroll by the</span>
-    <span class="doccomment">/// amount specified by `dx` and `dy`.</span>
+    <span class="doccomment">/// amount specified by @dx and @dy.</span>
     <span class="doccomment">/// ## `dx`</span>
     <span class="doccomment">/// X delta</span>
     <span class="doccomment">/// ## `dy`</span>
@@ -576,7 +576,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the scroll event was handled,</span>
-    <span class="doccomment">///  [`false`] otherwise.</span>
+    <span class="doccomment">///   [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;scroll&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scroll</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) -&gt; <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

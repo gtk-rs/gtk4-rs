@@ -82,7 +82,7 @@ size requests and allocations for a given row of data.</p>
 unless they are implementing a cell-layouting widget themselves.</p>
 <h2 id="requesting-area-sizes" class="section-header"><a href="#requesting-area-sizes">Requesting area sizes</a></h2>
 <p>As outlined in
-<a href="class.Widget.html%60height%60-for-width-geometry-management">GtkWidget’s geometry management section</a>,
+<a href="class.Widget.html#height-for-width-geometry-management">GtkWidget’s geometry management section</a>,
 GTK uses a height-for-width
 geometry management system to compute the sizes of widgets and user
 interfaces. <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> uses the same semantics to calculate the
@@ -198,7 +198,7 @@ heights if the request is intended for the layouting widgets real
 allocation.</p>
 <p>In some cases the layouting widget is requested the height for an
 arbitrary for_width, this is a special case for layouting widgets
-who need to request size for tens of thousands of rows. For this
+who need to request size for tens of thousands  of rows. For this
 case it’s only important that the layouting widget calculate
 one reasonably sized chunk of rows and return that height
 synchronously. The reasoning here is that any layouting widget is
@@ -251,8 +251,8 @@ normal widget and then passing them to the <a href="prelude/trait.CellAreaExtMan
 API as they come in. Usually <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> is only interested in
 button events, however some customized derived areas can be implemented
 who are interested in handling other events. Handling an event can
-trigger the [<code>signal</code>Gtk<code>::focus-changed</code>] signal to fire; as well
-as [<code>signal[</code>CellArea<code>][crate::CellArea]</code>] in the case that an editable cell
+trigger the [<code>signal@Gtk.CellArea::focus-changed</code>] signal to fire; as well
+as [<code>signal@GtkCellArea::add-editable</code>] in the case that an editable cell
 was clicked and needs to start editing. You can call
 <a href="prelude/trait.CellAreaExt.html#tymethod.stop_editing" title="crate::prelude::CellAreaExt::stop_editing()"><code>CellAreaExt::stop_editing()</code></a> at any time to cancel any cell editing
 that is currently in progress.</p>
@@ -333,13 +333,14 @@ a cell might “expand” and receive extra space when the area is allocated
 more than its full natural request, or a cell might be configured to “align”
 with adjacent rows which were requested and rendered with the same
 <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a>.</p>
-<p>Use <code>Gtk::</code>CellAreaClass::install_cell_property()<code> to install cell properties for a cell area class and `Gtk::`CellAreaClass::find_cell_property()</code>
-or <code>Gtk::</code>CellAreaClass::list_cell_properties()`` to get information about
+<p>Use <code>Gtk::CellAreaClass::install_cell_property()</code> to install cell
+properties for a cell area class and <code>Gtk::CellAreaClass::find_cell_property()</code>
+or <code>Gtk::CellAreaClass::list_cell_properties()</code> to get information about
 existing cell properties.</p>
-<p>To set the value of a cell property, use [<code>CellAreaExtManual::cell_set_property()</code>][crate::prelude::<code>CellAreaExtManual::cell_set_property()</code>],
-<code>Gtk::</code>CellArea::cell_set()<code> or `Gtk::`CellArea::cell_set_valist()</code>. To obtain
-the value of a cell property, use [<code>CellAreaExtManual::cell_get_property()</code>][crate::prelude::<code>CellAreaExtManual::cell_get_property()</code>]
-<code>Gtk::</code>CellArea::cell_get()<code> or `Gtk::`CellArea::cell_get_valist()</code>.</p>
+<p>To set the value of a cell property, use [<code>CellAreaExtManual::cell_set_property()</code>][crate::prelude::CellAreaExtManual::cell_set_property()],
+<code>Gtk::CellArea::cell_set()</code> or <code>Gtk::CellArea::cell_set_valist()</code>. To obtain
+the value of a cell property, use [<code>CellAreaExtManual::cell_get_property()</code>][crate::prelude::CellAreaExtManual::cell_get_property()]
+<code>Gtk::CellArea::cell_get()</code> or <code>Gtk::CellArea::cell_get_valist()</code>.</p>
 <p>This is an Abstract Base Class, you cannot instantiate it.</p>
 <h2 id="implements" class="section-header"><a href="#implements">Implements</a></h2>
 <p><a href="prelude/trait.CellAreaExt.html" title="crate::prelude::CellAreaExt"><code>CellAreaExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.CellLayoutExt.html" title="crate::prelude::CellLayoutExt"><code>CellLayoutExt</code></a>, <a href="prelude/trait.CellAreaExtManual.html" title="crate::prelude::CellAreaExtManual"><code>CellAreaExtManual</code></a>, <a href="prelude/trait.CellLayoutExtManual.html" title="crate::prelude::CellLayoutExtManual"><code>CellLayoutExtManual</code></a></p>

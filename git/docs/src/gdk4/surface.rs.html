@@ -171,19 +171,19 @@
 <span class="doccomment">/// Trait containing manually implemented methods of [`Surface`](crate::Surface).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SurfaceExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Create a new Cairo surface that is as compatible as possible with the</span>
-    <span class="doccomment">/// given `self`.</span>
+    <span class="doccomment">/// given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For example the new surface will have the same fallback resolution</span>
-    <span class="doccomment">/// and font options as `self`. Generally, the new surface will also</span>
-    <span class="doccomment">/// use the same backend as `self`, unless that is not possible for</span>
+    <span class="doccomment">/// and font options as @self. Generally, the new surface will also</span>
+    <span class="doccomment">/// use the same backend as @self, unless that is not possible for</span>
     <span class="doccomment">/// some reason. The type of the returned surface may be examined with</span>
-    <span class="doccomment">/// `cairo_surface_get_type()`.</span>
+    <span class="doccomment">/// cairo_surface_get_type().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Initially the surface contents are all 0 (transparent if contents</span>
     <span class="doccomment">/// have transparency, black otherwise.)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function always returns a valid pointer, but it will return a</span>
-    <span class="doccomment">/// pointer to a “nil” surface if `other` is already in an error state</span>
+    <span class="doccomment">/// pointer to a “nil” surface if @other is already in an error state</span>
     <span class="doccomment">/// or any other error occurs.</span>
     <span class="doccomment">/// ## `content`</span>
     <span class="doccomment">/// the content for the new surface</span>
@@ -195,8 +195,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a pointer to the newly allocated surface. The caller</span>
-    <span class="doccomment">///  owns the surface and should call `cairo_surface_destroy()` when done</span>
-    <span class="doccomment">///  with it.</span>
+    <span class="doccomment">///   owns the surface and should call cairo_surface_destroy() when done</span>
+    <span class="doccomment">///   with it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_similar_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_similar_surface</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -207,7 +207,7 @@
 
     <span class="doccomment">/// Translates coordinates between two surfaces.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this only works if `to` and `self` are popups or</span>
+    <span class="doccomment">/// Note that this only works if @to and @self are popups or</span>
     <span class="doccomment">/// transient-for to the same toplevel (directly or indirectly).</span>
     <span class="doccomment">/// ## `to`</span>
     <span class="doccomment">/// the target surface</span>

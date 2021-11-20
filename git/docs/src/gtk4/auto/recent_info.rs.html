@@ -481,12 +481,12 @@
 <span class="kw">impl</span> <span class="ident">RecentInfo</span> {
     <span class="doccomment">/// Creates a `GAppInfo` for the specified [`RecentInfo`][crate::RecentInfo]</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In case of error, `error` will be set either with a</span>
+    <span class="doccomment">/// In case of error, @error will be set either with a</span>
     <span class="doccomment">/// `GTK_RECENT_MANAGER_ERROR` or a `G_IO_ERROR`</span>
     <span class="doccomment">/// ## `app_name`</span>
     <span class="doccomment">/// the name of the application that should</span>
-    <span class="doccomment">///  be mapped to a `GAppInfo`; if [`None`] is used then the default</span>
-    <span class="doccomment">///  application for the MIME type is used</span>
+    <span class="doccomment">///   be mapped to a `GAppInfo`; if [`None`] is used then the default</span>
+    <span class="doccomment">///   application for the MIME type is used</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -511,7 +511,7 @@
         }
     }
 
-    <span class="doccomment">/// Checks whether the resource pointed by `self` still exists.</span>
+    <span class="doccomment">/// Checks whether the resource pointed by @self still exists.</span>
     <span class="doccomment">/// At the moment this check is done only on resources pointing</span>
     <span class="doccomment">/// to local files.</span>
     <span class="doccomment">///</span>
@@ -529,7 +529,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GDateTime` for the time</span>
-    <span class="doccomment">///  when the resource was added</span>
+    <span class="doccomment">///    when the resource was added</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_added&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_added&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">added</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::DateTime</span> {
@@ -537,12 +537,12 @@
     }
 
     <span class="doccomment">/// Gets the number of days elapsed since the last update</span>
-    <span class="doccomment">/// of the resource pointed by `self`.</span>
+    <span class="doccomment">/// of the resource pointed by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a positive integer containing the number of days</span>
-    <span class="doccomment">///  elapsed since the time this resource was last modified</span>
+    <span class="doccomment">///   elapsed since the time this resource was last modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_age&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_age&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">age</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
@@ -550,7 +550,7 @@
     }
 
     <span class="doccomment">/// Gets the data regarding the application that has registered the resource</span>
-    <span class="doccomment">/// pointed by `self`.</span>
+    <span class="doccomment">/// pointed by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the command line contains any escape characters defined inside the</span>
     <span class="doccomment">/// storage specification, they will be expanded.</span>
@@ -559,21 +559,21 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if an application with `app_name` has registered this</span>
-    <span class="doccomment">///  resource inside the recently used list, or [`false`] otherwise. The</span>
-    <span class="doccomment">///  `app_exec` string is owned by the [`RecentInfo`][crate::RecentInfo] and should not be</span>
-    <span class="doccomment">///  modified or freed</span>
+    <span class="doccomment">/// [`true`] if an application with @app_name has registered this</span>
+    <span class="doccomment">///   resource inside the recently used list, or [`false`] otherwise. The</span>
+    <span class="doccomment">///   @app_exec string is owned by the [`RecentInfo`][crate::RecentInfo] and should not be</span>
+    <span class="doccomment">///   modified or freed</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `app_exec`</span>
     <span class="doccomment">/// return location for the string containing</span>
-    <span class="doccomment">///  the command line</span>
+    <span class="doccomment">///    the command line</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// return location for the number of times this item was registered</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `stamp`</span>
     <span class="doccomment">/// return location for the time this item was last</span>
-    <span class="doccomment">///  registered for this application</span>
+    <span class="doccomment">///    registered for this application</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_application_info&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_application_info&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">application_info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">app_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">glib::GString</span>, <span class="ident">u32</span>, <span class="ident">glib::DateTime</span>)<span class="op">&gt;</span> {
@@ -602,7 +602,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly</span>
-    <span class="doccomment">///  allocated [`None`]-terminated array of strings. Use `g_strfreev()` to free it.</span>
+    <span class="doccomment">///   allocated [`None`]-terminated array of strings. Use g_strfreev() to free it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_applications&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_applications&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">applications</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -621,7 +621,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the description of the resource. The returned string</span>
-    <span class="doccomment">///  is owned by the recent manager, and should not be freed.</span>
+    <span class="doccomment">///   is owned by the recent manager, and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_description&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_description&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -636,7 +636,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the display name of the resource. The returned string</span>
-    <span class="doccomment">///  is owned by the recent manager, and should not be freed.</span>
+    <span class="doccomment">///   is owned by the recent manager, and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_display_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -654,7 +654,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_recent_info_get_gicon</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns all groups registered for the recently used item `self`.</span>
+    <span class="doccomment">/// Returns all groups registered for the recently used item @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The array of returned group names will be [`None`] terminated, so</span>
     <span class="doccomment">/// length might optionally be [`None`].</span>
@@ -662,8 +662,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  a newly allocated [`None`] terminated array of strings.</span>
-    <span class="doccomment">///  Use `g_strfreev()` to free it.</span>
+    <span class="doccomment">///   a newly allocated [`None`] terminated array of strings.</span>
+    <span class="doccomment">///   Use g_strfreev() to free it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_groups&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_groups&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">groups</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -682,7 +682,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the MIME type of the resource. The returned string</span>
-    <span class="doccomment">///  is owned by the recent manager, and should not be freed.</span>
+    <span class="doccomment">///   is owned by the recent manager, and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_mime_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mime_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -695,7 +695,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GDateTime` for the time</span>
-    <span class="doccomment">///  when the resource was last modified</span>
+    <span class="doccomment">///   when the resource was last modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_modified&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_modified&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">modified</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::DateTime</span> {
@@ -726,7 +726,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A newly-allocated string in UTF-8 encoding</span>
-    <span class="doccomment">///  free it with `g_free()`</span>
+    <span class="doccomment">///   free it with g_free()</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_short_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_short_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">short_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -738,7 +738,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the URI of the resource. The returned string is</span>
-    <span class="doccomment">///  owned by the recent manager, and should not be freed.</span>
+    <span class="doccomment">///   owned by the recent manager, and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_uri&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_uri&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uri</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -749,12 +749,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the resource is local, it returns a local path; if the</span>
     <span class="doccomment">/// resource is not local, it returns the UTF-8 encoded content</span>
-    <span class="doccomment">/// of [``uri()``][`Self::uri()`].</span>
+    <span class="doccomment">/// of [`uri()`][Self::uri()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly allocated UTF-8 string containing the</span>
-    <span class="doccomment">///  resource’s URI or [`None`]. Use `g_free()` when done using it.</span>
+    <span class="doccomment">///   resource’s URI or [`None`]. Use g_free() when done using it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_uri_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_uri_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uri_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -767,21 +767,21 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GDateTime` for the time</span>
-    <span class="doccomment">///  when the resource was last visited</span>
+    <span class="doccomment">///    when the resource was last visited</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_visited&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visited&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visited</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::DateTime</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_recent_info_get_visited</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Checks whether an application registered this resource using `app_name`.</span>
+    <span class="doccomment">/// Checks whether an application registered this resource using @app_name.</span>
     <span class="doccomment">/// ## `app_name`</span>
     <span class="doccomment">/// a string containing an application name</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if an application with name `app_name` was found,</span>
-    <span class="doccomment">///  [`false`] otherwise</span>
+    <span class="doccomment">/// [`true`] if an application with name @app_name was found,</span>
+    <span class="doccomment">///   [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_has_application&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_application</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">app_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -792,8 +792,8 @@
         }
     }
 
-    <span class="doccomment">/// Checks whether `group_name` appears inside the groups</span>
-    <span class="doccomment">/// registered for the recently used item `self`.</span>
+    <span class="doccomment">/// Checks whether @group_name appears inside the groups</span>
+    <span class="doccomment">/// registered for the recently used item @self.</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// name of a group</span>
     <span class="doccomment">///</span>
@@ -822,11 +822,11 @@
     }
 
     <span class="doccomment">/// Gets the name of the last application that have registered the</span>
-    <span class="doccomment">/// recently used resource represented by `self`.</span>
+    <span class="doccomment">/// recently used resource represented by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// an application name. Use `g_free()` to free it.</span>
+    <span class="doccomment">/// an application name. Use g_free() to free it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_last_application&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">last_application</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_recent_info_last_application</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

@@ -390,15 +390,15 @@
     <span class="doccomment">/// strings to a fixed search term.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The strings are obtained from the items by evaluating a [`Expression`][crate::Expression]</span>
-    <span class="doccomment">/// set with [``set_expression()``][`Self::set_expression()`], and they are</span>
-    <span class="doccomment">/// compared against a search term set with [``set_search()``][`Self::set_search()`].</span>
+    <span class="doccomment">/// set with [`set_expression()`][Self::set_expression()], and they are</span>
+    <span class="doccomment">/// compared against a search term set with [`set_search()`][Self::set_search()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`StringFilter`][crate::StringFilter] has several different modes of comparison - it</span>
     <span class="doccomment">/// can match the whole string, just a prefix, or any substring. Use</span>
-    <span class="doccomment">/// [``set_match_mode()``][`Self::set_match_mode()`] choose a mode.</span>
+    <span class="doccomment">/// [`set_match_mode()`][Self::set_match_mode()] choose a mode.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is also possible to make case-insensitive comparisons, with</span>
-    <span class="doccomment">/// [``set_ignore_case()``][`Self::set_ignore_case()`].</span>
+    <span class="doccomment">/// [`set_ignore_case()`][Self::set_ignore_case()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -492,7 +492,7 @@
     <span class="doccomment">/// Sets the string to search for.</span>
     <span class="doccomment">/// ## `search`</span>
     <span class="doccomment">/// The string to search for</span>
-    <span class="doccomment">///  or [`None`] to clear the search</span>
+    <span class="doccomment">///   or [`None`] to clear the search</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_string_filter_set_search&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_search</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">search</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

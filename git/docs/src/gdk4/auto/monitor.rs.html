@@ -622,8 +622,8 @@
     <span class="doccomment">/// associated with a [`Display`][crate::Display].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Display`][crate::Display] keeps a `GListModel` to enumerate and monitor</span>
-    <span class="doccomment">/// monitors with [``DisplayExt::monitors()``][crate::prelude::`DisplayExt::monitors()`]. You can use</span>
-    <span class="doccomment">/// [``DisplayExt::monitor_at_surface()``][crate::prelude::`DisplayExt::monitor_at_surface()`] to find a particular</span>
+    <span class="doccomment">/// monitors with [`DisplayExt::monitors()`][crate::prelude::DisplayExt::monitors()]. You can use</span>
+    <span class="doccomment">/// [`DisplayExt::monitor_at_surface()`][crate::prelude::DisplayExt::monitor_at_surface()] to find a particular</span>
     <span class="doccomment">/// monitor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -668,8 +668,8 @@
     <span class="doccomment">/// Retrieves the size and position of the monitor within the</span>
     <span class="doccomment">/// display coordinate space.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The returned geometry is in ”application pixels”, not in</span>
-    <span class="doccomment">/// ”device pixels” (see [``scale_factor()``][`Self::scale_factor()`]).</span>
+    <span class="doccomment">/// The returned geometry is in  ”application pixels”, not in</span>
+    <span class="doccomment">/// ”device pixels” (see [`scale_factor()`][Self::scale_factor()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -733,7 +733,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be used if you want to create pixel based data for a</span>
     <span class="doccomment">/// particular monitor, but most of the time you’re drawing to a surface</span>
-    <span class="doccomment">/// where it is better to use [``SurfaceExt::scale_factor()``][crate::prelude::`SurfaceExt::scale_factor()`] instead.</span>
+    <span class="doccomment">/// where it is better to use [`SurfaceExt::scale_factor()`][crate::prelude::SurfaceExt::scale_factor()] instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -761,10 +761,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_width_mm&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">width_mm</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Returns [`true`] if the `self` object corresponds to a</span>
+    <span class="doccomment">/// Returns [`true`] if the @self object corresponds to a</span>
     <span class="doccomment">/// physical monitor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `self` becomes invalid when the physical monitor</span>
+    <span class="doccomment">/// The @self becomes invalid when the physical monitor</span>
     <span class="doccomment">/// is unplugged or removed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -773,7 +773,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_monitor_is_valid&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Emitted when the output represented by `monitor` gets disconnected.</span>
+    <span class="doccomment">/// Emitted when the output represented by @monitor gets disconnected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;invalidate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_invalidate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 

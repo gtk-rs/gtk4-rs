@@ -173,9 +173,9 @@
 
 <span class="kw">impl</span> <span class="ident">CustomSorter</span> {
     <span class="doccomment">/// Creates a new [`Sorter`][crate::Sorter] that works by calling</span>
-    <span class="doccomment">/// `sort_func` to compare items.</span>
+    <span class="doccomment">/// @sort_func to compare items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
+    <span class="doccomment">/// If @sort_func is [`None`], all items are considered equal.</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// the `GCompareDataFunc` to use for sorting</span>
     <span class="doccomment">///</span>
@@ -199,12 +199,12 @@
 
     <span class="doccomment">/// Sets (or unsets) the function used for sorting items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
+    <span class="doccomment">/// If @sort_func is [`None`], all items are considered equal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the sort func changes its sorting behavior,</span>
-    <span class="doccomment">/// [`SorterExt::changed()`][crate::prelude::SorterExt::changed()] needs to be called.</span>
+    <span class="doccomment">/// gtk_sorter_changed() needs to be called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a previous function was set, its `user_destroy` will be</span>
+    <span class="doccomment">/// If a previous function was set, its @user_destroy will be</span>
     <span class="doccomment">/// called now.</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// function to sort items</span>

@@ -83,26 +83,26 @@
 <p>This emits the <code>signal::Filter::changed</code> signal. Users
 of the filter should then check items again via
 <a href="trait.FilterExt.html#tymethod.match_" title="Self::match_()"><code>match_()</code></a>.</p>
-<p>Depending on the <code>change</code> parameter, not all items need to
+<p>Depending on the @change parameter, not all items need to
 be changed, but only some. Refer to the <a href="../enum.FilterChange.html" title="crate::FilterChange"><code>FilterChange</code></a>
 documentation for details.</p>
 <p>This function is intended for implementors of <a href="../struct.Filter.html" title="crate::Filter"><code>Filter</code></a>
 subclasses and should not be called from other functions.</p>
 <h6 id="change" class="section-header"><a href="#change"><code>change</code></a></h6>
 <p>How the filter changed</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.strictness" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/filter.rs.html#89" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.strictness" class="fnname">strictness</a>(&amp;self) -&gt; <a class="enum" href="../enum.FilterMatch.html" title="enum gtk4::FilterMatch">FilterMatch</a></h4></div></summary><div class="docblock"><p>Gets the known strictness of <code>filters</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.strictness" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/filter.rs.html#89" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.strictness" class="fnname">strictness</a>(&amp;self) -&gt; <a class="enum" href="../enum.FilterMatch.html" title="enum gtk4::FilterMatch">FilterMatch</a></h4></div></summary><div class="docblock"><p>Gets the known strictness of @filters.</p>
 <p>If the strictness is not known, <a href="../enum.FilterMatch.html#variant.Some" title="crate::FilterMatch::Some"><code>FilterMatch::Some</code></a> is returned.</p>
 <p>This value may change after emission of the <code>signal::Filter::changed</code>
 signal.</p>
 <p>This function is meant purely for optimization purposes, filters can
 choose to omit implementing it, but <a href="../struct.FilterListModel.html" title="crate::FilterListModel"><code>FilterListModel</code></a> uses it.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
-<p>the strictness of <code>self</code></p>
+<p>the strictness of @self</p>
 </div></details><div id="tymethod.match_" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/filter.rs.html#93" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.match_" class="fnname">match_</a>(&amp;self, item: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/filter.rs.html#108" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.FilterChange.html" title="enum gtk4::FilterChange">FilterChange</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted whenever the filter changed.</p>
 <p>Users of the filter should then check items again via
 <a href="trait.FilterExt.html#tymethod.match_" title="Self::match_()"><code>match_()</code></a>.</p>
 <p><a href="../struct.FilterListModel.html" title="crate::FilterListModel"><code>FilterListModel</code></a> handles this signal automatically.</p>
-<p>Depending on the <code>change</code> parameter, not all items need
+<p>Depending on the @change parameter, not all items need
 to be checked, but only some. Refer to the <a href="../enum.FilterChange.html" title="crate::FilterChange"><code>FilterChange</code></a>
 documentation for details.</p>
 <h6 id="change-1" class="section-header"><a href="#change-1"><code>change</code></a></h6>

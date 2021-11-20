@@ -1101,7 +1101,7 @@
     <span class="doccomment">/// See [`PopoverMenu`][crate::PopoverMenu] for information about the XML language</span>
     <span class="doccomment">/// used by [`Builder`][crate::Builder] for menu models.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [``GtkApplicationExt::set_menubar()``][crate::prelude::`GtkApplicationExt::set_menubar()`].</span>
+    <span class="doccomment">/// See also: [`GtkApplicationExt::set_menubar()`][crate::prelude::GtkApplicationExt::set_menubar()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## A GtkApplicationWindow with a menubar</span>
     <span class="doccomment">///</span>
@@ -1437,7 +1437,7 @@
     <span class="doccomment">/// If this property is [`true`], the window will display a menubar</span>
     <span class="doccomment">/// unless it is shown by the desktop shell.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``GtkApplicationExt::set_menubar()``][crate::prelude::`GtkApplicationExt::set_menubar()`].</span>
+    <span class="doccomment">/// See [`GtkApplicationExt::set_menubar()`][crate::prelude::GtkApplicationExt::set_menubar()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`false`], the window will not display a menubar, regardless</span>
     <span class="doccomment">/// of whether the desktop shell is showing it or not.</span>
@@ -1449,7 +1449,7 @@
     <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
+    <span class="doccomment">/// has any windows associated with it (see g_application_hold()</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -1526,7 +1526,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::fullscreen()`][crate::prelude::GtkWindowExt::fullscreen()] or [`GtkWindowExt::unfullscreen()`][crate::prelude::GtkWindowExt::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1561,7 +1561,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::maximize()`][crate::prelude::GtkWindowExt::maximize()] or [`GtkWindowExt::unmaximize()`][crate::prelude::GtkWindowExt::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1648,7 +1648,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1674,9 +1674,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1718,7 +1718,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1731,7 +1731,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1744,7 +1744,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1754,7 +1754,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1796,7 +1796,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1813,7 +1813,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1875,14 +1875,14 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ApplicationWindow`][struct@crate::ApplicationWindow]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ApplicationWindowExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Gets the [`ShortcutsWindow`][crate::ShortcutsWindow] that is associated with `self`.</span>
+    <span class="doccomment">/// Gets the [`ShortcutsWindow`][crate::ShortcutsWindow] that is associated with @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_help_overlay()``][`Self::set_help_overlay()`].</span>
+    <span class="doccomment">/// See [`set_help_overlay()`][Self::set_help_overlay()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the help overlay associated</span>
-    <span class="doccomment">///  with `self`</span>
+    <span class="doccomment">///   with @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_help_overlay&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_help_overlay&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">help_overlay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ShortcutsWindow</span><span class="op">&gt;</span>;
@@ -1893,8 +1893,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the unique ID for `self`, or `0` if the window</span>
-    <span class="doccomment">///  has not yet been added to a [`Application`][crate::Application]</span>
+    <span class="doccomment">/// the unique ID for @self, or `0` if the window</span>
+    <span class="doccomment">///   has not yet been added to a [`Application`][crate::Application]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_id&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
@@ -1904,7 +1904,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` will display a menubar when needed</span>
+    <span class="doccomment">/// [`true`] if @self will display a menubar when needed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_show_menubar&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_show_menubar&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_menubar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -1914,7 +1914,7 @@
     <span class="doccomment">/// Additionally, sets up an action with the name</span>
     <span class="doccomment">/// `win.show-help-overlay` to present it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `self` takes responsibility for destroying `help_overlay`.</span>
+    <span class="doccomment">/// @self takes responsibility for destroying @help_overlay.</span>
     <span class="doccomment">/// ## `help_overlay`</span>
     <span class="doccomment">/// a [`ShortcutsWindow`][crate::ShortcutsWindow]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_set_help_overlay&quot;</span>)]</span>

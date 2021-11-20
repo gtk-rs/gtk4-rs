@@ -374,16 +374,16 @@
     <span class="doccomment">/// and mouse gestures.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Under interaction, these gestures stick to the first interacting sequence,</span>
-    <span class="doccomment">/// which is accessible through [``GestureSingleExt::current_sequence()``][crate::prelude::`GestureSingleExt::current_sequence()`]</span>
+    <span class="doccomment">/// which is accessible through [`GestureSingleExt::current_sequence()`][crate::prelude::GestureSingleExt::current_sequence()]</span>
     <span class="doccomment">/// while the gesture is being interacted with.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default gestures react to both `GDK_BUTTON_PRIMARY` and touch events.</span>
-    <span class="doccomment">/// [``GestureSingleExt::set_touch_only()``][crate::prelude::`GestureSingleExt::set_touch_only()`] can be used to change the</span>
+    <span class="doccomment">/// [`GestureSingleExt::set_touch_only()`][crate::prelude::GestureSingleExt::set_touch_only()] can be used to change the</span>
     <span class="doccomment">/// touch behavior. Callers may also specify a different mouse button number</span>
-    <span class="doccomment">/// to interact with through [``GestureSingleExt::set_button()``][crate::prelude::`GestureSingleExt::set_button()`], or react</span>
+    <span class="doccomment">/// to interact with through [`GestureSingleExt::set_button()`][crate::prelude::GestureSingleExt::set_button()], or react</span>
     <span class="doccomment">/// to any mouse button by setting it to 0. While the gesture is active, the</span>
     <span class="doccomment">/// button being currently pressed can be known through</span>
-    <span class="doccomment">/// [``GestureSingleExt::current_button()``][crate::prelude::`GestureSingleExt::current_button()`].</span>
+    <span class="doccomment">/// [`GestureSingleExt::current_button()`][crate::prelude::GestureSingleExt::current_button()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -406,7 +406,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`DragSource`][struct@crate::DragSource], [`GestureClick`][struct@crate::GestureClick], [`GestureDrag`][struct@crate::GestureDrag], [`GestureLongPress`][struct@crate::GestureLongPress], [`GestureSingle`][struct@crate::GestureSingle], [`GestureStylus`][struct@crate::GestureStylus], [`GestureSwipe`][struct@crate::GestureSwipe]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GestureSingleExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Returns the button number `self` listens for.</span>
+    <span class="doccomment">/// Returns the button number @self listens for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this is 0, the gesture reacts to any button press.</span>
     <span class="doccomment">///</span>
@@ -418,7 +418,7 @@
     <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
 
     <span class="doccomment">/// Returns the button number currently interacting</span>
-    <span class="doccomment">/// with `self`, or 0 if there is none.</span>
+    <span class="doccomment">/// with @self, or 0 if there is none.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -427,9 +427,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_button&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
 
-    <span class="doccomment">/// Returns the event sequence currently interacting with `self`.</span>
+    <span class="doccomment">/// Returns the event sequence currently interacting with @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is only meaningful if [``GestureExt::is_active()``][crate::prelude::`GestureExt::is_active()`]</span>
+    <span class="doccomment">/// This is only meaningful if [`GestureExt::is_active()`][crate::prelude::GestureExt::is_active()]</span>
     <span class="doccomment">/// returns [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -441,7 +441,7 @@
 
     <span class="doccomment">/// Gets whether a gesture is exclusive.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For more information, see [``set_exclusive()``][`Self::set_exclusive()`].</span>
+    <span class="doccomment">/// For more information, see [`set_exclusive()`][Self::set_exclusive()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -459,7 +459,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_touch_only&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_touch_only</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets the button number `self` listens to.</span>
+    <span class="doccomment">/// Sets the button number @self listens to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If non-0, every button press from a different button</span>
     <span class="doccomment">/// number will be ignored. Touch events implicitly match</span>
@@ -469,23 +469,23 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_set_button&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>);
 
-    <span class="doccomment">/// Sets whether `self` is exclusive.</span>
+    <span class="doccomment">/// Sets whether @self is exclusive.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An exclusive gesture will only handle pointer and &quot;pointer emulated&quot;</span>
     <span class="doccomment">/// touch events, so at any given time, there is only one sequence able</span>
     <span class="doccomment">/// to interact with those.</span>
     <span class="doccomment">/// ## `exclusive`</span>
-    <span class="doccomment">/// [`true`] to make `self` exclusive</span>
+    <span class="doccomment">/// [`true`] to make @self exclusive</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_set_exclusive&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_exclusive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets whether to handle only touch events.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `touch_only` is [`true`], `self` will only handle events of type</span>
+    <span class="doccomment">/// If @touch_only is [`true`], @self will only handle events of type</span>
     <span class="doccomment">/// `GDK_TOUCH_BEGIN`, `GDK_TOUCH_UPDATE` or `GDK_TOUCH_END`. If [`false`],</span>
     <span class="doccomment">/// mouse events will be handled too.</span>
     <span class="doccomment">/// ## `touch_only`</span>
-    <span class="doccomment">/// whether `self` handles only touch events</span>
+    <span class="doccomment">/// whether @self handles only touch events</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_set_touch_only&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_touch_only</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">touch_only</span>: <span class="ident">bool</span>);
 

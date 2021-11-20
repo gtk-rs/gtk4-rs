@@ -83,7 +83,7 @@ the <a href="struct.Range.html" title="crate::Range"><code>Range</code></a> meth
 applications that want to show an undeterminate value on the scale, without
 changing the layout of the application (such as movie or music players).</p>
 <h2 id="gtkscale-as-gtkbuildable" class="section-header"><a href="#gtkscale-as-gtkbuildable">GtkScale as GtkBuildable</a></h2>
-<p><a href="struct.Scale.html" title="crate::Scale"><code>Scale</code></a> supports a custom <code>&lt;marks&gt;</code> element, which can contain multiple
+<p><a href="struct.Scale.html" title="crate::Scale"><code>Scale</code></a> supports a custom <marks> element, which can contain multiple
 &lt;mark&gt; elements. The “value” and “position” attributes have the same
 meaning as <a href="prelude/trait.ScaleExt.html#tymethod.add_mark" title="crate::prelude::ScaleExt::add_mark()"><code>ScaleExt::add_mark()</code></a> parameters of the same name. If
 the element is not empty, its content is taken as the markup to show at
@@ -141,14 +141,14 @@ classes similar to the marks node.</p>
 the range of the scale, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to create a new adjustment.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a new <a href="struct.Scale.html" title="crate::Scale"><code>Scale</code></a></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/scale.rs.html#173-184" title="goto source code">[src]</a></div><a href="#method.with_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.with_range" class="fnname">with_range</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;orientation: <a class="enum" href="enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;min: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;max: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;step: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><br>) -&gt; <a class="struct" href="struct.Scale.html" title="struct gtk4::Scale">Scale</a></h4></div></summary><div class="docblock"><p>Creates a new scale widget with a range from <code>min</code> to <code>max</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.with_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/scale.rs.html#173-184" title="goto source code">[src]</a></div><a href="#method.with_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.with_range" class="fnname">with_range</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;orientation: <a class="enum" href="enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;min: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;max: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;step: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><br>) -&gt; <a class="struct" href="struct.Scale.html" title="struct gtk4::Scale">Scale</a></h4></div></summary><div class="docblock"><p>Creates a new scale widget with a range from @min to @max.</p>
 <p>The returns scale will have the given orientation and will let the
-user input a number between <code>min</code> and <code>max</code> (including <code>min</code> and <code>max</code>)
-with the increment <code>step</code>. <code>step</code> must be nonzero; it’s the distance
+user input a number between @min and @max (including @min and @max)
+with the increment @step. @step must be nonzero; it’s the distance
 the slider moves when using the arrow keys to adjust the scale
 value.</p>
 <p>Note that the way in which the precision is derived works best if
-<code>step</code> is a power of ten. If the resulting precision is not suitable
+@step is a power of ten. If the resulting precision is not suitable
 for your needs, use <a href="prelude/trait.ScaleExt.html#tymethod.set_digits" title="crate::prelude::ScaleExt::set_digits()"><code>ScaleExt::set_digits()</code></a> to correct it.</p>
 <h6 id="orientation-1" class="section-header"><a href="#orientation-1"><code>orientation</code></a></h6>
 <p>the scale’s orientation.</p>

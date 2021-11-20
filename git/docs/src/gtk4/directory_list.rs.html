@@ -183,7 +183,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
 <span class="kw">impl</span> <span class="ident">DirectoryList</span> {
-    <span class="doccomment">/// Gets the IO priority set via [`set_io_priority()`][Self::set_io_priority()].</span>
+    <span class="doccomment">/// Gets the IO priority set via gtk_directory_list_set_io_priority().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -200,7 +200,7 @@
 
     <span class="doccomment">/// Sets the IO priority to use while loading directories.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Setting the priority while `self` is loading will reprioritize the</span>
+    <span class="doccomment">/// Setting the priority while @self is loading will reprioritize the</span>
     <span class="doccomment">/// ongoing load as soon as possible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default IO priority is `G_PRIORITY_DEFAULT`, which is higher than</span>

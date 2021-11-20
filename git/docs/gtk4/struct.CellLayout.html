@@ -79,10 +79,10 @@ setting attributes and data funcs.</p>
 <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a> are attributes. Attributes let you set the properties
 in flexible ways. They can just be set to constant values like regular
 properties. But they can also be mapped to a column of the underlying
-tree model with <a href="prelude/trait.CellLayoutExtManual.html#tymethod.set_attributes" title="crate::prelude::CellLayoutExtManual::set_attributes()"><code>CellLayoutExtManual::set_attributes()</code></a>, which means that the value
+tree model with gtk_cell_layout_set_attributes(), which means that the value
 of the attribute can change from cell to cell as they are rendered by
 the cell renderer. Finally, it is possible to specify a function with
-<a href="prelude/trait.CellLayoutExt.html#tymethod.set_cell_data_func" title="crate::prelude::CellLayoutExt::set_cell_data_func()"><code>CellLayoutExt::set_cell_data_func()</code></a> that is called to determine the
+gtk_cell_layout_set_cell_data_func() that is called to determine the
 value of the attribute for each cell that is rendered.</p>
 <h2 id="gtkcelllayouts-as-gtkbuildable" class="section-header"><a href="#gtkcelllayouts-as-gtkbuildable">GtkCellLayouts as GtkBuildable</a></h2>
 <p>Implementations of GtkCellLayout which also implement the GtkBuildable
@@ -104,7 +104,7 @@ attribute value.</p>
 &lt;/object&gt;</code></pre></div>
 <p>Furthermore for implementations of <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a> that use a <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>
 to lay out cells (all <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a>s in GTK use a <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>)
-<a href="class.CellArea.html%60cell%60-properties">cell properties</a> can also be defined
+<a href="class.CellArea.html#cell-properties">cell properties</a> can also be defined
 in the format by specifying the custom <code>&lt;cell-packing&gt;</code> attribute which can
 contain multiple <code>&lt;property&gt;</code> elements.</p>
 <p>Here is a UI definition fragment specifying cell properties:</p>

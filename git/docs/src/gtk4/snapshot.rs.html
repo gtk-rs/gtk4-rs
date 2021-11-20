@@ -340,17 +340,17 @@
 <span class="kw">use</span> <span class="ident">gsk::ColorStop</span>;
 
 <span class="kw">impl</span> <span class="ident">Snapshot</span> {
-    <span class="doccomment">/// Appends a stroked border rectangle inside the given `outline`.</span>
+    <span class="doccomment">/// Appends a stroked border rectangle inside the given @outline.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The four sides of the border can have different widths and colors.</span>
     <span class="doccomment">/// ## `outline`</span>
     <span class="doccomment">/// a [`gsk::RoundedRect`][crate::gsk::RoundedRect] describing the outline of the border</span>
     <span class="doccomment">/// ## `border_width`</span>
     <span class="doccomment">/// the stroke width of the border on</span>
-    <span class="doccomment">///  the top, right, bottom and left side respectively.</span>
+    <span class="doccomment">///   the top, right, bottom and left side respectively.</span>
     <span class="doccomment">/// ## `border_color`</span>
     <span class="doccomment">/// the color used on the top, right,</span>
-    <span class="doccomment">///  bottom and left side.</span>
+    <span class="doccomment">///   bottom and left side.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_border&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_border</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -370,7 +370,7 @@
         }
     }
 
-    <span class="doccomment">/// Appends a linear gradient node with the given stops to `self`.</span>
+    <span class="doccomment">/// Appends a linear gradient node with the given stops to @self.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the linear gradient into</span>
     <span class="doccomment">/// ## `start_point`</span>
@@ -379,7 +379,7 @@
     <span class="doccomment">/// the point at which the linear gradient will finish</span>
     <span class="doccomment">/// ## `stops`</span>
     <span class="doccomment">/// a pointer to an array of [`gsk::ColorStop`][crate::gsk::ColorStop]</span>
-    <span class="doccomment">///  defining the gradient</span>
+    <span class="doccomment">///   defining the gradient</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_linear_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_linear_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -401,7 +401,7 @@
         }
     }
 
-    <span class="doccomment">/// Appends a radial gradient node with the given stops to `self`.</span>
+    <span class="doccomment">/// Appends a radial gradient node with the given stops to @self.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the readial gradient into</span>
     <span class="doccomment">/// ## `center`</span>
@@ -416,7 +416,7 @@
     <span class="doccomment">/// the end position (on the horizontal axis)</span>
     <span class="doccomment">/// ## `stops`</span>
     <span class="doccomment">/// a pointer to an array of [`gsk::ColorStop`][crate::gsk::ColorStop]</span>
-    <span class="doccomment">///  defining the gradient</span>
+    <span class="doccomment">///   defining the gradient</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -444,17 +444,17 @@
         }
     }
 
-    <span class="doccomment">/// Appends a conic gradient node with the given stops to `self`.</span>
+    <span class="doccomment">/// Appends a conic gradient node with the given stops to @self.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the gradient into</span>
     <span class="doccomment">/// ## `center`</span>
     <span class="doccomment">/// the center point of the conic gradient</span>
     <span class="doccomment">/// ## `rotation`</span>
     <span class="doccomment">/// the clockwise rotation in degrees of the starting angle.</span>
-    <span class="doccomment">///  0 means the starting angle is the top.</span>
+    <span class="doccomment">///   0 means the starting angle is the top.</span>
     <span class="doccomment">/// ## `stops`</span>
     <span class="doccomment">/// a pointer to an array of [`gsk::ColorStop`][crate::gsk::ColorStop]</span>
-    <span class="doccomment">///  defining the gradient</span>
+    <span class="doccomment">///   defining the gradient</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_conic_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_conic_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -476,7 +476,7 @@
         }
     }
 
-    <span class="doccomment">/// Appends a repeating radial gradient node with the given stops to `self`.</span>
+    <span class="doccomment">/// Appends a repeating radial gradient node with the given stops to @self.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the readial gradient into</span>
     <span class="doccomment">/// ## `center`</span>
@@ -491,7 +491,7 @@
     <span class="doccomment">/// the end position (on the horizontal axis)</span>
     <span class="doccomment">/// ## `stops`</span>
     <span class="doccomment">/// a pointer to an array of [`gsk::ColorStop`][crate::gsk::ColorStop]</span>
-    <span class="doccomment">///  defining the gradient</span>
+    <span class="doccomment">///   defining the gradient</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_repeating_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -519,7 +519,7 @@
         }
     }
 
-    <span class="doccomment">/// Appends a repeating linear gradient node with the given stops to `self`.</span>
+    <span class="doccomment">/// Appends a repeating linear gradient node with the given stops to @self.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the linear gradient into</span>
     <span class="doccomment">/// ## `start_point`</span>
@@ -528,7 +528,7 @@
     <span class="doccomment">/// the point at which the linear gradient will finish</span>
     <span class="doccomment">/// ## `stops`</span>
     <span class="doccomment">/// a pointer to an array of [`gsk::ColorStop`][crate::gsk::ColorStop]</span>
-    <span class="doccomment">///  defining the gradient</span>
+    <span class="doccomment">///   defining the gradient</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_linear_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_repeating_linear_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -564,7 +564,7 @@
 
     <span class="doccomment">/// Applies a shadow to an image.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [`pop()`][Self::pop()].</span>
     <span class="doccomment">/// ## `shadow`</span>
     <span class="doccomment">/// the first shadow specification</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_shadow&quot;</span>)]</span>
@@ -579,10 +579,10 @@
         }
     }
 
-    <span class="doccomment">/// Appends `node` to the current render node of `self`,</span>
+    <span class="doccomment">/// Appends @node to the current render node of @self,</span>
     <span class="doccomment">/// without changing the current node.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` does not have a current node yet, `node`</span>
+    <span class="doccomment">/// If @self does not have a current node yet, @node</span>
     <span class="doccomment">/// will become the initial node.</span>
     <span class="doccomment">/// ## `node`</span>
     <span class="doccomment">/// a [`gsk::RenderNode`][crate::gsk::RenderNode]</span>

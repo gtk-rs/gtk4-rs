@@ -349,7 +349,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that during the signal emissions, changing properties on the</span>
     <span class="doccomment">/// [`ListItem`][crate::ListItem]s passed will not trigger notify signals as the listitem&#39;s</span>
-    <span class="doccomment">/// notifications are frozen. See `g_object_freeze_notify()` for details.</span>
+    <span class="doccomment">/// notifications are frozen. See g_object_freeze_notify() for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For tracking changes in other properties in the [`ListItem`][crate::ListItem], the</span>
     <span class="doccomment">/// ::notify signal is recommended. The signal can be connected in the</span>
@@ -384,7 +384,7 @@
     }
 
     <span class="doccomment">/// Emitted when a new `property::ListItem::item` has been set</span>
-    <span class="doccomment">/// on the `listitem` and should be bound for use.</span>
+    <span class="doccomment">/// on the @listitem and should be bound for use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// After this signal was emitted, the listitem might be shown in</span>
     <span class="doccomment">/// a [`ListView`][crate::ListView] or other list widget.</span>
@@ -452,7 +452,7 @@
 
     <span class="doccomment">/// Emitted when a listitem is about to be destroyed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is the last signal ever emitted for this `listitem`.</span>
+    <span class="doccomment">/// It is the last signal ever emitted for this @listitem.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This signal is the opposite of the `signal::SignalListItemFactory::setup`</span>
     <span class="doccomment">/// signal and should be used to undo everything done in that signal.</span>

@@ -138,7 +138,7 @@
     <span class="doccomment">/// draw context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`CairoContext`][crate::CairoContext]s are created for a surface using</span>
-    <span class="doccomment">/// [``SurfaceExt::create_cairo_context()``][crate::prelude::`SurfaceExt::create_cairo_context()`], and the context</span>
+    <span class="doccomment">/// [`SurfaceExt::create_cairo_context()`][crate::prelude::SurfaceExt::create_cairo_context()], and the context</span>
     <span class="doccomment">/// can then be used to draw on that surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
@@ -156,18 +156,18 @@
 
 <span class="kw">impl</span> <span class="ident">CairoContext</span> {
     <span class="doccomment">/// Retrieves a Cairo context to be used to draw on the [`Surface`][crate::Surface]</span>
-    <span class="doccomment">/// of `context`.</span>
+    <span class="doccomment">/// of @context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A call to [``DrawContextExt::begin_frame()``][crate::prelude::`DrawContextExt::begin_frame()`] with this</span>
-    <span class="doccomment">/// `context` must have been done or this function will return [`None`].</span>
+    <span class="doccomment">/// A call to [`DrawContextExt::begin_frame()`][crate::prelude::DrawContextExt::begin_frame()] with this</span>
+    <span class="doccomment">/// @context must have been done or this function will return [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned context is guaranteed to be valid until</span>
-    <span class="doccomment">/// [``DrawContextExt::end_frame()``][crate::prelude::`DrawContextExt::end_frame()`] is called.</span>
+    <span class="doccomment">/// [`DrawContextExt::end_frame()`][crate::prelude::DrawContextExt::end_frame()] is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a Cairo context</span>
-    <span class="doccomment">///  to draw on `GdkSurface</span>
+    <span class="doccomment">///   to draw on `GdkSurface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cairo_context_cairo_create&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cairo_create</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Context</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_cairo_context_cairo_create</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

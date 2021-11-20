@@ -801,7 +801,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Icon theme objects are used to lookup up an icon by name</span>
     <span class="doccomment">/// in a particular icon theme. Usually, you’ll want to use</span>
-    <span class="doccomment">/// [``for_display()``][`Self::for_display()`] rather than creating</span>
+    <span class="doccomment">/// [`for_display()`][Self::for_display()] rather than creating</span>
     <span class="doccomment">/// a new icon theme object for scratch.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -824,7 +824,7 @@
     <span class="doccomment">/// Adds a resource path that will be looked at when looking</span>
     <span class="doccomment">/// for icons, similar to search paths.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_resource_path()``][`Self::set_resource_path()`].</span>
+    <span class="doccomment">/// See [`set_resource_path()`][Self::set_resource_path()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be used to make application-specific icons</span>
     <span class="doccomment">/// available as part of the icon theme.</span>
@@ -839,7 +839,7 @@
 
     <span class="doccomment">/// Appends a directory to the search path.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_search_path()``][`Self::set_search_path()`].</span>
+    <span class="doccomment">/// See [`set_search_path()`][Self::set_search_path()].</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// directory name to append to the icon path</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_add_search_path&quot;</span>)]</span>
@@ -857,7 +857,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the display of `icon_theme`</span>
+    <span class="doccomment">/// the display of @icon_theme</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span> {
@@ -869,8 +869,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a string array</span>
-    <span class="doccomment">///  holding the names of all the icons in the theme. You must</span>
-    <span class="doccomment">///  free the array using `g_strfreev()`.</span>
+    <span class="doccomment">///   holding the names of all the icons in the theme. You must</span>
+    <span class="doccomment">///   free the array using g_strfreev().</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_icon_names&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_icon_names&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_names</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -883,12 +883,12 @@
 
     <span class="doccomment">/// Gets the current resource path.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_resource_path()``][`Self::set_resource_path()`].</span>
+    <span class="doccomment">/// See [`set_resource_path()`][Self::set_resource_path()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  A list of resource paths</span>
+    <span class="doccomment">///   A list of resource paths</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_resource_path&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_resource_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -901,12 +901,12 @@
 
     <span class="doccomment">/// Gets the current search path.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_search_path()``][`Self::set_search_path()`].</span>
+    <span class="doccomment">/// See [`set_search_path()`][Self::set_search_path()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  a list of icon theme path directories</span>
+    <span class="doccomment">///   a list of icon theme path directories</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_search_path&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_search_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">search_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">std::path::PathBuf</span><span class="op">&gt;</span> {
@@ -933,7 +933,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` includes an icon for `gicon`</span>
+    <span class="doccomment">/// [`true`] if @self includes an icon for @gicon</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_has_gicon&quot;</span>)]</span>
@@ -953,8 +953,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` includes an</span>
-    <span class="doccomment">///  icon for `icon_name`.</span>
+    <span class="doccomment">/// [`true`] if @self includes an</span>
+    <span class="doccomment">///  icon for @icon_name.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_has_icon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_icon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -983,7 +983,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`IconPaintable`][crate::IconPaintable] containing</span>
-    <span class="doccomment">///  information about the icon. Unref with `g_object_unref()`</span>
+    <span class="doccomment">///   information about the icon. Unref with g_object_unref()</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_lookup_by_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_by_gicon</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1011,16 +1011,16 @@
     <span class="doccomment">/// The icon can then be rendered by using it as a [`gdk::Paintable`][crate::gdk::Paintable],</span>
     <span class="doccomment">/// or you can get information such as the filename and size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the available `icon_name` is not available and `fallbacks` are</span>
+    <span class="doccomment">/// If the available @icon_name is not available and @fallbacks are</span>
     <span class="doccomment">/// provided, they will be tried in order.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching icon is found, then a paintable that renders the</span>
     <span class="doccomment">/// &quot;missing icon&quot; icon is returned. If you need to do something else</span>
-    <span class="doccomment">/// for missing icons you need to use [``has_icon()``][`Self::has_icon()`].</span>
+    <span class="doccomment">/// for missing icons you need to use [`has_icon()`][Self::has_icon()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you probably want to listen for icon theme changes and</span>
     <span class="doccomment">/// update the icon. This is usually done by overriding the</span>
-    <span class="doccomment">/// GtkWidgetClass.css-`changed()` function.</span>
+    <span class="doccomment">/// GtkWidgetClass.css-changed() function.</span>
     <span class="doccomment">/// ## `icon_name`</span>
     <span class="doccomment">/// the name of the icon to lookup</span>
     <span class="doccomment">/// ## `size`</span>
@@ -1035,7 +1035,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`IconPaintable`][crate::IconPaintable] object</span>
-    <span class="doccomment">///  containing the icon.</span>
+    <span class="doccomment">///   containing the icon.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_lookup_icon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_icon</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1064,16 +1064,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The resources are considered as part of the hicolor icon theme</span>
     <span class="doccomment">/// and must be located in subdirectories that are defined in the</span>
-    <span class="doccomment">/// hicolor icon theme, such as ``path`/16x16/actions/run.png`</span>
-    <span class="doccomment">/// or ``path`/scalable/actions/run.svg`.</span>
+    <span class="doccomment">/// hicolor icon theme, such as `@path/16x16/actions/run.png`</span>
+    <span class="doccomment">/// or `@path/scalable/actions/run.svg`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Icons that are directly placed in the resource path instead</span>
     <span class="doccomment">/// of a subdirectory are also considered as ultimate fallback,</span>
     <span class="doccomment">/// but they are treated like unthemed icons.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  NULL-terminated array of resource paths</span>
-    <span class="doccomment">///  that are searched for icons</span>
+    <span class="doccomment">///   NULL-terminated array of resource paths</span>
+    <span class="doccomment">///   that are searched for icons</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_set_resource_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_resource_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) {
         <span class="kw">unsafe</span> {
@@ -1084,7 +1084,7 @@
     <span class="doccomment">/// Sets the search path for the icon theme object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When looking for an icon theme, GTK will search for a subdirectory</span>
-    <span class="doccomment">/// of one or more of the directories in `path` with the same name</span>
+    <span class="doccomment">/// of one or more of the directories in @path with the same name</span>
     <span class="doccomment">/// as the icon theme containing an index.theme file. (Themes from</span>
     <span class="doccomment">/// multiple of the path elements are combined to allow themes to be</span>
     <span class="doccomment">/// extended by adding icons in the user’s home directory.)</span>
@@ -1092,13 +1092,13 @@
     <span class="doccomment">/// In addition if an icon found isn’t found either in the current</span>
     <span class="doccomment">/// icon theme or the default icon theme, and an image file with</span>
     <span class="doccomment">/// the right name is found directly in one of the elements of</span>
-    <span class="doccomment">/// `path`, then that image will be used for the icon name.</span>
+    <span class="doccomment">/// @path, then that image will be used for the icon name.</span>
     <span class="doccomment">/// (This is legacy feature, and new icons should be put</span>
     <span class="doccomment">/// into the fallback icon theme, which is called hicolor,</span>
     <span class="doccomment">/// rather than directly on the icon path.)</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// NULL-terminated</span>
-    <span class="doccomment">///  array of directories that are searched for icon themes</span>
+    <span class="doccomment">///   array of directories that are searched for icon themes</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_set_search_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_search_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">std::path::Path</span>]) {
         <span class="kw">unsafe</span> {
@@ -1110,10 +1110,10 @@
     <span class="doccomment">/// overriding system configuration.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function cannot be called on the icon theme objects returned</span>
-    <span class="doccomment">/// from [``for_display()``][`Self::for_display()`].</span>
+    <span class="doccomment">/// from [`for_display()`][Self::for_display()].</span>
     <span class="doccomment">/// ## `theme_name`</span>
     <span class="doccomment">/// name of icon theme to use instead of</span>
-    <span class="doccomment">///  configured theme, or [`None`] to unset a previously set custom theme</span>
+    <span class="doccomment">///   configured theme, or [`None`] to unset a previously set custom theme</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_set_theme_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_theme_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">theme_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1126,13 +1126,13 @@
         <span class="ident">glib::ObjectExt::set_property</span>(<span class="self">self</span>, <span class="string">&quot;display&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">display</span>)
     }
 
-    <span class="doccomment">/// Gets the icon theme object associated with `display`.</span>
+    <span class="doccomment">/// Gets the icon theme object associated with @display.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this function has not previously been called for the given</span>
     <span class="doccomment">/// display, a new icon theme object will be created and associated</span>
     <span class="doccomment">/// with the display. Icon theme objects are fairly expensive to create,</span>
     <span class="doccomment">/// so using this function is usually a better choice than calling</span>
-    <span class="doccomment">/// [``new()``][`Self::new()`] and setting the display yourself; by using</span>
+    <span class="doccomment">/// [`new()`][Self::new()] and setting the display yourself; by using</span>
     <span class="doccomment">/// this function a single icon theme object will be shared between users.</span>
     <span class="doccomment">/// ## `display`</span>
     <span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display]</span>
@@ -1140,8 +1140,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A unique [`IconTheme`][crate::IconTheme] associated with</span>
-    <span class="doccomment">///  the given display. This icon theme is associated with the display</span>
-    <span class="doccomment">///  and can be used as long as the display is open. Do not ref or unref it.</span>
+    <span class="doccomment">///   the given display. This icon theme is associated with the display</span>
+    <span class="doccomment">///   and can be used as long as the display is open. Do not ref or unref it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_for_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_for_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_display</span>(<span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IconTheme</span><span class="op">&gt;</span> {
@@ -1353,7 +1353,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The resources are considered as part of the hicolor icon theme</span>
     <span class="doccomment">/// and must be located in subdirectories that are defined in the</span>
-    <span class="doccomment">/// hicolor icon theme, such as ``path`/16x16/actions/run.png`.</span>
+    <span class="doccomment">/// hicolor icon theme, such as `@path/16x16/actions/run.png`.</span>
     <span class="doccomment">/// Icons that are directly placed in the resource path instead</span>
     <span class="doccomment">/// of a subdirectory are also considered as ultimate fallback.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource_path</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">resource_path</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {

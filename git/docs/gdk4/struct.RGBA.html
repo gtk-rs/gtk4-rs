@@ -79,16 +79,16 @@ are in the range from 0.0 to 1.0 inclusive. So the color
 (0.0, 0.0, 0.0, 0.0) represents transparent black and
 (1.0, 1.0, 1.0, 1.0) is opaque white. Other values will
 be clamped to this range when drawing.</p>
-</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#28-108" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.RGBA.html" title="struct gdk4::RGBA">RGBA</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_clear" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#69-71" title="goto source code">[src]</a></div><a href="#method.is_clear" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_clear" class="fnname">is_clear</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if an <code>self</code> value is transparent.</p>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#28-108" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.RGBA.html" title="struct gdk4::RGBA">RGBA</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_clear" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#69-71" title="goto source code">[src]</a></div><a href="#method.is_clear" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_clear" class="fnname">is_clear</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if an @self value is transparent.</p>
 <p>That is, drawing with the value would not produce any change.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
-<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>self</code> is clear</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_opaque" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#82-84" title="goto source code">[src]</a></div><a href="#method.is_opaque" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_opaque" class="fnname">is_opaque</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if an <code>self</code> value is opaque.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the @self is clear</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_opaque" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#82-84" title="goto source code">[src]</a></div><a href="#method.is_opaque" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_opaque" class="fnname">is_opaque</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks if an @self value is opaque.</p>
 <p>That is, drawing with the value will not retain any results
 from previous contents.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
-<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <code>self</code> is opaque</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.to_str" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#105-107" title="goto source code">[src]</a></div><a href="#method.to_str" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_str" class="fnname">to_str</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns a textual specification of <code>self</code> in the form
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the @self is opaque</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.to_str" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/rgba.rs.html#105-107" title="goto source code">[src]</a></div><a href="#method.to_str" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_str" class="fnname">to_str</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns a textual specification of @self in the form
 <code>rgb(r,g,b)</code> or <code>rgba(r,g,b,a)</code>, where “r”, “g”, “b” and
 “a” represent the red, green, blue and alpha values
 respectively. “r”, “g”, and “b” are represented as integers
@@ -107,8 +107,10 @@ this is a concern, you should use a different representation.</p>
 <p>The string can be either one of:</p>
 <ul>
 <li>A standard name (Taken from the Css specification).</li>
-<li>A hexadecimal value in the form “`rgb<code>”, “\</code>rrggbb<code>”, “\</code>rrrgggbbb<code>” or ”\</code>rrrrggggbbbb`”</li>
-<li>A hexadecimal value in the form “`rgba<code>”, “\</code>rrggbbaa<code>”, or ”\</code>rrrrggggbbbbaaaa`”</li>
+<li>A hexadecimal value in the form “#rgb”, “#rrggbb”,
+“#rrrgggbbb” or ”#rrrrggggbbbb”</li>
+<li>A hexadecimal value in the form “#rgba”, “#rrggbbaa”,
+or ”#rrrrggggbbbbaaaa”</li>
 <li>A RGB color in the form “rgb(r,g,b)” (In this case the color
 will have full opacity)</li>
 <li>A RGBA color in the form “rgba(r,g,b,a)”</li>

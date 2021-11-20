@@ -79,7 +79,7 @@ Windows that have not been explicitly assigned to a group are
 implicitly treated like windows of the default window group.</p>
 <p><a href="struct.WindowGroup.html" title="crate::WindowGroup"><code>WindowGroup</code></a> objects are referenced by each window in the group,
 so once you have added all windows to a <a href="struct.WindowGroup.html" title="crate::WindowGroup"><code>WindowGroup</code></a>, you can drop
-the initial reference to the window group with <code>g_object_unref()</code>. If the
+the initial reference to the window group with g_object_unref(). If the
 windows in the window group are subsequently destroyed, then they will
 be removed from the window group and drop their references on the window
 group; when all window have been removed, the window group will be

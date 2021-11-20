@@ -112,7 +112,7 @@ the third node.</p>
 a specific model. It is a generic struct with an integer and three
 generic pointers. These are filled in by the model in a model-specific
 way. One can convert a path to an iterator by calling
-<a href="prelude/trait.TreeModelExt.html#tymethod.iter" title="crate::prelude::TreeModelExt::iter()"><code>TreeModelExt::iter()</code></a>. These iterators are the primary way
+gtk_tree_model_get_iter(). These iterators are the primary way
 of accessing a model and are similar to the iterators used by
 <a href="struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>. They are generally statically allocated on the
 stack and only used for a short time. The model interface defines
@@ -169,7 +169,7 @@ gtk_tree_model_iter_nth_child (model, &amp;iter,
                                &amp;parent_iter, 5);</code></pre></div>
 <p>This second example shows a quick way of iterating through a list
 and getting a string and an integer from each row. The
-<code>populate_model()</code> function used below is not
+populate_model() function used below is not
 shown, as it is specific to the <a href="struct.ListStore.html" title="crate::ListStore"><code>ListStore</code></a>. For information on
 how to write such a function, see the <a href="struct.ListStore.html" title="crate::ListStore"><code>ListStore</code></a> documentation.</p>
 <h3 id="reading-data-from-a-treemodel" class="section-header"><a href="#reading-data-from-a-treemodel">Reading data from a <code>TreeModel</code></a></h3>
@@ -222,7 +222,7 @@ while (valid)
    row_count++;
  }</code></pre></div>
 <p>The <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> interface contains two methods for reference
-counting: <code>gtk_tree_model_ref_node()</code> and <code>gtk_tree_model_unref_node()</code>.
+counting: gtk_tree_model_ref_node() and gtk_tree_model_unref_node().
 These two methods are optional to implement. The reference counting
 is meant as a way for views to let models know when nodes are being
 displayed. <a href="struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a> will take a reference on a node when it is

@@ -724,23 +724,23 @@
     }
 
     <span class="doccomment">/// The &quot;text-xalign&quot; property controls the horizontal alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (left) to 1</span>
-    <span class="doccomment">/// (right). Reserved for RTL layouts.</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (left) to 1</span>
+    <span class="doccomment">/// (right).  Reserved for RTL layouts.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-xalign&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_xalign</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
         <span class="ident">glib::ObjectExt::property</span>(<span class="self">self</span>, <span class="string">&quot;text-xalign&quot;</span>)
     }
 
     <span class="doccomment">/// The &quot;text-xalign&quot; property controls the horizontal alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (left) to 1</span>
-    <span class="doccomment">/// (right). Reserved for RTL layouts.</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (left) to 1</span>
+    <span class="doccomment">/// (right).  Reserved for RTL layouts.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-xalign&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_text_xalign</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_xalign</span>: <span class="ident">f32</span>) {
         <span class="ident">glib::ObjectExt::set_property</span>(<span class="self">self</span>, <span class="string">&quot;text-xalign&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">text_xalign</span>)
     }
 
     <span class="doccomment">/// The &quot;text-yalign&quot; property controls the vertical alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (top) to 1</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (top) to 1</span>
     <span class="doccomment">/// (bottom).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-yalign&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_yalign</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
@@ -748,7 +748,7 @@
     }
 
     <span class="doccomment">/// The &quot;text-yalign&quot; property controls the vertical alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (top) to 1</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (top) to 1</span>
     <span class="doccomment">/// (bottom).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;text-yalign&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_text_yalign</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_yalign</span>: <span class="ident">f32</span>) {
@@ -1054,15 +1054,15 @@
     }
 
     <span class="doccomment">/// The &quot;text-xalign&quot; property controls the horizontal alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (left) to 1</span>
-    <span class="doccomment">/// (right). Reserved for RTL layouts.</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (left) to 1</span>
+    <span class="doccomment">/// (right).  Reserved for RTL layouts.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_xalign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_xalign</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">text_xalign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_xalign</span>);
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// The &quot;text-yalign&quot; property controls the vertical alignment of the</span>
-    <span class="doccomment">/// text in the progress bar. Valid values range from 0 (top) to 1</span>
+    <span class="doccomment">/// text in the progress bar.  Valid values range from 0 (top) to 1</span>
     <span class="doccomment">/// (bottom).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_yalign</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_yalign</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">text_yalign</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_yalign</span>);

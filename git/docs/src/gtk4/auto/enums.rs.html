@@ -11055,20 +11055,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_AUTOCOMPLETE_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// When a user is providing input, text</span>
-    <span class="doccomment">///  suggesting one way to complete the provided input may be dynamically</span>
-    <span class="doccomment">///  inserted after the caret.</span>
+    <span class="doccomment">///    suggesting one way to complete the provided input may be dynamically</span>
+    <span class="doccomment">///    inserted after the caret.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE&quot;</span>)]</span>
     <span class="ident">Inline</span>,
     <span class="doccomment">/// When a user is providing input, an element</span>
-    <span class="doccomment">///  containing a collection of values that could complete the provided input</span>
-    <span class="doccomment">///  may be displayed.</span>
+    <span class="doccomment">///    containing a collection of values that could complete the provided input</span>
+    <span class="doccomment">///    may be displayed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_AUTOCOMPLETE_LIST&quot;</span>)]</span>
     <span class="ident">List</span>,
     <span class="doccomment">/// When a user is providing input, an element</span>
-    <span class="doccomment">///  containing a collection of values that could complete the provided input</span>
-    <span class="doccomment">///  may be displayed. If displayed, one value in the collection is automatically</span>
-    <span class="doccomment">///  selected, and the text needed to complete the automatically selected value</span>
-    <span class="doccomment">///  appears after the caret in the input.</span>
+    <span class="doccomment">///    containing a collection of values that could complete the provided input</span>
+    <span class="doccomment">///    may be displayed. If displayed, one value in the collection is automatically</span>
+    <span class="doccomment">///    selected, and the text needed to complete the automatically selected value</span>
+    <span class="doccomment">///    appears after the caret in the input.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH&quot;</span>)]</span>
     <span class="ident">Both</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -11263,88 +11263,88 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkAccessibleProperty&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AccessibleProperty</span> {
     <span class="doccomment">/// Indicates whether inputting text</span>
-    <span class="doccomment">///  could trigger display of one or more predictions of the user&#39;s intended</span>
-    <span class="doccomment">///  value for a combobox, searchbox, or textbox and specifies how predictions</span>
-    <span class="doccomment">///  would be presented if they were made. Value type: [`AccessibleAutocomplete`][crate::AccessibleAutocomplete]</span>
+    <span class="doccomment">///    could trigger display of one or more predictions of the user&#39;s intended</span>
+    <span class="doccomment">///    value for a combobox, searchbox, or textbox and specifies how predictions</span>
+    <span class="doccomment">///    would be presented if they were made. Value type: [`AccessibleAutocomplete`][crate::AccessibleAutocomplete]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE&quot;</span>)]</span>
     <span class="ident">Autocomplete</span>,
     <span class="doccomment">/// Defines a string value that describes</span>
-    <span class="doccomment">///  or annotates the current element. Value type: string</span>
+    <span class="doccomment">///    or annotates the current element. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_DESCRIPTION&quot;</span>)]</span>
     <span class="ident">Description</span>,
     <span class="doccomment">/// Indicates the availability and type of</span>
-    <span class="doccomment">///  interactive popup element, such as menu or dialog, that can be triggered</span>
-    <span class="doccomment">///  by an element.</span>
+    <span class="doccomment">///    interactive popup element, such as menu or dialog, that can be triggered</span>
+    <span class="doccomment">///    by an element.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_HAS_POPUP&quot;</span>)]</span>
     <span class="ident">HasPopup</span>,
     <span class="doccomment">/// Indicates keyboard shortcuts that an</span>
-    <span class="doccomment">///  author has implemented to activate or give focus to an element. Value type:</span>
-    <span class="doccomment">///  string</span>
+    <span class="doccomment">///    author has implemented to activate or give focus to an element. Value type:</span>
+    <span class="doccomment">///    string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS&quot;</span>)]</span>
     <span class="ident">KeyShortcuts</span>,
     <span class="doccomment">/// Defines a string value that labels the current</span>
-    <span class="doccomment">///  element. Value type: string</span>
+    <span class="doccomment">///    element. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_LABEL&quot;</span>)]</span>
     <span class="ident">Label</span>,
     <span class="doccomment">/// Defines the hierarchical level of an element</span>
-    <span class="doccomment">///  within a structure. Value type: integer</span>
+    <span class="doccomment">///    within a structure. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_LEVEL&quot;</span>)]</span>
     <span class="ident">Level</span>,
     <span class="doccomment">/// Indicates whether an element is modal when</span>
-    <span class="doccomment">///  displayed. Value type: boolean</span>
+    <span class="doccomment">///    displayed. Value type: boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_MODAL&quot;</span>)]</span>
     <span class="ident">Modal</span>,
     <span class="doccomment">/// Indicates whether a text box accepts</span>
-    <span class="doccomment">///  multiple lines of input or only a single line. Value type: boolean</span>
+    <span class="doccomment">///    multiple lines of input or only a single line. Value type: boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_MULTI_LINE&quot;</span>)]</span>
     <span class="ident">MultiLine</span>,
     <span class="doccomment">/// Indicates that the user may select</span>
-    <span class="doccomment">///  more than one item from the current selectable descendants. Value type:</span>
-    <span class="doccomment">///  boolean</span>
+    <span class="doccomment">///    more than one item from the current selectable descendants. Value type:</span>
+    <span class="doccomment">///    boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE&quot;</span>)]</span>
     <span class="ident">MultiSelectable</span>,
     <span class="doccomment">/// Indicates whether the element&#39;s</span>
-    <span class="doccomment">///  orientation is horizontal, vertical, or unknown/ambiguous. Value type:</span>
-    <span class="doccomment">///  [`Orientation`][crate::Orientation]</span>
+    <span class="doccomment">///    orientation is horizontal, vertical, or unknown/ambiguous. Value type:</span>
+    <span class="doccomment">///    [`Orientation`][crate::Orientation]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_ORIENTATION&quot;</span>)]</span>
     <span class="ident">Orientation</span>,
     <span class="doccomment">/// Defines a short hint (a word or short</span>
-    <span class="doccomment">///  phrase) intended to aid the user with data entry when the control has no</span>
-    <span class="doccomment">///  value. A hint could be a sample value or a brief description of the expected</span>
-    <span class="doccomment">///  format. Value type: string</span>
+    <span class="doccomment">///    phrase) intended to aid the user with data entry when the control has no</span>
+    <span class="doccomment">///    value. A hint could be a sample value or a brief description of the expected</span>
+    <span class="doccomment">///    format. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER&quot;</span>)]</span>
     <span class="ident">Placeholder</span>,
     <span class="doccomment">/// Indicates that the element is not editable,</span>
-    <span class="doccomment">///  but is otherwise operable. Value type: boolean</span>
+    <span class="doccomment">///    but is otherwise operable. Value type: boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_READ_ONLY&quot;</span>)]</span>
     <span class="ident">ReadOnly</span>,
     <span class="doccomment">/// Indicates that user input is required on</span>
-    <span class="doccomment">///  the element before a form may be submitted. Value type: boolean</span>
+    <span class="doccomment">///    the element before a form may be submitted. Value type: boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_REQUIRED&quot;</span>)]</span>
     <span class="ident">Required</span>,
     <span class="doccomment">/// Defines a human-readable,</span>
-    <span class="doccomment">///  author-localized description for the role of an element. Value type: string</span>
+    <span class="doccomment">///    author-localized description for the role of an element. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION&quot;</span>)]</span>
     <span class="ident">RoleDescription</span>,
     <span class="doccomment">/// Indicates if items in a table or grid are</span>
-    <span class="doccomment">///  sorted in ascending or descending order. Possible property values are in</span>
-    <span class="doccomment">///  the [`AccessibleSort`][crate::AccessibleSort] enumeration. Value type: [`AccessibleSort`][crate::AccessibleSort]</span>
+    <span class="doccomment">///    sorted in ascending or descending order. Possible property values are in</span>
+    <span class="doccomment">///    the [`AccessibleSort`][crate::AccessibleSort] enumeration. Value type: [`AccessibleSort`][crate::AccessibleSort]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_SORT&quot;</span>)]</span>
     <span class="ident">Sort</span>,
     <span class="doccomment">/// Defines the maximum allowed value for a</span>
-    <span class="doccomment">///  range widget. Value type: double</span>
+    <span class="doccomment">///    range widget. Value type: double</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_VALUE_MAX&quot;</span>)]</span>
     <span class="ident">ValueMax</span>,
     <span class="doccomment">/// Defines the minimum allowed value for a</span>
-    <span class="doccomment">///  range widget. Value type: double</span>
+    <span class="doccomment">///    range widget. Value type: double</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_VALUE_MIN&quot;</span>)]</span>
     <span class="ident">ValueMin</span>,
     <span class="doccomment">/// Defines the current value for a range widget.</span>
-    <span class="doccomment">///  Value type: double</span>
+    <span class="doccomment">///    Value type: double</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_VALUE_NOW&quot;</span>)]</span>
     <span class="ident">ValueNow</span>,
     <span class="doccomment">/// Defines the human readable text alternative</span>
-    <span class="doccomment">///  of aria-valuenow for a range widget. Value type: string</span>
+    <span class="doccomment">///    of aria-valuenow for a range widget. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT&quot;</span>)]</span>
     <span class="ident">ValueText</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -11493,82 +11493,82 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkAccessibleRelation&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AccessibleRelation</span> {
     <span class="doccomment">/// Identifies the currently active</span>
-    <span class="doccomment">///  element when focus is on a composite widget, combobox, textbox, group,</span>
-    <span class="doccomment">///  or application. Value type: reference</span>
+    <span class="doccomment">///    element when focus is on a composite widget, combobox, textbox, group,</span>
+    <span class="doccomment">///    or application. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT&quot;</span>)]</span>
     <span class="ident">ActiveDescendant</span>,
     <span class="doccomment">/// Defines the total number of columns</span>
-    <span class="doccomment">///  in a table, grid, or treegrid. Value type: integer</span>
+    <span class="doccomment">///    in a table, grid, or treegrid. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_COL_COUNT&quot;</span>)]</span>
     <span class="ident">ColCount</span>,
     <span class="doccomment">/// Defines an element&#39;s column index or</span>
-    <span class="doccomment">///  position with respect to the total number of columns within a table,</span>
-    <span class="doccomment">///  grid, or treegrid. Value type: integer</span>
+    <span class="doccomment">///    position with respect to the total number of columns within a table,</span>
+    <span class="doccomment">///    grid, or treegrid. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_COL_INDEX&quot;</span>)]</span>
     <span class="ident">ColIndex</span>,
     <span class="doccomment">/// Defines a human readable text</span>
-    <span class="doccomment">///  alternative of [`ColIndex`][Self::ColIndex]. Value type: string</span>
+    <span class="doccomment">///   alternative of [`ColIndex`][Self::ColIndex]. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT&quot;</span>)]</span>
     <span class="ident">ColIndexText</span>,
     <span class="doccomment">/// Defines the number of columns spanned</span>
-    <span class="doccomment">///  by a cell or gridcell within a table, grid, or treegrid. Value type: integer</span>
+    <span class="doccomment">///   by a cell or gridcell within a table, grid, or treegrid. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_COL_SPAN&quot;</span>)]</span>
     <span class="ident">ColSpan</span>,
     <span class="doccomment">/// Identifies the element (or elements) whose</span>
-    <span class="doccomment">///  contents or presence are controlled by the current element. Value type: reference</span>
+    <span class="doccomment">///    contents or presence are controlled by the current element. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_CONTROLS&quot;</span>)]</span>
     <span class="ident">Controls</span>,
     <span class="doccomment">/// Identifies the element (or elements)</span>
-    <span class="doccomment">///  that describes the object. Value type: reference</span>
+    <span class="doccomment">///    that describes the object. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_DESCRIBED_BY&quot;</span>)]</span>
     <span class="ident">DescribedBy</span>,
     <span class="doccomment">/// Identifies the element (or elements) that</span>
-    <span class="doccomment">///  provide additional information related to the object. Value type: reference</span>
+    <span class="doccomment">///    provide additional information related to the object. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_DETAILS&quot;</span>)]</span>
     <span class="ident">Details</span>,
     <span class="doccomment">/// Identifies the element that provides</span>
-    <span class="doccomment">///  an error message for an object. Value type: reference</span>
+    <span class="doccomment">///    an error message for an object. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE&quot;</span>)]</span>
     <span class="ident">ErrorMessage</span>,
     <span class="doccomment">/// Identifies the next element (or elements)</span>
-    <span class="doccomment">///  in an alternate reading order of content which, at the user&#39;s discretion,</span>
-    <span class="doccomment">///  allows assistive technology to override the general default of reading in</span>
-    <span class="doccomment">///  document source order. Value type: reference</span>
+    <span class="doccomment">///    in an alternate reading order of content which, at the user&#39;s discretion,</span>
+    <span class="doccomment">///    allows assistive technology to override the general default of reading in</span>
+    <span class="doccomment">///    document source order. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_FLOW_TO&quot;</span>)]</span>
     <span class="ident">FlowTo</span>,
     <span class="doccomment">/// Identifies the element (or elements)</span>
-    <span class="doccomment">///  that labels the current element. Value type: reference</span>
+    <span class="doccomment">///    that labels the current element. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_LABELLED_BY&quot;</span>)]</span>
     <span class="ident">LabelledBy</span>,
     <span class="doccomment">/// Identifies an element (or elements) in order</span>
-    <span class="doccomment">///  to define a visual, functional, or contextual parent/child relationship</span>
-    <span class="doccomment">///  between elements where the widget hierarchy cannot be used to represent</span>
-    <span class="doccomment">///  the relationship. Value type: reference</span>
+    <span class="doccomment">///    to define a visual, functional, or contextual parent/child relationship</span>
+    <span class="doccomment">///    between elements where the widget hierarchy cannot be used to represent</span>
+    <span class="doccomment">///    the relationship. Value type: reference</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_OWNS&quot;</span>)]</span>
     <span class="ident">Owns</span>,
     <span class="doccomment">/// Defines an element&#39;s number or position</span>
-    <span class="doccomment">///  in the current set of listitems or treeitems. Value type: integer</span>
+    <span class="doccomment">///    in the current set of listitems or treeitems. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_POS_IN_SET&quot;</span>)]</span>
     <span class="ident">PosInSet</span>,
     <span class="doccomment">/// Defines the total number of rows in a table,</span>
-    <span class="doccomment">///  grid, or treegrid. Value type: integer</span>
+    <span class="doccomment">///    grid, or treegrid. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ROW_COUNT&quot;</span>)]</span>
     <span class="ident">RowCount</span>,
     <span class="doccomment">/// Defines an element&#39;s row index or position</span>
-    <span class="doccomment">///  with respect to the total number of rows within a table, grid, or treegrid.</span>
-    <span class="doccomment">///  Value type: integer</span>
+    <span class="doccomment">///    with respect to the total number of rows within a table, grid, or treegrid.</span>
+    <span class="doccomment">///    Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ROW_INDEX&quot;</span>)]</span>
     <span class="ident">RowIndex</span>,
     <span class="doccomment">/// Defines a human readable text</span>
-    <span class="doccomment">///  alternative of aria-rowindex. Value type: string</span>
+    <span class="doccomment">///    alternative of aria-rowindex. Value type: string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT&quot;</span>)]</span>
     <span class="ident">RowIndexText</span>,
     <span class="doccomment">/// Defines the number of rows spanned by a</span>
-    <span class="doccomment">///  cell or gridcell within a table, grid, or treegrid. Value type: integer</span>
+    <span class="doccomment">///    cell or gridcell within a table, grid, or treegrid. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_ROW_SPAN&quot;</span>)]</span>
     <span class="ident">RowSpan</span>,
     <span class="doccomment">/// Defines the number of items in the current</span>
-    <span class="doccomment">///  set of listitems or treeitems. Value type: integer</span>
+    <span class="doccomment">///    set of listitems or treeitems. Value type: integer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_RELATION_SET_SIZE&quot;</span>)]</span>
     <span class="ident">SetSize</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -11714,18 +11714,18 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkAccessibleRole&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AccessibleRole</span> {
     <span class="doccomment">/// An element with important, and usually</span>
-    <span class="doccomment">///  time-sensitive, information</span>
+    <span class="doccomment">///   time-sensitive, information</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_ALERT&quot;</span>)]</span>
     <span class="ident">Alert</span>,
     <span class="doccomment">/// A type of dialog that contains an</span>
-    <span class="doccomment">///  alert message</span>
+    <span class="doccomment">///   alert message</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_ALERT_DIALOG&quot;</span>)]</span>
     <span class="ident">AlertDialog</span>,
     <span class="doccomment">/// Unused</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_BANNER&quot;</span>)]</span>
     <span class="ident">Banner</span>,
     <span class="doccomment">/// An input element that allows for</span>
-    <span class="doccomment">///  user-triggered actions when clicked or pressed</span>
+    <span class="doccomment">///   user-triggered actions when clicked or pressed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_BUTTON&quot;</span>)]</span>
     <span class="ident">Button</span>,
     <span class="doccomment">/// Unused</span>
@@ -11735,15 +11735,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_CELL&quot;</span>)]</span>
     <span class="ident">Cell</span>,
     <span class="doccomment">/// A checkable input element that has</span>
-    <span class="doccomment">///  three possible values: `true`, `false`, or `mixed`</span>
+    <span class="doccomment">///   three possible values: `true`, `false`, or `mixed`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_CHECKBOX&quot;</span>)]</span>
     <span class="ident">Checkbox</span>,
     <span class="doccomment">/// A header in a columned list.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_COLUMN_HEADER&quot;</span>)]</span>
     <span class="ident">ColumnHeader</span>,
     <span class="doccomment">/// An input that controls another element,</span>
-    <span class="doccomment">///  such as a list or a grid, that can dynamically pop up to help the user</span>
-    <span class="doccomment">///  set the value of the input</span>
+    <span class="doccomment">///   such as a list or a grid, that can dynamically pop up to help the user</span>
+    <span class="doccomment">///   set the value of the input</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_COMBO_BOX&quot;</span>)]</span>
     <span class="ident">ComboBox</span>,
     <span class="doccomment">/// Abstract role.</span>
@@ -11753,8 +11753,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_COMPOSITE&quot;</span>)]</span>
     <span class="ident">Composite</span>,
     <span class="doccomment">/// A dialog is a window that is designed to interrupt</span>
-    <span class="doccomment">///  the current processing of an application in order to prompt the user to enter</span>
-    <span class="doccomment">///  information or require a response.</span>
+    <span class="doccomment">///    the current processing of an application in order to prompt the user to enter</span>
+    <span class="doccomment">///    information or require a response.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_DIALOG&quot;</span>)]</span>
     <span class="ident">Dialog</span>,
     <span class="doccomment">/// Unused</span>
@@ -11776,7 +11776,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_GRID_CELL&quot;</span>)]</span>
     <span class="ident">GridCell</span>,
     <span class="doccomment">/// An element that groups multiple widgets. GTK uses</span>
-    <span class="doccomment">///  this role for various containers, like [`Box`][crate::Box], [`Viewport`][crate::Viewport], and [`HeaderBar`][crate::HeaderBar].</span>
+    <span class="doccomment">///   this role for various containers, like [`Box`][crate::Box], [`Viewport`][crate::Viewport], and [`HeaderBar`][crate::HeaderBar].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_GROUP&quot;</span>)]</span>
     <span class="ident">Group</span>,
     <span class="doccomment">/// Unused</span>
@@ -11855,11 +11855,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_PRESENTATION&quot;</span>)]</span>
     <span class="ident">Presentation</span>,
     <span class="doccomment">/// An element that displays the progress</span>
-    <span class="doccomment">///  status for tasks that take a long time.</span>
+    <span class="doccomment">///    status for tasks that take a long time.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_PROGRESS_BAR&quot;</span>)]</span>
     <span class="ident">ProgressBar</span>,
     <span class="doccomment">/// A checkable input in a group of radio roles,</span>
-    <span class="doccomment">///  only one of which can be checked at a time.</span>
+    <span class="doccomment">///    only one of which can be checked at a time.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_RADIO&quot;</span>)]</span>
     <span class="ident">Radio</span>,
     <span class="doccomment">/// Unused</span>
@@ -11881,15 +11881,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_ROW_HEADER&quot;</span>)]</span>
     <span class="ident">RowHeader</span>,
     <span class="doccomment">/// A graphical object that controls the scrolling</span>
-    <span class="doccomment">///  of content within a viewing area, regardless of whether the content is fully</span>
-    <span class="doccomment">///  displayed within the viewing area.</span>
+    <span class="doccomment">///    of content within a viewing area, regardless of whether the content is fully</span>
+    <span class="doccomment">///    displayed within the viewing area.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SCROLLBAR&quot;</span>)]</span>
     <span class="ident">Scrollbar</span>,
     <span class="doccomment">/// Unused</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SEARCH&quot;</span>)]</span>
     <span class="ident">Search</span>,
     <span class="doccomment">/// A type of textbox intended for specifying</span>
-    <span class="doccomment">///  search criteria.</span>
+    <span class="doccomment">///    search criteria.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SEARCH_BOX&quot;</span>)]</span>
     <span class="ident">SearchBox</span>,
     <span class="doccomment">/// Abstract role.</span>
@@ -11902,15 +11902,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SELECT&quot;</span>)]</span>
     <span class="ident">Select</span>,
     <span class="doccomment">/// A divider that separates and distinguishes</span>
-    <span class="doccomment">///  sections of content or groups of menuitems.</span>
+    <span class="doccomment">///    sections of content or groups of menuitems.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SEPARATOR&quot;</span>)]</span>
     <span class="ident">Separator</span>,
     <span class="doccomment">/// A user input where the user selects a value</span>
-    <span class="doccomment">///  from within a given range.</span>
+    <span class="doccomment">///    from within a given range.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SLIDER&quot;</span>)]</span>
     <span class="ident">Slider</span>,
     <span class="doccomment">/// A form of range that expects the user to</span>
-    <span class="doccomment">///  select from among discrete choices.</span>
+    <span class="doccomment">///    select from among discrete choices.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SPIN_BUTTON&quot;</span>)]</span>
     <span class="ident">SpinButton</span>,
     <span class="doccomment">/// Unused</span>
@@ -11920,7 +11920,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_STRUCTURE&quot;</span>)]</span>
     <span class="ident">Structure</span>,
     <span class="doccomment">/// A type of checkbox that represents on/off values,</span>
-    <span class="doccomment">///  as opposed to checked/unchecked values.</span>
+    <span class="doccomment">///    as opposed to checked/unchecked values.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_SWITCH&quot;</span>)]</span>
     <span class="ident">Switch</span>,
     <span class="doccomment">/// An item in a list of tab used for switching pages.</span>
@@ -11936,7 +11936,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_TAB_PANEL&quot;</span>)]</span>
     <span class="ident">TabPanel</span>,
     <span class="doccomment">/// A type of input that allows free-form text</span>
-    <span class="doccomment">///  as its value.</span>
+    <span class="doccomment">///    as its value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_TEXT_BOX&quot;</span>)]</span>
     <span class="ident">TextBox</span>,
     <span class="doccomment">/// Unused</span>
@@ -11961,7 +11961,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_TREE_ITEM&quot;</span>)]</span>
     <span class="ident">TreeItem</span>,
     <span class="doccomment">/// An interactive component of a graphical user</span>
-    <span class="doccomment">///  interface. This is the role that GTK uses by default for widgets.</span>
+    <span class="doccomment">///    interface. This is the role that GTK uses by default for widgets.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_ROLE_WIDGET&quot;</span>)]</span>
     <span class="ident">Widget</span>,
     <span class="doccomment">/// An application window.</span>
@@ -12287,7 +12287,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_SORT_DESCENDING&quot;</span>)]</span>
     <span class="ident">Descending</span>,
     <span class="doccomment">/// A sort algorithm other than ascending or</span>
-    <span class="doccomment">///  descending has been applied.</span>
+    <span class="doccomment">///    descending has been applied.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_SORT_OTHER&quot;</span>)]</span>
     <span class="ident">Other</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -12381,37 +12381,37 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_BUSY&quot;</span>)]</span>
     <span class="ident">Busy</span>,
     <span class="doccomment">/// A “checked” state; indicates the current</span>
-    <span class="doccomment">///  state of a [`CheckButton`][crate::CheckButton]. Value type: [`AccessibleTristate`][crate::AccessibleTristate]</span>
+    <span class="doccomment">///   state of a [`CheckButton`][crate::CheckButton]. Value type: [`AccessibleTristate`][crate::AccessibleTristate]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_CHECKED&quot;</span>)]</span>
     <span class="ident">Checked</span>,
     <span class="doccomment">/// A “disabled” state; corresponds to the</span>
-    <span class="doccomment">///  `GtkWidget:sensitive` property on [`Widget`][crate::Widget]. It indicates a UI element</span>
-    <span class="doccomment">///  that is perceivable, but not editable or operable. Value type: boolean</span>
+    <span class="doccomment">///   `GtkWidget:sensitive` property on [`Widget`][crate::Widget]. It indicates a UI element</span>
+    <span class="doccomment">///   that is perceivable, but not editable or operable. Value type: boolean</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_DISABLED&quot;</span>)]</span>
     <span class="ident">Disabled</span>,
     <span class="doccomment">/// An “expanded” state; corresponds to the</span>
-    <span class="doccomment">///  `GtkExpander:expanded` property on [`Expander`][crate::Expander]. Value type: boolean</span>
-    <span class="doccomment">///  or undefined</span>
+    <span class="doccomment">///   `GtkExpander:expanded` property on [`Expander`][crate::Expander]. Value type: boolean</span>
+    <span class="doccomment">///   or undefined</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_EXPANDED&quot;</span>)]</span>
     <span class="ident">Expanded</span>,
     <span class="doccomment">/// A “hidden” state; corresponds to the</span>
-    <span class="doccomment">///  `GtkWidget:visible` property on [`Widget`][crate::Widget]. You can use this state</span>
-    <span class="doccomment">///  explicitly on UI elements that should not be exposed to an assistive</span>
-    <span class="doccomment">///  technology. Value type: boolean</span>
-    <span class="doccomment">///  See also: [`Disabled`][Self::Disabled]</span>
+    <span class="doccomment">///   `GtkWidget:visible` property on [`Widget`][crate::Widget]. You can use this state</span>
+    <span class="doccomment">///   explicitly on UI elements that should not be exposed to an assistive</span>
+    <span class="doccomment">///   technology. Value type: boolean</span>
+    <span class="doccomment">///   See also: [`Disabled`][Self::Disabled]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_HIDDEN&quot;</span>)]</span>
     <span class="ident">Hidden</span>,
     <span class="doccomment">/// An “invalid” state; set when a widget</span>
-    <span class="doccomment">///  is showing an error. Value type: [`AccessibleInvalidState`][crate::AccessibleInvalidState]</span>
+    <span class="doccomment">///   is showing an error. Value type: [`AccessibleInvalidState`][crate::AccessibleInvalidState]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_INVALID&quot;</span>)]</span>
     <span class="ident">Invalid</span>,
     <span class="doccomment">/// A “pressed” state; indicates the current</span>
-    <span class="doccomment">///  state of a [`ToggleButton`][crate::ToggleButton]. Value type: [`AccessibleTristate`][crate::AccessibleTristate]</span>
-    <span class="doccomment">///  enumeration</span>
+    <span class="doccomment">///   state of a [`ToggleButton`][crate::ToggleButton]. Value type: [`AccessibleTristate`][crate::AccessibleTristate]</span>
+    <span class="doccomment">///   enumeration</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_PRESSED&quot;</span>)]</span>
     <span class="ident">Pressed</span>,
     <span class="doccomment">/// A “selected” state; set when a widget</span>
-    <span class="doccomment">///  is selected. Value type: boolean or undefined</span>
+    <span class="doccomment">///   is selected. Value type: boolean or undefined</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_STATE_SELECTED&quot;</span>)]</span>
     <span class="ident">Selected</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -12629,14 +12629,14 @@
 <span class="doccomment">/// are interpreted relative to text direction.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`Baseline`][Self::Baseline] support is optional for containers and widgets, and</span>
-<span class="doccomment">/// it is only supported for vertical alignment. When it&#39;s not supported by</span>
+<span class="doccomment">/// it is only supported for vertical alignment.  When it&#39;s not supported by</span>
 <span class="doccomment">/// a child or a container it is treated as [`Fill`][Self::Fill].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkAlign&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Align</span> {
     <span class="doccomment">/// stretch to fill all space if possible, center if</span>
-    <span class="doccomment">///  no meaningful way to stretch</span>
+    <span class="doccomment">///   no meaningful way to stretch</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ALIGN_FILL&quot;</span>)]</span>
     <span class="ident">Fill</span>,
     <span class="doccomment">/// snap to left or top side, leaving space on right or bottom</span>
@@ -12649,7 +12649,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ALIGN_CENTER&quot;</span>)]</span>
     <span class="ident">Center</span>,
     <span class="doccomment">/// align the widget according to the baseline.</span>
-    <span class="doccomment">///  See [`Widget`][crate::Widget].</span>
+    <span class="doccomment">///   See [`Widget`][crate::Widget].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ALIGN_BASELINE&quot;</span>)]</span>
     <span class="ident">Baseline</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -12851,7 +12851,7 @@
 <span class="doccomment">/// [`Progress`][Self::Progress] to be correct.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The Cancel button will only be shown if the page isn’t “committed”.</span>
-<span class="doccomment">/// See [`Assistant::commit()`][crate::Assistant::commit()] for details.</span>
+<span class="doccomment">/// See gtk_assistant_commit() for details.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkAssistantPageType&quot;</span>)]</span>
@@ -12862,7 +12862,7 @@
     <span class="ident">Content</span>,
     <span class="doccomment">/// The page contains an introduction to the</span>
     <span class="doccomment">///  assistant task. Only the Forward button will be shown if there is a</span>
-    <span class="doccomment">///  next page.</span>
+    <span class="doccomment">///   next page.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ASSISTANT_PAGE_INTRO&quot;</span>)]</span>
     <span class="ident">Intro</span>,
     <span class="doccomment">/// The page lets the user confirm or deny the</span>
@@ -12875,12 +12875,12 @@
     <span class="ident">Summary</span>,
     <span class="doccomment">/// Used for tasks that take a long time to</span>
     <span class="doccomment">///  complete, blocks the assistant until the page is marked as complete.</span>
-    <span class="doccomment">///  Only the back button will be shown.</span>
+    <span class="doccomment">///   Only the back button will be shown.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ASSISTANT_PAGE_PROGRESS&quot;</span>)]</span>
     <span class="ident">Progress</span>,
     <span class="doccomment">/// Used for when other page types are not</span>
     <span class="doccomment">///  appropriate. No buttons will be shown, and the application must</span>
-    <span class="doccomment">///  add its own buttons through [`Assistant::add_action_widget()`][crate::Assistant::add_action_widget()].</span>
+    <span class="doccomment">///  add its own buttons through gtk_assistant_add_action_widget().</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ASSISTANT_PAGE_CUSTOM&quot;</span>)]</span>
     <span class="ident">Custom</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -13264,8 +13264,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_BUILDER_ERROR_INVALID_ID&quot;</span>)]</span>
     <span class="ident">InvalidId</span>,
     <span class="doccomment">/// A function could not be found. This often happens</span>
-    <span class="doccomment">///  when symbols are set to be kept private. Compiling code with -rdynamic or using the</span>
-    <span class="doccomment">///  `gmodule-export-2.0` pkgconfig module can fix this problem.</span>
+    <span class="doccomment">///   when symbols are set to be kept private. Compiling code with -rdynamic or using the</span>
+    <span class="doccomment">///   `gmodule-export-2.0` pkgconfig module can fix this problem.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_BUILDER_ERROR_INVALID_FUNCTION&quot;</span>)]</span>
     <span class="ident">InvalidFunction</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -13420,7 +13420,7 @@
 <span class="doccomment">/// Prebuilt sets of buttons for [`Dialog`][crate::Dialog].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If none of these choices are appropriate, simply use</span>
-<span class="doccomment">/// [`None`][Self::None] and call [``DialogExtManual::add_buttons()``][crate::prelude::`DialogExtManual::add_buttons()`].</span>
+<span class="doccomment">/// [`None`][Self::None] and call [`DialogExtManual::add_buttons()`][crate::prelude::DialogExtManual::add_buttons()].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// &gt; Please note that [`Ok`][Self::Ok], [`YesNo`][Self::YesNo]</span>
 <span class="doccomment">/// &gt; and [`OkCancel`][Self::OkCancel] are discouraged by the</span>
@@ -13628,7 +13628,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCellRendererMode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CellRendererMode</span> {
     <span class="doccomment">/// The cell is just for display</span>
-    <span class="doccomment">///  and cannot be interacted with. Note that this doesn’t mean that eg. the</span>
+    <span class="doccomment">///  and cannot be interacted with.  Note that this doesn’t mean that eg. the</span>
     <span class="doccomment">///  row being drawn can’t be selected -- just that a particular element of</span>
     <span class="doccomment">///  it cannot be individually modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_MODE_INERT&quot;</span>)]</span>
@@ -13724,15 +13724,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkConstraintAttribute&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ConstraintAttribute</span> {
     <span class="doccomment">/// No attribute, used for constant</span>
-    <span class="doccomment">///  relations</span>
+    <span class="doccomment">///   relations</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// The left edge of a widget, regardless of</span>
-    <span class="doccomment">///  text direction</span>
+    <span class="doccomment">///   text direction</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_LEFT&quot;</span>)]</span>
     <span class="ident">Left</span>,
     <span class="doccomment">/// The right edge of a widget, regardless</span>
-    <span class="doccomment">///  of text direction</span>
+    <span class="doccomment">///   of text direction</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_RIGHT&quot;</span>)]</span>
     <span class="ident">Right</span>,
     <span class="doccomment">/// The top edge of a widget</span>
@@ -13742,13 +13742,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_BOTTOM&quot;</span>)]</span>
     <span class="ident">Bottom</span>,
     <span class="doccomment">/// The leading edge of a widget, depending</span>
-    <span class="doccomment">///  on text direction; equivalent to [`Left`][Self::Left] for LTR</span>
-    <span class="doccomment">///  languages, and [`Right`][Self::Right] for RTL ones</span>
+    <span class="doccomment">///   on text direction; equivalent to [`Left`][Self::Left] for LTR</span>
+    <span class="doccomment">///   languages, and [`Right`][Self::Right] for RTL ones</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_START&quot;</span>)]</span>
     <span class="ident">Start</span>,
     <span class="doccomment">/// The trailing edge of a widget, depending</span>
-    <span class="doccomment">///  on text direction; equivalent to [`Right`][Self::Right] for LTR</span>
-    <span class="doccomment">///  languages, and [`Left`][Self::Left] for RTL ones</span>
+    <span class="doccomment">///   on text direction; equivalent to [`Right`][Self::Right] for LTR</span>
+    <span class="doccomment">///   languages, and [`Left`][Self::Left] for RTL ones</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_END&quot;</span>)]</span>
     <span class="ident">End</span>,
     <span class="doccomment">/// The width of a widget</span>
@@ -13758,11 +13758,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_HEIGHT&quot;</span>)]</span>
     <span class="ident">Height</span>,
     <span class="doccomment">/// The center of a widget, on the</span>
-    <span class="doccomment">///  horizontal axis</span>
+    <span class="doccomment">///   horizontal axis</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_CENTER_X&quot;</span>)]</span>
     <span class="ident">CenterX</span>,
     <span class="doccomment">/// The center of a widget, on the</span>
-    <span class="doccomment">///  vertical axis</span>
+    <span class="doccomment">///   vertical axis</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y&quot;</span>)]</span>
     <span class="ident">CenterY</span>,
     <span class="doccomment">/// The baseline of a widget</span>
@@ -14214,19 +14214,19 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCornerType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CornerType</span> {
     <span class="doccomment">/// Place the scrollbars on the right and bottom of the</span>
-    <span class="doccomment">///  widget (default behaviour).</span>
+    <span class="doccomment">///   widget (default behaviour).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CORNER_TOP_LEFT&quot;</span>)]</span>
     <span class="ident">TopLeft</span>,
     <span class="doccomment">/// Place the scrollbars on the top and right of the</span>
-    <span class="doccomment">///  widget.</span>
+    <span class="doccomment">///   widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CORNER_BOTTOM_LEFT&quot;</span>)]</span>
     <span class="ident">BottomLeft</span>,
     <span class="doccomment">/// Place the scrollbars on the left and bottom of the</span>
-    <span class="doccomment">///  widget.</span>
+    <span class="doccomment">///   widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CORNER_TOP_RIGHT&quot;</span>)]</span>
     <span class="ident">TopRight</span>,
     <span class="doccomment">/// Place the scrollbars on the top and left of the</span>
-    <span class="doccomment">///  widget.</span>
+    <span class="doccomment">///   widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CORNER_BOTTOM_RIGHT&quot;</span>)]</span>
     <span class="ident">BottomRight</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -14419,11 +14419,11 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkCssParserWarning&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CssParserWarning</span> {
     <span class="doccomment">/// The given construct is</span>
-    <span class="doccomment">///  deprecated and will be removed in a future version</span>
+    <span class="doccomment">///   deprecated and will be removed in a future version</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CSS_PARSER_WARNING_DEPRECATED&quot;</span>)]</span>
     <span class="ident">Deprecated</span>,
     <span class="doccomment">/// A syntax construct was used</span>
-    <span class="doccomment">///  that should be avoided</span>
+    <span class="doccomment">///   that should be avoided</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CSS_PARSER_WARNING_SYNTAX&quot;</span>)]</span>
     <span class="ident">Syntax</span>,
     <span class="doccomment">/// A feature is not implemented</span>
@@ -14484,24 +14484,24 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_CHARS&quot;</span>)]</span>
     <span class="ident">Chars</span>,
     <span class="doccomment">/// Delete only the portion of the word to the</span>
-    <span class="doccomment">///  left/right of cursor if we’re in the middle of a word.</span>
+    <span class="doccomment">///   left/right of cursor if we’re in the middle of a word.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_WORD_ENDS&quot;</span>)]</span>
     <span class="ident">WordEnds</span>,
     <span class="doccomment">/// Delete words.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_WORDS&quot;</span>)]</span>
     <span class="ident">Words</span>,
     <span class="doccomment">/// Delete display-lines. Display-lines</span>
-    <span class="doccomment">///  refers to the visible lines, with respect to the current line</span>
-    <span class="doccomment">///  breaks. As opposed to paragraphs, which are defined by line</span>
-    <span class="doccomment">///  breaks in the input.</span>
+    <span class="doccomment">///   refers to the visible lines, with respect to the current line</span>
+    <span class="doccomment">///   breaks. As opposed to paragraphs, which are defined by line</span>
+    <span class="doccomment">///   breaks in the input.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_DISPLAY_LINES&quot;</span>)]</span>
     <span class="ident">DisplayLines</span>,
     <span class="doccomment">/// Delete only the portion of the</span>
-    <span class="doccomment">///  display-line to the left/right of cursor.</span>
+    <span class="doccomment">///   display-line to the left/right of cursor.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_DISPLAY_LINE_ENDS&quot;</span>)]</span>
     <span class="ident">DisplayLineEnds</span>,
     <span class="doccomment">/// Delete to the end of the</span>
-    <span class="doccomment">///  paragraph. Like C-k in Emacs (or its reverse).</span>
+    <span class="doccomment">///   paragraph. Like C-k in Emacs (or its reverse).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DELETE_PARAGRAPH_ENDS&quot;</span>)]</span>
     <span class="ident">ParagraphEnds</span>,
     <span class="doccomment">/// Delete entire line. Like C-k in pico.</span>
@@ -14717,7 +14717,7 @@
 
 <span class="doccomment">/// The identifiers for [`Editable`][crate::Editable] properties.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See [``Editable::install_properties()``][crate::`Editable::install_properties()`] for details on how to</span>
+<span class="doccomment">/// See [`Editable::install_properties()`][crate::Editable::install_properties()] for details on how to</span>
 <span class="doccomment">/// implement the [`Editable`][crate::Editable] interface.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
@@ -15033,17 +15033,17 @@
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkFileChooserAction&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FileChooserAction</span> {
-    <span class="doccomment">/// Indicates open mode. The file chooser</span>
+    <span class="doccomment">/// Indicates open mode.  The file chooser</span>
     <span class="doccomment">///  will only let the user pick an existing file.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILE_CHOOSER_ACTION_OPEN&quot;</span>)]</span>
     <span class="ident">Open</span>,
-    <span class="doccomment">/// Indicates save mode. The file chooser</span>
+    <span class="doccomment">/// Indicates save mode.  The file chooser</span>
     <span class="doccomment">///  will let the user pick an existing file, or type in a new</span>
     <span class="doccomment">///  filename.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILE_CHOOSER_ACTION_SAVE&quot;</span>)]</span>
     <span class="ident">Save</span>,
     <span class="doccomment">/// Indicates an Open mode for</span>
-    <span class="doccomment">///  selecting folders. The file chooser will let the user pick an</span>
+    <span class="doccomment">///  selecting folders.  The file chooser will let the user pick an</span>
     <span class="doccomment">///  existing folder.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER&quot;</span>)]</span>
     <span class="ident">SelectFolder</span>,
@@ -15262,17 +15262,17 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkFilterChange&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FilterChange</span> {
     <span class="doccomment">/// The filter change cannot be</span>
-    <span class="doccomment">///  described with any of the other enumeration values.</span>
+    <span class="doccomment">///   described with any of the other enumeration values.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_CHANGE_DIFFERENT&quot;</span>)]</span>
     <span class="ident">Different</span>,
     <span class="doccomment">/// The filter is less strict than</span>
-    <span class="doccomment">///  it was before: All items that it used to return [`true`] for</span>
-    <span class="doccomment">///  still return [`true`], others now may, too.</span>
+    <span class="doccomment">///   it was before: All items that it used to return [`true`] for</span>
+    <span class="doccomment">///   still return [`true`], others now may, too.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_CHANGE_LESS_STRICT&quot;</span>)]</span>
     <span class="ident">LessStrict</span>,
     <span class="doccomment">/// The filter is more strict than</span>
-    <span class="doccomment">///  it was before: All items that it used to return [`false`] for</span>
-    <span class="doccomment">///  still return [`false`], others now may, too.</span>
+    <span class="doccomment">///   it was before: All items that it used to return [`false`] for</span>
+    <span class="doccomment">///   still return [`false`], others now may, too.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_CHANGE_MORE_STRICT&quot;</span>)]</span>
     <span class="ident">MoreStrict</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -15364,15 +15364,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkFilterMatch&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FilterMatch</span> {
     <span class="doccomment">/// The filter matches some items,</span>
-    <span class="doccomment">///  [`FilterExt::match_()`][crate::prelude::FilterExt::match_()] may return [`true`] or [`false`]</span>
+    <span class="doccomment">///   gtk_filter_match() may return [`true`] or [`false`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_SOME&quot;</span>)]</span>
     <span class="prelude-val">Some</span>,
     <span class="doccomment">/// The filter does not match any item,</span>
-    <span class="doccomment">///  [`FilterExt::match_()`][crate::prelude::FilterExt::match_()] will always return [`false`].</span>
+    <span class="doccomment">///   gtk_filter_match() will always return [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// The filter matches all items,</span>
-    <span class="doccomment">///  [`FilterExt::match_()`][crate::prelude::FilterExt::match_()] will alays return [`true`].</span>
+    <span class="doccomment">///   gtk_filter_match() will alays return [`true`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_ALL&quot;</span>)]</span>
     <span class="ident">All</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -15777,8 +15777,8 @@
 <span class="doccomment">/// Describes the image data representation used by a [`Image`][crate::Image].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If you want to get the image from the widget, you can only get the</span>
-<span class="doccomment">/// currently-stored representation; for instance, if the [`Image::storage_type()`][crate::Image::storage_type()]</span>
-<span class="doccomment">/// returns [`Paintable`][Self::Paintable], then you can call [`Image::paintable()`][crate::Image::paintable()].</span>
+<span class="doccomment">/// currently-stored representation; for instance, if the gtk_image_get_storage_type()</span>
+<span class="doccomment">/// returns [`Paintable`][Self::Paintable], then you can call gtk_image_get_paintable().</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// For empty images, you can request any storage type (call any of the &quot;get&quot;</span>
 <span class="doccomment">/// functions), but they will all return [`None`] values.</span>
@@ -16239,7 +16239,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_LICENSE_UNKNOWN&quot;</span>)]</span>
     <span class="ident">Unknown</span>,
     <span class="doccomment">/// A license text is going to be specified by the</span>
-    <span class="doccomment">///  developer</span>
+    <span class="doccomment">///   developer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_LICENSE_CUSTOM&quot;</span>)]</span>
     <span class="ident">Custom</span>,
     <span class="doccomment">/// The GNU General Public License, version 2.0 or later</span>
@@ -16871,7 +16871,7 @@
 <span class="doccomment">/// These values can be used with a `GCompareFunc`. However,</span>
 <span class="doccomment">/// a `GCompareFunc` is allowed to return any integer values.</span>
 <span class="doccomment">/// For converting such a value to a [`Ordering`][crate::Ordering] value, use</span>
-<span class="doccomment">/// `Gtk::`Ordering::from_cmpfunc()``.</span>
+<span class="doccomment">/// `Gtk::Ordering::from_cmpfunc()`.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkOrdering&quot;</span>)]</span>
@@ -17055,7 +17055,7 @@
 
 <span class="doccomment">/// Defines how content overflowing a given area should be handled.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This is used in [``WidgetExt::set_overflow()``][crate::prelude::`WidgetExt::set_overflow()`]. The</span>
+<span class="doccomment">/// This is used in [`WidgetExt::set_overflow()`][crate::prelude::WidgetExt::set_overflow()]. The</span>
 <span class="doccomment">/// `property::Widget::overflow` property is modeled after the</span>
 <span class="doccomment">/// CSS overflow property, but implements it only partially.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -17063,11 +17063,11 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkOverflow&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Overflow</span> {
     <span class="doccomment">/// No change is applied. Content is drawn at the specified</span>
-    <span class="doccomment">///  position.</span>
+    <span class="doccomment">///   position.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_OVERFLOW_VISIBLE&quot;</span>)]</span>
     <span class="ident">Visible</span>,
     <span class="doccomment">/// Content is clipped to the bounds of the area. Content</span>
-    <span class="doccomment">///  outside the area is not drawn and cannot be interacted with.</span>
+    <span class="doccomment">///   outside the area is not drawn and cannot be interacted with.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_OVERFLOW_HIDDEN&quot;</span>)]</span>
     <span class="ident">Hidden</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -17328,7 +17328,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintSettings::set_orientation()`][crate::PrintSettings::set_orientation()].</span>
+<span class="doccomment">/// See also gtk_print_settings_set_orientation().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPageOrientation&quot;</span>)]</span>
@@ -17427,7 +17427,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintJob::set_page_set()`][crate::PrintJob::set_page_set()].</span>
+<span class="doccomment">/// See also gtk_print_job_set_page_set().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPageSet&quot;</span>)]</span>
@@ -17626,20 +17626,20 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPolicyType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PolicyType</span> {
     <span class="doccomment">/// The scrollbar is always visible. The view size is</span>
-    <span class="doccomment">///  independent of the content.</span>
+    <span class="doccomment">///   independent of the content.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_POLICY_ALWAYS&quot;</span>)]</span>
     <span class="ident">Always</span>,
     <span class="doccomment">/// The scrollbar will appear and disappear as necessary.</span>
-    <span class="doccomment">///  For example, when all of a [`TreeView`][crate::TreeView] can not be seen.</span>
+    <span class="doccomment">///   For example, when all of a [`TreeView`][crate::TreeView] can not be seen.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_POLICY_AUTOMATIC&quot;</span>)]</span>
     <span class="ident">Automatic</span>,
     <span class="doccomment">/// The scrollbar should never appear. In this mode the</span>
-    <span class="doccomment">///  content determines the size.</span>
+    <span class="doccomment">///   content determines the size.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_POLICY_NEVER&quot;</span>)]</span>
     <span class="ident">Never</span>,
     <span class="doccomment">/// Don&#39;t show a scrollbar, but don&#39;t force the</span>
-    <span class="doccomment">///  size to follow the content. This can be used e.g. to make multiple</span>
-    <span class="doccomment">///  scrolled windows share a scrollbar.</span>
+    <span class="doccomment">///   size to follow the content. This can be used e.g. to make multiple</span>
+    <span class="doccomment">///   scrolled windows share a scrollbar.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_POLICY_EXTERNAL&quot;</span>)]</span>
     <span class="ident">External</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -17826,7 +17826,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintSettings::set_duplex()`][crate::PrintSettings::set_duplex()].</span>
+<span class="doccomment">/// See also gtk_print_settings_set_duplex().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintDuplex&quot;</span>)]</span>
@@ -17935,7 +17935,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_ERROR_NOMEM&quot;</span>)]</span>
     <span class="ident">Nomem</span>,
     <span class="doccomment">/// An error occurred while loading a page setup</span>
-    <span class="doccomment">///  or paper size from a key file.</span>
+    <span class="doccomment">///   or paper size from a key file.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_ERROR_INVALID_FILE&quot;</span>)]</span>
     <span class="ident">InvalidFile</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -18045,7 +18045,7 @@
 
 <span class="doccomment">/// Determines what action the print operation should perform.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// A parameter of this typs is passed to [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`].</span>
+<span class="doccomment">/// A parameter of this typs is passed to [`PrintOperationExt::run()`][crate::prelude::PrintOperationExt::run()].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintOperationAction&quot;</span>)]</span>
@@ -18054,14 +18054,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG&quot;</span>)]</span>
     <span class="ident">PrintDialog</span>,
     <span class="doccomment">/// Start to print without showing</span>
-    <span class="doccomment">///  the print dialog, based on the current print settings.</span>
+    <span class="doccomment">///   the print dialog, based on the current print settings.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_ACTION_PRINT&quot;</span>)]</span>
     <span class="ident">Print</span>,
     <span class="doccomment">/// Show the print preview.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_ACTION_PREVIEW&quot;</span>)]</span>
     <span class="ident">Preview</span>,
     <span class="doccomment">/// Export to a file. This requires</span>
-    <span class="doccomment">///  the export-filename property to be set.</span>
+    <span class="doccomment">///   the export-filename property to be set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_ACTION_EXPORT&quot;</span>)]</span>
     <span class="ident">Export</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -18148,7 +18148,7 @@
 
 <span class="doccomment">/// The result of a print operation.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// A value of this type is returned by [``PrintOperationExt::run()``][crate::prelude::`PrintOperationExt::run()`].</span>
+<span class="doccomment">/// A value of this type is returned by [`PrintOperationExt::run()`][crate::prelude::PrintOperationExt::run()].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintOperationResult&quot;</span>)]</span>
@@ -18160,11 +18160,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_RESULT_APPLY&quot;</span>)]</span>
     <span class="ident">Apply</span>,
     <span class="doccomment">/// The print operation has been canceled,</span>
-    <span class="doccomment">///  the print settings should not be stored.</span>
+    <span class="doccomment">///   the print settings should not be stored.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_RESULT_CANCEL&quot;</span>)]</span>
     <span class="ident">Cancel</span>,
     <span class="doccomment">/// The print operation is not complete</span>
-    <span class="doccomment">///  yet. This value will only be returned when running asynchronously.</span>
+    <span class="doccomment">///   yet. This value will only be returned when running asynchronously.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_OPERATION_RESULT_IN_PROGRESS&quot;</span>)]</span>
     <span class="ident">InProgress</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -18249,7 +18249,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintJob::set_pages()`][crate::PrintJob::set_pages()]</span>
+<span class="doccomment">/// See also gtk_print_job_set_pages()</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintPages&quot;</span>)]</span>
@@ -18348,7 +18348,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintSettings::set_quality()`][crate::PrintSettings::set_quality()].</span>
+<span class="doccomment">/// See also gtk_print_settings_set_quality().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintQuality&quot;</span>)]</span>
@@ -18454,27 +18454,27 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintStatus&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PrintStatus</span> {
     <span class="doccomment">/// The printing has not started yet; this</span>
-    <span class="doccomment">///  status is set initially, and while the print dialog is shown.</span>
+    <span class="doccomment">///   status is set initially, and while the print dialog is shown.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_INITIAL&quot;</span>)]</span>
     <span class="ident">Initial</span>,
     <span class="doccomment">/// This status is set while the begin-print</span>
-    <span class="doccomment">///  signal is emitted and during pagination.</span>
+    <span class="doccomment">///   signal is emitted and during pagination.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_PREPARING&quot;</span>)]</span>
     <span class="ident">Preparing</span>,
     <span class="doccomment">/// This status is set while the</span>
-    <span class="doccomment">///  pages are being rendered.</span>
+    <span class="doccomment">///   pages are being rendered.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_GENERATING_DATA&quot;</span>)]</span>
     <span class="ident">GeneratingData</span>,
     <span class="doccomment">/// The print job is being sent off to the</span>
-    <span class="doccomment">///  printer.</span>
+    <span class="doccomment">///   printer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_SENDING_DATA&quot;</span>)]</span>
     <span class="ident">SendingData</span>,
     <span class="doccomment">/// The print job has been sent to the printer,</span>
-    <span class="doccomment">///  but is not printed for some reason, e.g. the printer may be stopped.</span>
+    <span class="doccomment">///   but is not printed for some reason, e.g. the printer may be stopped.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_PENDING&quot;</span>)]</span>
     <span class="ident">Pending</span>,
     <span class="doccomment">/// Some problem has occurred during</span>
-    <span class="doccomment">///  printing, e.g. a paper jam.</span>
+    <span class="doccomment">///   printing, e.g. a paper jam.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_STATUS_PENDING_ISSUE&quot;</span>)]</span>
     <span class="ident">PendingIssue</span>,
     <span class="doccomment">/// The printer is processing the print job.</span>
@@ -18590,12 +18590,12 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPropagationLimit&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PropagationLimit</span> {
     <span class="doccomment">/// Events are handled regardless of what their</span>
-    <span class="doccomment">///  target is.</span>
+    <span class="doccomment">///   target is.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_LIMIT_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// Events are only handled if their target</span>
-    <span class="doccomment">///  is in the same [`Native`][crate::Native] as the event controllers widget. Note</span>
-    <span class="doccomment">///  that some event types have two targets (origin and destination).</span>
+    <span class="doccomment">///   is in the same [`Native`][crate::Native] as the event controllers widget. Note</span>
+    <span class="doccomment">///   that some event types have two targets (origin and destination).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_LIMIT_SAME_NATIVE&quot;</span>)]</span>
     <span class="ident">SameNative</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -18683,19 +18683,19 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PHASE_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// Events are delivered in the capture phase. The</span>
-    <span class="doccomment">///  capture phase happens before the bubble phase, runs from the toplevel down</span>
-    <span class="doccomment">///  to the event widget. This option should only be used on containers that</span>
-    <span class="doccomment">///  might possibly handle events before their children do.</span>
+    <span class="doccomment">///   capture phase happens before the bubble phase, runs from the toplevel down</span>
+    <span class="doccomment">///   to the event widget. This option should only be used on containers that</span>
+    <span class="doccomment">///   might possibly handle events before their children do.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PHASE_CAPTURE&quot;</span>)]</span>
     <span class="ident">Capture</span>,
     <span class="doccomment">/// Events are delivered in the bubble phase. The bubble</span>
-    <span class="doccomment">///  phase happens after the capture phase, and before the default handlers</span>
-    <span class="doccomment">///  are run. This phase runs from the event widget, up to the toplevel.</span>
+    <span class="doccomment">///   phase happens after the capture phase, and before the default handlers</span>
+    <span class="doccomment">///   are run. This phase runs from the event widget, up to the toplevel.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PHASE_BUBBLE&quot;</span>)]</span>
     <span class="ident">Bubble</span>,
     <span class="doccomment">/// Events are delivered in the default widget event handlers,</span>
-    <span class="doccomment">///  note that widget implementations must chain up on button, motion, touch and</span>
-    <span class="doccomment">///  grab broken handlers for controllers in this phase to be run.</span>
+    <span class="doccomment">///   note that widget implementations must chain up on button, motion, touch and</span>
+    <span class="doccomment">///   grab broken handlers for controllers in this phase to be run.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PHASE_TARGET&quot;</span>)]</span>
     <span class="ident">Target</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -18786,26 +18786,26 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkRecentManagerError&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RecentManagerError</span> {
     <span class="doccomment">/// the URI specified does not exists in</span>
-    <span class="doccomment">///  the recently used resources list.</span>
+    <span class="doccomment">///   the recently used resources list.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_NOT_FOUND&quot;</span>)]</span>
     <span class="ident">NotFound</span>,
     <span class="doccomment">/// the URI specified is not valid.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_INVALID_URI&quot;</span>)]</span>
     <span class="ident">InvalidUri</span>,
     <span class="doccomment">/// the supplied string is not</span>
-    <span class="doccomment">///  UTF-8 encoded.</span>
+    <span class="doccomment">///   UTF-8 encoded.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING&quot;</span>)]</span>
     <span class="ident">InvalidEncoding</span>,
     <span class="doccomment">/// no application has registered</span>
-    <span class="doccomment">///  the specified item.</span>
+    <span class="doccomment">///   the specified item.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED&quot;</span>)]</span>
     <span class="ident">NotRegistered</span>,
     <span class="doccomment">/// failure while reading the recently used</span>
-    <span class="doccomment">///  resources file.</span>
+    <span class="doccomment">///   resources file.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_READ&quot;</span>)]</span>
     <span class="ident">Read</span>,
     <span class="doccomment">/// failure while writing the recently used</span>
-    <span class="doccomment">///  resources file.</span>
+    <span class="doccomment">///   resources file.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RECENT_MANAGER_ERROR_WRITE&quot;</span>)]</span>
     <span class="ident">Write</span>,
     <span class="doccomment">/// unspecified error.</span>
@@ -19446,17 +19446,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SELECTION_SINGLE&quot;</span>)]</span>
     <span class="ident">Single</span>,
     <span class="doccomment">/// Exactly one element is selected.</span>
-    <span class="doccomment">///  In some circumstances, such as initially or during a search</span>
-    <span class="doccomment">///  operation, it’s possible for no element to be selected with</span>
-    <span class="doccomment">///  [`Browse`][Self::Browse]. What is really enforced is that the user</span>
-    <span class="doccomment">///  can’t deselect a currently selected element except by selecting</span>
-    <span class="doccomment">///  another element.</span>
+    <span class="doccomment">///   In some circumstances, such as initially or during a search</span>
+    <span class="doccomment">///   operation, it’s possible for no element to be selected with</span>
+    <span class="doccomment">///   [`Browse`][Self::Browse]. What is really enforced is that the user</span>
+    <span class="doccomment">///   can’t deselect a currently selected element except by selecting</span>
+    <span class="doccomment">///   another element.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SELECTION_BROWSE&quot;</span>)]</span>
     <span class="ident">Browse</span>,
     <span class="doccomment">/// Any number of elements may be selected.</span>
-    <span class="doccomment">///  The Ctrl key may be used to enlarge the selection, and Shift</span>
-    <span class="doccomment">///  key to select between the focus and the child pointed to.</span>
-    <span class="doccomment">///  Some widgets may also allow Click-drag to select a range of elements.</span>
+    <span class="doccomment">///   The Ctrl key may be used to enlarge the selection, and Shift</span>
+    <span class="doccomment">///   key to select between the focus and the child pointed to.</span>
+    <span class="doccomment">///   Some widgets may also allow Click-drag to select a range of elements.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SELECTION_MULTIPLE&quot;</span>)]</span>
     <span class="ident">Multiple</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -19548,7 +19548,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSensitivityType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SensitivityType</span> {
     <span class="doccomment">/// The control is made insensitive if no</span>
-    <span class="doccomment">///  action can be triggered</span>
+    <span class="doccomment">///   action can be triggered</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SENSITIVITY_AUTO&quot;</span>)]</span>
     <span class="ident">Auto</span>,
     <span class="doccomment">/// The control is always sensitive</span>
@@ -19643,15 +19643,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkShortcutScope&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShortcutScope</span> {
     <span class="doccomment">/// Shortcuts are handled inside</span>
-    <span class="doccomment">///  the widget the controller belongs to.</span>
+    <span class="doccomment">///   the widget the controller belongs to.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_SCOPE_LOCAL&quot;</span>)]</span>
     <span class="ident">Local</span>,
     <span class="doccomment">/// Shortcuts are handled by</span>
-    <span class="doccomment">///  the first ancestor that is a [`ShortcutManager`][crate::ShortcutManager]</span>
+    <span class="doccomment">///   the first ancestor that is a [`ShortcutManager`][crate::ShortcutManager]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_SCOPE_MANAGED&quot;</span>)]</span>
     <span class="ident">Managed</span>,
     <span class="doccomment">/// Shortcuts are handled by</span>
-    <span class="doccomment">///  the root widget.</span>
+    <span class="doccomment">///   the root widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_SCOPE_GLOBAL&quot;</span>)]</span>
     <span class="ident">Global</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -19741,7 +19741,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkShortcutType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShortcutType</span> {
     <span class="doccomment">/// The shortcut is a keyboard accelerator. The GtkShortcutsShortcut:accelerator</span>
-    <span class="doccomment">///  property will be used.</span>
+    <span class="doccomment">///   property will be used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_ACCELERATOR&quot;</span>)]</span>
     <span class="ident">Accelerator</span>,
     <span class="doccomment">/// The shortcut is a pinch gesture. GTK provides an icon and subtitle.</span>
@@ -19763,7 +19763,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT&quot;</span>)]</span>
     <span class="ident">GestureTwoFingerSwipeRight</span>,
     <span class="doccomment">/// The shortcut is a gesture. The GtkShortcutsShortcut:icon property will be</span>
-    <span class="doccomment">///  used.</span>
+    <span class="doccomment">///   used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_GESTURE&quot;</span>)]</span>
     <span class="ident">Gesture</span>,
     <span class="doccomment">/// The shortcut is a swipe gesture. GTK provides an icon and subtitle.</span>
@@ -20164,20 +20164,20 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSorterChange&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SorterChange</span> {
     <span class="doccomment">/// The sorter change cannot be described</span>
-    <span class="doccomment">///  by any of the other enumeration values</span>
+    <span class="doccomment">///   by any of the other enumeration values</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_CHANGE_DIFFERENT&quot;</span>)]</span>
     <span class="ident">Different</span>,
     <span class="doccomment">/// The sort order was inverted. Comparisons</span>
-    <span class="doccomment">///  that returned [`Ordering::Smaller`][crate::Ordering::Smaller] now return [`Ordering::Larger`][crate::Ordering::Larger]</span>
-    <span class="doccomment">///  and vice versa. Other comparisons return the same values as before.</span>
+    <span class="doccomment">///   that returned [`Ordering::Smaller`][crate::Ordering::Smaller] now return [`Ordering::Larger`][crate::Ordering::Larger]</span>
+    <span class="doccomment">///   and vice versa. Other comparisons return the same values as before.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_CHANGE_INVERTED&quot;</span>)]</span>
     <span class="ident">Inverted</span>,
     <span class="doccomment">/// The sorter is less strict: Comparisons</span>
-    <span class="doccomment">///  may now return [`Ordering::Equal`][crate::Ordering::Equal] that did not do so before.</span>
+    <span class="doccomment">///   may now return [`Ordering::Equal`][crate::Ordering::Equal] that did not do so before.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_CHANGE_LESS_STRICT&quot;</span>)]</span>
     <span class="ident">LessStrict</span>,
     <span class="doccomment">/// The sorter is more strict: Comparisons</span>
-    <span class="doccomment">///  that did return [`Ordering::Equal`][crate::Ordering::Equal] may not do so anymore.</span>
+    <span class="doccomment">///   that did return [`Ordering::Equal`][crate::Ordering::Equal] may not do so anymore.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_CHANGE_MORE_STRICT&quot;</span>)]</span>
     <span class="ident">MoreStrict</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -20271,12 +20271,12 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_PARTIAL&quot;</span>)]</span>
     <span class="ident">Partial</span>,
     <span class="doccomment">/// No order, all elements are considered equal.</span>
-    <span class="doccomment">///  `gtk_sorter_compare()` will only return [`Ordering::Equal`][crate::Ordering::Equal].</span>
+    <span class="doccomment">///   gtk_sorter_compare() will only return [`Ordering::Equal`][crate::Ordering::Equal].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
-    <span class="doccomment">/// A total order. `gtk_sorter_compare()` will only</span>
-    <span class="doccomment">///  return [`Ordering::Equal`][crate::Ordering::Equal] if an item is compared with itself. Two</span>
-    <span class="doccomment">///  different items will never cause this value to be returned.</span>
+    <span class="doccomment">/// A total order. gtk_sorter_compare() will only</span>
+    <span class="doccomment">///   return [`Ordering::Equal`][crate::Ordering::Equal] if an item is compared with itself. Two</span>
+    <span class="doccomment">///   different items will never cause this value to be returned.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_TOTAL&quot;</span>)]</span>
     <span class="ident">Total</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -20361,18 +20361,18 @@
 <span class="doccomment">/// Determines whether the spin button displays values outside the adjustment</span>
 <span class="doccomment">/// bounds.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See [``SpinButton::set_update_policy()``][crate::`SpinButton::set_update_policy()`].</span>
+<span class="doccomment">/// See [`SpinButton::set_update_policy()`][crate::SpinButton::set_update_policy()].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSpinButtonUpdatePolicy&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SpinButtonUpdatePolicy</span> {
     <span class="doccomment">/// When refreshing your [`SpinButton`][crate::SpinButton], the value is</span>
-    <span class="doccomment">///  always displayed</span>
+    <span class="doccomment">///   always displayed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_UPDATE_ALWAYS&quot;</span>)]</span>
     <span class="ident">Always</span>,
     <span class="doccomment">/// When refreshing your [`SpinButton`][crate::SpinButton], the value is</span>
-    <span class="doccomment">///  only displayed if it is valid within the bounds of the spin button&#39;s</span>
-    <span class="doccomment">///  adjustment</span>
+    <span class="doccomment">///   only displayed if it is valid within the bounds of the spin button&#39;s</span>
+    <span class="doccomment">///   adjustment</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_UPDATE_IF_VALID&quot;</span>)]</span>
     <span class="ident">IfValid</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -20452,7 +20452,7 @@
 }
 
 <span class="doccomment">/// The values of the GtkSpinType enumeration are used to specify the</span>
-<span class="doccomment">/// change to make in [`SpinButton::spin()`][crate::SpinButton::spin()].</span>
+<span class="doccomment">/// change to make in gtk_spin_button_spin().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkSpinType&quot;</span>)]</span>
@@ -20790,15 +20790,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkStringFilterMatchMode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">StringFilterMatchMode</span> {
     <span class="doccomment">/// The search string and</span>
-    <span class="doccomment">///  text must match exactly.</span>
+    <span class="doccomment">///   text must match exactly.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STRING_FILTER_MATCH_MODE_EXACT&quot;</span>)]</span>
     <span class="ident">Exact</span>,
     <span class="doccomment">/// The search string</span>
-    <span class="doccomment">///  must be contained as a substring inside the text.</span>
+    <span class="doccomment">///   must be contained as a substring inside the text.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STRING_FILTER_MATCH_MODE_SUBSTRING&quot;</span>)]</span>
     <span class="ident">Substring</span>,
     <span class="doccomment">/// The text must begin</span>
-    <span class="doccomment">///  with the search string.</span>
+    <span class="doccomment">///   with the search string.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STRING_FILTER_MATCH_MODE_PREFIX&quot;</span>)]</span>
     <span class="ident">Prefix</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -21018,19 +21018,19 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SYSTEM_SETTING_FONT_NAME&quot;</span>)]</span>
     <span class="ident">FontName</span>,
     <span class="doccomment">/// The font configuration has changed in a way that</span>
-    <span class="doccomment">///  requires text to be redrawn. This can be any of the</span>
-    <span class="doccomment">///  `property::Settings::gtk-xft-antialias`,</span>
-    <span class="doccomment">///  `property::Settings::gtk-xft-hinting`,</span>
-    <span class="doccomment">///  `property::Settings::gtk-xft-hintstyle`,</span>
-    <span class="doccomment">///  `property::Settings::gtk-xft-rgba` or</span>
-    <span class="doccomment">///  `property::Settings::gtk-fontconfig-timestamp` settings</span>
+    <span class="doccomment">///   requires text to be redrawn. This can be any of the</span>
+    <span class="doccomment">///   `property::Settings::gtk-xft-antialias`,</span>
+    <span class="doccomment">///   `property::Settings::gtk-xft-hinting`,</span>
+    <span class="doccomment">///   `property::Settings::gtk-xft-hintstyle`,</span>
+    <span class="doccomment">///   `property::Settings::gtk-xft-rgba` or</span>
+    <span class="doccomment">///   `property::Settings::gtk-fontconfig-timestamp` settings</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SYSTEM_SETTING_FONT_CONFIG&quot;</span>)]</span>
     <span class="ident">FontConfig</span>,
     <span class="doccomment">/// The display has changed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SYSTEM_SETTING_DISPLAY&quot;</span>)]</span>
     <span class="ident">Display</span>,
     <span class="doccomment">/// The icon theme has changed in a way that requires</span>
-    <span class="doccomment">///  icons to be looked up again</span>
+    <span class="doccomment">///   icons to be looked up again</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SYSTEM_SETTING_ICON_THEME&quot;</span>)]</span>
     <span class="ident">IconTheme</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -21218,11 +21218,11 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkTextExtendSelection&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TextExtendSelection</span> {
     <span class="doccomment">/// Selects the current word. It is triggered by</span>
-    <span class="doccomment">///  a double-click for example.</span>
+    <span class="doccomment">///   a double-click for example.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_EXTEND_SELECTION_WORD&quot;</span>)]</span>
     <span class="ident">Word</span>,
     <span class="doccomment">/// Selects the current line. It is triggered by</span>
-    <span class="doccomment">///  a triple-click for example.</span>
+    <span class="doccomment">///   a triple-click for example.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_EXTEND_SELECTION_LINE&quot;</span>)]</span>
     <span class="ident">Line</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -21500,7 +21500,7 @@
     }
 }
 
-<span class="doccomment">/// The sizing method the column uses to determine its width. Please note</span>
+<span class="doccomment">/// The sizing method the column uses to determine its width.  Please note</span>
 <span class="doccomment">/// that [`Autosize`][Self::Autosize] are inefficient for large views, and</span>
 <span class="doccomment">/// can make columns appear choppy.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -21793,7 +21793,7 @@
     }
 }
 
-<span class="doccomment">/// See also [`PrintSettings::set_paper_width()`][crate::PrintSettings::set_paper_width()].</span>
+<span class="doccomment">/// See also gtk_print_settings_set_paper_width().</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkUnit&quot;</span>)]</span>
@@ -21901,15 +21901,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_WRAP_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// wrap text, breaking lines anywhere the cursor can</span>
-    <span class="doccomment">///  appear (between characters, usually - if you want to be technical,</span>
-    <span class="doccomment">///  between graphemes, see `pango_get_log_attrs()`)</span>
+    <span class="doccomment">///   appear (between characters, usually - if you want to be technical,</span>
+    <span class="doccomment">///   between graphemes, see pango_get_log_attrs())</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_WRAP_CHAR&quot;</span>)]</span>
     <span class="ident">Char</span>,
     <span class="doccomment">/// wrap text, breaking lines in between words</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_WRAP_WORD&quot;</span>)]</span>
     <span class="ident">Word</span>,
     <span class="doccomment">/// wrap text, breaking lines in between words, or if</span>
-    <span class="doccomment">///  that is not enough, also between graphemes</span>
+    <span class="doccomment">///   that is not enough, also between graphemes</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_WRAP_WORD_CHAR&quot;</span>)]</span>
     <span class="ident">WordChar</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>

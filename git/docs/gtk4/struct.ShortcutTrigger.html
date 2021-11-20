@@ -88,10 +88,10 @@ When parsing failed, <a href="https://doc.rust-lang.org/nightly/core/option/enum
 <p>The accepted strings are:</p>
 <ul>
 <li><code>never</code>, for <a href="struct.NeverTrigger.html" title="crate::NeverTrigger"><code>NeverTrigger</code></a></li>
-<li>a string parsed by <a href="functions/fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a>, for a <a href="struct.KeyvalTrigger.html" title="crate::KeyvalTrigger"><code>KeyvalTrigger</code></a>, e.g. ``<Control><code>C</code></li>
+<li>a string parsed by gtk_accelerator_parse(), for a <a href="struct.KeyvalTrigger.html" title="crate::KeyvalTrigger"><code>KeyvalTrigger</code></a>, e.g. <code>&lt;Control&gt;C</code></li>
 <li>underscore, followed by a single character, for <a href="struct.MnemonicTrigger.html" title="crate::MnemonicTrigger"><code>MnemonicTrigger</code></a>, e.g. <code>_l</code></li>
 <li>two valid trigger strings, separated by a <code>|</code> character, for a
-<a href="struct.AlternativeTrigger.html" title="crate::AlternativeTrigger"><code>AlternativeTrigger</code></a>: ``<Control><code>q|</code><Control><code>w</code></li>
+<a href="struct.AlternativeTrigger.html" title="crate::AlternativeTrigger"><code>AlternativeTrigger</code></a>: <code>&lt;Control&gt;q|&lt;Control&gt;w</code></li>
 </ul>
 <p>Note that you will have to escape the <code>&lt;</code> and <code>&gt;</code> characters when specifying
 triggers in XML files, such as GtkBuilder ui files. Use <code>&amp;lt;</code> instead of

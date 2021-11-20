@@ -90,8 +90,8 @@ emit signals for each phase that has been requested. (See the signals of the
 are most interesting for application writers, and are used to update the
 animations, using the frame time given by <a href="struct.FrameClock.html#method.frame_time" title="Self::frame_time()"><code>frame_time()</code></a>.</p>
 <p>The frame time is reported in microseconds and generally in the same
-timescale as <code>g_get_monotonic_time()</code>, however, it is not the same
-as <code>g_get_monotonic_time()</code>. The frame time does not advance during
+timescale as g_get_monotonic_time(), however, it is not the same
+as g_get_monotonic_time(). The frame time does not advance during
 the time a frame is being painted, and outside of a frame, an attempt
 is made so that all calls to <a href="struct.FrameClock.html#method.frame_time" title="Self::frame_time()"><code>frame_time()</code></a> that
 are called at a “similar” time get the same value. This means that
@@ -104,7 +104,7 @@ they will stay exactly synchronized.</p>
 <p>Until a matching call to <a href="struct.FrameClock.html#method.end_updating" title="Self::end_updating()"><code>end_updating()</code></a> is made,
 the frame clock will continually request a new frame with the
 <a href="struct.FrameClockPhase.html#associatedconstant.UPDATE" title="crate::FrameClockPhase::UPDATE"><code>FrameClockPhase::UPDATE</code></a> phase. This function may be called multiple
-times and frames will be requested until <a href="struct.FrameClock.html#method.end_updating" title="Self::end_updating()"><code>end_updating()</code></a>
+times and frames will be requested until gdk_frame_clock_end_updating()
 is called the same number of times.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.end_updating" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#79-83" title="goto source code">[src]</a></div><a href="#method.end_updating" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.end_updating" class="fnname">end_updating</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Stops updates for an animation.</p>
 <p>See the documentation for <a href="struct.FrameClock.html#method.begin_updating" title="Self::begin_updating()"><code>begin_updating()</code></a>.</p>
@@ -115,7 +115,7 @@ frame currently being processed, or even no frame is being
 processed, for the previous frame. Before any frames have been
 processed, returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.fps" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#111-113" title="goto source code">[src]</a></div><a href="#method.fps" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.fps" class="fnname">fps</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Calculates the current frames-per-second, based on the
-frame timings of <code>self</code>.</p>
+frame timings of @self.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the current fps, as a <code>double</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.frame_counter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#125-127" title="goto source code">[src]</a></div><a href="#method.frame_counter" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.frame_counter" class="fnname">frame_counter</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></h4></div></summary><div class="docblock"><p><a href="struct.FrameClock.html" title="crate::FrameClock"><code>FrameClock</code></a> maintains a 64-bit counter that increments for
@@ -132,7 +132,7 @@ the actual previous frame time, or if that’s too old, an updated
 time.</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>a timestamp in microseconds, in the timescale of
-of <code>g_get_monotonic_time()</code>.</p>
+of g_get_monotonic_time().</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.history_start" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#163-165" title="goto source code">[src]</a></div><a href="#method.history_start" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.history_start" class="fnname">history_start</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></h4></div></summary><div class="docblock"><p>Returns the frame counter for the oldest frame available in history.</p>
 <p><a href="struct.FrameClock.html" title="crate::FrameClock"><code>FrameClock</code></a> internally keeps a history of <a href="struct.FrameTimings.html" title="crate::FrameTimings"><code>FrameTimings</code></a>
 objects for recent frames that can be retrieved with
@@ -149,7 +149,7 @@ that is available in the internal frame history of the
 known presentation time and refresh interval, and assuming that
 presentation times are separated by the refresh interval,
 predicts a presentation time that is a multiple of the refresh
-interval after the last presentation time, and later than <code>base_time</code>.</p>
+interval after the last presentation time, and later than @base_time.</p>
 <h6 id="base_time" class="section-header"><a href="#base_time"><code>base_time</code></a></h6>
 <p>base time for determining a presentaton time</p>
 <h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5><h6 id="refresh_interval_return" class="section-header"><a href="#refresh_interval_return"><code>refresh_interval_return</code></a></h6>
@@ -174,7 +174,7 @@ for the specified frame, or <a href="https://doc.rust-lang.org/nightly/core/opti
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.request_phase" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#246-250" title="goto source code">[src]</a></div><a href="#method.request_phase" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.request_phase" class="fnname">request_phase</a>(&amp;self, phase: <a class="struct" href="struct.FrameClockPhase.html" title="struct gdk4::FrameClockPhase">FrameClockPhase</a>)</h4></div></summary><div class="docblock"><p>Asks the frame clock to run a particular phase.</p>
 <p>The signal corresponding the requested phase will be emitted the next
 time the frame clock processes. Multiple calls to
-<a href="struct.FrameClock.html#method.request_phase" title="Self::request_phase()"><code>request_phase()</code></a> will be combined together
+gdk_frame_clock_request_phase() will be combined together
 and only one frame processed. If you are displaying animated
 content and want to continually request the
 <a href="struct.FrameClockPhase.html#associatedconstant.UPDATE" title="crate::FrameClockPhase::UPDATE"><code>FrameClockPhase::UPDATE</code></a> phase for a period of time,
@@ -206,7 +206,7 @@ event processing. Applications should not handle this signal.</p>
 of the frame.</p>
 <p>Animations should be updated using <a href="struct.FrameClock.html#method.frame_time" title="Self::frame_time()"><code>frame_time()</code></a>.
 Applications can connect directly to this signal, or use
-<code>Gtk::</code>Widget::add_tick_callback()`` as a more convenient interface.</p>
+<code>Gtk::Widget::add_tick_callback()</code> as a more convenient interface.</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#16-58" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.FrameClock.html" title="struct gdk4::FrameClock">FrameClock</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#16-58" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.FrameClock.html" title="struct gdk4::FrameClock">FrameClock</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone_from" class="method trait-impl has-srclink"><div class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130" title="goto source code">[src]</a></div><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></div></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Debug" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#16-58" title="goto source code">[src]</a></div><a href="#impl-Debug" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.FrameClock.html" title="struct gdk4::FrameClock">FrameClock</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.fmt" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/frame_clock.rs.html#16-58" title="goto source code">[src]</a></div><a href="#method.fmt" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fnname">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></h4></div></summary><div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>

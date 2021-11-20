@@ -93,9 +93,9 @@ single and multiple presses.</p>
 <h6 id="y" class="section-header"><a href="#y"><code>y</code></a></h6>
 <p>The Y coordinate, in widget allocation coordinates</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_released" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/gesture_click.rs.html#107-129" title="goto source code">[src]</a></div><a href="#method.connect_released" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_released" class="fnname">connect_released</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when a button or touch is released.</p>
-<p><code>n_press</code> will report the number of press that is paired to
+<p>@n_press will report the number of press that is paired to
 this event, note that <code>signal::GestureClick::stopped</code> may
-have been emitted between the press and its release, <code>n_press</code>
+have been emitted between the press and its release, @n_press
 will only start over at the next press.</p>
 <h6 id="n_press-1" class="section-header"><a href="#n_press-1"><code>n_press</code></a></h6>
 <p>number of press that is paired with this release</p>

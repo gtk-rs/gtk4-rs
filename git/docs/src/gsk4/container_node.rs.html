@@ -171,7 +171,7 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ContainerNode</span> {
-    <span class="doccomment">/// Creates a new [`RenderNode`][crate::RenderNode] instance for holding the given `children`.</span>
+    <span class="doccomment">/// Creates a new [`RenderNode`][crate::RenderNode] instance for holding the given @children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The new node will acquire a reference to each of the children.</span>
     <span class="doccomment">/// ## `children`</span>
@@ -192,13 +192,13 @@
         }
     }
 
-    <span class="doccomment">/// Gets one of the children of `container`.</span>
+    <span class="doccomment">/// Gets one of the children of @container.</span>
     <span class="doccomment">/// ## `idx`</span>
     <span class="doccomment">/// the position of the child to get</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `idx`&#39;th child of `container`</span>
+    <span class="doccomment">/// the @idx&#39;th child of @container</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_container_node_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
@@ -210,7 +210,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the number of direct children of `self`.</span>
+    <span class="doccomment">/// Retrieves the number of direct children of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

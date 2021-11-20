@@ -4759,7 +4759,7 @@
     <span class="doccomment">/// Tags should be in the [`TextTagTable`][crate::TextTagTable] for a given</span>
     <span class="doccomment">/// [`TextBuffer`][crate::TextBuffer] before using them with that buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `Gtk::`TextBuffer::create_tag()`` is the best way to create tags.</span>
+    <span class="doccomment">/// `Gtk::TextBuffer::create_tag()` is the best way to create tags.</span>
     <span class="doccomment">/// See “gtk4-demo” for numerous examples.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For each property of [`TextTag`][crate::TextTag], there is a “set” property, e.g.</span>
@@ -5403,7 +5403,7 @@
     <span class="doccomment">/// If not set, an appropriate default will be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the initial value of this property depends</span>
-    <span class="doccomment">/// on the current locale, see also [``default_language()``][`crate::default_language()`].</span>
+    <span class="doccomment">/// on the current locale, see also [`default_language()`][crate::default_language()].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">language</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">language</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">language</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">language</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -5797,7 +5797,7 @@
     <span class="doccomment">/// Sets the priority of a [`TextTag`][crate::TextTag].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Valid priorities start at 0 and go to one less than</span>
-    <span class="doccomment">/// [``TextTagTable::size()``][crate::`TextTagTable::size()`]. Each tag in a table</span>
+    <span class="doccomment">/// [`TextTagTable::size()`][crate::TextTagTable::size()]. Each tag in a table</span>
     <span class="doccomment">/// has a unique priority; setting the priority of one tag shifts</span>
     <span class="doccomment">/// the priorities of all the other tags in the table to maintain</span>
     <span class="doccomment">/// a unique priority for each tag.</span>
@@ -5806,7 +5806,7 @@
     <span class="doccomment">/// attribute. When adding a tag to a tag table, it will be assigned</span>
     <span class="doccomment">/// the highest priority in the table by default; so normally the</span>
     <span class="doccomment">/// precedence of a set of tags is the order in which they were added</span>
-    <span class="doccomment">/// to the table, or created with `Gtk::`TextBuffer::create_tag()``,</span>
+    <span class="doccomment">/// to the table, or created with `Gtk::TextBuffer::create_tag()`,</span>
     <span class="doccomment">/// which adds the tag to the buffer’s table automatically.</span>
     <span class="doccomment">/// ## `priority`</span>
     <span class="doccomment">/// the new priority</span>
@@ -6003,7 +6003,7 @@
     <span class="doccomment">/// If not set, an appropriate default will be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the initial value of this property depends</span>
-    <span class="doccomment">/// on the current locale, see also [``default_language()``][`crate::default_language()`].</span>
+    <span class="doccomment">/// on the current locale, see also [`default_language()`][crate::default_language()].</span>
     <span class="kw">fn</span> <span class="ident">language</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The language this text is in, as an ISO code.</span>
@@ -6012,7 +6012,7 @@
     <span class="doccomment">/// If not set, an appropriate default will be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the initial value of this property depends</span>
-    <span class="doccomment">/// on the current locale, see also [``default_language()``][`crate::default_language()`].</span>
+    <span class="doccomment">/// on the current locale, see also [`default_language()`][crate::default_language()].</span>
     <span class="kw">fn</span> <span class="ident">set_language</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">language</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;language-set&quot;</span>)]</span>

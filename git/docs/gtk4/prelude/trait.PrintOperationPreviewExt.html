@@ -91,7 +91,7 @@ have been selected for printing.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.render_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#76" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.render_page" class="fnname">render_page</a>(&amp;self, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Renders a page to the preview.</p>
 <p>This is using the print context that was passed to the
 <code>signal::PrintOperation::preview</code> handler together
-with <code>self</code>.</p>
+with @self.</p>
 <p>A custom print preview should use this function to render
 the currently selected page.</p>
 <p>Note that this function requires a suitable cairo context to
@@ -99,8 +99,8 @@ be associated with the print context.</p>
 <h6 id="page_nr-1" class="section-header"><a href="#page_nr-1"><code>page_nr</code></a></h6>
 <p>the page to render</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_got_page_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#88-91" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_got_page_size" class="fnname">connect_got_page_size</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted once for each page that gets rendered to the preview.</p>
-<p>A handler for this signal should update the <code>context</code>
-according to <code>page_setup</code> and set up a suitable cairo
+<p>A handler for this signal should update the @context
+according to @page_setup and set up a suitable cairo
 context, using <a href="../struct.PrintContext.html#method.set_cairo_context" title="crate::PrintContext::set_cairo_context()"><code>PrintContext::set_cairo_context()</code></a>.</p>
 <h6 id="context" class="section-header"><a href="#context"><code>context</code></a></h6>
 <p>the current <a href="../struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a></p>

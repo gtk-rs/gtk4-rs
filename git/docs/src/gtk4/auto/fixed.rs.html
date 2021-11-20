@@ -736,20 +736,20 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// For most applications, you should not use this container! It keeps</span>
     <span class="doccomment">/// you from having to learn about the other GTK containers, but it</span>
-    <span class="doccomment">/// results in broken applications. With [`Fixed`][crate::Fixed], the following</span>
+    <span class="doccomment">/// results in broken applications.  With [`Fixed`][crate::Fixed], the following</span>
     <span class="doccomment">/// things will result in truncated text, overlapping widgets, and</span>
     <span class="doccomment">/// other display bugs:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Themes, which may change widget sizes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Fonts other than the one you used to write the app will of course</span>
-    <span class="doccomment">///  change the size of widgets containing text; keep in mind that</span>
-    <span class="doccomment">///  users may use a larger font because of difficulty reading the</span>
-    <span class="doccomment">///  default, or they may be using a different OS that provides different fonts.</span>
+    <span class="doccomment">///   change the size of widgets containing text; keep in mind that</span>
+    <span class="doccomment">///   users may use a larger font because of difficulty reading the</span>
+    <span class="doccomment">///   default, or they may be using a different OS that provides different fonts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Translation of text into other languages changes its size. Also,</span>
-    <span class="doccomment">///  display of non-English text will use a different font in many</span>
-    <span class="doccomment">///  cases.</span>
+    <span class="doccomment">///   display of non-English text will use a different font in many</span>
+    <span class="doccomment">///   cases.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In addition, [`Fixed`][crate::Fixed] does not pay attention to text direction and</span>
     <span class="doccomment">/// thus may produce unwanted results if your app is run under right-to-left</span>
@@ -982,7 +982,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1008,9 +1008,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1052,7 +1052,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1065,7 +1065,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1078,7 +1078,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1088,7 +1088,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1130,7 +1130,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1147,7 +1147,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1212,26 +1212,26 @@
     <span class="doccomment">/// Retrieves the translation transformation of the</span>
     <span class="doccomment">/// given child [`Widget`][crate::Widget] in the [`Fixed`][crate::Fixed].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [``child_transform()``][`Self::child_transform()`].</span>
+    <span class="doccomment">/// See also: [`child_transform()`][Self::child_transform()].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a child of `self`</span>
+    <span class="doccomment">/// a child of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `x`</span>
-    <span class="doccomment">/// the horizontal position of the `widget`</span>
+    <span class="doccomment">/// the horizontal position of the @widget</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `y`</span>
-    <span class="doccomment">/// the vertical position of the `widget`</span>
+    <span class="doccomment">/// the vertical position of the @widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_fixed_get_child_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">child_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; (<span class="ident">f64</span>, <span class="ident">f64</span>);
 
-    <span class="doccomment">/// Retrieves the transformation for `widget` set using</span>
-    <span class="doccomment">/// [`set_child_transform()`][Self::set_child_transform()].</span>
+    <span class="doccomment">/// Retrieves the transformation for @widget set using</span>
+    <span class="doccomment">/// gtk_fixed_set_child_transform().</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a [`Widget`][crate::Widget], child of `self`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget], child of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1254,22 +1254,22 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_fixed_put&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">put</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>);
 
-    <span class="doccomment">/// Removes a child from `self`.</span>
+    <span class="doccomment">/// Removes a child from @self.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the child widget to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_fixed_remove&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the transformation for `widget`.</span>
+    <span class="doccomment">/// Sets the transformation for @widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience function that retrieves the</span>
     <span class="doccomment">/// [`FixedLayoutChild`][crate::FixedLayoutChild] instance associated to</span>
-    <span class="doccomment">/// `widget` and calls [``FixedLayoutChild::set_transform()``][crate::`FixedLayoutChild::set_transform()`].</span>
+    <span class="doccomment">/// @widget and calls [`FixedLayoutChild::set_transform()`][crate::FixedLayoutChild::set_transform()].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a [`Widget`][crate::Widget], child of `self`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget], child of @self</span>
     <span class="doccomment">/// ## `transform`</span>
-    <span class="doccomment">/// the transformation assigned to `widget`</span>
-    <span class="doccomment">///  to reset `widget`&#39;s transform</span>
+    <span class="doccomment">/// the transformation assigned to @widget</span>
+    <span class="doccomment">///   to reset @widget&#39;s transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_fixed_set_child_transform&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_child_transform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">transform</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gsk::Transform</span><span class="op">&gt;</span>);
 }

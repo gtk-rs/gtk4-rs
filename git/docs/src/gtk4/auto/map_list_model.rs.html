@@ -392,7 +392,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_map_list_model_get_model</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Checks if a map function is currently set on `self`.</span>
+    <span class="doccomment">/// Checks if a map function is currently set on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -410,8 +410,8 @@
     <span class="doccomment">/// Note that [`MapListModel`][crate::MapListModel] may call this function multiple times</span>
     <span class="doccomment">/// on the same item, because it may delete items it doesn&#39;t need anymore.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK makes no effort to ensure that `map_func` conforms to the item type</span>
-    <span class="doccomment">/// of `self`. It assumes that the caller knows what they are doing and the map</span>
+    <span class="doccomment">/// GTK makes no effort to ensure that @map_func conforms to the item type</span>
+    <span class="doccomment">/// of @self. It assumes that the caller knows what they are doing and the map</span>
     <span class="doccomment">/// function returns items of the appropriate type.</span>
     <span class="doccomment">/// ## `map_func`</span>
     <span class="doccomment">/// map function</span>
@@ -447,7 +447,7 @@
 
     <span class="doccomment">/// Sets the model to be mapped.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK makes no effort to ensure that `model` conforms to the item type</span>
+    <span class="doccomment">/// GTK makes no effort to ensure that @model conforms to the item type</span>
     <span class="doccomment">/// expected by the map function. It assumes that the caller knows what</span>
     <span class="doccomment">/// they are doing and have set up an appropriate map function.</span>
     <span class="doccomment">/// ## `model`</span>

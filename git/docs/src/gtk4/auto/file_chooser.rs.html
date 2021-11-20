@@ -897,15 +897,15 @@
     <span class="doccomment">/// sources and in various flavours, so lets explain the terminology here:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Bookmarks: are created by the user, by dragging folders from the</span>
-    <span class="doccomment">///  right pane to the left pane, or by using the “Add”. Bookmarks</span>
-    <span class="doccomment">///  can be renamed and deleted by the user.</span>
+    <span class="doccomment">///   right pane to the left pane, or by using the “Add”. Bookmarks</span>
+    <span class="doccomment">///   can be renamed and deleted by the user.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Shortcuts: can be provided by the application. For example, a Paint</span>
-    <span class="doccomment">///  program may want to add a shortcut for a Clipart folder. Shortcuts</span>
-    <span class="doccomment">///  cannot be modified by the user.</span>
+    <span class="doccomment">///   program may want to add a shortcut for a Clipart folder. Shortcuts</span>
+    <span class="doccomment">///   cannot be modified by the user.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Volumes: are provided by the underlying filesystem abstraction. They are</span>
-    <span class="doccomment">///  the “roots” of the filesystem.</span>
+    <span class="doccomment">///   the “roots” of the filesystem.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # File Names and Encodings</span>
     <span class="doccomment">///</span>
@@ -916,7 +916,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can add extra widgets to a file chooser to provide options</span>
     <span class="doccomment">/// that are not present in the default design, by using</span>
-    <span class="doccomment">/// [``FileChooserExtManual::add_choice()``][crate::prelude::`FileChooserExtManual::add_choice()`]. Each choice has an identifier and</span>
+    <span class="doccomment">/// [`FileChooserExtManual::add_choice()`][crate::prelude::FileChooserExtManual::add_choice()]. Each choice has an identifier and</span>
     <span class="doccomment">/// a user visible label; additionally, each choice can have multiple</span>
     <span class="doccomment">/// options. If a choice has no option, it will be rendered as a</span>
     <span class="doccomment">/// check button with the given label; if a choice has options, it will</span>
@@ -943,12 +943,12 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`FileChooserDialog`][struct@crate::FileChooserDialog], [`FileChooserNative`][struct@crate::FileChooserNative], [`FileChooserWidget`][struct@crate::FileChooserWidget], [`FileChooser`][struct@crate::FileChooser]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FileChooserExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Adds `filter` to the list of filters that the user can select between.</span>
+    <span class="doccomment">/// Adds @filter to the list of filters that the user can select between.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When a filter is selected, only files that are passed by that</span>
     <span class="doccomment">/// filter are displayed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the `self` takes ownership of the filter if it is floating,</span>
+    <span class="doccomment">/// Note that the @self takes ownership of the filter if it is floating,</span>
     <span class="doccomment">/// so you have to ref and sink it if you want to keep a reference.</span>
     <span class="doccomment">/// ## `filter`</span>
     <span class="doccomment">/// a [`FileFilter`][crate::FileFilter]</span>
@@ -963,7 +963,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the folder could be added successfully,</span>
-    <span class="doccomment">///  [`false`] otherwise.</span>
+    <span class="doccomment">///   [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_add_shortcut_folder&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_shortcut_folder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">folder</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
@@ -996,7 +996,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_create_folders&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">creates_folders</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the current folder of `self` as `GFile`.</span>
+    <span class="doccomment">/// Gets the current folder of @self as `GFile`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1013,10 +1013,10 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The raw text from the file chooser’s “Name” entry. Free with</span>
-    <span class="doccomment">///  `g_free()`. Note that this string is not a full pathname or URI; it is</span>
-    <span class="doccomment">///  whatever the contents of the entry are. Note also that this string is</span>
-    <span class="doccomment">///  in UTF-8 encoding, which is not necessarily the system’s encoding for</span>
-    <span class="doccomment">///  filenames.</span>
+    <span class="doccomment">///   g_free(). Note that this string is not a full pathname or URI; it is</span>
+    <span class="doccomment">///   whatever the contents of the entry are. Note also that this string is</span>
+    <span class="doccomment">///   in UTF-8 encoding, which is not necessarily the system’s encoding for</span>
+    <span class="doccomment">///   filenames.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_get_current_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -1033,19 +1033,19 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a selected `GFile`. You own the</span>
-    <span class="doccomment">///  returned file; use `g_object_unref()` to release it.</span>
+    <span class="doccomment">///   returned file; use g_object_unref() to release it.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_get_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_file&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Lists all the selected files and subfolders in the current folder</span>
-    <span class="doccomment">/// of `self` as `GFile`.</span>
+    <span class="doccomment">/// of @self as `GFile`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a list model containing a `GFile` for each</span>
-    <span class="doccomment">///  selected file and subfolder in the current folder. Free the returned</span>
-    <span class="doccomment">///  list with `g_object_unref()`.</span>
+    <span class="doccomment">///   selected file and subfolder in the current folder. Free the returned</span>
+    <span class="doccomment">///   list with g_object_unref().</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_get_files&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_files&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">files</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>;
@@ -1061,16 +1061,16 @@
 
     <span class="doccomment">/// Gets the current set of user-selectable filters, as a list model.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``add_filter()``][`Self::add_filter()`] and</span>
-    <span class="doccomment">/// [``remove_filter()``][`Self::remove_filter()`] for changing individual filters.</span>
+    <span class="doccomment">/// See [`add_filter()`][Self::add_filter()] and</span>
+    <span class="doccomment">/// [`remove_filter()`][Self::remove_filter()] for changing individual filters.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You should not modify the returned list model. Future changes to</span>
-    <span class="doccomment">/// `self` may or may not affect the returned model.</span>
+    <span class="doccomment">/// @self may or may not affect the returned model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GListModel` containing the current set</span>
-    <span class="doccomment">///  of user-selectable filters.</span>
+    <span class="doccomment">///   of user-selectable filters.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_get_filters&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_filters&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">filters</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>;
@@ -1088,7 +1088,7 @@
     <span class="doccomment">/// Queries the list of shortcut folders in the file chooser.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You should not modify the returned list model. Future changes to</span>
-    <span class="doccomment">/// `self` may or may not affect the returned model.</span>
+    <span class="doccomment">/// @self may or may not affect the returned model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1097,13 +1097,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_shortcut_folders&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shortcut_folders</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Removes a &#39;choice&#39; that has been added with [`FileChooserExtManual::add_choice()`][crate::prelude::FileChooserExtManual::add_choice()].</span>
+    <span class="doccomment">/// Removes a &#39;choice&#39; that has been added with gtk_file_chooser_add_choice().</span>
     <span class="doccomment">/// ## `id`</span>
     <span class="doccomment">/// the ID of the choice to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_remove_choice&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_choice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
-    <span class="doccomment">/// Removes `filter` from the list of filters that the user can select between.</span>
+    <span class="doccomment">/// Removes @filter from the list of filters that the user can select between.</span>
     <span class="doccomment">/// ## `filter`</span>
     <span class="doccomment">/// a [`FileFilter`][crate::FileFilter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_remove_filter&quot;</span>)]</span>
@@ -1116,7 +1116,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the folder could be removed successfully,</span>
-    <span class="doccomment">///  [`false`] otherwise.</span>
+    <span class="doccomment">///   [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_remove_shortcut_folder&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_shortcut_folder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">folder</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
@@ -1133,7 +1133,7 @@
     <span class="kw">fn</span> <span class="ident">set_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">action</span>: <span class="ident">FileChooserAction</span>);
 
     <span class="doccomment">/// Selects an option in a &#39;choice&#39; that has been added with</span>
-    <span class="doccomment">/// [`FileChooserExtManual::add_choice()`][crate::prelude::FileChooserExtManual::add_choice()].</span>
+    <span class="doccomment">/// gtk_file_chooser_add_choice().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For a boolean choice, the possible options are &quot;true&quot; and &quot;false&quot;.</span>
     <span class="doccomment">/// ## `id`</span>
@@ -1152,14 +1152,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_set_create_folders&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_create_folders</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">create_folders</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the current folder for `self` from a `GFile`.</span>
+    <span class="doccomment">/// Sets the current folder for @self from a `GFile`.</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// the `GFile` for the new folder</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the folder could be changed successfully, [`false`]</span>
-    <span class="doccomment">///  otherwise.</span>
+    <span class="doccomment">///   otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_set_current_folder&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_current_folder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
@@ -1168,27 +1168,27 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the name passed in here is a UTF-8 string rather</span>
     <span class="doccomment">/// than a filename. This function is meant for such uses as a</span>
-    <span class="doccomment">/// suggested name in a “Save As...” dialog. You can pass</span>
-    <span class="doccomment">/// “Untitled.doc” or a similarly suitable suggestion for the `name`.</span>
+    <span class="doccomment">/// suggested name in a “Save As...” dialog.  You can pass</span>
+    <span class="doccomment">/// “Untitled.doc” or a similarly suitable suggestion for the @name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to preselect a particular existing file, you should</span>
-    <span class="doccomment">/// use [``set_file()``][`Self::set_file()`] instead.</span>
+    <span class="doccomment">/// use [`set_file()`][Self::set_file()] instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Please see the documentation for those functions for an example</span>
-    <span class="doccomment">/// of using [``set_current_name()``][`Self::set_current_name()`] as well.</span>
+    <span class="doccomment">/// of using [`set_current_name()`][Self::set_current_name()] as well.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the filename to use, as a UTF-8 string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_set_current_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_current_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
-    <span class="doccomment">/// Sets `file` as the current filename for the file chooser.</span>
+    <span class="doccomment">/// Sets @file as the current filename for the file chooser.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This includes changing to the file’s parent folder and actually selecting</span>
-    <span class="doccomment">/// the file in list. If the `self` is in [`FileChooserAction::Save`][crate::FileChooserAction::Save] mode,</span>
+    <span class="doccomment">/// the file in list. If the @self is in [`FileChooserAction::Save`][crate::FileChooserAction::Save] mode,</span>
     <span class="doccomment">/// the file’s base name will also appear in the dialog’s file name entry.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the file name isn’t in the current folder of `self`, then the current</span>
-    <span class="doccomment">/// folder of `self` will be changed to the folder containing `file`.</span>
+    <span class="doccomment">/// If the file name isn’t in the current folder of @self, then the current</span>
+    <span class="doccomment">/// folder of @self will be changed to the folder containing @file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the file must exist, or nothing will be done except</span>
     <span class="doccomment">/// for the directory change.</span>

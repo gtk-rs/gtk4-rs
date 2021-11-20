@@ -173,13 +173,13 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="kw">impl</span> <span class="ident">CustomFilter</span> {
-    <span class="doccomment">/// Creates a new filter using the given `match_func` to filter</span>
+    <span class="doccomment">/// Creates a new filter using the given @match_func to filter</span>
     <span class="doccomment">/// items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `match_func` is [`None`], the filter matches all items.</span>
+    <span class="doccomment">/// If @match_func is [`None`], the filter matches all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the filter func changes its filtering behavior,</span>
-    <span class="doccomment">/// [`FilterExt::changed()`][crate::prelude::FilterExt::changed()] needs to be called.</span>
+    <span class="doccomment">/// gtk_filter_changed() needs to be called.</span>
     <span class="doccomment">/// ## `match_func`</span>
     <span class="doccomment">/// function to filter items</span>
     <span class="doccomment">///</span>
@@ -203,12 +203,12 @@
 
     <span class="doccomment">/// Sets the function used for filtering items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `match_func` is [`None`], the filter matches all items.</span>
+    <span class="doccomment">/// If @match_func is [`None`], the filter matches all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the filter func changes its filtering behavior,</span>
-    <span class="doccomment">/// [`FilterExt::changed()`][crate::prelude::FilterExt::changed()] needs to be called.</span>
+    <span class="doccomment">/// gtk_filter_changed() needs to be called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a previous function was set, its `user_destroy` will be</span>
+    <span class="doccomment">/// If a previous function was set, its @user_destroy will be</span>
     <span class="doccomment">/// called now.</span>
     <span class="doccomment">/// ## `match_func`</span>
     <span class="doccomment">/// function to filter items</span>

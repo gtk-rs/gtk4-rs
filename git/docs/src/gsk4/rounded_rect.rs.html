@@ -326,7 +326,7 @@
     <span class="doccomment">/// A rectangular region with rounded corners.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Application code should normalize rectangles using</span>
-    <span class="doccomment">/// [``normalize()``][`Self::normalize()`]; this function will ensure that</span>
+    <span class="doccomment">/// [`normalize()`][Self::normalize()]; this function will ensure that</span>
     <span class="doccomment">/// the bounds of the rectangle are normalized and ensure that the corner</span>
     <span class="doccomment">/// values are positive and the corners do not overlap.</span>
     <span class="doccomment">///</span>
@@ -335,7 +335,7 @@
     <span class="doccomment">/// will always return a normalized one.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The algorithm used for normalizing corner sizes is described in</span>
-    <span class="doccomment">/// [the CSS specification](https://drafts.csswg.org/css-backgrounds-3/`border`-radius).</span>
+    <span class="doccomment">/// [the CSS specification](https://drafts.csswg.org/css-backgrounds-3/#border-radius).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskRoundedRect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RoundedRect</span>(<span class="ident">BoxedInline</span><span class="op">&lt;</span><span class="ident">ffi::GskRoundedRect</span><span class="op">&gt;</span>);
 }
@@ -384,7 +384,7 @@
     <span class="doccomment">/// This function will implicitly normalize the [`RoundedRect`][crate::RoundedRect]</span>
     <span class="doccomment">/// before returning.</span>
     <span class="doccomment">/// ## `bounds`</span>
-    <span class="doccomment">/// a `graphene_rect_t` describing the bounds</span>
+    <span class="doccomment">/// a [`graphene::Rect`][crate::graphene::Rect] describing the bounds</span>
     <span class="doccomment">/// ## `top_left`</span>
     <span class="doccomment">/// the rounding radius of the top left corner</span>
     <span class="doccomment">/// ## `top_right`</span>
@@ -418,10 +418,10 @@
         }
     }
 
-    <span class="doccomment">/// Initializes `self` to the given `bounds` and sets the radius</span>
-    <span class="doccomment">/// of all four corners to `radius`.</span>
+    <span class="doccomment">/// Initializes @self to the given @bounds and sets the radius</span>
+    <span class="doccomment">/// of all four corners to @radius.</span>
     <span class="doccomment">/// ## `bounds`</span>
-    <span class="doccomment">/// a `graphene_rect_t`</span>
+    <span class="doccomment">/// a [`graphene::Rect`][crate::graphene::Rect]</span>
     <span class="doccomment">/// ## `radius`</span>
     <span class="doccomment">/// the border radius</span>
     <span class="doccomment">///</span>
@@ -451,7 +451,7 @@
         }
     }
 
-    <span class="doccomment">/// Offsets the bound&#39;s origin by `dx` and `dy`.</span>
+    <span class="doccomment">/// Offsets the bound&#39;s origin by @dx and @dy.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The size and corners of the rectangle are unchanged.</span>
     <span class="doccomment">/// ## `dx`</span>
@@ -476,7 +476,7 @@
     <span class="doccomment">/// the center of the corner circle intact. This emulates CSS behavior.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function also works for growing rectangles if you pass</span>
-    <span class="doccomment">/// negative values for the `top`, `right`, `bottom` or `left`.</span>
+    <span class="doccomment">/// negative values for the @top, @right, @bottom or @left.</span>
     <span class="doccomment">/// ## `top`</span>
     <span class="doccomment">/// How far to move the top side downwards</span>
     <span class="doccomment">/// ## `right`</span>
@@ -496,11 +496,11 @@
         }
     }
 
-    <span class="doccomment">/// Checks if all corners of `self` are right angles and the</span>
+    <span class="doccomment">/// Checks if all corners of @self are right angles and the</span>
     <span class="doccomment">/// rectangle covers all of its bounds.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This information can be used to decide if [``ClipNode::new()``][crate::`ClipNode::new()`]</span>
-    <span class="doccomment">/// or [``RoundedClipNode::new()``][crate::`RoundedClipNode::new()`] should be called.</span>
+    <span class="doccomment">/// This information can be used to decide if [`ClipNode::new()`][crate::ClipNode::new()]</span>
+    <span class="doccomment">/// or [`RoundedClipNode::new()`][crate::RoundedClipNode::new()] should be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -510,13 +510,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_rounded_rect_is_rectilinear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Checks if the given `point` is inside the rounded rectangle.</span>
+    <span class="doccomment">/// Checks if the given @point is inside the rounded rectangle.</span>
     <span class="doccomment">/// ## `point`</span>
     <span class="doccomment">/// the point to check</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `point` is inside the rounded rectangle</span>
+    <span class="doccomment">/// [`true`] if the @point is inside the rounded rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_contains_point&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">Point</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -527,13 +527,13 @@
         }
     }
 
-    <span class="doccomment">/// Checks if the given `rect` is contained inside the rounded rectangle.</span>
+    <span class="doccomment">/// Checks if the given @rect is contained inside the rounded rectangle.</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// the rectangle to check</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `rect` is fully contained inside the rounded rectangle</span>
+    <span class="doccomment">/// [`true`] if the @rect is fully contained inside the rounded rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_contains_rect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -544,13 +544,13 @@
         }
     }
 
-    <span class="doccomment">/// Checks if part of the given `rect` is contained inside the rounded rectangle.</span>
+    <span class="doccomment">/// Checks if part of the given @rect is contained inside the rounded rectangle.</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// the rectangle to check</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `rect` intersects with the rounded rectangle</span>
+    <span class="doccomment">/// [`true`] if the @rect intersects with the rounded rectangle</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_intersects_rect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersects_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {

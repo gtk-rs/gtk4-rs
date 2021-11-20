@@ -290,11 +290,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`AppLaunchContext`][struct@crate::AppLaunchContext]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AppLaunchContextExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Gets the [`Display`][crate::Display] that `self` is for.</span>
+    <span class="doccomment">/// Gets the [`Display`][crate::Display] that @self is for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the display of `self`</span>
+    <span class="doccomment">/// the display of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span>;
@@ -305,7 +305,7 @@
     <span class="doccomment">/// supports multiple workspaces, as described in the</span>
     <span class="doccomment">/// [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the workspace is not specified or `desktop` is set to -1,</span>
+    <span class="doccomment">/// When the workspace is not specified or @desktop is set to -1,</span>
     <span class="doccomment">/// it is up to the window manager to pick one, typically it will</span>
     <span class="doccomment">/// be the current workspace.</span>
     <span class="doccomment">/// ## `desktop`</span>
@@ -319,7 +319,7 @@
     <span class="doccomment">/// Window Managers can use this information when displaying startup</span>
     <span class="doccomment">/// notification.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also [``set_icon_name()``][`Self::set_icon_name()`].</span>
+    <span class="doccomment">/// See also [`set_icon_name()`][Self::set_icon_name()].</span>
     <span class="doccomment">/// ## `icon`</span>
     <span class="doccomment">/// a `GIcon`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_set_icon&quot;</span>)]</span>
@@ -327,11 +327,11 @@
 
     <span class="doccomment">/// Sets the icon for applications that are launched with this context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `icon_name` will be interpreted in the same way as the Icon field</span>
-    <span class="doccomment">/// in desktop files. See also [``set_icon()``][`Self::set_icon()`].</span>
+    <span class="doccomment">/// The @icon_name will be interpreted in the same way as the Icon field</span>
+    <span class="doccomment">/// in desktop files. See also [`set_icon()`][Self::set_icon()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If both `icon` and `icon_name` are set, the `icon_name` takes priority.</span>
-    <span class="doccomment">/// If neither `icon` or `icon_name` is set, the icon is taken from either</span>
+    <span class="doccomment">/// If both @icon and @icon_name are set, the @icon_name takes priority.</span>
+    <span class="doccomment">/// If neither @icon or @icon_name is set, the icon is taken from either</span>
     <span class="doccomment">/// the file that is passed to launched application or from the `GAppInfo`</span>
     <span class="doccomment">/// for the launched application itself.</span>
     <span class="doccomment">/// ## `icon_name`</span>
@@ -339,7 +339,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_set_icon_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the timestamp of `self`.</span>
+    <span class="doccomment">/// Sets the timestamp of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The timestamp should ideally be taken from the event that</span>
     <span class="doccomment">/// triggered the launch.</span>

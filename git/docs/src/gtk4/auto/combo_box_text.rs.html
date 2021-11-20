@@ -909,27 +909,27 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`ComboBoxText`][crate::ComboBoxText] hides the model-view complexity of [`ComboBox`][crate::ComboBox].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a [`ComboBoxText`][crate::ComboBoxText], use [``new()``][`Self::new()`] or</span>
-    <span class="doccomment">/// [``with_entry()``][`Self::with_entry()`].</span>
+    <span class="doccomment">/// To create a [`ComboBoxText`][crate::ComboBoxText], use [`new()`][Self::new()] or</span>
+    <span class="doccomment">/// [`with_entry()`][Self::with_entry()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can add items to a [`ComboBoxText`][crate::ComboBoxText] with</span>
-    <span class="doccomment">/// [``append_text()``][`Self::append_text()`],</span>
-    <span class="doccomment">/// [``insert_text()``][`Self::insert_text()`] or</span>
-    <span class="doccomment">/// [``prepend_text()``][`Self::prepend_text()`] and remove options with</span>
-    <span class="doccomment">/// [``remove()``][`Self::remove()`].</span>
+    <span class="doccomment">/// [`append_text()`][Self::append_text()],</span>
+    <span class="doccomment">/// [`insert_text()`][Self::insert_text()] or</span>
+    <span class="doccomment">/// [`prepend_text()`][Self::prepend_text()] and remove options with</span>
+    <span class="doccomment">/// [`remove()`][Self::remove()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the [`ComboBoxText`][crate::ComboBoxText] contains an entry (via the</span>
     <span class="doccomment">/// `property::ComboBox::has-entry` property), its contents can be retrieved</span>
-    <span class="doccomment">/// using [``active_text()``][`Self::active_text()`].</span>
+    <span class="doccomment">/// using [`active_text()`][Self::active_text()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You should not call [``ComboBoxExt::set_model()``][crate::prelude::`ComboBoxExt::set_model()`] or attempt to pack more</span>
+    <span class="doccomment">/// You should not call [`ComboBoxExt::set_model()`][crate::prelude::ComboBoxExt::set_model()] or attempt to pack more</span>
     <span class="doccomment">/// cells into this combo box via its [`CellLayout`][crate::CellLayout] interface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # GtkComboBoxText as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`ComboBoxText`][crate::ComboBoxText] implementation of the [`Buildable`][crate::Buildable] interface supports</span>
-    <span class="doccomment">/// adding items directly using the `&lt;items&gt;` element and specifying `&lt;item&gt;`</span>
-    <span class="doccomment">/// elements for each item. Each `&lt;item&gt;` element can specify the “id”</span>
+    <span class="doccomment">/// adding items directly using the &lt;items&gt; element and specifying &lt;item&gt;</span>
+    <span class="doccomment">/// elements for each item. Each &lt;item&gt; element can specify the “id”</span>
     <span class="doccomment">/// corresponding to the appended text and also supports the regular</span>
     <span class="doccomment">/// translation attributes “translatable”, “context” and “comments”.</span>
     <span class="doccomment">///</span>
@@ -1001,11 +1001,11 @@
         <span class="ident">ComboBoxTextBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Appends `text` to the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Appends @text to the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `id` is non-[`None`] then it is used as the ID of the row.</span>
+    <span class="doccomment">/// If @id is non-[`None`] then it is used as the ID of the row.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [``insert()``][`Self::insert()`]</span>
+    <span class="doccomment">/// This is the same as calling [`insert()`][Self::insert()]</span>
     <span class="doccomment">/// with a position of -1.</span>
     <span class="doccomment">/// ## `id`</span>
     <span class="doccomment">/// a string ID for this value</span>
@@ -1022,9 +1022,9 @@
         }
     }
 
-    <span class="doccomment">/// Appends `text` to the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Appends @text to the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [``insert_text()``][`Self::insert_text()`]</span>
+    <span class="doccomment">/// This is the same as calling [`insert_text()`][Self::insert_text()]</span>
     <span class="doccomment">/// with a position of -1.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// A string</span>
@@ -1035,18 +1035,18 @@
         }
     }
 
-    <span class="doccomment">/// Returns the currently active string in `self`.</span>
+    <span class="doccomment">/// Returns the currently active string in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no row is currently selected, [`None`] is returned.</span>
-    <span class="doccomment">/// If `self` contains an entry, this function will</span>
+    <span class="doccomment">/// If @self contains an entry, this function will</span>
     <span class="doccomment">/// return its contents (which will not necessarily</span>
     <span class="doccomment">/// be an item from the list).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly allocated</span>
-    <span class="doccomment">///  string containing the currently active text.</span>
-    <span class="doccomment">///  Must be freed with `g_free()`.</span>
+    <span class="doccomment">///   string containing the currently active text.</span>
+    <span class="doccomment">///   Must be freed with g_free().</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_text_get_active_text&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_active_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">active_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -1057,14 +1057,14 @@
         }
     }
 
-    <span class="doccomment">/// Inserts `text` at `position` in the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Inserts @text at @position in the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `id` is non-[`None`] then it is used as the ID of the row.</span>
+    <span class="doccomment">/// If @id is non-[`None`] then it is used as the ID of the row.</span>
     <span class="doccomment">/// See `property::ComboBox::id-column`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `position` is negative then `text` is appended.</span>
+    <span class="doccomment">/// If @position is negative then @text is appended.</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// An index to insert `text`</span>
+    <span class="doccomment">/// An index to insert @text</span>
     <span class="doccomment">/// ## `id`</span>
     <span class="doccomment">/// a string ID for this value</span>
     <span class="doccomment">/// ## `text`</span>
@@ -1081,14 +1081,14 @@
         }
     }
 
-    <span class="doccomment">/// Inserts `text` at `position` in the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Inserts @text at @position in the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `position` is negative then `text` is appended.</span>
+    <span class="doccomment">/// If @position is negative then @text is appended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [``insert()``][`Self::insert()`]</span>
+    <span class="doccomment">/// This is the same as calling [`insert()`][Self::insert()]</span>
     <span class="doccomment">/// with a [`None`] ID string.</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// An index to insert `text`</span>
+    <span class="doccomment">/// An index to insert @text</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// A string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_text_insert_text&quot;</span>)]</span>
@@ -1102,11 +1102,11 @@
         }
     }
 
-    <span class="doccomment">/// Prepends `text` to the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Prepends @text to the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `id` is non-[`None`] then it is used as the ID of the row.</span>
+    <span class="doccomment">/// If @id is non-[`None`] then it is used as the ID of the row.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [``insert()``][`Self::insert()`]</span>
+    <span class="doccomment">/// This is the same as calling [`insert()`][Self::insert()]</span>
     <span class="doccomment">/// with a position of 0.</span>
     <span class="doccomment">/// ## `id`</span>
     <span class="doccomment">/// a string ID for this value</span>
@@ -1123,9 +1123,9 @@
         }
     }
 
-    <span class="doccomment">/// Prepends `text` to the list of strings stored in `self`.</span>
+    <span class="doccomment">/// Prepends @text to the list of strings stored in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [``insert_text()``][`Self::insert_text()`]</span>
+    <span class="doccomment">/// This is the same as calling [`insert_text()`][Self::insert_text()]</span>
     <span class="doccomment">/// with a position of 0.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// A string</span>
@@ -1136,7 +1136,7 @@
         }
     }
 
-    <span class="doccomment">/// Removes the string at `position` from `self`.</span>
+    <span class="doccomment">/// Removes the string at @position from @self.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// Index of the item to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_text_remove&quot;</span>)]</span>
@@ -1451,7 +1451,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1477,9 +1477,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1521,7 +1521,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1534,7 +1534,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1547,7 +1547,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1557,7 +1557,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1599,7 +1599,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1616,7 +1616,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

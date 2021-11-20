@@ -198,12 +198,12 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ListStore`][struct@crate::ListStore], [`TreeDragDest`][struct@crate::TreeDragDest], [`TreeStore`][struct@crate::TreeStore]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragDestExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Asks the [`TreeDragDest`][crate::TreeDragDest] to insert a row before the path `dest`,</span>
-    <span class="doccomment">/// deriving the contents of the row from `value`. If `dest` is</span>
+    <span class="doccomment">/// Asks the [`TreeDragDest`][crate::TreeDragDest] to insert a row before the path @dest,</span>
+    <span class="doccomment">/// deriving the contents of the row from @value. If @dest is</span>
     <span class="doccomment">/// outside the tree so that inserting before it is impossible, [`false`]</span>
     <span class="doccomment">/// will be returned. Also, [`false`] may be returned if the new row is</span>
-    <span class="doccomment">/// not created for some model-specific reason. Should robustly handle</span>
-    <span class="doccomment">/// a `dest` no longer found in the model!</span>
+    <span class="doccomment">/// not created for some model-specific reason.  Should robustly handle</span>
+    <span class="doccomment">/// a @dest no longer found in the model!</span>
     <span class="doccomment">/// ## `dest`</span>
     <span class="doccomment">/// row to drop in front of</span>
     <span class="doccomment">/// ## `value`</span>
@@ -211,15 +211,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether a new row was created before position `dest`</span>
+    <span class="doccomment">/// whether a new row was created before position @dest</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_drag_dest_drag_data_received&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">drag_data_received</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Determines whether a drop is possible before the given `dest_path`,</span>
-    <span class="doccomment">/// at the same depth as `dest_path`. i.e., can we drop the data in</span>
-    <span class="doccomment">/// `value` at that location. `dest_path` does not have to</span>
+    <span class="doccomment">/// Determines whether a drop is possible before the given @dest_path,</span>
+    <span class="doccomment">/// at the same depth as @dest_path. i.e., can we drop the data in</span>
+    <span class="doccomment">/// @value at that location. @dest_path does not have to</span>
     <span class="doccomment">/// exist; the return value will almost certainly be [`false`] if the</span>
-    <span class="doccomment">/// parent of `dest_path` doesn’t exist, though.</span>
+    <span class="doccomment">/// parent of @dest_path doesn’t exist, though.</span>
     <span class="doccomment">/// ## `dest_path`</span>
     <span class="doccomment">/// destination row</span>
     <span class="doccomment">/// ## `value`</span>
@@ -227,7 +227,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if a drop is possible before `dest_path`</span>
+    <span class="doccomment">/// [`true`] if a drop is possible before @dest_path</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_drag_dest_row_drop_possible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">row_drop_possible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dest_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) -&gt; <span class="ident">bool</span>;
 }

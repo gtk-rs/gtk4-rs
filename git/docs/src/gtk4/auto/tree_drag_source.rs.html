@@ -211,10 +211,10 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ListStore`][struct@crate::ListStore], [`TreeDragSource`][struct@crate::TreeDragSource], [`TreeModelFilter`][struct@crate::TreeModelFilter], [`TreeModelSort`][struct@crate::TreeModelSort], [`TreeStore`][struct@crate::TreeStore]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragSourceExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Asks the [`TreeDragSource`][crate::TreeDragSource] to delete the row at `path`, because</span>
+    <span class="doccomment">/// Asks the [`TreeDragSource`][crate::TreeDragSource] to delete the row at @path, because</span>
     <span class="doccomment">/// it was moved somewhere else via drag-and-drop. Returns [`false`]</span>
-    <span class="doccomment">/// if the deletion fails because `path` no longer exists, or for</span>
-    <span class="doccomment">/// some model-specific reason. Should robustly handle a `path` no</span>
+    <span class="doccomment">/// if the deletion fails because @path no longer exists, or for</span>
+    <span class="doccomment">/// some model-specific reason. Should robustly handle a @path no</span>
     <span class="doccomment">/// longer found in the model!</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// row that was being dragged</span>
@@ -226,7 +226,7 @@
     <span class="kw">fn</span> <span class="ident">drag_data_delete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Asks the [`TreeDragSource`][crate::TreeDragSource] to return a [`gdk::ContentProvider`][crate::gdk::ContentProvider] representing</span>
-    <span class="doccomment">/// the row at `path`. Should robustly handle a `path` no</span>
+    <span class="doccomment">/// the row at @path. Should robustly handle a @path no</span>
     <span class="doccomment">/// longer found in the model!</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// row that was dragged</span>
@@ -234,7 +234,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`gdk::ContentProvider`][crate::gdk::ContentProvider] for the</span>
-    <span class="doccomment">///  given `path`</span>
+    <span class="doccomment">///    given @path</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_drag_source_drag_data_get&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">drag_data_get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::ContentProvider</span><span class="op">&gt;</span>;
 

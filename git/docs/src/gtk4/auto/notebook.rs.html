@@ -1801,24 +1801,24 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are many configuration options for [`Notebook`][crate::Notebook]. Among</span>
     <span class="doccomment">/// other things, you can choose on which edge the tabs appear</span>
-    <span class="doccomment">/// (see [``set_tab_pos()``][`Self::set_tab_pos()`]), whether, if there are</span>
+    <span class="doccomment">/// (see [`set_tab_pos()`][Self::set_tab_pos()]), whether, if there are</span>
     <span class="doccomment">/// too many tabs to fit the notebook should be made bigger or scrolling</span>
-    <span class="doccomment">/// arrows added (see [``set_scrollable()``][`Self::set_scrollable()`]), and whether</span>
+    <span class="doccomment">/// arrows added (see [`set_scrollable()`][Self::set_scrollable()]), and whether</span>
     <span class="doccomment">/// there will be a popup menu allowing the users to switch pages.</span>
-    <span class="doccomment">/// (see [``popup_enable()``][`Self::popup_enable()`]).</span>
+    <span class="doccomment">/// (see [`popup_enable()`][Self::popup_enable()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # GtkNotebook as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`Notebook`][crate::Notebook] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports placing children into tabs by specifying “tab” as the</span>
-    <span class="doccomment">/// “type” attribute of a `&lt;child&gt;` element. Note that the content</span>
+    <span class="doccomment">/// “type” attribute of a &lt;child&gt; element. Note that the content</span>
     <span class="doccomment">/// of the tab must be created before the tab can be filled.</span>
-    <span class="doccomment">/// A tab child can be specified without specifying a `&lt;child&gt;`</span>
+    <span class="doccomment">/// A tab child can be specified without specifying a &lt;child&gt;</span>
     <span class="doccomment">/// type attribute.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To add a child widget in the notebooks action area, specify</span>
     <span class="doccomment">/// &quot;action-start&quot; or “action-end” as the “type” attribute of the</span>
-    <span class="doccomment">/// `&lt;child&gt;` element.</span>
+    <span class="doccomment">/// &lt;child&gt; element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI definition fragment with [`Notebook`][crate::Notebook]:</span>
     <span class="doccomment">///</span>
@@ -1868,7 +1868,7 @@
     <span class="doccomment">/// name `arrow` are placed as first and last child of the `tabs` node.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The main node gets the `.frame` style class when the notebook</span>
-    <span class="doccomment">/// has a border (see [``set_show_border()``][`Self::set_show_border()`]).</span>
+    <span class="doccomment">/// has a border (see [`set_show_border()`][Self::set_show_border()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The header node gets one of the style class `.top`, `.bottom`,</span>
     <span class="doccomment">/// `.left` or `.right`, depending on where the tabs are placed. For</span>
@@ -1920,7 +1920,7 @@
 
     <span class="doccomment">/// Removes the child from the notebook.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is very similar to [``remove_page()``][`Self::remove_page()`],</span>
+    <span class="doccomment">/// This function is very similar to [`remove_page()`][Self::remove_page()],</span>
     <span class="doccomment">/// but additionally informs the notebook that the removal</span>
     <span class="doccomment">/// is happening as part of a tab DND operation, which should</span>
     <span class="doccomment">/// not be cancelled.</span>
@@ -1935,15 +1935,15 @@
 
     <span class="doccomment">/// Gets one of the action widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_action_widget()``][`Self::set_action_widget()`].</span>
+    <span class="doccomment">/// See [`set_action_widget()`][Self::set_action_widget()].</span>
     <span class="doccomment">/// ## `pack_type`</span>
     <span class="doccomment">/// pack type of the action widget to receive</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The action widget</span>
-    <span class="doccomment">///  with the given `pack_type` or [`None`] when this action</span>
-    <span class="doccomment">///  widget has not been set</span>
+    <span class="doccomment">///   with the given @pack_type or [`None`] when this action</span>
+    <span class="doccomment">///   widget has not been set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_action_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_action_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pack_type</span>: <span class="ident">PackType</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
@@ -1955,27 +1955,27 @@
         }
     }
 
-    <span class="doccomment">/// Gets the current group name for `self`.</span>
+    <span class="doccomment">/// Gets the current group name for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the group name,</span>
-    <span class="doccomment">///  or [`None`] if none is set</span>
+    <span class="doccomment">///   or [`None`] if none is set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_group_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_group_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_notebook_get_group_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the menu label widget of the page containing `child`.</span>
+    <span class="doccomment">/// Retrieves the menu label widget of the page containing @child.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a widget contained in a page of `self`</span>
+    <span class="doccomment">/// a widget contained in a page of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the menu label, or [`None`]</span>
-    <span class="doccomment">///  if the notebook page does not have a menu label other than</span>
-    <span class="doccomment">///  the default (the tab label).</span>
+    <span class="doccomment">///   if the notebook page does not have a menu label other than</span>
+    <span class="doccomment">///   the default (the tab label).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_menu_label&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_menu_label&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
@@ -1988,16 +1988,16 @@
     }
 
     <span class="doccomment">/// Retrieves the text of the menu label for the page containing</span>
-    <span class="doccomment">/// `child`.</span>
+    <span class="doccomment">/// @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget of a page of the notebook.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the text of the tab label, or [`None`] if</span>
-    <span class="doccomment">///  the widget does not have a menu label other than the default</span>
-    <span class="doccomment">///  menu label, or the menu label widget is not a [`Label`][crate::Label].</span>
-    <span class="doccomment">///  The string is owned by the widget and must not be freed.</span>
+    <span class="doccomment">///   the widget does not have a menu label other than the default</span>
+    <span class="doccomment">///   menu label, or the menu label widget is not a [`Label`][crate::Label].</span>
+    <span class="doccomment">///   The string is owned by the widget and must not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_menu_label_text&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_menu_label_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu_label_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2009,13 +2009,13 @@
         }
     }
 
-    <span class="doccomment">/// Returns the [`NotebookPage`][crate::NotebookPage] for `child`.</span>
+    <span class="doccomment">/// Returns the [`NotebookPage`][crate::NotebookPage] for @child.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a child of `self`</span>
+    <span class="doccomment">/// a child of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`NotebookPage`][crate::NotebookPage] for `child`</span>
+    <span class="doccomment">/// the [`NotebookPage`][crate::NotebookPage] for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">NotebookPage</span><span class="op">&gt;</span> {
@@ -2036,7 +2036,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a</span>
-    <span class="doccomment">///  `GListModel` for the notebook&#39;s children</span>
+    <span class="doccomment">///   `GListModel` for the notebook&#39;s children</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_pages&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_pages&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span> {
@@ -2076,7 +2076,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_notebook_get_show_tabs</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns whether the tab contents can be detached from `self`.</span>
+    <span class="doccomment">/// Returns whether the tab contents can be detached from @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// a child [`Widget`][crate::Widget]</span>
     <span class="doccomment">///</span>
@@ -2094,10 +2094,10 @@
         }
     }
 
-    <span class="doccomment">/// Returns the tab label widget for the page `child`.</span>
+    <span class="doccomment">/// Returns the tab label widget for the page @child.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`None`] is returned if `child` is not in `self` or</span>
-    <span class="doccomment">/// if no tab label has specifically been set for `child`.</span>
+    <span class="doccomment">/// [`None`] is returned if @child is not in @self or</span>
+    <span class="doccomment">/// if no tab label has specifically been set for @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the page</span>
     <span class="doccomment">///</span>
@@ -2116,15 +2116,15 @@
     }
 
     <span class="doccomment">/// Retrieves the text of the tab label for the page containing</span>
-    <span class="doccomment">/// `child`.</span>
+    <span class="doccomment">/// @child.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a widget contained in a page of `self`</span>
+    <span class="doccomment">/// a widget contained in a page of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the text of the tab label, or [`None`] if</span>
-    <span class="doccomment">///  the tab label idget is not a [`Label`][crate::Label]. The string is owned</span>
-    <span class="doccomment">///  by the widget and must not be freed.</span>
+    <span class="doccomment">///   the tab label idget is not a [`Label`][crate::Label]. The string is owned</span>
+    <span class="doccomment">///   by the widget and must not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_tab_label_text&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tab_label_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tab_label_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2204,7 +2204,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets `widget` as one of the action widgets.</span>
+    <span class="doccomment">/// Sets @widget as one of the action widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the pack type the widget will be placed before</span>
     <span class="doccomment">/// or after the tabs. You can use a [`Box`][crate::Box] if you need to pack</span>
@@ -2224,14 +2224,14 @@
         }
     }
 
-    <span class="doccomment">/// Sets a group name for `self`.</span>
+    <span class="doccomment">/// Sets a group name for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Notebooks with the same name will be able to exchange tabs</span>
     <span class="doccomment">/// via drag and drop. A notebook with a [`None`] group name will</span>
     <span class="doccomment">/// not be able to exchange tabs with any other notebook.</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the name of the notebook group,</span>
-    <span class="doccomment">///  or [`None`] to unset it</span>
+    <span class="doccomment">///   or [`None`] to unset it</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_set_group_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_group_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2239,7 +2239,7 @@
         }
     }
 
-    <span class="doccomment">/// Changes the menu label for the page containing `child`.</span>
+    <span class="doccomment">/// Changes the menu label for the page containing @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="doccomment">/// ## `menu_label`</span>
@@ -2255,7 +2255,7 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new label and sets it as the menu label of `child`.</span>
+    <span class="doccomment">/// Creates a new label and sets it as the menu label of @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="doccomment">/// ## `menu_text`</span>
@@ -2304,11 +2304,11 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether the tab can be detached from `self` to another</span>
+    <span class="doccomment">/// Sets whether the tab can be detached from @self to another</span>
     <span class="doccomment">/// notebook or widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that two notebooks must share a common group identificator</span>
-    <span class="doccomment">/// (see [``set_group_name()``][`Self::set_group_name()`]) to allow automatic tabs</span>
+    <span class="doccomment">/// (see [`set_group_name()`][Self::set_group_name()]) to allow automatic tabs</span>
     <span class="doccomment">/// interchange between them.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want a widget to interact with a notebook through DnD</span>
@@ -2317,8 +2317,8 @@
     <span class="doccomment">/// will fill the selection with a GtkWidget** pointing to the child</span>
     <span class="doccomment">/// widget that corresponds to the dropped tab.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that you should use [``detach_tab()``][`Self::detach_tab()`] instead</span>
-    <span class="doccomment">/// of [``remove_page()``][`Self::remove_page()`] if you want to remove the tab</span>
+    <span class="doccomment">/// Note that you should use [`detach_tab()`][Self::detach_tab()] instead</span>
+    <span class="doccomment">/// of [`remove_page()`][Self::remove_page()] if you want to remove the tab</span>
     <span class="doccomment">/// from the source notebook as part of accepting a drop. Otherwise,</span>
     <span class="doccomment">/// the source notebook will think that the dragged tab was removed</span>
     <span class="doccomment">/// from underneath the ongoing drag operation, and will initiate a</span>
@@ -2365,15 +2365,15 @@
         }
     }
 
-    <span class="doccomment">/// Changes the tab label for `child`.</span>
+    <span class="doccomment">/// Changes the tab label for @child.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [`None`] is specified for `tab_label`, then the page will</span>
+    <span class="doccomment">/// If [`None`] is specified for @tab_label, then the page will</span>
     <span class="doccomment">/// have the label “page N”.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the tab label widget to use, or [`None`]</span>
-    <span class="doccomment">///  for default tab label</span>
+    <span class="doccomment">///   for default tab label</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_set_tab_label&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_tab_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2386,7 +2386,7 @@
     }
 
     <span class="doccomment">/// Creates a new label and sets it as the tab label for the page</span>
-    <span class="doccomment">/// containing `child`.</span>
+    <span class="doccomment">/// containing @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the page</span>
     <span class="doccomment">/// ## `tab_text`</span>
@@ -2490,12 +2490,12 @@
     <span class="doccomment">/// necessary properties to the notebook (e.g. the</span>
     <span class="doccomment">/// [`Notebook`][crate::Notebook]:group-name ).</span>
     <span class="doccomment">/// ## `page`</span>
-    <span class="doccomment">/// the tab of `notebook` that is being detached</span>
+    <span class="doccomment">/// the tab of @notebook that is being detached</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`Notebook`][crate::Notebook] that</span>
-    <span class="doccomment">///  `page` should be added to</span>
+    <span class="doccomment">///   @page should be added to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;create-window&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_create_window</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Notebook</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2598,7 +2598,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child [`Widget`][crate::Widget] affected</span>
     <span class="doccomment">/// ## `page_num`</span>
-    <span class="doccomment">/// the new page number for `child`</span>
+    <span class="doccomment">/// the new page number for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;page-added&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_page_added</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2631,7 +2631,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child [`Widget`][crate::Widget] affected</span>
     <span class="doccomment">/// ## `page_num`</span>
-    <span class="doccomment">/// the `child` page number</span>
+    <span class="doccomment">/// the @child page number</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;page-removed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_page_removed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2664,7 +2664,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child [`Widget`][crate::Widget] affected</span>
     <span class="doccomment">/// ## `page_num`</span>
-    <span class="doccomment">/// the new page number for `child`</span>
+    <span class="doccomment">/// the new page number for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;page-reordered&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_page_reordered</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>, <span class="ident">u32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -3229,7 +3229,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -3255,9 +3255,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -3299,7 +3299,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -3312,7 +3312,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -3325,7 +3325,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -3335,7 +3335,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -3377,7 +3377,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -3394,7 +3394,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

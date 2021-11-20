@@ -1368,23 +1368,23 @@
     <span class="doccomment">/// It is primarily meant to provide context-dependent information</span>
     <span class="doccomment">/// or options. Popovers are attached to a parent widget. By default,</span>
     <span class="doccomment">/// they point to the whole widget area, although this behavior can be</span>
-    <span class="doccomment">/// changed with [``PopoverExt::set_pointing_to()``][crate::prelude::`PopoverExt::set_pointing_to()`].</span>
+    <span class="doccomment">/// changed with [`PopoverExt::set_pointing_to()`][crate::prelude::PopoverExt::set_pointing_to()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position of a popover relative to the widget it is attached to</span>
-    <span class="doccomment">/// can also be changed with [``PopoverExt::set_position()``][crate::prelude::`PopoverExt::set_position()`]</span>
+    <span class="doccomment">/// can also be changed with [`PopoverExt::set_position()`][crate::prelude::PopoverExt::set_position()]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, [`Popover`][crate::Popover] performs a grab, in order to ensure input</span>
     <span class="doccomment">/// events get redirected to it while it is shown, and also so the popover</span>
     <span class="doccomment">/// is dismissed in the expected situations (clicks outside the popover,</span>
     <span class="doccomment">/// or the Escape key being pressed). If no such modal behavior is desired</span>
-    <span class="doccomment">/// on a popover, [``PopoverExt::set_autohide()``][crate::prelude::`PopoverExt::set_autohide()`] may be called on it to</span>
+    <span class="doccomment">/// on a popover, [`PopoverExt::set_autohide()`][crate::prelude::PopoverExt::set_autohide()] may be called on it to</span>
     <span class="doccomment">/// tweak its behavior.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## GtkPopover as menu replacement</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Popover`][crate::Popover] is often used to replace menus. The best was to do this</span>
     <span class="doccomment">/// is to use the [`PopoverMenu`][crate::PopoverMenu] subclass which supports being</span>
-    <span class="doccomment">/// populated from a `GMenuModel` with [``PopoverMenu::from_model()``][crate::`PopoverMenu::from_model()`].</span>
+    <span class="doccomment">/// populated from a `GMenuModel` with [`PopoverMenu::from_model()`][crate::PopoverMenu::from_model()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;section&gt;</span>
@@ -1734,7 +1734,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1760,9 +1760,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1804,7 +1804,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1817,7 +1817,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1830,7 +1830,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1840,7 +1840,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1882,7 +1882,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1899,7 +1899,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1963,12 +1963,12 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PopoverExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns whether the popover is modal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_autohide()``][`Self::set_autohide()`] for the</span>
+    <span class="doccomment">/// See [`set_autohide()`][Self::set_autohide()] for the</span>
     <span class="doccomment">/// implications of this.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` is modal</span>
+    <span class="doccomment">/// [`true`] if @self is modal</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_autohide&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_autohide&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -1977,16 +1977,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` will close after a modal child.</span>
+    <span class="doccomment">/// [`true`] if @self will close after a modal child.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_cascade_popdown&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cascade_popdown&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the child widget of `self`.</span>
+    <span class="doccomment">/// Gets the child widget of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget of `self`</span>
+    <span class="doccomment">/// the child widget of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
@@ -2006,12 +2006,12 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if mnemonics are supposed to be visible</span>
-    <span class="doccomment">///  in this popover</span>
+    <span class="doccomment">///   in this popover</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_mnemonics_visible&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mnemonics_visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_mnemonics_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the offset previous set with [`set_offset()`][Self::set_offset()].</span>
+    <span class="doccomment">/// Gets the offset previous set with gtk_popover_set_offset().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2028,8 +2028,8 @@
     <span class="doccomment">/// Gets the rectangle that the popover points to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a rectangle to point to has been set, this function will</span>
-    <span class="doccomment">/// return [`true`] and fill in `rect` with such rectangle, otherwise</span>
-    <span class="doccomment">/// it will return [`false`] and fill in `rect` with the parent</span>
+    <span class="doccomment">/// return [`true`] and fill in @rect with such rectangle, otherwise</span>
+    <span class="doccomment">/// it will return [`false`] and fill in @rect with the parent</span>
     <span class="doccomment">/// widget coordinates.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -2042,7 +2042,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_pointing_to&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">pointing_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Rectangle</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the preferred position of `self`.</span>
+    <span class="doccomment">/// Returns the preferred position of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2051,14 +2051,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PositionType</span>;
 
-    <span class="doccomment">/// Pops `self` down.</span>
+    <span class="doccomment">/// Pops @self down.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This may have the side-effect of closing a parent popover</span>
     <span class="doccomment">/// as well. See `property::Popover::cascade-popdown`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_popdown&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Pops `self` up.</span>
+    <span class="doccomment">/// Pops @self up.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_popup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">popup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -2066,7 +2066,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_present&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">present</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets whether `self` is modal.</span>
+    <span class="doccomment">/// Sets whether @self is modal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A modal popover will grab the keyboard focus on it when being</span>
     <span class="doccomment">/// displayed. Focus will wrap around within the popover. Clicking</span>
@@ -2080,16 +2080,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_autohide&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If `cascade_popdown` is [`true`], the popover will be</span>
+    <span class="doccomment">/// If @cascade_popdown is [`true`], the popover will be</span>
     <span class="doccomment">/// closed when a child modal popover is closed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [`false`], `self` will stay visible.</span>
+    <span class="doccomment">/// If [`false`], @self will stay visible.</span>
     <span class="doccomment">/// ## `cascade_popdown`</span>
     <span class="doccomment">/// [`true`] if the popover should follow a child closing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_cascade_popdown&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cascade_popdown</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the child widget of `self`.</span>
+    <span class="doccomment">/// Sets the child widget of @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_child&quot;</span>)]</span>
@@ -2101,8 +2101,8 @@
     <span class="doccomment">/// presses Enter in a dialog (for example). This function sets or</span>
     <span class="doccomment">/// unsets the default widget for a [`Popover`][crate::Popover].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a child widget of `self` to set as</span>
-    <span class="doccomment">///  the default, or [`None`] to unset the default widget for the popover</span>
+    <span class="doccomment">/// a child widget of @self to set as</span>
+    <span class="doccomment">///   the default, or [`None`] to unset the default widget for the popover</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_default_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
@@ -2131,17 +2131,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_offset&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x_offset</span>: <span class="ident">i32</span>, <span class="ident">y_offset</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Sets the rectangle that `self` points to.</span>
+    <span class="doccomment">/// Sets the rectangle that @self points to.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is in the coordinate space of the `self` parent.</span>
+    <span class="doccomment">/// This is in the coordinate space of the @self parent.</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// rectangle to point to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_pointing_to&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_pointing_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>);
 
-    <span class="doccomment">/// Sets the preferred position for `self` to appear.</span>
+    <span class="doccomment">/// Sets the preferred position for @self to appear.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `self` is currently visible, it will be immediately</span>
+    <span class="doccomment">/// If the @self is currently visible, it will be immediately</span>
     <span class="doccomment">/// updated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This preference will be respected where possible, although</span>

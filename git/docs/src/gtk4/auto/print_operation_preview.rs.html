@@ -327,7 +327,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is using the print context that was passed to the</span>
     <span class="doccomment">/// `signal::PrintOperation::preview` handler together</span>
-    <span class="doccomment">/// with `self`.</span>
+    <span class="doccomment">/// with @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A custom print preview should use this function to render</span>
     <span class="doccomment">/// the currently selected page.</span>
@@ -341,9 +341,9 @@
 
     <span class="doccomment">/// Emitted once for each page that gets rendered to the preview.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A handler for this signal should update the `context`</span>
-    <span class="doccomment">/// according to `page_setup` and set up a suitable cairo</span>
-    <span class="doccomment">/// context, using [``PrintContext::set_cairo_context()``][crate::`PrintContext::set_cairo_context()`].</span>
+    <span class="doccomment">/// A handler for this signal should update the @context</span>
+    <span class="doccomment">/// according to @page_setup and set up a suitable cairo</span>
+    <span class="doccomment">/// context, using [`PrintContext::set_cairo_context()`][crate::PrintContext::set_cairo_context()].</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the current [`PrintContext`][crate::PrintContext]</span>
     <span class="doccomment">/// ## `page_setup`</span>

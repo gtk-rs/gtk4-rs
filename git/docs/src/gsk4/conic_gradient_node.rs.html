@@ -242,7 +242,7 @@
     <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that draws a conic gradient.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The conic gradient</span>
-    <span class="doccomment">/// starts around `center` in the direction of `rotation`. A rotation of 0 means</span>
+    <span class="doccomment">/// starts around @center in the direction of @rotation. A rotation of 0 means</span>
     <span class="doccomment">/// that the gradient points up. Color stops are then added clockwise.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds of the node</span>
@@ -252,9 +252,9 @@
     <span class="doccomment">/// the rotation of the gradient in degrees</span>
     <span class="doccomment">/// ## `color_stops`</span>
     <span class="doccomment">/// a pointer to an array of</span>
-    <span class="doccomment">///  [`ColorStop`][crate::ColorStop] defining the gradient. The offsets of all color stops</span>
-    <span class="doccomment">///  must be increasing. The first stop&#39;s offset must be &gt;= 0 and the last</span>
-    <span class="doccomment">///  stop&#39;s offset must be &lt;= 1.</span>
+    <span class="doccomment">///   [`ColorStop`][crate::ColorStop] defining the gradient. The offsets of all color stops</span>
+    <span class="doccomment">///   must be increasing. The first stop&#39;s offset must be &gt;= 0 and the last</span>
+    <span class="doccomment">///   stop&#39;s offset must be &lt;= 1.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -299,7 +299,7 @@
     <span class="doccomment">/// The angle is starting at the top and going clockwise, as expressed</span>
     <span class="doccomment">/// in the css specification:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  angle = 90 - [`rotation()`][Self::rotation()]</span>
+    <span class="doccomment">///     angle = 90 - gsk_conic_gradient_node_get_rotation()</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

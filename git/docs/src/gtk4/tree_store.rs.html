@@ -386,8 +386,8 @@
 <span class="kw">use</span> <span class="ident">libc::c_int</span>;
 
 <span class="kw">impl</span> <span class="ident">TreeStore</span> {
-    <span class="doccomment">/// Creates a new tree store as with `n_columns` columns each of the types passed</span>
-    <span class="doccomment">/// in. Note that only types derived from standard GObject fundamental types</span>
+    <span class="doccomment">/// Creates a new tree store as with @n_columns columns each of the types passed</span>
+    <span class="doccomment">/// in.  Note that only types derived from standard GObject fundamental types</span>
     <span class="doccomment">/// are supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// As an example,</span>
@@ -418,8 +418,8 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new row at `position`. `iter` will be changed to point to this</span>
-    <span class="doccomment">/// new row. If `position` is -1, or larger than the number of rows on the list, then</span>
+    <span class="doccomment">/// Creates a new row at @position. @iter will be changed to point to this</span>
+    <span class="doccomment">/// new row. If @position is -1, or larger than the number of rows on the list, then</span>
     <span class="doccomment">/// the new row will be appended to the list. The row will be filled with</span>
     <span class="doccomment">/// the values given to this function.</span>
     <span class="doccomment">///</span>
@@ -436,9 +436,9 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// with the different that the former will only emit a row_inserted signal,</span>
     <span class="doccomment">/// while the latter will emit row_inserted, row_changed and if the tree store</span>
-    <span class="doccomment">/// is sorted, rows_reordered. Since emitting the rows_reordered signal</span>
+    <span class="doccomment">/// is sorted, rows_reordered.  Since emitting the rows_reordered signal</span>
     <span class="doccomment">/// repeatedly can affect the performance of the program,</span>
-    <span class="doccomment">/// `gtk_tree_store_insert_with_values()` should generally be preferred when</span>
+    <span class="doccomment">/// gtk_tree_store_insert_with_values() should generally be preferred when</span>
     <span class="doccomment">/// inserting rows in a sorted tree store.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
@@ -516,15 +516,15 @@
         }
     }
 
-    <span class="doccomment">/// Reorders the children of `parent` in `self` to follow the order</span>
-    <span class="doccomment">/// indicated by `new_order`. Note that this function only works with</span>
+    <span class="doccomment">/// Reorders the children of @parent in @self to follow the order</span>
+    <span class="doccomment">/// indicated by @new_order. Note that this function only works with</span>
     <span class="doccomment">/// unsorted stores.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">/// ## `new_order`</span>
     <span class="doccomment">/// an array of integers mapping the new position of each child</span>
-    <span class="doccomment">///  to its old position before the re-ordering,</span>
-    <span class="doccomment">///  i.e. `new_order``[newpos] = oldpos`.</span>
+    <span class="doccomment">///   to its old position before the re-ordering,</span>
+    <span class="doccomment">///   i.e. @new_order`[newpos] = oldpos`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_reorder&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reorder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">new_order</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>]) {
         <span class="kw">unsafe</span> {
@@ -560,7 +560,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of one or more cells in the row referenced by `iter`.</span>
+    <span class="doccomment">/// Sets the value of one or more cells in the row referenced by @iter.</span>
     <span class="doccomment">/// The variable argument list should contain integer column numbers,</span>
     <span class="doccomment">/// each column number followed by the value to be set.</span>
     <span class="doccomment">/// The list is terminated by a -1. For example, to set column 0 with type</span>
@@ -626,7 +626,7 @@
 
     <span class="doccomment">/// This function is meant primarily for `GObjects` that inherit from</span>
     <span class="doccomment">/// [`TreeStore`][crate::TreeStore], and should only be used when constructing a new</span>
-    <span class="doccomment">/// [`TreeStore`][crate::TreeStore]. It will not function after a row has been added,</span>
+    <span class="doccomment">/// [`TreeStore`][crate::TreeStore].  It will not function after a row has been added,</span>
     <span class="doccomment">/// or a method on the [`TreeModel`][crate::TreeModel] interface is called.</span>
     <span class="doccomment">/// ## `types`</span>
     <span class="doccomment">/// An array of `GType` types, one for each column</span>
@@ -642,8 +642,8 @@
         }
     }
 
-    <span class="doccomment">/// Sets the data in the cell specified by `iter` and `column`.</span>
-    <span class="doccomment">/// The type of `value` must be convertible to the type of the</span>
+    <span class="doccomment">/// Sets the data in the cell specified by @iter and @column.</span>
+    <span class="doccomment">/// The type of @value must be convertible to the type of the</span>
     <span class="doccomment">/// column.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter] for the row being modified</span>

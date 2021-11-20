@@ -139,7 +139,7 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A [`ShortcutTrigger`][crate::ShortcutTrigger] that triggers when a specific mnemonic is pressed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Mnemonics require a *mnemonic modifier* (typically `&lt;kbd&gt;`Alt`&lt;/kbd&gt;`) to be</span>
+    <span class="doccomment">/// Mnemonics require a *mnemonic modifier* (typically &lt;kbd&gt;Alt&lt;/kbd&gt;) to be</span>
     <span class="doccomment">/// pressed together with the mnemonic key.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -154,7 +154,7 @@
 
 <span class="kw">impl</span> <span class="ident">MnemonicTrigger</span> {
     <span class="doccomment">/// Creates a [`ShortcutTrigger`][crate::ShortcutTrigger] that will trigger whenever the key with</span>
-    <span class="doccomment">/// the given `keyval` is pressed and mnemonics have been activated.</span>
+    <span class="doccomment">/// the given @keyval is pressed and mnemonics have been activated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Mnemonics are activated by calling code when a key event with the right</span>
     <span class="doccomment">/// modifiers is detected.</span>
@@ -170,7 +170,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_mnemonic_trigger_new</span>(<span class="ident">keyval</span>.<span class="ident">into_glib</span>())) }
     }
 
-    <span class="doccomment">/// Gets the keyval that must be pressed to succeed triggering `self`.</span>
+    <span class="doccomment">/// Gets the keyval that must be pressed to succeed triggering @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

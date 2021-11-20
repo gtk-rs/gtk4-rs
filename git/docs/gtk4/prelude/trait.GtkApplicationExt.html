@@ -137,13 +137,13 @@ is returned. <code>NULL</code> is never returned.</p>
 <p>a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>-terminated array of actions for <code>accel</code></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.active_window" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/application.rs.html#282" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.active_window" class="fnname">active_window</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the “active” window for the application.</p>
 <p>The active window is the one that was most recently focused (within
-the application). This window may not have the focus at the moment
+the application).  This window may not have the focus at the moment
 if another application has it — this is just the most
 recently-focused window within this application.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the active window</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.menu_by_id" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/application.rs.html#297" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.menu_by_id" class="fnname">menu_by_id</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/menu/struct.Menu.html" title="struct gio::auto::menu::Menu">Menu</a>&gt;</h4></div></summary><div class="docblock"><p>Gets a menu from automatically loaded resources.</p>
-<p>See <a href="class.Application.html%60automatic%60-resources">the section on Automatic resources</a>
+<p>See <a href="class.Application.html#automatic-resources">the section on Automatic resources</a>
 for more information.</p>
 <h6 id="id" class="section-header"><a href="#id"><code>id</code></a></h6>
 <p>the id of the menu to look up</p>
@@ -219,8 +219,8 @@ given action.</p>
 displayed in the UI.</p>
 <p>To remove all accelerators for an action, use an empty, zero-terminated
 array for <code>accels</code>.</p>
-<p>For the <code>detailed_action_name</code>, see <code>[</code>gio::Action::parse_detailed_name()<code>][crate::gio::Action::parse_detailed_name()]</code> and
-<code>[</code>gio::Action::print_detailed_name()<code>][crate::gio::Action::print_detailed_name()]</code>.</p>
+<p>For the <code>detailed_action_name</code>, see <code>g_action_parse_detailed_name()</code> and
+<code>g_action_print_detailed_name()</code>.</p>
 <h6 id="detailed_action_name-1" class="section-header"><a href="#detailed_action_name-1"><code>detailed_action_name</code></a></h6>
 <p>a detailed action name, specifying an action
 and target to associate accelerators with</p>
@@ -233,7 +233,7 @@ understood by <a href="../functions/fn.accelerator_parse.html" title="crate::acc
 after it has been registered. <code>GApplication::startup</code> is a good place
 to call this.</p>
 <p>Depending on the desktop environment, this may appear at the top of
-each window, or at the top of the screen. In some environments, if
+each window, or at the top of the screen.  In some environments, if
 both the application menu and the menubar are set, the application
 menu will be presented as if it were the first item of the menubar.
 Other environments treat the two as completely separate — for example,

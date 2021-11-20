@@ -1083,7 +1083,7 @@
     <span class="doccomment">/// a specific model. It is a generic struct with an integer and three</span>
     <span class="doccomment">/// generic pointers. These are filled in by the model in a model-specific</span>
     <span class="doccomment">/// way. One can convert a path to an iterator by calling</span>
-    <span class="doccomment">/// [`TreeModelExt::iter()`][crate::prelude::TreeModelExt::iter()]. These iterators are the primary way</span>
+    <span class="doccomment">/// gtk_tree_model_get_iter(). These iterators are the primary way</span>
     <span class="doccomment">/// of accessing a model and are similar to the iterators used by</span>
     <span class="doccomment">/// [`TextBuffer`][crate::TextBuffer]. They are generally statically allocated on the</span>
     <span class="doccomment">/// stack and only used for a short time. The model interface defines</span>
@@ -1149,7 +1149,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This second example shows a quick way of iterating through a list</span>
     <span class="doccomment">/// and getting a string and an integer from each row. The</span>
-    <span class="doccomment">/// `populate_model()` function used below is not</span>
+    <span class="doccomment">/// populate_model() function used below is not</span>
     <span class="doccomment">/// shown, as it is specific to the [`ListStore`][crate::ListStore]. For information on</span>
     <span class="doccomment">/// how to write such a function, see the [`ListStore`][crate::ListStore] documentation.</span>
     <span class="doccomment">///</span>
@@ -1208,7 +1208,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`TreeModel`][crate::TreeModel] interface contains two methods for reference</span>
-    <span class="doccomment">/// counting: `gtk_tree_model_ref_node()` and `gtk_tree_model_unref_node()`.</span>
+    <span class="doccomment">/// counting: gtk_tree_model_ref_node() and gtk_tree_model_unref_node().</span>
     <span class="doccomment">/// These two methods are optional to implement. The reference counting</span>
     <span class="doccomment">/// is meant as a way for views to let models know when nodes are being</span>
     <span class="doccomment">/// displayed. [`TreeView`][crate::TreeView] will take a reference on a node when it is</span>
@@ -1224,18 +1224,18 @@
     <span class="doccomment">/// into account:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Never take a reference on a node without owning a reference on its parent.</span>
-    <span class="doccomment">///  This means that all parent nodes of a referenced node must be referenced</span>
-    <span class="doccomment">///  as well.</span>
+    <span class="doccomment">///   This means that all parent nodes of a referenced node must be referenced</span>
+    <span class="doccomment">///   as well.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Outstanding references on a deleted node are not released. This is not</span>
-    <span class="doccomment">///  possible because the node has already been deleted by the time the</span>
-    <span class="doccomment">///  row-deleted signal is received.</span>
+    <span class="doccomment">///   possible because the node has already been deleted by the time the</span>
+    <span class="doccomment">///   row-deleted signal is received.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Models are not obligated to emit a signal on rows of which none of its</span>
-    <span class="doccomment">///  siblings are referenced. To phrase this differently, signals are only</span>
-    <span class="doccomment">///  required for levels in which nodes are referenced. For the root level</span>
-    <span class="doccomment">///  however, signals must be emitted at all times (however the root level</span>
-    <span class="doccomment">///  is always referenced when any view is attached).</span>
+    <span class="doccomment">///   siblings are referenced. To phrase this differently, signals are only</span>
+    <span class="doccomment">///   required for levels in which nodes are referenced. For the root level</span>
+    <span class="doccomment">///   however, signals must be emitted at all times (however the root level</span>
+    <span class="doccomment">///   is always referenced when any view is attached).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -1258,10 +1258,10 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ListStore`][struct@crate::ListStore], [`TreeModelFilter`][struct@crate::TreeModelFilter], [`TreeModelSort`][struct@crate::TreeModelSort], [`TreeModel`][struct@crate::TreeModel], [`TreeSortable`][struct@crate::TreeSortable], [`TreeStore`][struct@crate::TreeStore]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeModelExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Calls `func` on each node in model in a depth-first fashion.</span>
+    <span class="doccomment">/// Calls @func on each node in model in a depth-first fashion.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `func` returns [`true`], then the tree ceases to be walked,</span>
-    <span class="doccomment">/// and [`foreach()`][Self::foreach()] returns.</span>
+    <span class="doccomment">/// If @func returns [`true`], then the tree ceases to be walked,</span>
+    <span class="doccomment">/// and gtk_tree_model_foreach() returns.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// a function to be called on each row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_foreach&quot;</span>)]</span>
@@ -1282,7 +1282,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The flags are a bitwise combination of [`TreeModel`][crate::TreeModel]Flags.</span>
     <span class="doccomment">/// The flags supported should not change during the lifetime</span>
-    <span class="doccomment">/// of the `self`.</span>
+    <span class="doccomment">/// of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1291,16 +1291,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_flags&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TreeModelFlags</span>;
 
-    <span class="doccomment">/// Sets `iter` to a valid iterator pointing to `path`.</span>
+    <span class="doccomment">/// Sets @iter to a valid iterator pointing to @path.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `path` does not exist, `iter` is set to an invalid</span>
+    <span class="doccomment">/// If @path does not exist, @iter is set to an invalid</span>
     <span class="doccomment">/// iterator and [`false`] is returned.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `iter` was set</span>
+    <span class="doccomment">/// [`true`], if @iter was set</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the uninitialized [`TreeIter`][crate::TreeIter]</span>
@@ -1308,14 +1308,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Initializes `iter` with the first iterator in the tree</span>
+    <span class="doccomment">/// Initializes @iter with the first iterator in the tree</span>
     <span class="doccomment">/// (the one at the path &quot;0&quot;).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns [`false`] if the tree is empty, [`true`] otherwise.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `iter` was set</span>
+    <span class="doccomment">/// [`true`], if @iter was set</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the uninitialized [`TreeIter`][crate::TreeIter]</span>
@@ -1323,16 +1323,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_first&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_first</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets `iter` to a valid iterator pointing to `path_string`, if it</span>
+    <span class="doccomment">/// Sets @iter to a valid iterator pointing to @path_string, if it</span>
     <span class="doccomment">/// exists.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Otherwise, `iter` is left invalid and [`false`] is returned.</span>
+    <span class="doccomment">/// Otherwise, @iter is left invalid and [`false`] is returned.</span>
     <span class="doccomment">/// ## `path_string`</span>
     <span class="doccomment">/// a string representation of a [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `iter` was set</span>
+    <span class="doccomment">/// [`true`], if @iter was set</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// an uninitialized [`TreeIter`][crate::TreeIter]</span>
@@ -1340,7 +1340,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_from_string&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_from_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path_string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the number of columns supported by `self`.</span>
+    <span class="doccomment">/// Returns the number of columns supported by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1349,9 +1349,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_n_columns&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">n_columns</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Returns a newly-created [`TreePath`][crate::TreePath] referenced by `iter`.</span>
+    <span class="doccomment">/// Returns a newly-created [`TreePath`][crate::TreePath] referenced by @iter.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This path should be freed with `gtk_tree_path_free()`.</span>
+    <span class="doccomment">/// This path should be freed with gtk_tree_path_free().</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
@@ -1377,68 +1377,68 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_string_from_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">string_from_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets `iter` to point to the first child of `parent`.</span>
+    <span class="doccomment">/// Sets @iter to point to the first child of @parent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `parent` has no children, [`false`] is returned and `iter` is</span>
-    <span class="doccomment">/// set to be invalid. `parent` will remain a valid node after this</span>
+    <span class="doccomment">/// If @parent has no children, [`false`] is returned and @iter is</span>
+    <span class="doccomment">/// set to be invalid. @parent will remain a valid node after this</span>
     <span class="doccomment">/// function has been called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `parent` is [`None`] returns the first node, equivalent to</span>
+    <span class="doccomment">/// If @parent is [`None`] returns the first node, equivalent to</span>
     <span class="doccomment">/// `gtk_tree_model_get_iter_first (tree_model, iter);`</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `iter` has been set to the first child</span>
+    <span class="doccomment">/// [`true`], if @iter has been set to the first child</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the new [`TreeIter`][crate::TreeIter] to be set to the child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_children&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns [`true`] if `iter` has children, [`false`] otherwise.</span>
+    <span class="doccomment">/// Returns [`true`] if @iter has children, [`false`] otherwise.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter] to test for children</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` has children</span>
+    <span class="doccomment">/// [`true`] if @iter has children</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_has_child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_has_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns the number of children that `iter` has.</span>
+    <span class="doccomment">/// Returns the number of children that @iter has.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// As a special case, if `iter` is [`None`], then the number</span>
+    <span class="doccomment">/// As a special case, if @iter is [`None`], then the number</span>
     <span class="doccomment">/// of toplevel nodes is returned.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the number of children of `iter`</span>
+    <span class="doccomment">/// the number of children of @iter</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_n_children&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_n_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Sets `iter` to point to the node following it at the current level.</span>
+    <span class="doccomment">/// Sets @iter to point to the node following it at the current level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If there is no next `iter`, [`false`] is returned and `iter` is set</span>
+    <span class="doccomment">/// If there is no next @iter, [`false`] is returned and @iter is set</span>
     <span class="doccomment">/// to be invalid.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` has been changed to the next node</span>
+    <span class="doccomment">/// [`true`] if @iter has been changed to the next node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_next&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_next</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets `iter` to be the child of `parent`, using the given index.</span>
+    <span class="doccomment">/// Sets @iter to be the child of @parent, using the given index.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The first index is 0. If `n` is too big, or `parent` has no children,</span>
-    <span class="doccomment">/// `iter` is set to an invalid iterator and [`false`] is returned. `parent`</span>
+    <span class="doccomment">/// The first index is 0. If @n is too big, or @parent has no children,</span>
+    <span class="doccomment">/// @iter is set to an invalid iterator and [`false`] is returned. @parent</span>
     <span class="doccomment">/// will remain a valid node after this function has been called. As a</span>
-    <span class="doccomment">/// special case, if `parent` is [`None`], then the `n`-th root node</span>
+    <span class="doccomment">/// special case, if @parent is [`None`], then the @n-th root node</span>
     <span class="doccomment">/// is set.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter] to get the child from</span>
@@ -1447,48 +1447,48 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `parent` has an `n`-th child</span>
+    <span class="doccomment">/// [`true`], if @parent has an @n-th child</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter] to set to the nth child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_nth_child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_nth_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>, <span class="ident">n</span>: <span class="ident">i32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets `iter` to be the parent of `child`.</span>
+    <span class="doccomment">/// Sets @iter to be the parent of @child.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `child` is at the toplevel, and doesn’t have a parent, then</span>
-    <span class="doccomment">/// `iter` is set to an invalid iterator and [`false`] is returned.</span>
-    <span class="doccomment">/// `child` will remain a valid node after this function has been</span>
+    <span class="doccomment">/// If @child is at the toplevel, and doesn’t have a parent, then</span>
+    <span class="doccomment">/// @iter is set to an invalid iterator and [`false`] is returned.</span>
+    <span class="doccomment">/// @child will remain a valid node after this function has been</span>
     <span class="doccomment">/// called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `iter` will be initialized before the lookup is performed, so `child`</span>
-    <span class="doccomment">/// and `iter` cannot point to the same memory location.</span>
+    <span class="doccomment">/// @iter will be initialized before the lookup is performed, so @child</span>
+    <span class="doccomment">/// and @iter cannot point to the same memory location.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `iter` is set to the parent of `child`</span>
+    <span class="doccomment">/// [`true`], if @iter is set to the parent of @child</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the new [`TreeIter`][crate::TreeIter] to set to the parent</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_parent&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_parent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets `iter` to point to the previous node at the current level.</span>
+    <span class="doccomment">/// Sets @iter to point to the previous node at the current level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If there is no previous `iter`, [`false`] is returned and `iter` is</span>
+    <span class="doccomment">/// If there is no previous @iter, [`false`] is returned and @iter is</span>
     <span class="doccomment">/// set to be invalid.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// the [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` has been changed to the previous node</span>
+    <span class="doccomment">/// [`true`] if @iter has been changed to the previous node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_iter_previous&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_previous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Emits the ::row-changed signal on `self`.</span>
+    <span class="doccomment">/// Emits the ::row-changed signal on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See `signal::TreeModel::row-changed`.</span>
     <span class="doccomment">/// ## `path`</span>
@@ -1498,23 +1498,23 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_row_changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">row_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>);
 
-    <span class="doccomment">/// Emits the ::row-deleted signal on `self`.</span>
+    <span class="doccomment">/// Emits the ::row-deleted signal on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See `signal::TreeModel::row-deleted`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should be called by models after a row has been removed.</span>
-    <span class="doccomment">/// The location pointed to by `path` should be the location that</span>
+    <span class="doccomment">/// The location pointed to by @path should be the location that</span>
     <span class="doccomment">/// the row previously was at. It may not be a valid location anymore.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Nodes that are deleted are not unreffed, this means that any</span>
     <span class="doccomment">/// outstanding references on the deleted node should not be released.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// a [`TreePath`][crate::TreePath] pointing to the previous location of</span>
-    <span class="doccomment">///  the deleted row</span>
+    <span class="doccomment">///   the deleted row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_row_deleted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">row_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>);
 
-    <span class="doccomment">/// Emits the ::row-has-child-toggled signal on `self`.</span>
+    <span class="doccomment">/// Emits the ::row-has-child-toggled signal on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See `signal::TreeModel::row-has-child-toggled`.</span>
     <span class="doccomment">///</span>
@@ -1527,7 +1527,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_row_has_child_toggled&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">row_has_child_toggled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>);
 
-    <span class="doccomment">/// Emits the ::row-inserted signal on `self`.</span>
+    <span class="doccomment">/// Emits the ::row-inserted signal on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See `signal::TreeModel::row-inserted`.</span>
     <span class="doccomment">/// ## `path`</span>
@@ -1554,7 +1554,7 @@
     <span class="doccomment">/// since the row is already deleted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should be called by models after a row has been removed.</span>
-    <span class="doccomment">/// The location pointed to by `path` should be the location that</span>
+    <span class="doccomment">/// The location pointed to by @path should be the location that</span>
     <span class="doccomment">/// the row previously was at. It may not be a valid location anymore.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// a [`TreePath`][crate::TreePath] identifying the row</span>

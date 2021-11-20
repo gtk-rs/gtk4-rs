@@ -148,7 +148,7 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">impl</span> <span class="ident">ContentFormatsBuilder</span> {
-    <span class="doccomment">/// Appends all formats from `formats` to `self`, skipping those that</span>
+    <span class="doccomment">/// Appends all formats from @formats to @self, skipping those that</span>
     <span class="doccomment">/// already exist.</span>
     <span class="doccomment">/// ## `formats`</span>
     <span class="doccomment">/// the formats to add</span>
@@ -164,7 +164,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Appends `type_` to `self` if it has not already been added.</span>
+    <span class="doccomment">/// Appends @type_ to @self if it has not already been added.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// a `GType`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_add_gtype&quot;</span>)]</span>
@@ -176,7 +176,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Appends `mime_type` to `self` if it has not already been added.</span>
+    <span class="doccomment">/// Appends @mime_type to @self if it has not already been added.</span>
     <span class="doccomment">/// ## `mime_type`</span>
     <span class="doccomment">/// a mime type</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_add_mime_type&quot;</span>)]</span>
@@ -191,18 +191,18 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] from the given `self`.</span>
+    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] from the given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given [`ContentFormatsBuilder`][crate::ContentFormatsBuilder] is reset once this function returns;</span>
-    <span class="doccomment">/// you cannot call this function multiple times on the same `self` instance.</span>
+    <span class="doccomment">/// you cannot call this function multiple times on the same @self instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended primarily for bindings. C code should use</span>
-    <span class="doccomment">/// `Gdk::`ContentFormatsBuilder::free_to_formats()``.</span>
+    <span class="doccomment">/// `Gdk::ContentFormatsBuilder::free_to_formats()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created [`ContentFormats`][crate::ContentFormats]</span>
-    <span class="doccomment">///  with all the formats added to `self`</span>
+    <span class="doccomment">///   with all the formats added to @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_to_formats&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;The builder must be built to be used&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) -&gt; <span class="ident">ContentFormats</span> {

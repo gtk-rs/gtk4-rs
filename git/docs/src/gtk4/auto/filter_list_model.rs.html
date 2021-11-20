@@ -455,7 +455,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model can be set up to do incremental searching, so that</span>
     <span class="doccomment">/// filtering long lists doesn&#39;t block the UI. See</span>
-    <span class="doccomment">/// [``set_incremental()``][`Self::set_incremental()`] for details.</span>
+    <span class="doccomment">/// [`set_incremental()`][Self::set_incremental()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -469,8 +469,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FilterListModel</span> {
-    <span class="doccomment">/// Creates a new [`FilterListModel`][crate::FilterListModel] that will filter `model` using the given</span>
-    <span class="doccomment">/// `filter`.</span>
+    <span class="doccomment">/// Creates a new [`FilterListModel`][crate::FilterListModel] that will filter @model using the given</span>
+    <span class="doccomment">/// @filter.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// the model to sort</span>
     <span class="doccomment">/// ## `filter`</span>
@@ -501,7 +501,7 @@
         <span class="ident">FilterListModelBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Gets the [`Filter`][crate::Filter] currently set on `self`.</span>
+    <span class="doccomment">/// Gets the [`Filter`][crate::Filter] currently set on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -514,7 +514,7 @@
 
     <span class="doccomment">/// Returns whether incremental filtering is enabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_incremental()``][`Self::set_incremental()`].</span>
+    <span class="doccomment">/// See [`set_incremental()`][Self::set_incremental()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -542,7 +542,7 @@
 
     <span class="doccomment">/// Returns the number of items that have not been filtered yet.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can use this value to check if `self` is busy filtering by</span>
+    <span class="doccomment">/// You can use this value to check if @self is busy filtering by</span>
     <span class="doccomment">/// comparing the return value to 0 or you can compute the percentage</span>
     <span class="doccomment">/// of the filter remaining by dividing the return value by the total</span>
     <span class="doccomment">/// number of items in the underlying model:</span>
@@ -595,7 +595,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, incremental filtering is disabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``pending()``][`Self::pending()`] for progress information</span>
+    <span class="doccomment">/// See [`pending()`][Self::pending()] for progress information</span>
     <span class="doccomment">/// about an ongoing incremental filtering operation.</span>
     <span class="doccomment">/// ## `incremental`</span>
     <span class="doccomment">/// [`true`] to enable incremental filtering</span>
@@ -611,8 +611,8 @@
 
     <span class="doccomment">/// Sets the model to be filtered.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that GTK makes no effort to ensure that `model` conforms to</span>
-    <span class="doccomment">/// the item type of `self`. It assumes that the caller knows what they</span>
+    <span class="doccomment">/// Note that GTK makes no effort to ensure that @model conforms to</span>
+    <span class="doccomment">/// the item type of @self. It assumes that the caller knows what they</span>
     <span class="doccomment">/// are doing and have set up an appropriate filter to ensure that item</span>
     <span class="doccomment">/// types match.</span>
     <span class="doccomment">/// ## `model`</span>

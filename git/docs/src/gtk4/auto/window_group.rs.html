@@ -215,7 +215,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`WindowGroup`][crate::WindowGroup] objects are referenced by each window in the group,</span>
     <span class="doccomment">/// so once you have added all windows to a [`WindowGroup`][crate::WindowGroup], you can drop</span>
-    <span class="doccomment">/// the initial reference to the window group with `g_object_unref()`. If the</span>
+    <span class="doccomment">/// the initial reference to the window group with g_object_unref(). If the</span>
     <span class="doccomment">/// windows in the window group are subsequently destroyed, then they will</span>
     <span class="doccomment">/// be removed from the window group and drop their references on the window</span>
     <span class="doccomment">/// group; when all window have been removed, the window group will be</span>
@@ -268,12 +268,12 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_group_add_window&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Returns a list of the `GtkWindows` that belong to `self`.</span>
+    <span class="doccomment">/// Returns a list of the `GtkWindows` that belong to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A</span>
-    <span class="doccomment">///  newly-allocated list of windows inside the group.</span>
+    <span class="doccomment">///   newly-allocated list of windows inside the group.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_group_list_windows&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">list_windows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>;
 

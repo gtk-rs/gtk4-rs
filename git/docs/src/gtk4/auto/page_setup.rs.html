@@ -624,8 +624,8 @@
     <span class="doccomment">/// from the layout margins that a word processor uses; they are typically</span>
     <span class="doccomment">/// used to determine the minimal size for the layout margins.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To obtain a [`PageSetup`][crate::PageSetup] use [``new()``][`Self::new()`] to get the defaults,</span>
-    <span class="doccomment">/// or use [``print_run_page_setup_dialog()``][`crate::print_run_page_setup_dialog()`] to show the page setup dialog</span>
+    <span class="doccomment">/// To obtain a [`PageSetup`][crate::PageSetup] use [`new()`][Self::new()] to get the defaults,</span>
+    <span class="doccomment">/// or use [`print_run_page_setup_dialog()`][crate::print_run_page_setup_dialog()] to show the page setup dialog</span>
     <span class="doccomment">/// and receive the resulting page setup.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## A page setup dialog</span>
@@ -677,11 +677,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_page_setup_new</span>()) }
     }
 
-    <span class="doccomment">/// Reads the page setup from the file `file_name`.</span>
+    <span class="doccomment">/// Reads the page setup from the file @file_name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new [`PageSetup`][crate::PageSetup] object with the restored</span>
     <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
-    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
+    <span class="doccomment">/// See [`to_file()`][Self::to_file()].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the page setup from</span>
     <span class="doccomment">///</span>
@@ -707,7 +707,7 @@
     <span class="doccomment">/// Desrialize a page setup from an a{sv} variant.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variant must be in the format produced by</span>
-    <span class="doccomment">/// [``to_gvariant()``][`Self::to_gvariant()`].</span>
+    <span class="doccomment">/// [`to_gvariant()`][Self::to_gvariant()].</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// an a{sv} `GVariant`</span>
     <span class="doccomment">///</span>
@@ -725,8 +725,8 @@
         }
     }
 
-    <span class="doccomment">/// Reads the page setup from the group `group_name` in the key file</span>
-    <span class="doccomment">/// `key_file`.</span>
+    <span class="doccomment">/// Reads the page setup from the group @group_name in the key file</span>
+    <span class="doccomment">/// @key_file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new [`PageSetup`][crate::PageSetup] object with the restored</span>
     <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
@@ -734,7 +734,7 @@
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the name of the group in the key_file to read</span>
-    <span class="doccomment">///  to use the default name “Page Setup”</span>
+    <span class="doccomment">///    to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -765,13 +765,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a copy of `self`</span>
+    <span class="doccomment">/// a copy of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_copy&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_page_setup_copy</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the bottom margin in units of `unit`.</span>
+    <span class="doccomment">/// Gets the bottom margin in units of @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -784,7 +784,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_bottom_margin</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Gets the left margin in units of `unit`.</span>
+    <span class="doccomment">/// Gets the left margin in units of @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -808,11 +808,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_page_setup_get_orientation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the page height in units of `unit`.</span>
+    <span class="doccomment">/// Returns the page height in units of @unit.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation</span>
     <span class="doccomment">/// and margins into consideration.</span>
-    <span class="doccomment">/// See [``paper_height()``][`Self::paper_height()`].</span>
+    <span class="doccomment">/// See [`paper_height()`][Self::paper_height()].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -825,11 +825,11 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_page_height</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Returns the page width in units of `unit`.</span>
+    <span class="doccomment">/// Returns the page width in units of @unit.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation</span>
     <span class="doccomment">/// and margins into consideration.</span>
-    <span class="doccomment">/// See [``paper_width()``][`Self::paper_width()`].</span>
+    <span class="doccomment">/// See [`paper_width()`][Self::paper_width()].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -842,11 +842,11 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_page_width</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Returns the paper height in units of `unit`.</span>
+    <span class="doccomment">/// Returns the paper height in units of @unit.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation,</span>
     <span class="doccomment">/// but not margins into consideration.</span>
-    <span class="doccomment">/// See [``page_height()``][`Self::page_height()`].</span>
+    <span class="doccomment">/// See [`page_height()`][Self::page_height()].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -870,11 +870,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_get_paper_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the paper width in units of `unit`.</span>
+    <span class="doccomment">/// Returns the paper width in units of @unit.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation,</span>
     <span class="doccomment">/// but not margins into consideration.</span>
-    <span class="doccomment">/// See [``page_width()``][`Self::page_width()`].</span>
+    <span class="doccomment">/// See [`page_width()`][Self::page_width()].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -887,7 +887,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_paper_width</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Gets the right margin in units of `unit`.</span>
+    <span class="doccomment">/// Gets the right margin in units of @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -900,7 +900,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_right_margin</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Gets the top margin in units of `unit`.</span>
+    <span class="doccomment">/// Gets the top margin in units of @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -913,9 +913,9 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_top_margin</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Reads the page setup from the file `file_name`.</span>
+    <span class="doccomment">/// Reads the page setup from the file @file_name.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
+    <span class="doccomment">/// See [`to_file()`][Self::to_file()].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the page setup from</span>
     <span class="doccomment">///</span>
@@ -939,13 +939,13 @@
         }
     }
 
-    <span class="doccomment">/// Reads the page setup from the group `group_name` in the key file</span>
-    <span class="doccomment">/// `key_file`.</span>
+    <span class="doccomment">/// Reads the page setup from the group @group_name in the key file</span>
+    <span class="doccomment">/// @key_file.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the name of the group in the key_file to read</span>
-    <span class="doccomment">///  to use the default name “Page Setup”</span>
+    <span class="doccomment">///   to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -974,9 +974,9 @@
 
     <span class="doccomment">/// Sets the bottom margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
-    <span class="doccomment">/// the new bottom margin in units of `unit`</span>
+    <span class="doccomment">/// the new bottom margin in units of @unit</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units for `margin`</span>
+    <span class="doccomment">/// the units for @margin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_bottom_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bottom_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">margin</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -986,9 +986,9 @@
 
     <span class="doccomment">/// Sets the left margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
-    <span class="doccomment">/// the new left margin in units of `unit`</span>
+    <span class="doccomment">/// the new left margin in units of @unit</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units for `margin`</span>
+    <span class="doccomment">/// the units for @margin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_left_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_left_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">margin</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -1009,7 +1009,7 @@
     <span class="doccomment">/// Sets the paper size of the [`PageSetup`][crate::PageSetup] without</span>
     <span class="doccomment">/// changing the margins.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_paper_size_and_default_margins()``][`Self::set_paper_size_and_default_margins()`].</span>
+    <span class="doccomment">/// See [`set_paper_size_and_default_margins()`][Self::set_paper_size_and_default_margins()].</span>
     <span class="doccomment">/// ## `size`</span>
     <span class="doccomment">/// a [`PaperSize`][crate::PaperSize]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_paper_size&quot;</span>)]</span>
@@ -1038,9 +1038,9 @@
 
     <span class="doccomment">/// Sets the right margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
-    <span class="doccomment">/// the new right margin in units of `unit`</span>
+    <span class="doccomment">/// the new right margin in units of @unit</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units for `margin`</span>
+    <span class="doccomment">/// the units for @margin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_right_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_right_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">margin</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -1050,9 +1050,9 @@
 
     <span class="doccomment">/// Sets the top margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
-    <span class="doccomment">/// the new top margin in units of `unit`</span>
+    <span class="doccomment">/// the new top margin in units of @unit</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units for `margin`</span>
+    <span class="doccomment">/// the units for @margin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_top_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_top_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">margin</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -1060,7 +1060,7 @@
         }
     }
 
-    <span class="doccomment">/// This function saves the information from `self` to `file_name`.</span>
+    <span class="doccomment">/// This function saves the information from @self to @file_name.</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the file to save to</span>
     <span class="doccomment">///</span>
@@ -1094,12 +1094,12 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// This function adds the page setup from `self` to `key_file`.</span>
+    <span class="doccomment">/// This function adds the page setup from @self to @key_file.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to save the page setup to</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the group to add the settings to in `key_file`,</span>
-    <span class="doccomment">///  or [`None`] to use the default name “Page Setup”</span>
+    <span class="doccomment">/// the group to add the settings to in @key_file,</span>
+    <span class="doccomment">///   or [`None`] to use the default name “Page Setup”</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>, <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

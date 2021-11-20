@@ -2692,7 +2692,7 @@
 
     <span class="doccomment">/// Creates a new [`CellRendererText`][crate::CellRendererText]. Adjust how text is drawn using</span>
     <span class="doccomment">/// object properties. Object properties can be</span>
-    <span class="doccomment">/// set globally (with `g_object_set()`). Also, with [`TreeViewColumn`][crate::TreeViewColumn],</span>
+    <span class="doccomment">/// set globally (with g_object_set()). Also, with [`TreeViewColumn`][crate::TreeViewColumn],</span>
     <span class="doccomment">/// you can bind a property to a value in a [`TreeModel`][crate::TreeModel]. For example,</span>
     <span class="doccomment">/// you can bind the “text” property on the cell renderer to a string</span>
     <span class="doccomment">/// value in the model, thus rendering a different string in each row</span>
@@ -3325,11 +3325,11 @@
 <span class="doccomment">/// [`CellRendererAccel`][struct@crate::CellRendererAccel], [`CellRendererCombo`][struct@crate::CellRendererCombo], [`CellRendererSpin`][struct@crate::CellRendererSpin], [`CellRendererText`][struct@crate::CellRendererText]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellRendererTextExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Sets the height of a renderer to explicitly be determined by the “font” and</span>
-    <span class="doccomment">/// “y_pad” property set on it. Further changes in these properties do not</span>
+    <span class="doccomment">/// “y_pad” property set on it.  Further changes in these properties do not</span>
     <span class="doccomment">/// affect the height, so they must be accompanied by a subsequent call to this</span>
-    <span class="doccomment">/// function. Using this function is inflexible, and should really only be used</span>
+    <span class="doccomment">/// function.  Using this function is inflexible, and should really only be used</span>
     <span class="doccomment">/// if calculating the size of a cell is too slow (ie, a massive number of cells</span>
-    <span class="doccomment">/// displayed). If `number_of_rows` is -1, then the fixed height is unset, and</span>
+    <span class="doccomment">/// displayed).  If @number_of_rows is -1, then the fixed height is unset, and</span>
     <span class="doccomment">/// the height is determined by the properties again.</span>
     <span class="doccomment">/// ## `number_of_rows`</span>
     <span class="doccomment">/// Number of rows of text each cell renderer is allocated, or -1</span>
@@ -3578,10 +3578,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;wrap-width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_wrap_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wrap_width</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// This signal is emitted after `renderer` has been edited.</span>
+    <span class="doccomment">/// This signal is emitted after @renderer has been edited.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is the responsibility of the application to update the model</span>
-    <span class="doccomment">/// and store `new_text` at the position indicated by `path`.</span>
+    <span class="doccomment">/// and store @new_text at the position indicated by @path.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the path identifying the edited cell</span>
     <span class="doccomment">/// ## `new_text`</span>

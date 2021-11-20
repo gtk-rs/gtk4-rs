@@ -391,9 +391,9 @@
     <span class="doccomment">/// something about it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Cursors by themselves are not very interesting: they must be bound to a</span>
-    <span class="doccomment">/// window for users to see them. This is done with [``SurfaceExt::set_cursor()``][crate::prelude::`SurfaceExt::set_cursor()`]</span>
-    <span class="doccomment">/// or [``SurfaceExt::set_device_cursor()``][crate::prelude::`SurfaceExt::set_device_cursor()`]. Applications will typically</span>
-    <span class="doccomment">/// use higher-level GTK functions such as `Gtk::`Widget::set_cursor()```</span>
+    <span class="doccomment">/// window for users to see them. This is done with [`SurfaceExt::set_cursor()`][crate::prelude::SurfaceExt::set_cursor()]</span>
+    <span class="doccomment">/// or [`SurfaceExt::set_device_cursor()`][crate::prelude::SurfaceExt::set_device_cursor()]. Applications will typically</span>
+    <span class="doccomment">/// use higher-level GTK functions such as `Gtk::Widget::set_cursor()``</span>
     <span class="doccomment">/// instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Cursors are not bound to a given [`Display`][crate::Display], so they can be shared.</span>
@@ -403,13 +403,13 @@
     <span class="doccomment">/// ## Named and texture cursors</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are multiple ways to create cursors. The platform&#39;s own cursors</span>
-    <span class="doccomment">/// can be created with [``from_name()``][`Self::from_name()`]. That function lists</span>
+    <span class="doccomment">/// can be created with [`from_name()`][Self::from_name()]. That function lists</span>
     <span class="doccomment">/// the commonly available names that are shared with the CSS specification.</span>
     <span class="doccomment">/// Other names may be available, depending on the platform in use. On some</span>
     <span class="doccomment">/// platforms, what images are used for named cursors may be influenced by</span>
     <span class="doccomment">/// the cursor theme.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Another option to create a cursor is to use [``from_texture()``][`Self::from_texture()`]</span>
+    <span class="doccomment">/// Another option to create a cursor is to use [`from_texture()`][Self::from_texture()]</span>
     <span class="doccomment">/// and provide an image to use for the cursor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To ease work with unsupported cursors, a fallback cursor can be provided.</span>
@@ -427,7 +427,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Cursor</span> {
-    <span class="doccomment">/// Creates a new cursor by looking up `name` in the current cursor</span>
+    <span class="doccomment">/// Creates a new cursor by looking up @name in the current cursor</span>
     <span class="doccomment">/// theme.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A recommended set of cursor names that will work across different</span>
@@ -448,12 +448,12 @@
     <span class="doccomment">/// the name of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
     <span class="doccomment">/// [`None`] or the [`Cursor`][crate::Cursor] to fall back to when</span>
-    <span class="doccomment">///  this one cannot be supported</span>
+    <span class="doccomment">///   this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new [`Cursor`][crate::Cursor], or [`None`] if there is no</span>
-    <span class="doccomment">///  cursor with the given name</span>
+    <span class="doccomment">///   cursor with the given name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_new_from_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_name</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">fallback</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Cursor</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
@@ -475,7 +475,7 @@
     <span class="doccomment">/// the vertical offset of the “hotspot” of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
     <span class="doccomment">/// the [`Cursor`][crate::Cursor] to fall back to when</span>
-    <span class="doccomment">///  this one cannot be supported</span>
+    <span class="doccomment">///   this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -507,7 +507,7 @@
         <span class="ident">CursorBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Returns the fallback for this `self`.</span>
+    <span class="doccomment">/// Returns the fallback for this @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The fallback will be used if this cursor is not available on a given</span>
     <span class="doccomment">/// [`Display`][crate::Display]. For named cursors, this can happen when using nonstandard</span>
@@ -518,7 +518,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the fallback of the cursor or [`None`]</span>
-    <span class="doccomment">///  to use the default cursor as fallback</span>
+    <span class="doccomment">///   to use the default cursor as fallback</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_fallback&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_fallback&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fallback</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
@@ -531,7 +531,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that named cursors may have a nonzero hotspot, but this function</span>
     <span class="doccomment">/// will only return the hotspot position for cursors created with</span>
-    <span class="doccomment">/// [``from_texture()``][`Self::from_texture()`].</span>
+    <span class="doccomment">/// [`from_texture()`][Self::from_texture()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -548,7 +548,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that named cursors may have a nonzero hotspot, but this function</span>
     <span class="doccomment">/// will only return the hotspot position for cursors created with</span>
-    <span class="doccomment">/// [``from_texture()``][`Self::from_texture()`].</span>
+    <span class="doccomment">/// [`from_texture()`][Self::from_texture()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -566,7 +566,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the name of the cursor or [`None`]</span>
-    <span class="doccomment">///  if it is not a named cursor</span>
+    <span class="doccomment">///   if it is not a named cursor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -580,7 +580,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the texture for cursor or [`None`]</span>
-    <span class="doccomment">///  if it is a named cursor</span>
+    <span class="doccomment">///   if it is a named cursor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_texture&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_texture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span> {

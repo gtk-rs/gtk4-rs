@@ -1443,7 +1443,7 @@
     <span class="doccomment">/// by dragging a handle.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Child widgets are added to the panes of the widget with</span>
-    <span class="doccomment">/// [``set_start_child()``][`Self::set_start_child()`] and [``set_end_child()``][`Self::set_end_child()`].</span>
+    <span class="doccomment">/// [`set_start_child()`][Self::set_start_child()] and [`set_end_child()`][Self::set_end_child()].</span>
     <span class="doccomment">/// The division between the two children is set by default from the size</span>
     <span class="doccomment">/// requests of the children, but it can be adjusted by the user.</span>
     <span class="doccomment">///</span>
@@ -1454,16 +1454,16 @@
     <span class="doccomment">/// each child inside a [`Frame`][crate::Frame] so that the gutter appears as a</span>
     <span class="doccomment">/// ridge. No separator is drawn if one of the children is missing.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each child has two options that can be set, `resize` and `shrink`. If</span>
-    <span class="doccomment">/// `resize` is true, then when the [`Paned`][crate::Paned] is resized, that child will</span>
-    <span class="doccomment">/// expand or shrink along with the paned widget. If `shrink` is true, then</span>
+    <span class="doccomment">/// Each child has two options that can be set, @resize and @shrink. If</span>
+    <span class="doccomment">/// @resize is true, then when the [`Paned`][crate::Paned] is resized, that child will</span>
+    <span class="doccomment">/// expand or shrink along with the paned widget. If @shrink is true, then</span>
     <span class="doccomment">/// that child can be made smaller than its requisition by the user.</span>
-    <span class="doccomment">/// Setting `shrink` to [`false`] allows the application to set a minimum size.</span>
-    <span class="doccomment">/// If `resize` is false for both children, then this is treated as if</span>
-    <span class="doccomment">/// `resize` is true for both children.</span>
+    <span class="doccomment">/// Setting @shrink to [`false`] allows the application to set a minimum size.</span>
+    <span class="doccomment">/// If @resize is false for both children, then this is treated as if</span>
+    <span class="doccomment">/// @resize is true for both children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application can set the position of the slider as if it were set</span>
-    <span class="doccomment">/// by the user, by calling [``set_position()``][`Self::set_position()`].</span>
+    <span class="doccomment">/// by the user, by calling [`set_position()`][Self::set_position()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
@@ -1630,7 +1630,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_paned_get_wide_handle</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Sets the end child of `self` to `child`.</span>
+    <span class="doccomment">/// Sets the end child of @self to @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paned_set_end_child&quot;</span>)]</span>
@@ -1643,7 +1643,7 @@
     <span class="doccomment">/// Sets the position of the divider between the two panes.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// pixel position of divider, a negative value means that the position</span>
-    <span class="doccomment">///  is unset</span>
+    <span class="doccomment">///   is unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paned_set_position&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
@@ -1691,7 +1691,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the start child of `self` to `child`.</span>
+    <span class="doccomment">/// Sets the start child of @self to @child.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paned_set_start_child&quot;</span>)]</span>
@@ -2509,7 +2509,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -2535,9 +2535,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -2579,7 +2579,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -2592,7 +2592,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -2605,7 +2605,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -2615,7 +2615,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -2657,7 +2657,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2674,7 +2674,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

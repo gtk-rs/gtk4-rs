@@ -187,15 +187,15 @@
 <span class="comment">// rustdoc-stripper-ignore-next</span>
 <span class="doccomment">/// Trait containing manually implemented methods of [`TreeModelFilter`](crate::TreeModelFilter).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeModelFilterExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// With the `n_columns` and `types` parameters, you give an array of column</span>
+    <span class="doccomment">/// With the @n_columns and @types parameters, you give an array of column</span>
     <span class="doccomment">/// types for this model (which will be exposed to the parent model/view).</span>
-    <span class="doccomment">/// The `func`, `data` and `destroy` parameters are for specifying the modify</span>
+    <span class="doccomment">/// The @func, @data and @destroy parameters are for specifying the modify</span>
     <span class="doccomment">/// function. The modify function will get called for each</span>
     <span class="doccomment">/// data access, the goal of the modify function is to return the data which</span>
     <span class="doccomment">/// should be displayed at the location specified using the parameters of the</span>
     <span class="doccomment">/// modify function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [`TreeModelFilterExtManual::set_modify_func()`][crate::prelude::TreeModelFilterExtManual::set_modify_func()]</span>
+    <span class="doccomment">/// Note that gtk_tree_model_filter_set_modify_func()</span>
     <span class="doccomment">/// can only be called once for a given filter model.</span>
     <span class="doccomment">/// ## `types`</span>
     <span class="doccomment">/// The `GType`s of the columns.</span>

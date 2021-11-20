@@ -230,7 +230,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">StaticType</span>, <span class="ident">Type</span>, <span class="ident">Value</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="doccomment">/// Predefined values for use as response ids in [`DialogExt::add_button()`][crate::prelude::DialogExt::add_button()].</span>
+<span class="doccomment">/// Predefined values for use as response ids in gtk_dialog_add_button().</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// All predefined values are negative; GTK leaves values of 0 or greater for</span>
 <span class="doccomment">/// application-defined response ids.</span>
@@ -238,7 +238,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkResponseType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ResponseType</span> {
     <span class="doccomment">/// Returned if an action widget has no response id,</span>
-    <span class="doccomment">///  or if the dialog gets programmatically hidden or destroyed</span>
+    <span class="doccomment">///   or if the dialog gets programmatically hidden or destroyed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_RESPONSE_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// Generic response id, not used by GTK dialogs</span>

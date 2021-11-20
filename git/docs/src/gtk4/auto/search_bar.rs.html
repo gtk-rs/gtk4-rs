@@ -887,19 +887,19 @@
     <span class="doccomment">/// ![An example GtkSearchBar](search-bar.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can also contain additional widgets, such as drop-down menus,</span>
-    <span class="doccomment">/// or buttons. The search bar would appear when a search is started</span>
+    <span class="doccomment">/// or buttons.  The search bar would appear when a search is started</span>
     <span class="doccomment">/// through typing on the keyboard, or the application’s search mode</span>
     <span class="doccomment">/// is toggled on.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For keyboard presses to start a search, the search bar must be told</span>
     <span class="doccomment">/// of a widget to capture key events from through</span>
-    <span class="doccomment">/// [``set_key_capture_widget()``][`Self::set_key_capture_widget()`]. This widget will</span>
+    <span class="doccomment">/// [`set_key_capture_widget()`][Self::set_key_capture_widget()]. This widget will</span>
     <span class="doccomment">/// typically be the top-level window, or a parent container of the</span>
     <span class="doccomment">/// search bar. Common shortcuts such as Ctrl+F should be handled as an</span>
     <span class="doccomment">/// application action, or through the menu items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You will also need to tell the search bar about which entry you</span>
-    <span class="doccomment">/// are using as your search entry using [``connect_entry()``][`Self::connect_entry()`].</span>
+    <span class="doccomment">/// are using as your search entry using [`connect_entry()`][Self::connect_entry()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Creating a search bar</span>
     <span class="doccomment">///</span>
@@ -942,7 +942,7 @@
     <span class="doccomment">/// Creates a [`SearchBar`][crate::SearchBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You will need to tell it about which widget is going to be your text</span>
-    <span class="doccomment">/// entry using [``connect_entry()``][`Self::connect_entry()`].</span>
+    <span class="doccomment">/// entry using [`connect_entry()`][Self::connect_entry()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -979,18 +979,18 @@
         }
     }
 
-    <span class="doccomment">/// Gets the child widget of `self`.</span>
+    <span class="doccomment">/// Gets the child widget of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget of `self`</span>
+    <span class="doccomment">/// the child widget of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_search_bar_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_search_bar_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the widget that `self` is capturing key events from.</span>
+    <span class="doccomment">/// Gets the widget that @self is capturing key events from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1031,7 +1031,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the child widget of `self`.</span>
+    <span class="doccomment">/// Sets the child widget of @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_search_bar_set_child&quot;</span>)]</span>
@@ -1044,7 +1044,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets `widget` as the widget that `self` will capture key events</span>
+    <span class="doccomment">/// Sets @widget as the widget that @self will capture key events</span>
     <span class="doccomment">/// from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If key events are handled by the search bar, the bar will</span>
@@ -1052,10 +1052,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that despite the name of this function, the events</span>
     <span class="doccomment">/// are only &#39;captured&#39; in the bubble phase, which means that</span>
-    <span class="doccomment">/// editable child widgets of `widget` will receive text input</span>
+    <span class="doccomment">/// editable child widgets of @widget will receive text input</span>
     <span class="doccomment">/// before it gets captured. If that is not desired, you can</span>
     <span class="doccomment">/// capture and forward the events yourself with</span>
-    <span class="doccomment">/// [``EventControllerKey::forward()``][crate::`EventControllerKey::forward()`].</span>
+    <span class="doccomment">/// [`EventControllerKey::forward()`][crate::EventControllerKey::forward()].</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_search_bar_set_key_capture_widget&quot;</span>)]</span>
@@ -1415,7 +1415,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1441,9 +1441,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1485,7 +1485,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1498,7 +1498,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1511,7 +1511,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1521,7 +1521,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1563,7 +1563,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1580,7 +1580,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

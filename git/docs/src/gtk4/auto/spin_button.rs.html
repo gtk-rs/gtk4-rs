@@ -1727,7 +1727,7 @@
     <span class="doccomment">/// the [`Adjustment`][crate::Adjustment] that this spin button should use</span>
     <span class="doccomment">/// ## `climb_rate`</span>
     <span class="doccomment">/// specifies by how much the rate of change in the value will</span>
-    <span class="doccomment">///  accelerate if you continue to hold down an up/down button or arrow key</span>
+    <span class="doccomment">///   accelerate if you continue to hold down an up/down button or arrow key</span>
     <span class="doccomment">/// ## `digits`</span>
     <span class="doccomment">/// the number of decimal places to display</span>
     <span class="doccomment">///</span>
@@ -1756,14 +1756,14 @@
     <span class="doccomment">/// This is a convenience constructor that allows creation</span>
     <span class="doccomment">/// of a numeric [`SpinButton`][crate::SpinButton] without manually creating</span>
     <span class="doccomment">/// an adjustment. The value is initially set to the minimum</span>
-    <span class="doccomment">/// value and a page increment of 10 * `step` is the default.</span>
+    <span class="doccomment">/// value and a page increment of 10 * @step is the default.</span>
     <span class="doccomment">/// The precision of the spin button is equivalent to the</span>
-    <span class="doccomment">/// precision of `step`.</span>
+    <span class="doccomment">/// precision of @step.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the way in which the precision is derived works</span>
-    <span class="doccomment">/// best if `step` is a power of ten. If the resulting precision</span>
+    <span class="doccomment">/// best if @step is a power of ten. If the resulting precision</span>
     <span class="doccomment">/// is not suitable for your needs, use</span>
-    <span class="doccomment">/// [``set_digits()``][`Self::set_digits()`] to correct it.</span>
+    <span class="doccomment">/// [`set_digits()`][Self::set_digits()] to correct it.</span>
     <span class="doccomment">/// ## `min`</span>
     <span class="doccomment">/// Minimum allowable value</span>
     <span class="doccomment">/// ## `max`</span>
@@ -1798,7 +1798,7 @@
     <span class="doccomment">/// are updated accordingly.</span>
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// a [`Adjustment`][crate::Adjustment] to replace the spin button’s</span>
-    <span class="doccomment">///  existing adjustment, or [`None`] to leave its current adjustment unchanged</span>
+    <span class="doccomment">///   existing adjustment, or [`None`] to leave its current adjustment unchanged</span>
     <span class="doccomment">/// ## `climb_rate`</span>
     <span class="doccomment">/// the new climb rate</span>
     <span class="doccomment">/// ## `digits`</span>
@@ -1824,7 +1824,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`Adjustment`][crate::Adjustment] of `self`</span>
+    <span class="doccomment">/// the [`Adjustment`][crate::Adjustment] of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_adjustment&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_adjustment&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Adjustment</span> {
@@ -1842,7 +1842,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_spin_button_get_climb_rate</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Fetches the precision of `self`.</span>
+    <span class="doccomment">/// Fetches the precision of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1854,9 +1854,9 @@
     }
 
     <span class="doccomment">/// Gets the current step and page the increments</span>
-    <span class="doccomment">/// used by `self`.</span>
+    <span class="doccomment">/// used by @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_increments()``][`Self::set_increments()`].</span>
+    <span class="doccomment">/// See [`set_increments()`][Self::set_increments()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1894,9 +1894,9 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_spin_button_get_numeric</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the range allowed for `self`.</span>
+    <span class="doccomment">/// Gets the range allowed for @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_range()``][`Self::set_range()`].</span>
+    <span class="doccomment">/// See [`set_range()`][Self::set_range()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1940,7 +1940,7 @@
 
     <span class="doccomment">/// Gets the update behavior of a spin button.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_update_policy()``][`Self::set_update_policy()`].</span>
+    <span class="doccomment">/// See [`set_update_policy()`][Self::set_update_policy()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1955,22 +1955,22 @@
         }
     }
 
-    <span class="doccomment">/// Get the value in the `self`.</span>
+    <span class="doccomment">/// Get the value in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the value of `self`</span>
+    <span class="doccomment">/// the value of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_value&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_spin_button_get_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Get the value `self` represented as an integer.</span>
+    <span class="doccomment">/// Get the value @self represented as an integer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the value of `self`</span>
+    <span class="doccomment">/// the value of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_value_as_int&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value_as_int&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_as_int</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
@@ -1990,7 +1990,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_spin_button_get_wrap</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Replaces the [`Adjustment`][crate::Adjustment] associated with `self`.</span>
+    <span class="doccomment">/// Replaces the [`Adjustment`][crate::Adjustment] associated with @self.</span>
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// a [`Adjustment`][crate::Adjustment] to replace the existing adjustment</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_set_adjustment&quot;</span>)]</span>
@@ -2014,12 +2014,12 @@
         }
     }
 
-    <span class="doccomment">/// Set the precision to be displayed by `self`.</span>
+    <span class="doccomment">/// Set the precision to be displayed by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Up to 20 digit precision is allowed.</span>
     <span class="doccomment">/// ## `digits`</span>
     <span class="doccomment">/// the number of digits after the decimal point to be</span>
-    <span class="doccomment">///  displayed for the spin button’s value</span>
+    <span class="doccomment">///   displayed for the spin button’s value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_set_digits&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_digits</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">digits</span>: <span class="ident">u32</span>) {
         <span class="kw">unsafe</span> {
@@ -2053,7 +2053,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the minimum and maximum allowable values for `self`.</span>
+    <span class="doccomment">/// Sets the minimum and maximum allowable values for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the current value is outside this range, it will be adjusted</span>
     <span class="doccomment">/// to fit within the range, otherwise it will remain unchanged.</span>
@@ -2096,7 +2096,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of `self`.</span>
+    <span class="doccomment">/// Sets the value of @self.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the new value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_set_value&quot;</span>)]</span>
@@ -2144,7 +2144,7 @@
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
-    <span class="doccomment">/// `g_signal_emit_by_name()` if they need to control the cursor</span>
+    <span class="doccomment">/// g_signal_emit_by_name() if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are Up/Down and PageUp/PageDown.</span>
@@ -2769,7 +2769,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -2795,9 +2795,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -2839,7 +2839,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -2852,7 +2852,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -2865,7 +2865,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -2875,7 +2875,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -2917,7 +2917,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2934,7 +2934,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

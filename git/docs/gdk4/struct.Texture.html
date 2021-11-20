@@ -78,16 +78,16 @@ multiple frames, and will be used for a long time.</p>
 <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="crate::gdk_pixbuf::Pixbuf"><code>gdk_pixbuf::Pixbuf</code></a>, or a Cairo surface, or other pixel data.</p>
 <p>The ownership of the pixel data is transferred to the <a href="struct.Texture.html" title="crate::Texture"><code>Texture</code></a>
 instance; you can only make a copy of it, via <a href="prelude/trait.TextureExtManual.html#tymethod.download" title="crate::prelude::TextureExtManual::download()"><code>TextureExtManual::download()</code></a>
-or <code>Gdk::</code>Texture::download_float()``.</p>
+or <code>Gdk::Texture::download_float()</code>.</p>
 <p><a href="struct.Texture.html" title="crate::Texture"><code>Texture</code></a> is an immutable object: That means you cannot change
 anything about it other than increasing the reference count via
-<code>g_object_ref()</code>.</p>
+g_object_ref().</p>
 <p>This is an Abstract Base Class, you cannot instantiate it.</p>
 <h2 id="implements" class="section-header"><a href="#implements">Implements</a></h2>
 <p><a href="prelude/trait.TextureExt.html" title="crate::prelude::TextureExt"><code>TextureExt</code></a>, <a href="prelude/trait.PaintableExt.html" title="crate::prelude::PaintableExt"><code>PaintableExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/icon/trait.IconExt.html" title="gio::prelude::IconExt"><code>gio::prelude::IconExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/loadable_icon/trait.LoadableIconExt.html" title="gio::prelude::LoadableIconExt"><code>gio::prelude::LoadableIconExt</code></a>, <a href="prelude/trait.TextureExtManual.html" title="crate::prelude::TextureExtManual"><code>TextureExtManual</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#41-189" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a></h3></div></summary><div class="impl-items"><div id="associatedconstant.NONE" class="associatedconstant has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#42" title="goto source code">[src]</a></div><a href="#associatedconstant.NONE" class="anchor"></a><h4 class="code-header">pub const <a href="#associatedconstant.NONE" class="constant">NONE</a>: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;'static <a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>&gt;</h4></div><details class="rustdoc-toggle method-toggle" open><summary><div id="method.for_pixbuf" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#57-60" title="goto source code">[src]</a></div><a href="#method.for_pixbuf" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.for_pixbuf" class="fnname">for_pixbuf</a>(pixbuf: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="struct gdk_pixbuf::auto::pixbuf::Pixbuf">Pixbuf</a>) -&gt; <a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a></h4></div></summary><div class="docblock"><p>Creates a new texture object representing the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="crate::gdk_pixbuf::Pixbuf"><code>gdk_pixbuf::Pixbuf</code></a>.</p>
 <p>This function is threadsafe, so that you can e.g. use GTask
-and <code>g_task_run_in_thread()</code> to avoid blocking the main thread
+and g_task_run_in_thread() to avoid blocking the main thread
 while loading a big image.</p>
 <h6 id="pixbuf" class="section-header"><a href="#pixbuf"><code>pixbuf</code></a></h6>
 <p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gdk_pixbuf/auto/pixbuf/struct.Pixbuf.html" title="crate::gdk_pixbuf::Pixbuf"><code>gdk_pixbuf::Pixbuf</code></a></p>
@@ -96,9 +96,9 @@ while loading a big image.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.from_bytes" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#82-93" title="goto source code">[src]</a></div><a href="#method.from_bytes" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.from_bytes" class="fnname">from_bytes</a>(bytes: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_6</code></strong> only.</div></div></summary><div class="docblock"><p>Creates a new texture by loading an image from memory,</p>
 <p>The file format is detected automatically. The supported formats
 are PNG and JPEG, though more formats might be available.</p>
-<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then <code>error</code> will be set.</p>
+<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then @error will be set.</p>
 <p>This function is threadsafe, so that you can e.g. use GTask
-and <code>g_task_run_in_thread()</code> to avoid blocking the main thread
+and g_task_run_in_thread() to avoid blocking the main thread
 while loading a big image.</p>
 <h6 id="bytes" class="section-header"><a href="#bytes"><code>bytes</code></a></h6>
 <p>a <code>GBytes</code> containing the data to load</p>
@@ -107,9 +107,9 @@ while loading a big image.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.from_file" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#113-124" title="goto source code">[src]</a></div><a href="#method.from_file" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.from_file" class="fnname">from_file</a>(file: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Creates a new texture by loading an image from a file.</p>
 <p>The file format is detected automatically. The supported formats
 are PNG and JPEG, though more formats might be available.</p>
-<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then <code>error</code> will be set.</p>
+<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then @error will be set.</p>
 <p>This function is threadsafe, so that you can e.g. use GTask
-and <code>g_task_run_in_thread()</code> to avoid blocking the main thread
+and g_task_run_in_thread() to avoid blocking the main thread
 while loading a big image.</p>
 <h6 id="file" class="section-header"><a href="#file"><code>file</code></a></h6>
 <p><code>GFile</code> to load</p>
@@ -118,9 +118,9 @@ while loading a big image.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.from_filename" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#146-158" title="goto source code">[src]</a></div><a href="#method.from_filename" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.from_filename" class="fnname">from_filename</a>(path: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_6</code></strong> only.</div></div></summary><div class="docblock"><p>Creates a new texture by loading an image from a file.</p>
 <p>The file format is detected automatically. The supported formats
 are PNG and JPEG, though more formats might be available.</p>
-<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then <code>error</code> will be set.</p>
+<p>If <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned, then @error will be set.</p>
 <p>This function is threadsafe, so that you can e.g. use GTask
-and <code>g_task_run_in_thread()</code> to avoid blocking the main thread
+and g_task_run_in_thread() to avoid blocking the main thread
 while loading a big image.</p>
 <h6 id="path" class="section-header"><a href="#path"><code>path</code></a></h6>
 <p>the filename to load</p>
@@ -129,12 +129,12 @@ while loading a big image.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.from_resource" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/texture.rs.html#181-188" title="goto source code">[src]</a></div><a href="#method.from_resource" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.from_resource" class="fnname">from_resource</a>(resource_path: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a></h4></div></summary><div class="docblock"><p>Creates a new texture by loading an image from a resource.</p>
 <p>The file format is detected automatically. The supported formats
 are PNG and JPEG, though more formats might be available.</p>
-<p>It is a fatal error if <code>resource_path</code> does not specify a valid
+<p>It is a fatal error if @resource_path does not specify a valid
 image resource and the program will abort if that happens.
 If you are unsure about the validity of a resource, use
 <a href="struct.Texture.html#method.from_file" title="Self::from_file()"><code>from_file()</code></a> to load it.</p>
 <p>This function is threadsafe, so that you can e.g. use GTask
-and <code>g_task_run_in_thread()</code> to avoid blocking the main thread
+and g_task_run_in_thread() to avoid blocking the main thread
 while loading a big image.</p>
 <h6 id="resource_path" class="section-header"><a href="#resource_path"><code>resource_path</code></a></h6>
 <p>the path of the resource file</p>

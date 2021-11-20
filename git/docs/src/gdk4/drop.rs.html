@@ -254,14 +254,14 @@
     <span class="doccomment">/// in a format that complies with one of the mime types.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  pointer to an array of mime types</span>
+    <span class="doccomment">///   pointer to an array of mime types</span>
     <span class="doccomment">/// ## `io_priority`</span>
     <span class="doccomment">/// the I/O priority for the read operation</span>
     <span class="doccomment">/// ## `cancellable`</span>
     <span class="doccomment">/// optional `GCancellable` object</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// a `GAsyncReadyCallback` to call when</span>
-    <span class="doccomment">///  the request is satisfied</span>
+    <span class="doccomment">///   the request is satisfied</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drop_read_async&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_async</span><span class="op">&lt;</span>
         <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Cancellable</span><span class="op">&gt;</span>,
@@ -333,15 +333,15 @@
     }
 
     <span class="doccomment">/// Asynchronously request the drag operation&#39;s contents converted</span>
-    <span class="doccomment">/// to the given `type_`.</span>
+    <span class="doccomment">/// to the given @type_.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the operation is finished `callback` will be called. You must</span>
-    <span class="doccomment">/// then call `Gdk::`Drop::read_value_finish()`` to get the resulting</span>
+    <span class="doccomment">/// When the operation is finished @callback will be called. You must</span>
+    <span class="doccomment">/// then call `Gdk::Drop::read_value_finish()` to get the resulting</span>
     <span class="doccomment">/// `GValue`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For local drag-and-drop operations that are available in the given</span>
     <span class="doccomment">/// `GType`, the value will be copied directly. Otherwise, GDK will</span>
-    <span class="doccomment">/// try to use [``content_deserialize_async()``][`crate::content_deserialize_async()`] to convert the data.</span>
+    <span class="doccomment">/// try to use [`content_deserialize_async()`][crate::content_deserialize_async()] to convert the data.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// a `GType` to read</span>
     <span class="doccomment">/// ## `io_priority`</span>

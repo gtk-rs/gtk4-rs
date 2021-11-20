@@ -1912,7 +1912,7 @@
     <span class="doccomment">/// # Requesting area sizes</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// As outlined in</span>
-    <span class="doccomment">/// [GtkWidget’s geometry management section](class.Widget.html`height`-for-width-geometry-management),</span>
+    <span class="doccomment">/// [GtkWidget’s geometry management section](class.Widget.html#height-for-width-geometry-management),</span>
     <span class="doccomment">/// GTK uses a height-for-width</span>
     <span class="doccomment">/// geometry management system to compute the sizes of widgets and user</span>
     <span class="doccomment">/// interfaces. [`CellArea`][crate::CellArea] uses the same semantics to calculate the</span>
@@ -1936,7 +1936,7 @@
     <span class="doccomment">/// with the said context).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellAreaContext`][crate::CellAreaContext] is an opaque object specific to the</span>
-    <span class="doccomment">/// [`CellArea`][crate::CellArea] which created it (see [``CellAreaExt::create_context()``][crate::prelude::`CellAreaExt::create_context()`]).</span>
+    <span class="doccomment">/// [`CellArea`][crate::CellArea] which created it (see [`CellAreaExt::create_context()`][crate::prelude::CellAreaExt::create_context()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The owning cell-layouting widget can create as many contexts as</span>
     <span class="doccomment">/// it wishes to calculate sizes of rows which should receive the</span>
@@ -1978,7 +1978,7 @@
     <span class="doccomment">/// support requesting and rendering rows in treemodels with an</span>
     <span class="doccomment">/// exceedingly large amount of rows. The [`CellLayout`][crate::CellLayout] widget in</span>
     <span class="doccomment">/// that case would calculate the required width of the rows in an</span>
-    <span class="doccomment">/// idle or timeout source (see ``timeout_add()``) and when the widget</span>
+    <span class="doccomment">/// idle or timeout source (see `timeout_add()`) and when the widget</span>
     <span class="doccomment">/// is requested its actual width in `vfunc::Gtk::Widget::measure`</span>
     <span class="doccomment">/// it can simply consult the width accumulated so far in the</span>
     <span class="doccomment">/// [`CellAreaContext`][crate::CellAreaContext] object.</span>
@@ -2053,7 +2053,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// In some cases the layouting widget is requested the height for an</span>
     <span class="doccomment">/// arbitrary for_width, this is a special case for layouting widgets</span>
-    <span class="doccomment">/// who need to request size for tens of thousands of rows. For this</span>
+    <span class="doccomment">/// who need to request size for tens of thousands  of rows. For this</span>
     <span class="doccomment">/// case it’s only important that the layouting widget calculate</span>
     <span class="doccomment">/// one reasonably sized chunk of rows and return that height</span>
     <span class="doccomment">/// synchronously. The reasoning here is that any layouting widget is</span>
@@ -2107,19 +2107,19 @@
     <span class="doccomment">/// give every row its minimum or natural height or, if the model content</span>
     <span class="doccomment">/// is expected to fit inside the layouting widget without scrolling, it</span>
     <span class="doccomment">/// would make sense to calculate the allocation for each row at</span>
-    <span class="doccomment">/// the time the widget is allocated using ``distribute_natural_allocation()``.</span>
+    <span class="doccomment">/// the time the widget is allocated using `distribute_natural_allocation()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Handling Events and Driving Keyboard Focus</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Passing events to the area is as simple as handling events on any</span>
-    <span class="doccomment">/// normal widget and then passing them to the [``CellAreaExtManual::event()``][crate::prelude::`CellAreaExtManual::event()`]</span>
+    <span class="doccomment">/// normal widget and then passing them to the [`CellAreaExtManual::event()`][crate::prelude::CellAreaExtManual::event()]</span>
     <span class="doccomment">/// API as they come in. Usually [`CellArea`][crate::CellArea] is only interested in</span>
     <span class="doccomment">/// button events, however some customized derived areas can be implemented</span>
     <span class="doccomment">/// who are interested in handling other events. Handling an event can</span>
-    <span class="doccomment">/// trigger the [`signal`Gtk`::focus-changed`] signal to fire; as well</span>
-    <span class="doccomment">/// as [`signal[`CellArea`][crate::CellArea]`] in the case that an editable cell</span>
+    <span class="doccomment">/// trigger the [`signal@Gtk.CellArea::focus-changed`] signal to fire; as well</span>
+    <span class="doccomment">/// as [`signal@GtkCellArea::add-editable`] in the case that an editable cell</span>
     <span class="doccomment">/// was clicked and needs to start editing. You can call</span>
-    <span class="doccomment">/// [``CellAreaExt::stop_editing()``][crate::prelude::`CellAreaExt::stop_editing()`] at any time to cancel any cell editing</span>
+    <span class="doccomment">/// [`CellAreaExt::stop_editing()`][crate::prelude::CellAreaExt::stop_editing()] at any time to cancel any cell editing</span>
     <span class="doccomment">/// that is currently in progress.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellArea`][crate::CellArea] drives keyboard focus from cell to cell in a way</span>
@@ -2208,15 +2208,15 @@
     <span class="doccomment">/// with adjacent rows which were requested and rendered with the same</span>
     <span class="doccomment">/// [`CellAreaContext`][crate::CellAreaContext].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `Gtk::`CellAreaClass::install_cell_property()`` to install cell</span>
-    <span class="doccomment">/// properties for a cell area class and `Gtk::`CellAreaClass::find_cell_property()``</span>
-    <span class="doccomment">/// or `Gtk::`CellAreaClass::list_cell_properties()`` to get information about</span>
+    <span class="doccomment">/// Use `Gtk::CellAreaClass::install_cell_property()` to install cell</span>
+    <span class="doccomment">/// properties for a cell area class and `Gtk::CellAreaClass::find_cell_property()`</span>
+    <span class="doccomment">/// or `Gtk::CellAreaClass::list_cell_properties()` to get information about</span>
     <span class="doccomment">/// existing cell properties.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To set the value of a cell property, use [``CellAreaExtManual::cell_set_property()``][crate::prelude::`CellAreaExtManual::cell_set_property()`],</span>
-    <span class="doccomment">/// `Gtk::`CellArea::cell_set()`` or `Gtk::`CellArea::cell_set_valist()``. To obtain</span>
-    <span class="doccomment">/// the value of a cell property, use [``CellAreaExtManual::cell_get_property()``][crate::prelude::`CellAreaExtManual::cell_get_property()`]</span>
-    <span class="doccomment">/// `Gtk::`CellArea::cell_get()`` or `Gtk::`CellArea::cell_get_valist()``.</span>
+    <span class="doccomment">/// To set the value of a cell property, use [`CellAreaExtManual::cell_set_property()`][crate::prelude::CellAreaExtManual::cell_set_property()],</span>
+    <span class="doccomment">/// `Gtk::CellArea::cell_set()` or `Gtk::CellArea::cell_set_valist()`. To obtain</span>
+    <span class="doccomment">/// the value of a cell property, use [`CellAreaExtManual::cell_get_property()`][crate::prelude::CellAreaExtManual::cell_get_property()]</span>
+    <span class="doccomment">/// `Gtk::CellArea::cell_get()` or `Gtk::CellArea::cell_get_valist()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
@@ -2241,24 +2241,24 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`CellAreaBox`][struct@crate::CellAreaBox], [`CellArea`][struct@crate::CellArea]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellAreaExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Activates `self`, usually by activating the currently focused</span>
+    <span class="doccomment">/// Activates @self, usually by activating the currently focused</span>
     <span class="doccomment">/// cell, however some subclasses which embed widgets in the area</span>
     <span class="doccomment">/// can also activate a widget if it currently has the focus.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context in context with the current row data</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering on</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the size and location of `self` relative to `widget`’s allocation</span>
+    <span class="doccomment">/// the size and location of @self relative to @widget’s allocation</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State flags for `self` for this row of data.</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State flags for @self for this row of data.</span>
     <span class="doccomment">/// ## `edit_only`</span>
     <span class="doccomment">/// if [`true`] then only cell renderers that are [`CellRendererMode::Editable`][crate::CellRendererMode::Editable]</span>
-    <span class="doccomment">///  will be activated.</span>
+    <span class="doccomment">///             will be activated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Whether `self` was successfully activated.</span>
+    <span class="doccomment">/// Whether @self was successfully activated.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_activate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">activate</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2269,22 +2269,22 @@
         <span class="ident">edit_only</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Adds `renderer` to `self` with the default child cell properties.</span>
+    <span class="doccomment">/// Adds @renderer to @self with the default child cell properties.</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add to `self`</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add to @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_add&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Adds `sibling` to `renderer`’s focusable area, focus will be drawn</span>
-    <span class="doccomment">/// around `renderer` and all of its siblings if `renderer` can</span>
+    <span class="doccomment">/// Adds @sibling to @renderer’s focusable area, focus will be drawn</span>
+    <span class="doccomment">/// around @renderer and all of its siblings if @renderer can</span>
     <span class="doccomment">/// focus for a given row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Events handled by focus siblings can also activate the given</span>
-    <span class="doccomment">/// focusable `renderer`.</span>
+    <span class="doccomment">/// focusable @renderer.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] expected to have focus</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add to `renderer`’s focus area</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to add to @renderer’s focus area</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_add_focus_sibling&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_focus_sibling</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2293,16 +2293,16 @@
     );
 
     <span class="doccomment">/// Applies any connected attributes to the renderers in</span>
-    <span class="doccomment">/// `self` by pulling the values from `tree_model`.</span>
+    <span class="doccomment">/// @self by pulling the values from @tree_model.</span>
     <span class="doccomment">/// ## `tree_model`</span>
     <span class="doccomment">/// the [`TreeModel`][crate::TreeModel] to pull values from</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// the [`TreeIter`][crate::TreeIter] in `tree_model` to apply values for</span>
+    <span class="doccomment">/// the [`TreeIter`][crate::TreeIter] in @tree_model to apply values for</span>
     <span class="doccomment">/// ## `is_expander`</span>
-    <span class="doccomment">/// whether `iter` has children</span>
+    <span class="doccomment">/// whether @iter has children</span>
     <span class="doccomment">/// ## `is_expanded`</span>
-    <span class="doccomment">/// whether `iter` is expanded in the view and</span>
-    <span class="doccomment">///  children are visible</span>
+    <span class="doccomment">/// whether @iter is expanded in the view and</span>
+    <span class="doccomment">///               children are visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_apply_attributes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">apply_attributes</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2312,7 +2312,7 @@
         <span class="ident">is_expanded</span>: <span class="ident">bool</span>,
     );
 
-    <span class="doccomment">/// Connects an `attribute` to apply values from `column` for the</span>
+    <span class="doccomment">/// Connects an @attribute to apply values from @column for the</span>
     <span class="doccomment">/// [`TreeModel`][crate::TreeModel] in use.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to connect an attribute for</span>
@@ -2323,7 +2323,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_attribute_connect&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">attribute_connect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>, <span class="ident">attribute</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">column</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Disconnects `attribute` for the `renderer` in `self` so that</span>
+    <span class="doccomment">/// Disconnects @attribute for the @renderer in @self so that</span>
     <span class="doccomment">/// attribute will no longer be updated with values from the</span>
     <span class="doccomment">/// model.</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -2362,11 +2362,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context copy of `context`.</span>
+    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context copy of @context.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_copy_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">copy_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Creates a [`CellArea`][crate::CellArea]Context to be used with `self` for</span>
+    <span class="doccomment">/// Creates a [`CellArea`][crate::CellArea]Context to be used with @self for</span>
     <span class="doccomment">/// all purposes. [`CellArea`][crate::CellArea]Context stores geometry information</span>
     <span class="doccomment">/// for rows for which it was operated on, it is important to use</span>
     <span class="doccomment">/// the same context for the same row of data at all times (i.e.</span>
@@ -2375,13 +2375,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context which can be used with `self`.</span>
+    <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context which can be used with @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_create_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// This should be called by the `self`’s owning layout widget</span>
-    <span class="doccomment">/// when focus is to be passed to `self`, or moved within `self`</span>
-    <span class="doccomment">/// for a given `direction` and row data.</span>
+    <span class="doccomment">/// This should be called by the @self’s owning layout widget</span>
+    <span class="doccomment">/// when focus is to be passed to @self, or moved within @self</span>
+    <span class="doccomment">/// for a given @direction and row data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementing [`CellArea`][crate::CellArea] classes should implement this</span>
     <span class="doccomment">/// method to receive and navigate focus in its own way particular</span>
@@ -2391,11 +2391,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if focus remains inside `self` as a result of this call.</span>
+    <span class="doccomment">/// [`true`] if focus remains inside @self as a result of this call.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_focus&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">direction</span>: <span class="ident">DirectionType</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Calls `callback` for every [`CellRenderer`][crate::CellRenderer] in `self`.</span>
+    <span class="doccomment">/// Calls @callback for every [`CellRenderer`][crate::CellRenderer] in @self.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// the `GtkCellCallback` to call</span>
     <span class="doccomment">/// ## `callback_data`</span>
@@ -2403,16 +2403,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_foreach&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">foreach</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>) -&gt; <span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>);
 
-    <span class="doccomment">/// Calls `callback` for every [`CellRenderer`][crate::CellRenderer] in `self` with the</span>
-    <span class="doccomment">/// allocated rectangle inside `cell_area`.</span>
+    <span class="doccomment">/// Calls @callback for every [`CellRenderer`][crate::CellRenderer] in @self with the</span>
+    <span class="doccomment">/// allocated rectangle inside @cell_area.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context for this row of data.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering to</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering to</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the `widget` relative coordinates and size for `self`</span>
+    <span class="doccomment">/// the @widget relative coordinates and size for @self</span>
     <span class="doccomment">/// ## `background_area`</span>
-    <span class="doccomment">/// the `widget` relative coordinates of the background area</span>
+    <span class="doccomment">/// the @widget relative coordinates of the background area</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// the `GtkCellAllocCallback` to call</span>
     <span class="doccomment">/// ## `callback_data`</span>
@@ -2427,23 +2427,23 @@
         <span class="ident">callback</span>: <span class="ident">P</span>,
     );
 
-    <span class="doccomment">/// Derives the allocation of `renderer` inside `self` if `self`</span>
-    <span class="doccomment">/// were to be renderered in `cell_area`.</span>
+    <span class="doccomment">/// Derives the allocation of @renderer inside @self if @self</span>
+    <span class="doccomment">/// were to be renderered in @cell_area.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for `self`.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for @self.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering on</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to get the allocation for</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the whole allocated area for `self` in `widget`</span>
-    <span class="doccomment">///  for this row</span>
+    <span class="doccomment">/// the whole allocated area for @self in @widget</span>
+    <span class="doccomment">///             for this row</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `allocation`</span>
-    <span class="doccomment">/// where to store the allocation for `renderer`</span>
+    <span class="doccomment">/// where to store the allocation for @renderer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_cell_allocation&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cell_allocation&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cell_allocation</span>(
@@ -2454,15 +2454,15 @@
         <span class="ident">cell_area</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Rectangle</span>,
     ) -&gt; <span class="ident">gdk::Rectangle</span>;
 
-    <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] at `x` and `y` coordinates inside `self` and optionally</span>
-    <span class="doccomment">/// returns the full cell allocation for it inside `cell_area`.</span>
+    <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] at @x and @y coordinates inside @self and optionally</span>
+    <span class="doccomment">/// returns the full cell allocation for it inside @cell_area.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for `self`.</span>
+    <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context used to hold sizes for @self.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering on</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering on</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the whole allocated area for `self` in `widget`</span>
-    <span class="doccomment">///  for this row</span>
+    <span class="doccomment">/// the whole allocated area for @self in @widget</span>
+    <span class="doccomment">///   for this row</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -2470,11 +2470,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] at `x` and `y`.</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] at @x and @y.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `alloc_area`</span>
     <span class="doccomment">/// where to store the inner allocated area of the</span>
-    <span class="doccomment">///  returned cell renderer</span>
+    <span class="doccomment">///   returned cell renderer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_cell_at_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cell_at_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cell_at_position</span>(
@@ -2488,14 +2488,14 @@
 
     <span class="doccomment">/// Gets the current [`TreePath`][crate::TreePath] string for the currently</span>
     <span class="doccomment">/// applied [`TreeIter`][crate::TreeIter], this is implicitly updated when</span>
-    <span class="doccomment">/// [`apply_attributes()`][Self::apply_attributes()] is called and can be</span>
+    <span class="doccomment">/// gtk_cell_area_apply_attributes() is called and can be</span>
     <span class="doccomment">/// used to interact with renderers from [`CellArea`][crate::CellArea]</span>
     <span class="doccomment">/// subclasses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The current [`TreePath`][crate::TreePath] string for the current</span>
-    <span class="doccomment">/// attributes applied to `self`. This string belongs to the area and</span>
+    <span class="doccomment">/// attributes applied to @self. This string belongs to the area and</span>
     <span class="doccomment">/// should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_current_path_string&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_path_string&quot;</span>)]</span>
@@ -2511,7 +2511,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_edit_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] in `self` that is currently</span>
+    <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] in @self that is currently</span>
     <span class="doccomment">/// being edited.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -2521,17 +2521,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_edited_cell&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Retrieves the currently focused cell for `self`</span>
+    <span class="doccomment">/// Retrieves the currently focused cell for @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the currently focused cell in `self`.</span>
+    <span class="doccomment">/// the currently focused cell in @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_cell&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_cell&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] which is expected to be focusable</span>
-    <span class="doccomment">/// for which `renderer` is, or may be a sibling.</span>
+    <span class="doccomment">/// for which @renderer is, or may be a sibling.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is handy for [`CellArea`][crate::CellArea] subclasses when handling events,</span>
     <span class="doccomment">/// after determining the renderer at the event location it can</span>
@@ -2543,34 +2543,34 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]</span>
-    <span class="doccomment">///  for which `renderer` is a sibling</span>
+    <span class="doccomment">///   for which @renderer is a sibling</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_from_sibling&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_from_sibling&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus_from_sibling</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the focus sibling cell renderers for `renderer`.</span>
+    <span class="doccomment">/// Gets the focus sibling cell renderers for @renderer.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] expected to have focus</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `GList` of [`CellRenderer`][crate::CellRenderer]s.</span>
-    <span class="doccomment">///  The returned list is internal and should not be freed.</span>
+    <span class="doccomment">///       The returned list is internal and should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_siblings&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_siblings&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus_siblings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves a cell area’s initial minimum and natural height.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `self` will store some geometrical information in `context` along the way;</span>
+    <span class="doccomment">/// @self will store some geometrical information in @context along the way;</span>
     <span class="doccomment">/// when requesting sizes over an arbitrary number of rows, it’s not important</span>
-    <span class="doccomment">/// to check the `minimum_height` and `natural_height` of this call but rather to</span>
-    <span class="doccomment">/// consult [`CellAreaContextExt::preferred_height()`][crate::prelude::CellAreaContextExt::preferred_height()] after a series of</span>
+    <span class="doccomment">/// to check the @minimum_height and @natural_height of this call but rather to</span>
+    <span class="doccomment">/// consult gtk_cell_area_context_get_preferred_height() after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context to perform this request with</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] where @self will be rendering</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2589,23 +2589,23 @@
     ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Retrieves a cell area’s minimum and natural height if it would be given</span>
-    <span class="doccomment">/// the specified `width`.</span>
+    <span class="doccomment">/// the specified @width.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `self` stores some geometrical information in `context` along the way</span>
-    <span class="doccomment">/// while calling [`preferred_width()`][Self::preferred_width()]. It’s important to</span>
-    <span class="doccomment">/// perform a series of [`preferred_width()`][Self::preferred_width()] requests with</span>
-    <span class="doccomment">/// `context` first and then call [`preferred_height_for_width()`][Self::preferred_height_for_width()]</span>
+    <span class="doccomment">/// @self stores some geometrical information in @context along the way</span>
+    <span class="doccomment">/// while calling gtk_cell_area_get_preferred_width(). It’s important to</span>
+    <span class="doccomment">/// perform a series of gtk_cell_area_get_preferred_width() requests with</span>
+    <span class="doccomment">/// @context first and then call gtk_cell_area_get_preferred_height_for_width()</span>
     <span class="doccomment">/// on each cell area individually to get the height for width of each</span>
     <span class="doccomment">/// fully requested row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If at some point, the width of a single row changes, it should be</span>
-    <span class="doccomment">/// requested with [`preferred_width()`][Self::preferred_width()] again and then</span>
+    <span class="doccomment">/// requested with gtk_cell_area_get_preferred_width() again and then</span>
     <span class="doccomment">/// the full width of the requested rows checked again with</span>
-    <span class="doccomment">/// [`CellAreaContextExt::preferred_width()`][crate::prelude::CellAreaContextExt::preferred_width()].</span>
+    <span class="doccomment">/// gtk_cell_area_context_get_preferred_width().</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] where @self will be rendering</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the width for which to check the height of this area</span>
     <span class="doccomment">///</span>
@@ -2628,15 +2628,15 @@
 
     <span class="doccomment">/// Retrieves a cell area’s initial minimum and natural width.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `self` will store some geometrical information in `context` along the way;</span>
+    <span class="doccomment">/// @self will store some geometrical information in @context along the way;</span>
     <span class="doccomment">/// when requesting sizes over an arbitrary number of rows, it’s not important</span>
-    <span class="doccomment">/// to check the `minimum_width` and `natural_width` of this call but rather to</span>
-    <span class="doccomment">/// consult [`CellAreaContextExt::preferred_width()`][crate::prelude::CellAreaContextExt::preferred_width()] after a series of</span>
+    <span class="doccomment">/// to check the @minimum_width and @natural_width of this call but rather to</span>
+    <span class="doccomment">/// consult gtk_cell_area_context_get_preferred_width() after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context to perform this request with</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] where @self will be rendering</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2655,23 +2655,23 @@
     ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
     <span class="doccomment">/// Retrieves a cell area’s minimum and natural width if it would be given</span>
-    <span class="doccomment">/// the specified `height`.</span>
+    <span class="doccomment">/// the specified @height.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `self` stores some geometrical information in `context` along the way</span>
-    <span class="doccomment">/// while calling [`preferred_height()`][Self::preferred_height()]. It’s important to</span>
-    <span class="doccomment">/// perform a series of [`preferred_height()`][Self::preferred_height()] requests with</span>
-    <span class="doccomment">/// `context` first and then call [`preferred_width_for_height()`][Self::preferred_width_for_height()]</span>
+    <span class="doccomment">/// @self stores some geometrical information in @context along the way</span>
+    <span class="doccomment">/// while calling gtk_cell_area_get_preferred_height(). It’s important to</span>
+    <span class="doccomment">/// perform a series of gtk_cell_area_get_preferred_height() requests with</span>
+    <span class="doccomment">/// @context first and then call gtk_cell_area_get_preferred_width_for_height()</span>
     <span class="doccomment">/// on each cell area individually to get the height for width of each</span>
     <span class="doccomment">/// fully requested row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If at some point, the height of a single row changes, it should be</span>
-    <span class="doccomment">/// requested with [`preferred_height()`][Self::preferred_height()] again and then</span>
+    <span class="doccomment">/// requested with gtk_cell_area_get_preferred_height() again and then</span>
     <span class="doccomment">/// the full height of the requested rows checked again with</span>
-    <span class="doccomment">/// [`CellAreaContextExt::preferred_height()`][crate::prelude::CellAreaContextExt::preferred_height()].</span>
+    <span class="doccomment">/// gtk_cell_area_context_get_preferred_height().</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] where `self` will be rendering</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] where @self will be rendering</span>
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// the height for which to check the width of this area</span>
     <span class="doccomment">///</span>
@@ -2697,29 +2697,29 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`SizeRequestMode`][crate::SizeRequestMode] preferred by `self`.</span>
+    <span class="doccomment">/// The [`SizeRequestMode`][crate::SizeRequestMode] preferred by @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_request_mode&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_request_mode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">SizeRequestMode</span>;
 
-    <span class="doccomment">/// Checks if `self` contains `renderer`.</span>
+    <span class="doccomment">/// Checks if @self contains @renderer.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to check</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `renderer` is in the `self`.</span>
+    <span class="doccomment">/// [`true`] if @renderer is in the @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_has_renderer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_renderer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// This is a convenience function for [`CellArea`][crate::CellArea] implementations</span>
     <span class="doccomment">/// to get the inner area where a given [`CellRenderer`][crate::CellRenderer] will be</span>
-    <span class="doccomment">/// rendered. It removes any padding previously added by [`request_renderer()`][Self::request_renderer()].</span>
+    <span class="doccomment">/// rendered. It removes any padding previously added by gtk_cell_area_request_renderer().</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering onto</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering onto</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the `widget` relative coordinates where one of `self`’s cells</span>
-    <span class="doccomment">///  is to be placed</span>
+    <span class="doccomment">/// the @widget relative coordinates where one of @self’s cells</span>
+    <span class="doccomment">///             is to be placed</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2734,24 +2734,24 @@
     ) -&gt; <span class="ident">gdk::Rectangle</span>;
 
     <span class="doccomment">/// Returns whether the area can do anything when activated,</span>
-    <span class="doccomment">/// after applying new attributes to `self`.</span>
+    <span class="doccomment">/// after applying new attributes to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether `self` can do anything when activated.</span>
+    <span class="doccomment">/// whether @self can do anything when activated.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_is_activatable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns whether `sibling` is one of `renderer`’s focus siblings</span>
-    <span class="doccomment">/// (see [`add_focus_sibling()`][Self::add_focus_sibling()]).</span>
+    <span class="doccomment">/// Returns whether @sibling is one of @renderer’s focus siblings</span>
+    <span class="doccomment">/// (see gtk_cell_area_add_focus_sibling()).</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] expected to have focus</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to check against `renderer`’s sibling list</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to check against @renderer’s sibling list</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `sibling` is a focus sibling of `renderer`</span>
+    <span class="doccomment">/// [`true`] if @sibling is a focus sibling of @renderer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_is_focus_sibling&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_focus_sibling</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2759,18 +2759,18 @@
         <span class="ident">sibling</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Removes `renderer` from `self`.</span>
+    <span class="doccomment">/// Removes @renderer from @self.</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to remove from `self`</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to remove from @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_remove&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Removes `sibling` from `renderer`’s focus sibling list</span>
-    <span class="doccomment">/// (see [`add_focus_sibling()`][Self::add_focus_sibling()]).</span>
+    <span class="doccomment">/// Removes @sibling from @renderer’s focus sibling list</span>
+    <span class="doccomment">/// (see gtk_cell_area_add_focus_sibling()).</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] expected to have focus</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to remove from `renderer`’s focus area</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to remove from @renderer’s focus area</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_remove_focus_sibling&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove_focus_sibling</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2780,7 +2780,7 @@
 
     <span class="doccomment">/// This is a convenience function for [`CellArea`][crate::CellArea] implementations</span>
     <span class="doccomment">/// to request size for cell renderers. It’s important to use this</span>
-    <span class="doccomment">/// function to request size and then use [`inner_cell_area()`][Self::inner_cell_area()]</span>
+    <span class="doccomment">/// function to request size and then use gtk_cell_area_inner_cell_area()</span>
     <span class="doccomment">/// at render and event time since this function will add padding</span>
     <span class="doccomment">/// around the cell for focus painting.</span>
     <span class="doccomment">/// ## `renderer`</span>
@@ -2788,7 +2788,7 @@
     <span class="doccomment">/// ## `orientation`</span>
     <span class="doccomment">/// the [`Orientation`][crate::Orientation] in which to request size</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering onto</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering onto</span>
     <span class="doccomment">/// ## `for_size`</span>
     <span class="doccomment">/// the allocation contextual size to request for, or -1 if</span>
     <span class="doccomment">/// the base request for the orientation is to be returned.</span>
@@ -2810,33 +2810,33 @@
         <span class="ident">for_size</span>: <span class="ident">i32</span>,
     ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Explicitly sets the currently focused cell to `renderer`.</span>
+    <span class="doccomment">/// Explicitly sets the currently focused cell to @renderer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is generally called by implementations of</span>
-    <span class="doccomment">/// ``GtkCellAreaClass.focus()`` or ``GtkCellAreaClass.event()``,</span>
+    <span class="doccomment">/// `GtkCellAreaClass.focus()` or `GtkCellAreaClass.event()`,</span>
     <span class="doccomment">/// however it can also be used to implement functions such</span>
-    <span class="doccomment">/// as [`TreeViewExt::set_cursor_on_cell()`][crate::prelude::TreeViewExt::set_cursor_on_cell()].</span>
+    <span class="doccomment">/// as gtk_tree_view_set_cursor_on_cell().</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] to give focus to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_set_focus_cell&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Snapshots `self`’s cells according to `self`’s layout onto at</span>
+    <span class="doccomment">/// Snapshots @self’s cells according to @self’s layout onto at</span>
     <span class="doccomment">/// the given coordinates.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellArea`][crate::CellArea]Context for this row of data.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering to</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that @self is rendering to</span>
     <span class="doccomment">/// ## `snapshot`</span>
     <span class="doccomment">/// the [`Snapshot`][crate::Snapshot] to draw to</span>
     <span class="doccomment">/// ## `background_area`</span>
-    <span class="doccomment">/// the `widget` relative coordinates for `self`’s background</span>
+    <span class="doccomment">/// the @widget relative coordinates for @self’s background</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the `widget` relative coordinates for `self`</span>
+    <span class="doccomment">/// the @widget relative coordinates for @self</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State for `self` in this row.</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer]State for @self in this row.</span>
     <span class="doccomment">/// ## `paint_focus`</span>
-    <span class="doccomment">/// whether `self` should paint focus on focused cells for focused rows or not.</span>
+    <span class="doccomment">/// whether @self should paint focus on focused cells for focused rows or not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_snapshot&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">snapshot</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2851,26 +2851,26 @@
 
     <span class="doccomment">/// Explicitly stops the editing of the currently edited cell.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `canceled` is [`true`], the currently edited cell renderer</span>
+    <span class="doccomment">/// If @canceled is [`true`], the currently edited cell renderer</span>
     <span class="doccomment">/// will emit the ::editing-canceled signal, otherwise the</span>
     <span class="doccomment">/// the ::editing-done signal will be emitted on the current</span>
     <span class="doccomment">/// edit widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [`edited_cell()`][Self::edited_cell()] and [`edit_widget()`][Self::edit_widget()].</span>
+    <span class="doccomment">/// See gtk_cell_area_get_edited_cell() and gtk_cell_area_get_edit_widget().</span>
     <span class="doccomment">/// ## `canceled`</span>
     <span class="doccomment">/// whether editing was canceled.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_stop_editing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">stop_editing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">canceled</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Indicates that editing has started on `renderer` and that `editable`</span>
-    <span class="doccomment">/// should be added to the owning cell-layouting widget at `cell_area`.</span>
+    <span class="doccomment">/// Indicates that editing has started on @renderer and that @editable</span>
+    <span class="doccomment">/// should be added to the owning cell-layouting widget at @cell_area.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] that started the edited</span>
     <span class="doccomment">/// ## `editable`</span>
     <span class="doccomment">/// the [`CellEditable`][crate::CellEditable] widget to add</span>
     <span class="doccomment">/// ## `cell_area`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] relative [`gdk::Rectangle`][crate::gdk::Rectangle] coordinates</span>
-    <span class="doccomment">///  where `editable` should be added</span>
+    <span class="doccomment">///             where @editable should be added</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the [`TreePath`][crate::TreePath] string this edit was initiated for</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;add-editable&quot;</span>)]</span>
@@ -2881,7 +2881,7 @@
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// This signal is emitted whenever applying attributes to `area` from `model`</span>
+    <span class="doccomment">/// This signal is emitted whenever applying attributes to @area from @model</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// the [`TreeModel`][crate::TreeModel] to apply the attributes from</span>
     <span class="doccomment">/// ## `iter`</span>
@@ -2896,7 +2896,7 @@
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Indicates that focus changed on this `area`. This signal</span>
+    <span class="doccomment">/// Indicates that focus changed on this @area. This signal</span>
     <span class="doccomment">/// is emitted either as a result of focus handling or event</span>
     <span class="doccomment">/// handling.</span>
     <span class="doccomment">///</span>
@@ -2907,14 +2907,14 @@
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] that has focus</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// the current [`TreePath`][crate::TreePath] string set for `area`</span>
+    <span class="doccomment">/// the current [`TreePath`][crate::TreePath] string set for @area</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;focus-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_focus_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">CellRenderer</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Indicates that editing finished on `renderer` and that `editable`</span>
+    <span class="doccomment">/// Indicates that editing finished on @renderer and that @editable</span>
     <span class="doccomment">/// should be removed from the owning cell-layouting widget.</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] that finished editeding</span>

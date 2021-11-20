@@ -133,7 +133,7 @@ may still happen.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_ended" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#89" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_ended" class="fnname">is_ended</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the streams playback is finished.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if playback is finished</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.error" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#103" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.error" class="fnname">error</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Sets <code>self</code> into an error state using a <code>printf()</code>-style format string.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.error" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#103" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.error" class="fnname">error</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Sets @self into an error state using a printf()-style format string.</p>
 <p>This is a utility function that calls <a href="trait.MediaStreamExtManual.html#tymethod.set_error" title="crate::prelude::MediaStreamExtManual::set_error()"><code>MediaStreamExtManual::set_error()</code></a>.
 See that function for details.</p>
 <h6 id="domain" class="section-header"><a href="#domain"><code>domain</code></a></h6>
@@ -141,7 +141,7 @@ See that function for details.</p>
 <h6 id="code" class="section-header"><a href="#code"><code>code</code></a></h6>
 <p>error code</p>
 <h6 id="format" class="section-header"><a href="#format"><code>format</code></a></h6>
-<p><code>printf()</code>-style format for error message</p>
+<p>printf()-style format for error message</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_loop" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#114" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_loop" class="fnname">is_loop</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the stream is set to loop.</p>
 <p>See <a href="trait.MediaStreamExt.html#tymethod.set_loop" title="Self::set_loop()"><code>set_loop()</code></a> for details.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
@@ -186,7 +186,7 @@ stream, though it will not do anything.</p>
 <p>If the stream is not playing, do nothing.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.play" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#216" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.play" class="fnname">play</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Starts playing the stream.</p>
 <p>If the stream is in error or already playing, do nothing.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.prepared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#233" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.prepared" class="fnname">prepared</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a><br>)</h4></div></summary><div class="docblock"><p>Same as <a href="trait.MediaStreamExt.html#tymethod.stream_prepared" title="Self::stream_prepared()"><code>stream_prepared()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.prepared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#233" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.prepared" class="fnname">prepared</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a><br>)</h4></div></summary><div class="docblock"><p>Same as gtk_media_stream_stream_prepared().</p>
 <h5 id="deprecated-since-44-1" class="section-header"><a href="#deprecated-since-44-1">Deprecated since 4.4</a></h5>
 <p>Use <a href="trait.MediaStreamExt.html#tymethod.stream_prepared" title="Self::stream_prepared()"><code>stream_prepared()</code></a> instead.</p>
 <h6 id="has_audio" class="section-header"><a href="#has_audio"><code>has_audio</code></a></h6>
@@ -198,35 +198,35 @@ stream, though it will not do anything.</p>
 <h6 id="duration" class="section-header"><a href="#duration"><code>duration</code></a></h6>
 <p>The duration of the stream or 0 if unknown</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.realize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#254" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.realize" class="fnname">realize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></div></summary><div class="docblock"><p>Called by users to attach the media stream to a <a href="../../gdk4/auto/surface/struct.Surface.html" title="crate::gdk::Surface"><code>gdk::Surface</code></a> they manage.</p>
-<p>The stream can then access the resources of <code>surface</code> for its
+<p>The stream can then access the resources of @surface for its
 rendering purposes. In particular, media streams might want to
 create a <a href="../../gdk4/auto/gl_context/struct.GLContext.html" title="crate::gdk::GLContext"><code>gdk::GLContext</code></a> or sync to the <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="crate::gdk::FrameClock"><code>gdk::FrameClock</code></a>.</p>
 <p>Whoever calls this function is responsible for calling
 <a href="trait.MediaStreamExt.html#tymethod.unrealize" title="Self::unrealize()"><code>unrealize()</code></a> before either the stream
-or <code>surface</code> get destroyed.</p>
+or @surface get destroyed.</p>
 <p>Multiple calls to this function may happen from different
-users of the video, even with the same <code>surface</code>. Each of these
+users of the video, even with the same @surface. Each of these
 calls must be followed by its own call to
 <a href="trait.MediaStreamExt.html#tymethod.unrealize" title="Self::unrealize()"><code>unrealize()</code></a>.</p>
 <p>It is not required to call this function to make a media stream work.</p>
 <h6 id="surface" class="section-header"><a href="#surface"><code>surface</code></a></h6>
 <p>a <a href="../../gdk4/auto/surface/struct.Surface.html" title="crate::gdk::Surface"><code>gdk::Surface</code></a></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#270" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek" class="fnname">seek</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</h4></div></summary><div class="docblock"><p>Start a seek operation on <code>self</code> to <code>timestamp</code>.</p>
-<p>If <code>timestamp</code> is out of range, it will be clamped.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#270" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek" class="fnname">seek</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</h4></div></summary><div class="docblock"><p>Start a seek operation on @self to @timestamp.</p>
+<p>If @timestamp is out of range, it will be clamped.</p>
 <p>Seek operations may not finish instantly. While a
 seek operation is in process, the <code>property::MediaStream::seeking</code>
 property will be set.</p>
-<p>When calling <a href="trait.MediaStreamExt.html#tymethod.seek" title="Self::seek()"><code>seek()</code></a> during an
+<p>When calling gtk_media_stream_seek() during an
 ongoing seek operation, the new seek will override
 any pending seek.</p>
 <h6 id="timestamp" class="section-header"><a href="#timestamp"><code>timestamp</code></a></h6>
 <p>timestamp to seek to.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek_failed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#280" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek_failed" class="fnname">seek_failed</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a seek operation started via <code>GtkMediaStream.seek()</code> as a failure.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek_failed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#280" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek_failed" class="fnname">seek_failed</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() as a failure.</p>
 <p>This will not cause an error on the stream and will assume that
 playback continues as if no seek had happened.</p>
 <p>See <a href="trait.MediaStreamExt.html#tymethod.seek_success" title="Self::seek_success()"><code>seek_success()</code></a> for the other way of
 ending a seek.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek_success" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#290" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek_success" class="fnname">seek_success</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a seek operation started via <code>GtkMediaStream.seek()</code> successfully.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.seek_success" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#290" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.seek_success" class="fnname">seek_success</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() successfully.</p>
 <p>This function will unset the GtkMediaStream:ended property
 if it was set.</p>
 <p>See <a href="trait.MediaStreamExt.html#tymethod.seek_failed" title="Self::seek_failed()"><code>seek_failed()</code></a> for the other way of
@@ -252,7 +252,7 @@ still work but it will not have an audible effect.</p>
 <p>whether to start or pause playback</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_volume" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#338" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_volume" class="fnname">set_volume</a>(&amp;self, volume: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the volume of the audio stream.</p>
 <p>This function call will work even if the stream is muted.</p>
-<p>The given <code>volume</code> should range from 0.0 for silence to 1.0
+<p>The given @volume should range from 0.0 for silence to 1.0
 for as loud as possible. Values outside of this range will
 be clamped to the nearest value.</p>
 <p>If the stream has no audio or is muted, calling this function
@@ -283,12 +283,12 @@ reset via <a href="trait.MediaStreamExt.html#tymethod.stream_unprepared" title="
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.stream_unprepared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#382" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.stream_unprepared" class="fnname">stream_unprepared</a>(&amp;self)</h4></div></summary><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_4</code></strong> only.</div></div><div class="docblock"><p>Resets a given media stream implementation.</p>
 <p><a href="trait.MediaStreamExt.html#tymethod.stream_prepared" title="Self::stream_prepared()"><code>stream_prepared()</code></a> can then be called again.</p>
 <p>This function will also reset any error state the stream was in.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.unprepared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#391" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.unprepared" class="fnname">unprepared</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Same as <a href="trait.MediaStreamExt.html#tymethod.stream_unprepared" title="Self::stream_unprepared()"><code>stream_unprepared()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.unprepared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#391" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.unprepared" class="fnname">unprepared</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Same as gtk_media_stream_stream_unprepared().</p>
 <h5 id="deprecated-since-44-2" class="section-header"><a href="#deprecated-since-44-2">Deprecated since 4.4</a></h5>
 <p>Use <a href="trait.MediaStreamExt.html#tymethod.stream_unprepared" title="Self::stream_unprepared()"><code>stream_unprepared()</code></a> instead.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.unrealize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#400" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.unrealize" class="fnname">unrealize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></div></summary><div class="docblock"><p>Undoes a previous call to <a href="trait.MediaStreamExt.html#tymethod.realize" title="Self::realize()"><code>realize()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.unrealize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#400" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.unrealize" class="fnname">unrealize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></div></summary><div class="docblock"><p>Undoes a previous call to gtk_media_stream_realize().</p>
 <p>This causes the stream to release all resources it had
-allocated from <code>surface</code>.</p>
+allocated from @surface.</p>
 <h6 id="surface-1" class="section-header"><a href="#surface-1"><code>surface</code></a></h6>
 <p>the <a href="../../gdk4/auto/surface/struct.Surface.html" title="crate::gdk::Surface"><code>gdk::Surface</code></a> the stream was realized with</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.update" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/media_stream.rs.html#412" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.update" class="fnname">update</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</h4></div></summary><div class="docblock"><p>Media stream implementations should regularly call this

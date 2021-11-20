@@ -1001,8 +1001,8 @@
 
     <span class="doccomment">/// Create a new popup surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The surface will be attached to `parent` and can be positioned</span>
-    <span class="doccomment">/// relative to it using [``PopupExt::present()``][crate::prelude::`PopupExt::present()`].</span>
+    <span class="doccomment">/// The surface will be attached to @parent and can be positioned</span>
+    <span class="doccomment">/// relative to it using [`PopupExt::present()`][crate::prelude::PopupExt::present()].</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// the parent surface to attach the surface to</span>
     <span class="doccomment">/// ## `autohide`</span>
@@ -1046,14 +1046,14 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`DragSurface`][struct@crate::DragSurface], [`Popup`][struct@crate::Popup], [`Surface`][struct@crate::Surface], [`Toplevel`][struct@crate::Toplevel]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SurfaceExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits a short beep associated to `self`.</span>
+    <span class="doccomment">/// Emits a short beep associated to @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the display of `self` does not support per-surface beeps,</span>
-    <span class="doccomment">/// emits a short beep on the display just as [``DisplayExt::beep()``][crate::prelude::`DisplayExt::beep()`].</span>
+    <span class="doccomment">/// If the display of @self does not support per-surface beeps,</span>
+    <span class="doccomment">/// emits a short beep on the display just as [`DisplayExt::beep()`][crate::prelude::DisplayExt::beep()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_beep&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">beep</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Creates a new [`CairoContext`][crate::CairoContext] for rendering on `self`.</span>
+    <span class="doccomment">/// Creates a new [`CairoContext`][crate::CairoContext] for rendering on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1064,9 +1064,9 @@
     <span class="doccomment">/// Creates a new [`GLContext`][crate::GLContext] for the [`Surface`][crate::Surface].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The context is disconnected from any particular surface or surface.</span>
-    <span class="doccomment">/// If the creation of the [`GLContext`][crate::GLContext] failed, `error` will be set.</span>
+    <span class="doccomment">/// If the creation of the [`GLContext`][crate::GLContext] failed, @error will be set.</span>
     <span class="doccomment">/// Before using the returned [`GLContext`][crate::GLContext], you will need to</span>
-    <span class="doccomment">/// call [``GLContextExt::make_current()``][crate::prelude::`GLContextExt::make_current()`] or [``GLContextExt::realize()``][crate::prelude::`GLContextExt::realize()`].</span>
+    <span class="doccomment">/// call [`GLContextExt::make_current()`][crate::prelude::GLContextExt::make_current()] or [`GLContextExt::realize()`][crate::prelude::GLContextExt::realize()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1074,21 +1074,21 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_gl_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_gl_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GLContext</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Creates a new [`VulkanContext`][crate::VulkanContext] for rendering on `self`.</span>
+    <span class="doccomment">/// Creates a new [`VulkanContext`][crate::VulkanContext] for rendering on @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the creation of the [`VulkanContext`][crate::VulkanContext] failed, `error` will be set.</span>
+    <span class="doccomment">/// If the creation of the [`VulkanContext`][crate::VulkanContext] failed, @error will be set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created [`VulkanContext`][crate::VulkanContext], or</span>
-    <span class="doccomment">///  [`None`] on error</span>
+    <span class="doccomment">///   [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_vulkan_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_vulkan_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">VulkanContext</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Destroys the window system resources associated with `self` and</span>
-    <span class="doccomment">/// decrements `self`&#39;s reference count.</span>
+    <span class="doccomment">/// Destroys the window system resources associated with @self and</span>
+    <span class="doccomment">/// decrements @self&#39;s reference count.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The window system resources for all children of `self` are also</span>
+    <span class="doccomment">/// The window system resources for all children of @self are also</span>
     <span class="doccomment">/// destroyed, but the children’s reference counts are not decremented.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that a surface will not be destroyed automatically when its</span>
@@ -1103,7 +1103,7 @@
     <span class="doccomment">/// If the return value is [`None`] then there is no custom cursor set on</span>
     <span class="doccomment">/// the surface, and it is using the cursor for its parent surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``set_cursor()``][`Self::set_cursor()`] to unset the cursor of the surface.</span>
+    <span class="doccomment">/// Use [`set_cursor()`][Self::set_cursor()] to unset the cursor of the surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1112,13 +1112,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_cursor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Retrieves a [`Cursor`][crate::Cursor] pointer for the `device` currently set on the</span>
+    <span class="doccomment">/// Retrieves a [`Cursor`][crate::Cursor] pointer for the @device currently set on the</span>
     <span class="doccomment">/// specified [`Surface`][crate::Surface].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the return value is [`None`] then there is no custom cursor set on the</span>
     <span class="doccomment">/// specified surface, and it is using the cursor for its parent surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``set_cursor()``][`Self::set_cursor()`] to unset the cursor of the surface.</span>
+    <span class="doccomment">/// Use [`set_cursor()`][Self::set_cursor()] to unset the cursor of the surface.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// a pointer [`Device`][crate::Device]</span>
     <span class="doccomment">///</span>
@@ -1132,7 +1132,7 @@
     <span class="doccomment">/// Obtains the current device position and modifier state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position is given in coordinates relative to the upper</span>
-    <span class="doccomment">/// left corner of `self`.</span>
+    <span class="doccomment">/// left corner of @self.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// pointer [`Device`][crate::Device] to query to</span>
     <span class="doccomment">///</span>
@@ -1141,10 +1141,10 @@
     <span class="doccomment">/// [`true`] if the device is over the surface</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `x`</span>
-    <span class="doccomment">/// return location for the X coordinate of `device`</span>
+    <span class="doccomment">/// return location for the X coordinate of @device</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `y`</span>
-    <span class="doccomment">/// return location for the Y coordinate of `device`</span>
+    <span class="doccomment">/// return location for the Y coordinate of @device</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `mask`</span>
     <span class="doccomment">/// return location for the modifier mask</span>
@@ -1156,7 +1156,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`Display`][crate::Display] associated with `self`</span>
+    <span class="doccomment">/// the [`Display`][crate::Display] associated with @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span>;
@@ -1173,22 +1173,22 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_frame_clock&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">frame_clock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FrameClock</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the height of the given `self`.</span>
+    <span class="doccomment">/// Returns the height of the given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Surface size is reported in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see [``scale_factor()``][`Self::scale_factor()`]).</span>
+    <span class="doccomment">/// ”device pixels” (see [`scale_factor()`][Self::scale_factor()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The height of `self`</span>
+    <span class="doccomment">/// The height of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
     <span class="doccomment">/// Checks whether the surface has been mapped.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A surface is mapped with [``ToplevelExt::present()``][crate::prelude::`ToplevelExt::present()`]</span>
-    <span class="doccomment">/// or [``PopupExt::present()``][crate::prelude::`PopupExt::present()`].</span>
+    <span class="doccomment">/// A surface is mapped with [`ToplevelExt::present()`][crate::prelude::ToplevelExt::present()]</span>
+    <span class="doccomment">/// or [`PopupExt::present()`][crate::prelude::PopupExt::present()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1216,14 +1216,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_scale_factor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">scale_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Returns the width of the given `self`.</span>
+    <span class="doccomment">/// Returns the width of the given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Surface size is reported in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see [``scale_factor()``][`Self::scale_factor()`]).</span>
+    <span class="doccomment">/// ”device pixels” (see [`scale_factor()`][Self::scale_factor()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The width of `self`</span>
+    <span class="doccomment">/// The width of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
@@ -1233,7 +1233,7 @@
     <span class="doccomment">/// For toplevel surfaces, withdraws them, so they will no longer be</span>
     <span class="doccomment">/// known to the window manager; for all surfaces, unmaps them, so</span>
     <span class="doccomment">/// they won’t be displayed. Normally done automatically as</span>
-    <span class="doccomment">/// part of `Gtk::`Widget::hide()``.</span>
+    <span class="doccomment">/// part of `Gtk::Widget::hide()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_hide&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">hide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -1245,7 +1245,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_is_destroyed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_destroyed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Forces a `signal::Surface::render` signal emission for `self`</span>
+    <span class="doccomment">/// Forces a `signal::Surface::render` signal emission for @self</span>
     <span class="doccomment">/// to be scheduled.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is useful for implementations that track invalid</span>
@@ -1255,29 +1255,29 @@
 
     <span class="doccomment">/// Request a layout phase from the surface&#39;s frame clock.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``FrameClock::request_phase()``][crate::`FrameClock::request_phase()`].</span>
+    <span class="doccomment">/// See [`FrameClock::request_phase()`][crate::FrameClock::request_phase()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_request_layout&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">request_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Sets the default mouse pointer for a [`Surface`][crate::Surface].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing [`None`] for the `cursor` argument means that `self` will use</span>
+    <span class="doccomment">/// Passing [`None`] for the @cursor argument means that @self will use</span>
     <span class="doccomment">/// the cursor of its parent surface. Most surfaces should use this default.</span>
-    <span class="doccomment">/// Note that `cursor` must be for the same display as `self`.</span>
+    <span class="doccomment">/// Note that @cursor must be for the same display as @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``Cursor::from_name()``][crate::`Cursor::from_name()`] or [``Cursor::from_texture()``][crate::`Cursor::from_texture()`]</span>
+    <span class="doccomment">/// Use [`Cursor::from_name()`][crate::Cursor::from_name()] or [`Cursor::from_texture()`][crate::Cursor::from_texture()]</span>
     <span class="doccomment">/// to create the cursor. To make the cursor invisible, use `GDK_BLANK_CURSOR`.</span>
     <span class="doccomment">/// ## `cursor`</span>
     <span class="doccomment">/// a [`Cursor`][crate::Cursor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_set_cursor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Cursor</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets a specific [`Cursor`][crate::Cursor] for a given device when it gets inside `self`.</span>
+    <span class="doccomment">/// Sets a specific [`Cursor`][crate::Cursor] for a given device when it gets inside @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing [`None`] for the `cursor` argument means that `self` will use the</span>
+    <span class="doccomment">/// Passing [`None`] for the @cursor argument means that @self will use the</span>
     <span class="doccomment">/// cursor of its parent surface. Most surfaces should use this default.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``Cursor::from_name()``][crate::`Cursor::from_name()`] or [``Cursor::from_texture()``][crate::`Cursor::from_texture()`]</span>
+    <span class="doccomment">/// Use [`Cursor::from_name()`][crate::Cursor::from_name()] or [`Cursor::from_texture()`][crate::Cursor::from_texture()]</span>
     <span class="doccomment">/// to create the cursor. To make the cursor invisible, use `GDK_BLANK_CURSOR`.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// a pointer [`Device`][crate::Device]</span>
@@ -1291,14 +1291,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Mouse events which happen while the pointer position corresponds</span>
     <span class="doccomment">/// to an unset bit in the mask will be passed on the surface below</span>
-    <span class="doccomment">/// `self`.</span>
+    <span class="doccomment">/// @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An input region is typically used with RGBA surfaces. The alpha</span>
     <span class="doccomment">/// channel of the surface defines which pixels are invisible and</span>
     <span class="doccomment">/// allows for nicely antialiased borders, and the input region</span>
     <span class="doccomment">/// controls where the surface is “clickable”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``DisplayExt::supports_input_shapes()``][crate::prelude::`DisplayExt::supports_input_shapes()`] to find out if</span>
+    <span class="doccomment">/// Use [`DisplayExt::supports_input_shapes()`][crate::prelude::DisplayExt::supports_input_shapes()] to find out if</span>
     <span class="doccomment">/// a particular backend supports input regions.</span>
     <span class="doccomment">/// ## `region`</span>
     <span class="doccomment">/// region of surface to be reactive</span>
@@ -1316,23 +1316,23 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function only works for toplevel surfaces.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK will update this property automatically if the `self` background</span>
+    <span class="doccomment">/// GTK will update this property automatically if the @self background</span>
     <span class="doccomment">/// is opaque, as we know where the opaque regions are. If your surface</span>
     <span class="doccomment">/// background is not opaque, please update this property in your</span>
     <span class="doccomment">/// `vfunc::Gtk::Widget::css_changed` handler.</span>
     <span class="doccomment">/// ## `region`</span>
     <span class="doccomment">/// a region, or [`None`] to make the entire</span>
-    <span class="doccomment">///  surface opaque</span>
+    <span class="doccomment">///   surface opaque</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_set_opaque_region&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_opaque_region</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Emitted when `surface` starts being present on the monitor.</span>
+    <span class="doccomment">/// Emitted when @surface starts being present on the monitor.</span>
     <span class="doccomment">/// ## `monitor`</span>
     <span class="doccomment">/// the monitor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;enter-monitor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_enter_monitor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Monitor</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when GDK receives an input event for `surface`.</span>
+    <span class="doccomment">/// Emitted when GDK receives an input event for @surface.</span>
     <span class="doccomment">/// ## `event`</span>
     <span class="doccomment">/// an input event</span>
     <span class="doccomment">///</span>
@@ -1342,11 +1342,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;event&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_event</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Event</span>) -&gt; <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when the size of `surface` is changed, or when relayout should</span>
+    <span class="doccomment">/// Emitted when the size of @surface is changed, or when relayout should</span>
     <span class="doccomment">/// be performed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Surface size is reported in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see [`scale_factor()`][Self::scale_factor()]).</span>
+    <span class="doccomment">/// ”device pixels” (see gdk_surface_get_scale_factor()).</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the current width</span>
     <span class="doccomment">/// ## `height`</span>
@@ -1354,7 +1354,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;layout&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_layout</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when `surface` stops being present on the monitor.</span>
+    <span class="doccomment">/// Emitted when @surface stops being present on the monitor.</span>
     <span class="doccomment">/// ## `monitor`</span>
     <span class="doccomment">/// the monitor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;leave-monitor&quot;</span>)]</span>

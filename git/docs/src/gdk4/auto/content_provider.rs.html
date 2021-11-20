@@ -460,8 +460,8 @@
     <span class="doccomment">/// A [`ContentProvider`][crate::ContentProvider] is used to provide content for the clipboard or</span>
     <span class="doccomment">/// for drag-and-drop operations in a number of formats.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a [`ContentProvider`][crate::ContentProvider], use [``for_value()``][`Self::for_value()`]</span>
-    <span class="doccomment">/// or [``for_bytes()``][`Self::for_bytes()`].</span>
+    <span class="doccomment">/// To create a [`ContentProvider`][crate::ContentProvider], use [`for_value()`][Self::for_value()]</span>
+    <span class="doccomment">/// or [`for_bytes()`][Self::for_bytes()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GDK knows how to handle common text and image formats out-of-the-box. See</span>
     <span class="doccomment">/// [`ContentSerializer`][crate::ContentSerializer] and [`ContentDeserializer`][crate::ContentDeserializer] if you want</span>
@@ -481,12 +481,12 @@
 <span class="kw">impl</span> <span class="ident">ContentProvider</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">ContentProvider</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-    <span class="doccomment">/// Create a content provider that provides the given `bytes` as data for</span>
-    <span class="doccomment">/// the given `mime_type`.</span>
+    <span class="doccomment">/// Create a content provider that provides the given @bytes as data for</span>
+    <span class="doccomment">/// the given @mime_type.</span>
     <span class="doccomment">/// ## `mime_type`</span>
     <span class="doccomment">/// the mime type</span>
     <span class="doccomment">/// ## `bytes`</span>
-    <span class="doccomment">/// a `GBytes` with the data for `mime_type`</span>
+    <span class="doccomment">/// a `GBytes` with the data for @mime_type</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -503,7 +503,7 @@
         }
     }
 
-    <span class="doccomment">/// Create a content provider that provides the given `value`.</span>
+    <span class="doccomment">/// Create a content provider that provides the given @value.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// a `GValue`</span>
     <span class="doccomment">///</span>
@@ -521,10 +521,10 @@
         }
     }
 
-    <span class="doccomment">/// Creates a content provider that represents all the given `providers`.</span>
+    <span class="doccomment">/// Creates a content provider that represents all the given @providers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whenever data needs to be written, the union provider will try the given</span>
-    <span class="doccomment">/// `providers` in the given order and the first one supporting a format will</span>
+    <span class="doccomment">/// @providers in the given order and the first one supporting a format will</span>
     <span class="doccomment">/// be chosen to provide it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This allows an easy way to support providing data in different formats.</span>
@@ -540,7 +540,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `providers`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  The [`ContentProvider`][crate::ContentProvider]s to present the union of</span>
+    <span class="doccomment">///   The [`ContentProvider`][crate::ContentProvider]s to present the union of</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -582,7 +582,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of such an application would be a clipboard manager.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This can be assumed to be a subset of [``formats()``][`Self::formats()`].</span>
+    <span class="doccomment">/// This can be assumed to be a subset of [`formats()`][Self::formats()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -591,18 +591,18 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;ref_storable_formats&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">storable_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ContentFormats</span>;
 
-    <span class="doccomment">/// Asynchronously writes the contents of `self` to `stream` in the given</span>
-    <span class="doccomment">/// `mime_type`.</span>
+    <span class="doccomment">/// Asynchronously writes the contents of @self to @stream in the given</span>
+    <span class="doccomment">/// @mime_type.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the operation is finished `callback` will be called. You must then call</span>
-    <span class="doccomment">/// `Gdk::`ContentProvider::write_mime_type_finish()`` to get the result</span>
+    <span class="doccomment">/// When the operation is finished @callback will be called. You must then call</span>
+    <span class="doccomment">/// `Gdk::ContentProvider::write_mime_type_finish()` to get the result</span>
     <span class="doccomment">/// of the operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given mime type does not need to be listed in the formats returned by</span>
-    <span class="doccomment">/// [``formats()``][`Self::formats()`]. However, if the given `GType` is</span>
+    <span class="doccomment">/// [`formats()`][Self::formats()]. However, if the given `GType` is</span>
     <span class="doccomment">/// not supported, `G_IO_ERROR_NOT_SUPPORTED` will be reported.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The given `stream` will not be closed.</span>
+    <span class="doccomment">/// The given @stream will not be closed.</span>
     <span class="doccomment">/// ## `mime_type`</span>
     <span class="doccomment">/// the mime type to provide the data in</span>
     <span class="doccomment">/// ## `stream`</span>

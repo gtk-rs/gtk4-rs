@@ -302,7 +302,7 @@
     <span class="doccomment">/// is necessary to present a sovereign window on screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`ToplevelLayout`][crate::ToplevelLayout] struct is necessary for using</span>
-    <span class="doccomment">/// [``ToplevelExt::present()``][crate::prelude::`ToplevelExt::present()`].</span>
+    <span class="doccomment">/// [`ToplevelExt::present()`][crate::prelude::ToplevelExt::present()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Toplevel surfaces are sovereign windows that can be presented</span>
     <span class="doccomment">/// to the user in various states (maximized, on all workspaces,</span>
@@ -320,11 +320,11 @@
 <span class="kw">impl</span> <span class="ident">ToplevelLayout</span> {
     <span class="doccomment">/// Create a toplevel layout description.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Used together with [`ToplevelExt::present()`][crate::prelude::ToplevelExt::present()] to describe</span>
+    <span class="doccomment">/// Used together with gdk_toplevel_present() to describe</span>
     <span class="doccomment">/// how a toplevel surface should be placed and behave on-screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The size is in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see [`SurfaceExt::scale_factor()`][crate::prelude::SurfaceExt::scale_factor()]).</span>
+    <span class="doccomment">/// ”device pixels” (see gdk_surface_get_scale_factor()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -335,24 +335,24 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_toplevel_layout_new</span>()) }
     }
 
-    <span class="doccomment">/// Create a new [`ToplevelLayout`][crate::ToplevelLayout] and copy the contents of `self` into it.</span>
+    <span class="doccomment">/// Create a new [`ToplevelLayout`][crate::ToplevelLayout] and copy the contents of @self into it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a copy of `self`.</span>
+    <span class="doccomment">/// a copy of @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_copy&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ToplevelLayout</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_toplevel_layout_copy</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Check whether `self` and `other` has identical layout properties.</span>
+    <span class="doccomment">/// Check whether @self and @other has identical layout properties.</span>
     <span class="doccomment">/// ## `other`</span>
     <span class="doccomment">/// another [`ToplevelLayout`][crate::ToplevelLayout]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` and `other` have identical layout properties,</span>
-    <span class="doccomment">///  otherwise [`false`].</span>
+    <span class="doccomment">/// [`true`] if @self and @other have identical layout properties,</span>
+    <span class="doccomment">///   otherwise [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">equal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">ToplevelLayout</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -364,12 +364,12 @@
     }
 
     <span class="doccomment">/// If the layout specifies whether to the toplevel should go fullscreen,</span>
-    <span class="doccomment">/// the value pointed to by `fullscreen` is set to [`true`] if it should go</span>
+    <span class="doccomment">/// the value pointed to by @fullscreen is set to [`true`] if it should go</span>
     <span class="doccomment">/// fullscreen, or [`false`], if it should go unfullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether the `self` specifies the fullscreen state for the toplevel</span>
+    <span class="doccomment">/// whether the @self specifies the fullscreen state for the toplevel</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `fullscreen`</span>
     <span class="doccomment">/// location to store whether the toplevel should be fullscreen</span>
@@ -396,7 +396,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the monitor on which `self` fullscreens</span>
+    <span class="doccomment">/// the monitor on which @self fullscreens</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_get_fullscreen_monitor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_fullscreen_monitor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fullscreen_monitor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Monitor</span><span class="op">&gt;</span> {
@@ -408,12 +408,12 @@
     }
 
     <span class="doccomment">/// If the layout specifies whether to the toplevel should go maximized,</span>
-    <span class="doccomment">/// the value pointed to by `maximized` is set to [`true`] if it should go</span>
+    <span class="doccomment">/// the value pointed to by @maximized is set to [`true`] if it should go</span>
     <span class="doccomment">/// fullscreen, or [`false`], if it should go unmaximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether the `self` specifies the maximized state for the toplevel</span>
+    <span class="doccomment">/// whether the @self specifies the maximized state for the toplevel</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `maximized`</span>
     <span class="doccomment">/// set to [`true`] if the toplevel should be maximized</span>

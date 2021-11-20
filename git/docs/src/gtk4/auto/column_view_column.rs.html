@@ -754,10 +754,10 @@
     <span class="doccomment">/// the model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Columns have a title, and can optionally have a header menu set</span>
-    <span class="doccomment">/// with [``set_header_menu()``][`Self::set_header_menu()`].</span>
+    <span class="doccomment">/// with [`set_header_menu()`][Self::set_header_menu()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A sorter can be associated with a column using</span>
-    <span class="doccomment">/// [``set_sorter()``][`Self::set_sorter()`], to let users influence sorting</span>
+    <span class="doccomment">/// [`set_sorter()`][Self::set_sorter()], to let users influence sorting</span>
     <span class="doccomment">/// by clicking on the column header.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -772,10 +772,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ColumnViewColumn</span> {
-    <span class="doccomment">/// Creates a new [`ColumnViewColumn`][crate::ColumnViewColumn] that uses the given `factory` for</span>
+    <span class="doccomment">/// Creates a new [`ColumnViewColumn`][crate::ColumnViewColumn] that uses the given @factory for</span>
     <span class="doccomment">/// mapping items to widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You most likely want to call [``ColumnView::append_column()``][crate::`ColumnView::append_column()`] next.</span>
+    <span class="doccomment">/// You most likely want to call [`ColumnView::append_column()`][crate::ColumnView::append_column()] next.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The function takes ownership of the argument, so you can write code like:</span>
     <span class="doccomment">///</span>
@@ -792,7 +792,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`ColumnViewColumn`][crate::ColumnViewColumn] using the given `factory`</span>
+    <span class="doccomment">/// a new [`ColumnViewColumn`][crate::ColumnViewColumn] using the given @factory</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">title</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
@@ -817,11 +817,11 @@
 
     <span class="doccomment">/// Gets the column view that&#39;s currently displaying this column.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` has not been added to a column view yet, [`None`] is returned.</span>
+    <span class="doccomment">/// If @self has not been added to a column view yet, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The column view displaying `self`.</span>
+    <span class="doccomment">/// The column view displaying @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_column_view&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_column_view&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">column_view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ColumnView</span><span class="op">&gt;</span> {
@@ -909,7 +909,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`Sorter`][crate::Sorter] of `self`</span>
+    <span class="doccomment">/// the [`Sorter`][crate::Sorter] of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_sorter&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span> {
@@ -920,7 +920,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns the title set with [`set_title()`][Self::set_title()].</span>
+    <span class="doccomment">/// Returns the title set with gtk_column_view_column_set_title().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -973,7 +973,7 @@
         }
     }
 
-    <span class="doccomment">/// If `fixed_width` is not -1, sets the fixed width of `column`;</span>
+    <span class="doccomment">/// If @fixed_width is not -1, sets the fixed width of @column;</span>
     <span class="doccomment">/// otherwise unsets it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting a fixed width overrides the automatically calculated</span>
@@ -1013,16 +1013,16 @@
 
     <span class="doccomment">/// Associates a sorter with the column.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sorter` is [`None`], the column will not let users change</span>
+    <span class="doccomment">/// If @sorter is [`None`], the column will not let users change</span>
     <span class="doccomment">/// the sorting by clicking on its header.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This sorter can be made active by clicking on the column</span>
-    <span class="doccomment">/// header, or by calling [``ColumnView::sort_by_column()``][crate::`ColumnView::sort_by_column()`].</span>
+    <span class="doccomment">/// header, or by calling [`ColumnView::sort_by_column()`][crate::ColumnView::sort_by_column()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``ColumnView::sorter()``][crate::`ColumnView::sorter()`] for the necessary steps</span>
+    <span class="doccomment">/// See [`ColumnView::sorter()`][crate::ColumnView::sorter()] for the necessary steps</span>
     <span class="doccomment">/// for setting up customizable sorting for [`ColumnView`][crate::ColumnView].</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to associate with `column`</span>
+    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to associate with @column</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_sorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_sorter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

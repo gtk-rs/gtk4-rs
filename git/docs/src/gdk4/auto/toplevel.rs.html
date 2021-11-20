@@ -873,7 +873,7 @@
     <span class="doccomment">/// surface Y coordinate of mouse click that began the drag</span>
     <span class="doccomment">/// ## `timestamp`</span>
     <span class="doccomment">/// timestamp of mouse click that began the drag (use</span>
-    <span class="doccomment">///  [``Event::time()``][crate::`Event::time()`])</span>
+    <span class="doccomment">///   [`Event::time()`][crate::Event::time()])</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_begin_move&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_move</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>, <span class="ident">button</span>: <span class="ident">i32</span>, <span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>, <span class="ident">timestamp</span>: <span class="ident">u32</span>);
 
@@ -892,7 +892,7 @@
     <span class="doccomment">/// surface Y coordinate of mouse click that began the drag</span>
     <span class="doccomment">/// ## `timestamp`</span>
     <span class="doccomment">/// timestamp of mouse click that began the drag (use</span>
-    <span class="doccomment">///  [``Event::time()``][crate::`Event::time()`])</span>
+    <span class="doccomment">///   [`Event::time()`][crate::Event::time()])</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_begin_resize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_resize</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -904,9 +904,9 @@
         <span class="ident">timestamp</span>: <span class="ident">u32</span>,
     );
 
-    <span class="doccomment">/// Sets keyboard focus to `surface`.</span>
+    <span class="doccomment">/// Sets keyboard focus to @surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In most cases, `Gtk::`Window::present_with_time()`` should be</span>
+    <span class="doccomment">/// In most cases, `Gtk::Window::present_with_time()` should be</span>
     <span class="doccomment">/// used on a `Gtk::Window`, rather than calling this function.</span>
     <span class="doccomment">/// ## `timestamp`</span>
     <span class="doccomment">/// timestamp of the event triggering the surface focus</span>
@@ -923,7 +923,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ToplevelState</span>;
 
-    <span class="doccomment">/// Asks to lower the `self` below other windows.</span>
+    <span class="doccomment">/// Asks to lower the @self below other windows.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The windowing system may choose to ignore the request.</span>
     <span class="doccomment">///</span>
@@ -933,7 +933,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_lower&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Asks to minimize the `self`.</span>
+    <span class="doccomment">/// Asks to minimize the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The windowing system may choose to ignore the request.</span>
     <span class="doccomment">///</span>
@@ -943,10 +943,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_minimize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">minimize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Present `self` after having processed the [`ToplevelLayout`][crate::ToplevelLayout] rules.</span>
+    <span class="doccomment">/// Present @self after having processed the [`ToplevelLayout`][crate::ToplevelLayout] rules.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the toplevel was previously not showing, it will be showed,</span>
-    <span class="doccomment">/// otherwise it will change layout according to `layout`.</span>
+    <span class="doccomment">/// otherwise it will change layout according to @layout.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GDK may emit the `signal::Toplevel::compute-size` signal to let</span>
     <span class="doccomment">/// the user of this toplevel compute the preferred size of the toplevel</span>
@@ -962,13 +962,13 @@
     <span class="doccomment">/// Restore default system keyboard shortcuts which were previously</span>
     <span class="doccomment">/// inhibited.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This undoes the effect of [``ToplevelExtManual::inhibit_system_shortcuts()``][crate::prelude::`ToplevelExtManual::inhibit_system_shortcuts()`].</span>
+    <span class="doccomment">/// This undoes the effect of [`ToplevelExtManual::inhibit_system_shortcuts()`][crate::prelude::ToplevelExtManual::inhibit_system_shortcuts()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_restore_system_shortcuts&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">restore_system_shortcuts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Sets the toplevel to be decorated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Setting `decorated` to [`false`] hints the desktop environment</span>
+    <span class="doccomment">/// Setting @decorated to [`false`] hints the desktop environment</span>
     <span class="doccomment">/// that the surface has its own, client-side decorations and</span>
     <span class="doccomment">/// does not need to have window decorations added.</span>
     <span class="doccomment">/// ## `decorated`</span>
@@ -978,7 +978,7 @@
 
     <span class="doccomment">/// Sets the toplevel to be deletable.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Setting `deletable` to [`true`] hints the desktop environment</span>
+    <span class="doccomment">/// Setting @deletable to [`true`] hints the desktop environment</span>
     <span class="doccomment">/// that it should offer the user a way to close the surface.</span>
     <span class="doccomment">/// ## `deletable`</span>
     <span class="doccomment">/// [`true`] to request a delete button</span>
@@ -996,7 +996,7 @@
     <span class="doccomment">/// Note that some platforms don&#39;t support surface icons.</span>
     <span class="doccomment">/// ## `surfaces`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  A list of textures to use as icon, of different sizes</span>
+    <span class="doccomment">///   A list of textures to use as icon, of different sizes</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_icon_list&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_list</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surfaces</span>: <span class="kw-2">&amp;</span>[<span class="ident">Texture</span>]);
 
@@ -1008,7 +1008,7 @@
     <span class="doccomment">/// to handle modal surfaces in a special way.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You should only use this on surfaces for which you have</span>
-    <span class="doccomment">/// previously called [``set_transient_for()``][`Self::set_transient_for()`].</span>
+    <span class="doccomment">/// previously called [`set_transient_for()`][Self::set_transient_for()].</span>
     <span class="doccomment">/// ## `modal`</span>
     <span class="doccomment">/// [`true`] if the surface is modal, [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_modal&quot;</span>)]</span>
@@ -1017,7 +1017,7 @@
     <span class="doccomment">/// Sets the startup notification ID.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When using GTK, typically you should use</span>
-    <span class="doccomment">/// `Gtk::`Window::set_startup_id()`` instead of this</span>
+    <span class="doccomment">/// `Gtk::Window::set_startup_id()` instead of this</span>
     <span class="doccomment">/// low-level function.</span>
     <span class="doccomment">/// ## `startup_id`</span>
     <span class="doccomment">/// a string with startup-notification identifier</span>
@@ -1029,18 +1029,18 @@
     <span class="doccomment">/// The title maybe be displayed in the titlebar,</span>
     <span class="doccomment">/// in lists of windows, etc.</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// title of `surface`</span>
+    <span class="doccomment">/// title of @surface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_title&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
     <span class="doccomment">/// Sets a transient-for parent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Indicates to the window manager that `surface` is a transient</span>
-    <span class="doccomment">/// dialog associated with the application surface `parent`. This</span>
-    <span class="doccomment">/// allows the window manager to do things like center `surface`</span>
-    <span class="doccomment">/// on `parent` and keep `surface` above `parent`.</span>
+    <span class="doccomment">/// Indicates to the window manager that @surface is a transient</span>
+    <span class="doccomment">/// dialog associated with the application surface @parent. This</span>
+    <span class="doccomment">/// allows the window manager to do things like center @surface</span>
+    <span class="doccomment">/// on @parent and keep @surface above @parent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See `Gtk::`Window::set_transient_for()`` if you’re using</span>
+    <span class="doccomment">/// See `Gtk::Window::set_transient_for()` if you’re using</span>
     <span class="doccomment">/// `Gtk::Window` or `Gtk::Dialog`.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// another toplevel [`Surface`][crate::Surface]</span>

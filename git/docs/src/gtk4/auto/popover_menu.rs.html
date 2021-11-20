@@ -961,20 +961,20 @@
     <span class="doccomment">/// or in a more touch-friendly sliding fashion.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PopoverMenu`][crate::PopoverMenu] is meant to be used primarily with menu models,</span>
-    <span class="doccomment">/// using [``from_model()``][`Self::from_model()`]. If you need to put</span>
+    <span class="doccomment">/// using [`from_model()`][Self::from_model()]. If you need to put</span>
     <span class="doccomment">/// other widgets such as a [`SpinButton`][crate::SpinButton] or a [`Switch`][crate::Switch] into a popover,</span>
-    <span class="doccomment">/// you can use [``add_child()``][`Self::add_child()`].</span>
+    <span class="doccomment">/// you can use [`add_child()`][Self::add_child()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For more dialog-like behavior, use a plain [`Popover`][crate::Popover].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Menu models</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The XML format understood by [`Builder`][crate::Builder] for `GMenuModel` consists</span>
-    <span class="doccomment">/// of a toplevel ``&lt;menu&gt;`` element, which contains one or more ``&lt;item&gt;``</span>
-    <span class="doccomment">/// elements. Each ``&lt;item&gt;`` element contains ``&lt;attribute&gt;`` and ``&lt;link&gt;``</span>
-    <span class="doccomment">/// elements with a mandatory name attribute. ``&lt;link&gt;`` elements have the</span>
-    <span class="doccomment">/// same content model as ``&lt;menu&gt;``. Instead of `&lt;link name=&quot;submenu&quot;&gt;`</span>
-    <span class="doccomment">/// or `&lt;link name=&quot;section&quot;&gt;`, you can use ``&lt;submenu&gt;`` or ``&lt;section&gt;``</span>
+    <span class="doccomment">/// of a toplevel `&lt;menu&gt;` element, which contains one or more `&lt;item&gt;`</span>
+    <span class="doccomment">/// elements. Each `&lt;item&gt;` element contains `&lt;attribute&gt;` and `&lt;link&gt;`</span>
+    <span class="doccomment">/// elements with a mandatory name attribute. `&lt;link&gt;` elements have the</span>
+    <span class="doccomment">/// same content model as `&lt;menu&gt;`. Instead of `&lt;link name=&quot;submenu&quot;&gt;`</span>
+    <span class="doccomment">/// or `&lt;link name=&quot;section&quot;&gt;`, you can use `&lt;submenu&gt;` or `&lt;section&gt;`</span>
     <span class="doccomment">/// elements.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
@@ -997,7 +997,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Attribute values can be translated using gettext, like other [`Builder`][crate::Builder]</span>
-    <span class="doccomment">/// content. ``&lt;attribute&gt;`` elements can be marked for translation with a</span>
+    <span class="doccomment">/// content. `&lt;attribute&gt;` elements can be marked for translation with a</span>
     <span class="doccomment">/// `translatable=&quot;yes&quot;` attribute. It is also possible to specify message</span>
     <span class="doccomment">/// context and translator comments, using the context and comments attributes.</span>
     <span class="doccomment">/// To make use of this, the [`Builder`][crate::Builder] must have been given the gettext</span>
@@ -1011,24 +1011,24 @@
     <span class="doccomment">/// - &quot;target&quot;: the parameter to use when activating the action</span>
     <span class="doccomment">/// - &quot;icon&quot; and &quot;verb-icon&quot;: names of icons that may be displayed</span>
     <span class="doccomment">/// - &quot;submenu-action&quot;: name of an action that may be used to track</span>
-    <span class="doccomment">///  whether a submenu is open</span>
+    <span class="doccomment">///      whether a submenu is open</span>
     <span class="doccomment">/// - &quot;hidden-when&quot;: a string used to determine when the item will be hidden.</span>
-    <span class="doccomment">///  Possible values include &quot;action-disabled&quot;, &quot;action-missing&quot;, &quot;macos-menubar&quot;.</span>
-    <span class="doccomment">///  This is mainly useful for exported menus, see [``GtkApplicationExt::set_menubar()``][crate::prelude::`GtkApplicationExt::set_menubar()`].</span>
+    <span class="doccomment">///      Possible values include &quot;action-disabled&quot;, &quot;action-missing&quot;, &quot;macos-menubar&quot;.</span>
+    <span class="doccomment">///      This is mainly useful for exported menus, see [`GtkApplicationExt::set_menubar()`][crate::prelude::GtkApplicationExt::set_menubar()].</span>
     <span class="doccomment">/// - &quot;custom&quot;: a string used to match against the ID of a custom child added with</span>
-    <span class="doccomment">///  [``add_child()``][`Self::add_child()`], [``PopoverMenuBar::add_child()``][crate::`PopoverMenuBar::add_child()`],</span>
-    <span class="doccomment">///  or in the ui file with `&lt;child type=&quot;ID&quot;&gt;`.</span>
+    <span class="doccomment">///      [`add_child()`][Self::add_child()], [`PopoverMenuBar::add_child()`][crate::PopoverMenuBar::add_child()],</span>
+    <span class="doccomment">///      or in the ui file with `&lt;child type=&quot;ID&quot;&gt;`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The following attributes are used when constructing sections:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - &quot;label&quot;: a user-visible string to use as section heading</span>
     <span class="doccomment">/// - &quot;display-hint&quot;: a string used to determine special formatting for the section.</span>
-    <span class="doccomment">///  Possible values include &quot;horizontal-buttons&quot;, &quot;circular-buttons&quot; and</span>
-    <span class="doccomment">///  &quot;inline-buttons&quot;. They all indicate that section should be</span>
-    <span class="doccomment">///  displayed as a horizontal row of buttons.</span>
+    <span class="doccomment">///     Possible values include &quot;horizontal-buttons&quot;, &quot;circular-buttons&quot; and</span>
+    <span class="doccomment">///     &quot;inline-buttons&quot;. They all indicate that section should be</span>
+    <span class="doccomment">///     displayed as a horizontal row of buttons.</span>
     <span class="doccomment">/// - &quot;text-direction&quot;: a string used to determine the [`TextDirection`][crate::TextDirection] to use</span>
-    <span class="doccomment">///  when &quot;display-hint&quot; is set to &quot;horizontal-buttons&quot;. Possible values</span>
-    <span class="doccomment">///  include &quot;rtl&quot;, &quot;ltr&quot;, and &quot;none&quot;.</span>
+    <span class="doccomment">///     when &quot;display-hint&quot; is set to &quot;horizontal-buttons&quot;. Possible values</span>
+    <span class="doccomment">///     include &quot;rtl&quot;, &quot;ltr&quot;, and &quot;none&quot;.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The following attributes are used when constructing submenus:</span>
     <span class="doccomment">///</span>
@@ -1036,9 +1036,9 @@
     <span class="doccomment">/// - &quot;icon&quot;: icon name to display</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Menu items will also show accelerators, which are usually associated</span>
-    <span class="doccomment">/// with actions via [``GtkApplicationExt::set_accels_for_action()``][crate::prelude::`GtkApplicationExt::set_accels_for_action()`],</span>
+    <span class="doccomment">/// with actions via [`GtkApplicationExt::set_accels_for_action()`][crate::prelude::GtkApplicationExt::set_accels_for_action()],</span>
     <span class="doccomment">/// [`WidgetClass::add_binding_action`][crate::WidgetClass::add_binding_action] or</span>
-    <span class="doccomment">/// [``ShortcutController::add_shortcut()``][crate::`ShortcutController::add_shortcut()`].</span>
+    <span class="doccomment">/// [`ShortcutController::add_shortcut()`][crate::ShortcutController::add_shortcut()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS Nodes</span>
     <span class="doccomment">///</span>
@@ -1066,18 +1066,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PopoverMenu</span> {
-    <span class="doccomment">/// Creates a [`PopoverMenu`][crate::PopoverMenu] and populates it according to `model`.</span>
+    <span class="doccomment">/// Creates a [`PopoverMenu`][crate::PopoverMenu] and populates it according to @model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The created buttons are connected to actions found in the</span>
     <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] to which the popover belongs - typically</span>
     <span class="doccomment">/// by means of being attached to a widget that is contained within</span>
     <span class="doccomment">/// the [`ApplicationWindow`][crate::ApplicationWindow]s widget hierarchy.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Actions can also be added using [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`]</span>
+    <span class="doccomment">/// Actions can also be added using [`WidgetExt::insert_action_group()`][crate::prelude::WidgetExt::insert_action_group()]</span>
     <span class="doccomment">/// on the menus attach widget or on any of its parent widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function creates menus with sliding submenus.</span>
-    <span class="doccomment">/// See [``from_model_full()``][`Self::from_model_full()`] for a way</span>
+    <span class="doccomment">/// See [`from_model_full()`][Self::from_model_full()] for a way</span>
     <span class="doccomment">/// to control this.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// a `GMenuModel`</span>
@@ -1097,12 +1097,12 @@
         }
     }
 
-    <span class="doccomment">/// Creates a [`PopoverMenu`][crate::PopoverMenu] and populates it according to `model`.</span>
+    <span class="doccomment">/// Creates a [`PopoverMenu`][crate::PopoverMenu] and populates it according to @model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The created buttons are connected to actions found in the</span>
     <span class="doccomment">/// action groups that are accessible from the parent widget.</span>
     <span class="doccomment">/// This includes the [`ApplicationWindow`][crate::ApplicationWindow] to which the popover</span>
-    <span class="doccomment">/// belongs. Actions can also be added using [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`]</span>
+    <span class="doccomment">/// belongs. Actions can also be added using [`WidgetExt::insert_action_group()`][crate::prelude::WidgetExt::insert_action_group()]</span>
     <span class="doccomment">/// on the parent widget or on any of its parent widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The only flag that is supported currently is</span>
@@ -1142,16 +1142,16 @@
 
     <span class="doccomment">/// Adds a custom widget to a generated menu.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For this to work, the menu model of `self` must have</span>
-    <span class="doccomment">/// an item with a `custom` attribute that matches `id`.</span>
+    <span class="doccomment">/// For this to work, the menu model of @self must have</span>
+    <span class="doccomment">/// an item with a `custom` attribute that matches @id.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to add</span>
     <span class="doccomment">/// ## `id`</span>
-    <span class="doccomment">/// the ID to insert `child` at</span>
+    <span class="doccomment">/// the ID to insert @child at</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `id` was found and the widget added</span>
+    <span class="doccomment">/// [`true`] if @id was found and the widget added</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_add_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1167,7 +1167,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the menu model of `self`</span>
+    <span class="doccomment">/// the menu model of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_get_menu_model&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_menu_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu_model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span> {
@@ -1175,7 +1175,7 @@
     }
 
     <span class="doccomment">/// Removes a widget that has previously been added with</span>
-    <span class="doccomment">/// [`add_child()`][Self::add_child()].</span>
+    <span class="doccomment">/// gtk_popover_menu_add_child().</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to remove</span>
     <span class="doccomment">///</span>
@@ -1192,11 +1192,11 @@
         }
     }
 
-    <span class="doccomment">/// Sets a new menu model on `self`.</span>
+    <span class="doccomment">/// Sets a new menu model on @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The existing contents of `self` are removed, and</span>
-    <span class="doccomment">/// the `self` is populated with new contents according</span>
-    <span class="doccomment">/// to `model`.</span>
+    <span class="doccomment">/// The existing contents of @self are removed, and</span>
+    <span class="doccomment">/// the @self is populated with new contents according</span>
+    <span class="doccomment">/// to @model.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// a `GMenuModel`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_set_menu_model&quot;</span>)]</span>
@@ -1545,7 +1545,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1571,9 +1571,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1615,7 +1615,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1628,7 +1628,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1641,7 +1641,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1651,7 +1651,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1693,7 +1693,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1710,7 +1710,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

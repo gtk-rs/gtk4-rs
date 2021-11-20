@@ -3840,10 +3840,10 @@
 
     <span class="doccomment">/// Creates a new [`TextView`][crate::TextView].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you don’t call [``TextViewExt::set_buffer()``][crate::prelude::`TextViewExt::set_buffer()`] before using the</span>
+    <span class="doccomment">/// If you don’t call [`TextViewExt::set_buffer()`][crate::prelude::TextViewExt::set_buffer()] before using the</span>
     <span class="doccomment">/// text view, an empty default buffer will be created for you. Get the</span>
-    <span class="doccomment">/// buffer with [``TextViewExt::buffer()``][crate::prelude::`TextViewExt::buffer()`]. If you want to specify</span>
-    <span class="doccomment">/// your own buffer, consider [``with_buffer()``][`Self::with_buffer()`].</span>
+    <span class="doccomment">/// buffer with [`TextViewExt::buffer()`][crate::prelude::TextViewExt::buffer()]. If you want to specify</span>
+    <span class="doccomment">/// your own buffer, consider [`with_buffer()`][Self::with_buffer()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3854,11 +3854,11 @@
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_text_view_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Creates a new [`TextView`][crate::TextView] widget displaying the buffer `buffer`.</span>
+    <span class="doccomment">/// Creates a new [`TextView`][crate::TextView] widget displaying the buffer @buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// One buffer can be shared among many widgets. `buffer` may be [`None`]</span>
+    <span class="doccomment">/// One buffer can be shared among many widgets. @buffer may be [`None`]</span>
     <span class="doccomment">/// to create a default buffer, in which case this function is equivalent</span>
-    <span class="doccomment">/// to [``new()``][`Self::new()`]. The text view adds its own reference count</span>
+    <span class="doccomment">/// to [`new()`][Self::new()]. The text view adds its own reference count</span>
     <span class="doccomment">/// to the buffer; it does not take over an existing reference.</span>
     <span class="doccomment">/// ## `buffer`</span>
     <span class="doccomment">/// a [`TextBuffer`][crate::TextBuffer]</span>
@@ -4323,7 +4323,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -4349,9 +4349,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -4393,7 +4393,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -4406,7 +4406,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -4419,7 +4419,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -4429,7 +4429,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -4471,7 +4471,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -4488,7 +4488,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -4578,21 +4578,21 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`TextView`][struct@crate::TextView]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Adds a child widget in the text buffer, at the given `anchor`.</span>
+    <span class="doccomment">/// Adds a child widget in the text buffer, at the given @anchor.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="doccomment">/// ## `anchor`</span>
-    <span class="doccomment">/// a [`TextChildAnchor`][crate::TextChildAnchor] in the [`TextBuffer`][crate::TextBuffer] for `self`</span>
+    <span class="doccomment">/// a [`TextChildAnchor`][crate::TextChildAnchor] in the [`TextBuffer`][crate::TextBuffer] for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_add_child_at_anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_child_at_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">anchor</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextChildAnchor</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Adds `child` at a fixed coordinate in the [`TextView`][crate::TextView]&#39;s text window.</span>
+    <span class="doccomment">/// Adds @child at a fixed coordinate in the [`TextView`][crate::TextView]&#39;s text window.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `xpos` and `ypos` must be in buffer coordinates (see</span>
-    <span class="doccomment">/// [``iter_location()``][`Self::iter_location()`] to convert to</span>
+    <span class="doccomment">/// The @xpos and @ypos must be in buffer coordinates (see</span>
+    <span class="doccomment">/// [`iter_location()`][Self::iter_location()] to convert to</span>
     <span class="doccomment">/// buffer coordinates).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `child` will scroll with the text view.</span>
+    <span class="doccomment">/// @child will scroll with the text view.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If instead you want a widget that will not move with the</span>
     <span class="doccomment">/// [`TextView`][crate::TextView] contents see [`Overlay`][crate::Overlay].</span>
@@ -4605,7 +4605,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_add_overlay&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_overlay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">xpos</span>: <span class="ident">i32</span>, <span class="ident">ypos</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Moves the given `iter` backward by one display (wrapped) line.</span>
+    <span class="doccomment">/// Moves the given @iter backward by one display (wrapped) line.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A display line is different from a paragraph. Paragraphs are</span>
     <span class="doccomment">/// separated by newlines or other paragraph separator characters.</span>
@@ -4619,11 +4619,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` was moved and is not on the end iterator</span>
+    <span class="doccomment">/// [`true`] if @iter was moved and is not on the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_backward_display_line&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">backward_display_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TextIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Moves the given `iter` backward to the next display line start.</span>
+    <span class="doccomment">/// Moves the given @iter backward to the next display line start.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A display line is different from a paragraph. Paragraphs are</span>
     <span class="doccomment">/// separated by newlines or other paragraph separator characters.</span>
@@ -4637,7 +4637,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` was moved and is not on the end iterator</span>
+    <span class="doccomment">/// [`true`] if @iter was moved and is not on the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_backward_display_line_start&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">backward_display_line_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TextIter</span>) -&gt; <span class="ident">bool</span>;
 
@@ -4665,7 +4665,7 @@
         <span class="ident">buffer_y</span>: <span class="ident">i32</span>,
     ) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Moves the given `iter` forward by one display (wrapped) line.</span>
+    <span class="doccomment">/// Moves the given @iter forward by one display (wrapped) line.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A display line is different from a paragraph. Paragraphs are</span>
     <span class="doccomment">/// separated by newlines or other paragraph separator characters.</span>
@@ -4679,11 +4679,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` was moved and is not on the end iterator</span>
+    <span class="doccomment">/// [`true`] if @iter was moved and is not on the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_forward_display_line&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">forward_display_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TextIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Moves the given `iter` forward to the next display line end.</span>
+    <span class="doccomment">/// Moves the given @iter forward to the next display line end.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A display line is different from a paragraph. Paragraphs are</span>
     <span class="doccomment">/// separated by newlines or other paragraph separator characters.</span>
@@ -4697,23 +4697,23 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` was moved and is not on the end iterator</span>
+    <span class="doccomment">/// [`true`] if @iter was moved and is not on the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_forward_display_line_end&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">forward_display_line_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TextIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns whether pressing the `&lt;kbd&gt;`Tab`&lt;/kbd&gt;` key inserts a tab characters.</span>
+    <span class="doccomment">/// Returns whether pressing the &lt;kbd&gt;Tab&lt;/kbd&gt; key inserts a tab characters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_accepts_tab()``][`Self::set_accepts_tab()`].</span>
+    <span class="doccomment">/// See [`set_accepts_tab()`][Self::set_accepts_tab()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if pressing the Tab key inserts a tab character,</span>
-    <span class="doccomment">///  [`false`] if pressing the Tab key moves the keyboard focus.</span>
+    <span class="doccomment">///   [`false`] if pressing the Tab key moves the keyboard focus.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_get_accepts_tab&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_accepts_tab&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">accepts_tab</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the bottom margin for text in the `self`.</span>
+    <span class="doccomment">/// Gets the bottom margin for text in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4735,7 +4735,7 @@
     <span class="kw">fn</span> <span class="ident">buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TextBuffer</span>;
 
     <span class="doccomment">/// Determine the positions of the strong and weak cursors if the</span>
-    <span class="doccomment">/// insertion point is at `iter`.</span>
+    <span class="doccomment">/// insertion point is at @iter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position of each cursor is stored as a zero-width rectangle.</span>
     <span class="doccomment">/// The strong cursor location is the location where characters of</span>
@@ -4744,15 +4744,15 @@
     <span class="doccomment">/// characters of the directionality opposite to the base direction</span>
     <span class="doccomment">/// of the paragraph are inserted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `iter` is [`None`], the actual cursor position is used.</span>
+    <span class="doccomment">/// If @iter is [`None`], the actual cursor position is used.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if `iter` happens to be the actual cursor position, and</span>
+    <span class="doccomment">/// Note that if @iter happens to be the actual cursor position, and</span>
     <span class="doccomment">/// there is currently an IM preedit sequence being entered, the</span>
     <span class="doccomment">/// returned locations will be adjusted to account for the preedit</span>
     <span class="doccomment">/// cursor’s offset within the preedit sequence.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The rectangle position is in buffer coordinates; use</span>
-    <span class="doccomment">/// [``buffer_to_window_coords()``][`Self::buffer_to_window_coords()`] to convert these</span>
+    <span class="doccomment">/// [`buffer_to_window_coords()`][Self::buffer_to_window_coords()] to convert these</span>
     <span class="doccomment">/// coordinates to coordinates for one of the windows in the text view.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
@@ -4801,9 +4801,9 @@
 
     <span class="doccomment">/// Gets a [`Widget`][crate::Widget] that has previously been set as gutter.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_gutter()``][`Self::set_gutter()`].</span>
+    <span class="doccomment">/// See [`set_gutter()`][Self::set_gutter()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `win` must be one of [`TextWindowType::Left`][crate::TextWindowType::Left], [`TextWindowType::Right`][crate::TextWindowType::Right],</span>
+    <span class="doccomment">/// @win must be one of [`TextWindowType::Left`][crate::TextWindowType::Left], [`TextWindowType::Right`][crate::TextWindowType::Right],</span>
     <span class="doccomment">/// [`TextWindowType::Top`][crate::TextWindowType::Top], or [`TextWindowType::Bottom`][crate::TextWindowType::Bottom].</span>
     <span class="doccomment">/// ## `win`</span>
     <span class="doccomment">/// a [`TextWindowType`][crate::TextWindowType]</span>
@@ -4815,7 +4815,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_gutter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">gutter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">win</span>: <span class="ident">TextWindowType</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the default indentation of paragraphs in `self`.</span>
+    <span class="doccomment">/// Gets the default indentation of paragraphs in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the view’s buffer may override the default.</span>
     <span class="doccomment">/// The indentation may be negative.</span>
@@ -4837,12 +4837,12 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_input_purpose&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">input_purpose</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">InputPurpose</span>;
 
-    <span class="doccomment">/// Retrieves the iterator at buffer coordinates `x` and `y`.</span>
+    <span class="doccomment">/// Retrieves the iterator at buffer coordinates @x and @y.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Buffer coordinates are coordinates for the entire buffer, not just</span>
     <span class="doccomment">/// the currently-displayed portion. If you have coordinates from an</span>
     <span class="doccomment">/// event, you have to convert those to buffer coordinates with</span>
-    <span class="doccomment">/// [``window_to_buffer_coords()``][`Self::window_to_buffer_coords()`].</span>
+    <span class="doccomment">/// [`window_to_buffer_coords()`][Self::window_to_buffer_coords()].</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// x position, in buffer coordinates</span>
     <span class="doccomment">/// ## `y`</span>
@@ -4859,14 +4859,14 @@
     <span class="kw">fn</span> <span class="ident">iter_at_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextIter</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves the iterator pointing to the character at buffer</span>
-    <span class="doccomment">/// coordinates `x` and `y`.</span>
+    <span class="doccomment">/// coordinates @x and @y.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Buffer coordinates are coordinates for the entire buffer, not just</span>
     <span class="doccomment">/// the currently-displayed portion. If you have coordinates from an event,</span>
     <span class="doccomment">/// you have to convert those to buffer coordinates with</span>
-    <span class="doccomment">/// [``window_to_buffer_coords()``][`Self::window_to_buffer_coords()`].</span>
+    <span class="doccomment">/// [`window_to_buffer_coords()`][Self::window_to_buffer_coords()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this is different from [``iter_at_location()``][`Self::iter_at_location()`],</span>
+    <span class="doccomment">/// Note that this is different from [`iter_at_location()`][Self::iter_at_location()],</span>
     <span class="doccomment">/// which returns cursor locations, i.e. positions between characters.</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// x position, in buffer coordinates</span>
@@ -4882,17 +4882,17 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `trailing`</span>
     <span class="doccomment">/// if non-[`None`], location to store</span>
-    <span class="doccomment">///  an integer indicating where in the grapheme the user clicked.</span>
-    <span class="doccomment">///  It will either be zero, or the number of characters in the grapheme.</span>
-    <span class="doccomment">///  0 represents the trailing edge of the grapheme.</span>
+    <span class="doccomment">///    an integer indicating where in the grapheme the user clicked.</span>
+    <span class="doccomment">///    It will either be zero, or the number of characters in the grapheme.</span>
+    <span class="doccomment">///    0 represents the trailing edge of the grapheme.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_get_iter_at_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_at_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_at_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TextIter</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets a rectangle which roughly contains the character at `iter`.</span>
+    <span class="doccomment">/// Gets a rectangle which roughly contains the character at @iter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The rectangle position is in buffer coordinates; use</span>
-    <span class="doccomment">/// [``buffer_to_window_coords()``][`Self::buffer_to_window_coords()`] to convert these</span>
+    <span class="doccomment">/// [`buffer_to_window_coords()`][Self::buffer_to_window_coords()] to convert these</span>
     <span class="doccomment">/// coordinates to coordinates for one of the windows in the text view.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
@@ -4901,12 +4901,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `location`</span>
-    <span class="doccomment">/// bounds of the character at `iter`</span>
+    <span class="doccomment">/// bounds of the character at @iter</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_get_iter_location&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_iter_location&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) -&gt; <span class="ident">gdk::Rectangle</span>;
 
-    <span class="doccomment">/// Gets the default justification of paragraphs in `self`.</span>
+    <span class="doccomment">/// Gets the default justification of paragraphs in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">///</span>
@@ -4917,7 +4917,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_justification&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">justification</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Justification</span>;
 
-    <span class="doccomment">/// Gets the default left margin size of paragraphs in the `self`.</span>
+    <span class="doccomment">/// Gets the default left margin size of paragraphs in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">///</span>
@@ -4929,11 +4929,11 @@
     <span class="kw">fn</span> <span class="ident">left_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
     <span class="doccomment">/// Gets the [`TextIter`][crate::TextIter] at the start of the line containing</span>
-    <span class="doccomment">/// the coordinate `y`.</span>
+    <span class="doccomment">/// the coordinate @y.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `y` is in buffer coordinates, convert from window coordinates with</span>
-    <span class="doccomment">/// [``window_to_buffer_coords()``][`Self::window_to_buffer_coords()`]. If non-[`None`],</span>
-    <span class="doccomment">/// `line_top` will be filled with the coordinate of the top edge</span>
+    <span class="doccomment">/// @y is in buffer coordinates, convert from window coordinates with</span>
+    <span class="doccomment">/// [`window_to_buffer_coords()`][Self::window_to_buffer_coords()]. If non-[`None`],</span>
+    <span class="doccomment">/// @line_top will be filled with the coordinate of the top edge</span>
     <span class="doccomment">/// of the line.</span>
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// a y coordinate</span>
@@ -4950,11 +4950,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_line_at_y&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">line_at_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">y</span>: <span class="ident">i32</span>) -&gt; (<span class="ident">TextIter</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Gets the y coordinate of the top of the line containing `iter`,</span>
+    <span class="doccomment">/// Gets the y coordinate of the top of the line containing @iter,</span>
     <span class="doccomment">/// and the height of the line.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The coordinate is a buffer coordinate; convert to window</span>
-    <span class="doccomment">/// coordinates with [``buffer_to_window_coords()``][`Self::buffer_to_window_coords()`].</span>
+    <span class="doccomment">/// coordinates with [`buffer_to_window_coords()`][Self::buffer_to_window_coords()].</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
     <span class="doccomment">///</span>
@@ -4997,14 +4997,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// whether `self` is in overwrite mode or not.</span>
+    <span class="doccomment">/// whether @self is in overwrite mode or not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_get_overwrite&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_overwrite&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">overwrites</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Gets the default number of pixels to put above paragraphs.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Adding this function with [``pixels_below_lines()``][`Self::pixels_below_lines()`]</span>
+    <span class="doccomment">/// Adding this function with [`pixels_below_lines()`][Self::pixels_below_lines()]</span>
     <span class="doccomment">/// is equal to the line space between each paragraph.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -5017,7 +5017,7 @@
     <span class="doccomment">/// Gets the default number of pixels to put below paragraphs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The line space is the sum of the value returned by this function and</span>
-    <span class="doccomment">/// the value returned by [``pixels_above_lines()``][`Self::pixels_above_lines()`].</span>
+    <span class="doccomment">/// the value returned by [`pixels_above_lines()`][Self::pixels_above_lines()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -5036,7 +5036,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_pixels_inside_wrap&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">pixels_inside_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Gets the default right margin for text in `self`.</span>
+    <span class="doccomment">/// Gets the default right margin for text in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">///</span>
@@ -5061,22 +5061,22 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_rtl_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">rtl_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">pango::Context</span>;
 
-    <span class="doccomment">/// Gets the default tabs for `self`.</span>
+    <span class="doccomment">/// Gets the default tabs for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the defaults. The returned array</span>
     <span class="doccomment">/// will be [`None`] if “standard” (8-space) tabs are used. Free the</span>
-    <span class="doccomment">/// return value with `Pango::`TabArray::free()``.</span>
+    <span class="doccomment">/// return value with `Pango::TabArray::free()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// copy of default tab array,</span>
-    <span class="doccomment">///  or [`None`] if standard tabs are used; must be freed with</span>
-    <span class="doccomment">///  `Pango::`TabArray::free()``.</span>
+    <span class="doccomment">///   or [`None`] if standard tabs are used; must be freed with</span>
+    <span class="doccomment">///   `Pango::TabArray::free()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_get_tabs&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tabs&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">tabs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::TabArray</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the top margin for text in the `self`.</span>
+    <span class="doccomment">/// Gets the top margin for text in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -5085,11 +5085,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_top_margin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">top_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Fills `visible_rect` with the currently-visible</span>
+    <span class="doccomment">/// Fills @visible_rect with the currently-visible</span>
     <span class="doccomment">/// region of the buffer, in buffer coordinates.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Convert to window coordinates with</span>
-    <span class="doccomment">/// [``buffer_to_window_coords()``][`Self::buffer_to_window_coords()`].</span>
+    <span class="doccomment">/// [`buffer_to_window_coords()`][Self::buffer_to_window_coords()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -5122,9 +5122,9 @@
 
     <span class="doccomment">/// Updates the position of a child.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``add_overlay()``][`Self::add_overlay()`].</span>
+    <span class="doccomment">/// See [`add_overlay()`][Self::add_overlay()].</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a widget already added with [``add_overlay()``][`Self::add_overlay()`]</span>
+    <span class="doccomment">/// a widget already added with [`add_overlay()`][Self::add_overlay()]</span>
     <span class="doccomment">/// ## `xpos`</span>
     <span class="doccomment">/// new X position in buffer coordinates</span>
     <span class="doccomment">/// ## `ypos`</span>
@@ -5135,10 +5135,10 @@
     <span class="doccomment">/// Move the iterator a given number of characters visually, treating</span>
     <span class="doccomment">/// it as the strong cursor position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `count` is positive, then the new strong cursor position will</span>
-    <span class="doccomment">/// be `count` positions to the right of the old cursor position.</span>
-    <span class="doccomment">/// If `count` is negative then the new strong cursor position will</span>
-    <span class="doccomment">/// be `count` positions to the left of the old cursor position.</span>
+    <span class="doccomment">/// If @count is positive, then the new strong cursor position will</span>
+    <span class="doccomment">/// be @count positions to the right of the old cursor position.</span>
+    <span class="doccomment">/// If @count is negative then the new strong cursor position will</span>
+    <span class="doccomment">/// be @count positions to the left of the old cursor position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the presence of bi-directional text, the correspondence</span>
     <span class="doccomment">/// between logical and visual order will depend on the direction</span>
@@ -5148,11 +5148,11 @@
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of characters to move (negative moves left,</span>
-    <span class="doccomment">///  positive moves right)</span>
+    <span class="doccomment">///    positive moves right)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` moved and is not on the end iterator</span>
+    <span class="doccomment">/// [`true`] if @iter moved and is not on the end iterator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_move_visually&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">move_visually</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TextIter</span>, <span class="ident">count</span>: <span class="ident">i32</span>) -&gt; <span class="ident">bool</span>;
 
@@ -5165,7 +5165,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_place_cursor_onscreen&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">place_cursor_onscreen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Removes a child widget from `self`.</span>
+    <span class="doccomment">/// Removes a child widget from @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_remove&quot;</span>)]</span>
@@ -5189,27 +5189,27 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_reset_im_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset_im_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Scrolls `self` the minimum distance such that `mark` is contained</span>
+    <span class="doccomment">/// Scrolls @self the minimum distance such that @mark is contained</span>
     <span class="doccomment">/// within the visible area of the widget.</span>
     <span class="doccomment">/// ## `mark`</span>
-    <span class="doccomment">/// a mark in the buffer for `self`</span>
+    <span class="doccomment">/// a mark in the buffer for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_scroll_mark_onscreen&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">scroll_mark_onscreen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mark</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Scrolls `self` so that `iter` is on the screen in the position</span>
-    <span class="doccomment">/// indicated by `xalign` and `yalign`.</span>
+    <span class="doccomment">/// Scrolls @self so that @iter is on the screen in the position</span>
+    <span class="doccomment">/// indicated by @xalign and @yalign.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An alignment of 0.0 indicates left or top, 1.0 indicates right or</span>
-    <span class="doccomment">/// bottom, 0.5 means center. If `use_align` is [`false`], the text scrolls</span>
+    <span class="doccomment">/// bottom, 0.5 means center. If @use_align is [`false`], the text scrolls</span>
     <span class="doccomment">/// the minimal distance to get the mark onscreen, possibly not scrolling</span>
     <span class="doccomment">/// at all. The effective screen for purposes of this function is reduced</span>
-    <span class="doccomment">/// by a margin of size `within_margin`.</span>
+    <span class="doccomment">/// by a margin of size @within_margin.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function uses the currently-computed height of the</span>
     <span class="doccomment">/// lines in the text buffer. Line heights are computed in an idle</span>
     <span class="doccomment">/// handler; so this function may not have the desired effect if it’s</span>
     <span class="doccomment">/// called before the height computations. To avoid oddness, consider</span>
-    <span class="doccomment">/// using [``scroll_to_mark()``][`Self::scroll_to_mark()`] which saves a point to be</span>
+    <span class="doccomment">/// using [`scroll_to_mark()`][Self::scroll_to_mark()] which saves a point to be</span>
     <span class="doccomment">/// scrolled to after line validation.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
@@ -5217,7 +5217,7 @@
     <span class="doccomment">/// margin as a [0.0,0.5) fraction of screen size</span>
     <span class="doccomment">/// ## `use_align`</span>
     <span class="doccomment">/// whether to use alignment arguments (if [`false`],</span>
-    <span class="doccomment">///  just get the mark onscreen)</span>
+    <span class="doccomment">///    just get the mark onscreen)</span>
     <span class="doccomment">/// ## `xalign`</span>
     <span class="doccomment">/// horizontal alignment of mark within visible area</span>
     <span class="doccomment">/// ## `yalign`</span>
@@ -5236,21 +5236,21 @@
         <span class="ident">yalign</span>: <span class="ident">f64</span>,
     ) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Scrolls `self` so that `mark` is on the screen in the position</span>
-    <span class="doccomment">/// indicated by `xalign` and `yalign`.</span>
+    <span class="doccomment">/// Scrolls @self so that @mark is on the screen in the position</span>
+    <span class="doccomment">/// indicated by @xalign and @yalign.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An alignment of 0.0 indicates left or top, 1.0 indicates right or</span>
-    <span class="doccomment">/// bottom, 0.5 means center. If `use_align` is [`false`], the text scrolls</span>
+    <span class="doccomment">/// bottom, 0.5 means center. If @use_align is [`false`], the text scrolls</span>
     <span class="doccomment">/// the minimal distance to get the mark onscreen, possibly not scrolling</span>
     <span class="doccomment">/// at all. The effective screen for purposes of this function is reduced</span>
-    <span class="doccomment">/// by a margin of size `within_margin`.</span>
+    <span class="doccomment">/// by a margin of size @within_margin.</span>
     <span class="doccomment">/// ## `mark`</span>
     <span class="doccomment">/// a [`TextMark`][crate::TextMark]</span>
     <span class="doccomment">/// ## `within_margin`</span>
     <span class="doccomment">/// margin as a [0.0,0.5) fraction of screen size</span>
     <span class="doccomment">/// ## `use_align`</span>
     <span class="doccomment">/// whether to use alignment arguments (if [`false`], just</span>
-    <span class="doccomment">///  get the mark onscreen)</span>
+    <span class="doccomment">///    get the mark onscreen)</span>
     <span class="doccomment">/// ## `xalign`</span>
     <span class="doccomment">/// horizontal alignment of mark within visible area</span>
     <span class="doccomment">/// ## `yalign`</span>
@@ -5265,19 +5265,19 @@
         <span class="ident">yalign</span>: <span class="ident">f64</span>,
     );
 
-    <span class="doccomment">/// Sets the behavior of the text widget when the `&lt;kbd&gt;`Tab`&lt;/kbd&gt;` key is pressed.</span>
+    <span class="doccomment">/// Sets the behavior of the text widget when the &lt;kbd&gt;Tab&lt;/kbd&gt; key is pressed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `accepts_tab` is [`true`], a tab character is inserted. If `accepts_tab`</span>
+    <span class="doccomment">/// If @accepts_tab is [`true`], a tab character is inserted. If @accepts_tab</span>
     <span class="doccomment">/// is [`false`] the keyboard focus is moved to the next widget in the focus</span>
     <span class="doccomment">/// chain.</span>
     <span class="doccomment">/// ## `accepts_tab`</span>
     <span class="doccomment">/// [`true`] if pressing the Tab key should insert a tab</span>
-    <span class="doccomment">///  character, [`false`], if pressing the Tab key should move the</span>
-    <span class="doccomment">///  keyboard focus.</span>
+    <span class="doccomment">///    character, [`false`], if pressing the Tab key should move the</span>
+    <span class="doccomment">///    keyboard focus.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_accepts_tab&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_accepts_tab</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">accepts_tab</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the bottom margin for text in `self`.</span>
+    <span class="doccomment">/// Sets the bottom margin for text in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function is confusingly named.</span>
     <span class="doccomment">/// In CSS terms, the value set here is padding.</span>
@@ -5286,10 +5286,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_bottom_margin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_bottom_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bottom_margin</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Sets `buffer` as the buffer being displayed by `self`.</span>
+    <span class="doccomment">/// Sets @buffer as the buffer being displayed by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The previous buffer displayed by the text view is unreferenced, and</span>
-    <span class="doccomment">/// a reference is added to `buffer`. If you owned a reference to `buffer`</span>
+    <span class="doccomment">/// a reference is added to @buffer. If you owned a reference to @buffer</span>
     <span class="doccomment">/// before passing it to this function, you must remove that reference</span>
     <span class="doccomment">/// yourself; [`TextView`][crate::TextView] will not “adopt” it.</span>
     <span class="doccomment">/// ## `buffer`</span>
@@ -5319,7 +5319,7 @@
     <span class="kw">fn</span> <span class="ident">set_editable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets a menu model to add when constructing the context</span>
-    <span class="doccomment">/// menu for `self`.</span>
+    <span class="doccomment">/// menu for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can pass [`None`] to remove a previously set extra menu.</span>
     <span class="doccomment">/// ## `model`</span>
@@ -5327,9 +5327,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_extra_menu&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_extra_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Places `widget` into the gutter specified by `win`.</span>
+    <span class="doccomment">/// Places @widget into the gutter specified by @win.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `win` must be one of [`TextWindowType::Left`][crate::TextWindowType::Left], [`TextWindowType::Right`][crate::TextWindowType::Right],</span>
+    <span class="doccomment">/// @win must be one of [`TextWindowType::Left`][crate::TextWindowType::Left], [`TextWindowType::Right`][crate::TextWindowType::Right],</span>
     <span class="doccomment">/// [`TextWindowType::Top`][crate::TextWindowType::Top], or [`TextWindowType::Bottom`][crate::TextWindowType::Bottom].</span>
     <span class="doccomment">/// ## `win`</span>
     <span class="doccomment">/// a [`TextWindowType`][crate::TextWindowType]</span>
@@ -5338,7 +5338,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_gutter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_gutter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">win</span>: <span class="ident">TextWindowType</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the default indentation for paragraphs in `self`.</span>
+    <span class="doccomment">/// Sets the default indentation for paragraphs in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">/// ## `indent`</span>
@@ -5364,7 +5364,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_input_purpose&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_input_purpose</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">purpose</span>: <span class="ident">InputPurpose</span>);
 
-    <span class="doccomment">/// Sets the default justification of text in `self`.</span>
+    <span class="doccomment">/// Sets the default justification of text in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the view’s buffer may override the default.</span>
     <span class="doccomment">/// ## `justification`</span>
@@ -5372,7 +5372,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_justification&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_justification</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">justification</span>: <span class="ident">Justification</span>);
 
-    <span class="doccomment">/// Sets the default left margin for text in `self`.</span>
+    <span class="doccomment">/// Sets the default left margin for text in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">///</span>
@@ -5396,18 +5396,18 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_overwrite&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_overwrite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">overwrite</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the default number of blank pixels above paragraphs in `self`.</span>
+    <span class="doccomment">/// Sets the default number of blank pixels above paragraphs in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Tags in the buffer for `self` may override the defaults.</span>
+    <span class="doccomment">/// Tags in the buffer for @self may override the defaults.</span>
     <span class="doccomment">/// ## `pixels_above_lines`</span>
     <span class="doccomment">/// pixels above paragraphs</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_pixels_above_lines&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_pixels_above_lines</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pixels_above_lines</span>: <span class="ident">i32</span>);
 
     <span class="doccomment">/// Sets the default number of pixels of blank space</span>
-    <span class="doccomment">/// to put below paragraphs in `self`.</span>
+    <span class="doccomment">/// to put below paragraphs in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// May be overridden by tags applied to `self`’s buffer.</span>
+    <span class="doccomment">/// May be overridden by tags applied to @self’s buffer.</span>
     <span class="doccomment">/// ## `pixels_below_lines`</span>
     <span class="doccomment">/// pixels below paragraphs</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_pixels_below_lines&quot;</span>)]</span>
@@ -5416,7 +5416,7 @@
     <span class="doccomment">/// Sets the default number of pixels of blank space to leave between</span>
     <span class="doccomment">/// display/wrapped lines within a paragraph.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// May be overridden by tags in `self`’s buffer.</span>
+    <span class="doccomment">/// May be overridden by tags in @self’s buffer.</span>
     <span class="doccomment">/// ## `pixels_inside_wrap`</span>
     <span class="doccomment">/// default number of pixels between wrapped lines</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_pixels_inside_wrap&quot;</span>)]</span>
@@ -5433,7 +5433,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_right_margin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_right_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">right_margin</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Sets the default tab stops for paragraphs in `self`.</span>
+    <span class="doccomment">/// Sets the default tab stops for paragraphs in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tags in the buffer may override the default.</span>
     <span class="doccomment">/// ## `tabs`</span>
@@ -5441,7 +5441,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_tabs&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_tabs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tabs</span>: <span class="kw-2">&amp;</span><span class="ident">pango::TabArray</span>);
 
-    <span class="doccomment">/// Sets the top margin for text in `self`.</span>
+    <span class="doccomment">/// Sets the top margin for text in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function is confusingly named.</span>
     <span class="doccomment">/// In CSS terms, the value set here is padding.</span>
@@ -5456,20 +5456,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_set_wrap_mode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_wrap_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wrap_mode</span>: <span class="ident">WrapMode</span>);
 
-    <span class="doccomment">/// Determines whether `iter` is at the start of a display line.</span>
+    <span class="doccomment">/// Determines whether @iter is at the start of a display line.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``forward_display_line()``][`Self::forward_display_line()`] for an</span>
+    <span class="doccomment">/// See [`forward_display_line()`][Self::forward_display_line()] for an</span>
     <span class="doccomment">/// explanation of display lines vs. paragraphs.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// a [`TextIter`][crate::TextIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` begins a wrapped line</span>
+    <span class="doccomment">/// [`true`] if @iter begins a wrapped line</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_starts_display_line&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">starts_display_line</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Converts coordinates on the window identified by `win` to buffer</span>
+    <span class="doccomment">/// Converts coordinates on the window identified by @win to buffer</span>
     <span class="doccomment">/// coordinates.</span>
     <span class="doccomment">/// ## `win`</span>
     <span class="doccomment">/// a [`TextWindowType`][crate::TextWindowType]</span>
@@ -5517,7 +5517,7 @@
     <span class="doccomment">/// The ::backspace signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Backspace`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Backspace`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// &lt;kbd&gt;Backspace&lt;/kbd&gt; and &lt;kbd&gt;Shift&lt;/kbd&gt;-&lt;kbd&gt;Backspace&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;backspace&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_backspace</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5528,8 +5528,8 @@
     <span class="doccomment">/// The ::copy-clipboard signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`c`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;c&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;Insert&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;copy-clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_copy_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5540,8 +5540,8 @@
     <span class="doccomment">/// The ::cut-clipboard signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`x`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Delete`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;x&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Shift&lt;/kbd&gt;-&lt;kbd&gt;Delete&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cut-clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_cut_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5551,18 +5551,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::delete-from-cursor signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `type_` is [`DeleteType::Chars`][crate::DeleteType::Chars], GTK deletes the selection</span>
+    <span class="doccomment">/// If the @type_ is [`DeleteType::Chars`][crate::DeleteType::Chars], GTK deletes the selection</span>
     <span class="doccomment">/// if there is one, otherwise it deletes the requested number</span>
     <span class="doccomment">/// of characters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default bindings for this signal are `&lt;kbd&gt;`Delete`&lt;/kbd&gt;` for</span>
-    <span class="doccomment">/// deleting a character, `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Delete`&lt;/kbd&gt;` for</span>
-    <span class="doccomment">/// deleting a word and `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Backspace`&lt;/kbd&gt;` for</span>
+    <span class="doccomment">/// The default bindings for this signal are &lt;kbd&gt;Delete&lt;/kbd&gt; for</span>
+    <span class="doccomment">/// deleting a character, &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;Delete&lt;/kbd&gt; for</span>
+    <span class="doccomment">/// deleting a word and &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;Backspace&lt;/kbd&gt; for</span>
     <span class="doccomment">/// deleting a word backwards.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// the granularity of the deletion, as a [`DeleteType`][crate::DeleteType]</span>
     <span class="doccomment">/// ## `count`</span>
-    <span class="doccomment">/// the number of `type_` units to delete</span>
+    <span class="doccomment">/// the number of @type_ units to delete</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;delete-from-cursor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_delete_from_cursor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">DeleteType</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -5571,7 +5571,7 @@
 
     <span class="kw">fn</span> <span class="ident">emit_delete_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">DeleteType</span>, <span class="ident">count</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Emitted when the selection needs to be extended at `location`.</span>
+    <span class="doccomment">/// Emitted when the selection needs to be extended at @location.</span>
     <span class="doccomment">/// ## `granularity`</span>
     <span class="doccomment">/// the granularity type</span>
     <span class="doccomment">/// ## `location`</span>
@@ -5584,7 +5584,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GDK_EVENT_STOP` to stop other handlers from being invoked for the</span>
-    <span class="doccomment">///  event. `GDK_EVENT_PROPAGATE` to propagate the event further.</span>
+    <span class="doccomment">///   event. `GDK_EVENT_PROPAGATE` to propagate the event further.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;extend-selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_extend_selection</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">TextExtendSelection</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) -&gt; <span class="ident">glib::signal::Inhibit</span>
@@ -5607,13 +5607,13 @@
 
     <span class="kw">fn</span> <span class="ident">emit_insert_at_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
-    <span class="doccomment">/// Gets emitted to present the Emoji chooser for the `text_view`.</span>
+    <span class="doccomment">/// Gets emitted to present the Emoji chooser for the @text_view.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::insert-emoji signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`.`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`;`&lt;/kbd&gt;`</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;.&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;;&lt;/kbd&gt;</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;insert-emoji&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_insert_emoji</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5622,30 +5622,30 @@
     <span class="doccomment">/// Gets emitted when the user initiates a cursor movement.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::move-cursor signal is a [keybinding signal](class.SignalAction.html).</span>
-    <span class="doccomment">/// If the cursor is not visible in `text_view`, this signal causes</span>
+    <span class="doccomment">/// If the cursor is not visible in @text_view, this signal causes</span>
     <span class="doccomment">/// the viewport to be moved instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
-    <span class="doccomment">/// `g_signal_emit_by_name()` if they need to control the cursor</span>
+    <span class="doccomment">/// g_signal_emit_by_name() if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal come in two variants,</span>
-    <span class="doccomment">/// the variant with the `&lt;kbd&gt;`Shift`&lt;/kbd&gt;` modifier extends the</span>
+    <span class="doccomment">/// the variant with the &lt;kbd&gt;Shift&lt;/kbd&gt; modifier extends the</span>
     <span class="doccomment">/// selection, the variant without it does not.</span>
     <span class="doccomment">/// There are too many key combinations to list them all here.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - `&lt;kbd&gt;`←`&lt;/kbd&gt;`, `&lt;kbd&gt;`→`&lt;/kbd&gt;`, `&lt;kbd&gt;`↑`&lt;/kbd&gt;`, `&lt;kbd&gt;`↓`&lt;/kbd&gt;`</span>
-    <span class="doccomment">///  move by individual characters/lines</span>
-    <span class="doccomment">/// - `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`→`&lt;/kbd&gt;`, etc. move by words/paragraphs</span>
-    <span class="doccomment">/// - `&lt;kbd&gt;`Home`&lt;/kbd&gt;`, `&lt;kbd&gt;`End`&lt;/kbd&gt;` move to the ends of the buffer</span>
-    <span class="doccomment">/// - `&lt;kbd&gt;`PgUp`&lt;/kbd&gt;`, `&lt;kbd&gt;`PgDn`&lt;/kbd&gt;` move vertically by pages</span>
-    <span class="doccomment">/// - `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`PgUp`&lt;/kbd&gt;`, `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`PgDn`&lt;/kbd&gt;`</span>
-    <span class="doccomment">///  move horizontally by pages</span>
+    <span class="doccomment">/// - &lt;kbd&gt;←&lt;/kbd&gt;, &lt;kbd&gt;→&lt;/kbd&gt;, &lt;kbd&gt;↑&lt;/kbd&gt;, &lt;kbd&gt;↓&lt;/kbd&gt;</span>
+    <span class="doccomment">///   move by individual characters/lines</span>
+    <span class="doccomment">/// - &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;→&lt;/kbd&gt;, etc. move by words/paragraphs</span>
+    <span class="doccomment">/// - &lt;kbd&gt;Home&lt;/kbd&gt;, &lt;kbd&gt;End&lt;/kbd&gt; move to the ends of the buffer</span>
+    <span class="doccomment">/// - &lt;kbd&gt;PgUp&lt;/kbd&gt;, &lt;kbd&gt;PgDn&lt;/kbd&gt; move vertically by pages</span>
+    <span class="doccomment">/// - &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;PgUp&lt;/kbd&gt;, &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;PgDn&lt;/kbd&gt;</span>
+    <span class="doccomment">///   move horizontally by pages</span>
     <span class="doccomment">/// ## `step`</span>
     <span class="doccomment">/// the granularity of the move, as a [`MovementStep`][crate::MovementStep]</span>
     <span class="doccomment">/// ## `count`</span>
-    <span class="doccomment">/// the number of `step` units to move</span>
+    <span class="doccomment">/// the number of @step units to move</span>
     <span class="doccomment">/// ## `extend_selection`</span>
     <span class="doccomment">/// [`true`] if the move should extend the selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;move-cursor&quot;</span>)]</span>
@@ -5667,7 +5667,7 @@
     <span class="doccomment">/// ## `step`</span>
     <span class="doccomment">/// the granularity of the movement, as a [`ScrollStep`][crate::ScrollStep]</span>
     <span class="doccomment">/// ## `count`</span>
-    <span class="doccomment">/// the number of `step` units to move</span>
+    <span class="doccomment">/// the number of @step units to move</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;move-viewport&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_move_viewport</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">ScrollStep</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -5682,8 +5682,8 @@
     <span class="doccomment">/// The ::paste-clipboard signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`v`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;v&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Shift&lt;/kbd&gt;-&lt;kbd&gt;Insert&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;paste-clipboard&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_paste_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5709,10 +5709,10 @@
     <span class="doccomment">/// The ::select-all signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`a`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`/`&lt;/kbd&gt;` for selecting and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`a`&lt;/kbd&gt;` and</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`\`&lt;/kbd&gt;` for unselecting.</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;a&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;/&lt;/kbd&gt; for selecting and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Shift&lt;/kbd&gt;-&lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;a&lt;/kbd&gt; and</span>
+    <span class="doccomment">/// &lt;kbd&gt;Ctrl&lt;/kbd&gt;-&lt;kbd&gt;\&lt;/kbd&gt; for unselecting.</span>
     <span class="doccomment">/// ## `select`</span>
     <span class="doccomment">/// [`true`] to select, [`false`] to unselect</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;select-all&quot;</span>)]</span>
@@ -5738,7 +5738,7 @@
     <span class="doccomment">/// The ::toggle-cursor-visible signal is a</span>
     <span class="doccomment">/// [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default binding for this signal is `&lt;kbd&gt;`F7`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// The default binding for this signal is &lt;kbd&gt;F7&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;toggle-cursor-visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_toggle_cursor_visible</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -5748,7 +5748,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::toggle-overwrite signal is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default binding for this signal is `&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
+    <span class="doccomment">/// The default binding for this signal is &lt;kbd&gt;Insert&lt;/kbd&gt;.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;toggle-overwrite&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_toggle_overwrite</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 

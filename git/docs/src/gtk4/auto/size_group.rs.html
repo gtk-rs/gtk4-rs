@@ -308,7 +308,7 @@
     <span class="doccomment">/// In detail, the size requested for each widget in a [`SizeGroup`][crate::SizeGroup] is</span>
     <span class="doccomment">/// the maximum of the sizes that would have been requested for each</span>
     <span class="doccomment">/// widget in the size group if they were not in the size group. The mode</span>
-    <span class="doccomment">/// of the size group (see [``set_mode()``][`Self::set_mode()`]) determines whether</span>
+    <span class="doccomment">/// of the size group (see [`set_mode()`][Self::set_mode()]) determines whether</span>
     <span class="doccomment">/// this applies to the horizontal size, the vertical size, or both sizes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that size groups only affect the amount of space requested, not</span>
@@ -318,7 +318,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`SizeGroup`][crate::SizeGroup] objects are referenced by each widget in the size group,</span>
     <span class="doccomment">/// so once you have added all widgets to a [`SizeGroup`][crate::SizeGroup], you can drop</span>
-    <span class="doccomment">/// the initial reference to the size group with `g_object_unref()`. If the</span>
+    <span class="doccomment">/// the initial reference to the size group with g_object_unref(). If the</span>
     <span class="doccomment">/// widgets in the size group are subsequently destroyed, then they will</span>
     <span class="doccomment">/// be removed from the size group and drop their references on the size</span>
     <span class="doccomment">/// group; when all widgets have been removed, the size group will be</span>
@@ -348,10 +348,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # GtkSizeGroup as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Size groups can be specified in a UI definition by placing an `&lt;object&gt;`</span>
+    <span class="doccomment">/// Size groups can be specified in a UI definition by placing an &lt;object&gt;</span>
     <span class="doccomment">/// element with `class=&quot;GtkSizeGroup&quot;` somewhere in the UI definition. The</span>
-    <span class="doccomment">/// widgets that belong to the size group are specified by a `&lt;widgets&gt;` element</span>
-    <span class="doccomment">/// that may contain multiple `&lt;widget&gt;` elements, one for each member of the</span>
+    <span class="doccomment">/// widgets that belong to the size group are specified by a &lt;widgets&gt; element</span>
+    <span class="doccomment">/// that may contain multiple &lt;widget&gt; elements, one for each member of the</span>
     <span class="doccomment">/// size group. The ”name” attribute gives the id of the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI definition fragment with [`SizeGroup`][crate::SizeGroup]:</span>
@@ -397,7 +397,7 @@
     <span class="doccomment">/// and the requisition of the other widgets in the size group.</span>
     <span class="doccomment">/// Whether this applies horizontally, vertically, or in both directions</span>
     <span class="doccomment">/// depends on the mode of the size group.</span>
-    <span class="doccomment">/// See [``set_mode()``][`Self::set_mode()`].</span>
+    <span class="doccomment">/// See [`set_mode()`][Self::set_mode()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the widget is destroyed or no longer referenced elsewhere, it</span>
     <span class="doccomment">/// will be removed from the size group.</span>
@@ -421,12 +421,12 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_size_group_get_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the list of widgets associated with `self`.</span>
+    <span class="doccomment">/// Returns the list of widgets associated with @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GSList` of</span>
-    <span class="doccomment">///  widgets. The list is owned by GTK and should not be modified.</span>
+    <span class="doccomment">///   widgets. The list is owned by GTK and should not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_size_group_get_widgets&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_widgets&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">widgets</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {

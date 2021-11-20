@@ -408,14 +408,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TreeListRow</span> {
-    <span class="doccomment">/// If `self` is not expanded or `position` is greater than the</span>
+    <span class="doccomment">/// If @self is not expanded or @position is greater than the</span>
     <span class="doccomment">/// number of children, [`None`] is returned.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position of the child to get</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child in `position`</span>
+    <span class="doccomment">/// the child in @position</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_get_child_row&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeListRow</span><span class="op">&gt;</span> {
@@ -427,7 +427,7 @@
         }
     }
 
-    <span class="doccomment">/// If the row is expanded, gets the model holding the children of `self`.</span>
+    <span class="doccomment">/// If the row is expanded, gets the model holding the children of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This model is the model created by the</span>
     <span class="doccomment">/// `callback::Gtk::TreeListModelCreateModelFunc</span>
@@ -479,19 +479,19 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The item</span>
-    <span class="doccomment">///  of this row or [`None`] when the row was destroyed</span>
+    <span class="doccomment">///   of this row or [`None`] when the row was destroyed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_get_item&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_list_row_get_item</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the row representing the parent for `self`.</span>
+    <span class="doccomment">/// Gets the row representing the parent for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// That is the row that would need to be collapsed</span>
     <span class="doccomment">/// to make this row disappear.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is a row corresponding to the root model,</span>
+    <span class="doccomment">/// If @self is a row corresponding to the root model,</span>
     <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The value returned by this function never changes</span>
@@ -499,14 +499,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The parent of `self`</span>
+    <span class="doccomment">/// The parent of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_get_parent&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_parent&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeListRow</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_list_row_get_parent</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the position in the [`TreeListModel`][crate::TreeListModel] that `self` occupies</span>
+    <span class="doccomment">/// Returns the position in the [`TreeListModel`][crate::TreeListModel] that @self occupies</span>
     <span class="doccomment">/// at the moment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -521,7 +521,7 @@
     <span class="doccomment">/// Checks if a row can be expanded.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This does not mean that the row is actually expanded,</span>
-    <span class="doccomment">/// this can be checked with [``is_expanded()``][`Self::is_expanded()`].</span>
+    <span class="doccomment">/// this can be checked with [`is_expanded()`][Self::is_expanded()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a row is expandable never changes until the row is destroyed.</span>
     <span class="doccomment">///</span>

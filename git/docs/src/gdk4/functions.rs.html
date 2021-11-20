@@ -506,8 +506,8 @@
 <span class="doccomment">/// Obtains a clip region which contains the areas where the given</span>
 <span class="doccomment">/// ranges of text would be drawn.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// `x_origin` and `y_origin` are the top left position of the layout.</span>
-<span class="doccomment">/// `index_ranges` should contain ranges of bytes in the layout’s text.</span>
+<span class="doccomment">/// @x_origin and @y_origin are the top left position of the layout.</span>
+<span class="doccomment">/// @index_ranges should contain ranges of bytes in the layout’s text.</span>
 <span class="doccomment">/// The clip region will include space to the left or right of the line</span>
 <span class="doccomment">/// (to the layout bounding box) if you have indexes above or below the</span>
 <span class="doccomment">/// indexes contained inside the line. This is to draw the selection all</span>
@@ -516,7 +516,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Note that the regions returned correspond to logical extents of the text</span>
 <span class="doccomment">/// ranges, not ink extents. So the drawn line may in fact touch areas out of</span>
-<span class="doccomment">/// the clip region. The clip region is mainly useful for highlightling parts</span>
+<span class="doccomment">/// the clip region.  The clip region is mainly useful for highlightling parts</span>
 <span class="doccomment">/// of text, such as when text is selected.</span>
 <span class="doccomment">/// ## `line`</span>
 <span class="doccomment">/// a [`pango::LayoutLine`][crate::pango::LayoutLine]</span>
@@ -526,7 +526,7 @@
 <span class="doccomment">/// baseline pixel where you intend to draw the layout line with this clip</span>
 <span class="doccomment">/// ## `index_ranges`</span>
 <span class="doccomment">/// array of byte indexes into the layout, where even</span>
-<span class="doccomment">///  members of array are start indexes and odd elements are end indexes</span>
+<span class="doccomment">///   members of array are start indexes and odd elements are end indexes</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -555,12 +555,12 @@
 <span class="doccomment">/// Obtains a clip region which contains the areas where the given ranges</span>
 <span class="doccomment">/// of text would be drawn.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// `x_origin` and `y_origin` are the top left point to center the layout.</span>
-<span class="doccomment">/// `index_ranges` should contain ranges of bytes in the layout’s text.</span>
+<span class="doccomment">/// @x_origin and @y_origin are the top left point to center the layout.</span>
+<span class="doccomment">/// @index_ranges should contain ranges of bytes in the layout’s text.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Note that the regions returned correspond to logical extents of the text</span>
 <span class="doccomment">/// ranges, not ink extents. So the drawn layout may in fact touch areas out of</span>
-<span class="doccomment">/// the clip region. The clip region is mainly useful for highlightling parts</span>
+<span class="doccomment">/// the clip region.  The clip region is mainly useful for highlightling parts</span>
 <span class="doccomment">/// of text, such as when text is selected.</span>
 <span class="doccomment">/// ## `layout`</span>
 <span class="doccomment">/// a [`pango::Layout`][crate::pango::Layout]</span>
@@ -600,8 +600,8 @@
 <span class="doccomment">/// The default I/O priority is `G_PRIORITY_DEFAULT` (i.e. 0), and lower numbers</span>
 <span class="doccomment">/// indicate a higher priority.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// When the operation is finished, `callback` will be called. You must then</span>
-<span class="doccomment">/// call ``content_deserialize_finish()`` to get the result of the operation.</span>
+<span class="doccomment">/// When the operation is finished, @callback will be called. You must then</span>
+<span class="doccomment">/// call `content_deserialize_finish()` to get the result of the operation.</span>
 <span class="doccomment">/// ## `stream`</span>
 <span class="doccomment">/// a `GInputStream` to read the serialized content from</span>
 <span class="doccomment">/// ## `mime_type`</span>
@@ -693,7 +693,7 @@
 <span class="doccomment">/// ## `deserialize`</span>
 <span class="doccomment">/// the callback</span>
 <span class="doccomment">/// ## `notify`</span>
-<span class="doccomment">/// destroy notify for `data`</span>
+<span class="doccomment">/// destroy notify for @data</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_register_deserializer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_register_deserializer</span><span class="op">&lt;</span>
     <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
@@ -762,7 +762,7 @@
 <span class="doccomment">/// ## `serialize`</span>
 <span class="doccomment">/// the callback</span>
 <span class="doccomment">/// ## `notify`</span>
-<span class="doccomment">/// destroy notify for `data`</span>
+<span class="doccomment">/// destroy notify for @data</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_register_serializer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_register_serializer</span><span class="op">&lt;</span>
     <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
@@ -827,8 +827,8 @@
 <span class="doccomment">/// The default I/O priority is `G_PRIORITY_DEFAULT` (i.e. 0), and lower numbers</span>
 <span class="doccomment">/// indicate a higher priority.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// When the operation is finished, `callback` will be called. You must then</span>
-<span class="doccomment">/// call ``content_serialize_finish()`` to get the result of the operation.</span>
+<span class="doccomment">/// When the operation is finished, @callback will be called. You must then</span>
+<span class="doccomment">/// call `content_serialize_finish()` to get the result of the operation.</span>
 <span class="doccomment">/// ## `stream`</span>
 <span class="doccomment">/// a `GOutputStream` to write the serialized content to</span>
 <span class="doccomment">/// ## `mime_type`</span>

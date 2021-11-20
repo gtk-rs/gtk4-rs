@@ -116,15 +116,15 @@ motion that was received.</p>
 <p>flags affecting the controller behavior</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_decelerate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/event_controller_scroll.rs.html#128-151" title="goto source code">[src]</a></div><a href="#method.connect_decelerate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_decelerate" class="fnname">connect_decelerate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted after scroll is finished if the
 <a href="struct.EventControllerScrollFlags.html#associatedconstant.KINETIC" title="crate::EventControllerScrollFlags::KINETIC"><code>EventControllerScrollFlags::KINETIC</code></a> flag is set.</p>
-<p><code>vel_x</code> and <code>vel_y</code> express the initial velocity that was
-imprinted by the scroll events. <code>vel_x</code> and <code>vel_y</code> are expressed in
+<p>@vel_x and @vel_y express the initial velocity that was
+imprinted by the scroll events. @vel_x and @vel_y are expressed in
 pixels/ms.</p>
 <h6 id="vel_x" class="section-header"><a href="#vel_x"><code>vel_x</code></a></h6>
 <p>X velocity</p>
 <h6 id="vel_y" class="section-header"><a href="#vel_y"><code>vel_y</code></a></h6>
 <p>Y velocity</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_scroll" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/event_controller_scroll.rs.html#165-191" title="goto source code">[src]</a></div><a href="#method.connect_scroll" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_scroll" class="fnname">connect_scroll</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="struct.Inhibit.html" title="struct gtk4::Inhibit">Inhibit</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Signals that the widget should scroll by the
-amount specified by <code>dx</code> and <code>dy</code>.</p>
+amount specified by @dx and @dy.</p>
 <h6 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h6>
 <p>X delta</p>
 <h6 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h6>

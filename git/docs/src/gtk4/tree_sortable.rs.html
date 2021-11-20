@@ -365,14 +365,14 @@
 <span class="comment">// rustdoc-stripper-ignore-next</span>
 <span class="doccomment">/// Trait containing manually implemented methods of [`TreeSortable`](crate::TreeSortable).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeSortableExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Sets the default comparison function used when sorting to be `sort_func`.</span>
-    <span class="doccomment">/// If the current sort column id of `self` is</span>
+    <span class="doccomment">/// Sets the default comparison function used when sorting to be @sort_func.</span>
+    <span class="doccomment">/// If the current sort column id of @self is</span>
     <span class="doccomment">/// `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID`, then the model will sort using</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sort_func` is [`None`], then there will be no default comparison function.</span>
-    <span class="doccomment">/// This means that once the model has been sorted, it can’t go back to the</span>
-    <span class="doccomment">/// default state. In this case, when the current sort column id of `self`</span>
+    <span class="doccomment">/// If @sort_func is [`None`], then there will be no default comparison function.</span>
+    <span class="doccomment">/// This means that once the model  has been sorted, it can’t go back to the</span>
+    <span class="doccomment">/// default state. In this case, when the current sort column id of @self</span>
     <span class="doccomment">/// is `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID`, the model will be unsorted.</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// The comparison function</span>
@@ -380,8 +380,8 @@
     <span class="kw">fn</span> <span class="ident">set_default_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
-    <span class="doccomment">/// Sets the comparison function used when sorting to be `sort_func`. If the</span>
-    <span class="doccomment">/// current sort column id of `self` is the same as `sort_column_id`, then</span>
+    <span class="doccomment">/// Sets the comparison function used when sorting to be @sort_func. If the</span>
+    <span class="doccomment">/// current sort column id of @self is the same as @sort_column_id, then</span>
     <span class="doccomment">/// the model will sort using this function.</span>
     <span class="doccomment">/// ## `sort_column_id`</span>
     <span class="doccomment">/// the sort column id to set the function for</span>
@@ -391,15 +391,15 @@
     <span class="kw">fn</span> <span class="ident">set_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
-    <span class="doccomment">/// Fills in `sort_column_id` and `order` with the current sort column and the</span>
-    <span class="doccomment">/// order. It returns [`true`] unless the `sort_column_id` is</span>
+    <span class="doccomment">/// Fills in @sort_column_id and @order with the current sort column and the</span>
+    <span class="doccomment">/// order. It returns [`true`] unless the @sort_column_id is</span>
     <span class="doccomment">/// `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID` or</span>
     <span class="doccomment">/// `GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the sort column is not one of the special sort</span>
-    <span class="doccomment">///  column ids.</span>
+    <span class="doccomment">///   column ids.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `sort_column_id`</span>
     <span class="doccomment">/// The sort column id to be filled in</span>
@@ -409,13 +409,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_get_sort_column_id&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sort_column_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
-    <span class="doccomment">/// Sets the current sort column to be `sort_column_id`. The `self` will</span>
+    <span class="doccomment">/// Sets the current sort column to be @sort_column_id. The @self will</span>
     <span class="doccomment">/// resort itself to reflect this change, after emitting a</span>
-    <span class="doccomment">/// `GtkTreeSortable::sort-column-changed` signal. `sort_column_id` may either be</span>
+    <span class="doccomment">/// `GtkTreeSortable::sort-column-changed` signal. @sort_column_id may either be</span>
     <span class="doccomment">/// a regular column id, or one of the following special values:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID`: the default sort function</span>
-    <span class="doccomment">///  will be used, if it is set</span>
+    <span class="doccomment">///   will be used, if it is set</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - `GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID`: no sorting will occur</span>
     <span class="doccomment">/// ## `sort_column_id`</span>

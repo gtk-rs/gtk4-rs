@@ -949,7 +949,7 @@
     <span class="doccomment">/// ## Event propagation</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In order to receive events, a gesture needs to set a propagation phase</span>
-    <span class="doccomment">/// through [``EventControllerExt::set_propagation_phase()``][crate::prelude::`EventControllerExt::set_propagation_phase()`].</span>
+    <span class="doccomment">/// through [`EventControllerExt::set_propagation_phase()`][crate::prelude::EventControllerExt::set_propagation_phase()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the capture phase, events are propagated from the toplevel down</span>
     <span class="doccomment">/// to the target widget, and gestures that are attached to containers</span>
@@ -970,9 +970,9 @@
     <span class="doccomment">/// accordingly in order to enable cooperation of gestures around the</span>
     <span class="doccomment">/// [`gdk::EventSequence`][crate::gdk::EventSequence]s triggering those.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Within a widget, gestures can be grouped through [``GestureExt::group_with()``][crate::prelude::`GestureExt::group_with()`].</span>
+    <span class="doccomment">/// Within a widget, gestures can be grouped through [`GestureExt::group_with()`][crate::prelude::GestureExt::group_with()].</span>
     <span class="doccomment">/// Grouped gestures synchronize the state of sequences, so calling</span>
-    <span class="doccomment">/// [``GestureExt::set_sequence_state()``][crate::prelude::`GestureExt::set_sequence_state()`] on one will effectively propagate</span>
+    <span class="doccomment">/// [`GestureExt::set_sequence_state()`][crate::prelude::GestureExt::set_sequence_state()] on one will effectively propagate</span>
     <span class="doccomment">/// the state throughout the group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, all sequences start out in the [`EventSequenceState::None`][crate::EventSequenceState::None] state,</span>
@@ -988,10 +988,10 @@
     <span class="doccomment">/// group will grab all interaction on the sequence, by:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Setting the same sequence to [`EventSequenceState::Denied`][crate::EventSequenceState::Denied] on every other</span>
-    <span class="doccomment">///  gesture group within the widget, and every gesture on parent widgets</span>
-    <span class="doccomment">///  in the propagation chain.</span>
+    <span class="doccomment">///   gesture group within the widget, and every gesture on parent widgets</span>
+    <span class="doccomment">///   in the propagation chain.</span>
     <span class="doccomment">/// - Emitting `signal::Gesture::cancel` on every gesture in widgets</span>
-    <span class="doccomment">///  underneath in the propagation chain.</span>
+    <span class="doccomment">///   underneath in the propagation chain.</span>
     <span class="doccomment">/// - Stopping event propagation after the gesture group handles the event.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: if a sequence is set early to [`EventSequenceState::Claimed`][crate::EventSequenceState::Claimed] on</span>
@@ -1002,7 +1002,7 @@
     <span class="doccomment">/// again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sequence states can&#39;t be changed freely.</span>
-    <span class="doccomment">/// See [``GestureExt::set_sequence_state()``][crate::prelude::`GestureExt::set_sequence_state()`] to know about the possible</span>
+    <span class="doccomment">/// See [`GestureExt::set_sequence_state()`][crate::prelude::GestureExt::set_sequence_state()] to know about the possible</span>
     <span class="doccomment">/// lifetimes of a [`gdk::EventSequence`][crate::gdk::EventSequence].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Touchpad gestures</span>
@@ -1012,7 +1012,7 @@
     <span class="doccomment">/// do to enable this support are:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - If the gesture has [`PropagationPhase::None`][crate::PropagationPhase::None], ensuring events of type</span>
-    <span class="doccomment">///  `GDK_TOUCHPAD_SWIPE` and `GDK_TOUCHPAD_PINCH` are handled by the [`Gesture`][crate::Gesture]</span>
+    <span class="doccomment">///   `GDK_TOUCHPAD_SWIPE` and `GDK_TOUCHPAD_PINCH` are handled by the [`Gesture`][crate::Gesture]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
@@ -1037,8 +1037,8 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`GestureRotate`][struct@crate::GestureRotate], [`GestureSingle`][struct@crate::GestureSingle], [`GestureZoom`][struct@crate::GestureZoom], [`Gesture`][struct@crate::Gesture]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GestureExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// If there are touch sequences being currently handled by `self`,</span>
-    <span class="doccomment">/// returns [`true`] and fills in `rect` with the bounding box containing</span>
+    <span class="doccomment">/// If there are touch sequences being currently handled by @self,</span>
+    <span class="doccomment">/// returns [`true`] and fills in @rect with the bounding box containing</span>
     <span class="doccomment">/// all active touches.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Otherwise, [`false`] will be returned.</span>
@@ -1046,7 +1046,7 @@
     <span class="doccomment">/// Note: This function will yield unexpected results on touchpad</span>
     <span class="doccomment">/// gestures. Since there is no correlation between physical and</span>
     <span class="doccomment">/// pixel distances, these will look as if constrained in an</span>
-    <span class="doccomment">/// infinitely small area, `rect` width and height will thus be 0</span>
+    <span class="doccomment">/// infinitely small area, @rect width and height will thus be 0</span>
     <span class="doccomment">/// regardless of the number of touchpoints.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1059,8 +1059,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_bounding_box&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">bounding_box</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Rectangle</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// If there are touch sequences being currently handled by `self`,</span>
-    <span class="doccomment">/// returns [`true`] and fills in `x` and `y` with the center of the bounding</span>
+    <span class="doccomment">/// If there are touch sequences being currently handled by @self,</span>
+    <span class="doccomment">/// returns [`true`] and fills in @x and @y with the center of the bounding</span>
     <span class="doccomment">/// box containing all active touches.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Otherwise, [`false`] will be returned.</span>
@@ -1079,7 +1079,7 @@
     <span class="kw">fn</span> <span class="ident">bounding_box_center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns the logical [`gdk::Device`][crate::gdk::Device] that is currently operating</span>
-    <span class="doccomment">/// on `self`.</span>
+    <span class="doccomment">/// on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This returns [`None`] if the gesture is not being interacted.</span>
     <span class="doccomment">///</span>
@@ -1090,32 +1090,32 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_device&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">device</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Device</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns all gestures in the group of `self`</span>
+    <span class="doccomment">/// Returns all gestures in the group of @self</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The list</span>
-    <span class="doccomment">///  of [`Gesture`][crate::Gesture]s, free with `g_list_free()`</span>
+    <span class="doccomment">///   of [`Gesture`][crate::Gesture]s, free with g_list_free()</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_get_group&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_group&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Gesture</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the last event that was processed for `sequence`.</span>
+    <span class="doccomment">/// Returns the last event that was processed for @sequence.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the returned pointer is only valid as long as the</span>
-    <span class="doccomment">/// `sequence` is still interpreted by the `self`. If in doubt,</span>
+    <span class="doccomment">/// @sequence is still interpreted by the @self. If in doubt,</span>
     <span class="doccomment">/// you should make a copy of the event.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// a [`gdk::EventSequence`][crate::gdk::EventSequence]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The last event from `sequence`</span>
+    <span class="doccomment">/// The last event from @sequence</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_get_last_event&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_last_event&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">last_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sequence</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the [`gdk::EventSequence`][crate::gdk::EventSequence] that was last updated on `self`.</span>
+    <span class="doccomment">/// Returns the [`gdk::EventSequence`][crate::gdk::EventSequence] that was last updated on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1124,8 +1124,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_last_updated_sequence&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">last_updated_sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// If `sequence` is currently being interpreted by `self`,</span>
-    <span class="doccomment">/// returns [`true`] and fills in `x` and `y` with the last coordinates</span>
+    <span class="doccomment">/// If @sequence is currently being interpreted by @self,</span>
+    <span class="doccomment">/// returns [`true`] and fills in @x and @y with the last coordinates</span>
     <span class="doccomment">/// stored for that event sequence.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The coordinates are always relative to the widget allocation.</span>
@@ -1134,7 +1134,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `sequence` is currently interpreted</span>
+    <span class="doccomment">/// [`true`] if @sequence is currently interpreted</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// return location for X axis of the sequence coordinates</span>
@@ -1145,31 +1145,31 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_point&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sequence</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the `sequence` state, as seen by `self`.</span>
+    <span class="doccomment">/// Returns the @sequence state, as seen by @self.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// a [`gdk::EventSequence`][crate::gdk::EventSequence]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The sequence state in `self`</span>
+    <span class="doccomment">/// The sequence state in @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_get_sequence_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sequence_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sequence_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sequence</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span>) -&gt; <span class="ident">EventSequenceState</span>;
 
     <span class="doccomment">/// Returns the list of `GdkEventSequences` currently being interpreted</span>
-    <span class="doccomment">/// by `self`.</span>
+    <span class="doccomment">/// by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A list</span>
-    <span class="doccomment">///  of [`gdk::EventSequence`][crate::gdk::EventSequence], the list elements are owned by GTK and must</span>
-    <span class="doccomment">///  not be freed or modified, the list itself must be deleted</span>
-    <span class="doccomment">///  through `g_list_free()`</span>
+    <span class="doccomment">///   of [`gdk::EventSequence`][crate::gdk::EventSequence], the list elements are owned by GTK and must</span>
+    <span class="doccomment">///   not be freed or modified, the list itself must be deleted</span>
+    <span class="doccomment">///   through g_list_free()</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_get_sequences&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sequences&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sequences</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Adds `gesture` to the same group than `self`.</span>
+    <span class="doccomment">/// Adds @gesture to the same group than @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Gestures are by default isolated in their own groups.</span>
     <span class="doccomment">///</span>
@@ -1178,7 +1178,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When gestures are grouped, the state of `GdkEventSequences`</span>
     <span class="doccomment">/// is kept in sync for all of those, so calling</span>
-    <span class="doccomment">/// [``set_sequence_state()``][`Self::set_sequence_state()`], on one will transfer</span>
+    <span class="doccomment">/// [`set_sequence_state()`][Self::set_sequence_state()], on one will transfer</span>
     <span class="doccomment">/// the same value to the others.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Groups also perform an &quot;implicit grabbing&quot; of sequences, if a</span>
@@ -1192,14 +1192,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;group&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">group_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">gesture</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Gesture</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Returns [`true`] if `self` is currently handling events</span>
-    <span class="doccomment">/// corresponding to `sequence`.</span>
+    <span class="doccomment">/// Returns [`true`] if @self is currently handling events</span>
+    <span class="doccomment">/// corresponding to @sequence.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// a [`gdk::EventSequence`][crate::gdk::EventSequence]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` is handling `sequence`, [`false`] otherwise</span>
+    <span class="doccomment">/// [`true`] if @self is handling @sequence, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_handles_sequence&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">handles_sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sequence</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
 
@@ -1227,7 +1227,7 @@
     <span class="doccomment">/// Returns [`true`] if the gesture is currently recognized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A gesture is recognized if there are as many interacting</span>
-    <span class="doccomment">/// touch sequences as required by `self`.</span>
+    <span class="doccomment">/// touch sequences as required by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1235,7 +1235,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_is_recognized&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_recognized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets the state of `sequence` in `self`.</span>
+    <span class="doccomment">/// Sets the state of @sequence in @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sequences start in state [`EventSequenceState::None`][crate::EventSequenceState::None], and whenever</span>
     <span class="doccomment">/// they change state, they can never go back to that state. Likewise,</span>
@@ -1286,15 +1286,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `sequence` is handled by `self`,</span>
-    <span class="doccomment">///  and the state is changed successfully</span>
+    <span class="doccomment">/// [`true`] if @sequence is handled by @self,</span>
+    <span class="doccomment">///   and the state is changed successfully</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_set_sequence_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_sequence_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sequence</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span>, <span class="ident">state</span>: <span class="ident">EventSequenceState</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets the state of all sequences that `self` is currently</span>
+    <span class="doccomment">/// Sets the state of all sequences that @self is currently</span>
     <span class="doccomment">/// interacting with.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_sequence_state()``][`Self::set_sequence_state()`] for more details</span>
+    <span class="doccomment">/// See [`set_sequence_state()`][Self::set_sequence_state()] for more details</span>
     <span class="doccomment">/// on sequence states.</span>
     <span class="doccomment">/// ## `state`</span>
     <span class="doccomment">/// the sequence state</span>
@@ -1302,11 +1302,11 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the state of at least one sequence</span>
-    <span class="doccomment">///  was changed successfully</span>
+    <span class="doccomment">///   was changed successfully</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_set_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">EventSequenceState</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Separates `self` into an isolated group.</span>
+    <span class="doccomment">/// Separates @self into an isolated group.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_ungroup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">ungroup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -1322,11 +1322,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: These conditions may also happen when an extra touch</span>
     <span class="doccomment">/// (eg. a third touch on a 2-touches gesture) is lifted, in that</span>
-    <span class="doccomment">/// situation `sequence` won&#39;t pertain to the current set of active</span>
+    <span class="doccomment">/// situation @sequence won&#39;t pertain to the current set of active</span>
     <span class="doccomment">/// touches, so don&#39;t rely on this being true.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// the [`gdk::EventSequence`][crate::gdk::EventSequence] that made the gesture</span>
-    <span class="doccomment">///  to be recognized</span>
+    <span class="doccomment">///   to be recognized</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;begin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_begin</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1336,12 +1336,12 @@
     <span class="doccomment">/// Emitted whenever a sequence is cancelled.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This usually happens on active touches when</span>
-    <span class="doccomment">/// [``EventControllerExt::reset()``][crate::prelude::`EventControllerExt::reset()`] is called on `gesture`</span>
-    <span class="doccomment">/// (manually, due to grabs...), or the individual `sequence`</span>
+    <span class="doccomment">/// [`EventControllerExt::reset()`][crate::prelude::EventControllerExt::reset()] is called on @gesture</span>
+    <span class="doccomment">/// (manually, due to grabs...), or the individual @sequence</span>
     <span class="doccomment">/// was claimed by parent widgets&#39; controllers (see</span>
-    <span class="doccomment">/// [``set_sequence_state()``][`Self::set_sequence_state()`]).</span>
+    <span class="doccomment">/// [`set_sequence_state()`][Self::set_sequence_state()]).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `gesture` must forget everything about `sequence` as in</span>
+    <span class="doccomment">/// @gesture must forget everything about @sequence as in</span>
     <span class="doccomment">/// response to this signal.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// the [`gdk::EventSequence`][crate::gdk::EventSequence] that was cancelled</span>
@@ -1351,18 +1351,18 @@
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when `gesture` either stopped recognizing the event</span>
+    <span class="doccomment">/// Emitted when @gesture either stopped recognizing the event</span>
     <span class="doccomment">/// sequences as something to be handled, or the number of touch</span>
     <span class="doccomment">/// sequences became higher or lower than `property::Gesture::n-points`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note: `sequence` might not pertain to the group of sequences that</span>
-    <span class="doccomment">/// were previously triggering recognition on `gesture` (ie. a just</span>
+    <span class="doccomment">/// Note: @sequence might not pertain to the group of sequences that</span>
+    <span class="doccomment">/// were previously triggering recognition on @gesture (ie. a just</span>
     <span class="doccomment">/// pressed touch sequence that exceeds `property::Gesture::n-points`).</span>
     <span class="doccomment">/// This situation may be detected by checking through</span>
-    <span class="doccomment">/// [``handles_sequence()``][`Self::handles_sequence()`].</span>
+    <span class="doccomment">/// [`handles_sequence()`][Self::handles_sequence()].</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// the [`gdk::EventSequence`][crate::gdk::EventSequence] that made gesture</span>
-    <span class="doccomment">///  recognition to finish</span>
+    <span class="doccomment">///   recognition to finish</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;end&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::EventSequence</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1371,7 +1371,7 @@
 
     <span class="doccomment">/// Emitted whenever a sequence state changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_sequence_state()``][`Self::set_sequence_state()`] to know</span>
+    <span class="doccomment">/// See [`set_sequence_state()`][Self::set_sequence_state()] to know</span>
     <span class="doccomment">/// more about the expectable sequence lifetimes.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// the [`gdk::EventSequence`][crate::gdk::EventSequence] that was cancelled</span>
@@ -1387,7 +1387,7 @@
 
     <span class="doccomment">/// Emitted whenever an event is handled while the gesture is recognized.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `sequence` is guaranteed to pertain to the set of active touches.</span>
+    <span class="doccomment">/// @sequence is guaranteed to pertain to the set of active touches.</span>
     <span class="doccomment">/// ## `sequence`</span>
     <span class="doccomment">/// the [`gdk::EventSequence`][crate::gdk::EventSequence] that was updated</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;update&quot;</span>)]</span>

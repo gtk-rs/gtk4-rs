@@ -180,7 +180,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the axes of `self`</span>
+    <span class="doccomment">/// the axes of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_axes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_axes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AxisFlags</span> {
@@ -190,12 +190,12 @@
     <span class="doccomment">/// Gets the hardware ID of this tool, or 0 if it&#39;s not known.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When non-zero, the identificator is unique for the given tool model,</span>
-    <span class="doccomment">/// meaning that two identical tools will share the same `hardware_id`,</span>
+    <span class="doccomment">/// meaning that two identical tools will share the same @hardware_id,</span>
     <span class="doccomment">/// but will have different serial numbers (see</span>
-    <span class="doccomment">/// [``serial()``][`Self::serial()`]).</span>
+    <span class="doccomment">/// [`serial()`][Self::serial()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a more concrete (and device specific) method to identify</span>
-    <span class="doccomment">/// a [`DeviceTool`][crate::DeviceTool] than [``tool_type()``][`Self::tool_type()`],</span>
+    <span class="doccomment">/// a [`DeviceTool`][crate::DeviceTool] than [`tool_type()`][Self::tool_type()],</span>
     <span class="doccomment">/// as a tablet may support multiple devices with the same</span>
     <span class="doccomment">/// [`DeviceToolType`][crate::DeviceToolType], but different hardware identificators.</span>
     <span class="doccomment">///</span>
@@ -227,8 +227,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The physical type for this tool. This can be used to</span>
-    <span class="doccomment">///  figure out what sort of pen is being used, such as an airbrush</span>
-    <span class="doccomment">///  or a pencil.</span>
+    <span class="doccomment">///   figure out what sort of pen is being used, such as an airbrush</span>
+    <span class="doccomment">///   or a pencil.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_tool_get_tool_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tool_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tool_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">DeviceToolType</span> {

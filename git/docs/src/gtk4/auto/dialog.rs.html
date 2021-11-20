@@ -1293,9 +1293,9 @@
     <span class="doccomment">/// action widgets are buttons. Depending on the platform, action widgets may</span>
     <span class="doccomment">/// be presented in the header bar at the top of the window, or at the bottom</span>
     <span class="doccomment">/// of the window. To add action widgets, create your [`Dialog`][crate::Dialog] using</span>
-    <span class="doccomment">/// [``with_buttons()``][`Self::with_buttons()`], or use</span>
-    <span class="doccomment">/// [``DialogExt::add_button()``][crate::prelude::`DialogExt::add_button()`], [``DialogExtManual::add_buttons()``][crate::prelude::`DialogExtManual::add_buttons()`],</span>
-    <span class="doccomment">/// or [``DialogExt::add_action_widget()``][crate::prelude::`DialogExt::add_action_widget()`].</span>
+    <span class="doccomment">/// [`with_buttons()`][Self::with_buttons()], or use</span>
+    <span class="doccomment">/// [`DialogExt::add_button()`][crate::prelude::DialogExt::add_button()], [`DialogExtManual::add_buttons()`][crate::prelude::DialogExtManual::add_buttons()],</span>
+    <span class="doccomment">/// or [`DialogExt::add_action_widget()`][crate::prelude::DialogExt::add_action_widget()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkDialogs` uses some heuristics to decide whether to add a close</span>
     <span class="doccomment">/// button to the window decorations. If any of the action buttons use</span>
@@ -1311,13 +1311,13 @@
     <span class="doccomment">/// `signal::Dialog::response` signal will be emitted with the</span>
     <span class="doccomment">/// [`ResponseType::DeleteEvent`][crate::ResponseType::DeleteEvent] response ID.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Dialogs are created with a call to [``new()``][`Self::new()`] or</span>
-    <span class="doccomment">/// [``with_buttons()``][`Self::with_buttons()`]. The latter is recommended; it allows</span>
+    <span class="doccomment">/// Dialogs are created with a call to [`new()`][Self::new()] or</span>
+    <span class="doccomment">/// [`with_buttons()`][Self::with_buttons()]. The latter is recommended; it allows</span>
     <span class="doccomment">/// you to set the dialog title, some convenient flags, and add buttons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A “modal” dialog (that is, one which freezes the rest of the application</span>
-    <span class="doccomment">/// from user input), can be created by calling [``GtkWindowExt::set_modal()``][crate::prelude::`GtkWindowExt::set_modal()`]</span>
-    <span class="doccomment">/// on the dialog. When using [``with_buttons()``][`Self::with_buttons()`], you can also</span>
+    <span class="doccomment">/// from user input), can be created by calling [`GtkWindowExt::set_modal()`][crate::prelude::GtkWindowExt::set_modal()]</span>
+    <span class="doccomment">/// on the dialog. When using [`with_buttons()`][Self::with_buttons()], you can also</span>
     <span class="doccomment">/// pass the [`DialogFlags::MODAL`][crate::DialogFlags::MODAL] flag to make a dialog modal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For the simple dialog in the following example, a [`MessageDialog`][crate::MessageDialog]</span>
@@ -1364,20 +1364,20 @@
     <span class="doccomment">/// # GtkDialog as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`Dialog`][crate::Dialog] implementation of the [`Buildable`][crate::Buildable] interface exposes the</span>
-    <span class="doccomment">/// `content_area` as an internal child with the name “content_area”.</span>
+    <span class="doccomment">/// @content_area as an internal child with the name “content_area”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Dialog`][crate::Dialog] supports a custom ``&lt;action-widgets&gt;`` element, which can contain</span>
-    <span class="doccomment">/// multiple ``&lt;action-widget&gt;`` elements. The “response” attribute specifies a</span>
+    <span class="doccomment">/// [`Dialog`][crate::Dialog] supports a custom `&lt;action-widgets&gt;` element, which can contain</span>
+    <span class="doccomment">/// multiple `&lt;action-widget&gt;` elements. The “response” attribute specifies a</span>
     <span class="doccomment">/// numeric response, and the content of the element is the id of widget</span>
-    <span class="doccomment">/// (which should be a child of the dialogs `action_area`). To mark a response</span>
-    <span class="doccomment">/// as default, set the “default” attribute of the ``&lt;action-widget&gt;`` element</span>
+    <span class="doccomment">/// (which should be a child of the dialogs @action_area). To mark a response</span>
+    <span class="doccomment">/// as default, set the “default” attribute of the `&lt;action-widget&gt;` element</span>
     <span class="doccomment">/// to true.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Dialog`][crate::Dialog] supports adding action widgets by specifying “action” as</span>
-    <span class="doccomment">/// the “type” attribute of a ``&lt;child&gt;`` element. The widget will be added</span>
+    <span class="doccomment">/// the “type” attribute of a `&lt;child&gt;` element. The widget will be added</span>
     <span class="doccomment">/// either to the action area or the headerbar of the dialog, depending</span>
     <span class="doccomment">/// on the “use-header-bar” property. The response id has to be associated</span>
-    <span class="doccomment">/// with the action widget using the ``&lt;action-widgets&gt;`` element.</span>
+    <span class="doccomment">/// with the action widget using the `&lt;action-widgets&gt;` element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a [`Dialog`][crate::Dialog] UI definition fragment:</span>
     <span class="doccomment">///</span>
@@ -1418,7 +1418,7 @@
     <span class="doccomment">/// Creates a new dialog box.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Widgets should not be packed into the [`Window`][crate::Window]</span>
-    <span class="doccomment">/// directly, but into the `content_area` and `action_area`,</span>
+    <span class="doccomment">/// directly, but into the @content_area and @action_area,</span>
     <span class="doccomment">/// as described above.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1718,7 +1718,7 @@
     <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
+    <span class="doccomment">/// has any windows associated with it (see g_application_hold()</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -1795,7 +1795,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::fullscreen()`][crate::prelude::GtkWindowExt::fullscreen()] or [`GtkWindowExt::unfullscreen()`][crate::prelude::GtkWindowExt::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1830,7 +1830,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::maximize()`][crate::prelude::GtkWindowExt::maximize()] or [`GtkWindowExt::unmaximize()`][crate::prelude::GtkWindowExt::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1917,7 +1917,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1943,9 +1943,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1987,7 +1987,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -2000,7 +2000,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -2013,7 +2013,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -2023,7 +2023,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -2065,7 +2065,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2082,7 +2082,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2152,18 +2152,18 @@
     <span class="doccomment">/// area.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to add a non-activatable widget, simply pack it into</span>
-    <span class="doccomment">/// the `action_area` field of the [`Dialog`][crate::Dialog] struct.</span>
+    <span class="doccomment">/// the @action_area field of the [`Dialog`][crate::Dialog] struct.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// an activatable widget</span>
     <span class="doccomment">/// ## `response_id`</span>
-    <span class="doccomment">/// response ID for `child`</span>
+    <span class="doccomment">/// response ID for @child</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_add_action_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_action_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">response_id</span>: <span class="ident">ResponseType</span>);
 
     <span class="doccomment">/// Adds a button with the given text.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK arranges things so that clicking the button will emit the</span>
-    <span class="doccomment">/// `signal::Dialog::response` signal with the given `response_id`.</span>
+    <span class="doccomment">/// `signal::Dialog::response` signal with the given @response_id.</span>
     <span class="doccomment">/// The button is appended to the end of the dialog’s action area.</span>
     <span class="doccomment">/// The button widget is returned, but usually you don’t need it.</span>
     <span class="doccomment">/// ## `button_text`</span>
@@ -2177,7 +2177,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_add_button&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">response_id</span>: <span class="ident">ResponseType</span>) -&gt; <span class="ident">Widget</span>;
 
-    <span class="doccomment">/// Returns the content area of `self`.</span>
+    <span class="doccomment">/// Returns the content area of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2186,7 +2186,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_content_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">content_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Box</span>;
 
-    <span class="doccomment">/// Returns the header bar of `self`.</span>
+    <span class="doccomment">/// Returns the header bar of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the headerbar is only used by the dialog if the</span>
     <span class="doccomment">/// `property::Dialog::use-header-bar` property is [`true`].</span>
@@ -2201,12 +2201,12 @@
     <span class="doccomment">/// Gets the widget button that uses the given response ID in the action area</span>
     <span class="doccomment">/// of a dialog.</span>
     <span class="doccomment">/// ## `response_id`</span>
-    <span class="doccomment">/// the response ID used by the `self` widget</span>
+    <span class="doccomment">/// the response ID used by the @self widget</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `widget` button that uses the given</span>
-    <span class="doccomment">///  `response_id`</span>
+    <span class="doccomment">/// the @widget button that uses the given</span>
+    <span class="doccomment">///   @response_id</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_get_widget_for_response&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_widget_for_response&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget_for_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">response_id</span>: <span class="ident">ResponseType</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
@@ -2229,8 +2229,8 @@
 
     <span class="doccomment">/// A convenient way to sensitize/desensitize dialog buttons.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Calls `gtk_widget_set_sensitive (widget, `setting`)`</span>
-    <span class="doccomment">/// for each widget in the dialog’s action area with the given `response_id`.</span>
+    <span class="doccomment">/// Calls `gtk_widget_set_sensitive (widget, @setting)`</span>
+    <span class="doccomment">/// for each widget in the dialog’s action area with the given @response_id.</span>
     <span class="doccomment">/// ## `response_id`</span>
     <span class="doccomment">/// a response ID</span>
     <span class="doccomment">/// ## `setting`</span>
@@ -2274,7 +2274,7 @@
     <span class="doccomment">/// Emitted when an action widget is clicked.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal is also emitted when the dialog receives a</span>
-    <span class="doccomment">/// delete event, and when [``response()``][`Self::response()`] is called.</span>
+    <span class="doccomment">/// delete event, and when [`response()`][Self::response()] is called.</span>
     <span class="doccomment">/// On a delete event, the response ID is [`ResponseType::DeleteEvent`][crate::ResponseType::DeleteEvent].</span>
     <span class="doccomment">/// Otherwise, it depends on which action widget was clicked.</span>
     <span class="doccomment">/// ## `response_id`</span>

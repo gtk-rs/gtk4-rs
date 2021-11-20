@@ -548,7 +548,7 @@
     <span class="doccomment">/// The [`Drag`][crate::Drag] object represents the source of an ongoing DND operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`Drag`][crate::Drag] is created when a drag is started, and stays alive for duration of</span>
-    <span class="doccomment">/// the DND operation. After a drag has been started with [``begin()``][`Self::begin()`],</span>
+    <span class="doccomment">/// the DND operation. After a drag has been started with [`begin()`][Self::begin()],</span>
     <span class="doccomment">/// the caller gets informed about the status of the ongoing drag operation</span>
     <span class="doccomment">/// with signals on the [`Drag`][crate::Drag] object.</span>
     <span class="doccomment">///</span>
@@ -576,15 +576,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is called by the drag source. After this call, you</span>
     <span class="doccomment">/// probably want to set up the drag icon using the surface returned</span>
-    <span class="doccomment">/// by [``DragExt::drag_surface()``][crate::prelude::`DragExt::drag_surface()`].</span>
+    <span class="doccomment">/// by [`DragExt::drag_surface()`][crate::prelude::DragExt::drag_surface()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function returns a reference to the [`Drag`][crate::Drag] object,</span>
     <span class="doccomment">/// but GTK keeps its own reference as well, as long as the DND operation</span>
     <span class="doccomment">/// is going on.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note: if `actions` include [`DragAction::MOVE`][crate::DragAction::MOVE], you need to listen for</span>
+    <span class="doccomment">/// Note: if @actions include [`DragAction::MOVE`][crate::DragAction::MOVE], you need to listen for</span>
     <span class="doccomment">/// the `signal::Drag::dnd-finished` signal and delete the data at</span>
-    <span class="doccomment">/// the source if [``DragExt::selected_action()``][crate::prelude::`DragExt::selected_action()`] returns</span>
+    <span class="doccomment">/// the source if [`DragExt::selected_action()`][crate::prelude::DragExt::selected_action()] returns</span>
     <span class="doccomment">/// [`DragAction::MOVE`][crate::DragAction::MOVE].</span>
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// the source surface for this drag</span>
@@ -595,9 +595,9 @@
     <span class="doccomment">/// ## `actions`</span>
     <span class="doccomment">/// the actions supported by this drag</span>
     <span class="doccomment">/// ## `dx`</span>
-    <span class="doccomment">/// the x offset to `device`&#39;s position where the drag nominally started</span>
+    <span class="doccomment">/// the x offset to @device&#39;s position where the drag nominally started</span>
     <span class="doccomment">/// ## `dy`</span>
-    <span class="doccomment">/// the y offset to `device`&#39;s position where the drag nominally started</span>
+    <span class="doccomment">/// the y offset to @device&#39;s position where the drag nominally started</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -633,13 +633,13 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DragExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Informs GDK that the drop ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing [`false`] for `success` may trigger a drag cancellation</span>
+    <span class="doccomment">/// Passing [`false`] for @success may trigger a drag cancellation</span>
     <span class="doccomment">/// animation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is called by the drag source, and should be the</span>
-    <span class="doccomment">/// last call before dropping the reference to the `self`.</span>
+    <span class="doccomment">/// last call before dropping the reference to the @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`Drag`][crate::Drag] will only take the first [``drop_done()``][`Self::drop_done()`]</span>
+    <span class="doccomment">/// The [`Drag`][crate::Drag] will only take the first [`drop_done()`][Self::drop_done()]</span>
     <span class="doccomment">/// call as effective, if this function is called multiple times,</span>
     <span class="doccomment">/// all subsequent calls will be ignored.</span>
     <span class="doccomment">/// ## `success`</span>
@@ -660,7 +660,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`ContentProvider`][crate::ContentProvider] associated to `self`.</span>
+    <span class="doccomment">/// The [`ContentProvider`][crate::ContentProvider] associated to @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_get_content&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_content&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">content</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span>;
@@ -669,7 +669,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`Device`][crate::Device] associated to `self`.</span>
+    <span class="doccomment">/// The [`Device`][crate::Device] associated to @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_get_device&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_device&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">device</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>;
@@ -688,7 +688,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the surface may not be available until the drag operation</span>
     <span class="doccomment">/// has begun. GDK will move the surface in accordance with the ongoing</span>
-    <span class="doccomment">/// drag operation. The surface is owned by `self` and will be destroyed</span>
+    <span class="doccomment">/// drag operation. The surface is owned by @self and will be destroyed</span>
     <span class="doccomment">/// when the drag operation is over.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

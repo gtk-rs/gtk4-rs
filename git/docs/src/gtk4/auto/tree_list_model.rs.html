@@ -434,17 +434,17 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TreeListModel</span> {
-    <span class="doccomment">/// Creates a new empty [`TreeListModel`][crate::TreeListModel] displaying `root`</span>
+    <span class="doccomment">/// Creates a new empty [`TreeListModel`][crate::TreeListModel] displaying @root</span>
     <span class="doccomment">/// with all rows collapsed.</span>
     <span class="doccomment">/// ## `root`</span>
     <span class="doccomment">/// The `GListModel` to use as root</span>
     <span class="doccomment">/// ## `passthrough`</span>
     <span class="doccomment">/// [`true`] to pass through items from the models</span>
     <span class="doccomment">/// ## `autoexpand`</span>
-    <span class="doccomment">/// [`true`] to set the autoexpand property and expand the `root` model</span>
+    <span class="doccomment">/// [`true`] to set the autoexpand property and expand the @root model</span>
     <span class="doccomment">/// ## `create_func`</span>
     <span class="doccomment">/// Function to call to create the `GListModel` for the children</span>
-    <span class="doccomment">///  of an item</span>
+    <span class="doccomment">///   of an item</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -503,7 +503,7 @@
     <span class="doccomment">/// that get added.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be either rows added by changes to the underlying</span>
-    <span class="doccomment">/// models or via [``TreeListRow::set_expanded()``][crate::`TreeListRow::set_expanded()`].</span>
+    <span class="doccomment">/// models or via [`TreeListRow::set_expanded()`][crate::TreeListRow::set_expanded()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -518,19 +518,19 @@
         }
     }
 
-    <span class="doccomment">/// Gets the row item corresponding to the child at index `position` for</span>
-    <span class="doccomment">/// `self`&#39;s root model.</span>
+    <span class="doccomment">/// Gets the row item corresponding to the child at index @position for</span>
+    <span class="doccomment">/// @self&#39;s root model.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `position` is greater than the number of children in the root model,</span>
+    <span class="doccomment">/// If @position is greater than the number of children in the root model,</span>
     <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Do not confuse this function with [``row()``][`Self::row()`].</span>
+    <span class="doccomment">/// Do not confuse this function with [`row()`][Self::row()].</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position of the child to get</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child in `position`</span>
+    <span class="doccomment">/// the child in @position</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_get_child_row&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeListRow</span><span class="op">&gt;</span> {
@@ -542,7 +542,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the root model that `self` was created with.</span>
+    <span class="doccomment">/// Gets the root model that @self was created with.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -555,13 +555,13 @@
 
     <span class="doccomment">/// Gets whether the model is passing through original row items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If this function returns [`false`], the `GListModel` functions for `self`</span>
+    <span class="doccomment">/// If this function returns [`false`], the `GListModel` functions for @self</span>
     <span class="doccomment">/// return custom [`TreeListRow`][crate::TreeListRow] objects. You need to call</span>
-    <span class="doccomment">/// [``TreeListRow::item()``][crate::`TreeListRow::item()`] on these objects to get the original</span>
+    <span class="doccomment">/// [`TreeListRow::item()`][crate::TreeListRow::item()] on these objects to get the original</span>
     <span class="doccomment">/// item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`true`], the values of the child models are passed through in their</span>
-    <span class="doccomment">/// original state. You then need to call [``row()``][`Self::row()`]</span>
+    <span class="doccomment">/// original state. You then need to call [`row()`][Self::row()]</span>
     <span class="doccomment">/// to get the custom [`TreeListRow`][crate::TreeListRow]s.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -579,7 +579,7 @@
 
     <span class="doccomment">/// Gets the row object for the given row.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `position` is greater than the number of items in `self`,</span>
+    <span class="doccomment">/// If @position is greater than the number of items in @self,</span>
     <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The row object can be used to expand and collapse rows as</span>
@@ -587,13 +587,13 @@
     <span class="doccomment">/// documentation for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This row object is persistent and will refer to the current</span>
-    <span class="doccomment">/// item as long as the row is present in `self`, independent of</span>
+    <span class="doccomment">/// item as long as the row is present in @self, independent of</span>
     <span class="doccomment">/// other rows being added or removed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is set to not be passthrough, this function is</span>
-    <span class="doccomment">/// equivalent to calling `g_list_model_get_item()`.</span>
+    <span class="doccomment">/// If @self is set to not be passthrough, this function is</span>
+    <span class="doccomment">/// equivalent to calling g_list_model_get_item().</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Do not confuse this function with [``child_row()``][`Self::child_row()`].</span>
+    <span class="doccomment">/// Do not confuse this function with [`child_row()`][Self::child_row()].</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the position of the row to fetch</span>
     <span class="doccomment">///</span>
@@ -615,7 +615,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If set to [`true`], the model will recursively expand all rows that</span>
     <span class="doccomment">/// get added to the model. This can be either rows added by changes</span>
-    <span class="doccomment">/// to the underlying models or via [``TreeListRow::set_expanded()``][crate::`TreeListRow::set_expanded()`].</span>
+    <span class="doccomment">/// to the underlying models or via [`TreeListRow::set_expanded()`][crate::TreeListRow::set_expanded()].</span>
     <span class="doccomment">/// ## `autoexpand`</span>
     <span class="doccomment">/// [`true`] to make the model autoexpand its rows</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_set_autoexpand&quot;</span>)]</span>

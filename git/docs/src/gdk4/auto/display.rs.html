@@ -878,11 +878,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Most of the input device handling has been factored out into separate</span>
     <span class="doccomment">/// [`Seat`][crate::Seat] objects. Every display has a one or more seats, which</span>
-    <span class="doccomment">/// can be accessed with [``DisplayExt::default_seat()``][crate::prelude::`DisplayExt::default_seat()`] and</span>
-    <span class="doccomment">/// [``DisplayExt::list_seats()``][crate::prelude::`DisplayExt::list_seats()`].</span>
+    <span class="doccomment">/// can be accessed with [`DisplayExt::default_seat()`][crate::prelude::DisplayExt::default_seat()] and</span>
+    <span class="doccomment">/// [`DisplayExt::list_seats()`][crate::prelude::DisplayExt::list_seats()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Output devices are represented by [`Monitor`][crate::Monitor] objects, which can</span>
-    <span class="doccomment">/// be accessed with [``DisplayExt::monitor_at_surface()``][crate::prelude::`DisplayExt::monitor_at_surface()`] and similar APIs.</span>
+    <span class="doccomment">/// be accessed with [`DisplayExt::monitor_at_surface()`][crate::prelude::DisplayExt::monitor_at_surface()] and similar APIs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -902,12 +902,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience function for:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  gdk_display_manager_get_default_display (gdk_display_manager_get ())</span>
+    <span class="doccomment">///     gdk_display_manager_get_default_display (gdk_display_manager_get ())</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`Display`][crate::Display], or [`None`] if</span>
-    <span class="doccomment">///  there is no default display</span>
+    <span class="doccomment">///   there is no default display</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_default&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span> {
@@ -944,7 +944,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`Display`][struct@crate::Display]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DisplayExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits a short beep on `self`</span>
+    <span class="doccomment">/// Emits a short beep on @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_beep&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">beep</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -960,9 +960,9 @@
     <span class="doccomment">/// and cannot be used to draw to any surface. It can only be used to</span>
     <span class="doccomment">/// draw to non-surface framebuffers like textures.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the creation of the [`GLContext`][crate::GLContext] failed, `error` will be set.</span>
+    <span class="doccomment">/// If the creation of the [`GLContext`][crate::GLContext] failed, @error will be set.</span>
     <span class="doccomment">/// Before using the returned [`GLContext`][crate::GLContext], you will need to</span>
-    <span class="doccomment">/// call [``GLContextExt::make_current()``][crate::prelude::`GLContextExt::make_current()`] or [``GLContextExt::realize()``][crate::prelude::`GLContextExt::realize()`].</span>
+    <span class="doccomment">/// call [`GLContextExt::make_current()`][crate::prelude::GLContextExt::make_current()] or [`GLContextExt::realize()`][crate::prelude::GLContextExt::realize()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -972,13 +972,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_create_gl_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_gl_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GLContext</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns [`true`] if there is an ongoing grab on `device` for `self`.</span>
+    <span class="doccomment">/// Returns [`true`] if there is an ongoing grab on @device for @self.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// a [`Device`][crate::Device]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if there is a grab in effect for `device`.</span>
+    <span class="doccomment">/// [`true`] if there is a grab in effect for @device.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_device_is_grabbed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">device_is_grabbed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
 
@@ -1000,7 +1000,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`AppLaunchContext`][crate::AppLaunchContext] for `self`</span>
+    <span class="doccomment">/// a new [`AppLaunchContext`][crate::AppLaunchContext] for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_app_launch_context&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_app_launch_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">app_launch_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AppLaunchContext</span>;
@@ -1026,10 +1026,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_seat&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">default_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Seat</span>;
 
-    <span class="doccomment">/// Gets the monitor in which the largest area of `surface`</span>
+    <span class="doccomment">/// Gets the monitor in which the largest area of @surface</span>
     <span class="doccomment">/// resides.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a monitor close to `surface` if it is outside</span>
+    <span class="doccomment">/// Returns a monitor close to @surface if it is outside</span>
     <span class="doccomment">/// of all monitors.</span>
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// a [`Surface`][crate::Surface]</span>
@@ -1037,7 +1037,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the monitor with the largest</span>
-    <span class="doccomment">///  overlap with `surface`</span>
+    <span class="doccomment">///   overlap with @surface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_monitor_at_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_monitor_at_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">monitor_at_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Monitor</span><span class="op">&gt;</span>;
@@ -1062,7 +1062,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a string representing the display name. This string is owned</span>
-    <span class="doccomment">///  by GDK and should not be modified or freed.</span>
+    <span class="doccomment">///   by GDK and should not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span>;
@@ -1084,7 +1084,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the startup notification ID for `self`</span>
+    <span class="doccomment">/// the startup notification ID for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_startup_notification_id&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_startup_notification_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">startup_notification_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -1100,30 +1100,30 @@
     <span class="doccomment">/// Returns whether surfaces can reasonably be expected to have</span>
     <span class="doccomment">/// their alpha channel drawn correctly on the screen.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Check [``is_rgba()``][`Self::is_rgba()`] for whether the display</span>
+    <span class="doccomment">/// Check [`is_rgba()`][Self::is_rgba()] for whether the display</span>
     <span class="doccomment">/// supports an alpha channel.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On X11 this function returns whether a compositing manager is</span>
-    <span class="doccomment">/// compositing on `self`.</span>
+    <span class="doccomment">/// compositing on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whether surfaces with RGBA visuals can reasonably</span>
-    <span class="doccomment">///  be expected to have their alpha channels drawn correctly</span>
-    <span class="doccomment">///  on the screen.</span>
+    <span class="doccomment">///   be expected to have their alpha channels drawn correctly</span>
+    <span class="doccomment">///   on the screen.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_is_composited&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_composited</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns whether surfaces on this `self` are created with an</span>
+    <span class="doccomment">/// Returns whether surfaces on this @self are created with an</span>
     <span class="doccomment">/// alpha channel.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Even if a [`true`] is returned, it is possible that the</span>
     <span class="doccomment">/// surface’s alpha channel won’t be honored when displaying the</span>
     <span class="doccomment">/// surface on the screen: in particular, for X an appropriate</span>
     <span class="doccomment">/// windowing manager and compositing manager must be running to</span>
-    <span class="doccomment">/// provide appropriate display. Use [``is_composited()``][`Self::is_composited()`]</span>
+    <span class="doccomment">/// provide appropriate display. Use [`is_composited()`][Self::is_composited()]</span>
     <span class="doccomment">/// to check if that is the case.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
@@ -1131,16 +1131,16 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if surfaces are created with an alpha channel or</span>
-    <span class="doccomment">///  [`false`] if the display does not support this functionality.</span>
+    <span class="doccomment">///   [`false`] if the display does not support this functionality.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_is_rgba&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns the list of seats known to `self`.</span>
+    <span class="doccomment">/// Returns the list of seats known to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the</span>
-    <span class="doccomment">///  list of seats known to the [`Display`][crate::Display]</span>
+    <span class="doccomment">///   list of seats known to the [`Display`][crate::Display]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_list_seats&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">list_seats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Seat</span><span class="op">&gt;</span>;
 
@@ -1149,17 +1149,17 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK will call this function automatically for `Gtk::Window`</span>
     <span class="doccomment">/// with custom startup-notification identifier unless</span>
-    <span class="doccomment">/// `Gtk::`Window::set_auto_startup_notification()``</span>
+    <span class="doccomment">/// `Gtk::Window::set_auto_startup_notification()`</span>
     <span class="doccomment">/// is called to disable that feature.</span>
     <span class="doccomment">/// ## `startup_id`</span>
     <span class="doccomment">/// a startup-notification identifier, for which</span>
-    <span class="doccomment">///  notification process should be completed</span>
+    <span class="doccomment">///   notification process should be completed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_notify_startup_complete&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">notify_startup_complete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">startup_id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
-    <span class="doccomment">/// Checks that OpenGL is available for `self` and ensures that it is</span>
+    <span class="doccomment">/// Checks that OpenGL is available for @self and ensures that it is</span>
     <span class="doccomment">/// properly initialized.</span>
-    <span class="doccomment">/// When this fails, an `error` will be set describing the error and this</span>
+    <span class="doccomment">/// When this fails, an @error will be set describing the error and this</span>
     <span class="doccomment">/// function returns [`false`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that even if this function succeeds, creating a [`GLContext`][crate::GLContext]</span>
@@ -1182,8 +1182,8 @@
 
     <span class="doccomment">/// Returns [`true`] if the display supports input shapes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This means that [``SurfaceExt::set_input_region()``][crate::prelude::`SurfaceExt::set_input_region()`] can</span>
-    <span class="doccomment">/// be used to modify the input shape of surfaces on `self`.</span>
+    <span class="doccomment">/// This means that [`SurfaceExt::set_input_region()`][crate::prelude::SurfaceExt::set_input_region()] can</span>
+    <span class="doccomment">/// be used to modify the input shape of surfaces on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
     <span class="doccomment">///</span>
@@ -1197,8 +1197,8 @@
     <span class="doccomment">/// requests have been handled.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is often used for making sure that the display is synchronized</span>
-    <span class="doccomment">/// with the current state of the program. Calling [``sync()``][`Self::sync()`]</span>
-    <span class="doccomment">/// before `GdkX11::`Display::error_trap_pop()`` makes sure that any errors</span>
+    <span class="doccomment">/// with the current state of the program. Calling [`sync()`][Self::sync()]</span>
+    <span class="doccomment">/// before `GdkX11::Display::error_trap_pop()` makes sure that any errors</span>
     <span class="doccomment">/// generated from earlier requests are handled before the error trap is removed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is most useful for X11. On windowing systems where requests are</span>
@@ -1210,13 +1210,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;input-shapes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_input_shapes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Emitted when the connection to the windowing system for `display` is closed.</span>
+    <span class="doccomment">/// Emitted when the connection to the windowing system for @display is closed.</span>
     <span class="doccomment">/// ## `is_error`</span>
     <span class="doccomment">/// [`true`] if the display was closed due to an error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;closed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_closed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted when the connection to the windowing system for `display` is opened.</span>
+    <span class="doccomment">/// Emitted when the connection to the windowing system for @display is opened.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;opened&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_opened</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 

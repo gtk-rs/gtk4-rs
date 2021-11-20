@@ -253,21 +253,21 @@
     <span class="doccomment">/// have to replace it with a new one. If you need to pass arguments to</span>
     <span class="doccomment">/// an action, these are specified by the higher-level [`Shortcut`][crate::Shortcut] object.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To activate a [`ShortcutAction`][crate::ShortcutAction] manually, [``ShortcutActionExt::activate()``][crate::prelude::`ShortcutActionExt::activate()`]</span>
+    <span class="doccomment">/// To activate a [`ShortcutAction`][crate::ShortcutAction] manually, [`ShortcutActionExt::activate()`][crate::prelude::ShortcutActionExt::activate()]</span>
     <span class="doccomment">/// can be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various actions:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - [`MnemonicAction`][crate::MnemonicAction]: a shortcut action that calls</span>
-    <span class="doccomment">///  [`WidgetExt::mnemonic_activate()`][crate::prelude::WidgetExt::mnemonic_activate()]</span>
+    <span class="doccomment">///    gtk_widget_mnemonic_activate()</span>
     <span class="doccomment">///  - [`CallbackAction`][crate::CallbackAction]: a shortcut action that invokes</span>
-    <span class="doccomment">///  a given callback</span>
+    <span class="doccomment">///    a given callback</span>
     <span class="doccomment">///  - [`SignalAction`][crate::SignalAction]: a shortcut action that emits a</span>
-    <span class="doccomment">///  given signal</span>
+    <span class="doccomment">///    given signal</span>
     <span class="doccomment">///  - [`ActivateAction`][crate::ActivateAction]: a shortcut action that calls</span>
-    <span class="doccomment">///  [`WidgetExt::activate()`][crate::prelude::WidgetExt::activate()]</span>
+    <span class="doccomment">///    gtk_widget_activate()</span>
     <span class="doccomment">///  - [`NamedAction`][crate::NamedAction]: a shortcut action that calls</span>
-    <span class="doccomment">///  `gtk_widget_activate_action()`</span>
+    <span class="doccomment">///    gtk_widget_activate_action()</span>
     <span class="doccomment">///  - [`NothingAction`][crate::NothingAction]: a shortcut action that does nothing</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
@@ -328,12 +328,12 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ActivateAction`][struct@crate::ActivateAction], [`CallbackAction`][struct@crate::CallbackAction], [`MnemonicAction`][struct@crate::MnemonicAction], [`NamedAction`][struct@crate::NamedAction], [`NothingAction`][struct@crate::NothingAction], [`ShortcutAction`][struct@crate::ShortcutAction], [`SignalAction`][struct@crate::SignalAction]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ShortcutActionExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Activates the action on the `widget` with the given `args`.</span>
+    <span class="doccomment">/// Activates the action on the @widget with the given @args.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that some actions ignore the passed in `flags`, `widget` or `args`.</span>
+    <span class="doccomment">/// Note that some actions ignore the passed in @flags, @widget or @args.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Activation of an action can fail for various reasons. If the action</span>
-    <span class="doccomment">/// is not supported by the `widget`, if the `args` don&#39;t match the action</span>
+    <span class="doccomment">/// is not supported by the @widget, if the @args don&#39;t match the action</span>
     <span class="doccomment">/// or if the activation otherwise had no effect, [`false`] will be returned.</span>
     <span class="doccomment">/// ## `flags`</span>
     <span class="doccomment">/// flags to activate with</span>
@@ -355,7 +355,7 @@
 
     <span class="doccomment">/// Prints the given action into a human-readable string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a small wrapper around `Gtk::`ShortcutAction::print()``</span>
+    <span class="doccomment">/// This is a small wrapper around `Gtk::ShortcutAction::print()`</span>
     <span class="doccomment">/// to help when debugging.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

@@ -264,7 +264,7 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A GtkTreeRowReference tracks model changes so that it always refers to the</span>
     <span class="doccomment">/// same row (a [`TreePath`][crate::TreePath] refers to a position, not a fixed row). Create a</span>
-    <span class="doccomment">/// new GtkTreeRowReference with [`new()`][Self::new()].</span>
+    <span class="doccomment">/// new GtkTreeRowReference with gtk_tree_row_reference_new().</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeRowReference</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeRowReference</span><span class="op">&gt;</span>);
 
@@ -276,12 +276,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TreeRowReference</span> {
-    <span class="doccomment">/// Creates a row reference based on `path`.</span>
+    <span class="doccomment">/// Creates a row reference based on @path.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This reference will keep pointing to the node pointed to</span>
-    <span class="doccomment">/// by `path`, so long as it exists. Any changes that occur on `model` are</span>
+    <span class="doccomment">/// by @path, so long as it exists. Any changes that occur on @model are</span>
     <span class="doccomment">/// propagated, and the path is updated appropriately. If</span>
-    <span class="doccomment">/// `path` isn’t a valid path in `model`, then [`None`] is returned.</span>
+    <span class="doccomment">/// @path isn’t a valid path in @model, then [`None`] is returned.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// a [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">/// ## `path`</span>
@@ -303,23 +303,23 @@
 
     <span class="doccomment">/// You do not need to use this function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Creates a row reference based on `path`.</span>
+    <span class="doccomment">/// Creates a row reference based on @path.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This reference will keep pointing to the node pointed to</span>
-    <span class="doccomment">/// by `path`, so long as it exists. If `path` isn’t a valid</span>
-    <span class="doccomment">/// path in `model`, then [`None`] is returned. However, unlike</span>
-    <span class="doccomment">/// references created with [`new()`][Self::new()], it</span>
+    <span class="doccomment">/// by @path, so long as it exists. If @path isn’t a valid</span>
+    <span class="doccomment">/// path in @model, then [`None`] is returned. However, unlike</span>
+    <span class="doccomment">/// references created with gtk_tree_row_reference_new(), it</span>
     <span class="doccomment">/// does not listen to the model for changes. The creator of</span>
     <span class="doccomment">/// the row reference must do this explicitly using</span>
-    <span class="doccomment">/// [`inserted()`][Self::inserted()], [`deleted()`][Self::deleted()],</span>
-    <span class="doccomment">/// [`reordered()`][Self::reordered()].</span>
+    <span class="doccomment">/// gtk_tree_row_reference_inserted(), gtk_tree_row_reference_deleted(),</span>
+    <span class="doccomment">/// gtk_tree_row_reference_reordered().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// These functions must be called exactly once per proxy when the</span>
     <span class="doccomment">/// corresponding signal on the model is emitted. This single call</span>
     <span class="doccomment">/// updates all row references for that proxy. Since built-in GTK</span>
     <span class="doccomment">/// objects like [`TreeView`][crate::TreeView] already use this mechanism internally,</span>
     <span class="doccomment">/// using them as the proxy object will produce unpredictable results.</span>
-    <span class="doccomment">/// Further more, passing the same object as `model` and `proxy`</span>
+    <span class="doccomment">/// Further more, passing the same object as @model and @proxy</span>
     <span class="doccomment">/// doesn’t work for reasons of internal implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This type of row reference is primarily meant by structures that</span>
@@ -382,12 +382,12 @@
         }
     }
 
-    <span class="doccomment">/// Returns [`true`] if the `self` is non-[`None`] and refers to</span>
+    <span class="doccomment">/// Returns [`true`] if the @self is non-[`None`] and refers to</span>
     <span class="doccomment">/// a current valid path.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` points to a valid path</span>
+    <span class="doccomment">/// [`true`] if @self points to a valid path</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_row_reference_valid&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -398,7 +398,7 @@
     }
 
     <span class="doccomment">/// Lets a set of row reference created by</span>
-    <span class="doccomment">/// [`new_proxy()`][Self::new_proxy()] know that the</span>
+    <span class="doccomment">/// gtk_tree_row_reference_new_proxy() know that the</span>
     <span class="doccomment">/// model emitted the ::row-deleted signal.</span>
     <span class="doccomment">/// ## `proxy`</span>
     <span class="doccomment">/// a `GObject`</span>
@@ -416,7 +416,7 @@
     }
 
     <span class="doccomment">/// Lets a set of row reference created by</span>
-    <span class="doccomment">/// [`new_proxy()`][Self::new_proxy()] know that the</span>
+    <span class="doccomment">/// gtk_tree_row_reference_new_proxy() know that the</span>
     <span class="doccomment">/// model emitted the ::row-inserted signal.</span>
     <span class="doccomment">/// ## `proxy`</span>
     <span class="doccomment">/// a `GObject`</span>

@@ -612,7 +612,7 @@
     <span class="doccomment">/// To use a [`DropTargetAsync`][crate::DropTargetAsync] to receive drops on a widget, you create</span>
     <span class="doccomment">/// a [`DropTargetAsync`][crate::DropTargetAsync] object, configure which data formats and actions</span>
     <span class="doccomment">/// you support, connect to its signals, and then attach it to the widget</span>
-    <span class="doccomment">/// with [``WidgetExt::add_controller()``][crate::prelude::`WidgetExt::add_controller()`].</span>
+    <span class="doccomment">/// with [`WidgetExt::add_controller()`][crate::prelude::WidgetExt::add_controller()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// During a drag operation, the first signal that a [`DropTargetAsync`][crate::DropTargetAsync]</span>
     <span class="doccomment">/// emits is `signal::DropTargetAsync::accept`, which is meant to determine</span>
@@ -631,7 +631,7 @@
     <span class="doccomment">/// to update the status of the ongoing operation. The ::drop handler</span>
     <span class="doccomment">/// should decide if it ultimately accepts the drop and if it does, it</span>
     <span class="doccomment">/// should initiate the data transfer and finish the operation by calling</span>
-    <span class="doccomment">/// [``Drop::finish()``][crate::gdk::`Drop::finish()`].</span>
+    <span class="doccomment">/// [`Drop::finish()`][crate::gdk::Drop::finish()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Between the ::drag-enter and ::drag-leave signals the widget is a</span>
     <span class="doccomment">/// current drop target, and will receive the [`StateFlags::DROP_ACTIVE`][crate::StateFlags::DROP_ACTIVE]</span>
@@ -709,7 +709,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `drop` as not accepted on this drag site.</span>
+    <span class="doccomment">/// Sets the @drop as not accepted on this drag site.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be used when delaying the decision</span>
     <span class="doccomment">/// on whether to accept a drag or not until after reading</span>
@@ -747,23 +747,23 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the drop is not accepted, [`false`] will be returned and the drop target</span>
     <span class="doccomment">/// will ignore the drop. If [`true`] is returned, the drop is accepted for now</span>
-    <span class="doccomment">/// but may be rejected later via a call to [``reject_drop()``][`Self::reject_drop()`]</span>
+    <span class="doccomment">/// but may be rejected later via a call to [`reject_drop()`][Self::reject_drop()]</span>
     <span class="doccomment">/// or ultimately by returning [`false`] from a `signal::DropTargetAsync::drop`</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal decides whether to accept the drop</span>
-    <span class="doccomment">/// based on the formats provided by the `drop`.</span>
+    <span class="doccomment">/// based on the formats provided by the @drop.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the decision whether the drop will be accepted or rejected needs</span>
     <span class="doccomment">/// further processing, such as inspecting the data, this function should</span>
-    <span class="doccomment">/// return [`true`] and proceed as is `drop` was accepted and if it decides to</span>
-    <span class="doccomment">/// reject the drop later, it should call [``reject_drop()``][`Self::reject_drop()`].</span>
+    <span class="doccomment">/// return [`true`] and proceed as is @drop was accepted and if it decides to</span>
+    <span class="doccomment">/// reject the drop later, it should call [`reject_drop()`][Self::reject_drop()].</span>
     <span class="doccomment">/// ## `drop`</span>
     <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `drop` is accepted</span>
+    <span class="doccomment">/// [`true`] if @drop is accepted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;accept&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_accept</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) -&gt; <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -914,13 +914,13 @@
     <span class="doccomment">/// further processing is necessary.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Otherwise, the handler returns [`true`]. In this case, this handler will</span>
-    <span class="doccomment">/// accept the drop. The handler must ensure that [``Drop::finish()``][crate::gdk::`Drop::finish()`]</span>
+    <span class="doccomment">/// accept the drop. The handler must ensure that [`Drop::finish()`][crate::gdk::Drop::finish()]</span>
     <span class="doccomment">/// is called to let the source know that the drop is done. The call to</span>
-    <span class="doccomment">/// [``Drop::finish()``][crate::gdk::`Drop::finish()`] must only be done when all data has been received.</span>
+    <span class="doccomment">/// [`Drop::finish()`][crate::gdk::Drop::finish()] must only be done when all data has been received.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To receive the data, use one of the read functions provided by</span>
-    <span class="doccomment">/// [`gdk::Drop`][crate::gdk::Drop] such as [``Drop::read_async()``][crate::gdk::`Drop::read_async()`] or</span>
-    <span class="doccomment">/// [``Drop::read_value_async()``][crate::gdk::`Drop::read_value_async()`].</span>
+    <span class="doccomment">/// [`gdk::Drop`][crate::gdk::Drop] such as [`Drop::read_async()`][crate::gdk::Drop::read_async()] or</span>
+    <span class="doccomment">/// [`Drop::read_value_async()`][crate::gdk::Drop::read_value_async()].</span>
     <span class="doccomment">/// ## `drop`</span>
     <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">/// ## `x`</span>

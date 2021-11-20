@@ -233,8 +233,8 @@
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The</span>
-<span class="doccomment">///  [`gdk::Device`][crate::gdk::Device] wrapping the device ID, or [`None`] if the given ID</span>
-<span class="doccomment">///  doesn’t currently represent a device.</span>
+<span class="doccomment">///   [`gdk::Device`][crate::gdk::Device] wrapping the device ID, or [`None`] if the given ID</span>
+<span class="doccomment">///   doesn’t currently represent a device.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_device_manager_lookup&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x11_device_manager_lookup</span>(
     <span class="ident">device_manager</span>: <span class="kw-2">&amp;</span><span class="ident">X11DeviceManagerXI2</span>,
@@ -252,8 +252,8 @@
 <span class="doccomment">/// Routine to get the current X server time stamp.</span>
 <span class="doccomment">/// ## `surface`</span>
 <span class="doccomment">/// a [`gdk::Surface`][crate::gdk::Surface], used for communication</span>
-<span class="doccomment">///  with the server. The surface must have `GDK_PROPERTY_CHANGE_MASK` in</span>
-<span class="doccomment">///  its events mask or a hang will result.</span>
+<span class="doccomment">///   with the server. The surface must have `GDK_PROPERTY_CHANGE_MASK` in</span>
+<span class="doccomment">///   its events mask or a hang will result.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -264,7 +264,7 @@
     <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_get_server_time</span>(<span class="ident">surface</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
 }
 
-<span class="doccomment">/// Returns the X atom for a [`gdk::Display`][crate::gdk::Display] corresponding to `atom_name`.</span>
+<span class="doccomment">/// Returns the X atom for a [`gdk::Display`][crate::gdk::Display] corresponding to @atom_name.</span>
 <span class="doccomment">/// This function caches the result, so if called repeatedly it is much</span>
 <span class="doccomment">/// faster than XInternAtom(), which is a round trip to the server each time.</span>
 <span class="doccomment">/// ## `display`</span>
@@ -291,14 +291,14 @@
 <span class="doccomment">/// XAtomName() and the result doesn’t need to</span>
 <span class="doccomment">/// be freed.</span>
 <span class="doccomment">/// ## `display`</span>
-<span class="doccomment">/// the [`gdk::Display`][crate::gdk::Display] where `xatom` is defined</span>
+<span class="doccomment">/// the [`gdk::Display`][crate::gdk::Display] where @xatom is defined</span>
 <span class="doccomment">/// ## `xatom`</span>
 <span class="doccomment">/// an X atom</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// name of the X atom; this string is owned by GDK,</span>
-<span class="doccomment">///  so it shouldn’t be modified or freed.</span>
+<span class="doccomment">///   so it shouldn’t be modified or freed.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_get_xatom_name_for_display&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x11_get_xatom_name_for_display</span>(
     <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">X11Display</span>,
@@ -321,7 +321,7 @@
 <span class="doccomment">/// session management and the Inter-Client Communication Conventions Manual</span>
 <span class="doccomment">/// ## `sm_client_id`</span>
 <span class="doccomment">/// the client id assigned by the session manager</span>
-<span class="doccomment">///  when the connection was opened, or [`None`] to remove the property.</span>
+<span class="doccomment">///    when the connection was opened, or [`None`] to remove the property.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_set_sm_client_id&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x11_set_sm_client_id</span>(<span class="ident">sm_client_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();

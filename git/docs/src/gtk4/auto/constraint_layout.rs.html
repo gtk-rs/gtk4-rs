@@ -479,10 +479,10 @@
     <span class="doccomment">/// The definition above will add two constraints to the GtkConstraintLayout:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - a required constraint between the leading edge of &quot;button&quot; and</span>
-    <span class="doccomment">///  the leading edge of the widget using the constraint layout, plus</span>
-    <span class="doccomment">///  12 pixels</span>
+    <span class="doccomment">///    the leading edge of the widget using the constraint layout, plus</span>
+    <span class="doccomment">///    12 pixels</span>
     <span class="doccomment">///  - a strong, constant constraint making the width of &quot;button&quot; greater</span>
-    <span class="doccomment">///  than, or equal to 250 pixels</span>
+    <span class="doccomment">///    than, or equal to 250 pixels</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The &quot;target&quot; and &quot;target-attribute&quot; attributes are required.</span>
     <span class="doccomment">///</span>
@@ -513,14 +513,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The &quot;guide&quot; element has the following optional attributes:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  - &quot;min-width&quot;, &quot;nat-width&quot;, and &quot;max-width&quot;, describe the minimum,</span>
-    <span class="doccomment">///  natural, and maximum width of the guide, respectively</span>
-    <span class="doccomment">///  - &quot;min-height&quot;, &quot;nat-height&quot;, and &quot;max-height&quot;, describe the minimum,</span>
-    <span class="doccomment">///  natural, and maximum height of the guide, respectively</span>
-    <span class="doccomment">///  - &quot;strength&quot; describes the strength of the constraint on the natural</span>
-    <span class="doccomment">///  size of the guide; if not specified, the constraint is assumed to</span>
-    <span class="doccomment">///  have a medium strength</span>
-    <span class="doccomment">///  - &quot;name&quot; describes a name for the guide, useful when debugging</span>
+    <span class="doccomment">///   - &quot;min-width&quot;, &quot;nat-width&quot;, and &quot;max-width&quot;, describe the minimum,</span>
+    <span class="doccomment">///     natural, and maximum width of the guide, respectively</span>
+    <span class="doccomment">///   - &quot;min-height&quot;, &quot;nat-height&quot;, and &quot;max-height&quot;, describe the minimum,</span>
+    <span class="doccomment">///     natural, and maximum height of the guide, respectively</span>
+    <span class="doccomment">///   - &quot;strength&quot; describes the strength of the constraint on the natural</span>
+    <span class="doccomment">///     size of the guide; if not specified, the constraint is assumed to</span>
+    <span class="doccomment">///     have a medium strength</span>
+    <span class="doccomment">///   - &quot;name&quot; describes a name for the guide, useful when debugging</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ### Using the Visual Format Language</span>
     <span class="doccomment">///</span>
@@ -609,12 +609,12 @@
     <span class="doccomment">/// properties of `constraint` can be:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - set to `NULL` to indicate that the constraint refers to the</span>
-    <span class="doccomment">///  widget using `layout`</span>
+    <span class="doccomment">///    widget using `layout`</span>
     <span class="doccomment">///  - set to the [`Widget`][crate::Widget] using `layout`</span>
     <span class="doccomment">///  - set to a child of the [`Widget`][crate::Widget] using `layout`</span>
     <span class="doccomment">///  - set to a [`ConstraintGuide`][crate::ConstraintGuide] that is part of `layout`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `self` acquires the ownership of `constraint` after calling</span>
+    <span class="doccomment">/// The @self acquires the ownership of @constraint after calling</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `constraint`</span>
     <span class="doccomment">/// a [`Constraint`][crate::Constraint]</span>
@@ -657,7 +657,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a</span>
-    <span class="doccomment">///  `GListModel` tracking the layout&#39;s constraints</span>
+    <span class="doccomment">///   `GListModel` tracking the layout&#39;s constraints</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_observe_constraints&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">observe_constraints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gio::ListModel</span> {
         <span class="kw">unsafe</span> {
@@ -680,7 +680,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a</span>
-    <span class="doccomment">///  `GListModel` tracking the layout&#39;s guides</span>
+    <span class="doccomment">///   `GListModel` tracking the layout&#39;s guides</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_observe_guides&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">observe_guides</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gio::ListModel</span> {
         <span class="kw">unsafe</span> {

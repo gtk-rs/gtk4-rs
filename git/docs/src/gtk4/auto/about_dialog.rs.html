@@ -2010,16 +2010,16 @@
     <span class="doccomment">/// ![An example GtkAboutDialog](aboutdialog.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// About dialogs often contain links and email addresses. [`AboutDialog`][crate::AboutDialog]</span>
-    <span class="doccomment">/// displays these as clickable links. By default, it calls [``show_uri()``][`crate::show_uri()`]</span>
+    <span class="doccomment">/// displays these as clickable links. By default, it calls [`show_uri()`][crate::show_uri()]</span>
     <span class="doccomment">/// when a user clicks one. The behaviour can be overridden with the</span>
     <span class="doccomment">/// `signal::AboutDialog::activate-link` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To specify a person with an email address, use a string like</span>
-    <span class="doccomment">/// `Edgar Allan Poe &lt;edgar`poe`&gt;`. To specify a website with a title,</span>
+    <span class="doccomment">/// `Edgar Allan Poe &lt;edgar@poe.com&gt;`. To specify a website with a title,</span>
     <span class="doccomment">/// use a string like `GTK team https://www.gtk.org`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To make constructing a [`AboutDialog`][crate::AboutDialog] as convenient as possible, you can</span>
-    <span class="doccomment">/// use the function [``show_about_dialog()``][`crate::show_about_dialog()`] which constructs and shows</span>
+    <span class="doccomment">/// use the function [`show_about_dialog()`][crate::show_about_dialog()] which constructs and shows</span>
     <span class="doccomment">/// a dialog and keeps it around so that it can be shown again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that GTK sets a default title of `_(&quot;About `s`&quot;)` on the dialog</span>
@@ -2100,7 +2100,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A</span>
-    <span class="doccomment">///  `NULL`-terminated string array containing the artists</span>
+    <span class="doccomment">///   `NULL`-terminated string array containing the artists</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_get_artists&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_artists&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">artists</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2117,7 +2117,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A</span>
-    <span class="doccomment">///  `NULL`-terminated string array containing the authors</span>
+    <span class="doccomment">///   `NULL`-terminated string array containing the authors</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_get_authors&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_authors&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2156,7 +2156,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A</span>
-    <span class="doccomment">///  `NULL`-terminated string array containing the documenters</span>
+    <span class="doccomment">///   `NULL`-terminated string array containing the documenters</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_get_documenters&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_documenters&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">documenters</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2198,8 +2198,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the paintable displayed as</span>
-    <span class="doccomment">///  logo or `NULL` if the logo is unset or has been set via</span>
-    <span class="doccomment">///  [``set_logo_icon_name()``][`Self::set_logo_icon_name()`]</span>
+    <span class="doccomment">///   logo or `NULL` if the logo is unset or has been set via</span>
+    <span class="doccomment">///   [`set_logo_icon_name()`][Self::set_logo_icon_name()]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_get_logo&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_logo&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">logo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
@@ -2211,7 +2211,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the icon name displayed as logo,</span>
-    <span class="doccomment">///  or `NULL` if the logo has been set via [``set_logo()``][`Self::set_logo()`]</span>
+    <span class="doccomment">///   or `NULL` if the logo has been set via [`set_logo()`][Self::set_logo()]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_get_logo_icon_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_logo_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">logo_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2325,7 +2325,7 @@
     <span class="doccomment">/// in the &quot;Credits&quot; page.</span>
     <span class="doccomment">/// ## `artists`</span>
     <span class="doccomment">/// the authors of the artwork</span>
-    <span class="doccomment">///  of the application</span>
+    <span class="doccomment">///   of the application</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_set_artists&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_artists</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">artists</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) {
         <span class="kw">unsafe</span> {
@@ -2372,7 +2372,7 @@
     <span class="doccomment">/// in the &quot;Credits&quot; page.</span>
     <span class="doccomment">/// ## `documenters`</span>
     <span class="doccomment">/// the authors of the documentation</span>
-    <span class="doccomment">///  of the application</span>
+    <span class="doccomment">///   of the application</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_set_documenters&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_documenters</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">documenters</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) {
         <span class="kw">unsafe</span> {
@@ -2400,7 +2400,7 @@
     <span class="doccomment">/// list of known licenses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function overrides the license set using</span>
-    <span class="doccomment">/// [``set_license()``][`Self::set_license()`].</span>
+    <span class="doccomment">/// [`set_license()`][Self::set_license()].</span>
     <span class="doccomment">/// ## `license_type`</span>
     <span class="doccomment">/// the type of license</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_set_license_type&quot;</span>)]</span>
@@ -2439,7 +2439,7 @@
     <span class="doccomment">/// Sets the name to display in the about dialog.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `name` is not set, the string returned</span>
-    <span class="doccomment">/// by ``g_get_application_name()`` is used.</span>
+    <span class="doccomment">/// by `g_get_application_name()` is used.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the program name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_about_dialog_set_program_name&quot;</span>)]</span>
@@ -2473,7 +2473,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The intended use for this string is to display the translator</span>
     <span class="doccomment">/// of the language which is currently used in the user interface.</span>
-    <span class="doccomment">/// Using ``gettext()``, a simple way to achieve that is to mark the</span>
+    <span class="doccomment">/// Using `gettext()`, a simple way to achieve that is to mark the</span>
     <span class="doccomment">/// string for translation:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// **⚠️ The following code is in c ⚠️**</span>
@@ -2547,7 +2547,7 @@
     <span class="doccomment">/// Emitted every time a URL is activated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications may connect to it to override the default behaviour,</span>
-    <span class="doccomment">/// which is to call [``show_uri()``][`crate::show_uri()`].</span>
+    <span class="doccomment">/// which is to call [`show_uri()`][crate::show_uri()].</span>
     <span class="doccomment">/// ## `uri`</span>
     <span class="doccomment">/// the URI that is activated</span>
     <span class="doccomment">///</span>
@@ -3329,7 +3329,7 @@
     <span class="doccomment">/// `GTK_LICENSE_CUSTOM` as a side effect.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The text may contain links in this format `&lt;http://www.some.place/&gt;`</span>
-    <span class="doccomment">/// and email references in the form `&lt;mail-to`some`&gt;`, and these will</span>
+    <span class="doccomment">/// and email references in the form `&lt;mail-to@some.body&gt;`, and these will</span>
     <span class="doccomment">/// be converted into clickable links.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">license</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">license</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">license</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">license</span>.<span class="ident">to_string</span>());
@@ -3376,7 +3376,7 @@
     <span class="doccomment">/// The name of the program.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this is not set, it defaults to the value returned by</span>
-    <span class="doccomment">/// ``g_get_application_name()``.</span>
+    <span class="doccomment">/// `g_get_application_name()`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">program_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">program_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">program_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">program_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -3389,7 +3389,7 @@
     <span class="doccomment">/// the intended linebreaks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The text may contain links in this format `&lt;http://www.some.place/&gt;`</span>
-    <span class="doccomment">/// and email references in the form `&lt;mail-to`some`&gt;`, and these will</span>
+    <span class="doccomment">/// and email references in the form `&lt;mail-to@some.body&gt;`, and these will</span>
     <span class="doccomment">/// be converted into clickable links.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_information</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">system_information</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">system_information</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">system_information</span>.<span class="ident">to_string</span>());
@@ -3436,7 +3436,7 @@
     <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
+    <span class="doccomment">/// has any windows associated with it (see g_application_hold()</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -3513,7 +3513,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::fullscreen()`][crate::prelude::GtkWindowExt::fullscreen()] or [`GtkWindowExt::unfullscreen()`][crate::prelude::GtkWindowExt::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -3548,7 +3548,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::maximize()`][crate::prelude::GtkWindowExt::maximize()] or [`GtkWindowExt::unmaximize()`][crate::prelude::GtkWindowExt::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -3635,7 +3635,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -3661,9 +3661,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -3705,7 +3705,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -3718,7 +3718,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -3731,7 +3731,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -3741,7 +3741,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -3783,7 +3783,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -3800,7 +3800,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

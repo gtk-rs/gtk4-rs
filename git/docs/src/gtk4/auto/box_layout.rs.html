@@ -442,7 +442,7 @@
         <span class="ident">BoxLayoutBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Gets the value set by [`set_baseline_position()`][Self::set_baseline_position()].</span>
+    <span class="doccomment">/// Gets the value set by gtk_box_layout_set_baseline_position().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -468,7 +468,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_box_layout_get_homogeneous</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the space that `self` puts between children.</span>
+    <span class="doccomment">/// Returns the space that @self puts between children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -484,7 +484,7 @@
     <span class="doccomment">/// The baseline position affects only horizontal boxes with at least one</span>
     <span class="doccomment">/// baseline aligned child. If there is more vertical space available than</span>
     <span class="doccomment">/// requested, and the baseline is not allocated by the parent then the</span>
-    <span class="doccomment">/// given `position` is used to allocate the baseline within the extra</span>
+    <span class="doccomment">/// given @position is used to allocate the baseline within the extra</span>
     <span class="doccomment">/// space available.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// a [`BaselinePosition`][crate::BaselinePosition]</span>

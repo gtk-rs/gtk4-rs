@@ -1090,15 +1090,15 @@
     <span class="doccomment">/// Apart from application-facing API for stream playback, [`MediaStream`][crate::MediaStream]</span>
     <span class="doccomment">/// has a number of APIs that are only useful for implementations and should</span>
     <span class="doccomment">/// not be used in applications:</span>
-    <span class="doccomment">/// [``MediaStreamExt::prepared()``][crate::prelude::`MediaStreamExt::prepared()`],</span>
-    <span class="doccomment">/// [``MediaStreamExt::unprepared()``][crate::prelude::`MediaStreamExt::unprepared()`],</span>
-    <span class="doccomment">/// [``MediaStreamExt::update()``][crate::prelude::`MediaStreamExt::update()`],</span>
-    <span class="doccomment">/// [``MediaStreamExt::ended()``][crate::prelude::`MediaStreamExt::ended()`],</span>
-    <span class="doccomment">/// [``MediaStreamExt::seek_success()``][crate::prelude::`MediaStreamExt::seek_success()`],</span>
-    <span class="doccomment">/// [``MediaStreamExt::seek_failed()``][crate::prelude::`MediaStreamExt::seek_failed()`],</span>
-    <span class="doccomment">/// [``MediaStreamExtManual::set_error()``][crate::prelude::`MediaStreamExtManual::set_error()`],</span>
-    <span class="doccomment">/// `Gtk::`MediaStream::error()``,</span>
-    <span class="doccomment">/// `Gtk::`MediaStream::error_valist()``.</span>
+    <span class="doccomment">/// [`MediaStreamExt::prepared()`][crate::prelude::MediaStreamExt::prepared()],</span>
+    <span class="doccomment">/// [`MediaStreamExt::unprepared()`][crate::prelude::MediaStreamExt::unprepared()],</span>
+    <span class="doccomment">/// [`MediaStreamExt::update()`][crate::prelude::MediaStreamExt::update()],</span>
+    <span class="doccomment">/// [`MediaStreamExt::ended()`][crate::prelude::MediaStreamExt::ended()],</span>
+    <span class="doccomment">/// [`MediaStreamExt::seek_success()`][crate::prelude::MediaStreamExt::seek_success()],</span>
+    <span class="doccomment">/// [`MediaStreamExt::seek_failed()`][crate::prelude::MediaStreamExt::seek_failed()],</span>
+    <span class="doccomment">/// [`MediaStreamExtManual::set_error()`][crate::prelude::MediaStreamExtManual::set_error()],</span>
+    <span class="doccomment">/// `Gtk::MediaStream::error()`,</span>
+    <span class="doccomment">/// `Gtk::MediaStream::error_valist()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
@@ -1125,14 +1125,14 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MediaStreamExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Pauses the media stream and marks it as ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a hint only, calls to [``play()``][`Self::play()`]</span>
+    <span class="doccomment">/// This is a hint only, calls to [`play()`][Self::play()]</span>
     <span class="doccomment">/// may still happen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The media stream must be prepared when this function is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.4</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``stream_ended()``][`Self::stream_ended()`] instead</span>
+    <span class="doccomment">/// Use [`stream_ended()`][Self::stream_ended()] instead</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.4&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_ended&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">ended</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -1157,23 +1157,23 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_ended&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_ended</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets `self` into an error state using a `printf()`-style format string.</span>
+    <span class="doccomment">/// Sets @self into an error state using a printf()-style format string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls [``MediaStreamExtManual::set_error()``][crate::prelude::`MediaStreamExtManual::set_error()`].</span>
+    <span class="doccomment">/// This is a utility function that calls [`MediaStreamExtManual::set_error()`][crate::prelude::MediaStreamExtManual::set_error()].</span>
     <span class="doccomment">/// See that function for details.</span>
     <span class="doccomment">/// ## `domain`</span>
     <span class="doccomment">/// error domain</span>
     <span class="doccomment">/// ## `code`</span>
     <span class="doccomment">/// error code</span>
     <span class="doccomment">/// ## `format`</span>
-    <span class="doccomment">/// `printf()`-style format for error message</span>
+    <span class="doccomment">/// printf()-style format for error message</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_error&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns whether the stream is set to loop.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_loop()``][`Self::set_loop()`] for details.</span>
+    <span class="doccomment">/// See [`set_loop()`][Self::set_loop()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1184,7 +1184,7 @@
 
     <span class="doccomment">/// Returns whether the audio for the stream is muted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_muted()``][`Self::set_muted()`] for details.</span>
+    <span class="doccomment">/// See [`set_muted()`][Self::set_muted()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1213,7 +1213,7 @@
 
     <span class="doccomment">/// Returns the volume of the audio for the stream.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_volume()``][`Self::set_volume()`] for details.</span>
+    <span class="doccomment">/// See [`set_volume()`][Self::set_volume()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1255,7 +1255,7 @@
     <span class="doccomment">/// [`false`], streams are guaranteed to not be seekable and user interfaces</span>
     <span class="doccomment">/// may hide controls that allow seeking.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is allowed to call [``seek()``][`Self::seek()`] on a non-seekable</span>
+    <span class="doccomment">/// It is allowed to call [`seek()`][Self::seek()] on a non-seekable</span>
     <span class="doccomment">/// stream, though it will not do anything.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1284,11 +1284,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_play&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">play</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Same as [`stream_prepared()`][Self::stream_prepared()].</span>
+    <span class="doccomment">/// Same as gtk_media_stream_stream_prepared().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.4</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``stream_prepared()``][`Self::stream_prepared()`] instead.</span>
+    <span class="doccomment">/// Use [`stream_prepared()`][Self::stream_prepared()] instead.</span>
     <span class="doccomment">/// ## `has_audio`</span>
     <span class="doccomment">/// [`true`] if the stream should advertise audio support</span>
     <span class="doccomment">/// ## `has_video`</span>
@@ -1303,18 +1303,18 @@
 
     <span class="doccomment">/// Called by users to attach the media stream to a [`gdk::Surface`][crate::gdk::Surface] they manage.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The stream can then access the resources of `surface` for its</span>
+    <span class="doccomment">/// The stream can then access the resources of @surface for its</span>
     <span class="doccomment">/// rendering purposes. In particular, media streams might want to</span>
     <span class="doccomment">/// create a [`gdk::GLContext`][crate::gdk::GLContext] or sync to the [`gdk::FrameClock`][crate::gdk::FrameClock].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whoever calls this function is responsible for calling</span>
-    <span class="doccomment">/// [``unrealize()``][`Self::unrealize()`] before either the stream</span>
-    <span class="doccomment">/// or `surface` get destroyed.</span>
+    <span class="doccomment">/// [`unrealize()`][Self::unrealize()] before either the stream</span>
+    <span class="doccomment">/// or @surface get destroyed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Multiple calls to this function may happen from different</span>
-    <span class="doccomment">/// users of the video, even with the same `surface`. Each of these</span>
+    <span class="doccomment">/// users of the video, even with the same @surface. Each of these</span>
     <span class="doccomment">/// calls must be followed by its own call to</span>
-    <span class="doccomment">/// [``unrealize()``][`Self::unrealize()`].</span>
+    <span class="doccomment">/// [`unrealize()`][Self::unrealize()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is not required to call this function to make a media stream work.</span>
     <span class="doccomment">/// ## `surface`</span>
@@ -1322,15 +1322,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_realize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Start a seek operation on `self` to `timestamp`.</span>
+    <span class="doccomment">/// Start a seek operation on @self to @timestamp.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `timestamp` is out of range, it will be clamped.</span>
+    <span class="doccomment">/// If @timestamp is out of range, it will be clamped.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Seek operations may not finish instantly. While a</span>
     <span class="doccomment">/// seek operation is in process, the `property::MediaStream::seeking`</span>
     <span class="doccomment">/// property will be set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When calling [`seek()`][Self::seek()] during an</span>
+    <span class="doccomment">/// When calling gtk_media_stream_seek() during an</span>
     <span class="doccomment">/// ongoing seek operation, the new seek will override</span>
     <span class="doccomment">/// any pending seek.</span>
     <span class="doccomment">/// ## `timestamp`</span>
@@ -1338,22 +1338,22 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_seek&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">seek</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">timestamp</span>: <span class="ident">i64</span>);
 
-    <span class="doccomment">/// Ends a seek operation started via `GtkMediaStream.seek()` as a failure.</span>
+    <span class="doccomment">/// Ends a seek operation started via GtkMediaStream.seek() as a failure.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will not cause an error on the stream and will assume that</span>
     <span class="doccomment">/// playback continues as if no seek had happened.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``seek_success()``][`Self::seek_success()`] for the other way of</span>
+    <span class="doccomment">/// See [`seek_success()`][Self::seek_success()] for the other way of</span>
     <span class="doccomment">/// ending a seek.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_seek_failed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">seek_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Ends a seek operation started via `GtkMediaStream.seek()` successfully.</span>
+    <span class="doccomment">/// Ends a seek operation started via GtkMediaStream.seek() successfully.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will unset the GtkMediaStream:ended property</span>
     <span class="doccomment">/// if it was set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``seek_failed()``][`Self::seek_failed()`] for the other way of</span>
+    <span class="doccomment">/// See [`seek_failed()`][Self::seek_failed()] for the other way of</span>
     <span class="doccomment">/// ending a seek.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_seek_success&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">seek_success</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -1394,7 +1394,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function call will work even if the stream is muted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The given `volume` should range from 0.0 for silence to 1.0</span>
+    <span class="doccomment">/// The given @volume should range from 0.0 for silence to 1.0</span>
     <span class="doccomment">/// for as loud as possible. Values outside of this range will</span>
     <span class="doccomment">/// be clamped to the nearest value.</span>
     <span class="doccomment">///</span>
@@ -1408,7 +1408,7 @@
 
     <span class="doccomment">/// Pauses the media stream and marks it as ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a hint only, calls to [``play()``][`Self::play()`]</span>
+    <span class="doccomment">/// This is a hint only, calls to [`play()`][Self::play()]</span>
     <span class="doccomment">/// may still happen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The media stream must be prepared when this function is called.</span>
@@ -1426,7 +1426,7 @@
     <span class="doccomment">/// values to determine what controls to show.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function may not be called again until the stream has been</span>
-    <span class="doccomment">/// reset via [``stream_unprepared()``][`Self::stream_unprepared()`].</span>
+    <span class="doccomment">/// reset via [`stream_unprepared()`][Self::stream_unprepared()].</span>
     <span class="doccomment">/// ## `has_audio`</span>
     <span class="doccomment">/// [`true`] if the stream should advertise audio support</span>
     <span class="doccomment">/// ## `has_video`</span>
@@ -1442,7 +1442,7 @@
 
     <span class="doccomment">/// Resets a given media stream implementation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [``stream_prepared()``][`Self::stream_prepared()`] can then be called again.</span>
+    <span class="doccomment">/// [`stream_prepared()`][Self::stream_prepared()] can then be called again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will also reset any error state the stream was in.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
@@ -1450,19 +1450,19 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_stream_unprepared&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">stream_unprepared</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Same as [`stream_unprepared()`][Self::stream_unprepared()].</span>
+    <span class="doccomment">/// Same as gtk_media_stream_stream_unprepared().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.4</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``stream_unprepared()``][`Self::stream_unprepared()`] instead.</span>
+    <span class="doccomment">/// Use [`stream_unprepared()`][Self::stream_unprepared()] instead.</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.4&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_unprepared&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unprepared</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Undoes a previous call to [`realize()`][Self::realize()].</span>
+    <span class="doccomment">/// Undoes a previous call to gtk_media_stream_realize().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This causes the stream to release all resources it had</span>
-    <span class="doccomment">/// allocated from `surface`.</span>
+    <span class="doccomment">/// allocated from @surface.</span>
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// the [`gdk::Surface`][crate::gdk::Surface] the stream was realized with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_unrealize&quot;</span>)]</span>

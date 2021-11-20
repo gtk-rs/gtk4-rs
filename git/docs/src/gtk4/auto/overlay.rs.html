@@ -781,7 +781,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`Overlay`][crate::Overlay] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports placing a child as an overlay by specifying “overlay” as</span>
-    <span class="doccomment">/// the “type” attribute of a ``&lt;child&gt;`` element.</span>
+    <span class="doccomment">/// the “type” attribute of a `&lt;child&gt;` element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
@@ -820,12 +820,12 @@
         <span class="ident">OverlayBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Adds `widget` to `self`.</span>
+    <span class="doccomment">/// Adds @widget to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The widget will be stacked on top of the main widget</span>
-    <span class="doccomment">/// added with [``set_child()``][`Self::set_child()`].</span>
+    <span class="doccomment">/// added with [`set_child()`][Self::set_child()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The position at which `widget` is placed is determined</span>
+    <span class="doccomment">/// The position at which @widget is placed is determined</span>
     <span class="doccomment">/// from its `property::Widget::halign` and</span>
     <span class="doccomment">/// `property::Widget::valign` properties.</span>
     <span class="doccomment">/// ## `widget`</span>
@@ -837,18 +837,18 @@
         }
     }
 
-    <span class="doccomment">/// Gets the child widget of `self`.</span>
+    <span class="doccomment">/// Gets the child widget of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget of `self`</span>
+    <span class="doccomment">/// the child widget of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_overlay_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets whether `widget` should be clipped within the parent.</span>
+    <span class="doccomment">/// Gets whether @widget should be clipped within the parent.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">///</span>
@@ -866,8 +866,8 @@
         }
     }
 
-    <span class="doccomment">/// Gets whether `widget`&#39;s size is included in the measurement of</span>
-    <span class="doccomment">/// `self`.</span>
+    <span class="doccomment">/// Gets whether @widget&#39;s size is included in the measurement of</span>
+    <span class="doccomment">/// @self.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">///</span>
@@ -885,7 +885,7 @@
         }
     }
 
-    <span class="doccomment">/// Removes an overlay that was added with [`add_overlay()`][Self::add_overlay()].</span>
+    <span class="doccomment">/// Removes an overlay that was added with gtk_overlay_add_overlay().</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// a [`Widget`][crate::Widget] to be removed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_remove_overlay&quot;</span>)]</span>
@@ -898,7 +898,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the child widget of `self`.</span>
+    <span class="doccomment">/// Sets the child widget of @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_set_child&quot;</span>)]</span>
@@ -911,7 +911,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether `widget` should be clipped within the parent.</span>
+    <span class="doccomment">/// Sets whether @widget should be clipped within the parent.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">/// ## `clip_overlay`</span>
@@ -927,11 +927,11 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether `widget` is included in the measured size of `self`.</span>
+    <span class="doccomment">/// Sets whether @widget is included in the measured size of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The overlay will request the size of the largest child that has</span>
     <span class="doccomment">/// this property set to [`true`]. Children who are not included may</span>
-    <span class="doccomment">/// be drawn outside of `self`&#39;s allocation if they are too large.</span>
+    <span class="doccomment">/// be drawn outside of @self&#39;s allocation if they are too large.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">/// ## `measure`</span>
@@ -1165,7 +1165,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1191,9 +1191,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1235,7 +1235,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1248,7 +1248,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1261,7 +1261,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1271,7 +1271,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1313,7 +1313,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1330,7 +1330,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

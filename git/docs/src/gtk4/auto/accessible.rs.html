@@ -259,7 +259,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///  - a “role”, represented by a value of the [`AccessibleRole`][crate::AccessibleRole] enumeration</span>
     <span class="doccomment">///  - an “attribute”, represented by a set of [`AccessibleState`][crate::AccessibleState],</span>
-    <span class="doccomment">///  [`AccessibleProperty`][crate::AccessibleProperty] and [`AccessibleRelation`][crate::AccessibleRelation] values</span>
+    <span class="doccomment">///    [`AccessibleProperty`][crate::AccessibleProperty] and [`AccessibleRelation`][crate::AccessibleRelation] values</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The role cannot be changed after instantiating a [`Accessible`][crate::Accessible]</span>
     <span class="doccomment">/// implementation.</span>
@@ -299,19 +299,19 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_accessible_role&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AccessibleRole</span>;
 
-    <span class="doccomment">/// Resets the accessible `property` to its default value.</span>
+    <span class="doccomment">/// Resets the accessible @property to its default value.</span>
     <span class="doccomment">/// ## `property`</span>
     <span class="doccomment">/// a [`AccessibleProperty`][crate::AccessibleProperty]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_reset_property&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset_property</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">property</span>: <span class="ident">AccessibleProperty</span>);
 
-    <span class="doccomment">/// Resets the accessible `relation` to its default value.</span>
+    <span class="doccomment">/// Resets the accessible @relation to its default value.</span>
     <span class="doccomment">/// ## `relation`</span>
     <span class="doccomment">/// a [`AccessibleRelation`][crate::AccessibleRelation]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_reset_relation&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset_relation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">relation</span>: <span class="ident">AccessibleRelation</span>);
 
-    <span class="doccomment">/// Resets the accessible `state` to its default value.</span>
+    <span class="doccomment">/// Resets the accessible @state to its default value.</span>
     <span class="doccomment">/// ## `state`</span>
     <span class="doccomment">/// a [`AccessibleState`][crate::AccessibleState]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_reset_state&quot;</span>)]</span>

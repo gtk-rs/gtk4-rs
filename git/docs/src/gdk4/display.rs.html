@@ -443,16 +443,16 @@
     <span class="doccomment">/// and level.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Modifiers that affected the translation and are thus unavailable for</span>
-    <span class="doccomment">/// application use are returned in `consumed_modifiers`.</span>
+    <span class="doccomment">/// application use are returned in @consumed_modifiers.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `effective_group` is the group that was actually used for the</span>
+    <span class="doccomment">/// The @effective_group is the group that was actually used for the</span>
     <span class="doccomment">/// translation; some keys such as Enter are not affected by the active</span>
-    <span class="doccomment">/// keyboard group. The `level` is derived from `state`.</span>
+    <span class="doccomment">/// keyboard group. The @level is derived from @state.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `consumed_modifiers` gives modifiers that should be masked out</span>
-    <span class="doccomment">/// from `state` when comparing this key press to a keyboard shortcut.</span>
+    <span class="doccomment">/// @consumed_modifiers gives modifiers that should be masked out</span>
+    <span class="doccomment">/// from @state when comparing this key press to a keyboard shortcut.</span>
     <span class="doccomment">/// For instance, on a US keyboard, the `plus` symbol is shifted, so</span>
-    <span class="doccomment">/// when comparing a key press to a ``&lt;Control&gt;`plus` accelerator ``&lt;Shift&gt;``</span>
+    <span class="doccomment">/// when comparing a key press to a `&lt;Control&gt;plus` accelerator `&lt;Shift&gt;`</span>
     <span class="doccomment">/// should be masked out.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should rarely be needed, since `GdkEventKey` already</span>
@@ -480,7 +480,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `consumed`</span>
     <span class="doccomment">/// return location for modifiers that were used</span>
-    <span class="doccomment">///  to determine the group or level</span>
+    <span class="doccomment">///   to determine the group or level</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_translate_key&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">translate_key</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -490,7 +490,7 @@
     ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Key</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves a desktop-wide setting such as double-click time</span>
-    <span class="doccomment">/// for the `self`.</span>
+    <span class="doccomment">/// for the @self.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the setting</span>
     <span class="doccomment">/// ## `value`</span>
@@ -499,12 +499,12 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the setting existed and a value was stored</span>
-    <span class="doccomment">///  in `value`, [`false`] otherwise</span>
+    <span class="doccomment">///   in @value, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_setting&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">get_setting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Value</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Obtains a list of keycode/group/level combinations that will</span>
-    <span class="doccomment">/// generate `keyval`.</span>
+    <span class="doccomment">/// generate @keyval.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Groups and levels are two kinds of keyboard mode; in general, the level</span>
     <span class="doccomment">/// determines whether the top or bottom symbol on a key is used, and the</span>
@@ -517,7 +517,7 @@
     <span class="doccomment">/// `GdkEventKey` contains a `group` field that indicates the active</span>
     <span class="doccomment">/// keyboard group. The level is computed from the modifier mask.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The returned array should be freed with `g_free()`.</span>
+    <span class="doccomment">/// The returned array should be freed with g_free().</span>
     <span class="doccomment">/// ## `keyval`</span>
     <span class="doccomment">/// a keyval, such as `GDK_KEY_a`, `GDK_KEY_Up`, `GDK_KEY_Return`, etc.</span>
     <span class="doccomment">///</span>
@@ -527,19 +527,19 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keys`</span>
     <span class="doccomment">/// return location</span>
-    <span class="doccomment">///  for an array of [`KeymapKey`][crate::KeymapKey]</span>
+    <span class="doccomment">///   for an array of [`KeymapKey`][crate::KeymapKey]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_map_keyval&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">map_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keyval</span>: <span class="ident">Key</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeymapKey</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the keyvals bound to `keycode`.</span>
+    <span class="doccomment">/// Returns the keyvals bound to @keycode.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The Nth [`KeymapKey`][crate::KeymapKey] in `keys` is bound to the Nth keyval in `keyvals`.</span>
+    <span class="doccomment">/// The Nth [`KeymapKey`][crate::KeymapKey] in @keys is bound to the Nth keyval in @keyvals.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When a keycode is pressed by the user, the keyval from</span>
     <span class="doccomment">/// this list of entries is selected by considering the effective</span>
     <span class="doccomment">/// keyboard group and level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Free the returned arrays with `g_free()`.</span>
+    <span class="doccomment">/// Free the returned arrays with g_free().</span>
     <span class="doccomment">/// ## `keycode`</span>
     <span class="doccomment">/// a keycode</span>
     <span class="doccomment">///</span>
@@ -549,16 +549,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keys`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of [`KeymapKey`][crate::KeymapKey]</span>
+    <span class="doccomment">///   location for array of [`KeymapKey`][crate::KeymapKey]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `keyvals`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of keyvals</span>
+    <span class="doccomment">///   location for array of keyvals</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_map_keycode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">map_keycode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keycode</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">KeymapKey</span>, <span class="ident">Key</span>)<span class="op">&gt;</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Appends the given event onto the front of the event</span>
-    <span class="doccomment">/// queue for `self`.</span>
+    <span class="doccomment">/// queue for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is only useful in very special situations</span>
     <span class="doccomment">/// and should not be used by applications.</span>

@@ -81,13 +81,13 @@ different amounts of space.</p>
 <p><a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a> can add typical window frame controls, such as minimize,
 maximize and close buttons, or the window icon.</p>
 <p>For these reasons, <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a> is the natural choice for use as the
-custom titlebar widget of a <code>GtkWindow (see [``GtkWindowExt::set_titlebar()``][crate::prelude::</code>GtkWindowExt::set_titlebar()`]),
+custom titlebar widget of a <code>GtkWindow (see [</code>GtkWindowExt::set_titlebar()`]<a href="prelude/trait.GtkWindowExt.html#tymethod.set_titlebar" title="crate::prelude::GtkWindowExt::set_titlebar()">crate::prelude::GtkWindowExt::set_titlebar()</a>),
 as it gives features typical of titlebars while allowing the addition of
 child widgets.</p>
 <h3 id="gtkheaderbar-as-gtkbuildable" class="section-header"><a href="#gtkheaderbar-as-gtkbuildable">GtkHeaderBar as GtkBuildable</a></h3>
 <p>The <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface supports
 adding children at the start or end sides by specifying “start” or “end” as
-the “type” attribute of a <code>&lt;child&gt;</code> element, or setting the title widget by
+the “type” attribute of a <child> element, or setting the title widget by
 specifying “title” value.</p>
 <p>By default the <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a> uses a <a href="struct.Label.html" title="crate::Label"><code>Label</code></a> displaying the title of the
 window it is contained in as the title widget, equivalent to the following
@@ -140,14 +140,14 @@ title buttons.</p>
 <p>See <a href="struct.HeaderBar.html#method.set_title_widget" title="Self::set_title_widget()"><code>set_title_widget()</code></a>.</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>the title widget of the header</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.pack_end" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#178-182" title="goto source code">[src]</a></div><a href="#method.pack_end" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.pack_end" class="fnname">pack_end</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds <code>child</code> to <code>self</code>, packed with reference to the
-end of the <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.pack_end" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#178-182" title="goto source code">[src]</a></div><a href="#method.pack_end" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.pack_end" class="fnname">pack_end</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds @child to @self, packed with reference to the
+end of the @self.</p>
 <h6 id="child" class="section-header"><a href="#child"><code>child</code></a></h6>
-<p>the <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to be added to <code>self</code></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.pack_start" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#189-193" title="goto source code">[src]</a></div><a href="#method.pack_start" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.pack_start" class="fnname">pack_start</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds <code>child</code> to <code>self</code>, packed with reference to the
-start of the <code>self</code>.</p>
+<p>the <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to be added to @self</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.pack_start" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#189-193" title="goto source code">[src]</a></div><a href="#method.pack_start" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.pack_start" class="fnname">pack_start</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds @child to @self, packed with reference to the
+start of the @self.</p>
 <h6 id="child-1" class="section-header"><a href="#child-1"><code>child</code></a></h6>
-<p>the <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to be added to <code>self</code></p>
+<p>the <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to be added to @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#204-208" title="goto source code">[src]</a></div><a href="#method.remove" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove" class="fnname">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Removes a child from the <a href="struct.HeaderBar.html" title="crate::HeaderBar"><code>HeaderBar</code></a>.</p>
 <p>The child must have been added with
 <a href="struct.HeaderBar.html#method.pack_start" title="Self::pack_start()"><code>pack_start()</code></a>,

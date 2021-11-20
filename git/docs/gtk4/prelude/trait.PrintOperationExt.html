@@ -172,7 +172,7 @@ handler.</p>
 (<a href="../enum.PrintStatus.html#variant.Preparing" title="crate::PrintStatus::Preparing"><code>PrintStatus::Preparing</code></a>), so this function should never be
 called before the data generation phase (<a href="../enum.PrintStatus.html#variant.GeneratingData" title="crate::PrintStatus::GeneratingData"><code>PrintStatus::GeneratingData</code></a>).
 You can connect to the <code>signal::PrintOperation::status-changed</code>
-signal and call <a href="trait.PrintOperationExt.html#tymethod.n_pages_to_print" title="Self::n_pages_to_print()"><code>n_pages_to_print()</code></a> when
+signal and call gtk_print_operation_get_n_pages_to_print() when
 print status is <a href="../enum.PrintStatus.html#variant.GeneratingData" title="crate::PrintStatus::GeneratingData"><code>PrintStatus::GeneratingData</code></a>.</p>
 <p>This is typically used to track the progress of print operation.</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
@@ -182,7 +182,7 @@ print status is <a href="../enum.PrintStatus.html#variant.GeneratingData" title=
 <a href="trait.PrintOperationExt.html#tymethod.set_print_settings" title="Self::set_print_settings()"><code>set_print_settings()</code></a> or
 <a href="trait.PrintOperationExt.html#tymethod.run" title="Self::run()"><code>run()</code></a> have been called.</p>
 <h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
-<p>the current print settings of <code>self</code>.</p>
+<p>the current print settings of @self.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.status" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#481" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.status" class="fnname">status</a>(&amp;self) -&gt; <a class="enum" href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus">PrintStatus</a></h4></div></summary><div class="docblock"><p>Returns the status of the print operation.</p>
 <p>Also see <a href="trait.PrintOperationExt.html#tymethod.status_string" title="Self::status_string()"><code>status_string()</code></a>.</p>
 <h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
@@ -211,7 +211,7 @@ the operation status then tracks the print job status on the printer.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.run" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#599-603" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.run" class="fnname">run</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;action: <a class="enum" href="../enum.PrintOperationAction.html" title="enum gtk4::PrintOperationAction">PrintOperationAction</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="../enum.PrintOperationResult.html" title="enum gtk4::PrintOperationResult">PrintOperationResult</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Runs the print operation.</p>
 <p>Normally that this function does not return until the rendering
 of all pages is complete. You can connect to the
-<code>signal::PrintOperation::status-changed</code> signal on <code>self</code> to obtain
+<code>signal::PrintOperation::status-changed</code> signal on @self to obtain
 some information about the progress of the print operation.</p>
 <p>Furthermore, it may use a recursive mainloop to show the print dialog.</p>
 <p>If you set the [Gtk.PrintOperation:allow-async] property, the operation
@@ -255,7 +255,7 @@ else if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
 g_object_unref (settings);
    settings = g_object_ref (gtk_print_operation_get_print_settings (print));
  }</code></pre></div>
-<p>Note that <a href="trait.PrintOperationExt.html#tymethod.run" title="Self::run()"><code>run()</code></a> can only be called once on a
+<p>Note that gtk_print_operation_run() can only be called once on a
 given <a href="../struct.PrintOperation.html" title="crate::PrintOperation"><code>PrintOperation</code></a>.</p>
 <h6 id="action" class="section-header"><a href="#action"><code>action</code></a></h6>
 <p>the action to start</p>
@@ -271,7 +271,7 @@ and store them for reuse with the next print operation. A value of
 <a href="../enum.PrintOperationResult.html#variant.InProgress" title="crate::PrintOperationResult::InProgress"><code>PrintOperationResult::InProgress</code></a> means the operation is running
 asynchronously, and will emit the <code>signal::PrintOperation::done</code>
 signal when done.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_allow_async" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#613" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_allow_async" class="fnname">set_allow_async</a>(&amp;self, allow_async: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether <a href="trait.PrintOperationExt.html#tymethod.run" title="Self::run()"><code>run()</code></a> may return
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_allow_async" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#613" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_allow_async" class="fnname">set_allow_async</a>(&amp;self, allow_async: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether gtk_print_operation_run() may return
 before the print operation is completed.</p>
 <p>Note that some platforms may not allow asynchronous
 operation.</p>
@@ -286,7 +286,7 @@ the user will be able to select to print only the current page.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_custom_tab_label" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#630" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_custom_tab_label" class="fnname">set_custom_tab_label</a>(&amp;self, label: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the label for the tab holding custom widgets.</p>
 <h6 id="label" class="section-header"><a href="#label"><code>label</code></a></h6>
 <p>the label to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use the default label</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_default_page_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#640" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_default_page_setup" class="fnname">set_default_page_setup</a>(&amp;self, default_page_setup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>&gt;)</h4></div></summary><div class="docblock"><p>Makes <code>default_page_setup</code> the default page setup for <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_default_page_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#640" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_default_page_setup" class="fnname">set_default_page_setup</a>(&amp;self, default_page_setup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>&gt;)</h4></div></summary><div class="docblock"><p>Makes @default_page_setup the default page setup for @self.</p>
 <p>This page setup will be used by <a href="trait.PrintOperationExt.html#tymethod.run" title="Self::run()"><code>run()</code></a>,
 but it can be overridden on a per-page basis by connecting
 to the <code>signal::PrintOperation::request-page-setup</code> signal.</p>

@@ -77,8 +77,8 @@
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.frame_region" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/draw_context.rs.html#24" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.frame_region" class="fnname">frame_region</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>&gt;</h4></div></summary><div class="docblock"><p>Retrieves the region that is currently being repainted.</p>
 <p>After a call to <a href="trait.DrawContextExt.html#tymethod.begin_frame" title="crate::prelude::DrawContextExt::begin_frame()"><code>DrawContextExt::begin_frame()</code></a> this function will
 return a union of the region passed to that function and the area of the
-surface that the <code>self</code> determined needs to be repainted.</p>
-<p>If <code>self</code> is not in between calls to <a href="trait.DrawContextExt.html#tymethod.begin_frame" title="crate::prelude::DrawContextExt::begin_frame()"><code>DrawContextExt::begin_frame()</code></a>
+surface that the @self determined needs to be repainted.</p>
+<p>If @self is not in between calls to <a href="trait.DrawContextExt.html#tymethod.begin_frame" title="crate::prelude::DrawContextExt::begin_frame()"><code>DrawContextExt::begin_frame()</code></a>
 and <a href="trait.DrawContextExt.html#tymethod.end_frame" title="crate::prelude::DrawContextExt::end_frame()"><code>DrawContextExt::end_frame()</code></a>, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> will be returned.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a Cairo region</p>

@@ -430,12 +430,12 @@
     <span class="doccomment">/// exchanged in. It is assumed that this set is ordered. `GTypes` are more</span>
     <span class="doccomment">/// important than mime types. Order between different `GTypes` or mime types</span>
     <span class="doccomment">/// is the order they were added in, most important first. Functions that</span>
-    <span class="doccomment">/// care about order, such as [``union()``][`Self::union()`], will describe</span>
+    <span class="doccomment">/// care about order, such as [`union()`][Self::union()], will describe</span>
     <span class="doccomment">/// in their documentation how they interpret that order, though in general the</span>
     <span class="doccomment">/// order of the first argument is considered the primary order of the result,</span>
     <span class="doccomment">/// followed by the order of further arguments.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For debugging purposes, the function [``to_str()``][`Self::to_str()`]</span>
+    <span class="doccomment">/// For debugging purposes, the function [`to_str()`][Self::to_str()]</span>
     <span class="doccomment">/// exists. It will print a comma-separated list of formats from most important</span>
     <span class="doccomment">/// to least important.</span>
     <span class="doccomment">///</span>
@@ -461,7 +461,7 @@
     <span class="doccomment">/// this, use [`ContentFormatsBuilder`][crate::ContentFormatsBuilder] instead.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">/// Pointer to an</span>
-    <span class="doccomment">///  array of mime types</span>
+    <span class="doccomment">///   array of mime types</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -492,7 +492,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_new_for_gtype</span>(<span class="ident">type_</span>.<span class="ident">into_glib</span>())) }
     }
 
-    <span class="doccomment">/// Checks if a given `GType` is part of the given `self`.</span>
+    <span class="doccomment">/// Checks if a given `GType` is part of the given @self.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// the `GType` to search for</span>
     <span class="doccomment">///</span>
@@ -510,7 +510,7 @@
         }
     }
 
-    <span class="doccomment">/// Checks if a given mime type is part of the given `self`.</span>
+    <span class="doccomment">/// Checks if a given mime type is part of the given @self.</span>
     <span class="doccomment">/// ## `mime_type`</span>
     <span class="doccomment">/// the mime type to search for</span>
     <span class="doccomment">///</span>
@@ -527,16 +527,16 @@
         }
     }
 
-    <span class="doccomment">/// Gets the mime types included in `self`.</span>
+    <span class="doccomment">/// Gets the mime types included in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `self` may not contain any mime types, in particular</span>
+    <span class="doccomment">/// Note that @self may not contain any mime types, in particular</span>
     <span class="doccomment">/// when they are empty. In that case [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  [`None`]-terminated array of interned strings of mime types included</span>
-    <span class="doccomment">///  in `self`</span>
+    <span class="doccomment">///   [`None`]-terminated array of interned strings of mime types included</span>
+    <span class="doccomment">///   in @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_get_mime_types&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -564,8 +564,8 @@
         }
     }
 
-    <span class="doccomment">/// Finds the first `GType` from `self` that is also contained</span>
-    <span class="doccomment">/// in `second`.</span>
+    <span class="doccomment">/// Finds the first `GType` from @self that is also contained</span>
+    <span class="doccomment">/// in @second.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching `GType` is found, `G_TYPE_INVALID` is returned.</span>
     <span class="doccomment">/// ## `second`</span>
@@ -585,8 +585,8 @@
         }
     }
 
-    <span class="doccomment">/// Finds the first mime type from `self` that is also contained</span>
-    <span class="doccomment">/// in `second`.</span>
+    <span class="doccomment">/// Finds the first mime type from @self that is also contained</span>
+    <span class="doccomment">/// in @second.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching mime type is found, [`None`] is returned.</span>
     <span class="doccomment">/// ## `second`</span>
@@ -605,11 +605,11 @@
         }
     }
 
-    <span class="doccomment">/// Prints the given `self` into a human-readable string.</span>
+    <span class="doccomment">/// Prints the given @self into a human-readable string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The resulting string can be parsed with [``parse()``][`Self::parse()`].</span>
+    <span class="doccomment">/// The resulting string can be parsed with [`parse()`][Self::parse()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a small wrapper around `Gdk::`ContentFormats::print()``</span>
+    <span class="doccomment">/// This is a small wrapper around `Gdk::ContentFormats::print()`</span>
     <span class="doccomment">/// to help when debugging.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -621,8 +621,8 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_to_string</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Append all missing types from `second` to `self`, in the order</span>
-    <span class="doccomment">/// they had in `second`.</span>
+    <span class="doccomment">/// Append all missing types from @second to @self, in the order</span>
+    <span class="doccomment">/// they had in @second.</span>
     <span class="doccomment">/// ## `second`</span>
     <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to merge from</span>
     <span class="doccomment">///</span>
@@ -639,7 +639,7 @@
         }
     }
 
-    <span class="doccomment">/// Add GTypes for mime types in `self` for which deserializers are</span>
+    <span class="doccomment">/// Add GTypes for mime types in @self for which deserializers are</span>
     <span class="doccomment">/// registered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -655,7 +655,7 @@
         }
     }
 
-    <span class="doccomment">/// Add mime types for GTypes in `self` for which deserializers are</span>
+    <span class="doccomment">/// Add mime types for GTypes in @self for which deserializers are</span>
     <span class="doccomment">/// registered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -670,7 +670,7 @@
         }
     }
 
-    <span class="doccomment">/// Add GTypes for the mime types in `self` for which serializers are</span>
+    <span class="doccomment">/// Add GTypes for the mime types in @self for which serializers are</span>
     <span class="doccomment">/// registered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -686,7 +686,7 @@
         }
     }
 
-    <span class="doccomment">/// Add mime types for GTypes in `self` for which serializers are</span>
+    <span class="doccomment">/// Add mime types for GTypes in @self for which serializers are</span>
     <span class="doccomment">/// registered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -701,20 +701,20 @@
         }
     }
 
-    <span class="doccomment">/// Parses the given `string` into [`ContentFormats`][crate::ContentFormats] and</span>
+    <span class="doccomment">/// Parses the given @string into [`ContentFormats`][crate::ContentFormats] and</span>
     <span class="doccomment">/// returns the formats.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Strings printed via [``to_str()``][`Self::to_str()`]</span>
+    <span class="doccomment">/// Strings printed via [`to_str()`][Self::to_str()]</span>
     <span class="doccomment">/// can be read in again successfully using this function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `string` does not describe valid content formats, [`None`]</span>
+    <span class="doccomment">/// If @string does not describe valid content formats, [`None`]</span>
     <span class="doccomment">/// is returned.</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// the string to parse</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the content formats if `string` is valid</span>
+    <span class="doccomment">/// the content formats if @string is valid</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_parse&quot;</span>)]</span>

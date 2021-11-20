@@ -94,10 +94,10 @@
 <h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.Drag.html" title="crate::Drag"><code>Drag</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.drop_done" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/drag.rs.html#123" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.drop_done" class="fnname">drop_done</a>(&amp;self, success: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Informs GDK that the drop ended.</p>
-<p>Passing <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for <code>success</code> may trigger a drag cancellation
+<p>Passing <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for @success may trigger a drag cancellation
 animation.</p>
 <p>This function is called by the drag source, and should be the
-last call before dropping the reference to the <code>self</code>.</p>
+last call before dropping the reference to the @self.</p>
 <p>The <a href="../struct.Drag.html" title="crate::Drag"><code>Drag</code></a> will only take the first <a href="trait.DragExt.html#tymethod.drop_done" title="Self::drop_done()"><code>drop_done()</code></a>
 call as effective, if this function is called multiple times,
 all subsequent calls will be ignored.</p>
@@ -108,10 +108,10 @@ all subsequent calls will be ignored.</p>
 <p>the <a href="../struct.DragAction.html" title="crate::DragAction"><code>DragAction</code></a> flags</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.content" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/drag.rs.html#141" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.content" class="fnname">content</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.ContentProvider.html" title="struct gdk4::ContentProvider">ContentProvider</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the <a href="../struct.ContentProvider.html" title="crate::ContentProvider"><code>ContentProvider</code></a> associated to the <a href="../struct.Drag.html" title="crate::Drag"><code>Drag</code></a> object.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
-<p>The <a href="../struct.ContentProvider.html" title="crate::ContentProvider"><code>ContentProvider</code></a> associated to <code>self</code>.</p>
+<p>The <a href="../struct.ContentProvider.html" title="crate::ContentProvider"><code>ContentProvider</code></a> associated to @self.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.device" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/drag.rs.html#150" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.device" class="fnname">device</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the <a href="../struct.Device.html" title="crate::Device"><code>Device</code></a> associated to the <a href="../struct.Drag.html" title="crate::Drag"><code>Drag</code></a> object.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
-<p>The <a href="../struct.Device.html" title="crate::Device"><code>Device</code></a> associated to <code>self</code>.</p>
+<p>The <a href="../struct.Device.html" title="crate::Device"><code>Device</code></a> associated to @self.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/drag.rs.html#159" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the <a href="../struct.Display.html" title="crate::Display"><code>Display</code></a> that the drag object was created for.</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>a <a href="../struct.Display.html" title="crate::Display"><code>Display</code></a></p>
@@ -119,7 +119,7 @@ all subsequent calls will be ignored.</p>
 during the drag operation.</p>
 <p>Note that the surface may not be available until the drag operation
 has begun. GDK will move the surface in accordance with the ongoing
-drag operation. The surface is owned by <code>self</code> and will be destroyed
+drag operation. The surface is owned by @self and will be destroyed
 when the drag operation is over.</p>
 <h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p>the drag surface</p>

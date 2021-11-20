@@ -180,8 +180,8 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ShadowNode</span> {
-    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will draw a `child` with the given</span>
-    <span class="doccomment">/// `shadows` below it.</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will draw a @child with the given</span>
+    <span class="doccomment">/// @shadows below it.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// The node to draw</span>
     <span class="doccomment">/// ## `shadows`</span>
@@ -203,7 +203,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the shadow data at the given index `i`.</span>
+    <span class="doccomment">/// Retrieves the shadow data at the given index @i.</span>
     <span class="doccomment">/// ## `i`</span>
     <span class="doccomment">/// the given index</span>
     <span class="doccomment">///</span>
@@ -217,7 +217,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_shadow_node_get_shadow</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">i</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the child [`RenderNode`][crate::RenderNode] of the shadow `self`.</span>
+    <span class="doccomment">/// Retrieves the child [`RenderNode`][crate::RenderNode] of the shadow @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -228,7 +228,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_shadow_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the number of shadows in the `self`.</span>
+    <span class="doccomment">/// Retrieves the number of shadows in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

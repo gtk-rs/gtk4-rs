@@ -1012,7 +1012,7 @@
 <span class="kw">impl</span> <span class="ident">CellRendererCombo</span> {
     <span class="doccomment">/// Creates a new [`CellRendererCombo`][crate::CellRendererCombo].</span>
     <span class="doccomment">/// Adjust how text is drawn using object properties.</span>
-    <span class="doccomment">/// Object properties can be set globally (with `g_object_set()`).</span>
+    <span class="doccomment">/// Object properties can be set globally (with g_object_set()).</span>
     <span class="doccomment">/// Also, with [`TreeViewColumn`][crate::TreeViewColumn], you can bind a property to a value</span>
     <span class="doccomment">/// in a [`TreeModel`][crate::TreeModel]. For example, you can bind the “text” property</span>
     <span class="doccomment">/// on the cell renderer to a string value in the model, thus rendering</span>
@@ -1090,22 +1090,22 @@
     }
 
     <span class="doccomment">/// This signal is emitted each time after the user selected an item in</span>
-    <span class="doccomment">/// the combo box, either by using the mouse or the arrow keys. Contrary</span>
+    <span class="doccomment">/// the combo box, either by using the mouse or the arrow keys.  Contrary</span>
     <span class="doccomment">/// to GtkComboBox, GtkCellRendererCombo::changed is not emitted for</span>
-    <span class="doccomment">/// changes made to a selected item in the entry. The argument `new_iter`</span>
+    <span class="doccomment">/// changes made to a selected item in the entry.  The argument @new_iter</span>
     <span class="doccomment">/// corresponds to the newly selected item in the combo box and it is relative</span>
     <span class="doccomment">/// to the GtkTreeModel set via the model property on GtkCellRendererCombo.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that as soon as you change the model displayed in the tree view,</span>
-    <span class="doccomment">/// the tree view will immediately cease the editing operating. This</span>
+    <span class="doccomment">/// the tree view will immediately cease the editing operating.  This</span>
     <span class="doccomment">/// means that you most probably want to refrain from changing the model</span>
     <span class="doccomment">/// until the combo cell renderer emits the edited or editing_canceled signal.</span>
     <span class="doccomment">/// ## `path_string`</span>
     <span class="doccomment">/// a string of the path identifying the edited cell</span>
-    <span class="doccomment">///  (relative to the tree view model)</span>
+    <span class="doccomment">///               (relative to the tree view model)</span>
     <span class="doccomment">/// ## `new_iter`</span>
     <span class="doccomment">/// the new iter selected in the combo box</span>
-    <span class="doccomment">///  (relative to the combo box model)</span>
+    <span class="doccomment">///            (relative to the combo box model)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">TreePath</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

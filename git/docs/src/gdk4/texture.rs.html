@@ -126,7 +126,7 @@
 <span class="comment">// rustdoc-stripper-ignore-next</span>
 <span class="doccomment">/// Trait containing manually implemented methods of [`Texture`](crate::Texture).</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextureExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Downloads the `self` into local memory.</span>
+    <span class="doccomment">/// Downloads the @self into local memory.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This may be an expensive operation, as the actual texture data</span>
     <span class="doccomment">/// may reside on a GPU or on a remote display server.</span>
@@ -149,7 +149,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `data`</span>
     <span class="doccomment">/// pointer to enough memory to be filled with the</span>
-    <span class="doccomment">///  downloaded data of `self`</span>
+    <span class="doccomment">///   downloaded data of @self</span>
     <span class="doccomment">/// ## `stride`</span>
     <span class="doccomment">/// rowstride in bytes</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_download&quot;</span>)]</span>

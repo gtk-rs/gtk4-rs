@@ -75,8 +75,8 @@
     fn <a href="#tymethod.set_action_target" class="fnname">set_action_target</a>(&amp;self, string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing manually implemented methods of <a href="../struct.Actionable.html"><code>Actionable</code></a>.</p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.set_action_target" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/actionable.rs.html#23" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_action_target" class="fnname">set_action_target</a>(&amp;self, string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the target of an actionable widget.</p>
-<p>This is a convenience function that calls <code>g_variant_new()</code> for
-<code>format_string</code> and uses the result to call
+<p>This is a convenience function that calls g_variant_new() for
+@format_string and uses the result to call
 <a href="trait.ActionableExt.html#tymethod.set_action_target_value" title="crate::prelude::ActionableExt::set_action_target_value()"><code>ActionableExt::set_action_target_value()</code></a>.</p>
 <p>If you are setting a string-valued target and want to set
 the action name at the same time, you can use

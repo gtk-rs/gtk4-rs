@@ -359,7 +359,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`TextTagTable`][crate::TextTagTable] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports adding tags by specifying “tag” as the “type” attribute</span>
-    <span class="doccomment">/// of a `&lt;child&gt;` element.</span>
+    <span class="doccomment">/// of a &lt;child&gt; element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI definition fragment specifying tags:</span>
     <span class="doccomment">/// ```xml</span>
@@ -399,7 +399,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The tag is assigned the highest priority in the table.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `tag` must not be in a tag table already, and may not have</span>
+    <span class="doccomment">/// @tag must not be in a tag table already, and may not have</span>
     <span class="doccomment">/// the same name as an already-added tag.</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
@@ -417,7 +417,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls `func` on each tag in `self`, with user data `data`.</span>
+    <span class="doccomment">/// Calls @func on each tag in @self, with user data @data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the table may not be modified while iterating</span>
     <span class="doccomment">/// over it (you can’t add/remove tags).</span>
@@ -449,7 +449,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// number of tags in `self`</span>
+    <span class="doccomment">/// number of tags in @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_get_size&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_size&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
@@ -475,7 +475,7 @@
 
     <span class="doccomment">/// Remove a tag from the table.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a [`TextBuffer`][crate::TextBuffer] has `self` as its tag table, the tag is</span>
+    <span class="doccomment">/// If a [`TextBuffer`][crate::TextBuffer] has @self as its tag table, the tag is</span>
     <span class="doccomment">/// removed from the buffer. The table’s reference to the tag is</span>
     <span class="doccomment">/// removed, so the tag will end up destroyed if you don’t have</span>
     <span class="doccomment">/// a reference to it.</span>
@@ -554,7 +554,7 @@
 
     <span class="doccomment">/// Emitted every time a tag is removed from the [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `tag` is still valid by the time the signal is emitted, but</span>
+    <span class="doccomment">/// The @tag is still valid by the time the signal is emitted, but</span>
     <span class="doccomment">/// it is not associated with a tag table any more.</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the removed tag.</span>

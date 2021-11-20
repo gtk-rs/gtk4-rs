@@ -123,13 +123,13 @@
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the range is inverted</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.range_rect" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#107" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.range_rect" class="fnname">range_rect</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></div></summary><div class="docblock"><p>This function returns the area that contains the range’s trough,
-in coordinates relative to <code>self</code>’s origin.</p>
+in coordinates relative to @self’s origin.</p>
 <p>This function is useful mainly for <a href="../struct.Range.html" title="crate::Range"><code>Range</code></a> subclasses.</p>
 <h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5><h6 id="range_rect" class="section-header"><a href="#range_rect"><code>range_rect</code></a></h6>
 <p>return location for the range rectangle</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.restricts_to_fill_level" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#116" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.restricts_to_fill_level" class="fnname">restricts_to_fill_level</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets whether the range is restricted to the fill level.</p>
 <h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
-<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is restricted to the fill level.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self is restricted to the fill level.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.round_digits" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#128" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.round_digits" class="fnname">round_digits</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Gets the number of digits to round the value to when
 it changes.</p>
 <p>See <code>signal::Range::change-value</code>.</p>
@@ -137,7 +137,7 @@ it changes.</p>
 <p>the number of digits to round to</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.shows_fill_level" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#137" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.shows_fill_level" class="fnname">shows_fill_level</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Gets whether the range displays the fill level graphically.</p>
 <h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
-<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> shows the fill level.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self shows the fill level.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.slider_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#154" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.slider_range" class="fnname">slider_range</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>This function returns sliders range along the long dimension,
 in widget-&gt;window coordinates.</p>
 <p>This function is useful mainly for <a href="../struct.Range.html" title="crate::Range"><code>Range</code></a> subclasses.</p>
@@ -199,9 +199,9 @@ than on the bottom or left.</p>
 <h6 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to invert the range</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/range.rs.html#256" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_range" class="fnname">set_range</a>(&amp;self, min: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, max: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the allowable values in the <a href="../struct.Range.html" title="crate::Range"><code>Range</code></a>.</p>
-<p>The range value is clamped to be between <code>min</code> and <code>max</code>.
+<p>The range value is clamped to be between @min and @max.
 (If the range has a non-zero page size, it is clamped
-between <code>min</code> and <code>max</code> - page-size.)</p>
+between @min and @max - page-size.)</p>
 <h6 id="min" class="section-header"><a href="#min"><code>min</code></a></h6>
 <p>minimum range value</p>
 <h6 id="max" class="section-header"><a href="#max"><code>max</code></a></h6>

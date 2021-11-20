@@ -99,7 +99,7 @@
 <h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.clamp_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#210" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.clamp_page" class="fnname">clamp_page</a>(&amp;self, lower: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, upper: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Updates the value property to ensure that the range
-between <code>lower</code> and <code>upper</code> is in the current page.</p>
+between @lower and @upper is in the current page.</p>
 <p>The current page goes from <code>value</code> to <code>value</code> + <code>page-size</code>.
 If the range is larger than the page size, then only the
 start of it will be in the current page.</p>
@@ -132,7 +132,7 @@ way of compressing multiple emissions of
 <p>The current minimum value of the adjustment</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minimum_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#258" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.minimum_increment" class="fnname">minimum_increment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Gets the smaller of step increment and page increment.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
-<p>the minimum increment of <code>self</code></p>
+<p>the minimum increment of @self</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.page_increment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/adjustment.rs.html#267" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.page_increment" class="fnname">page_increment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Retrieves the page increment of the adjustment.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>The current page increment of the adjustment</p>
@@ -155,9 +155,9 @@ be emitted. However, since the emission of the
 <code>signal::Adjustment::changed</code> signal is tied to the emission
 of the ::notify signals of the changed properties, it’s possible
 to compress the <code>signal::Adjustment::changed</code> signals into one
-by calling <code>g_object_freeze_notify()</code> and <code>g_object_thaw_notify()</code>
+by calling g_object_freeze_notify() and g_object_thaw_notify()
 around the calls to the individual setters.</p>
-<p>Alternatively, using a single <code>g_object_set()</code> for all the properties
+<p>Alternatively, using a single g_object_set() for all the properties
 to change, or using <a href="trait.AdjustmentExt.html#tymethod.configure" title="Self::configure()"><code>configure()</code></a> has the same effect.</p>
 <h6 id="lower-2" class="section-header"><a href="#lower-2"><code>lower</code></a></h6>
 <p>the new minimum value</p>

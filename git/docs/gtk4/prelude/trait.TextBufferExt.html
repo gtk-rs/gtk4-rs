@@ -163,7 +163,7 @@
 </details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TextBuffer.html" title="TextBuffer"><code>TextBuffer</code></a> methods.</p>
 <h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a></p>
-</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.add_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#152" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_mark" class="fnname">add_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Adds the mark at position <code>where_</code>.</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.add_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#152" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_mark" class="fnname">add_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Adds the mark at position @where_.</p>
 <p>The mark must not be added to another buffer, and if its name
 is not <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> then there must not be another mark in the buffer
 with the same name.</p>
@@ -173,15 +173,15 @@ of the mark’s initial placement.</p>
 <p>the mark to add</p>
 <h6 id="where_" class="section-header"><a href="#where_"><code>where_</code></a></h6>
 <p>location to place mark</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.add_selection_clipboard" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#162" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_selection_clipboard" class="fnname">add_selection_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</h4></div></summary><div class="docblock"><p>Adds <code>clipboard</code> to the list of clipboards in which the selection
-contents of <code>self</code> are available.</p>
-<p>In most cases, <code>clipboard</code> will be the <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> returned by
-<a href="trait.WidgetExt.html#tymethod.primary_clipboard" title="crate::prelude::WidgetExt::primary_clipboard()"><code>WidgetExt::primary_clipboard()</code></a> for a view of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.add_selection_clipboard" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#162" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_selection_clipboard" class="fnname">add_selection_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</h4></div></summary><div class="docblock"><p>Adds @clipboard to the list of clipboards in which the selection
+contents of @self are available.</p>
+<p>In most cases, @clipboard will be the <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> returned by
+<a href="trait.WidgetExt.html#tymethod.primary_clipboard" title="crate::prelude::WidgetExt::primary_clipboard()"><code>WidgetExt::primary_clipboard()</code></a> for a view of @self.</p>
 <h6 id="clipboard" class="section-header"><a href="#clipboard"><code>clipboard</code></a></h6>
 <p>a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.apply_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#176" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.apply_tag" class="fnname">apply_tag</a>(&amp;self, tag: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Emits the “apply-tag” signal on <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.apply_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#176" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.apply_tag" class="fnname">apply_tag</a>(&amp;self, tag: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Emits the “apply-tag” signal on @self.</p>
 <p>The default handler for the signal applies
-<code>tag</code> to the given range. <code>start</code> and <code>end</code> do
+@tag to the given range. @start and @end do
 not have to be in order.</p>
 <h6 id="tag" class="section-header"><a href="#tag"><code>tag</code></a></h6>
 <p>a <a href="../struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
@@ -189,7 +189,7 @@ not have to be in order.</p>
 <p>one bound of range to be tagged</p>
 <h6 id="end" class="section-header"><a href="#end"><code>end</code></a></h6>
 <p>other bound of range to be tagged</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.apply_tag_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#190" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.apply_tag_by_name" class="fnname">apply_tag_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Emits the “apply-tag” signal on <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.apply_tag_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#190" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.apply_tag_by_name" class="fnname">apply_tag_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Emits the “apply-tag” signal on @self.</p>
 <p>Calls <a href="../struct.TextTagTable.html#method.lookup" title="crate::TextTagTable::lookup()"><code>TextTagTable::lookup()</code></a> on the buffer’s
 tag table to get a <a href="../struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a>, then calls
 <a href="trait.TextBufferExt.html#tymethod.apply_tag" title="Self::apply_tag()"><code>apply_tag()</code></a>.</p>
@@ -200,16 +200,16 @@ tag table to get a <a href="../struct.TextTag.html" title="crate::TextTag"><code
 <h6 id="end-1" class="section-header"><a href="#end-1"><code>end</code></a></h6>
 <p>other bound of range to be tagged</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.backspace" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#214" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.backspace" class="fnname">backspace</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;interactive: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Performs the appropriate action as if the user hit the delete
-key with the cursor at the position specified by <code>iter</code>.</p>
+key with the cursor at the position specified by @iter.</p>
 <p>In the normal case a single character will be deleted, but when
 combining accents are involved, more than one character can
 be deleted, and when precomposed character and accent combinations
 are involved, less than one character will be deleted.</p>
 <p>Because the buffer is modified, all outstanding iterators become
-invalid after calling this function; however, the <code>iter</code> will be
+invalid after calling this function; however, the @iter will be
 re-initialized to point to the location where text was deleted.</p>
 <h6 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h6>
-<p>a position in <code>self</code></p>
+<p>a position in @self</p>
 <h6 id="interactive" class="section-header"><a href="#interactive"><code>interactive</code></a></h6>
 <p>whether the deletion is caused by user interaction</p>
 <h6 id="default_editable" class="section-header"><a href="#default_editable"><code>default_editable</code></a></h6>
@@ -222,16 +222,16 @@ to be cleared.</p>
 <p>This should be paired with a call to
 <a href="trait.TextBufferExt.html#tymethod.end_irreversible_action" title="Self::end_irreversible_action()"><code>end_irreversible_action()</code></a> after the irreversible
 action has completed.</p>
-<p>You may nest calls to <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action" title="Self::begin_irreversible_action()"><code>begin_irreversible_action()</code></a>
-and <a href="trait.TextBufferExt.html#tymethod.end_irreversible_action" title="Self::end_irreversible_action()"><code>end_irreversible_action()</code></a> pairs.</p>
+<p>You may nest calls to gtk_text_buffer_begin_irreversible_action()
+and gtk_text_buffer_end_irreversible_action() pairs.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.begin_user_action" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#249" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.begin_user_action" class="fnname">begin_user_action</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Called to indicate that the buffer operations between here and a
-call to <a href="trait.TextBufferExt.html#tymethod.end_user_action" title="Self::end_user_action()"><code>end_user_action()</code></a> are part of a single
+call to gtk_text_buffer_end_user_action() are part of a single
 user-visible operation.</p>
-<p>The operations between <a href="trait.TextBufferExt.html#tymethod.begin_user_action" title="Self::begin_user_action()"><code>begin_user_action()</code></a> and
-<a href="trait.TextBufferExt.html#tymethod.end_user_action" title="Self::end_user_action()"><code>end_user_action()</code></a> can then be grouped when creating
+<p>The operations between gtk_text_buffer_begin_user_action() and
+gtk_text_buffer_end_user_action() can then be grouped when creating
 an undo stack. <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a> maintains a count of calls to
-<a href="trait.TextBufferExt.html#tymethod.begin_user_action" title="Self::begin_user_action()"><code>begin_user_action()</code></a> that have not been closed with
-a call to <a href="trait.TextBufferExt.html#tymethod.end_user_action" title="Self::end_user_action()"><code>end_user_action()</code></a>, and emits the
+gtk_text_buffer_begin_user_action() that have not been closed with
+a call to gtk_text_buffer_end_user_action(), and emits the
 “begin-user-action” and “end-user-action” signals only for the
 outermost pair of calls. This allows you to build user actions
 from other user actions.</p>
@@ -253,13 +253,13 @@ returned to the caller of this function.</p>
 <p>location in the buffer</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the created child anchor</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.create_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#304-309" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.create_mark" class="fnname">create_mark</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;mark_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;left_gravity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></h4></div></summary><div class="docblock"><p>Creates a mark at position <code>where_</code>.</p>
-<p>If <code>mark_name</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the mark is anonymous; otherwise, the mark
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.create_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#304-309" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.create_mark" class="fnname">create_mark</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;mark_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;left_gravity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></h4></div></summary><div class="docblock"><p>Creates a mark at position @where_.</p>
+<p>If @mark_name is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the mark is anonymous; otherwise, the mark
 can be retrieved by name using <a href="trait.TextBufferExt.html#tymethod.mark" title="Self::mark()"><code>mark()</code></a>.
 If a mark has left gravity, and text is inserted at the mark’s
 current location, the mark will be moved to the left of the
 newly-inserted text. If the mark has right gravity
-(<code>left_gravity</code> = <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>), the mark will end up on the right of
+(@left_gravity = <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>), the mark will end up on the right of
 newly-inserted text. The standard left-to-right cursor is a mark
 with right gravity (when you type, the cursor stays on the right
 side of the text you’re typing).</p>
@@ -283,21 +283,21 @@ then deletes said text if it’s editable.</p>
 <p>the <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> object to cut to</p>
 <h6 id="default_editable-1" class="section-header"><a href="#default_editable-1"><code>default_editable</code></a></h6>
 <p>default editability of the buffer</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#335" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete" class="fnname">delete</a>(&amp;self, start: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Deletes text between <code>start</code> and <code>end</code>.</p>
-<p>The order of <code>start</code> and <code>end</code> is not actually relevant;
-<a href="trait.TextBufferExt.html#tymethod.delete" title="Self::delete()"><code>delete()</code></a> will reorder them.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#335" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete" class="fnname">delete</a>(&amp;self, start: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Deletes text between @start and @end.</p>
+<p>The order of @start and @end is not actually relevant;
+gtk_text_buffer_delete() will reorder them.</p>
 <p>This function actually emits the “delete-range” signal, and
 the default handler of that signal deletes the text. Because the
 buffer is modified, all outstanding iterators become invalid after
-calling this function; however, the <code>start</code> and <code>end</code> will be
+calling this function; however, the @start and @end will be
 re-initialized to point to the location where text was deleted.</p>
 <h6 id="start-2" class="section-header"><a href="#start-2"><code>start</code></a></h6>
-<p>a position in <code>self</code></p>
+<p>a position in @self</p>
 <h6 id="end-2" class="section-header"><a href="#end-2"><code>end</code></a></h6>
-<p>another position in <code>self</code></p>
+<p>another position in @self</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_interactive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#354-359" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_interactive" class="fnname">delete_interactive</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start_iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end_iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Deletes all editable text in the given range.</p>
 <p>Calls <a href="trait.TextBufferExt.html#tymethod.delete" title="Self::delete()"><code>delete()</code></a> for each editable
-sub-range of [<code>start</code>,<code>end</code>). <code>start</code> and <code>end</code> are revalidated
+sub-range of [@start,@end). @start and @end are revalidated
 to point to the location of the last deleted range, or left
 untouched if no text was deleted.</p>
 <h6 id="start_iter" class="section-header"><a href="#start_iter"><code>start_iter</code></a></h6>
@@ -308,25 +308,25 @@ untouched if no text was deleted.</p>
 <p>whether the buffer is editable by default</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
 <p>whether some text was actually deleted</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#376" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_mark" class="fnname">delete_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;)</h4></div></summary><div class="docblock"><p>Deletes <code>mark</code>, so that it’s no longer located anywhere in the
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#376" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_mark" class="fnname">delete_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;)</h4></div></summary><div class="docblock"><p>Deletes @mark, so that it’s no longer located anywhere in the
 buffer.</p>
 <p>Removes the reference the buffer holds to the mark, so if
-you haven’t called <code>g_object_ref()</code> on the mark, it will be freed.
-Even if the mark isn’t freed, most operations on <code>mark</code> become
+you haven’t called g_object_ref() on the mark, it will be freed.
+Even if the mark isn’t freed, most operations on @mark become
 invalid, until it gets added to a buffer again with
 <a href="trait.TextBufferExt.html#tymethod.add_mark" title="Self::add_mark()"><code>add_mark()</code></a>. Use <a href="trait.TextMarkExt.html#tymethod.is_deleted" title="crate::prelude::TextMarkExt::is_deleted()"><code>TextMarkExt::is_deleted()</code></a>
 to find out if a mark has been removed from its buffer.</p>
 <p>The <code>signal::TextBuffer::mark-deleted</code> signal will be emitted as
 notification after the mark is deleted.</p>
 <h6 id="mark-1" class="section-header"><a href="#mark-1"><code>mark</code></a></h6>
-<p>a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a> in <code>self</code></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_mark_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#384" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_mark_by_name" class="fnname">delete_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Deletes the mark named <code>name</code>; the mark must exist.</p>
+<p>a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a> in @self</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_mark_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#384" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_mark_by_name" class="fnname">delete_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Deletes the mark named @name; the mark must exist.</p>
 <p>See <a href="trait.TextBufferExt.html#tymethod.delete_mark" title="Self::delete_mark()"><code>delete_mark()</code></a> for details.</p>
 <h6 id="name-1" class="section-header"><a href="#name-1"><code>name</code></a></h6>
-<p>name of a mark in <code>self</code></p>
+<p>name of a mark in @self</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.delete_selection" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#400" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.delete_selection" class="fnname">delete_selection</a>(&amp;self, interactive: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Deletes the range between the “insert” and “selection_bound” marks,
 that is, the currently-selected text.</p>
-<p>If <code>interactive</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the editability of the selection will be
+<p>If @interactive is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the editability of the selection will be
 considered (users can’t delete uneditable text).</p>
 <h6 id="interactive-1" class="section-header"><a href="#interactive-1"><code>interactive</code></a></h6>
 <p>whether the deletion is caused by user interaction</p>
@@ -340,14 +340,14 @@ queue to be cleared.</p>
 <p>This should be called after completing modifications to the
 text buffer after <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action" title="Self::begin_irreversible_action()"><code>begin_irreversible_action()</code></a>
 was called.</p>
-<p>You may nest calls to <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action" title="Self::begin_irreversible_action()"><code>begin_irreversible_action()</code></a>
-and <a href="trait.TextBufferExt.html#tymethod.end_irreversible_action" title="Self::end_irreversible_action()"><code>end_irreversible_action()</code></a> pairs.</p>
+<p>You may nest calls to gtk_text_buffer_begin_irreversible_action()
+and gtk_text_buffer_end_irreversible_action() pairs.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.end_user_action" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#422" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.end_user_action" class="fnname">end_user_action</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a user-visible operation.</p>
 <p>Should be paired with a call to
 <a href="trait.TextBufferExt.html#tymethod.begin_user_action" title="Self::begin_user_action()"><code>begin_user_action()</code></a>.
 See that function for a full explanation.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.bounds" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#437" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.bounds" class="fnname">bounds</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Retrieves the first and last iterators in the buffer, i.e. the
-entire buffer lies within the range [<code>start</code>,<code>end</code>).</p>
+entire buffer lies within the range [@start,@end).</p>
 <h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5><h6 id="start-3" class="section-header"><a href="#start-3"><code>start</code></a></h6>
 <p>iterator to initialize with first position in the buffer</p>
 <h6 id="end-3" class="section-header"><a href="#end-3"><code>end</code></a></h6>
@@ -370,7 +370,7 @@ to allow for undo and redo actions.</p>
 <p>See <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action" title="Self::begin_irreversible_action()"><code>begin_irreversible_action()</code></a> and
 <a href="trait.TextBufferExt.html#tymethod.end_irreversible_action" title="Self::end_irreversible_action()"><code>end_irreversible_action()</code></a> to create
 changes to the buffer that cannot be undone.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.end_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#498" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.end_iter" class="fnname">end_iter</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes <code>iter</code> with the “end iterator,” one past the last valid
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.end_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#498" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.end_iter" class="fnname">end_iter</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes @iter with the “end iterator,” one past the last valid
 character in the text buffer.</p>
 <p>If dereferenced with <a href="../struct.TextIter.html#method.char" title="crate::TextIter::char()"><code>TextIter::char()</code></a>, the end
 iterator has a character value of 0.
@@ -388,25 +388,25 @@ to get the mark named “insert”, but very slightly more
 efficient, and involves less typing.</p>
 <h5 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h5>
 <p>insertion point mark</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_child_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#532" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_child_anchor" class="fnname">iter_at_child_anchor</a>(&amp;self, anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Obtains the location of <code>anchor</code> within <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_child_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#532" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_child_anchor" class="fnname">iter_at_child_anchor</a>(&amp;self, anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Obtains the location of @anchor within @self.</p>
 <h6 id="anchor" class="section-header"><a href="#anchor"><code>anchor</code></a></h6>
-<p>a child anchor that appears in <code>self</code></p>
+<p>a child anchor that appears in @self</p>
 <h5 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h5><h6 id="iter-3" class="section-header"><a href="#iter-3"><code>iter</code></a></h6>
 <p>an iterator to be initialized</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#549" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line" class="fnname">iter_at_line</a>(&amp;self, line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Initializes <code>iter</code> to the start of the given line.</p>
-<p>If <code>line_number</code> is greater than or equal to the number of lines
-in the <code>self</code>, the end iterator is returned.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#549" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line" class="fnname">iter_at_line</a>(&amp;self, line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Initializes @iter to the start of the given line.</p>
+<p>If @line_number is greater than or equal to the number of lines
+in the @self, the end iterator is returned.</p>
 <h6 id="line_number" class="section-header"><a href="#line_number"><code>line_number</code></a></h6>
 <p>line number counting from 0</p>
 <h5 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h5>
 <p>whether the exact position has been found</p>
 <h6 id="iter-4" class="section-header"><a href="#iter-4"><code>iter</code></a></h6>
 <p>iterator to initialize</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line_index" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#572" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line_index" class="fnname">iter_at_line_index</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;byte_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Obtains an iterator pointing to <code>byte_index</code> within the given line.</p>
-<p><code>byte_index</code> must be the start of a UTF-8 character. Note bytes, not
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line_index" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#572" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line_index" class="fnname">iter_at_line_index</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;byte_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Obtains an iterator pointing to @byte_index within the given line.</p>
+<p>@byte_index must be the start of a UTF-8 character. Note bytes, not
 characters; UTF-8 may encode one character as multiple bytes.</p>
-<p>If <code>line_number</code> is greater than or equal to the number of lines in the <code>self</code>,
-the end iterator is returned. And if <code>byte_index</code> is off the
+<p>If @line_number is greater than or equal to the number of lines in the @self,
+the end iterator is returned. And if @byte_index is off the
 end of the line, the iterator at the end of the line is returned.</p>
 <h6 id="line_number-1" class="section-header"><a href="#line_number-1"><code>line_number</code></a></h6>
 <p>line number counting from 0</p>
@@ -416,11 +416,11 @@ end of the line, the iterator at the end of the line is returned.</p>
 <p>whether the exact position has been found</p>
 <h6 id="iter-5" class="section-header"><a href="#iter-5"><code>iter</code></a></h6>
 <p>iterator to initialize</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line_offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#595" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line_offset" class="fnname">iter_at_line_offset</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;char_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Obtains an iterator pointing to <code>char_offset</code> within the given line.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_line_offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#595" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_line_offset" class="fnname">iter_at_line_offset</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;line_number: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;char_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></div></summary><div class="docblock"><p>Obtains an iterator pointing to @char_offset within the given line.</p>
 <p>Note characters, not bytes; UTF-8 may encode one character as multiple
 bytes.</p>
-<p>If <code>line_number</code> is greater than or equal to the number of lines in the <code>self</code>,
-the end iterator is returned. And if <code>char_offset</code> is off the
+<p>If @line_number is greater than or equal to the number of lines in the @self,
+the end iterator is returned. And if @char_offset is off the
 end of the line, the iterator at the end of the line is returned.</p>
 <h6 id="line_number-2" class="section-header"><a href="#line_number-2"><code>line_number</code></a></h6>
 <p>line number counting from 0</p>
@@ -430,15 +430,15 @@ end of the line, the iterator at the end of the line is returned.</p>
 <p>whether the exact position has been found</p>
 <h6 id="iter-6" class="section-header"><a href="#iter-6"><code>iter</code></a></h6>
 <p>iterator to initialize</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#608" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_mark" class="fnname">iter_at_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes <code>iter</code> with the current position of <code>mark</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#608" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_mark" class="fnname">iter_at_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes @iter with the current position of @mark.</p>
 <h6 id="mark-2" class="section-header"><a href="#mark-2"><code>mark</code></a></h6>
-<p>a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a> in <code>self</code></p>
+<p>a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a> in @self</p>
 <h5 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h5><h6 id="iter-7" class="section-header"><a href="#iter-7"><code>iter</code></a></h6>
 <p>iterator to initialize</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#626" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_offset" class="fnname">iter_at_offset</a>(&amp;self, char_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes <code>iter</code> to a position <code>char_offset</code> chars from the start
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_at_offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#626" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_at_offset" class="fnname">iter_at_offset</a>(&amp;self, char_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initializes @iter to a position @char_offset chars from the start
 of the entire buffer.</p>
-<p>If <code>char_offset</code> is -1 or greater than the number
-of characters in the buffer, <code>iter</code> is initialized to the end iterator,
+<p>If @char_offset is -1 or greater than the number
+of characters in the buffer, @iter is initialized to the end iterator,
 the iterator one past the last valid character in the buffer.</p>
 <h6 id="char_offset-1" class="section-header"><a href="#char_offset-1"><code>char_offset</code></a></h6>
 <p>char offset from start of buffer, counting from 0, or -1</p>
@@ -448,7 +448,7 @@ the iterator one past the last valid character in the buffer.</p>
 <p>This value is cached, so the function is very fast.</p>
 <h5 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h5>
 <p>number of lines in the buffer</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#649" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.mark" class="fnname">mark</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the mark named <code>name</code> in buffer <code>self</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no such
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#649" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.mark" class="fnname">mark</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the mark named @name in buffer @self, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no such
 mark exists in the buffer.</p>
 <h6 id="name-2" class="section-header"><a href="#name-2"><code>name</code></a></h6>
 <p>a mark name</p>
@@ -468,7 +468,7 @@ to <a href="trait.TextBufferExt.html#tymethod.set_modified" title="Self::set_mod
 <p>Equivalent to calling <a href="trait.TextBufferExt.html#tymethod.mark" title="Self::mark()"><code>mark()</code></a>
 to get the mark named “selection_bound”, but very slightly
 more efficient, and involves less typing.</p>
-<p>The currently-selected text in <code>self</code> is the region between the
+<p>The currently-selected text in @self is the region between the
 “selection_bound” and “insert” marks. If “selection_bound” and
 “insert” are in the same place, then there is no current selection.
 <a href="trait.TextBufferExt.html#tymethod.selection_bounds" title="Self::selection_bounds()"><code>selection_bounds()</code></a> is another convenient
@@ -477,10 +477,10 @@ there’s a selection and what its bounds are.</p>
 <h5 id="returns-21" class="section-header"><a href="#returns-21">Returns</a></h5>
 <p>selection bound mark</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.selection_bounds" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#712" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.selection_bounds" class="fnname">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></div></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if some text is selected; places the bounds
-of the selection in <code>start</code> and <code>end</code>.</p>
-<p>If the selection has length 0, then <code>start</code> and <code>end</code> are filled
-in with the same value. <code>start</code> and <code>end</code> will be in ascending order.
-If <code>start</code> and <code>end</code> are <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then they are not filled in, but the
+of the selection in @start and @end.</p>
+<p>If the selection has length 0, then @start and @end are filled
+in with the same value. @start and @end will be in ascending order.
+If @start and @end are <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then they are not filled in, but the
 return value still indicates whether text is selected.</p>
 <h5 id="returns-22" class="section-header"><a href="#returns-22">Returns</a></h5>
 <p>whether the selection has nonzero length</p>
@@ -489,13 +489,13 @@ return value still indicates whether text is selected.</p>
 <h6 id="end-4" class="section-header"><a href="#end-4"><code>end</code></a></h6>
 <p>iterator to initialize with selection end</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.selection_content" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#724" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.selection_content" class="fnname">selection_content</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/content_provider/struct.ContentProvider.html" title="struct gdk4::auto::content_provider::ContentProvider">ContentProvider</a></h4></div></summary><div class="docblock"><p>Get a content provider for this buffer.</p>
-<p>It can be used to make the content of <code>self</code> available
+<p>It can be used to make the content of @self available
 in a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a>, see <a href="../../gdk4/auto/clipboard/struct.Clipboard.html#method.set_content" title="crate::gdk::Clipboard::set_content()"><code>Clipboard::set_content()</code></a>.</p>
 <h5 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h5>
 <p>a new <a href="../../gdk4/auto/content_provider/struct.ContentProvider.html" title="crate::gdk::ContentProvider"><code>gdk::ContentProvider</code></a>.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.slice" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#748" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.slice" class="fnname">slice</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns the text in the range [<code>start</code>,<code>end</code>).</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.slice" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#748" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.slice" class="fnname">slice</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns the text in the range [@start,@end).</p>
 <p>Excludes undisplayed text (text marked with tags that set the
-invisibility attribute) if <code>include_hidden_chars</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
+invisibility attribute) if @include_hidden_chars is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
 The returned string includes a 0xFFFC character whenever the
 buffer contains embedded images, so byte and character indexes
 into the returned string do correspond to byte and character
@@ -510,7 +510,7 @@ reliable indicator that a paintable or widget is in the buffer.</p>
 <p>whether to include invisible text</p>
 <h5 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h5>
 <p>an allocated UTF-8 string</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.start_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#762" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.start_iter" class="fnname">start_iter</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initialized <code>iter</code> with the first position in the text buffer.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.start_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#762" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.start_iter" class="fnname">start_iter</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></h4></div></summary><div class="docblock"><p>Initialized @iter with the first position in the text buffer.</p>
 <p>This is the same as using <a href="trait.TextBufferExt.html#tymethod.iter_at_offset" title="Self::iter_at_offset()"><code>iter_at_offset()</code></a>
 to get the iter at character offset 0.</p>
 <h5 id="returns-25" class="section-header"><a href="#returns-25">Returns</a></h5><h6 id="iter-9" class="section-header"><a href="#iter-9"><code>iter</code></a></h6>
@@ -518,9 +518,9 @@ to get the iter at character offset 0.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.tag_table" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#771" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.tag_table" class="fnname">tag_table</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextTagTable.html" title="struct gtk4::TextTagTable">TextTagTable</a></h4></div></summary><div class="docblock"><p>Get the <a href="../struct.TextTagTable.html" title="crate::TextTagTable"><code>TextTagTable</code></a> associated with this buffer.</p>
 <h5 id="returns-26" class="section-header"><a href="#returns-26">Returns</a></h5>
 <p>the buffer’s tag table</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#793" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.text" class="fnname">text</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns the text in the range [<code>start</code>,<code>end</code>).</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#793" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.text" class="fnname">text</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Returns the text in the range [@start,@end).</p>
 <p>Excludes undisplayed text (text marked with tags that set the
-invisibility attribute) if <code>include_hidden_chars</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
+invisibility attribute) if @include_hidden_chars is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
 Does not include characters representing embedded images, so
 byte and character indexes into the returned string do not
 correspond to byte and character indexes into the buffer.
@@ -533,10 +533,10 @@ Contrast with <a href="trait.TextBufferExt.html#tymethod.slice" title="Self::sli
 <p>whether to include invisible text</p>
 <h5 id="returns-27" class="section-header"><a href="#returns-27">Returns</a></h5>
 <p>an allocated UTF-8 string</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#810" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert" class="fnname">insert</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts <code>len</code> bytes of <code>text</code> at position <code>iter</code>.</p>
-<p>If <code>len</code> is -1, <code>text</code> must be nul-terminated and will be inserted in its
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#810" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert" class="fnname">insert</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts @len bytes of @text at position @iter.</p>
+<p>If @len is -1, @text must be nul-terminated and will be inserted in its
 entirety. Emits the “insert-text” signal; insertion actually occurs
-in the default handler for the signal. <code>iter</code> is invalidated when
+in the default handler for the signal. @iter is invalidated when
 insertion occurs (because the buffer contents change), but the
 default signal handler revalidates it to point to the end of the
 inserted text.</p>
@@ -546,14 +546,14 @@ inserted text.</p>
 <p>text in UTF-8 format</p>
 <h6 id="len" class="section-header"><a href="#len"><code>len</code></a></h6>
 <p>length of text in bytes, or -1</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_at_cursor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#821" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_at_cursor" class="fnname">insert_at_cursor</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts <code>text</code> in <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_at_cursor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#821" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_at_cursor" class="fnname">insert_at_cursor</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts @text in @self.</p>
 <p>Simply calls <a href="trait.TextBufferExt.html#tymethod.insert" title="Self::insert()"><code>insert()</code></a>,
 using the current cursor position as the insertion point.</p>
 <h6 id="text-1" class="section-header"><a href="#text-1"><code>text</code></a></h6>
 <p>text in UTF-8 format</p>
 <h6 id="len-1" class="section-header"><a href="#len-1"><code>len</code></a></h6>
 <p>length of text, in bytes</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_child_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#841" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_child_anchor" class="fnname">insert_child_anchor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;<br>)</h4></div></summary><div class="docblock"><p>Inserts a child widget anchor into the text buffer at <code>iter</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_child_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#841" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_child_anchor" class="fnname">insert_child_anchor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;<br>)</h4></div></summary><div class="docblock"><p>Inserts a child widget anchor into the text buffer at @iter.</p>
 <p>The anchor will be counted as one character in character counts, and
 when obtaining the buffer contents as a string, will be represented
 by the Unicode “object replacement character” 0xFFFC. Note that the
@@ -568,16 +568,16 @@ reference to the anchor, so you can unref it after insertion.</p>
 <p>location to insert the anchor</p>
 <h6 id="anchor-1" class="section-header"><a href="#anchor-1"><code>anchor</code></a></h6>
 <p>a <a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>TextChildAnchor</code></a></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_interactive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#866" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_interactive" class="fnname">insert_interactive</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Inserts <code>text</code> in <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_interactive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#866" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_interactive" class="fnname">insert_interactive</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Inserts @text in @self.</p>
 <p>Like <a href="trait.TextBufferExt.html#tymethod.insert" title="Self::insert()"><code>insert()</code></a>, but the insertion will not occur
-if <code>iter</code> is at a non-editable location in the buffer. Usually you
+if @iter is at a non-editable location in the buffer. Usually you
 want to prevent insertions at ineditable locations if the insertion
 results from a user action (is interactive).</p>
-<p><code>default_editable</code> indicates the editability of text that doesn’t
+<p>@default_editable indicates the editability of text that doesn’t
 have a tag affecting editability applied to it. Typically the
 result of <a href="trait.TextViewExt.html#tymethod.is_editable" title="crate::prelude::TextViewExt::is_editable()"><code>TextViewExt::is_editable()</code></a> is appropriate here.</p>
 <h6 id="iter-12" class="section-header"><a href="#iter-12"><code>iter</code></a></h6>
-<p>a position in <code>self</code></p>
+<p>a position in @self</p>
 <h6 id="text-2" class="section-header"><a href="#text-2"><code>text</code></a></h6>
 <p>some UTF-8 text</p>
 <h6 id="len-2" class="section-header"><a href="#len-2"><code>len</code></a></h6>
@@ -586,10 +586,10 @@ result of <a href="trait.TextViewExt.html#tymethod.is_editable" title="crate::pr
 <p>default editability of buffer</p>
 <h5 id="returns-28" class="section-header"><a href="#returns-28">Returns</a></h5>
 <p>whether text was actually inserted</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_interactive_at_cursor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#887" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_interactive_at_cursor" class="fnname">insert_interactive_at_cursor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Inserts <code>text</code> in <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_interactive_at_cursor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#887" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_interactive_at_cursor" class="fnname">insert_interactive_at_cursor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Inserts @text in @self.</p>
 <p>Calls <a href="trait.TextBufferExt.html#tymethod.insert_interactive" title="Self::insert_interactive()"><code>insert_interactive()</code></a>
 at the cursor position.</p>
-<p><code>default_editable</code> indicates the editability of text that doesn’t
+<p>@default_editable indicates the editability of text that doesn’t
 have a tag affecting editability applied to it. Typically the
 result of <a href="trait.TextViewExt.html#tymethod.is_editable" title="crate::prelude::TextViewExt::is_editable()"><code>TextViewExt::is_editable()</code></a> is appropriate here.</p>
 <h6 id="text-3" class="section-header"><a href="#text-3"><code>text</code></a></h6>
@@ -600,18 +600,18 @@ result of <a href="trait.TextViewExt.html#tymethod.is_editable" title="crate::pr
 <p>default editability of buffer</p>
 <h5 id="returns-29" class="section-header"><a href="#returns-29">Returns</a></h5>
 <p>whether text was actually inserted</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_markup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#902" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_markup" class="fnname">insert_markup</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, markup: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts the text in <code>markup</code> at position <code>iter</code>.</p>
-<p><code>markup</code> will be inserted in its entirety and must be nul-terminated
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_markup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#902" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_markup" class="fnname">insert_markup</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, markup: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Inserts the text in @markup at position @iter.</p>
+<p>@markup will be inserted in its entirety and must be nul-terminated
 and valid UTF-8. Emits the <code>signal::TextBuffer::insert-text</code> signal,
 possibly multiple times; insertion actually occurs in the default handler
-for the signal. <code>iter</code> will point to the end of the inserted text on return.</p>
+for the signal. @iter will point to the end of the inserted text on return.</p>
 <h6 id="iter-13" class="section-header"><a href="#iter-13"><code>iter</code></a></h6>
 <p>location to insert the markup</p>
 <h6 id="markup" class="section-header"><a href="#markup"><code>markup</code></a></h6>
 <p>a nul-terminated UTF-8 string containing Pango markup</p>
 <h6 id="len-4" class="section-header"><a href="#len-4"><code>len</code></a></h6>
-<p>length of <code>markup</code> in bytes, or -1</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_paintable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#918" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_paintable" class="fnname">insert_paintable</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, paintable: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;)</h4></div></summary><div class="docblock"><p>Inserts an image into the text buffer at <code>iter</code>.</p>
+<p>length of @markup in bytes, or -1</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_paintable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#918" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_paintable" class="fnname">insert_paintable</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, paintable: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;)</h4></div></summary><div class="docblock"><p>Inserts an image into the text buffer at @iter.</p>
 <p>The image will be counted as one character in character counts,
 and when obtaining the buffer contents as a string, will be
 represented by the Unicode “object replacement character” 0xFFFC.
@@ -623,52 +623,52 @@ variants do not. e.g. see <a href="trait.TextBufferExt.html#tymethod.slice" titl
 <p>location to insert the paintable</p>
 <h6 id="paintable" class="section-header"><a href="#paintable"><code>paintable</code></a></h6>
 <p>a <a href="../../gdk4/auto/paintable/struct.Paintable.html" title="crate::gdk::Paintable"><code>gdk::Paintable</code></a></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#938" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_range" class="fnname">insert_range</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Copies text, tags, and paintables between <code>start</code> and <code>end</code>
-and inserts the copy at <code>iter</code>.</p>
-<p>The order of <code>start</code> and <code>end</code> doesn’t matter.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#938" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_range" class="fnname">insert_range</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Copies text, tags, and paintables between @start and @end
+and inserts the copy at @iter.</p>
+<p>The order of @start and @end doesn’t matter.</p>
 <p>Used instead of simply getting/inserting text because it preserves
-images and tags. If <code>start</code> and <code>end</code> are in a different buffer from
-<code>self</code>, the two buffers must share the same tag table.</p>
+images and tags. If @start and @end are in a different buffer from
+@self, the two buffers must share the same tag table.</p>
 <p>Implemented via emissions of the ::insert-text and ::apply-tag signals,
 so expect those.</p>
 <h6 id="iter-15" class="section-header"><a href="#iter-15"><code>iter</code></a></h6>
-<p>a position in <code>self</code></p>
+<p>a position in @self</p>
 <h6 id="start-7" class="section-header"><a href="#start-7"><code>start</code></a></h6>
 <p>a position in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a></p>
 <h6 id="end-7" class="section-header"><a href="#end-7"><code>end</code></a></h6>
-<p>another position in the same buffer as <code>start</code></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_range_interactive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#961-967" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_range_interactive" class="fnname">insert_range_interactive</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Copies text, tags, and paintables between <code>start</code> and <code>end</code>
-and inserts the copy at <code>iter</code>.</p>
+<p>another position in the same buffer as @start</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_range_interactive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#961-967" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.insert_range_interactive" class="fnname">insert_range_interactive</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Copies text, tags, and paintables between @start and @end
+and inserts the copy at @iter.</p>
 <p>Same as <a href="trait.TextBufferExt.html#tymethod.insert_range" title="Self::insert_range()"><code>insert_range()</code></a>, but does nothing
-if the insertion point isn’t editable. The <code>default_editable</code>
-parameter indicates whether the text is editable at <code>iter</code> if
-no tags enclosing <code>iter</code> affect editability. Typically the result
+if the insertion point isn’t editable. The @default_editable
+parameter indicates whether the text is editable at @iter if
+no tags enclosing @iter affect editability. Typically the result
 of <a href="trait.TextViewExt.html#tymethod.is_editable" title="crate::prelude::TextViewExt::is_editable()"><code>TextViewExt::is_editable()</code></a> is appropriate here.</p>
 <h6 id="iter-16" class="section-header"><a href="#iter-16"><code>iter</code></a></h6>
-<p>a position in <code>self</code></p>
+<p>a position in @self</p>
 <h6 id="start-8" class="section-header"><a href="#start-8"><code>start</code></a></h6>
 <p>a position in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a></p>
 <h6 id="end-8" class="section-header"><a href="#end-8"><code>end</code></a></h6>
-<p>another position in the same buffer as <code>start</code></p>
+<p>another position in the same buffer as @start</p>
 <h6 id="default_editable-6" class="section-header"><a href="#default_editable-6"><code>default_editable</code></a></h6>
 <p>default editability of the buffer</p>
 <h5 id="returns-30" class="section-header"><a href="#returns-30">Returns</a></h5>
-<p>whether an insertion was possible at <code>iter</code></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.move_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#981" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.move_mark" class="fnname">move_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Moves <code>mark</code> to the new location <code>where_</code>.</p>
+<p>whether an insertion was possible at @iter</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.move_mark" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#981" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.move_mark" class="fnname">move_mark</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Moves @mark to the new location @where_.</p>
 <p>Emits the <code>signal::TextBuffer::mark-set</code> signal
 as notification of the move.</p>
 <h6 id="mark-3" class="section-header"><a href="#mark-3"><code>mark</code></a></h6>
 <p>a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a></p>
 <h6 id="where_-2" class="section-header"><a href="#where_-2"><code>where_</code></a></h6>
-<p>new location for <code>mark</code> in <code>self</code></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.move_mark_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#991" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.move_mark_by_name" class="fnname">move_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Moves the mark named <code>name</code> (which must exist) to location <code>where_</code>.</p>
+<p>new location for @mark in @self</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.move_mark_by_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#991" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.move_mark_by_name" class="fnname">move_mark_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Moves the mark named @name (which must exist) to location @where_.</p>
 <p>See <a href="trait.TextBufferExt.html#tymethod.move_mark" title="Self::move_mark()"><code>move_mark()</code></a> for details.</p>
 <h6 id="name-3" class="section-header"><a href="#name-3"><code>name</code></a></h6>
 <p>name of a mark</p>
 <h6 id="where_-3" class="section-header"><a href="#where_-3"><code>where_</code></a></h6>
 <p>new location for mark</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.paste_clipboard" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1009-1014" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.paste_clipboard" class="fnname">paste_clipboard</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;override_location: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</h4></div></summary><div class="docblock"><p>Pastes the contents of a clipboard.</p>
-<p>If <code>override_location</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the pasted text will be inserted
+<p>If @override_location is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the pasted text will be inserted
 at the cursor position, or the buffer selection will be replaced
 if the selection is non-empty.</p>
 <p>Note: pasting is asynchronous, that is, we’ll ask for the paste data
@@ -691,7 +691,7 @@ be optimized.</p>
 <h6 id="where_-4" class="section-header"><a href="#where_-4"><code>where_</code></a></h6>
 <p>where to put the cursor</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.redo" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1032" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.redo" class="fnname">redo</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Redoes the next redoable action on the buffer, if there is one.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_all_tags" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1045" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_all_tags" class="fnname">remove_all_tags</a>(&amp;self, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Removes all tags in the range between <code>start</code> and <code>end</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_all_tags" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1045" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_all_tags" class="fnname">remove_all_tags</a>(&amp;self, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Removes all tags in the range between @start and @end.</p>
 <p>Be careful with this function; it could remove tags added in code
 unrelated to the code you’re currently writing. That is, using this
 function is probably a bad idea if you have two or more unrelated
@@ -701,13 +701,13 @@ code sections that add tags.</p>
 <h6 id="end-9" class="section-header"><a href="#end-9"><code>end</code></a></h6>
 <p>other bound of range to be untagged</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_selection_clipboard" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1053" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_selection_clipboard" class="fnname">remove_selection_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</h4></div></summary><div class="docblock"><p>Removes a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> added with
-<a href="trait.TextBufferExt.html#tymethod.add_selection_clipboard" title="Self::add_selection_clipboard()"><code>add_selection_clipboard()</code></a>.</p>
+gtk_text_buffer_add_selection_clipboard().</p>
 <h6 id="clipboard-4" class="section-header"><a href="#clipboard-4"><code>clipboard</code></a></h6>
-<p>a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> added to <code>self</code> by
+<p>a <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> added to @self by
 <a href="trait.TextBufferExt.html#tymethod.add_selection_clipboard" title="Self::add_selection_clipboard()"><code>add_selection_clipboard()</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1067" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_tag" class="fnname">remove_tag</a>(&amp;self, tag: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;, start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></div></summary><div class="docblock"><p>Emits the “remove-tag” signal.</p>
 <p>The default handler for the signal removes all occurrences
-of <code>tag</code> from the given range. <code>start</code> and <code>end</code> don’t have
+of @tag from the given range. @start and @end don’t have
 to be in order.</p>
 <h6 id="tag-1" class="section-header"><a href="#tag-1"><code>tag</code></a></h6>
 <p>a <a href="../struct.TextTag.html" title="crate::TextTag"><code>TextTag</code></a></p>
@@ -756,20 +756,20 @@ copy of the inserted or removed text within the text buffer.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_modified" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1137" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_modified" class="fnname">set_modified</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Used to keep track of whether the buffer has been
 modified since the last time it was saved.</p>
 <p>Whenever the buffer is saved to disk, call
-<code>gtk_text_buffer_set_modified (</code>self<code>, FALSE)</code>.
+<code>gtk_text_buffer_set_modified (@self, FALSE)</code>.
 When the buffer is modified, it will automatically
 toggled on the modified bit again. When the modified
 bit flips, the buffer emits the
 <code>signal::TextBuffer::modified-changed</code> signal.</p>
 <h6 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h6>
 <p>modification flag setting</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1148" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_text" class="fnname">set_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Deletes current contents of <code>self</code>, and inserts <code>text</code> instead.</p>
-<p>If <code>len</code> is -1, <code>text</code> must be nul-terminated.
-<code>text</code> must be valid UTF-8.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1148" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_text" class="fnname">set_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Deletes current contents of @self, and inserts @text instead.</p>
+<p>If @len is -1, @text must be nul-terminated.
+@text must be valid UTF-8.</p>
 <h6 id="text-4" class="section-header"><a href="#text-4"><code>text</code></a></h6>
 <p>UTF-8 text to insert</p>
 <h6 id="len-5" class="section-header"><a href="#len-5"><code>len</code></a></h6>
-<p>length of <code>text</code> in bytes</p>
+<p>length of @text in bytes</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.undo" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1152" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.undo" class="fnname">undo</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Undoes the last undoable action on the buffer, if there is one.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.cursor_position" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1159" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.cursor_position" class="fnname">cursor_position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>The position of the insert mark.</p>
 <p>This is an offset from the beginning of the buffer.
@@ -777,11 +777,12 @@ It is useful for getting notified when the cursor moves.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_apply_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1180-1183" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_apply_tag" class="fnname">connect_apply_tag</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to apply a tag to a range of text in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>Applying actually occurs in the default handler.</p>
 <p>Note that if your handler runs before the default handler
-it must not invalidate the <code>start</code> and <code>end</code> iters (or has to
+it must not invalidate the @start and @end iters (or has to
 revalidate them).</p>
 <p>See also:
 <a href="trait.TextBufferExt.html#tymethod.apply_tag" title="Self::apply_tag()"><code>apply_tag()</code></a>,
-<code>Gtk::</code>TextBuffer::insert_with_tags()<code>, [</code>insert_range()``]<a href="trait.TextBufferExt.html#tymethod.insert_range" title="Self::insert_range()"><code>Self::insert_range()</code></a>.</p>
+<code>Gtk::TextBuffer::insert_with_tags()</code>,
+<a href="trait.TextBufferExt.html#tymethod.insert_range" title="Self::insert_range()"><code>insert_range()</code></a>.</p>
 <h6 id="tag-2" class="section-header"><a href="#tag-2"><code>tag</code></a></h6>
 <p>the applied tag</p>
 <h6 id="start-12" class="section-header"><a href="#start-12"><code>start</code></a></h6>
@@ -800,11 +801,11 @@ operation on a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><co
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1200" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the content of a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a> has changed.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_delete_range" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1218-1221" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_delete_range" class="fnname">connect_delete_range</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to delete a range from a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>Note that if your handler runs before the default handler
-it must not invalidate the <code>start</code> and <code>end</code> iters (or has
+it must not invalidate the @start and @end iters (or has
 to revalidate them). The default signal handler revalidates
-the <code>start</code> and <code>end</code> iters to both point to the location
+the @start and @end iters to both point to the location
 where text was deleted. Handlers which run after the default
-handler (see <code>g_signal_connect_after()</code>) do not have access to
+handler (see g_signal_connect_after()) do not have access to
 the deleted text.</p>
 <p>See also: <a href="trait.TextBufferExt.html#tymethod.delete" title="Self::delete()"><code>delete()</code></a>.</p>
 <h6 id="start-13" class="section-header"><a href="#start-13"><code>start</code></a></h6>
@@ -824,23 +825,23 @@ operation on the <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_insert_child_anchor" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1252-1255" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_insert_child_anchor" class="fnname">connect_insert_child_anchor</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to insert a <a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>TextChildAnchor</code></a> in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>Insertion actually occurs in the default handler.</p>
 <p>Note that if your handler runs before the default handler
-it must not invalidate the <code>location</code> iter (or has to
+it must not invalidate the @location iter (or has to
 revalidate it). The default signal handler revalidates
-it to be placed after the inserted <code>anchor</code>.</p>
+it to be placed after the inserted @anchor.</p>
 <p>See also: <a href="trait.TextBufferExt.html#tymethod.insert_child_anchor" title="Self::insert_child_anchor()"><code>insert_child_anchor()</code></a>.</p>
 <h6 id="location" class="section-header"><a href="#location"><code>location</code></a></h6>
-<p>position to insert <code>anchor</code> in <code>textbuffer</code></p>
+<p>position to insert @anchor in @textbuffer</p>
 <h6 id="anchor-2" class="section-header"><a href="#anchor-2"><code>anchor</code></a></h6>
 <p>the <a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>TextChildAnchor</code></a> to be inserted</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_insert_paintable" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1272-1275" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_insert_paintable" class="fnname">connect_insert_paintable</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to insert a <a href="../../gdk4/auto/paintable/struct.Paintable.html" title="crate::gdk::Paintable"><code>gdk::Paintable</code></a> in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>Insertion actually occurs in the default handler.</p>
 <p>Note that if your handler runs before the default handler
-it must not invalidate the <code>location</code> iter (or has to
+it must not invalidate the @location iter (or has to
 revalidate it). The default signal handler revalidates
-it to be placed after the inserted <code>paintable</code>.</p>
+it to be placed after the inserted @paintable.</p>
 <p>See also: <a href="trait.TextBufferExt.html#tymethod.insert_paintable" title="Self::insert_paintable()"><code>insert_paintable()</code></a>.</p>
 <h6 id="location-1" class="section-header"><a href="#location-1"><code>location</code></a></h6>
-<p>position to insert <code>paintable</code> in <code>textbuffer</code></p>
+<p>position to insert @paintable in @textbuffer</p>
 <h6 id="paintable-1" class="section-header"><a href="#paintable-1"><code>paintable</code></a></h6>
 <p>the <a href="../../gdk4/auto/paintable/struct.Paintable.html" title="crate::gdk::Paintable"><code>gdk::Paintable</code></a> to be inserted</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_mark_deleted" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1283" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_mark_deleted" class="fnname">connect_mark_deleted</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted as notification after a <a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a> is deleted.</p>
@@ -852,7 +853,7 @@ it to be placed after the inserted <code>paintable</code>.</p>
 <a href="trait.TextBufferExt.html#tymethod.create_mark" title="Self::create_mark()"><code>create_mark()</code></a>,
 <a href="trait.TextBufferExt.html#tymethod.move_mark" title="Self::move_mark()"><code>move_mark()</code></a>.</p>
 <h6 id="location-2" class="section-header"><a href="#location-2"><code>location</code></a></h6>
-<p>The location of <code>mark</code> in <code>textbuffer</code></p>
+<p>The location of @mark in @textbuffer</p>
 <h6 id="mark-5" class="section-header"><a href="#mark-5"><code>mark</code></a></h6>
 <p>The mark that is set</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_modified_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1304" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_modified_changed" class="fnname">connect_modified_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the modified bit of a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a> flips.</p>
@@ -865,11 +866,11 @@ for more details.</p>
 <p>the <a href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="crate::gdk::Clipboard"><code>gdk::Clipboard</code></a> pasted from</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_redo" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1319" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_redo" class="fnname">connect_redo</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when a request has been made to redo the
 previously undone operation.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_remove_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1338-1341" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_remove_tag" class="fnname">connect_remove_tag</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to remove all occurrences of <code>tag</code> from a range
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_remove_tag" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1338-1341" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_remove_tag" class="fnname">connect_remove_tag</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to remove all occurrences of @tag from a range
 of text in a <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a>.</p>
 <p>Removal actually occurs in the default handler.</p>
 <p>Note that if your handler runs before the default handler
-it must not invalidate the <code>start</code> and <code>end</code> iters (or has
+it must not invalidate the @start and @end iters (or has
 to revalidate them).</p>
 <p>See also: <a href="trait.TextBufferExt.html#tymethod.remove_tag" title="Self::remove_tag()"><code>remove_tag()</code></a>.</p>
 <h6 id="tag-3" class="section-header"><a href="#tag-3"><code>tag</code></a></h6>

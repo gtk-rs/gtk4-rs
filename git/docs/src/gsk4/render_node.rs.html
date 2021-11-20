@@ -465,7 +465,7 @@
 <span class="kw">impl</span> <span class="ident">RenderNode</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">RenderNode</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-    <span class="doccomment">/// Loads data previously created via [`serialize()`][Self::serialize()].</span>
+    <span class="doccomment">/// Loads data previously created via gsk_render_node_serialize().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For a discussion of the supported format, see that function.</span>
     <span class="doccomment">/// ## `bytes`</span>
@@ -540,7 +540,7 @@
         }
     }
 
-    <span class="doccomment">/// Draw the contents of `self` to the given cairo context.</span>
+    <span class="doccomment">/// Draw the contents of @self to the given cairo context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typically, you&#39;ll use this function to implement fallback rendering</span>
     <span class="doccomment">/// of [`RenderNode`][crate::RenderNode]s on an intermediate Cairo context, instead of using</span>
@@ -557,7 +557,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the boundaries of the `self`.</span>
+    <span class="doccomment">/// Retrieves the boundaries of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The node will not draw outside of its boundaries.</span>
     <span class="doccomment">///</span>
@@ -576,7 +576,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns the type of the `self`.</span>
+    <span class="doccomment">/// Returns the type of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -587,11 +587,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_render_node_get_node_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Serializes the `self` for later deserialization via</span>
-    <span class="doccomment">/// [`deserialize()`][Self::deserialize()]. No guarantees are made about the format</span>
+    <span class="doccomment">/// Serializes the @self for later deserialization via</span>
+    <span class="doccomment">/// gsk_render_node_deserialize(). No guarantees are made about the format</span>
     <span class="doccomment">/// used other than that the same version of GTK will be able to deserialize</span>
-    <span class="doccomment">/// the result of a call to [`serialize()`][Self::serialize()] and</span>
-    <span class="doccomment">/// [`deserialize()`][Self::deserialize()] will correctly reject files it cannot open</span>
+    <span class="doccomment">/// the result of a call to gsk_render_node_serialize() and</span>
+    <span class="doccomment">/// gsk_render_node_deserialize() will correctly reject files it cannot open</span>
     <span class="doccomment">/// that were created with previous versions of GTK.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The intended use of this functions is testing, benchmarking and debugging.</span>
@@ -605,8 +605,8 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_render_node_serialize</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// This function is equivalent to calling [`serialize()`][Self::serialize()]</span>
-    <span class="doccomment">/// followed by `g_file_set_contents()`.</span>
+    <span class="doccomment">/// This function is equivalent to calling gsk_render_node_serialize()</span>
+    <span class="doccomment">/// followed by g_file_set_contents().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See those two functions for details on the arguments.</span>
     <span class="doccomment">///</span>

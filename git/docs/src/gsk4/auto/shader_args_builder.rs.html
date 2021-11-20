@@ -274,7 +274,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The newly allocated builder, free with</span>
-    <span class="doccomment">///  `Gsk::`ShaderArgsBuilder::unref()``</span>
+    <span class="doccomment">///     `Gsk::ShaderArgsBuilder::unref()`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">GLShader</span>, <span class="ident">initial_values</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span>) -&gt; <span class="ident">ShaderArgsBuilder</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -286,7 +286,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of bool type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -300,7 +300,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of float type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -314,7 +314,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of int type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -328,7 +328,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of uint type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -342,7 +342,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of vec2 type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -360,7 +360,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of vec3 type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -378,7 +378,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the uniform `idx`.</span>
+    <span class="doccomment">/// Sets the value of the uniform @idx.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of vec4 type.</span>
     <span class="doccomment">/// ## `idx`</span>
@@ -397,21 +397,21 @@
     }
 
     <span class="doccomment">/// Creates a new `GBytes` args from the current state of the</span>
-    <span class="doccomment">/// given `self`.</span>
+    <span class="doccomment">/// given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Any uniforms of the shader that have not been explicitly set on</span>
-    <span class="doccomment">/// the `self` are zero-initialized.</span>
+    <span class="doccomment">/// the @self are zero-initialized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given [`ShaderArgsBuilder`][crate::ShaderArgsBuilder] is reset once this function returns;</span>
-    <span class="doccomment">/// you cannot call this function multiple times on the same `self` instance.</span>
+    <span class="doccomment">/// you cannot call this function multiple times on the same @self instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended primarily for bindings. C code should use</span>
-    <span class="doccomment">/// `Gsk::`ShaderArgsBuilder::free_to_args()``.</span>
+    <span class="doccomment">/// `Gsk::ShaderArgsBuilder::free_to_args()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly allocated buffer with</span>
-    <span class="doccomment">///  all the args added to `self`</span>
+    <span class="doccomment">///   all the args added to @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_to_args&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_args</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shader_args_builder_to_args</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

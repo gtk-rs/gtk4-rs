@@ -93,14 +93,14 @@
 is activated. The widget is appended to the end of the dialog’s action
 area.</p>
 <p>If you want to add a non-activatable widget, simply pack it into
-the <code>action_area</code> field of the <a href="../struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> struct.</p>
+the @action_area field of the <a href="../struct.Dialog.html" title="crate::Dialog"><code>Dialog</code></a> struct.</p>
 <h6 id="child" class="section-header"><a href="#child"><code>child</code></a></h6>
 <p>an activatable widget</p>
 <h6 id="response_id" class="section-header"><a href="#response_id"><code>response_id</code></a></h6>
-<p>response ID for <code>child</code></p>
+<p>response ID for @child</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.add_button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#932" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_button" class="fnname">add_button</a>(&amp;self, button_text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) -&gt; <a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a></h4></div></summary><div class="docblock"><p>Adds a button with the given text.</p>
 <p>GTK arranges things so that clicking the button will emit the
-<code>signal::Dialog::response</code> signal with the given <code>response_id</code>.
+<code>signal::Dialog::response</code> signal with the given @response_id.
 The button is appended to the end of the dialog’s action area.
 The button widget is returned, but usually you don’t need it.</p>
 <h6 id="button_text" class="section-header"><a href="#button_text"><code>button_text</code></a></h6>
@@ -109,10 +109,10 @@ The button widget is returned, but usually you don’t need it.</p>
 <p>response ID for the button</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>the <a href="../struct.Button.html" title="crate::Button"><code>Button</code></a> widget that was added</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.content_area" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#941" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.content_area" class="fnname">content_area</a>(&amp;self) -&gt; <a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a></h4></div></summary><div class="docblock"><p>Returns the content area of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.content_area" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#941" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.content_area" class="fnname">content_area</a>(&amp;self) -&gt; <a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a></h4></div></summary><div class="docblock"><p>Returns the content area of @self.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the content area <a href="../struct.Box.html" title="crate::Box"><code>Box</code></a>.</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.header_bar" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#953" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.header_bar" class="fnname">header_bar</a>(&amp;self) -&gt; <a class="struct" href="../struct.HeaderBar.html" title="struct gtk4::HeaderBar">HeaderBar</a></h4></div></summary><div class="docblock"><p>Returns the header bar of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.header_bar" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#953" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.header_bar" class="fnname">header_bar</a>(&amp;self) -&gt; <a class="struct" href="../struct.HeaderBar.html" title="struct gtk4::HeaderBar">HeaderBar</a></h4></div></summary><div class="docblock"><p>Returns the header bar of @self.</p>
 <p>Note that the headerbar is only used by the dialog if the
 <code>property::Dialog::use-header-bar</code> property is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
@@ -120,10 +120,10 @@ The button widget is returned, but usually you don’t need it.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.widget_for_response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#966" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.widget_for_response" class="fnname">widget_for_response</a>(&amp;self, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the widget button that uses the given response ID in the action area
 of a dialog.</p>
 <h6 id="response_id-2" class="section-header"><a href="#response_id-2"><code>response_id</code></a></h6>
-<p>the response ID used by the <code>self</code> widget</p>
+<p>the response ID used by the @self widget</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
-<p>the <code>widget</code> button that uses the given
-<code>response_id</code></p>
+<p>the @widget button that uses the given
+@response_id</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#974" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.response" class="fnname">response</a>(&amp;self, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</h4></div></summary><div class="docblock"><p>Emits the ::response signal with the given response ID.</p>
 <p>Used to indicate that the user has responded to the dialog in some way.</p>
 <h6 id="response_id-3" class="section-header"><a href="#response_id-3"><code>response_id</code></a></h6>
@@ -133,8 +133,8 @@ of a dialog.</p>
 <h6 id="response_id-4" class="section-header"><a href="#response_id-4"><code>response_id</code></a></h6>
 <p>a response ID</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_response_sensitive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#993" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_response_sensitive" class="fnname">set_response_sensitive</a>(&amp;self, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>A convenient way to sensitize/desensitize dialog buttons.</p>
-<p>Calls <code>gtk_widget_set_sensitive (widget, </code>setting<code>)</code>
-for each widget in the dialog’s action area with the given <code>response_id</code>.</p>
+<p>Calls <code>gtk_widget_set_sensitive (widget, @setting)</code>
+for each widget in the dialog’s action area with the given @response_id.</p>
 <h6 id="response_id-5" class="section-header"><a href="#response_id-5"><code>response_id</code></a></h6>
 <p>a response ID</p>
 <h6 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h6>

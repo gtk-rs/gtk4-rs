@@ -576,7 +576,7 @@
     <span class="doccomment">/// each instance of use). A shader can also receive up to 4</span>
     <span class="doccomment">/// textures that it can use as input when producing the pixel data.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GLShader`][crate::GLShader] is usually used with `gtk_snapshot_push_gl_shader()`</span>
+    <span class="doccomment">/// [`GLShader`][crate::GLShader] is usually used with gtk_snapshot_push_gl_shader()</span>
     <span class="doccomment">/// to produce a [`GLShaderNode`][crate::GLShaderNode] in the rendering hierarchy,</span>
     <span class="doccomment">/// and then its input textures are constructed by rendering the child</span>
     <span class="doccomment">/// nodes to textures before rendering the shader node itself. (You can</span>
@@ -611,17 +611,17 @@
     <span class="doccomment">///                 in vec2 uv)</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Where the input `fragCoord` is the coordinate of the pixel we&#39;re</span>
+    <span class="doccomment">/// Where the input @fragCoord is the coordinate of the pixel we&#39;re</span>
     <span class="doccomment">/// currently rendering, relative to the boundary rectangle that was</span>
-    <span class="doccomment">/// specified in the [`GLShaderNode`][crate::GLShaderNode], and `resolution` is the width and</span>
+    <span class="doccomment">/// specified in the [`GLShaderNode`][crate::GLShaderNode], and @resolution is the width and</span>
     <span class="doccomment">/// height of that rectangle. This is in the typical GTK coordinate</span>
-    <span class="doccomment">/// system with the origin in the top left. `uv` contains the u and v</span>
+    <span class="doccomment">/// system with the origin in the top left. @uv contains the u and v</span>
     <span class="doccomment">/// coordinates that can be used to index a texture at the</span>
     <span class="doccomment">/// corresponding point. These coordinates are in the [0..1]x[0..1]</span>
     <span class="doccomment">/// region, with 0, 0 being in the lower left corder (which is typical</span>
     <span class="doccomment">/// for OpenGL).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The output `fragColor` should be a RGBA color (with</span>
+    <span class="doccomment">/// The output @fragColor should be a RGBA color (with</span>
     <span class="doccomment">/// premultiplied alpha) that will be used as the output for the</span>
     <span class="doccomment">/// specified pixel location. Note that this output will be</span>
     <span class="doccomment">/// automatically clipped to the clip region of the glshader node.</span>
@@ -632,7 +632,7 @@
     <span class="doccomment">/// you want of types int, uint, bool, float, vec2, vec3 or vec4.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// All textures sources contain premultiplied alpha colors, but if some</span>
-    <span class="doccomment">/// there are outer sources of colors there is a `gsk_premultiply()` helper</span>
+    <span class="doccomment">/// there are outer sources of colors there is a gsk_premultiply() helper</span>
     <span class="doccomment">/// to compute premultiplication when needed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that GTK parses the uniform declarations, so each uniform has to</span>
@@ -661,9 +661,9 @@
     <span class="doccomment">/// coordinates, and containes some helper ifdefs to ensure that</span>
     <span class="doccomment">/// it works on all OpenGL versions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can compile the shader yourself using [``compile()``][`Self::compile()`],</span>
+    <span class="doccomment">/// You can compile the shader yourself using [`compile()`][Self::compile()],</span>
     <span class="doccomment">/// otherwise the GSK renderer will do it when it handling the glshader</span>
-    <span class="doccomment">/// node. If errors occurs, the returned `error` will include the glsl</span>
+    <span class="doccomment">/// node. If errors occurs, the returned @error will include the glsl</span>
     <span class="doccomment">/// sources, so you can see what GSK was passing to the compiler. You</span>
     <span class="doccomment">/// can also set GSK_DEBUG=shaders in the environment to see the sources</span>
     <span class="doccomment">/// and other relevant information about all shaders that GSK is handling.</span>
@@ -717,7 +717,7 @@
     <span class="doccomment">/// Creates a [`GLShader`][crate::GLShader] that will render pixels using the specified code.</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// path to a resource that contains the GLSL sourcecode for</span>
-    <span class="doccomment">///  the shader</span>
+    <span class="doccomment">///     the shader</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -741,7 +741,7 @@
         <span class="ident">GLShaderBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Tries to compile the `self` for the given `renderer`.</span>
+    <span class="doccomment">/// Tries to compile the @self for the given @renderer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If there is a problem, this function returns [`false`] and reports</span>
     <span class="doccomment">/// an error. You should use this function before relying on the shader</span>
@@ -776,7 +776,7 @@
         }
     }
 
-    <span class="doccomment">/// Looks for a uniform by the name `name`, and returns the index</span>
+    <span class="doccomment">/// Looks for a uniform by the name @name, and returns the index</span>
     <span class="doccomment">/// of the uniform, or -1 if it was not found.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// uniform name</span>
@@ -791,7 +791,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the value of the uniform `idx` in the `args` block.</span>
+    <span class="doccomment">/// Gets the value of the uniform @idx in the @args block.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of bool type.</span>
     <span class="doccomment">/// ## `args`</span>
@@ -814,7 +814,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the value of the uniform `idx` in the `args` block.</span>
+    <span class="doccomment">/// Gets the value of the uniform @idx in the @args block.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of float type.</span>
     <span class="doccomment">/// ## `args`</span>
@@ -833,7 +833,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the value of the uniform `idx` in the `args` block.</span>
+    <span class="doccomment">/// Gets the value of the uniform @idx in the @args block.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of int type.</span>
     <span class="doccomment">/// ## `args`</span>
@@ -850,7 +850,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gsk_gl_shader_get_arg_int</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">args</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>) }
     }
 
-    <span class="doccomment">/// Gets the value of the uniform `idx` in the `args` block.</span>
+    <span class="doccomment">/// Gets the value of the uniform @idx in the @args block.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The uniform must be of uint type.</span>
     <span class="doccomment">/// ## `args`</span>
@@ -888,7 +888,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The number of texture inputs required by `self`</span>
+    <span class="doccomment">/// The number of texture inputs required by @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_get_n_textures&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_n_textures&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_textures</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
@@ -929,7 +929,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_gl_shader_get_source</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Get the name of the declared uniform for this shader at index `idx`.</span>
+    <span class="doccomment">/// Get the name of the declared uniform for this shader at index @idx.</span>
     <span class="doccomment">/// ## `idx`</span>
     <span class="doccomment">/// index of the uniform</span>
     <span class="doccomment">///</span>
@@ -960,7 +960,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gsk_gl_shader_get_uniform_offset</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>) }
     }
 
-    <span class="doccomment">/// Get the type of the declared uniform for this shader at index `idx`.</span>
+    <span class="doccomment">/// Get the type of the declared uniform for this shader at index @idx.</span>
     <span class="doccomment">/// ## `idx`</span>
     <span class="doccomment">/// index of the uniform</span>
     <span class="doccomment">///</span>

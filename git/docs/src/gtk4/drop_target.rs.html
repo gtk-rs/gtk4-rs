@@ -196,7 +196,7 @@
     <span class="doccomment">/// Sets the supported `GTypes` for this drop target.</span>
     <span class="doccomment">/// ## `types`</span>
     <span class="doccomment">/// all supported `GType`s</span>
-    <span class="doccomment">///  that can be dropped on the target</span>
+    <span class="doccomment">///   that can be dropped on the target</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_set_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">Type</span>]) {
         <span class="kw">let</span> <span class="ident">types</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::ffi::GType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">into_glib</span>()).<span class="ident">collect</span>();
@@ -227,8 +227,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  the `G_TYPE_INVALID`-terminated array of types included in</span>
-    <span class="doccomment">///  formats</span>
+    <span class="doccomment">///   the `G_TYPE_INVALID`-terminated array of types included in</span>
+    <span class="doccomment">///   formats</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_get_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Type</span><span class="op">&gt;</span> {
@@ -248,7 +248,7 @@
     <span class="doccomment">/// and no further processing is necessary.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Otherwise, the handler returns [`true`]. In this case, this handler will</span>
-    <span class="doccomment">/// accept the drop. The handler is responsible for using the given `value`</span>
+    <span class="doccomment">/// accept the drop. The handler is responsible for using the given @value</span>
     <span class="doccomment">/// and performing the drop operation.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the `GValue` being dropped</span>

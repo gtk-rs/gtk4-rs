@@ -125,7 +125,7 @@ height for its target allocated width or its width for allocated height,
 depending. In this way a <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> will typically be requested its size
 a number of times before actually being allocated a size. The size a
 widget is finally allocated can of course differ from the size it has
-requested. For this reason, <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> caches a small number of results
+requested. For this reason, <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> caches a  small number of results
 to avoid re-querying for the same sizes in one allocation cycle.</p>
 <p>If a widget does move content around to intelligently use up the
 allocated size then it must support the request in both
@@ -256,10 +256,12 @@ relations, and states, using the custom <code>&lt;accessibility&gt;</code> eleme
 of creating composite widgets using “templates”.</p>
 <p>To create composite widgets with <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a> XML, one must associate
 the interface description with the widget class at class initialization
-time using <code>Gtk::</code>WidgetClass::set_template()``.</p>
+time using <code>Gtk::WidgetClass::set_template()</code>.</p>
 <p>The interface description semantics expected in composite template descriptions
 is slightly different from regular <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a> XML.</p>
-<p>Unlike regular interface descriptions, <code>Gtk::</code>WidgetClass::set_template()<code>will expect a</code><template><code>tag as a direct child of the toplevel</code><interface><code>tag. The</code><template>`` tag must specify the “class” attribute which must be
+<p>Unlike regular interface descriptions, <code>Gtk::WidgetClass::set_template()</code> will
+expect a <code>&lt;template&gt;</code> tag as a direct child of the toplevel <code>&lt;interface&gt;</code>
+tag. The <code>&lt;template&gt;</code> tag must specify the “class” attribute which must be
 the type name of the widget. Optionally, the “parent” attribute may be
 specified to specify the direct parent type of the widget type, this is
 ignored by <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a> but required for UI design tools like
@@ -294,7 +296,7 @@ which might be referenced by other widgets declared as children of the
 &lt;/interface&gt;</code></pre></div>
 <p>Typically, you’ll place the template fragment into a file that is
 bundled with your project, using <code>GResource</code>. In order to load the
-template, you need to call <code>Gtk::</code>WidgetClass::set_template_from_resource()``
+template, you need to call <code>Gtk::WidgetClass::set_template_from_resource()</code>
 from the class initialization of your <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a> type:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-c"><code>static void
@@ -318,7 +320,8 @@ foo_widget_init (FooWidget *self)
 [<code>prelude::WidgetExt::get_template_child</code>][crate::prelude::WidgetExt::get_template_child] function, but you will typically declare
 a pointer in the instance private data structure of your type using the same
 name as the widget in the template definition, and call
-<code>Gtk::</code>WidgetClass::bind_template_child_full()<code>(or one of its wrapper macros</code>widget_class_bind_template_child()<code>and</code>widget_class_bind_template_child_private()``)
+<code>Gtk::WidgetClass::bind_template_child_full()</code> (or one of its wrapper macros
+<code>widget_class_bind_template_child()</code> and <code>widget_class_bind_template_child_private()</code>)
 with that name, e.g.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-c"><code>typedef struct {
@@ -345,7 +348,8 @@ foo_widget_init (FooWidget *widget)
 {
 
 }</code></pre></div>
-<p>You can also use <code>Gtk::</code>WidgetClass::bind_template_callback_full()<code>(or is wrapper macro</code>widget_class_bind_template_callback()``) to connect
+<p>You can also use <code>Gtk::WidgetClass::bind_template_callback_full()</code> (or
+is wrapper macro <code>widget_class_bind_template_callback()</code>) to connect
 a signal callback defined in the template with a function visible in the
 scope of the class, e.g.</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>

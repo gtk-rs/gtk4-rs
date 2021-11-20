@@ -114,7 +114,7 @@ If <code>property::ColumnView::show-row-separators</code> is set, it will be pas
 on to the list view, causing its CSS node to carry the .separators style class.
 For rubberband selection, a node with name rubberband is used.</p>
 <p>The main columnview node may also carry style classes to select
-the style of <a href="https://docs.gtk.org/gtk4/section-list-widget.html%60list%60-styles">list presentation</a>:
+the style of <a href="https://docs.gtk.org/gtk4/section-list-widget.html#list-styles">list presentation</a>:
 .rich-list, .navigation-sidebar or .data-table.</p>
 <h2 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h2>
 <p><a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a> uses the <a href="enum.AccessibleRole.html#variant.TreeGrid" title="crate::AccessibleRole::TreeGrid"><code>AccessibleRole::TreeGrid</code></a> role, header title
@@ -132,13 +132,13 @@ to add columns next.</p>
 <p>a new <a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.builder" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#136-138" title="goto source code">[src]</a></div><a href="#method.builder" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="builders/struct.ColumnViewBuilder.html" title="struct gtk4::builders::ColumnViewBuilder">ColumnViewBuilder</a></h4></div></summary><div class="docblock"><p>Creates a new builder-pattern struct instance to construct <a href="struct.ColumnView.html" title="ColumnView"><code>ColumnView</code></a> objects.</p>
 <p>This method returns an instance of <a href="builders/struct.ColumnViewBuilder.html"><code>ColumnViewBuilder</code></a> which can be used to create <a href="struct.ColumnView.html" title="ColumnView"><code>ColumnView</code></a> objects.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.append_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#145-149" title="goto source code">[src]</a></div><a href="#method.append_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.append_column" class="fnname">append_column</a>(&amp;self, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Appends the <code>column</code> to the end of the columns in <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.append_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#145-149" title="goto source code">[src]</a></div><a href="#method.append_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.append_column" class="fnname">append_column</a>(&amp;self, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Appends the @column to the end of the columns in @self.</p>
 <h6 id="column" class="section-header"><a href="#column"><code>column</code></a></h6>
 <p>a <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> that hasn’t been added to a
 <a href="struct.ColumnView.html" title="crate::ColumnView"><code>ColumnView</code></a> yet</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.columns" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#162-164" title="goto source code">[src]</a></div><a href="#method.columns" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.columns" class="fnname">columns</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a></h4></div></summary><div class="docblock"><p>Gets the list of columns in this column view.</p>
-<p>This list is constant over the lifetime of <code>self</code> and can be used to
-monitor changes to the columns of <code>self</code> by connecting to the
+<p>This list is constant over the lifetime of @self and can be used to
+monitor changes to the columns of @self by connecting to the
 ::items-changed signal.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>The list managing the columns</p>
@@ -178,16 +178,16 @@ sorter = g_object_ref (gtk_column_view_get_sorter (view)));
 model = gtk_sort_list_model_new (store, sorter);
 selection = gtk_no_selection_new (model);
 gtk_column_view_set_model (view, selection);</code></pre></div><h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
-<p>the <a href="struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a> of <code>self</code></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.insert_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#290-298" title="goto source code">[src]</a></div><a href="#method.insert_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.insert_column" class="fnname">insert_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Inserts a column at the given position in the columns of <code>self</code>.</p>
-<p>If <code>column</code> is already a column of <code>self</code>, it will be repositioned.</p>
+<p>the <a href="struct.Sorter.html" title="crate::Sorter"><code>Sorter</code></a> of @self</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.insert_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#290-298" title="goto source code">[src]</a></div><a href="#method.insert_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.insert_column" class="fnname">insert_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Inserts a column at the given position in the columns of @self.</p>
+<p>If @column is already a column of @self, it will be repositioned.</p>
 <h6 id="position" class="section-header"><a href="#position"><code>position</code></a></h6>
-<p>the position to insert <code>column</code> at</p>
+<p>the position to insert @column at</p>
 <h6 id="column-1" class="section-header"><a href="#column-1"><code>column</code></a></h6>
 <p>the <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> to insert</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#304-308" title="goto source code">[src]</a></div><a href="#method.remove_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_column" class="fnname">remove_column</a>(&amp;self, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Removes the <code>column</code> from the list of columns of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove_column" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#304-308" title="goto source code">[src]</a></div><a href="#method.remove_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_column" class="fnname">remove_column</a>(&amp;self, column: &amp;<a class="struct" href="struct.ColumnViewColumn.html" title="struct gtk4::ColumnViewColumn">ColumnViewColumn</a>)</h4></div></summary><div class="docblock"><p>Removes the @column from the list of columns of @self.</p>
 <h6 id="column-2" class="section-header"><a href="#column-2"><code>column</code></a></h6>
-<p>a <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> that’s part of <code>self</code></p>
+<p>a <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> that’s part of @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_enable_rubberband" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/column_view.rs.html#314-321" title="goto source code">[src]</a></div><a href="#method.set_enable_rubberband" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_enable_rubberband" class="fnname">set_enable_rubberband</a>(&amp;self, enable_rubberband: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether selections can be changed by dragging with the mouse.</p>
 <h6 id="enable_rubberband" class="section-header"><a href="#enable_rubberband"><code>enable_rubberband</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to enable rubberband selection</p>
@@ -217,8 +217,8 @@ by clicking on the list headers.</p>
 <p>This call only has an effect if the sorter returned by
 <a href="struct.ColumnView.html#method.sorter" title="Self::sorter()"><code>sorter()</code></a> is set on a sort model,
 and <a href="struct.ColumnViewColumn.html#method.set_sorter" title="crate::ColumnViewColumn::set_sorter()"><code>ColumnViewColumn::set_sorter()</code></a> has been called
-on <code>column</code> to associate a sorter with the column.</p>
-<p>If <code>column</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the view will be unsorted.</p>
+on @column to associate a sorter with the column.</p>
+<p>If @column is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the view will be unsorted.</p>
 <h6 id="column-3" class="section-header"><a href="#column-3"><code>column</code></a></h6>
 <p>the <a href="struct.ColumnViewColumn.html" title="crate::ColumnViewColumn"><code>ColumnViewColumn</code></a> to sort by</p>
 <h6 id="direction" class="section-header"><a href="#direction"><code>direction</code></a></h6>

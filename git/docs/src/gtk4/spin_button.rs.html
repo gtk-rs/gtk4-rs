@@ -142,16 +142,16 @@
 <span class="kw">impl</span> <span class="ident">SpinButton</span> {
     <span class="doccomment">/// Emitted to convert the users input into a double value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The signal handler is expected to use [``EditableExt::text()``][crate::prelude::`EditableExt::text()`]</span>
-    <span class="doccomment">/// to retrieve the text of the spinbutton and set `new_value` to the</span>
+    <span class="doccomment">/// The signal handler is expected to use [`EditableExt::text()`][crate::prelude::EditableExt::text()]</span>
+    <span class="doccomment">/// to retrieve the text of the spinbutton and set @new_value to the</span>
     <span class="doccomment">/// new value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default conversion uses `g_strtod()`.</span>
+    <span class="doccomment">/// The default conversion uses g_strtod().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] for a successful conversion, [`false`] if the input</span>
-    <span class="doccomment">///  was not handled, and `GTK_INPUT_ERROR` if the conversion failed.</span>
+    <span class="doccomment">///   was not handled, and `GTK_INPUT_ERROR` if the conversion failed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `new_value`</span>
     <span class="doccomment">/// return location for the new value</span>

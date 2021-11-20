@@ -255,7 +255,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The hash value for `self`</span>
+    <span class="doccomment">/// The hash value for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rgba_hash&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">hash</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
@@ -265,32 +265,32 @@
         }
     }
 
-    <span class="doccomment">/// Checks if an `self` value is transparent.</span>
+    <span class="doccomment">/// Checks if an @self value is transparent.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// That is, drawing with the value would not produce any change.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `self` is clear</span>
+    <span class="doccomment">/// [`true`] if the @self is clear</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rgba_is_clear&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_rgba_is_clear</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Checks if an `self` value is opaque.</span>
+    <span class="doccomment">/// Checks if an @self value is opaque.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// That is, drawing with the value will not retain any results</span>
     <span class="doccomment">/// from previous contents.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `self` is opaque</span>
+    <span class="doccomment">/// [`true`] if the @self is opaque</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rgba_is_opaque&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_opaque</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_rgba_is_opaque</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns a textual specification of `self` in the form</span>
+    <span class="doccomment">/// Returns a textual specification of @self in the form</span>
     <span class="doccomment">/// `rgb(r,g,b)` or `rgba(r,g,b,a)`, where “r”, “g”, “b” and</span>
     <span class="doccomment">/// “a” represent the red, green, blue and alpha values</span>
     <span class="doccomment">/// respectively. “r”, “g”, and “b” are represented as integers</span>
@@ -298,7 +298,7 @@
     <span class="doccomment">/// point value in the range 0 to 1.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// These string forms are string forms that are supported by</span>
-    <span class="doccomment">/// the CSS3 colors module, and can be parsed by [``parse()``][`Self::parse()`].</span>
+    <span class="doccomment">/// the CSS3 colors module, and can be parsed by [`parse()`][Self::parse()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this string representation may lose some precision,</span>
     <span class="doccomment">/// since “r”, “g” and “b” are represented as 8-bit integers. If</span>

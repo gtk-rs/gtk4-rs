@@ -149,10 +149,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;set_row_separator_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unset_row_separator_func</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets the active item of `self` to be the item at `index`.</span>
+    <span class="doccomment">/// Sets the active item of @self to be the item at @index.</span>
     <span class="doccomment">/// ## `index_`</span>
     <span class="doccomment">/// An index in the model passed during construction,</span>
-    <span class="doccomment">///  or -1 to have no active item</span>
+    <span class="doccomment">///   or -1 to have no active item</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_set_active&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index_</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>);
 
@@ -166,7 +166,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An integer which is the index of the currently active item,</span>
-    <span class="doccomment">///  or -1 if there’s no active item</span>
+    <span class="doccomment">///   or -1 if there’s no active item</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_active&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_active&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>;

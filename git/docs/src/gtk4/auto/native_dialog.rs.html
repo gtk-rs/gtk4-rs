@@ -552,8 +552,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the title of the dialog, or [`None`] if none has</span>
-    <span class="doccomment">///  been set explicitly. The returned string is owned by the widget</span>
-    <span class="doccomment">///  and must not be modified or freed.</span>
+    <span class="doccomment">///    been set explicitly. The returned string is owned by the widget</span>
+    <span class="doccomment">///    and must not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_dialog_get_title&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_title&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -563,7 +563,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the transient parent for this window,</span>
-    <span class="doccomment">///  or [`None`] if no transient parent has been set.</span>
+    <span class="doccomment">///   or [`None`] if no transient parent has been set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_dialog_get_transient_for&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_transient_for&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">transient_for</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>;
@@ -581,7 +581,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Once this is called the `signal::NativeDialog::response` signal</span>
     <span class="doccomment">/// will *not* be emitted until after the next call to</span>
-    <span class="doccomment">/// [``show()``][`Self::show()`].</span>
+    <span class="doccomment">/// [`show()`][Self::show()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the dialog is not visible this does nothing.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_dialog_hide&quot;</span>)]</span>
@@ -591,7 +591,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Modal dialogs prevent interaction with other windows in the same</span>
     <span class="doccomment">/// application. To keep modal dialogs on top of main application</span>
-    <span class="doccomment">/// windows, use [``set_transient_for()``][`Self::set_transient_for()`] to make</span>
+    <span class="doccomment">/// windows, use [`set_transient_for()`][Self::set_transient_for()] to make</span>
     <span class="doccomment">/// the dialog transient for the parent; most window managers will</span>
     <span class="doccomment">/// then disallow lowering the dialog below the parent.</span>
     <span class="doccomment">/// ## `modal`</span>
@@ -611,7 +611,7 @@
     <span class="doccomment">/// This allows window managers to e.g. keep the dialog on top of the</span>
     <span class="doccomment">/// main window, or center the dialog over the main window.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing [`None`] for `parent` unsets the current transient window.</span>
+    <span class="doccomment">/// Passing [`None`] for @parent unsets the current transient window.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// parent window</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_dialog_set_transient_for&quot;</span>)]</span>
@@ -634,7 +634,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When this is called the dialog has been hidden.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you call [``hide()``][`Self::hide()`] before the user</span>
+    <span class="doccomment">/// If you call [`hide()`][Self::hide()] before the user</span>
     <span class="doccomment">/// responds to the dialog this signal will not be emitted.</span>
     <span class="doccomment">/// ## `response_id`</span>
     <span class="doccomment">/// the response ID</span>

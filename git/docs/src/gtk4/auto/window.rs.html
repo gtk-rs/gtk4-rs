@@ -2944,7 +2944,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`Window`][crate::Window] implementation of the [`Buildable`][crate::Buildable] interface supports</span>
     <span class="doccomment">/// setting a child as the titlebar by specifying “titlebar” as the “type”</span>
-    <span class="doccomment">/// attribute of a `&lt;child&gt;` element.</span>
+    <span class="doccomment">/// attribute of a &lt;child&gt; element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
@@ -2997,15 +2997,15 @@
     <span class="doccomment">/// Creates a new [`Window`][crate::Window].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To get an undecorated window (no window borders), use</span>
-    <span class="doccomment">/// [``GtkWindowExt::set_decorated()``][crate::prelude::`GtkWindowExt::set_decorated()`].</span>
+    <span class="doccomment">/// [`GtkWindowExt::set_decorated()`][crate::prelude::GtkWindowExt::set_decorated()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// All top-level windows created by [`new()`][Self::new()] are stored</span>
+    <span class="doccomment">/// All top-level windows created by gtk_window_new() are stored</span>
     <span class="doccomment">/// in an internal top-level window list. This list can be obtained</span>
-    <span class="doccomment">/// from [``list_toplevels()``][`Self::list_toplevels()`]. Due to GTK keeping a</span>
-    <span class="doccomment">/// reference to the window internally, [`new()`][Self::new()] does not</span>
+    <span class="doccomment">/// from [`list_toplevels()`][Self::list_toplevels()]. Due to GTK keeping a</span>
+    <span class="doccomment">/// reference to the window internally, gtk_window_new() does not</span>
     <span class="doccomment">/// return a reference to the caller.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To delete a [`Window`][crate::Window], call `Gtk::`Window::destroy()``.</span>
+    <span class="doccomment">/// To delete a [`Window`][crate::Window], call `Gtk::Window::destroy()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3028,7 +3028,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned string is owned by GTK and should not</span>
     <span class="doccomment">/// be modified. It is only valid until the next call to</span>
-    <span class="doccomment">/// [``set_default_icon_name()``][`Self::set_default_icon_name()`].</span>
+    <span class="doccomment">/// [`set_default_icon_name()`][Self::set_default_icon_name()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3049,7 +3049,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the list</span>
-    <span class="doccomment">///  of toplevel widgets</span>
+    <span class="doccomment">///   of toplevel widgets</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_toplevels&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_toplevels&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">toplevels</span>() -&gt; <span class="ident">gio::ListModel</span> {
@@ -3068,7 +3068,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// list of</span>
-    <span class="doccomment">///  toplevel widgets</span>
+    <span class="doccomment">///   toplevel widgets</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_list_toplevels&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_toplevels</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -3078,7 +3078,7 @@
     <span class="doccomment">/// Sets whether the window should request startup notification.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, after showing the first [`Window`][crate::Window], GTK calls</span>
-    <span class="doccomment">/// `Gdk::`Display::notify_startup_complete()``. Call this function</span>
+    <span class="doccomment">/// `Gdk::Display::notify_startup_complete()`. Call this function</span>
     <span class="doccomment">/// to disable the automatic startup notification. You might do this</span>
     <span class="doccomment">/// if your first window is a splash screen, and you want to delay</span>
     <span class="doccomment">/// notification until after your real main window has been shown,</span>
@@ -3100,7 +3100,7 @@
     <span class="doccomment">/// Sets an icon to be used as fallback.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The fallback icon is used for windows that</span>
-    <span class="doccomment">/// haven&#39;t had [``GtkWindowExt::set_icon_name()``][crate::prelude::`GtkWindowExt::set_icon_name()`]</span>
+    <span class="doccomment">/// haven&#39;t had [`GtkWindowExt::set_icon_name()`][crate::prelude::GtkWindowExt::set_icon_name()]</span>
     <span class="doccomment">/// called on them.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the themed icon</span>
@@ -3112,7 +3112,7 @@
         }
     }
 
-    <span class="doccomment">/// Opens or closes the [interactive debugger](running.html`interactive`-debugging).</span>
+    <span class="doccomment">/// Opens or closes the [interactive debugger](running.html#interactive-debugging).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The debugger offers access to the widget hierarchy of the application</span>
     <span class="doccomment">/// and to useful debugging tools.</span>
@@ -3377,7 +3377,7 @@
     <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
+    <span class="doccomment">/// has any windows associated with it (see g_application_hold()</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -3454,7 +3454,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::fullscreen()`][crate::prelude::GtkWindowExt::fullscreen()] or [`GtkWindowExt::unfullscreen()`][crate::prelude::GtkWindowExt::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -3489,7 +3489,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::maximize()`][crate::prelude::GtkWindowExt::maximize()] or [`GtkWindowExt::unmaximize()`][crate::prelude::GtkWindowExt::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -3576,7 +3576,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -3602,9 +3602,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -3646,7 +3646,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -3659,7 +3659,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -3672,7 +3672,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -3682,7 +3682,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -3724,7 +3724,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -3741,7 +3741,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -3817,7 +3817,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_destroy&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">destroy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Asks to place `self` in the fullscreen state.</span>
+    <span class="doccomment">/// Asks to place @self in the fullscreen state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely fullscreen</span>
     <span class="doccomment">/// afterward, because other entities (e.g. the user or window manager</span>
@@ -3830,7 +3830,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_fullscreen&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">fullscreen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Asks to place `self` in the fullscreen state on the given `monitor`.</span>
+    <span class="doccomment">/// Asks to place @self in the fullscreen state on the given @monitor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn&#39;t assume the window is definitely fullscreen</span>
     <span class="doccomment">/// afterward, or that the windowing system allows fullscreen windows on</span>
@@ -3853,11 +3853,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_application&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">application</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the child widget of `self`.</span>
+    <span class="doccomment">/// Gets the child widget of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget of `self`</span>
+    <span class="doccomment">/// the child widget of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
@@ -3889,7 +3889,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">default_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Returns the default widget for `self`.</span>
+    <span class="doccomment">/// Returns the default widget for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3921,19 +3921,19 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if “focus rectangles” are supposed to be visible</span>
-    <span class="doccomment">///  in this window.</span>
+    <span class="doccomment">///   in this window.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_focus_visible&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">gets_focus_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns the group for `self`.</span>
+    <span class="doccomment">/// Returns the group for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the window has no group, then the default group is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the [`WindowGroup`][crate::WindowGroup] for a window</span>
-    <span class="doccomment">///  or the default group</span>
+    <span class="doccomment">///   or the default group</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_group&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_group&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WindowGroup</span>;
@@ -3973,7 +3973,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if mnemonics are supposed to be visible</span>
-    <span class="doccomment">///  in this window.</span>
+    <span class="doccomment">///   in this window.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_mnemonics_visible&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mnemonics_visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_mnemonics_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -3983,12 +3983,12 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the window is set to be modal and</span>
-    <span class="doccomment">///  establishes a grab when shown</span>
+    <span class="doccomment">///   establishes a grab when shown</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_get_modal&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_modal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the value set by [`set_resizable()`][Self::set_resizable()].</span>
+    <span class="doccomment">/// Gets the value set by gtk_window_set_resizable().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4007,7 +4007,7 @@
     <span class="kw">fn</span> <span class="ident">title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns the custom titlebar that has been set with</span>
-    <span class="doccomment">/// [`set_titlebar()`][Self::set_titlebar()].</span>
+    <span class="doccomment">/// gtk_window_set_titlebar().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4025,11 +4025,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_transient_for&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">transient_for</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns whether `self` has an explicit window group.</span>
+    <span class="doccomment">/// Returns whether @self has an explicit window group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` has an explicit window group.</span>
+    <span class="doccomment">/// [`true`] if @self has an explicit window group.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_has_group&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_group</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
@@ -4047,13 +4047,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_is_active&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Retrieves the current fullscreen state of `self`.</span>
+    <span class="doccomment">/// Retrieves the current fullscreen state of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that since fullscreening is ultimately handled by the window</span>
     <span class="doccomment">/// manager and happens asynchronously to an application request, you</span>
     <span class="doccomment">/// shouldn’t assume the return value of this function changing</span>
     <span class="doccomment">/// immediately (or at all), as an effect of calling</span>
-    <span class="doccomment">/// [``fullscreen()``][`Self::fullscreen()`] or [``unfullscreen()``][`Self::unfullscreen()`].</span>
+    <span class="doccomment">/// [`fullscreen()`][Self::fullscreen()] or [`unfullscreen()`][Self::unfullscreen()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the window isn&#39;t yet mapped, the value returned will whether the</span>
     <span class="doccomment">/// initial requested state is fullscreen.</span>
@@ -4064,13 +4064,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_is_fullscreen&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_fullscreen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Retrieves the current maximized state of `self`.</span>
+    <span class="doccomment">/// Retrieves the current maximized state of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that since maximization is ultimately handled by the window</span>
     <span class="doccomment">/// manager and happens asynchronously to an application request, you</span>
     <span class="doccomment">/// shouldn’t assume the return value of this function changing</span>
     <span class="doccomment">/// immediately (or at all), as an effect of calling</span>
-    <span class="doccomment">/// [``maximize()``][`Self::maximize()`] or [``unmaximize()``][`Self::unmaximize()`].</span>
+    <span class="doccomment">/// [`maximize()`][Self::maximize()] or [`unmaximize()`][Self::unmaximize()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the window isn&#39;t yet mapped, the value returned will whether the</span>
     <span class="doccomment">/// initial requested state is maximized.</span>
@@ -4081,7 +4081,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_is_maximized&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Asks to maximize `self`, so that it fills the screen.</span>
+    <span class="doccomment">/// Asks to maximize @self, so that it fills the screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely maximized</span>
     <span class="doccomment">/// afterward, because other entities (e.g. the user or window manager</span>
@@ -4099,7 +4099,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_maximize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">maximize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Asks to minimize the specified `self`.</span>
+    <span class="doccomment">/// Asks to minimize the specified @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely minimized</span>
     <span class="doccomment">/// afterward, because the windowing system might not support this</span>
@@ -4131,13 +4131,13 @@
     <span class="doccomment">/// giving it the keyboard focus, possibly dependent on the user’s</span>
     <span class="doccomment">/// platform, window manager, and preferences.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is hidden, this function calls [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`]</span>
+    <span class="doccomment">/// If @self is hidden, this function calls [`WidgetExt::show()`][crate::prelude::WidgetExt::show()]</span>
     <span class="doccomment">/// as well.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be used when the user tries to open a window</span>
     <span class="doccomment">/// that’s already open. Say for example the preferences dialog is</span>
     <span class="doccomment">/// currently open, and the user chooses Preferences from the menu</span>
-    <span class="doccomment">/// a second time; use [``present()``][`Self::present()`] to move the</span>
+    <span class="doccomment">/// a second time; use [`present()`][Self::present()] to move the</span>
     <span class="doccomment">/// already-open dialog where the user can see it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Presents a window to the user in response to a user interaction.</span>
@@ -4146,29 +4146,29 @@
     <span class="doccomment">/// the window is ready to be shown.</span>
     <span class="doccomment">/// ## `timestamp`</span>
     <span class="doccomment">/// the timestamp of the user interaction (typically a</span>
-    <span class="doccomment">///  button or key press event) which triggered this call</span>
+    <span class="doccomment">///   button or key press event) which triggered this call</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_present_with_time&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">present_with_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">timestamp</span>: <span class="ident">u32</span>);
 
     <span class="doccomment">/// Sets or unsets the [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it has</span>
-    <span class="doccomment">/// any windows associated with it (see `g_application_hold()` for a way</span>
+    <span class="doccomment">/// any windows associated with it (see g_application_hold() for a way</span>
     <span class="doccomment">/// to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window will</span>
     <span class="doccomment">/// remain until the window is destroyed, but you can explicitly remove</span>
-    <span class="doccomment">/// it by setting the `application` to [`None`].</span>
+    <span class="doccomment">/// it by setting the @application to [`None`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is equivalent to calling [``GtkApplicationExt::remove_window()``][crate::prelude::`GtkApplicationExt::remove_window()`]</span>
-    <span class="doccomment">/// and/or [``GtkApplicationExt::add_window()``][crate::prelude::`GtkApplicationExt::add_window()`] on the old/new applications</span>
+    <span class="doccomment">/// This is equivalent to calling [`GtkApplicationExt::remove_window()`][crate::prelude::GtkApplicationExt::remove_window()]</span>
+    <span class="doccomment">/// and/or [`GtkApplicationExt::add_window()`][crate::prelude::GtkApplicationExt::add_window()] on the old/new applications</span>
     <span class="doccomment">/// as relevant.</span>
     <span class="doccomment">/// ## `application`</span>
     <span class="doccomment">/// a [`Application`][crate::Application], or [`None`] to unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_application&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_application</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">application</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the child widget of `self`.</span>
+    <span class="doccomment">/// Sets the child widget of @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_child&quot;</span>)]</span>
@@ -4183,7 +4183,7 @@
     <span class="doccomment">/// convince the window manager not to decorate the window. Depending on</span>
     <span class="doccomment">/// the system, this function may not have any effect when called on a</span>
     <span class="doccomment">/// window that is already visible, so you should call it before calling</span>
-    <span class="doccomment">/// [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`].</span>
+    <span class="doccomment">/// [`WidgetExt::show()`][crate::prelude::WidgetExt::show()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On Windows, this function always works, since there’s no window manager</span>
     <span class="doccomment">/// policy involved.</span>
@@ -4197,7 +4197,7 @@
     <span class="doccomment">/// If the window’s “natural” size (its size request) is larger than</span>
     <span class="doccomment">/// the default, the default will be ignored.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Unlike [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`], which sets a size</span>
+    <span class="doccomment">/// Unlike [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()], which sets a size</span>
     <span class="doccomment">/// request for a widget and thus would keep users from shrinking</span>
     <span class="doccomment">/// the window, this function only sets the initial size, just as</span>
     <span class="doccomment">/// if the user had resized the window themselves. Users can still</span>
@@ -4210,11 +4210,11 @@
     <span class="doccomment">/// it had prior to hiding, rather than using the default size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Windows can’t actually be 0x0 in size, they must be at least 1x1, but</span>
-    <span class="doccomment">/// passing 0 for `width` and `height` is OK, resulting in a 1x1 default size.</span>
+    <span class="doccomment">/// passing 0 for @width and @height is OK, resulting in a 1x1 default size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you use this function to reestablish a previously saved window size,</span>
     <span class="doccomment">/// note that the appropriate size to save is the one returned by</span>
-    <span class="doccomment">/// [``default_size()``][`Self::default_size()`]. Using the window allocation</span>
+    <span class="doccomment">/// [`default_size()`][Self::default_size()]. Using the window allocation</span>
     <span class="doccomment">/// directly will not work in all circumstances and can lead to growing</span>
     <span class="doccomment">/// or shrinking windows.</span>
     <span class="doccomment">/// ## `width`</span>
@@ -4230,19 +4230,19 @@
     <span class="doccomment">/// presses Enter in a dialog (for example).</span>
     <span class="doccomment">/// ## `default_widget`</span>
     <span class="doccomment">/// widget to be the default</span>
-    <span class="doccomment">///  to unset the default widget for the toplevel</span>
+    <span class="doccomment">///   to unset the default widget for the toplevel</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_default_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets whether the window should be deletable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, windows have a close button in the window frame.</span>
-    <span class="doccomment">/// Some window managers allow GTK to disable this button. If you</span>
+    <span class="doccomment">/// Some  window managers allow GTK to disable this button. If you</span>
     <span class="doccomment">/// set the deletable property to [`false`] using this function, GTK</span>
     <span class="doccomment">/// will do its best to convince the window manager not to show a</span>
     <span class="doccomment">/// close button. Depending on the system, this function may not</span>
     <span class="doccomment">/// have any effect when called on a window that is already visible,</span>
-    <span class="doccomment">/// so you should call it before calling [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`].</span>
+    <span class="doccomment">/// so you should call it before calling [`WidgetExt::show()`][crate::prelude::WidgetExt::show()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On Windows, this function always works, since there’s no window</span>
     <span class="doccomment">/// manager policy involved.</span>
@@ -4251,17 +4251,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_deletable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_deletable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If `setting` is [`true`], then destroying the transient parent of `self`</span>
-    <span class="doccomment">/// will also destroy `self` itself.</span>
+    <span class="doccomment">/// If @setting is [`true`], then destroying the transient parent of @self</span>
+    <span class="doccomment">/// will also destroy @self itself.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is useful for dialogs that shouldn’t persist beyond the lifetime</span>
     <span class="doccomment">/// of the main window they are associated with, for example.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// whether to destroy `self` with its transient parent</span>
+    <span class="doccomment">/// whether to destroy @self with its transient parent</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_destroy_with_parent&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_destroy_with_parent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the [`gdk::Display`][crate::gdk::Display] where the `self` is displayed.</span>
+    <span class="doccomment">/// Sets the [`gdk::Display`][crate::gdk::Display] where the @self is displayed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the window is already mapped, it will be unmapped,</span>
     <span class="doccomment">/// and then remapped on the new display.</span>
@@ -4279,13 +4279,13 @@
     <span class="doccomment">/// Sets whether this window should react to F10 key presses</span>
     <span class="doccomment">/// by activating a menubar it contains.</span>
     <span class="doccomment">/// ## `handle_menubar_accel`</span>
-    <span class="doccomment">/// [`true`] to make `self` handle F10</span>
+    <span class="doccomment">/// [`true`] to make @self handle F10</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_handle_menubar_accel&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_handle_menubar_accel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">handle_menubar_accel</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If `setting` is [`true`], then clicking the close button on the window</span>
+    <span class="doccomment">/// If @setting is [`true`], then clicking the close button on the window</span>
     <span class="doccomment">/// will not destroy it, but only hide it.</span>
     <span class="doccomment">/// ## `setting`</span>
     <span class="doccomment">/// whether to hide the window when it is closed</span>
@@ -4314,7 +4314,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Modal windows prevent interaction with other windows in the same</span>
     <span class="doccomment">/// application. To keep modal dialogs on top of main application windows,</span>
-    <span class="doccomment">/// use [``set_transient_for()``][`Self::set_transient_for()`] to make the dialog transient</span>
+    <span class="doccomment">/// use [`set_transient_for()`][Self::set_transient_for()] to make the dialog transient</span>
     <span class="doccomment">/// for the parent; most window managers will then disallow lowering the</span>
     <span class="doccomment">/// dialog below the parent.</span>
     <span class="doccomment">/// ## `modal`</span>
@@ -4340,7 +4340,7 @@
     <span class="doccomment">/// Normally, startup identifier is managed automatically and you should</span>
     <span class="doccomment">/// only use this function in special cases like transferring focus from</span>
     <span class="doccomment">/// other processes. You should use this function before calling</span>
-    <span class="doccomment">/// [``present()``][`Self::present()`] or any equivalent function generating</span>
+    <span class="doccomment">/// [`present()`][Self::present()] or any equivalent function generating</span>
     <span class="doccomment">/// a window map event.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is only useful on X11, not with other GTK targets.</span>
@@ -4364,7 +4364,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_title&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">title</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets a custom titlebar for `self`.</span>
+    <span class="doccomment">/// Sets a custom titlebar for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A typical widget used here is [`HeaderBar`][crate::HeaderBar], as it</span>
     <span class="doccomment">/// provides various features expected of a titlebar while allowing</span>
@@ -4374,7 +4374,7 @@
     <span class="doccomment">/// the window manager not to put its own titlebar on the window.</span>
     <span class="doccomment">/// Depending on the system, this function may not work for a window</span>
     <span class="doccomment">/// that is already visible, so you set the titlebar before calling</span>
-    <span class="doccomment">/// [``WidgetExt::show()``][crate::prelude::`WidgetExt::show()`].</span>
+    <span class="doccomment">/// [`WidgetExt::show()`][crate::prelude::WidgetExt::show()].</span>
     <span class="doccomment">/// ## `titlebar`</span>
     <span class="doccomment">/// the widget to use as titlebar</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_titlebar&quot;</span>)]</span>
@@ -4383,11 +4383,11 @@
     <span class="doccomment">/// Dialog windows should be set transient for the main application</span>
     <span class="doccomment">/// window they were spawned from. This allows window managers to e.g.</span>
     <span class="doccomment">/// keep the dialog on top of the main window, or center the dialog</span>
-    <span class="doccomment">/// over the main window. [``Dialog::with_buttons()``][crate::`Dialog::with_buttons()`] and other</span>
+    <span class="doccomment">/// over the main window. [`Dialog::with_buttons()`][crate::Dialog::with_buttons()] and other</span>
     <span class="doccomment">/// convenience functions in GTK will sometimes call</span>
-    <span class="doccomment">/// [`set_transient_for()`][Self::set_transient_for()] on your behalf.</span>
+    <span class="doccomment">/// gtk_window_set_transient_for() on your behalf.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing [`None`] for `parent` unsets the current transient window.</span>
+    <span class="doccomment">/// Passing [`None`] for @parent unsets the current transient window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On Windows, this function puts the child window on top of the parent,</span>
     <span class="doccomment">/// much as the window manager would have done on X.</span>
@@ -4396,7 +4396,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_set_transient_for&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_transient_for</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Asks to remove the fullscreen state for `self`, and return to</span>
+    <span class="doccomment">/// Asks to remove the fullscreen state for @self, and return to</span>
     <span class="doccomment">/// its previous state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely not</span>
@@ -4412,7 +4412,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_unfullscreen&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unfullscreen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Asks to unmaximize `self`.</span>
+    <span class="doccomment">/// Asks to unmaximize @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely unmaximized</span>
     <span class="doccomment">/// afterward, because other entities (e.g. the user or window manager</span>
@@ -4425,7 +4425,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_unmaximize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unmaximize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Asks to unminimize the specified `self`.</span>
+    <span class="doccomment">/// Asks to unminimize the specified @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you shouldn’t assume the window is definitely unminimized</span>
     <span class="doccomment">/// afterward, because the windowing system might not support this</span>
@@ -4465,7 +4465,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``fullscreen()``][`Self::fullscreen()`] or [``unfullscreen()``][`Self::unfullscreen()`];</span>
+    <span class="doccomment">/// [`fullscreen()`][Self::fullscreen()] or [`unfullscreen()`][Self::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -4474,7 +4474,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``fullscreen()``][`Self::fullscreen()`] or [``unfullscreen()``][`Self::unfullscreen()`];</span>
+    <span class="doccomment">/// [`fullscreen()`][Self::fullscreen()] or [`unfullscreen()`][Self::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -4483,14 +4483,14 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``maximize()``][`Self::maximize()`] or [``unmaximize()``][`Self::unmaximize()`];</span>
+    <span class="doccomment">/// [`maximize()`][Self::maximize()] or [`unmaximize()`][Self::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
     <span class="kw">fn</span> <span class="ident">set_maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">maximized</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Emitted when the user activates the default widget</span>
-    <span class="doccomment">/// of `window`.</span>
+    <span class="doccomment">/// of @window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate-default&quot;</span>)]</span>
@@ -4499,7 +4499,7 @@
     <span class="kw">fn</span> <span class="ident">emit_activate_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Emitted when the user activates the currently focused</span>
-    <span class="doccomment">/// widget of `window`.</span>
+    <span class="doccomment">/// widget of @window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate-focus&quot;</span>)]</span>
@@ -4520,7 +4520,7 @@
 
     <span class="doccomment">/// Emitted when the user enables or disables interactive debugging.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When `toggle` is [`true`], interactive debugging is toggled on or off,</span>
+    <span class="doccomment">/// When @toggle is [`true`], interactive debugging is toggled on or off,</span>
     <span class="doccomment">/// when it is [`false`], the debugger will be pointed at the widget</span>
     <span class="doccomment">/// under the pointer.</span>
     <span class="doccomment">///</span>
@@ -4543,7 +4543,7 @@
     <span class="kw">fn</span> <span class="ident">emit_enable_debugging</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">toggle</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// emitted when the set of accelerators or mnemonics that</span>
-    <span class="doccomment">/// are associated with `window` changes.</span>
+    <span class="doccomment">/// are associated with @window changes.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;keys-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_keys_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 

@@ -502,7 +502,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SingleSelection</span> {
-    <span class="doccomment">/// Creates a new selection to handle `model`.</span>
+    <span class="doccomment">/// Creates a new selection to handle @model.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// the `GListModel` to manage</span>
     <span class="doccomment">///</span>
@@ -528,7 +528,7 @@
     }
 
     <span class="doccomment">/// Checks if autoselect has been enabled or disabled via</span>
-    <span class="doccomment">/// [`set_autoselect()`][Self::set_autoselect()].</span>
+    <span class="doccomment">/// gtk_single_selection_set_autoselect().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -543,7 +543,7 @@
         }
     }
 
-    <span class="doccomment">/// If [`true`], [`SelectionModelExt::unselect_item()`][crate::prelude::SelectionModelExt::unselect_item()] is supported and allows</span>
+    <span class="doccomment">/// If [`true`], gtk_selection_model_unselect_item() is supported and allows</span>
     <span class="doccomment">/// unselecting the selected item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -559,7 +559,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the model that `self` is wrapping.</span>
+    <span class="doccomment">/// Gets the model that @self is wrapping.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -602,7 +602,7 @@
 
     <span class="doccomment">/// Enables or disables autoselect.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `autoselect` is [`true`], `self` will enforce that an item is always</span>
+    <span class="doccomment">/// If @autoselect is [`true`], @self will enforce that an item is always</span>
     <span class="doccomment">/// selected. It will select a new item when the currently selected</span>
     <span class="doccomment">/// item is deleted and it will disallow unselecting the current item.</span>
     <span class="doccomment">/// ## `autoselect`</span>
@@ -615,7 +615,7 @@
     }
 
     <span class="doccomment">/// If [`true`], unselecting the current item via</span>
-    <span class="doccomment">/// [`SelectionModelExt::unselect_item()`][crate::prelude::SelectionModelExt::unselect_item()] is supported.</span>
+    <span class="doccomment">/// gtk_selection_model_unselect_item() is supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that setting `property::SingleSelection::autoselect` will</span>
     <span class="doccomment">/// cause unselecting to not work, so it practically makes no sense</span>
@@ -632,9 +632,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the model that `self` should wrap.</span>
+    <span class="doccomment">/// Sets the model that @self should wrap.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `model` is [`None`], `self` will be empty.</span>
+    <span class="doccomment">/// If @model is [`None`], @self will be empty.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// A `GListModel` to wrap</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_set_model&quot;</span>)]</span>
@@ -649,7 +649,7 @@
 
     <span class="doccomment">/// Selects the item at the given position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the list does not have an item at `position` or</span>
+    <span class="doccomment">/// If the list does not have an item at @position or</span>
     <span class="doccomment">/// `GTK_INVALID_LIST_POSITION` is given, the behavior depends on the</span>
     <span class="doccomment">/// value of the `property::SingleSelection::autoselect` property:</span>
     <span class="doccomment">/// If it is set, no change will occur and the old item will stay</span>

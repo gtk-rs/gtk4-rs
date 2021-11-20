@@ -80,16 +80,16 @@ use is compatible with the version of GTK the application or
 module was compiled against.</p>
 <p>Compatibility is defined by two things: first the version
 of the running library is newer than the version
-<code>required_major</code>.<code>required_micro</code>. Second
+@required_major.required_minor.@required_micro. Second
 the running library must be binary compatible with the
-version <code>required_major</code>.<code>required_micro</code>
+version @required_major.required_minor.@required_micro
 (same major version.)</p>
 <p>This function is primarily for GTK modules; the module
 can call this function to check that it wasn’t loaded
 into an incompatible version of GTK. However, such a
 check isn’t completely reliable, since the module may be
 linked against an old version of GTK and calling the
-old version of <a href="fn.check_version.html" title="crate::check_version()"><code>check_version()</code></a>, but still get loaded
+old version of gtk_check_version(), but still get loaded
 into an application using a newer version of GTK.</p>
 <h3 id="required_major" class="section-header"><a href="#required_major"><code>required_major</code></a></h3>
 <p>the required major version</p>

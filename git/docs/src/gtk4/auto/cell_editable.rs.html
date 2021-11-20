@@ -325,21 +325,21 @@
     <span class="kw">fn</span> <span class="ident">set_editing_canceled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editing_canceled</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// This signal is a sign for the cell renderer to update its</span>
-    <span class="doccomment">/// value from the `cell_editable`.</span>
+    <span class="doccomment">/// value from the @cell_editable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementations of [`CellEditable`][crate::CellEditable] are responsible for</span>
     <span class="doccomment">/// emitting this signal when they are done editing, e.g.</span>
     <span class="doccomment">/// [`Entry`][crate::Entry] emits this signal when the user presses Enter. Typical things to</span>
     <span class="doccomment">/// do in a handler for ::editing-done are to capture the edited value,</span>
-    <span class="doccomment">/// disconnect the `cell_editable` from signals on the [`CellRenderer`][crate::CellRenderer], etc.</span>
+    <span class="doccomment">/// disconnect the @cell_editable from signals on the [`CellRenderer`][crate::CellRenderer], etc.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`editing_done()`][Self::editing_done()] is a convenience method</span>
+    <span class="doccomment">/// gtk_cell_editable_editing_done() is a convenience method</span>
     <span class="doccomment">/// for emitting `GtkCellEditable::editing-done`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;editing-done&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_editing_done</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// This signal is meant to indicate that the cell is finished</span>
-    <span class="doccomment">/// editing, and the `cell_editable` widget is being removed and may</span>
+    <span class="doccomment">/// editing, and the @cell_editable widget is being removed and may</span>
     <span class="doccomment">/// subsequently be destroyed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementations of [`CellEditable`][crate::CellEditable] are responsible for</span>
@@ -348,7 +348,7 @@
     <span class="doccomment">/// to give the cell renderer a chance to update the cell&#39;s value</span>
     <span class="doccomment">/// before the widget is removed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`remove_widget()`][Self::remove_widget()] is a convenience method</span>
+    <span class="doccomment">/// gtk_cell_editable_remove_widget() is a convenience method</span>
     <span class="doccomment">/// for emitting `GtkCellEditable::remove-widget`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;remove-widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_remove_widget</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;

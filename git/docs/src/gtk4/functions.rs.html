@@ -342,22 +342,22 @@
 
 <span class="doccomment">/// Parses a string representing an accelerator.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This is similar to [``accelerator_parse()``][`crate::accelerator_parse()`] but handles keycodes as</span>
+<span class="doccomment">/// This is similar to [`accelerator_parse()`][crate::accelerator_parse()] but handles keycodes as</span>
 <span class="doccomment">/// well. This is only useful for system-level components, applications should</span>
-<span class="doccomment">/// use [``accelerator_parse()``][`crate::accelerator_parse()`] instead.</span>
+<span class="doccomment">/// use [`accelerator_parse()`][crate::accelerator_parse()] instead.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If `accelerator_codes` is given and the result stored in it is non-[`None`],</span>
-<span class="doccomment">/// the result must be freed with `g_free()`.</span>
+<span class="doccomment">/// If @accelerator_codes is given and the result stored in it is non-[`None`],</span>
+<span class="doccomment">/// the result must be freed with g_free().</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If a keycode is present in the accelerator and no `accelerator_codes`</span>
+<span class="doccomment">/// If a keycode is present in the accelerator and no @accelerator_codes</span>
 <span class="doccomment">/// is given, the parse will fail.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If the parse fails, `accelerator_key`, `accelerator_mods` and</span>
-<span class="doccomment">/// `accelerator_codes` will be set to 0 (zero).</span>
+<span class="doccomment">/// If the parse fails, @accelerator_key, @accelerator_mods and</span>
+<span class="doccomment">/// @accelerator_codes will be set to 0 (zero).</span>
 <span class="doccomment">/// ## `accelerator`</span>
 <span class="doccomment">/// string representing an accelerator</span>
 <span class="doccomment">/// ## `display`</span>
-<span class="doccomment">/// the [`gdk::Display`][crate::gdk::Display] to look up `accelerator_codes` in</span>
+<span class="doccomment">/// the [`gdk::Display`][crate::gdk::Display] to look up @accelerator_codes in</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -368,11 +368,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ## `accelerator_codes`</span>
 <span class="doccomment">///</span>
-<span class="doccomment">///  return location for accelerator keycodes</span>
+<span class="doccomment">///   return location for accelerator keycodes</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ## `accelerator_mods`</span>
 <span class="doccomment">/// return location for accelerator</span>
-<span class="doccomment">///  modifier mask</span>
+<span class="doccomment">///   modifier mask</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_parse_with_keycode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_parse_with_keycode</span>(
     <span class="ident">accelerator</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
@@ -412,8 +412,8 @@
 <span class="doccomment">/// This function launches the default application for showing</span>
 <span class="doccomment">/// a given uri.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// The `callback` will be called when the launch is completed.</span>
-<span class="doccomment">/// It should call `gtk_show_uri_full_finish()` to obtain the result.</span>
+<span class="doccomment">/// The @callback will be called when the launch is completed.</span>
+<span class="doccomment">/// It should call gtk_show_uri_full_finish() to obtain the result.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This is the recommended call to be used as it passes information</span>
 <span class="doccomment">/// necessary for sandbox helpers to parent their dialogs properly.</span>
@@ -523,12 +523,12 @@
 }
 
 <span class="doccomment">/// Return the type ids that have been registered after</span>
-<span class="doccomment">/// calling [`test_register_all_types()`][crate::test_register_all_types()].</span>
+<span class="doccomment">/// calling gtk_test_register_all_types().</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///</span>
-<span class="doccomment">///  0-terminated array of type ids</span>
+<span class="doccomment">///    0-terminated array of type ids</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_test_list_all_types&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_list_all_types</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {

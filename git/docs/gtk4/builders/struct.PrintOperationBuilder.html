@@ -117,7 +117,7 @@ signal handler.</p>
 <code>signal::PrintOperation::request-page-setup</code> and
 <code>signal::PrintOperation::draw-page</code> signals are 0-based, i.e.
 if the user chooses to print all pages, the last ::draw-page signal
-will be for page <code>n_pages</code> - 1.</p>
+will be for page @n_pages - 1.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.print_settings" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#325-328" title="goto source code">[src]</a></div><a href="#method.print_settings" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.print_settings" class="fnname">print_settings</a>(self, print_settings: &amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>) -&gt; Self</h4></div></summary><div class="docblock"><p>The <a href="../struct.PrintSettings.html" title="crate::PrintSettings"><code>PrintSettings</code></a> used for initializing the dialog.</p>
 <p>Setting this property is typically used to re-establish
 print settings from a previous print operation, see
@@ -134,7 +134,7 @@ However, this is often implemented using polling, and should
 not be enabled unless needed.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.unit" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#360-363" title="goto source code">[src]</a></div><a href="#method.unit" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.unit" class="fnname">unit</a>(self, unit: <a class="enum" href="../enum.Unit.html" title="enum gtk4::Unit">Unit</a>) -&gt; Self</h4></div></summary><div class="docblock"><p>The transformation for the cairo context obtained from
 <a href="../struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a> is set up in such a way that distances
-are measured in units of <code>unit</code>.</p>
+are measured in units of @unit.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.use_full_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation.rs.html#373-376" title="goto source code">[src]</a></div><a href="#method.use_full_page" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.use_full_page" class="fnname">use_full_page</a>(self, use_full_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; Self</h4></div></summary><div class="docblock"><p>If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the transformation for the cairo context obtained
 from <a href="../struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a> puts the origin at the top left corner
 of the page.</p>

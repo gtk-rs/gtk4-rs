@@ -122,15 +122,15 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="kw">impl</span> <span class="ident">ContentFormats</span> {
-    <span class="doccomment">/// Gets the `GType`s included in `self`.</span>
+    <span class="doccomment">/// Gets the `GType`s included in @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `self` may not contain any `GType`s, in particular when</span>
+    <span class="doccomment">/// Note that @self may not contain any `GType`s, in particular when</span>
     <span class="doccomment">/// they are empty. In that case [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  `G_TYPE_INVALID`-terminated array of types included in `self`</span>
+    <span class="doccomment">///   `G_TYPE_INVALID`-terminated array of types included in @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_get_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::Type</span><span class="op">&gt;</span> {

@@ -663,7 +663,7 @@
         <span class="ident">ConstraintGuideBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Retrieves the name set using [`set_name()`][Self::set_name()].</span>
+    <span class="doccomment">/// Retrieves the name set using gtk_constraint_guide_set_name().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -674,7 +674,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_constraint_guide_get_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the strength set using [`set_strength()`][Self::set_strength()].</span>
+    <span class="doccomment">/// Retrieves the strength set using gtk_constraint_guide_set_strength().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -689,9 +689,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the maximum size of `self`.</span>
+    <span class="doccomment">/// Sets the maximum size of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
+    <span class="doccomment">/// If @self is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
     <span class="doccomment">/// the constraints will be updated to reflect the new size.</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the new maximum width, or -1 to not change it</span>
@@ -704,9 +704,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the minimum size of `self`.</span>
+    <span class="doccomment">/// Sets the minimum size of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
+    <span class="doccomment">/// If @self is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
     <span class="doccomment">/// the constraints will be updated to reflect the new size.</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the new minimum width, or -1 to not change it</span>
@@ -723,7 +723,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The name is useful for debugging purposes.</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// a name for the `self`</span>
+    <span class="doccomment">/// a name for the @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_guide_set_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -731,9 +731,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the natural size of `self`.</span>
+    <span class="doccomment">/// Sets the natural size of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
+    <span class="doccomment">/// If @self is attached to a [`ConstraintLayout`][crate::ConstraintLayout],</span>
     <span class="doccomment">/// the constraints will be updated to reflect the new size.</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the new natural width, or -1 to not change it</span>

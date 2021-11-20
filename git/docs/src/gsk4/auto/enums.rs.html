@@ -1086,7 +1086,7 @@
 <span class="doccomment">/// The implementation of each blend mode is deferred to the</span>
 <span class="doccomment">/// rendering pipeline.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See &lt;https://www.w3.org/TR/compositing-1/`blending`&gt; for more information</span>
+<span class="doccomment">/// See &lt;https://www.w3.org/TR/compositing-1/#blending&gt; for more information</span>
 <span class="doccomment">/// on blending and blend modes.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
@@ -1096,15 +1096,15 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_BLEND_MODE_DEFAULT&quot;</span>)]</span>
     <span class="ident">Default</span>,
     <span class="doccomment">/// The source color is multiplied by the destination</span>
-    <span class="doccomment">///  and replaces the destination</span>
+    <span class="doccomment">///   and replaces the destination</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_BLEND_MODE_MULTIPLY&quot;</span>)]</span>
     <span class="ident">Multiply</span>,
     <span class="doccomment">/// Multiplies the complements of the destination and source</span>
-    <span class="doccomment">///  color values, then complements the result.</span>
+    <span class="doccomment">///   color values, then complements the result.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_BLEND_MODE_SCREEN&quot;</span>)]</span>
     <span class="ident">Screen</span>,
     <span class="doccomment">/// Multiplies or screens the colors, depending on the</span>
-    <span class="doccomment">///  destination color value. This is the inverse of hard-list</span>
+    <span class="doccomment">///   destination color value. This is the inverse of hard-list</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_BLEND_MODE_OVERLAY&quot;</span>)]</span>
     <span class="ident">Overlay</span>,
     <span class="doccomment">/// Selects the darker of the destination and source colors</span>
@@ -1498,7 +1498,7 @@
     <span class="doccomment">/// A node containing a stack of children</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_CONTAINER_NODE&quot;</span>)]</span>
     <span class="ident">ContainerNode</span>,
-    <span class="doccomment">/// A node drawing a `cairo_surface_t`</span>
+    <span class="doccomment">/// A node drawing a [`cairo::Surface`][crate::cairo::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_CAIRO_NODE&quot;</span>)]</span>
     <span class="ident">CairoNode</span>,
     <span class="doccomment">/// A node drawing a single color rectangle</span>
@@ -1733,8 +1733,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_SCALING_FILTER_NEAREST&quot;</span>)]</span>
     <span class="ident">Nearest</span>,
     <span class="doccomment">/// linear interpolation along each axis,</span>
-    <span class="doccomment">///  plus mipmap generation, with linear interpolation along the mipmap</span>
-    <span class="doccomment">///  levels</span>
+    <span class="doccomment">///   plus mipmap generation, with linear interpolation along the mipmap</span>
+    <span class="doccomment">///   levels</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_SCALING_FILTER_TRILINEAR&quot;</span>)]</span>
     <span class="ident">Trilinear</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -1825,11 +1825,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_SERIALIZATION_UNSUPPORTED_FORMAT&quot;</span>)]</span>
     <span class="ident">UnsupportedFormat</span>,
     <span class="doccomment">/// The version of the data is not</span>
-    <span class="doccomment">///  understood</span>
+    <span class="doccomment">///   understood</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_SERIALIZATION_UNSUPPORTED_VERSION&quot;</span>)]</span>
     <span class="ident">UnsupportedVersion</span>,
     <span class="doccomment">/// The given data may not exist in</span>
-    <span class="doccomment">///  a proper serialization</span>
+    <span class="doccomment">///   a proper serialization</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_SERIALIZATION_INVALID_DATA&quot;</span>)]</span>
     <span class="ident">InvalidData</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -1948,25 +1948,25 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GskTransformCategory&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TransformCategory</span> {
     <span class="doccomment">/// The category of the matrix has not been</span>
-    <span class="doccomment">///  determined.</span>
+    <span class="doccomment">///   determined.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_UNKNOWN&quot;</span>)]</span>
     <span class="ident">Unknown</span>,
     <span class="doccomment">/// Analyzing the matrix concluded that it does</span>
-    <span class="doccomment">///  not fit in any other category.</span>
+    <span class="doccomment">///   not fit in any other category.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_ANY&quot;</span>)]</span>
     <span class="ident">Any</span>,
     <span class="doccomment">/// The matrix is a 3D matrix. This means that</span>
-    <span class="doccomment">///  the w column (the last column) has the values (0, 0, 0, 1).</span>
+    <span class="doccomment">///   the w column (the last column) has the values (0, 0, 0, 1).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_3D&quot;</span>)]</span>
     <span class="ident">_3d</span>,
     <span class="doccomment">/// The matrix is a 2D matrix. This is equivalent</span>
-    <span class="doccomment">///  to [`graphene::Matrix::is_2d()`][crate::graphene::Matrix::is_2d()] returning [`true`]. In particular, this</span>
-    <span class="doccomment">///  means that Cairo can deal with the matrix.</span>
+    <span class="doccomment">///   to graphene_matrix_is_2d() returning [`true`]. In particular, this</span>
+    <span class="doccomment">///   means that Cairo can deal with the matrix.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_2D&quot;</span>)]</span>
     <span class="ident">_2d</span>,
     <span class="doccomment">/// The matrix is a combination of 2D scale</span>
-    <span class="doccomment">///  and 2D translation operations. In particular, this means that any</span>
-    <span class="doccomment">///  rectangle can be transformed exactly using this matrix.</span>
+    <span class="doccomment">///   and 2D translation operations. In particular, this means that any</span>
+    <span class="doccomment">///   rectangle can be transformed exactly using this matrix.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GSK_TRANSFORM_CATEGORY_2D_AFFINE&quot;</span>)]</span>
     <span class="ident">_2dAffine</span>,
     <span class="doccomment">/// The matrix is a 2D translation.</span>

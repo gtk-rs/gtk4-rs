@@ -208,16 +208,16 @@
 
     <span class="doccomment">/// Sets a sort function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// By setting a sort function on the `self` one can dynamically reorder</span>
+    <span class="doccomment">/// By setting a sort function on the @self one can dynamically reorder</span>
     <span class="doccomment">/// the rows of the list, based on the contents of the rows.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `sort_func` will be called for each row after the call, and will</span>
+    <span class="doccomment">/// The @sort_func will be called for each row after the call, and will</span>
     <span class="doccomment">/// continue to be called each time a row changes (via</span>
-    <span class="doccomment">/// [``ListBoxRowExt::changed()``][crate::prelude::`ListBoxRowExt::changed()`]) and when [``invalidate_sort()``][`Self::invalidate_sort()`]</span>
+    <span class="doccomment">/// [`ListBoxRowExt::changed()`][crate::prelude::ListBoxRowExt::changed()]) and when [`invalidate_sort()`][Self::invalidate_sort()]</span>
     <span class="doccomment">/// is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that using a sort function is incompatible with using a model</span>
-    <span class="doccomment">/// (see [``bind_model()``][`Self::bind_model()`]).</span>
+    <span class="doccomment">/// (see [`bind_model()`][Self::bind_model()]).</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// the sort function</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_set_sort_func&quot;</span>)]</span>

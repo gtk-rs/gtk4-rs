@@ -161,21 +161,21 @@
     <span class="comment">// rustdoc-stripper-ignore-next</span>
     <span class="doccomment">/// Similar to [`Self::get_value`] but panics if the value is of a different type.</span>
     <span class="comment">// rustdoc-stripper-ignore-next-stop</span>
-    <span class="doccomment">/// Gets the value of one or more cells in the row referenced by `iter`.</span>
+    <span class="doccomment">/// Gets the value of one or more cells in the row referenced by @iter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variable argument list should contain integer column numbers,</span>
     <span class="doccomment">/// each column number followed by a place to store the value being</span>
-    <span class="doccomment">/// retrieved. The list is terminated by a -1. For example, to get a</span>
+    <span class="doccomment">/// retrieved.  The list is terminated by a -1. For example, to get a</span>
     <span class="doccomment">/// value from column 0 with type `G_TYPE_STRING`, you would</span>
     <span class="doccomment">/// write: `gtk_tree_model_get (model, iter, 0, &amp;place_string_here, -1)`,</span>
-    <span class="doccomment">/// where `place_string_here` is a `gchararray`</span>
+    <span class="doccomment">/// where `place_string_here` is a #gchararray</span>
     <span class="doccomment">/// to be filled with the string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returned values with type `G_TYPE_OBJECT` have to be unreferenced,</span>
     <span class="doccomment">/// values with type `G_TYPE_STRING` or `G_TYPE_BOXED` have to be freed.</span>
     <span class="doccomment">/// Other values are passed by value.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// a row in `self`</span>
+    <span class="doccomment">/// a row in @self</span>
     <span class="kw">fn</span> <span class="ident">get</span><span class="op">&lt;</span><span class="ident">V</span>: <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">FromValue</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">column</span>: <span class="ident">i32</span>) -&gt; <span class="ident">V</span>;
 }
 

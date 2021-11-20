@@ -182,12 +182,12 @@
 );
 
 <span class="kw">impl</span> <span class="ident">BlendNode</span> {
-    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will use `blend_mode` to blend the `top`</span>
-    <span class="doccomment">/// node onto the `bottom` node.</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will use @blend_mode to blend the @top</span>
+    <span class="doccomment">/// node onto the @bottom node.</span>
     <span class="doccomment">/// ## `bottom`</span>
     <span class="doccomment">/// The bottom node to be drawn</span>
     <span class="doccomment">/// ## `top`</span>
-    <span class="doccomment">/// The node to be blended onto the `bottom` node</span>
+    <span class="doccomment">/// The node to be blended onto the @bottom node</span>
     <span class="doccomment">/// ## `blend_mode`</span>
     <span class="doccomment">/// The blend mode to use</span>
     <span class="doccomment">///</span>
@@ -210,7 +210,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the blend mode used by `self`.</span>
+    <span class="doccomment">/// Retrieves the blend mode used by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -221,7 +221,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_blend_node_get_blend_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the bottom [`RenderNode`][crate::RenderNode] child of the `self`.</span>
+    <span class="doccomment">/// Retrieves the bottom [`RenderNode`][crate::RenderNode] child of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -232,7 +232,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_blend_node_get_bottom_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the top [`RenderNode`][crate::RenderNode] child of the `self`.</span>
+    <span class="doccomment">/// Retrieves the top [`RenderNode`][crate::RenderNode] child of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

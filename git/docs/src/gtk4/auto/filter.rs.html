@@ -259,13 +259,13 @@
     <span class="doccomment">/// [`FilterListModel`][crate::FilterListModel].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model will use the filter to determine if it should include items</span>
-    <span class="doccomment">/// or not by calling [``FilterExt::match_()``][crate::prelude::`FilterExt::match_()`] for each item and only</span>
+    <span class="doccomment">/// or not by calling [`FilterExt::match_()`][crate::prelude::FilterExt::match_()] for each item and only</span>
     <span class="doccomment">/// keeping the ones that the function returns [`true`] for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Filters may change what items they match through their lifetime. In that</span>
     <span class="doccomment">/// case, they will emit the `signal::Filter::changed` signal to notify</span>
     <span class="doccomment">/// that previous filter results are no longer valid and that items should</span>
-    <span class="doccomment">/// be checked again via [``FilterExt::match_()``][crate::prelude::`FilterExt::match_()`].</span>
+    <span class="doccomment">/// be checked again via [`FilterExt::match_()`][crate::prelude::FilterExt::match_()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various pre-made filter implementations for common filtering</span>
     <span class="doccomment">/// operations. These filters often include properties that can be linked to</span>
@@ -299,9 +299,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This emits the `signal::Filter::changed` signal. Users</span>
     <span class="doccomment">/// of the filter should then check items again via</span>
-    <span class="doccomment">/// [``match_()``][`Self::match_()`].</span>
+    <span class="doccomment">/// [`match_()`][Self::match_()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Depending on the `change` parameter, not all items need to</span>
+    <span class="doccomment">/// Depending on the @change parameter, not all items need to</span>
     <span class="doccomment">/// be changed, but only some. Refer to the [`FilterChange`][crate::FilterChange]</span>
     <span class="doccomment">/// documentation for details.</span>
     <span class="doccomment">///</span>
@@ -312,7 +312,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">change</span>: <span class="ident">FilterChange</span>);
 
-    <span class="doccomment">/// Gets the known strictness of `filters`.</span>
+    <span class="doccomment">/// Gets the known strictness of @filters.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the strictness is not known, [`FilterMatch::Some`][crate::FilterMatch::Some] is returned.</span>
     <span class="doccomment">///</span>
@@ -324,7 +324,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the strictness of `self`</span>
+    <span class="doccomment">/// the strictness of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_get_strictness&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_strictness&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">strictness</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">FilterMatch</span>;
@@ -336,11 +336,11 @@
     <span class="doccomment">/// Emitted whenever the filter changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the filter should then check items again via</span>
-    <span class="doccomment">/// [``match_()``][`Self::match_()`].</span>
+    <span class="doccomment">/// [`match_()`][Self::match_()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`FilterListModel`][crate::FilterListModel] handles this signal automatically.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Depending on the `change` parameter, not all items need</span>
+    <span class="doccomment">/// Depending on the @change parameter, not all items need</span>
     <span class="doccomment">/// to be checked, but only some. Refer to the [`FilterChange`][crate::FilterChange]</span>
     <span class="doccomment">/// documentation for details.</span>
     <span class="doccomment">/// ## `change`</span>

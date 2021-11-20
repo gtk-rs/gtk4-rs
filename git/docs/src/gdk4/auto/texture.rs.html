@@ -423,12 +423,12 @@
     <span class="doccomment">/// [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf], or a Cairo surface, or other pixel data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ownership of the pixel data is transferred to the [`Texture`][crate::Texture]</span>
-    <span class="doccomment">/// instance; you can only make a copy of it, via [``TextureExtManual::download()``][crate::prelude::`TextureExtManual::download()`]</span>
-    <span class="doccomment">/// or `Gdk::`Texture::download_float()``.</span>
+    <span class="doccomment">/// instance; you can only make a copy of it, via [`TextureExtManual::download()`][crate::prelude::TextureExtManual::download()]</span>
+    <span class="doccomment">/// or `Gdk::Texture::download_float()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Texture`][crate::Texture] is an immutable object: That means you cannot change</span>
     <span class="doccomment">/// anything about it other than increasing the reference count via</span>
-    <span class="doccomment">/// `g_object_ref()`.</span>
+    <span class="doccomment">/// g_object_ref().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
@@ -449,7 +449,7 @@
     <span class="doccomment">/// Creates a new texture object representing the [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is threadsafe, so that you can e.g. use GTask</span>
-    <span class="doccomment">/// and `g_task_run_in_thread()` to avoid blocking the main thread</span>
+    <span class="doccomment">/// and g_task_run_in_thread() to avoid blocking the main thread</span>
     <span class="doccomment">/// while loading a big image.</span>
     <span class="doccomment">/// ## `pixbuf`</span>
     <span class="doccomment">/// a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf]</span>
@@ -469,10 +469,10 @@
     <span class="doccomment">/// The file format is detected automatically. The supported formats</span>
     <span class="doccomment">/// are PNG and JPEG, though more formats might be available.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [`None`] is returned, then `error` will be set.</span>
+    <span class="doccomment">/// If [`None`] is returned, then @error will be set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is threadsafe, so that you can e.g. use GTask</span>
-    <span class="doccomment">/// and `g_task_run_in_thread()` to avoid blocking the main thread</span>
+    <span class="doccomment">/// and g_task_run_in_thread() to avoid blocking the main thread</span>
     <span class="doccomment">/// while loading a big image.</span>
     <span class="doccomment">/// ## `bytes`</span>
     <span class="doccomment">/// a `GBytes` containing the data to load</span>
@@ -502,10 +502,10 @@
     <span class="doccomment">/// The file format is detected automatically. The supported formats</span>
     <span class="doccomment">/// are PNG and JPEG, though more formats might be available.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [`None`] is returned, then `error` will be set.</span>
+    <span class="doccomment">/// If [`None`] is returned, then @error will be set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is threadsafe, so that you can e.g. use GTask</span>
-    <span class="doccomment">/// and `g_task_run_in_thread()` to avoid blocking the main thread</span>
+    <span class="doccomment">/// and g_task_run_in_thread() to avoid blocking the main thread</span>
     <span class="doccomment">/// while loading a big image.</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// `GFile` to load</span>
@@ -533,10 +533,10 @@
     <span class="doccomment">/// The file format is detected automatically. The supported formats</span>
     <span class="doccomment">/// are PNG and JPEG, though more formats might be available.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [`None`] is returned, then `error` will be set.</span>
+    <span class="doccomment">/// If [`None`] is returned, then @error will be set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is threadsafe, so that you can e.g. use GTask</span>
-    <span class="doccomment">/// and `g_task_run_in_thread()` to avoid blocking the main thread</span>
+    <span class="doccomment">/// and g_task_run_in_thread() to avoid blocking the main thread</span>
     <span class="doccomment">/// while loading a big image.</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the filename to load</span>
@@ -567,13 +567,13 @@
     <span class="doccomment">/// The file format is detected automatically. The supported formats</span>
     <span class="doccomment">/// are PNG and JPEG, though more formats might be available.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is a fatal error if `resource_path` does not specify a valid</span>
+    <span class="doccomment">/// It is a fatal error if @resource_path does not specify a valid</span>
     <span class="doccomment">/// image resource and the program will abort if that happens.</span>
     <span class="doccomment">/// If you are unsure about the validity of a resource, use</span>
-    <span class="doccomment">/// [``from_file()``][`Self::from_file()`] to load it.</span>
+    <span class="doccomment">/// [`from_file()`][Self::from_file()] to load it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is threadsafe, so that you can e.g. use GTask</span>
-    <span class="doccomment">/// and `g_task_run_in_thread()` to avoid blocking the main thread</span>
+    <span class="doccomment">/// and g_task_run_in_thread() to avoid blocking the main thread</span>
     <span class="doccomment">/// while loading a big image.</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// the path of the resource file</span>
@@ -604,7 +604,7 @@
     <span class="comment">//#[doc(alias = &quot;gdk_texture_download_float&quot;)]</span>
     <span class="comment">//fn download_float(&amp;self, data: &amp;[f32], stride: usize);</span>
 
-    <span class="doccomment">/// Returns the height of the `self`, in pixels.</span>
+    <span class="doccomment">/// Returns the height of the @self, in pixels.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -613,7 +613,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Returns the width of `self`, in pixels.</span>
+    <span class="doccomment">/// Returns the width of @self, in pixels.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -622,12 +622,12 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Store the given `self` to the `filename` as a PNG file.</span>
+    <span class="doccomment">/// Store the given @self to the @filename as a PNG file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a utility function intended for debugging and testing.</span>
     <span class="doccomment">/// If you want more control over formats, proper error handling or</span>
     <span class="doccomment">/// want to store to a `GFile` or other location, you might want to</span>
-    <span class="doccomment">/// use [``save_to_png_bytes()``][`Self::save_to_png_bytes()`] or look into the</span>
+    <span class="doccomment">/// use [`save_to_png_bytes()`][Self::save_to_png_bytes()] or look into the</span>
     <span class="doccomment">/// gdk-pixbuf library.</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// the filename to store to</span>

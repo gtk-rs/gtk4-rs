@@ -89,7 +89,7 @@ using <a href="struct.PrintJob.html#method.new" title="crate::PrintJob::new()"><
 </ul>
 <h2 id="gtkprintunixdialog-as-gtkbuildable" class="section-header"><a href="#gtkprintunixdialog-as-gtkbuildable">GtkPrintUnixDialog as GtkBuildable</a></h2>
 <p>The <a href="struct.PrintUnixDialog.html" title="crate::PrintUnixDialog"><code>PrintUnixDialog</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface
-exposes its <code>notebook</code> internal children with the name “notebook”.</p>
+exposes its @notebook internal children with the name “notebook”.</p>
 <p>An example of a <a href="struct.PrintUnixDialog.html" title="crate::PrintUnixDialog"><code>PrintUnixDialog</code></a> UI definition fragment:</p>
 <div class="example-wrap"><pre class="language-xml"><code>&lt;object class=&quot;GtkPrintUnixDialog&quot; id=&quot;dialog1&quot;&gt;
   &lt;child internal-child=&quot;notebook&quot;&gt;
@@ -133,7 +133,7 @@ dialog and print are added.</p>
 <p>the widget to use as tab label</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.current_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#157-159" title="goto source code">[src]</a></div><a href="#method.current_page" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.current_page" class="fnname">current_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Gets the current page of the <a href="struct.PrintUnixDialog.html" title="crate::PrintUnixDialog"><code>PrintUnixDialog</code></a>.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
-<p>the current page of <code>self</code></p>
+<p>the current page of @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.embeds_page_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#168-174" title="goto source code">[src]</a></div><a href="#method.embeds_page_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.embeds_page_setup" class="fnname">embeds_page_setup</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Gets whether to embed the page setup.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>whether to embed the page setup</p>
@@ -145,7 +145,7 @@ dialog and print are added.</p>
 <p>the printing capabilities</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.page_setup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#213-219" title="goto source code">[src]</a></div><a href="#method.page_setup" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.page_setup" class="fnname">page_setup</a>(&amp;self) -&gt; <a class="struct" href="struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Gets the page setup that is used by the <a href="struct.PrintUnixDialog.html" title="crate::PrintUnixDialog"><code>PrintUnixDialog</code></a>.</p>
 <h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
-<p>the page setup of <code>self</code>.</p>
+<p>the page setup of @self.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.is_page_setup_set" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#228-234" title="goto source code">[src]</a></div><a href="#method.is_page_setup_set" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_page_setup_set" class="fnname">is_page_setup_set</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Gets whether a page setup was set by the user.</p>
 <h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p>whether a page setup was set by user.</p>
@@ -157,12 +157,12 @@ current values in the print dialog.</p>
 <p>Note that this creates a new object, and you need to unref
 it if don’t want to keep it.</p>
 <h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
-<p>a new <a href="struct.PrintSettings.html" title="crate::PrintSettings"><code>PrintSettings</code></a> object with the values from <code>self</code></p>
+<p>a new <a href="struct.PrintSettings.html" title="crate::PrintSettings"><code>PrintSettings</code></a> object with the values from @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.supports_selection" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#277-283" title="goto source code">[src]</a></div><a href="#method.supports_selection" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.supports_selection" class="fnname">supports_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Gets whether the print dialog allows user to print a selection.</p>
 <h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5>
 <p>whether the application supports print of selection</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_current_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/print_unix_dialog.rs.html#292-296" title="goto source code">[src]</a></div><a href="#method.set_current_page" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_current_page" class="fnname">set_current_page</a>(&amp;self, current_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>Linux</strong> only.</div></div></summary><div class="docblock"><p>Sets the current page number.</p>
-<p>If <code>current_page</code> is not -1, this enables the current page choice
+<p>If @current_page is not -1, this enables the current page choice
 for the range of pages to print.</p>
 <h6 id="current_page" class="section-header"><a href="#current_page"><code>current_page</code></a></h6>
 <p>the current page number.</p>

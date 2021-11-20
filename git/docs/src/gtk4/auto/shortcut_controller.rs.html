@@ -484,8 +484,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Most common shortcuts are using this controller implicitly, e.g. by</span>
     <span class="doccomment">/// adding a mnemonic underline to a [`Label`][crate::Label], or by installing a key</span>
-    <span class="doccomment">/// binding using `Gtk::`WidgetClass::add_binding()``, or by adding accelerators</span>
-    <span class="doccomment">/// to global actions using [``GtkApplicationExt::set_accels_for_action()``][crate::prelude::`GtkApplicationExt::set_accels_for_action()`].</span>
+    <span class="doccomment">/// binding using `Gtk::WidgetClass::add_binding()`, or by adding accelerators</span>
+    <span class="doccomment">/// to global actions using [`GtkApplicationExt::set_accels_for_action()`][crate::prelude::GtkApplicationExt::set_accels_for_action()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// But it is possible to create your own shortcut controller, and add</span>
     <span class="doccomment">/// shortcuts to it.</span>
@@ -516,9 +516,9 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This example creates a [`ActivateAction`][crate::ActivateAction] for triggering the</span>
-    <span class="doccomment">/// `activate` signal of the [`Button`][crate::Button]. See [``ShortcutAction::parse_string()``][crate::`ShortcutAction::parse_string()`]</span>
+    <span class="doccomment">/// `activate` signal of the [`Button`][crate::Button]. See [`ShortcutAction::parse_string()`][crate::ShortcutAction::parse_string()]</span>
     <span class="doccomment">/// for the syntax for other kinds of [`ShortcutAction`][crate::ShortcutAction]. See</span>
-    <span class="doccomment">/// [``ShortcutTrigger::parse_string()``][crate::`ShortcutTrigger::parse_string()`] to learn more about the syntax</span>
+    <span class="doccomment">/// [`ShortcutTrigger::parse_string()`][crate::ShortcutTrigger::parse_string()] to learn more about the syntax</span>
     <span class="doccomment">/// for triggers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -576,7 +576,7 @@
         <span class="ident">ShortcutControllerBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Adds `shortcut` to the list of shortcuts handled by `self`.</span>
+    <span class="doccomment">/// Adds @shortcut to the list of shortcuts handled by @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this controller uses an external shortcut list, this</span>
     <span class="doccomment">/// function does nothing.</span>
@@ -609,7 +609,7 @@
 
     <span class="doccomment">/// Gets the scope for when this controller activates its shortcuts.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_scope()``][`Self::set_scope()`] for details.</span>
+    <span class="doccomment">/// See [`set_scope()`][Self::set_scope()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -624,9 +624,9 @@
         }
     }
 
-    <span class="doccomment">/// Removes `shortcut` from the list of shortcuts handled by `self`.</span>
+    <span class="doccomment">/// Removes @shortcut from the list of shortcuts handled by @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `shortcut` had not been added to `controller` or this controller</span>
+    <span class="doccomment">/// If @shortcut had not been added to @controller or this controller</span>
     <span class="doccomment">/// uses an external shortcut list, this function does nothing.</span>
     <span class="doccomment">/// ## `shortcut`</span>
     <span class="doccomment">/// a [`Shortcut`][crate::Shortcut]</span>
@@ -665,7 +665,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the controller to have the given `scope`.</span>
+    <span class="doccomment">/// Sets the controller to have the given @scope.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The scope allows shortcuts to be activated outside of the normal</span>
     <span class="doccomment">/// event propagation. In particular, it allows installing global</span>

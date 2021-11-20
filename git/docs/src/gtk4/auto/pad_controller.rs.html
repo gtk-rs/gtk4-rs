@@ -362,8 +362,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Pad devices often divide buttons and sensors into groups. All elements</span>
     <span class="doccomment">/// in a group share the same current mode, but different groups may have</span>
-    <span class="doccomment">/// different modes. See `Gdk::`DevicePad::get_n_groups()`` and</span>
-    <span class="doccomment">/// `Gdk::`DevicePad::get_group_n_modes()``.</span>
+    <span class="doccomment">/// different modes. See `Gdk::DevicePad::get_n_groups()` and</span>
+    <span class="doccomment">/// `Gdk::DevicePad::get_group_n_modes()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Each of the actions that a given button/strip/ring performs for a given</span>
     <span class="doccomment">/// mode is defined by a [`PadActionEntry`][crate::PadActionEntry]. It contains an action</span>
@@ -406,17 +406,17 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PadController</span> {
-    <span class="doccomment">/// Creates a new [`PadController`][crate::PadController] that will associate events from `pad` to</span>
+    <span class="doccomment">/// Creates a new [`PadController`][crate::PadController] that will associate events from @pad to</span>
     <span class="doccomment">/// actions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`None`] pad may be provided so the controller manages all pad devices</span>
     <span class="doccomment">/// generically, it is discouraged to mix [`PadController`][crate::PadController] objects with</span>
-    <span class="doccomment">/// [`None`] and non-[`None`] `pad` argument on the same toplevel window, as execution</span>
+    <span class="doccomment">/// [`None`] and non-[`None`] @pad argument on the same toplevel window, as execution</span>
     <span class="doccomment">/// order is not guaranteed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`PadController`][crate::PadController] is created with no mapped actions. In order to</span>
-    <span class="doccomment">/// map pad events to actions, use [``set_action_entries()``][`Self::set_action_entries()`]</span>
-    <span class="doccomment">/// or [``set_action()``][`Self::set_action()`].</span>
+    <span class="doccomment">/// map pad events to actions, use [`set_action_entries()`][Self::set_action_entries()]</span>
+    <span class="doccomment">/// or [`set_action()`][Self::set_action()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Be aware that pad events will only be delivered to [`Window`][crate::Window]s, so adding</span>
     <span class="doccomment">/// a pad controller to any other type of widget will not have an effect.</span>
@@ -447,13 +447,13 @@
         <span class="ident">PadControllerBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Adds an individual action to `self`.</span>
+    <span class="doccomment">/// Adds an individual action to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This action will only be activated if the given button/ring/strip number</span>
-    <span class="doccomment">/// in `index` is interacted while the current mode is `mode`. -1 may be used</span>
+    <span class="doccomment">/// in @index is interacted while the current mode is @mode. -1 may be used</span>
     <span class="doccomment">/// for simple cases, so the action is triggered on all modes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The given `label` should be considered user-visible, so internationalization</span>
+    <span class="doccomment">/// The given @label should be considered user-visible, so internationalization</span>
     <span class="doccomment">/// rules apply. Some windowing systems may be able to use those for user</span>
     <span class="doccomment">/// feedback.</span>
     <span class="doccomment">/// ## `type_`</span>
@@ -464,7 +464,7 @@
     <span class="doccomment">/// the mode that will trigger this action, or -1 for all modes.</span>
     <span class="doccomment">/// ## `label`</span>
     <span class="doccomment">/// Human readable description of this action, this string should</span>
-    <span class="doccomment">///  be deemed user-visible.</span>
+    <span class="doccomment">///   be deemed user-visible.</span>
     <span class="doccomment">/// ## `action_name`</span>
     <span class="doccomment">/// action name that will be activated in the `GActionGroup`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_pad_controller_set_action&quot;</span>)]</span>

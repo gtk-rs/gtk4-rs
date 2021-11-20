@@ -199,17 +199,17 @@
         }
     }
 
-    <span class="doccomment">/// By setting a sort function on the `self`, one can dynamically</span>
+    <span class="doccomment">/// By setting a sort function on the @self, one can dynamically</span>
     <span class="doccomment">/// reorder the children of the box, based on the contents of</span>
     <span class="doccomment">/// the children.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `sort_func` will be called for each child after the call,</span>
+    <span class="doccomment">/// The @sort_func will be called for each child after the call,</span>
     <span class="doccomment">/// and will continue to be called each time a child changes (via</span>
-    <span class="doccomment">/// [``FlowBoxChildExt::changed()``][crate::prelude::`FlowBoxChildExt::changed()`]) and when</span>
-    <span class="doccomment">/// [``invalidate_sort()``][`Self::invalidate_sort()`] is called.</span>
+    <span class="doccomment">/// [`FlowBoxChildExt::changed()`][crate::prelude::FlowBoxChildExt::changed()]) and when</span>
+    <span class="doccomment">/// [`invalidate_sort()`][Self::invalidate_sort()] is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that using a sort function is incompatible with using a model</span>
-    <span class="doccomment">/// (see [``bind_model()``][`Self::bind_model()`]).</span>
+    <span class="doccomment">/// (see [`bind_model()`][Self::bind_model()]).</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// the sort function</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_set_sort_func&quot;</span>)]</span>

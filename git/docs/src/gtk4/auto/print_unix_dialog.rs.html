@@ -1488,9 +1488,9 @@
     <span class="doccomment">/// [`PrintOperation`][crate::PrintOperation].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In order to print something with [`PrintUnixDialog`][crate::PrintUnixDialog], you need to</span>
-    <span class="doccomment">/// use [``selected_printer()``][`Self::selected_printer()`] to obtain a</span>
+    <span class="doccomment">/// use [`selected_printer()`][Self::selected_printer()] to obtain a</span>
     <span class="doccomment">/// [`Printer`][crate::Printer] object and use it to construct a [`PrintJob`][crate::PrintJob]</span>
-    <span class="doccomment">/// using [``PrintJob::new()``][crate::`PrintJob::new()`].</span>
+    <span class="doccomment">/// using [`PrintJob::new()`][crate::PrintJob::new()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`PrintUnixDialog`][crate::PrintUnixDialog] uses the following response values:</span>
     <span class="doccomment">///</span>
@@ -1501,7 +1501,7 @@
     <span class="doccomment">/// # GtkPrintUnixDialog as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`PrintUnixDialog`][crate::PrintUnixDialog] implementation of the [`Buildable`][crate::Buildable] interface</span>
-    <span class="doccomment">/// exposes its `notebook` internal children with the name “notebook”.</span>
+    <span class="doccomment">/// exposes its @notebook internal children with the name “notebook”.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a [`PrintUnixDialog`][crate::PrintUnixDialog] UI definition fragment:</span>
     <span class="doccomment">///</span>
@@ -1596,7 +1596,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the current page of `self`</span>
+    <span class="doccomment">/// the current page of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_get_current_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span> {
@@ -1652,7 +1652,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the page setup of `self`.</span>
+    <span class="doccomment">/// the page setup of @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_get_page_setup&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_page_setup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PageSetup</span> {
@@ -1701,7 +1701,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`PrintSettings`][crate::PrintSettings] object with the values from `self`</span>
+    <span class="doccomment">/// a new [`PrintSettings`][crate::PrintSettings] object with the values from @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_get_settings&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_settings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PrintSettings</span> {
@@ -1729,7 +1729,7 @@
 
     <span class="doccomment">/// Sets the current page number.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `current_page` is not -1, this enables the current page choice</span>
+    <span class="doccomment">/// If @current_page is not -1, this enables the current page choice</span>
     <span class="doccomment">/// for the range of pages to print.</span>
     <span class="doccomment">/// ## `current_page`</span>
     <span class="doccomment">/// the current page number.</span>
@@ -2390,7 +2390,7 @@
     <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
+    <span class="doccomment">/// has any windows associated with it (see g_application_hold()</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -2467,7 +2467,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::fullscreen()`][crate::prelude::GtkWindowExt::fullscreen()] or [`GtkWindowExt::unfullscreen()`][crate::prelude::GtkWindowExt::unfullscreen()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -2502,7 +2502,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
+    <span class="doccomment">/// [`GtkWindowExt::maximize()`][crate::prelude::GtkWindowExt::maximize()] or [`GtkWindowExt::unmaximize()`][crate::prelude::GtkWindowExt::unmaximize()];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -2589,7 +2589,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -2615,9 +2615,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -2659,7 +2659,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -2672,7 +2672,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -2685,7 +2685,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -2695,7 +2695,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -2737,7 +2737,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -2754,7 +2754,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

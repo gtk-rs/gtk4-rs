@@ -155,11 +155,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">X11Monitor</span> {
-    <span class="doccomment">/// Returns the XID of the Output corresponding to `self`.</span>
+    <span class="doccomment">/// Returns the XID of the Output corresponding to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the XID of `self`</span>
+    <span class="doccomment">/// the XID of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_monitor_get_output&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_output&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">xlib::XID</span> {
@@ -170,7 +170,7 @@
     <span class="doccomment">/// within the display coordinate space.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned geometry is in ”application pixels”, not in ”device pixels”</span>
-    <span class="doccomment">/// (see `Gdk::`Monitor::get_scale_factor()``).</span>
+    <span class="doccomment">/// (see `Gdk::Monitor::get_scale_factor()`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

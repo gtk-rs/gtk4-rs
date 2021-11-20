@@ -196,12 +196,12 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ColorMatrixNode</span> {
-    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will drawn the `child` with</span>
-    <span class="doccomment">/// `color_matrix`.</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will drawn the @child with</span>
+    <span class="doccomment">/// @color_matrix.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In particular, the node will transform the operation</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  pixel = color_matrix * pixel + color_offset</span>
+    <span class="doccomment">///     pixel = color_matrix * pixel + color_offset</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// for every pixel.</span>
     <span class="doccomment">/// ## `child`</span>
@@ -230,7 +230,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the child node that is getting its colors modified by the given `self`.</span>
+    <span class="doccomment">/// Gets the child node that is getting its colors modified by the given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -241,7 +241,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_color_matrix_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the color matrix used by the `self`.</span>
+    <span class="doccomment">/// Retrieves the color matrix used by the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -256,7 +256,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the color offset used by the `self`.</span>
+    <span class="doccomment">/// Retrieves the color offset used by the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

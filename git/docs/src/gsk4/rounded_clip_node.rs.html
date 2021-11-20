@@ -164,8 +164,8 @@
 );
 
 <span class="kw">impl</span> <span class="ident">RoundedClipNode</span> {
-    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will clip the `child` to the area</span>
-    <span class="doccomment">/// given by `clip`.</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will clip the @child to the area</span>
+    <span class="doccomment">/// given by @clip.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// The node to draw</span>
     <span class="doccomment">/// ## `clip`</span>
@@ -185,7 +185,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the child node that is getting clipped by the given `self`.</span>
+    <span class="doccomment">/// Gets the child node that is getting clipped by the given @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -196,7 +196,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_rounded_clip_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the rounded rectangle used to clip the contents of the `self`.</span>
+    <span class="doccomment">/// Retrieves the rounded rectangle used to clip the contents of the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

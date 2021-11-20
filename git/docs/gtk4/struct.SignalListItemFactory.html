@@ -110,7 +110,7 @@ was emitted on a listitem, the listitem will be destroyed and not be used again.
 </ol>
 <p>Note that during the signal emissions, changing properties on the
 <a href="struct.ListItem.html" title="crate::ListItem"><code>ListItem</code></a>s passed will not trigger notify signals as the listitem’s
-notifications are frozen. See <code>g_object_freeze_notify()</code> for details.</p>
+notifications are frozen. See g_object_freeze_notify() for details.</p>
 <p>For tracking changes in other properties in the <a href="struct.ListItem.html" title="crate::ListItem"><code>ListItem</code></a>, the
 ::notify signal is recommended. The signal can be connected in the
 <code>signal::SignalListItemFactory::setup</code> signal and removed again during
@@ -122,7 +122,7 @@ notifications are frozen. See <code>g_object_freeze_notify()</code> for details.
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a new <a href="struct.SignalListItemFactory.html" title="crate::SignalListItemFactory"><code>SignalListItemFactory</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_bind" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/signal_list_item_factory.rs.html#97-117" title="goto source code">[src]</a></div><a href="#method.connect_bind" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_bind" class="fnname">connect_bind</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="struct.ListItem.html" title="struct gtk4::ListItem">ListItem</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when a new <code>property::ListItem::item</code> has been set
-on the <code>listitem</code> and should be bound for use.</p>
+on the @listitem and should be bound for use.</p>
 <p>After this signal was emitted, the listitem might be shown in
 a <a href="struct.ListView.html" title="crate::ListView"><code>ListView</code></a> or other list widget.</p>
 <p>The <code>signal::SignalListItemFactory::unbind</code> signal is the
@@ -137,7 +137,7 @@ of this signal and can be used to undo everything done in this signal.</p>
 <h6 id="listitem-1" class="section-header"><a href="#listitem-1"><code>listitem</code></a></h6>
 <p>The <a href="struct.ListItem.html" title="crate::ListItem"><code>ListItem</code></a> to set up</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_teardown" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/signal_list_item_factory.rs.html#161-183" title="goto source code">[src]</a></div><a href="#method.connect_teardown" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_teardown" class="fnname">connect_teardown</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="struct.ListItem.html" title="struct gtk4::ListItem">ListItem</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when a listitem is about to be destroyed.</p>
-<p>It is the last signal ever emitted for this <code>listitem</code>.</p>
+<p>It is the last signal ever emitted for this @listitem.</p>
 <p>This signal is the opposite of the <code>signal::SignalListItemFactory::setup</code>
 signal and should be used to undo everything done in that signal.</p>
 <h6 id="listitem-2" class="section-header"><a href="#listitem-2"><code>listitem</code></a></h6>

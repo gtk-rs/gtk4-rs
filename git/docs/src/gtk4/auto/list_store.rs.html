@@ -470,20 +470,20 @@
     <span class="doccomment">/// A list-like data structure that can be used with the [`TreeView`][crate::TreeView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`ListStore`][crate::ListStore] object is a list model for use with a [`TreeView`][crate::TreeView]</span>
-    <span class="doccomment">/// widget. It implements the [`TreeModel`][crate::TreeModel] interface, and consequentialy,</span>
-    <span class="doccomment">/// can use all of the methods available there. It also implements the</span>
+    <span class="doccomment">/// widget.  It implements the [`TreeModel`][crate::TreeModel] interface, and consequentialy,</span>
+    <span class="doccomment">/// can use all of the methods available there.  It also implements the</span>
     <span class="doccomment">/// [`TreeSortable`][crate::TreeSortable] interface so it can be sorted by the view.</span>
     <span class="doccomment">/// Finally, it also implements the tree</span>
     <span class="doccomment">/// [drag](iface.TreeDragSource.html) and [drop](iface.TreeDragDest.html)</span>
     <span class="doccomment">/// interfaces.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`ListStore`][crate::ListStore] can accept most `GType`s as a column type, though</span>
-    <span class="doccomment">/// it can’t accept all custom types. Internally, it will keep a copy of</span>
-    <span class="doccomment">/// data passed in (such as a string or a boxed pointer). Columns that</span>
-    <span class="doccomment">/// accept `GObject`s are handled a little differently. The</span>
+    <span class="doccomment">/// it can’t accept all custom types.  Internally, it will keep a copy of</span>
+    <span class="doccomment">/// data passed in (such as a string or a boxed pointer).  Columns that</span>
+    <span class="doccomment">/// accept `GObject`s are handled a little differently.  The</span>
     <span class="doccomment">/// [`ListStore`][crate::ListStore] will keep a reference to the object instead of copying the</span>
-    <span class="doccomment">/// value. As a result, if the object is modified, it is up to the</span>
-    <span class="doccomment">/// application writer to call [``TreeModelExt::row_changed()``][crate::prelude::`TreeModelExt::row_changed()`] to emit the</span>
+    <span class="doccomment">/// value.  As a result, if the object is modified, it is up to the</span>
+    <span class="doccomment">/// application writer to call [`TreeModelExt::row_changed()`][crate::prelude::TreeModelExt::row_changed()] to emit the</span>
     <span class="doccomment">/// `signal::TreeModel::row_changed` signal. This most commonly affects lists</span>
     <span class="doccomment">/// with [`gdk::Texture`][crate::gdk::Texture]s stored.</span>
     <span class="doccomment">///</span>
@@ -544,20 +544,20 @@
     <span class="doccomment">/// # Performance Considerations</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Internally, the [`ListStore`][crate::ListStore] was originally implemented with a linked list</span>
-    <span class="doccomment">/// with a tail pointer. As a result, it was fast at data insertion and deletion,</span>
-    <span class="doccomment">/// and not fast at random data access. The [`ListStore`][crate::ListStore] sets the</span>
+    <span class="doccomment">/// with a tail pointer.  As a result, it was fast at data insertion and deletion,</span>
+    <span class="doccomment">/// and not fast at random data access.  The [`ListStore`][crate::ListStore] sets the</span>
     <span class="doccomment">/// `GTK_TREE_MODEL_ITERS_PERSIST` flag, which means that [`TreeIter`][crate::TreeIter]s can be</span>
-    <span class="doccomment">/// cached while the row exists. Thus, if access to a particular row is needed</span>
+    <span class="doccomment">/// cached while the row exists.  Thus, if access to a particular row is needed</span>
     <span class="doccomment">/// often and your code is expected to run on older versions of GTK, it is worth</span>
     <span class="doccomment">/// keeping the iter around.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Atomic Operations</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is important to note that only the methods</span>
-    <span class="doccomment">/// `gtk_list_store_insert_with_values()` and [`insert_with_values()`][Self::insert_with_values()]</span>
+    <span class="doccomment">/// gtk_list_store_insert_with_values() and gtk_list_store_insert_with_valuesv()</span>
     <span class="doccomment">/// are atomic, in the sense that the row is being appended to the store and the</span>
     <span class="doccomment">/// values filled in in a single operation with regard to [`TreeModel`][crate::TreeModel] signaling.</span>
-    <span class="doccomment">/// In contrast, using e.g. [`append()`][Self::append()] and then [`set()`][Self::set()]</span>
+    <span class="doccomment">/// In contrast, using e.g. gtk_list_store_append() and then gtk_list_store_set()</span>
     <span class="doccomment">/// will first create a row, which triggers the `GtkTreeModel::row-inserted` signal</span>
     <span class="doccomment">/// on [`ListStore`][crate::ListStore]. The row, however, is still empty, and any signal handler</span>
     <span class="doccomment">/// connecting to `GtkTreeModel::row-inserted` on this particular store should be prepared</span>
@@ -571,14 +571,14 @@
     <span class="doccomment">/// # GtkListStore as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The GtkListStore implementation of the [`Buildable`][crate::Buildable] interface allows</span>
-    <span class="doccomment">/// to specify the model columns with a ``&lt;columns&gt;`` element that may contain</span>
-    <span class="doccomment">/// multiple ``&lt;column&gt;`` elements, each specifying one model column. The “type”</span>
+    <span class="doccomment">/// to specify the model columns with a `&lt;columns&gt;` element that may contain</span>
+    <span class="doccomment">/// multiple `&lt;column&gt;` elements, each specifying one model column. The “type”</span>
     <span class="doccomment">/// attribute specifies the data type for the column.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, it is possible to specify content for the list store</span>
-    <span class="doccomment">/// in the UI definition, with the ``&lt;data&gt;`` element. It can contain multiple</span>
-    <span class="doccomment">/// ``&lt;row&gt;`` elements, each specifying to content for one row of the list model.</span>
-    <span class="doccomment">/// Inside a ``&lt;row&gt;``, the ``&lt;col&gt;`` elements specify the content for individual cells.</span>
+    <span class="doccomment">/// in the UI definition, with the `&lt;data&gt;` element. It can contain multiple</span>
+    <span class="doccomment">/// `&lt;row&gt;` elements, each specifying to content for one row of the list model.</span>
+    <span class="doccomment">/// Inside a `&lt;row&gt;`, the `&lt;col&gt;` elements specify the content for individual cells.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that it is probably more common to define your models in the code,</span>
     <span class="doccomment">/// and one might consider it a layering violation to specify the content of</span>
@@ -621,9 +621,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ListStore</span> {
-    <span class="doccomment">/// Appends a new row to `self`. `iter` will be changed to point to this new</span>
-    <span class="doccomment">/// row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">/// Appends a new row to @self.  @iter will be changed to point to this new</span>
+    <span class="doccomment">/// row.  The row will be empty after this function is called.  To fill in</span>
+    <span class="doccomment">/// values, you need to call gtk_list_store_set() or gtk_list_store_set_value().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -647,11 +647,11 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new row at `position`. `iter` will be changed to point to this new</span>
-    <span class="doccomment">/// row. If `position` is -1 or is larger than the number of rows on the list,</span>
+    <span class="doccomment">/// Creates a new row at @position.  @iter will be changed to point to this new</span>
+    <span class="doccomment">/// row.  If @position is -1 or is larger than the number of rows on the list,</span>
     <span class="doccomment">/// then the new row will be appended to the list. The row will be empty after</span>
-    <span class="doccomment">/// this function is called. To fill in values, you need to call</span>
-    <span class="doccomment">/// [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">/// this function is called.  To fill in values, you need to call</span>
+    <span class="doccomment">/// gtk_list_store_set() or gtk_list_store_set_value().</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position to insert the new row, or -1 for last</span>
     <span class="doccomment">///</span>
@@ -669,10 +669,10 @@
         }
     }
 
-    <span class="doccomment">/// Inserts a new row after `sibling`. If `sibling` is [`None`], then the row will be</span>
-    <span class="doccomment">/// prepended to the beginning of the list. `iter` will be changed to point to</span>
+    <span class="doccomment">/// Inserts a new row after @sibling. If @sibling is [`None`], then the row will be</span>
+    <span class="doccomment">/// prepended to the beginning of the list. @iter will be changed to point to</span>
     <span class="doccomment">/// this new row. The row will be empty after this function is called. To fill</span>
-    <span class="doccomment">/// in values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">/// in values, you need to call gtk_list_store_set() or gtk_list_store_set_value().</span>
     <span class="doccomment">/// ## `sibling`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
@@ -694,10 +694,10 @@
         }
     }
 
-    <span class="doccomment">/// Inserts a new row before `sibling`. If `sibling` is [`None`], then the row will</span>
-    <span class="doccomment">/// be appended to the end of the list. `iter` will be changed to point to this</span>
+    <span class="doccomment">/// Inserts a new row before @sibling. If @sibling is [`None`], then the row will</span>
+    <span class="doccomment">/// be appended to the end of the list. @iter will be changed to point to this</span>
     <span class="doccomment">/// new row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">/// values, you need to call gtk_list_store_set() or gtk_list_store_set_value().</span>
     <span class="doccomment">/// ## `sibling`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
@@ -739,8 +739,8 @@
         }
     }
 
-    <span class="doccomment">/// Moves `iter` in `self` to the position after `position`. Note that this</span>
-    <span class="doccomment">/// function only works with unsorted stores. If `position` is [`None`], `iter`</span>
+    <span class="doccomment">/// Moves @iter in @self to the position after @position. Note that this</span>
+    <span class="doccomment">/// function only works with unsorted stores. If @position is [`None`], @iter</span>
     <span class="doccomment">/// will be moved to the start of the list.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>
@@ -757,8 +757,8 @@
         }
     }
 
-    <span class="doccomment">/// Moves `iter` in `self` to the position before `position`. Note that this</span>
-    <span class="doccomment">/// function only works with unsorted stores. If `position` is [`None`], `iter`</span>
+    <span class="doccomment">/// Moves @iter in @self to the position before @position. Note that this</span>
+    <span class="doccomment">/// function only works with unsorted stores. If @position is [`None`], @iter</span>
     <span class="doccomment">/// will be moved to the end of the list.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>
@@ -775,9 +775,9 @@
         }
     }
 
-    <span class="doccomment">/// Prepends a new row to `self`. `iter` will be changed to point to this new</span>
+    <span class="doccomment">/// Prepends a new row to @self. @iter will be changed to point to this new</span>
     <span class="doccomment">/// row. The row will be empty after this function is called. To fill in</span>
-    <span class="doccomment">/// values, you need to call [`set()`][Self::set()] or [`set_value()`][Self::set_value()].</span>
+    <span class="doccomment">/// values, you need to call gtk_list_store_set() or gtk_list_store_set_value().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -793,15 +793,15 @@
         }
     }
 
-    <span class="doccomment">/// Removes the given row from the list store. After being removed,</span>
-    <span class="doccomment">/// `iter` is set to be the next valid row, or invalidated if it pointed</span>
-    <span class="doccomment">/// to the last row in `self`.</span>
+    <span class="doccomment">/// Removes the given row from the list store.  After being removed,</span>
+    <span class="doccomment">/// @iter is set to be the next valid row, or invalidated if it pointed</span>
+    <span class="doccomment">/// to the last row in @self.</span>
     <span class="doccomment">/// ## `iter`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `iter` is valid, [`false`] if not.</span>
+    <span class="doccomment">/// [`true`] if @iter is valid, [`false`] if not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_remove&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -812,7 +812,7 @@
         }
     }
 
-    <span class="doccomment">/// Swaps `a` and `b` in `self`. Note that this function only works with</span>
+    <span class="doccomment">/// Swaps @a and @b in @self. Note that this function only works with</span>
     <span class="doccomment">/// unsorted stores.</span>
     <span class="doccomment">/// ## `a`</span>
     <span class="doccomment">/// A [`TreeIter`][crate::TreeIter]</span>

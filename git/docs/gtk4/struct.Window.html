@@ -79,7 +79,7 @@ of the windowing system and allow the user to manipulate the window
 <h2 id="gtkwindow-as-gtkbuildable" class="section-header"><a href="#gtkwindow-as-gtkbuildable">GtkWindow as GtkBuildable</a></h2>
 <p>The <a href="struct.Window.html" title="crate::Window"><code>Window</code></a> implementation of the <a href="struct.Buildable.html" title="crate::Buildable"><code>Buildable</code></a> interface supports
 setting a child as the titlebar by specifying “titlebar” as the “type”
-attribute of a <code>&lt;child&gt;</code> element.</p>
+attribute of a <child> element.</p>
 <h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text"><code>window.background [.csd / .solid-csd / .ssd] [.maximized / .fullscreen / .tiled]
 ├── &lt;child&gt;
 ╰── &lt;titlebar child&gt;.titlebar [.default-decoration]</code></pre></div>
@@ -107,12 +107,12 @@ widget that is added as a titlebar child.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#91-225" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Window.html" title="struct gtk4::Window">Window</a></h3></div></summary><div class="impl-items"><div id="associatedconstant.NONE" class="associatedconstant has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#92" title="goto source code">[src]</a></div><a href="#associatedconstant.NONE" class="anchor"></a><h4 class="code-header">pub const <a href="#associatedconstant.NONE" class="constant">NONE</a>: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;'static <a class="struct" href="struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></div><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#111-114" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.Window.html" title="struct gtk4::Window">Window</a></h4></div></summary><div class="docblock"><p>Creates a new <a href="struct.Window.html" title="crate::Window"><code>Window</code></a>.</p>
 <p>To get an undecorated window (no window borders), use
 <a href="prelude/trait.GtkWindowExt.html#tymethod.set_decorated" title="crate::prelude::GtkWindowExt::set_decorated()"><code>GtkWindowExt::set_decorated()</code></a>.</p>
-<p>All top-level windows created by <a href="struct.Window.html#method.new" title="Self::new()"><code>new()</code></a> are stored
+<p>All top-level windows created by gtk_window_new() are stored
 in an internal top-level window list. This list can be obtained
 from <a href="struct.Window.html#method.list_toplevels" title="Self::list_toplevels()"><code>list_toplevels()</code></a>. Due to GTK keeping a
-reference to the window internally, <a href="struct.Window.html#method.new" title="Self::new()"><code>new()</code></a> does not
+reference to the window internally, gtk_window_new() does not
 return a reference to the caller.</p>
-<p>To delete a <a href="struct.Window.html" title="crate::Window"><code>Window</code></a>, call <code>Gtk::</code>Window::destroy()``.</p>
+<p>To delete a <a href="struct.Window.html" title="crate::Window"><code>Window</code></a>, call <code>Gtk::Window::destroy()</code>.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a new <a href="struct.Window.html" title="crate::Window"><code>Window</code></a>.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.builder" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#120-122" title="goto source code">[src]</a></div><a href="#method.builder" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="builders/struct.WindowBuilder.html" title="struct gtk4::builders::WindowBuilder">WindowBuilder</a></h4></div></summary><div class="docblock"><p>Creates a new builder-pattern struct instance to construct <a href="struct.Window.html" title="Window"><code>Window</code></a> objects.</p>
@@ -141,7 +141,7 @@ and then unref all the widgets afterwards.</p>
 toplevel widgets</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_auto_startup_notification" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#190-195" title="goto source code">[src]</a></div><a href="#method.set_auto_startup_notification" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_auto_startup_notification" class="fnname">set_auto_startup_notification</a>(setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the window should request startup notification.</p>
 <p>By default, after showing the first <a href="struct.Window.html" title="crate::Window"><code>Window</code></a>, GTK calls
-<code>Gdk::</code>Display::notify_startup_complete()``. Call this function
+<code>Gdk::Display::notify_startup_complete()</code>. Call this function
 to disable the automatic startup notification. You might do this
 if your first window is a splash screen, and you want to delay
 notification until after your real main window has been shown,
@@ -157,7 +157,7 @@ haven’t had <a href="prelude/trait.GtkWindowExt.html#tymethod.set_icon_name" t
 called on them.</p>
 <h6 id="name" class="section-header"><a href="#name"><code>name</code></a></h6>
 <p>the name of the themed icon</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_interactive_debugging" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#219-224" title="goto source code">[src]</a></div><a href="#method.set_interactive_debugging" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_interactive_debugging" class="fnname">set_interactive_debugging</a>(enable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Opens or closes the <a href="running.html%60interactive%60-debugging">interactive debugger</a>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_interactive_debugging" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/window.rs.html#219-224" title="goto source code">[src]</a></div><a href="#method.set_interactive_debugging" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_interactive_debugging" class="fnname">set_interactive_debugging</a>(enable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Opens or closes the <a href="running.html#interactive-debugging">interactive debugger</a>.</p>
 <p>The debugger offers access to the widget hierarchy of the application
 and to useful debugging tools.</p>
 <h6 id="enable" class="section-header"><a href="#enable"><code>enable</code></a></h6>

@@ -466,7 +466,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model can be set up to do incremental sorting, so that</span>
     <span class="doccomment">/// sorting long lists doesn&#39;t block the UI. See</span>
-    <span class="doccomment">/// [``set_incremental()``][`Self::set_incremental()`] for details.</span>
+    <span class="doccomment">/// [`set_incremental()`][Self::set_incremental()] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`SortListModel`][crate::SortListModel] is a generic model and because of that it</span>
     <span class="doccomment">/// cannot take advantage of any external knowledge when sorting.</span>
@@ -486,11 +486,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SortListModel</span> {
-    <span class="doccomment">/// Creates a new sort list model that uses the `sorter` to sort `model`.</span>
+    <span class="doccomment">/// Creates a new sort list model that uses the @sorter to sort @model.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// the model to sort</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort `model` with,</span>
+    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort @model with,</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -519,7 +519,7 @@
 
     <span class="doccomment">/// Returns whether incremental sorting is enabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_incremental()``][`Self::set_incremental()`].</span>
+    <span class="doccomment">/// See [`set_incremental()`][Self::set_incremental()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -574,11 +574,11 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_sort_list_model_get_pending</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Gets the sorter that is used to sort `self`.</span>
+    <span class="doccomment">/// Gets the sorter that is used to sort @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the sorter of `self`</span>
+    <span class="doccomment">/// the sorter of #self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sort_list_model_get_sorter&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sorter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span> {
@@ -599,7 +599,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, incremental sorting is disabled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``pending()``][`Self::pending()`] for progress information</span>
+    <span class="doccomment">/// See [`pending()`][Self::pending()] for progress information</span>
     <span class="doccomment">/// about an ongoing incremental sorting operation.</span>
     <span class="doccomment">/// ## `incremental`</span>
     <span class="doccomment">/// [`true`] to sort incrementally</span>
@@ -615,7 +615,7 @@
 
     <span class="doccomment">/// Sets the model to be sorted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `model`&#39;s item type must conform to the item type of `self`.</span>
+    <span class="doccomment">/// The @model&#39;s item type must conform to the item type of @self.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// The model to be sorted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sort_list_model_set_model&quot;</span>)]</span>
@@ -628,9 +628,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets a new sorter on `self`.</span>
+    <span class="doccomment">/// Sets a new sorter on @self.</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort `model` with</span>
+    <span class="doccomment">/// the [`Sorter`][crate::Sorter] to sort @model with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sort_list_model_set_sorter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_sorter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Sorter</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

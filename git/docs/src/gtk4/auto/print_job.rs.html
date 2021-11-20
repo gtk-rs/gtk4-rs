@@ -711,11 +711,11 @@
     <span class="doccomment">/// You only need to deal directly with print jobs if you use the</span>
     <span class="doccomment">/// non-portable [`PrintUnixDialog`][crate::PrintUnixDialog] API.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``surface()``][`Self::surface()`] to obtain the cairo surface</span>
-    <span class="doccomment">/// onto which the pages must be drawn. Use [``send()``][`Self::send()`]</span>
+    <span class="doccomment">/// Use [`surface()`][Self::surface()] to obtain the cairo surface</span>
+    <span class="doccomment">/// onto which the pages must be drawn. Use [`send()`][Self::send()]</span>
     <span class="doccomment">/// to send the finished job to the printer. If you don’t use cairo</span>
     <span class="doccomment">/// [`PrintJob`][crate::PrintJob] also supports printing of manually generated PostScript,</span>
-    <span class="doccomment">/// via [``set_source_file()``][`Self::set_source_file()`].</span>
+    <span class="doccomment">/// via [`set_source_file()`][Self::set_source_file()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -817,7 +817,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a pointer to an</span>
-    <span class="doccomment">///  array of [`PageRange`][crate::PageRange] structs</span>
+    <span class="doccomment">///   array of [`PageRange`][crate::PageRange] structs</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_page_ranges&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_page_ranges&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PageRange</span><span class="op">&gt;</span> {
@@ -857,7 +857,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the printer of `self`</span>
+    <span class="doccomment">/// the printer of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_printer&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_printer&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">printer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Printer</span> {
@@ -901,7 +901,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the settings of `self`</span>
+    <span class="doccomment">/// the settings of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_settings&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_settings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PrintSettings</span> {
@@ -912,7 +912,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the status of `self`</span>
+    <span class="doccomment">/// the status of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_status&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_status&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PrintStatus</span> {
@@ -924,7 +924,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the cairo surface of `self`</span>
+    <span class="doccomment">/// the cairo surface of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">cairo::Surface</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
@@ -943,7 +943,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the title of `self`</span>
+    <span class="doccomment">/// the title of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_title&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_title&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
@@ -952,7 +952,7 @@
 
     <span class="doccomment">/// Returns whether jobs will be tracked after printing.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For details, see [``set_track_print_status()``][`Self::set_track_print_status()`].</span>
+    <span class="doccomment">/// For details, see [`set_track_print_status()`][Self::set_track_print_status()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1064,10 +1064,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The file can be in any format understood by the platforms</span>
     <span class="doccomment">/// printing system (typically PostScript, but on many platforms</span>
-    <span class="doccomment">/// PDF may work too). See [``Printer::accepts_pdf()``][crate::`Printer::accepts_pdf()`] and</span>
-    <span class="doccomment">/// [``Printer::accepts_ps()``][crate::`Printer::accepts_ps()`].</span>
+    <span class="doccomment">/// PDF may work too). See [`Printer::accepts_pdf()`][crate::Printer::accepts_pdf()] and</span>
+    <span class="doccomment">/// [`Printer::accepts_ps()`][crate::Printer::accepts_ps()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is similar to [``set_source_file()``][`Self::set_source_file()`],</span>
+    <span class="doccomment">/// This is similar to [`set_source_file()`][Self::set_source_file()],</span>
     <span class="doccomment">/// but takes expects an open file descriptor for the file,</span>
     <span class="doccomment">/// instead of a filename.</span>
     <span class="doccomment">/// ## `fd`</span>
@@ -1094,8 +1094,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The file can be in any format understood by the platforms</span>
     <span class="doccomment">/// printing system (typically PostScript, but on many platforms</span>
-    <span class="doccomment">/// PDF may work too). See [``Printer::accepts_pdf()``][crate::`Printer::accepts_pdf()`] and</span>
-    <span class="doccomment">/// [``Printer::accepts_ps()``][crate::`Printer::accepts_ps()`].</span>
+    <span class="doccomment">/// PDF may work too). See [`Printer::accepts_pdf()`][crate::Printer::accepts_pdf()] and</span>
+    <span class="doccomment">/// [`Printer::accepts_ps()`][crate::Printer::accepts_ps()].</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// the file to be printed</span>
     <span class="doccomment">///</span>
@@ -1150,7 +1150,7 @@
 
     <span class="doccomment">/// Emitted when the status of a job changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The signal handler can use [``status()``][`Self::status()`]</span>
+    <span class="doccomment">/// The signal handler can use [`status()`][Self::status()]</span>
     <span class="doccomment">/// to obtain the new status.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;status-changed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_status_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {

@@ -474,8 +474,8 @@
     <span class="doccomment">/// `signal::GestureDrag::drag-update` and</span>
     <span class="doccomment">/// `signal::GestureDrag::drag-end` signals, and the relevant</span>
     <span class="doccomment">/// coordinates can be extracted through</span>
-    <span class="doccomment">/// [``GestureDragExt::offset()``][crate::prelude::`GestureDragExt::offset()`] and</span>
-    <span class="doccomment">/// [``GestureDragExt::start_point()``][crate::prelude::`GestureDragExt::start_point()`].</span>
+    <span class="doccomment">/// [`GestureDragExt::offset()`][crate::prelude::GestureDragExt::offset()] and</span>
+    <span class="doccomment">/// [`GestureDragExt::start_point()`][crate::prelude::GestureDragExt::start_point()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -623,8 +623,8 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GestureDragExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the offset from the start point.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `self` is active, this function returns [`true`] and</span>
-    <span class="doccomment">/// fills in `x` and `y` with the coordinates of the current point,</span>
+    <span class="doccomment">/// If the @self is active, this function returns [`true`] and</span>
+    <span class="doccomment">/// fills in @x and @y with the coordinates of the current point,</span>
     <span class="doccomment">/// as an offset to the starting drag point.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -642,8 +642,8 @@
 
     <span class="doccomment">/// Gets the point where the drag started.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `self` is active, this function returns [`true`]</span>
-    <span class="doccomment">/// and fills in `x` and `y` with the drag start coordinates,</span>
+    <span class="doccomment">/// If the @self is active, this function returns [`true`]</span>
+    <span class="doccomment">/// and fills in @x and @y with the drag start coordinates,</span>
     <span class="doccomment">/// in surface-relative coordinates.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

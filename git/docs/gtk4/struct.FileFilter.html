@@ -129,7 +129,7 @@ gtk_file_filter_add_pattern (filter, &quot;*&quot;);</code></pre></div><h5 id="r
 <p>an <code>a{sv}</code> <code>GVariant</code></p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>a new <a href="struct.FileFilter.html" title="crate::FileFilter"><code>FileFilter</code></a> object</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.add_mime_type" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#126-130" title="goto source code">[src]</a></div><a href="#method.add_mime_type" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_mime_type" class="fnname">add_mime_type</a>(&amp;self, mime_type: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Adds a rule allowing a given mime type to <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.add_mime_type" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#126-130" title="goto source code">[src]</a></div><a href="#method.add_mime_type" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_mime_type" class="fnname">add_mime_type</a>(&amp;self, mime_type: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Adds a rule allowing a given mime type to @self.</p>
 <h6 id="mime_type" class="section-header"><a href="#mime_type"><code>mime_type</code></a></h6>
 <p>name of a MIME type</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.add_pattern" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#140-144" title="goto source code">[src]</a></div><a href="#method.add_pattern" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_pattern" class="fnname">add_pattern</a>(&amp;self, pattern: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Adds a rule allowing a shell style glob to a filter.</p>
@@ -144,7 +144,7 @@ by GdkPixbuf.</p>
 for all the supported mime types.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.add_suffix" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#170-174" title="goto source code">[src]</a></div><a href="#method.add_suffix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_suffix" class="fnname">add_suffix</a>(&amp;self, suffix: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_4</code></strong> only.</div></div></summary><div class="docblock"><p>Adds a suffix match rule to a filter.</p>
 <p>This is similar to adding a match for the pattern
-“*.<code>suffix</code>”.</p>
+“*.@suffix”.</p>
 <p>In contrast to pattern matches, suffix matches
 are <em>always</em> case-insensitive.</p>
 <h6 id="suffix" class="section-header"><a href="#suffix"><code>suffix</code></a></h6>

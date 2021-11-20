@@ -440,17 +440,17 @@
 <span class="kw">use</span> <span class="ident">libc::c_int</span>;
 
 <span class="kw">impl</span> <span class="ident">Notebook</span> {
-    <span class="doccomment">/// Appends a page to `self`.</span>
+    <span class="doccomment">/// Appends a page to @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the appended</span>
-    <span class="doccomment">///  page in the notebook, or -1 if function fails</span>
+    <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_append_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -468,25 +468,25 @@
         }
     }
 
-    <span class="doccomment">/// Appends a page to `self`, specifying the widget to use as the</span>
+    <span class="doccomment">/// Appends a page to @self, specifying the widget to use as the</span>
     <span class="doccomment">/// label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
-    <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
-    <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
-    <span class="doccomment">///  page-switch menu is to be used.</span>
+    <span class="doccomment">///   page-switch menu, if that is enabled. If [`None`], and @tab_label</span>
+    <span class="doccomment">///   is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///   created label with the same text as @tab_label; if @tab_label</span>
+    <span class="doccomment">///   is not a [`Label`][crate::Label], @menu_label must be specified if the</span>
+    <span class="doccomment">///   page-switch menu is to be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the appended</span>
-    <span class="doccomment">///  page in the notebook, or -1 if function fails</span>
+    <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_append_page_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -516,8 +516,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the current</span>
-    <span class="doccomment">///  page in the notebook. If the notebook has no pages,</span>
-    <span class="doccomment">///  then -1 will be returned.</span>
+    <span class="doccomment">///   page in the notebook. If the notebook has no pages,</span>
+    <span class="doccomment">///   then -1 will be returned.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_current_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
@@ -546,14 +546,14 @@
         }
     }
 
-    <span class="doccomment">/// Returns the child widget contained in page number `page_num`.</span>
+    <span class="doccomment">/// Returns the child widget contained in page number @page_num.</span>
     <span class="doccomment">/// ## `page_num`</span>
     <span class="doccomment">/// the index of a page in the notebook, or -1</span>
-    <span class="doccomment">///  to get the last page</span>
+    <span class="doccomment">///   to get the last page</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget, or [`None`] if `page_num`</span>
+    <span class="doccomment">/// the child widget, or [`None`] if @page_num</span>
     <span class="doccomment">/// is out of bounds</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_get_nth_page&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_nth_page&quot;</span>)]</span>
@@ -566,20 +566,20 @@
         }
     }
 
-    <span class="doccomment">/// Insert a page into `self` at the given position.</span>
+    <span class="doccomment">/// Insert a page into @self at the given position.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the index (starting at 0) at which to insert the page,</span>
-    <span class="doccomment">///  or -1 to append the page after all other pages</span>
+    <span class="doccomment">///   or -1 to append the page after all other pages</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the inserted</span>
-    <span class="doccomment">///  page in the notebook, or -1 if function fails</span>
+    <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_insert_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) -&gt; <span class="ident">u32</span>
     <span class="kw">where</span>
@@ -598,28 +598,28 @@
         }
     }
 
-    <span class="doccomment">/// Insert a page into `self` at the given position, specifying</span>
+    <span class="doccomment">/// Insert a page into @self at the given position, specifying</span>
     <span class="doccomment">/// the widget to use as the label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
-    <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
-    <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
-    <span class="doccomment">///  page-switch menu is to be used.</span>
+    <span class="doccomment">///   page-switch menu, if that is enabled. If [`None`], and @tab_label</span>
+    <span class="doccomment">///   is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///   created label with the same text as @tab_label; if @tab_label</span>
+    <span class="doccomment">///   is not a [`Label`][crate::Label], @menu_label must be specified if the</span>
+    <span class="doccomment">///   page-switch menu is to be used.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the index (starting at 0) at which to insert the page,</span>
-    <span class="doccomment">///  or -1 to append the page after all other pages.</span>
+    <span class="doccomment">///   or -1 to append the page after all other pages.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the inserted</span>
-    <span class="doccomment">///  page in the notebook</span>
+    <span class="doccomment">///   page in the notebook</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_insert_page_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -652,8 +652,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the index of the page containing `child`, or</span>
-    <span class="doccomment">///  -1 if `child` is not in the notebook</span>
+    <span class="doccomment">/// the index of the page containing @child, or</span>
+    <span class="doccomment">///   -1 if @child is not in the notebook</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_page_num&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_num</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -666,17 +666,17 @@
             }
         }
     }
-    <span class="doccomment">/// Prepends a page to `self`.</span>
+    <span class="doccomment">/// Prepends a page to @self.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the prepended</span>
-    <span class="doccomment">///  page in the notebook, or -1 if function fails</span>
+    <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_prepend_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>) -&gt; <span class="ident">u32</span>
     <span class="kw">where</span>
@@ -694,25 +694,25 @@
         }
     }
 
-    <span class="doccomment">/// Prepends a page to `self`, specifying the widget to use as the</span>
+    <span class="doccomment">/// Prepends a page to @self, specifying the widget to use as the</span>
     <span class="doccomment">/// label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
     <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
-    <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
+    <span class="doccomment">///   for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
-    <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
-    <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
-    <span class="doccomment">///  page-switch menu is to be used.</span>
+    <span class="doccomment">///   page-switch menu, if that is enabled. If [`None`], and @tab_label</span>
+    <span class="doccomment">///   is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///   created label with the same text as @tab_label; if @tab_label</span>
+    <span class="doccomment">///   is not a [`Label`][crate::Label], @menu_label must be specified if the</span>
+    <span class="doccomment">///   page-switch menu is to be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the index (starting from 0) of the prepended</span>
-    <span class="doccomment">///  page in the notebook, or -1 if function fails</span>
+    <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_prepend_page_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -741,7 +741,7 @@
     <span class="doccomment">/// in the notebook.</span>
     <span class="doccomment">/// ## `page_num`</span>
     <span class="doccomment">/// the index of a notebook page, starting</span>
-    <span class="doccomment">///  from 0. If -1, the last page will be removed.</span>
+    <span class="doccomment">///   from 0. If -1, the last page will be removed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_remove_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page_num</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -752,11 +752,11 @@
         }
     }
 
-    <span class="doccomment">/// Reorders the page containing `child`, so that it appears in position</span>
-    <span class="doccomment">/// `position`.</span>
+    <span class="doccomment">/// Reorders the page containing @child, so that it appears in position</span>
+    <span class="doccomment">/// @position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `position` is greater than or equal to the number of children in</span>
-    <span class="doccomment">/// the list or negative, `child` will be moved to the end of the list.</span>
+    <span class="doccomment">/// If @position is greater than or equal to the number of children in</span>
+    <span class="doccomment">/// the list or negative, @child will be moved to the end of the list.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child to move</span>
     <span class="doccomment">/// ## `position`</span>
@@ -772,7 +772,7 @@
         }
     }
 
-    <span class="doccomment">/// Switches to the page number `page_num`.</span>
+    <span class="doccomment">/// Switches to the page number @page_num.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that due to historical reasons, GtkNotebook refuses</span>
     <span class="doccomment">/// to switch to a page unless the child widget is visible.</span>
@@ -780,9 +780,9 @@
     <span class="doccomment">/// adding them to a notebook.</span>
     <span class="doccomment">/// ## `page_num`</span>
     <span class="doccomment">/// index of the page to switch to, starting from 0.</span>
-    <span class="doccomment">///  If negative, the last page will be used. If greater</span>
-    <span class="doccomment">///  than the number of pages in the notebook, nothing</span>
-    <span class="doccomment">///  will be done.</span>
+    <span class="doccomment">///   If negative, the last page will be used. If greater</span>
+    <span class="doccomment">///   than the number of pages in the notebook, nothing</span>
+    <span class="doccomment">///   will be done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_set_current_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_current_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page_num</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

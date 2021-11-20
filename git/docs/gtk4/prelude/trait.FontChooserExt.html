@@ -108,7 +108,7 @@
 normalize font names and thus return a string with a different
 structure. For example, “Helvetica Italic Bold 12” could be
 normalized to “Helvetica Bold Italic 12”.</p>
-<p>Use <code>Pango::</code>FontDescription::equal()`` if you want to compare two
+<p>Use <code>Pango::FontDescription::equal()</code> if you want to compare two
 font descriptions.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>A string with the name
@@ -119,7 +119,7 @@ of the current font</p>
 normalize font names and thus return a string with a different
 structure. For example, “Helvetica Italic Bold 12” could be
 normalized to “Helvetica Bold Italic 12”.</p>
-<p>Use <code>Pango::</code>FontDescription::equal()`` if you want to compare two
+<p>Use <code>Pango::FontDescription::equal()</code> if you want to compare two
 font descriptions.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>A <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_description/struct.FontDescription.html" title="crate::pango::FontDescription"><code>pango::FontDescription</code></a> for the
@@ -166,7 +166,7 @@ in the font chooser.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_font" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#188" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_font" class="fnname">set_font</a>(&amp;self, fontname: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the currently-selected font.</p>
 <h6 id="fontname" class="section-header"><a href="#fontname"><code>fontname</code></a></h6>
 <p>a font name like “Helvetica 12” or “Times Bold 18”</p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_font_desc" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#194" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_font_desc" class="fnname">set_font_desc</a>(&amp;self, font_desc: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>)</h4></div></summary><div class="docblock"><p>Sets the currently-selected font from <code>font_desc</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_font_desc" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#194" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_font_desc" class="fnname">set_font_desc</a>(&amp;self, font_desc: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>)</h4></div></summary><div class="docblock"><p>Sets the currently-selected font from @font_desc.</p>
 <h6 id="font_desc" class="section-header"><a href="#font_desc"><code>font_desc</code></a></h6>
 <p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_description/struct.FontDescription.html" title="crate::pango::FontDescription"><code>pango::FontDescription</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_font_map" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#228" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_font_map" class="fnname">set_font_map</a>(&amp;self, fontmap: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets a custom font map to use for this font chooser widget.</p>
@@ -196,7 +196,7 @@ pango_context_set_font_map (context, fontmap);</code></pre></div><h6 id="fontmap
 <h6 id="level" class="section-header"><a href="#level"><code>level</code></a></h6>
 <p>the desired level of granularity</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_preview_text" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#248" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_preview_text" class="fnname">set_preview_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the text displayed in the preview area.</p>
-<p>The <code>text</code> is used to show how the selected font looks.</p>
+<p>The @text is used to show how the selected font looks.</p>
 <h6 id="text" class="section-header"><a href="#text"><code>text</code></a></h6>
 <p>the text to display in the preview area</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_show_preview_entry" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#254" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_show_preview_entry" class="fnname">set_show_preview_entry</a>(&amp;self, show_preview_entry: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Shows or hides the editable preview entry.</p>

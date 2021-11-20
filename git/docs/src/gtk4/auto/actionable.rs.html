@@ -329,7 +329,7 @@
     <span class="doccomment">/// the widgets ancestors. Most commonly, these will be the actions with</span>
     <span class="doccomment">/// the “win.” or “app.” prefix that are associated with the</span>
     <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] or [`Application`][crate::Application], but other action groups that</span>
-    <span class="doccomment">/// are added with [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`] will be consulted</span>
+    <span class="doccomment">/// are added with [`WidgetExt::insert_action_group()`][crate::prelude::WidgetExt::insert_action_group()] will be consulted</span>
     <span class="doccomment">/// as well.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -353,7 +353,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`Actionable`][struct@crate::Actionable], [`Button`][struct@crate::Button], [`CheckButton`][struct@crate::CheckButton], [`LinkButton`][struct@crate::LinkButton], [`ListBoxRow`][struct@crate::ListBoxRow], [`LockButton`][struct@crate::LockButton], [`Switch`][struct@crate::Switch], [`ToggleButton`][struct@crate::ToggleButton]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Gets the action name for `self`.</span>
+    <span class="doccomment">/// Gets the action name for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -362,7 +362,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_action_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">action_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the current target value of `self`.</span>
+    <span class="doccomment">/// Gets the current target value of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -374,7 +374,7 @@
     <span class="doccomment">/// Specifies the name of the action with which this widget should be</span>
     <span class="doccomment">/// associated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `action_name` is [`None`] then the widget will be unassociated from</span>
+    <span class="doccomment">/// If @action_name is [`None`] then the widget will be unassociated from</span>
     <span class="doccomment">/// any previous action.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Usually this function is used when the widget is located (or will be</span>
@@ -391,7 +391,7 @@
 
     <span class="doccomment">/// Sets the target value of an actionable widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `target_value` is [`None`] then the target value is unset.</span>
+    <span class="doccomment">/// If @target_value is [`None`] then the target value is unset.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The target value has two purposes. First, it is used as the parameter</span>
     <span class="doccomment">/// to activation of the action associated with the [`Actionable`][crate::Actionable] widget.</span>
@@ -415,8 +415,8 @@
     <span class="doccomment">/// Sets the action-name and associated string target value of an</span>
     <span class="doccomment">/// actionable widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `detailed_action_name` is a string in the format accepted by</span>
-    <span class="doccomment">/// [`gio::Action::parse_detailed_name()`][crate::gio::Action::parse_detailed_name()].</span>
+    <span class="doccomment">/// @detailed_action_name is a string in the format accepted by</span>
+    <span class="doccomment">/// g_action_parse_detailed_name().</span>
     <span class="doccomment">/// ## `detailed_action_name`</span>
     <span class="doccomment">/// the detailed action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_detailed_action_name&quot;</span>)]</span>

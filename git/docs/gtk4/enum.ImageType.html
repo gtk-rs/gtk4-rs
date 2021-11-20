@@ -80,8 +80,8 @@ pub enum ImageType {
     // some variants omitted
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Describes the image data representation used by a <a href="struct.Image.html" title="crate::Image"><code>Image</code></a>.</p>
 <p>If you want to get the image from the widget, you can only get the
-currently-stored representation; for instance, if the <a href="struct.Image.html#method.storage_type" title="crate::Image::storage_type()"><code>Image::storage_type()</code></a>
-returns <a href="enum.ImageType.html#variant.Paintable" title="Self::Paintable"><code>Paintable</code></a>, then you can call <a href="struct.Image.html#method.paintable" title="crate::Image::paintable()"><code>Image::paintable()</code></a>.</p>
+currently-stored representation; for instance, if the gtk_image_get_storage_type()
+returns <a href="enum.ImageType.html#variant.Paintable" title="Self::Paintable"><code>Paintable</code></a>, then you can call gtk_image_get_paintable().</p>
 <p>For empty images, you can request any storage type (call any of the “get”
 functions), but they will all return <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> values.</p>
 </div></details><h2 id="variants" class="variants small-section-header">Variants (Non-exhaustive)<a href="#variants" class="anchor"></a></h2><details class="rustdoc-toggle non-exhaustive"><summary class="hideme"><span>This enum is marked as non-exhaustive</span></summary><div class="docblock">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div></details><div id="variant.Empty" class="variant small-section-header"><a href="#variant.Empty" class="anchor field"></a><code>Empty</code></div><div class="docblock"><p>there is no image displayed by the widget</p>

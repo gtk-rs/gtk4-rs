@@ -218,7 +218,7 @@
     <span class="doccomment">/// Defines a part of a CSS document.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Because sections are nested into one another, you can use</span>
-    <span class="doccomment">/// [`parent()`][Self::parent()] to get the containing region.</span>
+    <span class="doccomment">/// gtk_css_section_get_parent() to get the containing region.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssSection</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkCssSection</span><span class="op">&gt;</span>);
 
@@ -264,22 +264,22 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The end location of</span>
-    <span class="doccomment">///  this section</span>
+    <span class="doccomment">///   this section</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_section_get_end_location&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_end_location&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CssLocation</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_css_section_get_end_location</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the file that `self` was parsed from.</span>
+    <span class="doccomment">/// Gets the file that @self was parsed from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no such file exists, for example because the CSS was loaded via</span>
-    <span class="doccomment">/// [``CssProvider::load_from_data()``][crate::`CssProvider::load_from_data()`], then `NULL` is returned.</span>
+    <span class="doccomment">/// [`CssProvider::load_from_data()`][crate::CssProvider::load_from_data()], then `NULL` is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `GFile` from which the `section`</span>
-    <span class="doccomment">///  was parsed</span>
+    <span class="doccomment">///   was parsed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_section_get_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span> {
@@ -289,10 +289,10 @@
     <span class="doccomment">/// Gets the parent section for the given `section`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The parent section is the section that contains this `section`. A special</span>
-    <span class="doccomment">/// case are sections of type `GTK_CSS_SECTION_DOCUMEN`T. Their parent will</span>
+    <span class="doccomment">/// case are sections of  type `GTK_CSS_SECTION_DOCUMEN`T. Their parent will</span>
     <span class="doccomment">/// either be `NULL` if they are the original CSS document that was loaded by</span>
-    <span class="doccomment">/// [``CssProvider::load_from_file()``][crate::`CssProvider::load_from_file()`] or a section of type</span>
-    <span class="doccomment">/// `GTK_CSS_SECTION_IMPORT` if it was loaded with an ``import`` rule from</span>
+    <span class="doccomment">/// [`CssProvider::load_from_file()`][crate::CssProvider::load_from_file()] or a section of type</span>
+    <span class="doccomment">/// `GTK_CSS_SECTION_IMPORT` if it was loaded with an `@import` rule from</span>
     <span class="doccomment">/// a different file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -309,7 +309,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The start location of</span>
-    <span class="doccomment">///  this section</span>
+    <span class="doccomment">///   this section</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_section_get_start_location&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_start_location&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CssLocation</span><span class="op">&gt;</span> {
@@ -321,7 +321,7 @@
     }
 
     <span class="doccomment">/// Prints the section into a human-readable text form using</span>
-    <span class="doccomment">/// `Gtk::`CssSection::print()``.</span>
+    <span class="doccomment">/// `Gtk::CssSection::print()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

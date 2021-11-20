@@ -89,7 +89,7 @@ by <a href="prelude/trait.DragExt.html#tymethod.drag_surface" title="crate::prel
 <p>This function returns a reference to the <a href="struct.Drag.html" title="crate::Drag"><code>Drag</code></a> object,
 but GTK keeps its own reference as well, as long as the DND operation
 is going on.</p>
-<p>Note: if <code>actions</code> include <a href="struct.DragAction.html#associatedconstant.MOVE" title="crate::DragAction::MOVE"><code>DragAction::MOVE</code></a>, you need to listen for
+<p>Note: if @actions include <a href="struct.DragAction.html#associatedconstant.MOVE" title="crate::DragAction::MOVE"><code>DragAction::MOVE</code></a>, you need to listen for
 the <code>signal::Drag::dnd-finished</code> signal and delete the data at
 the source if <a href="prelude/trait.DragExt.html#tymethod.selected_action" title="crate::prelude::DragExt::selected_action()"><code>DragExt::selected_action()</code></a> returns
 <a href="struct.DragAction.html#associatedconstant.MOVE" title="crate::DragAction::MOVE"><code>DragAction::MOVE</code></a>.</p>
@@ -102,9 +102,9 @@ the source if <a href="prelude/trait.DragExt.html#tymethod.selected_action" titl
 <h6 id="actions" class="section-header"><a href="#actions"><code>actions</code></a></h6>
 <p>the actions supported by this drag</p>
 <h6 id="dx" class="section-header"><a href="#dx"><code>dx</code></a></h6>
-<p>the x offset to <code>device</code>’s position where the drag nominally started</p>
+<p>the x offset to @device’s position where the drag nominally started</p>
 <h6 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h6>
-<p>the y offset to <code>device</code>’s position where the drag nominally started</p>
+<p>the y offset to @device’s position where the drag nominally started</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a newly created <a href="struct.Drag.html" title="crate::Drag"><code>Drag</code></a></p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl-Clone" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/drag.rs.html#22-45" title="goto source code">[src]</a></div><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Drag.html" title="struct gdk4::Drag">Drag</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.clone" class="method trait-impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/drag.rs.html#22-45" title="goto source code">[src]</a></div><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.Drag.html" title="struct gdk4::Drag">Drag</a></h4></div></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>

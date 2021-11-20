@@ -239,7 +239,7 @@
 <span class="kw">impl</span> <span class="ident">TextNode</span> {
     <span class="doccomment">/// Creates a render node that renders the given glyphs.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `color` may not be used if the font contains</span>
+    <span class="doccomment">/// Note that @color may not be used if the font contains</span>
     <span class="doccomment">/// color glyphs.</span>
     <span class="doccomment">/// ## `font`</span>
     <span class="doccomment">/// the [`pango::Font`][crate::pango::Font] containing the glyphs</span>
@@ -271,7 +271,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the color used by the text `self`.</span>
+    <span class="doccomment">/// Retrieves the color used by the text @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -282,7 +282,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_text_node_get_color</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the font used by the text `self`.</span>
+    <span class="doccomment">/// Returns the font used by the text @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -293,7 +293,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_text_node_get_font</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the glyph information in the `self`.</span>
+    <span class="doccomment">/// Retrieves the glyph information in the @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -340,7 +340,7 @@
     <span class="comment">//</span>
     <span class="comment">// Due to https://gitlab.gnome.org/GNOME/gtk/-/issues/3675 this function wasn&#39;t properly</span>
     <span class="comment">// exported in 4.0.0 and so requires 4.1.2 at least for it to work properly.</span>
-    <span class="doccomment">/// Checks whether the text `self` has color glyphs.</span>
+    <span class="doccomment">/// Checks whether the text @self has color glyphs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

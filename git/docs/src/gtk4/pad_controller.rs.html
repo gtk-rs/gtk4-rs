@@ -117,11 +117,11 @@
 
 <span class="kw">impl</span> <span class="ident">PadController</span> {
     <span class="doccomment">/// A convenience function to add a group of action entries on</span>
-    <span class="doccomment">/// `self`.</span>
+    <span class="doccomment">/// @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [`PadActionEntry`][crate::PadActionEntry] and [``set_action()``][`Self::set_action()`].</span>
+    <span class="doccomment">/// See [`PadActionEntry`][crate::PadActionEntry] and [`set_action()`][Self::set_action()].</span>
     <span class="doccomment">/// ## `entries`</span>
-    <span class="doccomment">/// the action entries to set on `self`</span>
+    <span class="doccomment">/// the action entries to set on @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_pad_controller_set_action_entries&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_action_entries</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">entries</span>: <span class="kw-2">&amp;</span>[<span class="ident">PadActionEntry</span>]) {
         <span class="kw">let</span> <span class="ident">n_entries</span> <span class="op">=</span> <span class="ident">entries</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>;

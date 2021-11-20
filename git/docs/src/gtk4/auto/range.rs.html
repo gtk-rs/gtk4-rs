@@ -888,7 +888,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Apart from signals for monitoring the parameters of the adjustment,</span>
     <span class="doccomment">/// [`Range`][crate::Range] provides properties and methods for setting a</span>
-    <span class="doccomment">/// “fill level” on range widgets. See [``RangeExt::set_fill_level()``][crate::prelude::`RangeExt::set_fill_level()`].</span>
+    <span class="doccomment">/// “fill level” on range widgets. See [`RangeExt::set_fill_level()`][crate::prelude::RangeExt::set_fill_level()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -931,7 +931,7 @@
 
     <span class="doccomment">/// Gets whether the [`Range`][crate::Range] respects text direction.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_flippable()``][`Self::set_flippable()`].</span>
+    <span class="doccomment">/// See [`set_flippable()`][Self::set_flippable()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -942,7 +942,7 @@
 
     <span class="doccomment">/// Gets whether the range is inverted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_inverted()``][`Self::set_inverted()`].</span>
+    <span class="doccomment">/// See [`set_inverted()`][Self::set_inverted()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -952,7 +952,7 @@
     <span class="kw">fn</span> <span class="ident">is_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// This function returns the area that contains the range’s trough,</span>
-    <span class="doccomment">/// in coordinates relative to `self`&#39;s origin.</span>
+    <span class="doccomment">/// in coordinates relative to @self&#39;s origin.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">///</span>
@@ -969,7 +969,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` is restricted to the fill level.</span>
+    <span class="doccomment">/// [`true`] if @self is restricted to the fill level.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_restrict_to_fill_level&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_restrict_to_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">restricts_to_fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -990,7 +990,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `self` shows the fill level.</span>
+    <span class="doccomment">/// [`true`] if @self shows the fill level.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_show_fill_level&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_show_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -1014,7 +1014,7 @@
 
     <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_slider_size_fixed()``][`Self::set_slider_size_fixed()`].</span>
+    <span class="doccomment">/// See [`set_slider_size_fixed()`][Self::set_slider_size_fixed()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1056,12 +1056,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This amount of prebuffering can be displayed on the range’s trough</span>
     <span class="doccomment">/// and is themeable separately from the trough. To enable fill level</span>
-    <span class="doccomment">/// display, use [``set_show_fill_level()``][`Self::set_show_fill_level()`]. The range defaults</span>
+    <span class="doccomment">/// display, use [`set_show_fill_level()`][Self::set_show_fill_level()]. The range defaults</span>
     <span class="doccomment">/// to not showing the fill level.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, it’s possible to restrict the range’s slider position</span>
     <span class="doccomment">/// to values which are smaller than the fill level. This is controlled</span>
-    <span class="doccomment">/// by [``set_restrict_to_fill_level()``][`Self::set_restrict_to_fill_level()`] and is by default</span>
+    <span class="doccomment">/// by [`set_restrict_to_fill_level()`][Self::set_restrict_to_fill_level()] and is by default</span>
     <span class="doccomment">/// enabled.</span>
     <span class="doccomment">/// ## `fill_level`</span>
     <span class="doccomment">/// the new position of the fill level indicator</span>
@@ -1073,7 +1073,7 @@
     <span class="doccomment">/// If a range is flippable, it will switch its direction</span>
     <span class="doccomment">/// if it is horizontal and its direction is [`TextDirection::Rtl`][crate::TextDirection::Rtl].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``WidgetExt::direction()``][crate::prelude::`WidgetExt::direction()`].</span>
+    <span class="doccomment">/// See [`WidgetExt::direction()`][crate::prelude::WidgetExt::direction()].</span>
     <span class="doccomment">/// ## `flippable`</span>
     <span class="doccomment">/// [`true`] to make the range flippable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_flippable&quot;</span>)]</span>
@@ -1104,9 +1104,9 @@
 
     <span class="doccomment">/// Sets the allowable values in the [`Range`][crate::Range].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The range value is clamped to be between `min` and `max`.</span>
+    <span class="doccomment">/// The range value is clamped to be between @min and @max.</span>
     <span class="doccomment">/// (If the range has a non-zero page size, it is clamped</span>
-    <span class="doccomment">/// between `min` and `max` - page-size.)</span>
+    <span class="doccomment">/// between @min and @max - page-size.)</span>
     <span class="doccomment">/// ## `min`</span>
     <span class="doccomment">/// minimum range value</span>
     <span class="doccomment">/// ## `max`</span>
@@ -1116,7 +1116,7 @@
 
     <span class="doccomment">/// Sets whether the slider is restricted to the fill level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_fill_level()``][`Self::set_fill_level()`] for a general description</span>
+    <span class="doccomment">/// See [`set_fill_level()`][Self::set_fill_level()] for a general description</span>
     <span class="doccomment">/// of the fill level concept.</span>
     <span class="doccomment">/// ## `restrict_to_fill_level`</span>
     <span class="doccomment">/// Whether the fill level restricts slider movement.</span>
@@ -1134,7 +1134,7 @@
 
     <span class="doccomment">/// Sets whether a graphical fill level is show on the trough.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``set_fill_level()``][`Self::set_fill_level()`] for a general description</span>
+    <span class="doccomment">/// See [`set_fill_level()`][Self::set_fill_level()] for a general description</span>
     <span class="doccomment">/// of the fill level concept.</span>
     <span class="doccomment">/// ## `show_fill_level`</span>
     <span class="doccomment">/// Whether a fill level indicator graphics is shown.</span>
@@ -1187,7 +1187,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] to prevent other handlers from being invoked for</span>
-    <span class="doccomment">///  the signal, [`false`] to propagate the signal further</span>
+    <span class="doccomment">///     the signal, [`false`] to propagate the signal further</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;change-value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_change_value</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">ScrollType</span>, <span class="ident">f64</span>) -&gt; <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

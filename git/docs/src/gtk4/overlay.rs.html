@@ -157,11 +157,11 @@
     <span class="doccomment">/// Emitted to determine the position and size of any overlay</span>
     <span class="doccomment">/// child widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A handler for this signal should fill `allocation` with</span>
-    <span class="doccomment">/// the desired position and size for `widget`, relative to</span>
-    <span class="doccomment">/// the &#39;main&#39; child of `overlay`.</span>
+    <span class="doccomment">/// A handler for this signal should fill @allocation with</span>
+    <span class="doccomment">/// the desired position and size for @widget, relative to</span>
+    <span class="doccomment">/// the &#39;main&#39; child of @overlay.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default handler for this signal uses the `widget`&#39;s</span>
+    <span class="doccomment">/// The default handler for this signal uses the @widget&#39;s</span>
     <span class="doccomment">/// halign and valign properties to determine the position</span>
     <span class="doccomment">/// and gives the widget its natural size (except that an</span>
     <span class="doccomment">/// alignment of [`Align::Fill`][crate::Align::Fill] will cause the overlay to</span>
@@ -173,11 +173,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `allocation` has been filled</span>
+    <span class="doccomment">/// [`true`] if the @allocation has been filled</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `allocation`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for the allocation</span>
+    <span class="doccomment">///   location for the allocation</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_get_child_position</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">Widget</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Rectangle</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,

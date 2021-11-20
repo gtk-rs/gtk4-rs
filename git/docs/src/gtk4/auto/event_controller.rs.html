@@ -470,8 +470,8 @@
     <span class="doccomment">/// to `GdkEvents`, and possibly trigger actions as a consequence.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Event controllers are added to a widget with</span>
-    <span class="doccomment">/// [``WidgetExt::add_controller()``][crate::prelude::`WidgetExt::add_controller()`]. It is rarely necessary to</span>
-    <span class="doccomment">/// explicitly remove a controller with [``WidgetExt::remove_controller()``][crate::prelude::`WidgetExt::remove_controller()`].</span>
+    <span class="doccomment">/// [`WidgetExt::add_controller()`][crate::prelude::WidgetExt::add_controller()]. It is rarely necessary to</span>
+    <span class="doccomment">/// explicitly remove a controller with [`WidgetExt::remove_controller()`][crate::prelude::WidgetExt::remove_controller()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See the chapter on [input handling](input-handling.html) for</span>
     <span class="doccomment">/// an overview of the basic concepts, such as the capture and bubble</span>
@@ -507,7 +507,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the event that is currently</span>
-    <span class="doccomment">///  handled by `self`</span>
+    <span class="doccomment">///   handled by @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_current_event&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_event&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>;
@@ -520,7 +520,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// device of the event is</span>
-    <span class="doccomment">///  currently handled by `self`</span>
+    <span class="doccomment">///   currently handled by @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_current_event_device&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_event_device&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_event_device</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Device</span><span class="op">&gt;</span>;
@@ -532,7 +532,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// modifier state of the event is currently handled by `self`</span>
+    <span class="doccomment">/// modifier state of the event is currently handled by @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_current_event_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_event_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_event_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::ModifierType</span>;
@@ -544,12 +544,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// timestamp of the event is currently handled by `self`</span>
+    <span class="doccomment">/// timestamp of the event is currently handled by @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_current_event_time&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_event_time&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_event_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
 
-    <span class="doccomment">/// Gets the name of `self`.</span>
+    <span class="doccomment">/// Gets the name of @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -563,7 +563,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_propagation_limit&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">propagation_limit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PropagationLimit</span>;
 
-    <span class="doccomment">/// Gets the propagation phase at which `self` handles events.</span>
+    <span class="doccomment">/// Gets the propagation phase at which @self handles events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -581,13 +581,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Resets the `self` to a clean state.</span>
+    <span class="doccomment">/// Resets the @self to a clean state.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_reset&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Sets a name on the controller that can be used for debugging.</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// a name for `self`</span>
+    <span class="doccomment">/// a name for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_set_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
@@ -603,7 +603,7 @@
 
     <span class="doccomment">/// Sets the propagation phase at which a controller handles events.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `phase` is [`PropagationPhase::None`][crate::PropagationPhase::None], no automatic event handling will be</span>
+    <span class="doccomment">/// If @phase is [`PropagationPhase::None`][crate::PropagationPhase::None], no automatic event handling will be</span>
     <span class="doccomment">/// performed, but other additional gesture maintenance will.</span>
     <span class="doccomment">/// ## `phase`</span>
     <span class="doccomment">/// a propagation phase</span>

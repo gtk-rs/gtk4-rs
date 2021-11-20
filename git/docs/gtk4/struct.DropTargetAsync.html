@@ -117,7 +117,7 @@ state, which can be used by themes to style the widget as a drop target.</p>
 <p>If the result is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, all formats are expected to be supported.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the supported data formats</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.reject_drop" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#135-139" title="goto source code">[src]</a></div><a href="#method.reject_drop" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.reject_drop" class="fnname">reject_drop</a>(&amp;self, drop: &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>)</h4></div></summary><div class="docblock"><p>Sets the <code>drop</code> as not accepted on this drag site.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.reject_drop" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#135-139" title="goto source code">[src]</a></div><a href="#method.reject_drop" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.reject_drop" class="fnname">reject_drop</a>(&amp;self, drop: &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>)</h4></div></summary><div class="docblock"><p>Sets the @drop as not accepted on this drag site.</p>
 <p>This function should be used when delaying the decision
 on whether to accept a drag or not until after reading
 the data.</p>
@@ -136,15 +136,15 @@ but may be rejected later via a call to <a href="struct.DropTargetAsync.html#met
 or ultimately by returning <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> from a <code>signal::DropTargetAsync::drop</code>
 handler.</p>
 <p>The default handler for this signal decides whether to accept the drop
-based on the formats provided by the <code>drop</code>.</p>
+based on the formats provided by the @drop.</p>
 <p>If the decision whether the drop will be accepted or rejected needs
 further processing, such as inspecting the data, this function should
-return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and proceed as is <code>drop</code> was accepted and if it decides to
+return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and proceed as is @drop was accepted and if it decides to
 reject the drop later, it should call <a href="struct.DropTargetAsync.html#method.reject_drop" title="Self::reject_drop()"><code>reject_drop()</code></a>.</p>
 <h6 id="drop-1" class="section-header"><a href="#drop-1"><code>drop</code></a></h6>
 <p>the <a href="../gdk4/auto/drop/struct.Drop.html" title="crate::gdk::Drop"><code>gdk::Drop</code></a></p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
-<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>drop</code> is accepted</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @drop is accepted</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_drag_enter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#224-251" title="goto source code">[src]</a></div><a href="#method.connect_drag_enter" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_drag_enter" class="fnname">connect_drag_enter</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted on the drop site when the pointer enters the widget.</p>
 <p>It can be used to set up custom highlighting.</p>
 <h6 id="drop-2" class="section-header"><a href="#drop-2"><code>drop</code></a></h6>

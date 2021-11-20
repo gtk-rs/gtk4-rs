@@ -218,7 +218,7 @@
     <span class="doccomment">/// [`ShortcutTrigger`][crate::ShortcutTrigger] tracks how a [`Shortcut`][crate::Shortcut] should be activated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To find out if a [`ShortcutTrigger`][crate::ShortcutTrigger] triggers, you can call</span>
-    <span class="doccomment">/// [``ShortcutTriggerExtManual::trigger()``][crate::prelude::`ShortcutTriggerExtManual::trigger()`] on a [`gdk::Event`][crate::gdk::Event].</span>
+    <span class="doccomment">/// [`ShortcutTriggerExtManual::trigger()`][crate::prelude::ShortcutTriggerExtManual::trigger()] on a [`gdk::Event`][crate::gdk::Event].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkShortcutTriggers` contain functions that allow easy presentation</span>
     <span class="doccomment">/// to end users as well as being printed for debugging.</span>
@@ -250,11 +250,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accepted strings are:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  - `never`, for [`NeverTrigger`][crate::NeverTrigger]</span>
-    <span class="doccomment">///  - a string parsed by [`accelerator_parse()`][crate::accelerator_parse()], for a [`KeyvalTrigger`][crate::KeyvalTrigger], e.g. ``&lt;Control&gt;`C`</span>
-    <span class="doccomment">///  - underscore, followed by a single character, for [`MnemonicTrigger`][crate::MnemonicTrigger], e.g. `_l`</span>
-    <span class="doccomment">///  - two valid trigger strings, separated by a `|` character, for a</span>
-    <span class="doccomment">///  [`AlternativeTrigger`][crate::AlternativeTrigger]: ``&lt;Control&gt;`q|`&lt;Control&gt;`w`</span>
+    <span class="doccomment">///   - `never`, for [`NeverTrigger`][crate::NeverTrigger]</span>
+    <span class="doccomment">///   - a string parsed by gtk_accelerator_parse(), for a [`KeyvalTrigger`][crate::KeyvalTrigger], e.g. `&lt;Control&gt;C`</span>
+    <span class="doccomment">///   - underscore, followed by a single character, for [`MnemonicTrigger`][crate::MnemonicTrigger], e.g. `_l`</span>
+    <span class="doccomment">///   - two valid trigger strings, separated by a `|` character, for a</span>
+    <span class="doccomment">///     [`AlternativeTrigger`][crate::AlternativeTrigger]: `&lt;Control&gt;q|&lt;Control&gt;w`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you will have to escape the `&lt;` and `&gt;` characters when specifying</span>
     <span class="doccomment">/// triggers in XML files, such as GtkBuilder ui files. Use `&amp;lt;` instead of</span>
@@ -295,7 +295,7 @@
     <span class="doccomment">/// presentation to end users for example in menu items</span>
     <span class="doccomment">/// or in help texts.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `display` in use may influence the resulting string in</span>
+    <span class="doccomment">/// The @display in use may influence the resulting string in</span>
     <span class="doccomment">/// various forms, such as resolving hardware keycodes or by</span>
     <span class="doccomment">/// causing display-specific modifier names.</span>
     <span class="doccomment">///</span>
@@ -312,7 +312,7 @@
 
     <span class="doccomment">/// Prints the given trigger into a human-readable string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a small wrapper around `Gtk::`ShortcutTrigger::print()``</span>
+    <span class="doccomment">/// This is a small wrapper around `Gtk::ShortcutTrigger::print()`</span>
     <span class="doccomment">/// to help when debugging.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

@@ -81,8 +81,8 @@
 <h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
 <p><a href="../struct.GestureDrag.html" title="crate::GestureDrag"><code>GestureDrag</code></a>, <a href="../struct.GesturePan.html" title="crate::GesturePan"><code>GesturePan</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.offset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/gesture_drag.rs.html#194" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the offset from the start point.</p>
-<p>If the <code>self</code> is active, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and
-fills in <code>x</code> and <code>y</code> with the coordinates of the current point,
+<p>If the @self is active, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and
+fills in @x and @y with the coordinates of the current point,
 as an offset to the starting drag point.</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the gesture is active</p>
@@ -91,8 +91,8 @@ as an offset to the starting drag point.</p>
 <h6 id="y" class="section-header"><a href="#y"><code>y</code></a></h6>
 <p>Y offset for the current point</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.start_point" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/gesture_drag.rs.html#213" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.start_point" class="fnname">start_point</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the point where the drag started.</p>
-<p>If the <code>self</code> is active, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>
-and fills in <code>x</code> and <code>y</code> with the drag start coordinates,
+<p>If the @self is active, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>
+and fills in @x and @y with the drag start coordinates,
 in surface-relative coordinates.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the gesture is active</p>

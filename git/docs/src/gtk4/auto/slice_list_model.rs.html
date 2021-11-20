@@ -389,8 +389,8 @@
 <span class="kw">impl</span> <span class="ident">SliceListModel</span> {
     <span class="doccomment">/// Creates a new slice model.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It presents the slice from `offset` to offset + `size`</span>
-    <span class="doccomment">/// of the given `model`.</span>
+    <span class="doccomment">/// It presents the slice from @offset to offset + @size</span>
+    <span class="doccomment">/// of the given @model.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// The model to use</span>
     <span class="doccomment">/// ## `offset`</span>
@@ -432,7 +432,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_slice_list_model_get_model</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the offset set via [`set_offset()`][Self::set_offset()].</span>
+    <span class="doccomment">/// Gets the offset set via gtk_slice_list_model_set_offset().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -443,7 +443,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_slice_list_model_get_offset</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Gets the size set via [`set_size()`][Self::set_size()].</span>
+    <span class="doccomment">/// Gets the size set via gtk_slice_list_model_set_size().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -456,7 +456,7 @@
 
     <span class="doccomment">/// Sets the model to show a slice of.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The model&#39;s item type must conform to `self`&#39;s item type.</span>
+    <span class="doccomment">/// The model&#39;s item type must conform to @self&#39;s item type.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// The model to be sliced</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_slice_list_model_set_model&quot;</span>)]</span>
@@ -472,7 +472,7 @@
     <span class="doccomment">/// Sets the offset into the original model for this slice.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the offset is too large for the sliced model,</span>
-    <span class="doccomment">/// `self` will end up empty.</span>
+    <span class="doccomment">/// @self will end up empty.</span>
     <span class="doccomment">/// ## `offset`</span>
     <span class="doccomment">/// the new offset to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_slice_list_model_set_offset&quot;</span>)]</span>
@@ -482,8 +482,8 @@
         }
     }
 
-    <span class="doccomment">/// Sets the maximum size. `self` will never have more items</span>
-    <span class="doccomment">/// than `size`.</span>
+    <span class="doccomment">/// Sets the maximum size. @self will never have more items</span>
+    <span class="doccomment">/// than @size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can however have fewer items if the offset is too large</span>
     <span class="doccomment">/// or the model sliced from doesn&#39;t have enough items.</span>

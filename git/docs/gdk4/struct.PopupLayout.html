@@ -99,23 +99,23 @@ has to be presented again.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><div id="impl" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#57-299" title="goto source code">[src]</a></div><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a></h3></div></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><div id="method.new" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#81-94" title="goto source code">[src]</a></div><a href="#method.new" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;anchor_rect: &amp;<a class="struct" href="struct.Rectangle.html" title="struct gdk4::Rectangle">Rectangle</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;rect_anchor: <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;surface_anchor: <a class="enum" href="enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a><br>) -&gt; <a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a></h4></div></summary><div class="docblock"><p>Create a popup layout description.</p>
 <p>Used together with <a href="prelude/trait.PopupExt.html#tymethod.present" title="crate::prelude::PopupExt::present()"><code>PopupExt::present()</code></a> to describe how a popup
 surface should be placed and behave on-screen.</p>
-<p><code>anchor_rect</code> is relative to the top-left corner of the surface’s parent.
-<code>rect_anchor</code> and <code>surface_anchor</code> determine anchor points on <code>anchor_rect</code>
+<p>@anchor_rect is relative to the top-left corner of the surface’s parent.
+@rect_anchor and @surface_anchor determine anchor points on @anchor_rect
 and surface to pin together.</p>
-<p>The position of <code>anchor_rect</code>’s anchor point can optionally be offset using
+<p>The position of @anchor_rect’s anchor point can optionally be offset using
 <a href="struct.PopupLayout.html#method.set_offset" title="Self::set_offset()"><code>set_offset()</code></a>, which is equivalent to offsetting the
 position of surface.</p>
 <h6 id="anchor_rect" class="section-header"><a href="#anchor_rect"><code>anchor_rect</code></a></h6>
-<p>the anchor <a href="struct.Rectangle.html" title="crate::Rectangle"><code>Rectangle</code></a> to align <code>surface</code> with</p>
+<p>the anchor <a href="struct.Rectangle.html" title="crate::Rectangle"><code>Rectangle</code></a> to align @surface with</p>
 <h6 id="rect_anchor" class="section-header"><a href="#rect_anchor"><code>rect_anchor</code></a></h6>
-<p>the point on <code>anchor_rect</code> to align with <code>surface</code>’s anchor point</p>
+<p>the point on @anchor_rect to align with @surface’s anchor point</p>
 <h6 id="surface_anchor" class="section-header"><a href="#surface_anchor"><code>surface_anchor</code></a></h6>
-<p>the point on <code>surface</code> to align with <code>rect</code>’s anchor point</p>
+<p>the point on @surface to align with @rect’s anchor point</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>newly created instance of <a href="struct.PopupLayout.html" title="crate::PopupLayout"><code>PopupLayout</code></a></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.copy" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#102-104" title="goto source code">[src]</a></div><a href="#method.copy" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.copy" class="fnname">copy</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>&gt;</h4></div></summary><div class="docblock"><p>Makes a copy of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.copy" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#102-104" title="goto source code">[src]</a></div><a href="#method.copy" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.copy" class="fnname">copy</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>&gt;</h4></div></summary><div class="docblock"><p>Makes a copy of @self.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
-<p>a copy of <code>self</code>.</p>
+<p>a copy of @self.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.anchor_hints" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#131-137" title="goto source code">[src]</a></div><a href="#method.anchor_hints" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.anchor_hints" class="fnname">anchor_hints</a>(&amp;self) -&gt; <a class="struct" href="struct.AnchorHints.html" title="struct gdk4::AnchorHints">AnchorHints</a></h4></div></summary><div class="docblock"><p>Get the <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a>.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>the <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a></p>
@@ -138,10 +138,10 @@ position of surface.</p>
 <h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
 <p>the anchor on the popup surface.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_anchor_hints" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gdk4/auto/popup_layout.rs.html#227-231" title="goto source code">[src]</a></div><a href="#method.set_anchor_hints" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_anchor_hints" class="fnname">set_anchor_hints</a>(&amp;self, anchor_hints: <a class="struct" href="struct.AnchorHints.html" title="struct gdk4::AnchorHints">AnchorHints</a>)</h4></div></summary><div class="docblock"><p>Set new anchor hints.</p>
-<p>The set <code>anchor_hints</code> determines how <code>surface</code> will be moved
+<p>The set @anchor_hints determines how @surface will be moved
 if the anchor points cause it to move off-screen. For example,
 <a href="struct.AnchorHints.html#associatedconstant.FLIP_X" title="crate::AnchorHints::FLIP_X"><code>AnchorHints::FLIP_X</code></a> will replace <a href="enum.Gravity.html#variant.NorthWest" title="crate::Gravity::NorthWest"><code>Gravity::NorthWest</code></a> with
-<a href="enum.Gravity.html#variant.NorthEast" title="crate::Gravity::NorthEast"><code>Gravity::NorthEast</code></a> and vice versa if <code>surface</code> extends
+<a href="enum.Gravity.html#variant.NorthEast" title="crate::Gravity::NorthEast"><code>Gravity::NorthEast</code></a> and vice versa if @surface extends
 beyond the left or right edges of the monitor.</p>
 <h6 id="anchor_hints" class="section-header"><a href="#anchor_hints"><code>anchor_hints</code></a></h6>
 <p>the new <a href="struct.AnchorHints.html" title="crate::AnchorHints"><code>AnchorHints</code></a></p>

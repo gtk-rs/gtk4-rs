@@ -3257,13 +3257,13 @@
     <span class="doccomment">/// next to their `gtk.css` file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications can override system-wide settings by setting the property</span>
-    <span class="doccomment">/// of the [`Settings`][crate::Settings] object with `g_object_set()`. This should be restricted</span>
+    <span class="doccomment">/// of the [`Settings`][crate::Settings] object with g_object_set(). This should be restricted</span>
     <span class="doccomment">/// to special cases though; [`Settings`][crate::Settings] are not meant as an application</span>
     <span class="doccomment">/// configuration facility.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// There is one [`Settings`][crate::Settings] instance per display. It can be obtained with</span>
-    <span class="doccomment">/// [``for_display()``][`Self::for_display()`], but in many cases, it is more</span>
-    <span class="doccomment">/// convenient to use [``WidgetExt::settings()``][crate::prelude::`WidgetExt::settings()`].</span>
+    <span class="doccomment">/// [`for_display()`][Self::for_display()], but in many cases, it is more</span>
+    <span class="doccomment">/// convenient to use [`WidgetExt::settings()`][crate::prelude::WidgetExt::settings()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -3285,7 +3285,7 @@
         <span class="ident">SettingsBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Undoes the effect of calling `g_object_set()` to install an</span>
+    <span class="doccomment">/// Undoes the effect of calling g_object_set() to install an</span>
     <span class="doccomment">/// application-specific value for a setting.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// After this call, the setting will again follow the session-wide</span>
@@ -3726,7 +3726,7 @@
     <span class="doccomment">/// When [`true`], keyboard navigation and other input-related errors</span>
     <span class="doccomment">/// will cause a beep.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Since the error bell is implemented using `gdk_surface_beep()`, the</span>
+    <span class="doccomment">/// Since the error bell is implemented using gdk_surface_beep(), the</span>
     <span class="doccomment">/// windowing system may offer ways to configure the error bell in many</span>
     <span class="doccomment">/// ways, such as flashing the window or similar visual effects.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk-error-bell&quot;</span>)]</span>
@@ -3737,7 +3737,7 @@
     <span class="doccomment">/// When [`true`], keyboard navigation and other input-related errors</span>
     <span class="doccomment">/// will cause a beep.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Since the error bell is implemented using `gdk_surface_beep()`, the</span>
+    <span class="doccomment">/// Since the error bell is implemented using gdk_surface_beep(), the</span>
     <span class="doccomment">/// windowing system may offer ways to configure the error bell in many</span>
     <span class="doccomment">/// ways, such as flashing the window or similar visual effects.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk-error-bell&quot;</span>)]</span>
@@ -3969,7 +3969,7 @@
     <span class="doccomment">/// replaced by the path to the pdf file. The command may also</span>
     <span class="doccomment">/// contain a ``s`` placeholder, which will get replaced by the</span>
     <span class="doccomment">/// path to a file containing the print settings in the format</span>
-    <span class="doccomment">/// produced by [``PrintSettings::to_file()``][crate::`PrintSettings::to_file()`].</span>
+    <span class="doccomment">/// produced by [`PrintSettings::to_file()`][crate::PrintSettings::to_file()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The preview application is responsible for removing the pdf</span>
     <span class="doccomment">/// file and the print settings file when it is done.</span>
@@ -3984,7 +3984,7 @@
     <span class="doccomment">/// replaced by the path to the pdf file. The command may also</span>
     <span class="doccomment">/// contain a ``s`` placeholder, which will get replaced by the</span>
     <span class="doccomment">/// path to a file containing the print settings in the format</span>
-    <span class="doccomment">/// produced by [``PrintSettings::to_file()``][crate::`PrintSettings::to_file()`].</span>
+    <span class="doccomment">/// produced by [`PrintSettings::to_file()`][crate::PrintSettings::to_file()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The preview application is responsible for removing the pdf</span>
     <span class="doccomment">/// file and the print settings file when it is done.</span>
@@ -4288,12 +4288,12 @@
     <span class="doccomment">/// Gets the [`Settings`][crate::Settings] object for the default display, creating</span>
     <span class="doccomment">/// it if necessary.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``for_display()``][`Self::for_display()`].</span>
+    <span class="doccomment">/// See [`for_display()`][Self::for_display()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`Settings`][crate::Settings] object. If there is</span>
-    <span class="doccomment">///  no default display, then returns [`None`].</span>
+    <span class="doccomment">///   no default display, then returns [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_settings_get_default&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span> {
@@ -4301,7 +4301,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_settings_get_default</span>()) }
     }
 
-    <span class="doccomment">/// Gets the [`Settings`][crate::Settings] object for `display`, creating it if necessary.</span>
+    <span class="doccomment">/// Gets the [`Settings`][crate::Settings] object for @display, creating it if necessary.</span>
     <span class="doccomment">/// ## `display`</span>
     <span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display]</span>
     <span class="doccomment">///</span>
@@ -6092,7 +6092,7 @@
     <span class="doccomment">/// When [`true`], keyboard navigation and other input-related errors</span>
     <span class="doccomment">/// will cause a beep.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Since the error bell is implemented using `gdk_surface_beep()`, the</span>
+    <span class="doccomment">/// Since the error bell is implemented using gdk_surface_beep(), the</span>
     <span class="doccomment">/// windowing system may offer ways to configure the error bell in many</span>
     <span class="doccomment">/// ways, such as flashing the window or similar visual effects.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gtk_error_bell</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">gtk_error_bell</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -6214,7 +6214,7 @@
     <span class="doccomment">/// replaced by the path to the pdf file. The command may also</span>
     <span class="doccomment">/// contain a ``s`` placeholder, which will get replaced by the</span>
     <span class="doccomment">/// path to a file containing the print settings in the format</span>
-    <span class="doccomment">/// produced by [``PrintSettings::to_file()``][crate::`PrintSettings::to_file()`].</span>
+    <span class="doccomment">/// produced by [`PrintSettings::to_file()`][crate::PrintSettings::to_file()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The preview application is responsible for removing the pdf</span>
     <span class="doccomment">/// file and the print settings file when it is done.</span>

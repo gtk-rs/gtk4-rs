@@ -1298,13 +1298,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_print_settings_new</span>()) }
     }
 
-    <span class="doccomment">/// Reads the print settings from `file_name`.</span>
+    <span class="doccomment">/// Reads the print settings from @file_name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new [`PrintSettings`][crate::PrintSettings] object with the restored settings,</span>
     <span class="doccomment">/// or [`None`] if an error occurred. If the file could not be loaded then</span>
     <span class="doccomment">/// error is set to either a `GFileError` or `GKeyFileError`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
+    <span class="doccomment">/// See [`to_file()`][Self::to_file()].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the settings from</span>
     <span class="doccomment">///</span>
@@ -1332,7 +1332,7 @@
     <span class="doccomment">/// Deserialize print settings from an a{sv} variant.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variant must be in the format produced by</span>
-    <span class="doccomment">/// [``to_gvariant()``][`Self::to_gvariant()`].</span>
+    <span class="doccomment">/// [`to_gvariant()`][Self::to_gvariant()].</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// an a{sv} `GVariant`</span>
     <span class="doccomment">///</span>
@@ -1350,7 +1350,7 @@
         }
     }
 
-    <span class="doccomment">/// Reads the print settings from the group `group_name` in `key_file`.</span>
+    <span class="doccomment">/// Reads the print settings from the group @group_name in @key_file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new [`PrintSettings`][crate::PrintSettings] object with the restored settings,</span>
     <span class="doccomment">/// or [`None`] if an error occurred. If the file could not be loaded then</span>
@@ -1359,7 +1359,7 @@
     <span class="doccomment">/// the `GKeyFile` to retrieve the settings from</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the name of the group to use, or [`None`] to use</span>
-    <span class="doccomment">///  the default “Print Settings”</span>
+    <span class="doccomment">///   the default “Print Settings”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1390,13 +1390,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly allocated copy of `self`</span>
+    <span class="doccomment">/// a newly allocated copy of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_copy&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_print_settings_copy</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Calls `func` for each key-value pair of `self`.</span>
+    <span class="doccomment">/// Calls @func for each key-value pair of @self.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// the function to call</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_foreach&quot;</span>)]</span>
@@ -1423,13 +1423,13 @@
         }
     }
 
-    <span class="doccomment">/// Looks up the string value associated with `key`.</span>
+    <span class="doccomment">/// Looks up the string value associated with @key.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the string value for `key`</span>
+    <span class="doccomment">/// the string value for @key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1441,7 +1441,7 @@
     }
 
     <span class="doccomment">/// Returns the boolean represented by the value</span>
-    <span class="doccomment">/// that is associated with `key`.</span>
+    <span class="doccomment">/// that is associated with @key.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The string “true” represents [`true`], any other</span>
     <span class="doccomment">/// string [`false`].</span>
@@ -1450,7 +1450,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `key` maps to a true value.</span>
+    <span class="doccomment">/// [`true`], if @key maps to a true value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_bool&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_bool&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
@@ -1499,13 +1499,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_print_settings_get_dither</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the double value associated with `key`, or 0.</span>
+    <span class="doccomment">/// Returns the double value associated with @key, or 0.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the double value of `key`</span>
+    <span class="doccomment">/// the double value of @key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_double&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_double&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">double</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">f64</span> {
@@ -1513,10 +1513,10 @@
     }
 
     <span class="doccomment">/// Returns the floating point number represented by</span>
-    <span class="doccomment">/// the value that is associated with `key`, or `default_val`</span>
+    <span class="doccomment">/// the value that is associated with @key, or @default_val</span>
     <span class="doccomment">/// if the value does not represent a floating point number.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Floating point numbers are parsed with `g_ascii_strtod()`.</span>
+    <span class="doccomment">/// Floating point numbers are parsed with g_ascii_strtod().</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `def`</span>
@@ -1524,7 +1524,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the floating point number associated with `key`</span>
+    <span class="doccomment">/// the floating point number associated with @key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_double_with_default&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_double_with_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">double_with_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">def</span>: <span class="ident">f64</span>) -&gt; <span class="ident">f64</span> {
@@ -1563,20 +1563,20 @@
         }
     }
 
-    <span class="doccomment">/// Returns the integer value of `key`, or 0.</span>
+    <span class="doccomment">/// Returns the integer value of @key, or 0.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the integer value of `key`</span>
+    <span class="doccomment">/// the integer value of @key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_int&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_int&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">int</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">i32</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_print_settings_get_int</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">key</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the value of `key`, interpreted as</span>
+    <span class="doccomment">/// Returns the value of @key, interpreted as</span>
     <span class="doccomment">/// an integer, or the default value.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
@@ -1585,7 +1585,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the integer value of `key`</span>
+    <span class="doccomment">/// the integer value of @key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_int_with_default&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_int_with_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">int_with_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">def</span>: <span class="ident">i32</span>) -&gt; <span class="ident">i32</span> {
@@ -1598,10 +1598,10 @@
         }
     }
 
-    <span class="doccomment">/// Returns the value associated with `key`, interpreted</span>
+    <span class="doccomment">/// Returns the value associated with @key, interpreted</span>
     <span class="doccomment">/// as a length.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The returned value is converted to `units`.</span>
+    <span class="doccomment">/// The returned value is converted to @units.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `unit`</span>
@@ -1609,7 +1609,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the length value of `key`, converted to `unit`</span>
+    <span class="doccomment">/// the length value of @key, converted to @unit</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_length&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_length&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) -&gt; <span class="ident">f64</span> {
@@ -1712,8 +1712,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// an array</span>
-    <span class="doccomment">///  of [`PageRange`][crate::PageRange]s. Use `g_free()` to free the array when</span>
-    <span class="doccomment">///  it is no longer needed.</span>
+    <span class="doccomment">///   of [`PageRange`][crate::PageRange]s. Use g_free() to free the array when</span>
+    <span class="doccomment">///   it is no longer needed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_page_ranges&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_page_ranges&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PageRange</span><span class="op">&gt;</span> {
@@ -1742,13 +1742,13 @@
     }
 
     <span class="doccomment">/// Gets the value of [`PRINT_SETTINGS_PAPER_HEIGHT`][crate::PRINT_SETTINGS_PAPER_HEIGHT],</span>
-    <span class="doccomment">/// converted to `unit`.</span>
+    <span class="doccomment">/// converted to @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the paper height, in units of `unit`</span>
+    <span class="doccomment">/// the paper height, in units of @unit</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_paper_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_paper_height&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paper_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) -&gt; <span class="ident">f64</span> {
@@ -1772,13 +1772,13 @@
     }
 
     <span class="doccomment">/// Gets the value of [`PRINT_SETTINGS_PAPER_WIDTH`][crate::PRINT_SETTINGS_PAPER_WIDTH],</span>
-    <span class="doccomment">/// converted to `unit`.</span>
+    <span class="doccomment">/// converted to @unit.</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the paper width, in units of `unit`</span>
+    <span class="doccomment">/// the paper width, in units of @unit</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_paper_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_paper_width&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paper_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) -&gt; <span class="ident">f64</span> {
@@ -1900,13 +1900,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_print_settings_get_use_color</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns [`true`], if a value is associated with `key`.</span>
+    <span class="doccomment">/// Returns [`true`], if a value is associated with @key.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `key` has a value</span>
+    <span class="doccomment">/// [`true`], if @key has a value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_has_key&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1917,12 +1917,12 @@
         }
     }
 
-    <span class="doccomment">/// Reads the print settings from `file_name`.</span>
+    <span class="doccomment">/// Reads the print settings from @file_name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file could not be loaded then error is set to either</span>
     <span class="doccomment">/// a `GFileError` or `GKeyFileError`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
+    <span class="doccomment">/// See [`to_file()`][Self::to_file()].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the settings from</span>
     <span class="doccomment">///</span>
@@ -1946,7 +1946,7 @@
         }
     }
 
-    <span class="doccomment">/// Reads the print settings from the group `group_name` in `key_file`.</span>
+    <span class="doccomment">/// Reads the print settings from the group @group_name in @key_file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file could not be loaded then error is set to either a</span>
     <span class="doccomment">/// `GFileError` or `GKeyFileError`.</span>
@@ -1954,7 +1954,7 @@
     <span class="doccomment">/// the `GKeyFile` to retrieve the settings from</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the name of the group to use, or [`None`]</span>
-    <span class="doccomment">///  to use the default “Print Settings”</span>
+    <span class="doccomment">///   to use the default “Print Settings”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1981,7 +1981,7 @@
         }
     }
 
-    <span class="doccomment">/// Associates `value` with `key`.</span>
+    <span class="doccomment">/// Associates @value with @key.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
@@ -1997,7 +1997,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets `key` to a boolean value.</span>
+    <span class="doccomment">/// Sets @key to a boolean value.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
@@ -2046,7 +2046,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets `key` to a double value.</span>
+    <span class="doccomment">/// Sets @key to a double value.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
@@ -2081,7 +2081,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets `key` to an integer value.</span>
+    <span class="doccomment">/// Sets @key to an integer value.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
@@ -2093,13 +2093,13 @@
         }
     }
 
-    <span class="doccomment">/// Associates a length in units of `unit` with `key`.</span>
+    <span class="doccomment">/// Associates a length in units of @unit with @key.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// a length</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the unit of `length`</span>
+    <span class="doccomment">/// the unit of @length</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_length&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -2197,7 +2197,7 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// the paper height</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units of `height`</span>
+    <span class="doccomment">/// the units of @height</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_paper_height&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -2228,7 +2228,7 @@
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the paper width</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the units of `width`</span>
+    <span class="doccomment">/// the units of @width</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_paper_width&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
@@ -2247,7 +2247,7 @@
     }
 
     <span class="doccomment">/// Convenience function to set [`PRINT_SETTINGS_PRINTER`][crate::PRINT_SETTINGS_PRINTER]</span>
-    <span class="doccomment">/// to `printer`.</span>
+    <span class="doccomment">/// to @printer.</span>
     <span class="doccomment">/// ## `printer`</span>
     <span class="doccomment">/// the printer name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_printer&quot;</span>)]</span>
@@ -2337,7 +2337,7 @@
         }
     }
 
-    <span class="doccomment">/// This function saves the print settings from `self` to `file_name`.</span>
+    <span class="doccomment">/// This function saves the print settings from @self to @file_name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file could not be written then error is set to either a</span>
     <span class="doccomment">/// `GFileError` or `GKeyFileError`.</span>
@@ -2374,12 +2374,12 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_print_settings_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// This function adds the print settings from `self` to `key_file`.</span>
+    <span class="doccomment">/// This function adds the print settings from @self to @key_file.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to save the print settings to</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the group to add the settings to in `key_file`, or</span>
-    <span class="doccomment">///  [`None`] to use the default “Print Settings”</span>
+    <span class="doccomment">/// the group to add the settings to in @key_file, or</span>
+    <span class="doccomment">///   [`None`] to use the default “Print Settings”</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_to_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>, <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2391,7 +2391,7 @@
         }
     }
 
-    <span class="doccomment">/// Removes any value associated with `key`.</span>
+    <span class="doccomment">/// Removes any value associated with @key.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This has the same effect as setting the value to [`None`].</span>
     <span class="doccomment">/// ## `key`</span>

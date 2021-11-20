@@ -345,20 +345,20 @@
     <span class="doccomment">/// The [`Clipboard`][crate::Clipboard] object represents data shared between applications or</span>
     <span class="doccomment">/// inside an application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To get a [`Clipboard`][crate::Clipboard] object, use [``DisplayExt::clipboard()``][crate::prelude::`DisplayExt::clipboard()`] or</span>
-    <span class="doccomment">/// [``DisplayExt::primary_clipboard()``][crate::prelude::`DisplayExt::primary_clipboard()`]. You can find out about the data</span>
+    <span class="doccomment">/// To get a [`Clipboard`][crate::Clipboard] object, use [`DisplayExt::clipboard()`][crate::prelude::DisplayExt::clipboard()] or</span>
+    <span class="doccomment">/// [`DisplayExt::primary_clipboard()`][crate::prelude::DisplayExt::primary_clipboard()]. You can find out about the data</span>
     <span class="doccomment">/// that is currently available in a clipboard using</span>
-    <span class="doccomment">/// [``formats()``][`Self::formats()`].</span>
+    <span class="doccomment">/// [`formats()`][Self::formats()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To make text or image data available in a clipboard, use</span>
-    <span class="doccomment">/// [``set_text()``][`Self::set_text()`] or [``set_texture()``][`Self::set_texture()`].</span>
-    <span class="doccomment">/// For other data, you can use [``set_content()``][`Self::set_content()`], which</span>
+    <span class="doccomment">/// [`set_text()`][Self::set_text()] or [`set_texture()`][Self::set_texture()].</span>
+    <span class="doccomment">/// For other data, you can use [`set_content()`][Self::set_content()], which</span>
     <span class="doccomment">/// takes a [`ContentProvider`][crate::ContentProvider] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To read textual or image data from a clipboard, use</span>
-    <span class="doccomment">/// [``read_text_async()``][`Self::read_text_async()`] or</span>
-    <span class="doccomment">/// [``read_texture_async()``][`Self::read_texture_async()`]. For other data, use</span>
-    <span class="doccomment">/// [``read_async()``][`Self::read_async()`], which provides a `GInputStream` object.</span>
+    <span class="doccomment">/// [`read_text_async()`][Self::read_text_async()] or</span>
+    <span class="doccomment">/// [`read_texture_async()`][Self::read_texture_async()]. For other data, use</span>
+    <span class="doccomment">/// [`read_async()`][Self::read_async()], which provides a `GInputStream` object.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkClipboard&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Clipboard</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkClipboard</span><span class="op">&gt;</span>);
 
@@ -368,15 +368,15 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Clipboard</span> {
-    <span class="doccomment">/// Returns the [`ContentProvider`][crate::ContentProvider] currently set on `self`.</span>
+    <span class="doccomment">/// Returns the [`ContentProvider`][crate::ContentProvider] currently set on @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `self` is empty or its contents are not owned by the</span>
+    <span class="doccomment">/// If the @self is empty or its contents are not owned by the</span>
     <span class="doccomment">/// current process, [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The content of a clipboard</span>
-    <span class="doccomment">///  if the clipboard does not maintain any content</span>
+    <span class="doccomment">///   if the clipboard does not maintain any content</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_get_content&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_content&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span> {
@@ -410,7 +410,7 @@
     <span class="doccomment">/// A clipboard is considered local if it was last claimed</span>
     <span class="doccomment">/// by the running application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [``content()``][`Self::content()`] may return [`None`]</span>
+    <span class="doccomment">/// Note that [`content()`][Self::content()] may return [`None`]</span>
     <span class="doccomment">/// even on a local clipboard. In this case the clipboard is empty.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -421,21 +421,21 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_clipboard_is_local</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Sets a new content provider on `self`.</span>
+    <span class="doccomment">/// Sets a new content provider on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The clipboard will claim the [`Display`][crate::Display]&#39;s resources and advertise</span>
     <span class="doccomment">/// these new contents to other applications.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the rare case of a failure, this function will return [`false`]. The</span>
     <span class="doccomment">/// clipboard will then continue reporting its old contents and ignore</span>
-    <span class="doccomment">/// `provider`.</span>
+    <span class="doccomment">/// @provider.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the contents are read by either an external application or the</span>
-    <span class="doccomment">/// `self`&#39;s read functions, `self` will select the best format to</span>
-    <span class="doccomment">/// transfer the contents and then request that format from `provider`.</span>
+    <span class="doccomment">/// @self&#39;s read functions, @self will select the best format to</span>
+    <span class="doccomment">/// transfer the contents and then request that format from @provider.</span>
     <span class="doccomment">/// ## `provider`</span>
-    <span class="doccomment">/// the new contents of `self`</span>
-    <span class="doccomment">///  or [`None`] to clear the clipboard</span>
+    <span class="doccomment">/// the new contents of @self</span>
+    <span class="doccomment">///   or [`None`] to clear the clipboard</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -456,7 +456,7 @@
         }
     }
 
-    <span class="doccomment">/// Puts the given `text` into the clipboard.</span>
+    <span class="doccomment">/// Puts the given @text into the clipboard.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// Text to put into the clipboard</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_set_text&quot;</span>)]</span>
@@ -466,7 +466,7 @@
         }
     }
 
-    <span class="doccomment">/// Puts the given `texture` into the clipboard.</span>
+    <span class="doccomment">/// Puts the given @texture into the clipboard.</span>
     <span class="doccomment">/// ## `texture`</span>
     <span class="doccomment">/// a [`Texture`][crate::Texture] to put into the clipboard</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_set_texture&quot;</span>)]</span>

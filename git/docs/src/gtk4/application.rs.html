@@ -166,19 +166,19 @@
 <span class="kw">impl</span> <span class="ident">Application</span> {
     <span class="doccomment">/// Creates a new [`Application`][crate::Application] instance.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When using [`Application`][crate::Application], it is not necessary to call [`glib::`Value::from_type()``][crate::glib::`Value::from_type()`]</span>
+    <span class="doccomment">/// When using [`Application`][crate::Application], it is not necessary to call [`glib::Value::from_type()`][crate::glib::Value::from_type()]</span>
     <span class="doccomment">/// manually. It is called as soon as the application gets registered as</span>
     <span class="doccomment">/// the primary instance.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Concretely, [`glib::`Value::from_type()``][crate::glib::`Value::from_type()`] is called in the default handler for the</span>
+    <span class="doccomment">/// Concretely, [`glib::Value::from_type()`][crate::glib::Value::from_type()] is called in the default handler for the</span>
     <span class="doccomment">/// `GApplication::startup` signal. Therefore, [`Application`][crate::Application] subclasses should</span>
     <span class="doccomment">/// always chain up in their `GApplication::startup` handler before using any GTK</span>
     <span class="doccomment">/// API.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that commandline arguments are not passed to [`glib::`Value::from_type()``][crate::glib::`Value::from_type()`].</span>
+    <span class="doccomment">/// Note that commandline arguments are not passed to [`glib::Value::from_type()`][crate::glib::Value::from_type()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `application_id` is not [`None`], then it must be valid. See</span>
-    <span class="doccomment">/// `[`gio::Application::id_is_valid()`][crate::gio::Application::id_is_valid()]`.</span>
+    <span class="doccomment">/// `g_application_id_is_valid()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no application ID is given then some features (most notably application</span>
     <span class="doccomment">/// uniqueness) will be disabled.</span>

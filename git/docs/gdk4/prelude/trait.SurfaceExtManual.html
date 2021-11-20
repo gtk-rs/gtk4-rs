@@ -76,16 +76,16 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.translate_coordinates" class="fnname">translate_coordinates</a>(&amp;self, to: &amp;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing manually implemented methods of <a href="../struct.Surface.html"><code>Surface</code></a>.</p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.create_similar_surface" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/surface.rs.html#38-43" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.create_similar_surface" class="fnname">create_similar_surface</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;content: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/enums/enum.Content.html" title="enum cairo::enums::Content">Content</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/cairo/surface/struct.Surface.html" title="struct cairo::surface::Surface">Surface</a>&gt;</h4></div></summary><div class="docblock"><p>Create a new Cairo surface that is as compatible as possible with the
-given <code>self</code>.</p>
+given @self.</p>
 <p>For example the new surface will have the same fallback resolution
-and font options as <code>self</code>. Generally, the new surface will also
-use the same backend as <code>self</code>, unless that is not possible for
+and font options as @self. Generally, the new surface will also
+use the same backend as @self, unless that is not possible for
 some reason. The type of the returned surface may be examined with
-<code>cairo_surface_get_type()</code>.</p>
+cairo_surface_get_type().</p>
 <p>Initially the surface contents are all 0 (transparent if contents
 have transparency, black otherwise.)</p>
 <p>This function always returns a valid pointer, but it will return a
-pointer to a “nil” surface if <code>other</code> is already in an error state
+pointer to a “nil” surface if @other is already in an error state
 or any other error occurs.</p>
 <h6 id="content" class="section-header"><a href="#content"><code>content</code></a></h6>
 <p>the content for the new surface</p>
@@ -95,10 +95,10 @@ or any other error occurs.</p>
 <p>height of the new surface</p>
 <h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
 <p>a pointer to the newly allocated surface. The caller
-owns the surface and should call <code>cairo_surface_destroy()</code> when done
+owns the surface and should call cairo_surface_destroy() when done
 with it.</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.translate_coordinates" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/surface.rs.html#60" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.translate_coordinates" class="fnname">translate_coordinates</a>(&amp;self, to: &amp;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Translates coordinates between two surfaces.</p>
-<p>Note that this only works if <code>to</code> and <code>self</code> are popups or
+<p>Note that this only works if @to and @self are popups or
 transient-for to the same toplevel (directly or indirectly).</p>
 <h6 id="to" class="section-header"><a href="#to"><code>to</code></a></h6>
 <p>the target surface</p>

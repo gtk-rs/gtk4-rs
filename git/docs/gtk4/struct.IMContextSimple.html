@@ -85,14 +85,16 @@ often not available as a dedicated key on keyboards. Keyboard layouts may
 map this keysym to other keys, such as the right Control key.</p>
 <h3 id="unicode-characters" class="section-header"><a href="#unicode-characters">Unicode characters</a></h3>
 <p><a href="struct.IMContextSimple.html" title="crate::IMContextSimple"><code>IMContextSimple</code></a> also supports numeric entry of Unicode characters
-by typing <code>&lt;kbd&gt;</code>Ctrl<code>&lt;/kbd&gt;</code>-<code>&lt;kbd&gt;</code>Shift<code>&lt;/kbd&gt;</code>-<code>&lt;kbd&gt;</code>u<code>&lt;/kbd&gt;</code>, followed by a
+by typing <kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>u</kbd>, followed by a
 hexadecimal Unicode codepoint.</p>
 <p>For example,</p>
-<p>Ctrl-Shift-u 1 2 3 Enter</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">Ctrl</span><span class="op">-</span><span class="ident">Shift</span><span class="op">-</span><span class="ident">u</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="ident">Enter</span></code></pre></div>
 <p>yields U+0123 LATIN SMALL LETTER G WITH CEDILLA, i.e. ģ.</p>
 <h3 id="dead-keys" class="section-header"><a href="#dead-keys">Dead keys</a></h3>
 <p><a href="struct.IMContextSimple.html" title="crate::IMContextSimple"><code>IMContextSimple</code></a> supports dead keys. For example, typing</p>
-<p>dead_acute a</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">dead_acute</span> <span class="ident">a</span></code></pre></div>
 <p>yields U+00E! LATIN SMALL LETTER_A WITH ACUTE, i.e. á. Note that this
 depends on the keyboard layout including dead keys.</p>
 <h2 id="implements" class="section-header"><a href="#implements">Implements</a></h2>

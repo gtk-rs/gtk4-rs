@@ -245,8 +245,8 @@
     <span class="doccomment">/// [`Tooltip`][crate::Tooltip] is an object representing a widget tooltip.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Basic tooltips can be realized simply by using</span>
-    <span class="doccomment">/// [``WidgetExt::set_tooltip_text()``][crate::prelude::`WidgetExt::set_tooltip_text()`] or</span>
-    <span class="doccomment">/// [``WidgetExt::set_tooltip_markup()``][crate::prelude::`WidgetExt::set_tooltip_markup()`] without</span>
+    <span class="doccomment">/// [`WidgetExt::set_tooltip_text()`][crate::prelude::WidgetExt::set_tooltip_text()] or</span>
+    <span class="doccomment">/// [`WidgetExt::set_tooltip_markup()`][crate::prelude::WidgetExt::set_tooltip_markup()] without</span>
     <span class="doccomment">/// any explicit tooltip object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When you need a tooltip with a little more fancy contents,</span>
@@ -255,20 +255,20 @@
     <span class="doccomment">/// little more work:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Set the `property::Widget::has-tooltip` property to [`true`].</span>
-    <span class="doccomment">///  This will make GTK monitor the widget for motion and related events</span>
-    <span class="doccomment">///  which are needed to determine when and where to show a tooltip.</span>
+    <span class="doccomment">///   This will make GTK monitor the widget for motion and related events</span>
+    <span class="doccomment">///   which are needed to determine when and where to show a tooltip.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Connect to the `signal::Widget::query-tooltip` signal.</span>
-    <span class="doccomment">///  This signal will be emitted when a tooltip is supposed to be shown.</span>
-    <span class="doccomment">///  One of the arguments passed to the signal handler is a [`Tooltip`][crate::Tooltip]</span>
-    <span class="doccomment">///  object. This is the object that we are about to display as a tooltip,</span>
-    <span class="doccomment">///  and can be manipulated in your callback using functions like</span>
-    <span class="doccomment">///  [``set_icon()``][`Self::set_icon()`]. There are functions for setting</span>
-    <span class="doccomment">///  the tooltip’s markup, setting an image from a named icon, or even</span>
-    <span class="doccomment">///  putting in a custom widget.</span>
+    <span class="doccomment">///   This signal will be emitted when a tooltip is supposed to be shown.</span>
+    <span class="doccomment">///   One of the arguments passed to the signal handler is a [`Tooltip`][crate::Tooltip]</span>
+    <span class="doccomment">///   object. This is the object that we are about to display as a tooltip,</span>
+    <span class="doccomment">///   and can be manipulated in your callback using functions like</span>
+    <span class="doccomment">///   [`set_icon()`][Self::set_icon()]. There are functions for setting</span>
+    <span class="doccomment">///   the tooltip’s markup, setting an image from a named icon, or even</span>
+    <span class="doccomment">///   putting in a custom widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Return [`true`] from your ::query-tooltip handler. This causes the tooltip</span>
-    <span class="doccomment">///  to be show. If you return [`false`], it will not be shown.</span>
+    <span class="doccomment">///   to be show. If you return [`false`], it will not be shown.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -283,11 +283,11 @@
 
 <span class="kw">impl</span> <span class="ident">Tooltip</span> {
     <span class="doccomment">/// Replaces the widget packed into the tooltip with</span>
-    <span class="doccomment">/// `custom_widget`. `custom_widget` does not get destroyed when the tooltip goes</span>
+    <span class="doccomment">/// @custom_widget. @custom_widget does not get destroyed when the tooltip goes</span>
     <span class="doccomment">/// away.</span>
     <span class="doccomment">/// By default a box with a [`Image`][crate::Image] and [`Label`][crate::Label] is embedded in</span>
-    <span class="doccomment">/// the tooltip, which can be configured using [`set_markup()`][Self::set_markup()]</span>
-    <span class="doccomment">/// and [`set_icon()`][Self::set_icon()].</span>
+    <span class="doccomment">/// the tooltip, which can be configured using gtk_tooltip_set_markup()</span>
+    <span class="doccomment">/// and gtk_tooltip_set_icon().</span>
     <span class="doccomment">/// ## `custom_widget`</span>
     <span class="doccomment">/// a [`Widget`][crate::Widget], or [`None`] to unset the old custom widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_custom&quot;</span>)]</span>
@@ -301,7 +301,7 @@
     }
 
     <span class="doccomment">/// Sets the icon of the tooltip (which is in front of the text) to be</span>
-    <span class="doccomment">/// `paintable`. If `paintable` is [`None`], the image will be hidden.</span>
+    <span class="doccomment">/// @paintable.  If @paintable is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `paintable`</span>
     <span class="doccomment">/// a [`gdk::Paintable`][crate::gdk::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon&quot;</span>)]</span>
@@ -315,8 +315,8 @@
     }
 
     <span class="doccomment">/// Sets the icon of the tooltip (which is in front of the text)</span>
-    <span class="doccomment">/// to be the icon indicated by `gicon` with the size indicated</span>
-    <span class="doccomment">/// by `size`. If `gicon` is [`None`], the image will be hidden.</span>
+    <span class="doccomment">/// to be the icon indicated by @gicon with the size indicated</span>
+    <span class="doccomment">/// by @size. If @gicon is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `gicon`</span>
     <span class="doccomment">/// a `GIcon` representing the icon</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon_from_gicon&quot;</span>)]</span>
@@ -330,8 +330,8 @@
     }
 
     <span class="doccomment">/// Sets the icon of the tooltip (which is in front of the text) to be</span>
-    <span class="doccomment">/// the icon indicated by `icon_name` with the size indicated</span>
-    <span class="doccomment">/// by `size`. If `icon_name` is [`None`], the image will be hidden.</span>
+    <span class="doccomment">/// the icon indicated by @icon_name with the size indicated</span>
+    <span class="doccomment">/// by @size.  If @icon_name is [`None`], the image will be hidden.</span>
     <span class="doccomment">/// ## `icon_name`</span>
     <span class="doccomment">/// an icon name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_icon_from_icon_name&quot;</span>)]</span>
@@ -344,10 +344,10 @@
         }
     }
 
-    <span class="doccomment">/// Sets the text of the tooltip to be `markup`.</span>
+    <span class="doccomment">/// Sets the text of the tooltip to be @markup.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The string must be marked up with Pango markup.</span>
-    <span class="doccomment">/// If `markup` is [`None`], the label will be hidden.</span>
+    <span class="doccomment">/// If @markup is [`None`], the label will be hidden.</span>
     <span class="doccomment">/// ## `markup`</span>
     <span class="doccomment">/// a string with Pango markup or `NLL`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_markup&quot;</span>)]</span>
@@ -357,10 +357,10 @@
         }
     }
 
-    <span class="doccomment">/// Sets the text of the tooltip to be `text`.</span>
+    <span class="doccomment">/// Sets the text of the tooltip to be @text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `text` is [`None`], the label will be hidden.</span>
-    <span class="doccomment">/// See also [``set_markup()``][`Self::set_markup()`].</span>
+    <span class="doccomment">/// If @text is [`None`], the label will be hidden.</span>
+    <span class="doccomment">/// See also [`set_markup()`][Self::set_markup()].</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// a text string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_text&quot;</span>)]</span>
@@ -371,13 +371,13 @@
     }
 
     <span class="doccomment">/// Sets the area of the widget, where the contents of this tooltip apply,</span>
-    <span class="doccomment">/// to be `rect` (in widget coordinates). This is especially useful for</span>
+    <span class="doccomment">/// to be @rect (in widget coordinates).  This is especially useful for</span>
     <span class="doccomment">/// properly setting tooltips on [`TreeView`][crate::TreeView] rows and cells, `GtkIconViews`,</span>
     <span class="doccomment">/// etc.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For setting tooltips on [`TreeView`][crate::TreeView], please refer to the convenience</span>
-    <span class="doccomment">/// functions for this: [`TreeViewExt::set_tooltip_row()`][crate::prelude::TreeViewExt::set_tooltip_row()] and</span>
-    <span class="doccomment">/// [`TreeViewExt::set_tooltip_cell()`][crate::prelude::TreeViewExt::set_tooltip_cell()].</span>
+    <span class="doccomment">/// functions for this: gtk_tree_view_set_tooltip_row() and</span>
+    <span class="doccomment">/// gtk_tree_view_set_tooltip_cell().</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// a [`gdk::Rectangle`][crate::gdk::Rectangle]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tooltip_set_tip_area&quot;</span>)]</span>

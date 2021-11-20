@@ -117,10 +117,10 @@ gtk_grid_attach (GTK_GRID (grid),
 gtk_label_set_text (GTK_LABEL (message_label), &quot;An error occurred!&quot;);
 gtk_info_bar_set_message_type (bar, GTK_MESSAGE_ERROR);
 gtk_widget_show (bar);</code></pre></div><h2 id="gtkinfobar-as-gtkbuildable" class="section-header"><a href="#gtkinfobar-as-gtkbuildable">GtkInfoBar as GtkBuildable</a></h2>
-<p><a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a> supports a custom <code>&lt;action-widgets&gt;</code> element, which can contain
-multiple <code>&lt;action-widget&gt;</code> elements. The “response” attribute specifies a
+<p><a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a> supports a custom <action-widgets> element, which can contain
+multiple <action-widget> elements. The “response” attribute specifies a
 numeric response, and the content of the element is the id of widget
-(which should be a child of the dialogs <code>action_area</code>).</p>
+(which should be a child of the dialogs @action_area).</p>
 <p><a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a> supports adding action widgets by specifying “action” as
 the “type” attribute of a <code>&lt;child&gt;</code> element. The widget will be added
 either to the action area. The response id has to be associated
@@ -146,7 +146,7 @@ end of the message areas action area.</p>
 <h6 id="child" class="section-header"><a href="#child"><code>child</code></a></h6>
 <p>an activatable widget</p>
 <h6 id="response_id" class="section-header"><a href="#response_id"><code>response_id</code></a></h6>
-<p>response ID for <code>child</code></p>
+<p>response ID for @child</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.add_button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#174-182" title="goto source code">[src]</a></div><a href="#method.add_button" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_button" class="fnname">add_button</a>(&amp;self, button_text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) -&gt; <a class="struct" href="struct.Button.html" title="struct gtk4::Button">Button</a></h4></div></summary><div class="docblock"><p>Adds a button with the given text.</p>
 <p>Clicking the button will emit the <code>signal::InfoBar::response</code>
 signal with the given response_id. The button is appended to the
@@ -171,7 +171,7 @@ that was added</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.shows_close_button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#223-229" title="goto source code">[src]</a></div><a href="#method.shows_close_button" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shows_close_button" class="fnname">shows_close_button</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the widget will display a standard close button.</p>
 <h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the widget displays standard close button</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove_action_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#238-245" title="goto source code">[src]</a></div><a href="#method.remove_action_widget" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_action_widget" class="fnname">remove_action_widget</a>(&amp;self, widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Removes a widget from the action area of <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove_action_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#238-245" title="goto source code">[src]</a></div><a href="#method.remove_action_widget" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_action_widget" class="fnname">remove_action_widget</a>(&amp;self, widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Removes a widget from the action area of @self.</p>
 <p>The widget must have been put there by a call to
 <a href="struct.InfoBar.html#method.add_action_widget" title="Self::add_action_widget()"><code>add_action_widget()</code></a> or <a href="struct.InfoBar.html#method.add_button" title="Self::add_button()"><code>add_button()</code></a>.</p>
 <h6 id="widget-1" class="section-header"><a href="#widget-1"><code>widget</code></a></h6>
@@ -179,13 +179,13 @@ that was added</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.remove_child" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#251-255" title="goto source code">[src]</a></div><a href="#method.remove_child" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_child" class="fnname">remove_child</a>(&amp;self, widget: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Removes a widget from the content area of the info bar.</p>
 <h6 id="widget-2" class="section-header"><a href="#widget-2"><code>widget</code></a></h6>
 <p>a child that has been added to the content area</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#261-265" title="goto source code">[src]</a></div><a href="#method.response" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.response" class="fnname">response</a>(&amp;self, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</h4></div></summary><div class="docblock"><p>Emits the “response” signal with the given <code>response_id</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#261-265" title="goto source code">[src]</a></div><a href="#method.response" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.response" class="fnname">response</a>(&amp;self, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</h4></div></summary><div class="docblock"><p>Emits the “response” signal with the given @response_id.</p>
 <h6 id="response_id-2" class="section-header"><a href="#response_id-2"><code>response_id</code></a></h6>
 <p>a response ID</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_default_response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#277-281" title="goto source code">[src]</a></div><a href="#method.set_default_response" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_default_response" class="fnname">set_default_response</a>(&amp;self, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</h4></div></summary><div class="docblock"><p>Sets the last widget in the info bar’s action area with
 the given response_id as the default widget for the dialog.</p>
 <p>Pressing “Enter” normally activates the default widget.</p>
-<p>Note that this function currently requires <code>self</code> to
+<p>Note that this function currently requires @self to
 be added to a widget hierarchy.</p>
 <h6 id="response_id-3" class="section-header"><a href="#response_id-3"><code>response_id</code></a></h6>
 <p>a response ID</p>
@@ -193,18 +193,18 @@ be added to a widget hierarchy.</p>
 <p>GTK uses this type to determine how the message is displayed.</p>
 <h6 id="message_type" class="section-header"><a href="#message_type"><code>message_type</code></a></h6>
 <p>a <a href="enum.MessageType.html" title="crate::MessageType"><code>MessageType</code></a></p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_response_sensitive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#305-313" title="goto source code">[src]</a></div><a href="#method.set_response_sensitive" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_response_sensitive" class="fnname">set_response_sensitive</a>(&amp;self, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets the sensitivity of action widgets for <code>response_id</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_response_sensitive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#305-313" title="goto source code">[src]</a></div><a href="#method.set_response_sensitive" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_response_sensitive" class="fnname">set_response_sensitive</a>(&amp;self, response_id: <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets the sensitivity of action widgets for @response_id.</p>
 <p>Calls <code>gtk_widget_set_sensitive (widget, setting)</code> for each
-widget in the info bars’s action area with the given <code>response_id</code>.
+widget in the info bars’s action area with the given @response_id.
 A convenient way to sensitize/desensitize buttons.</p>
 <h6 id="response_id-4" class="section-header"><a href="#response_id-4"><code>response_id</code></a></h6>
 <p>a response ID</p>
 <h6 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h6>
 <p>TRUE for sensitive</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.set_revealed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#326-330" title="goto source code">[src]</a></div><a href="#method.set_revealed" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_revealed" class="fnname">set_revealed</a>(&amp;self, revealed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the <a href="struct.InfoBar.html" title="crate::InfoBar"><code>InfoBar</code></a> is revealed.</p>
-<p>Changing this will make <code>self</code> reveal or conceal
+<p>Changing this will make @self reveal or conceal
 itself via a sliding transition.</p>
-<p>Note: this does not show or hide <code>self</code> in the
+<p>Note: this does not show or hide @self in the
 <code>property::Widget::visible</code> sense, so revealing has no effect
 if <code>property::Widget::visible</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h6 id="revealed" class="section-header"><a href="#revealed"><code>revealed</code></a></h6>
@@ -218,7 +218,7 @@ if <code>property::Widget::visible</code> is <a href="https://doc.rust-lang.org/
 <p>The default binding for this signal is the Escape key.</p>
 </div></details><div id="method.emit_close" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#371-373" title="goto source code">[src]</a></div><a href="#method.emit_close" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.emit_close" class="fnname">emit_close</a>(&amp;self)</h4></div><details class="rustdoc-toggle method-toggle" open><summary><div id="method.connect_response" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/info_bar.rs.html#383-403" title="goto source code">[src]</a></div><a href="#method.connect_response" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_response" class="fnname">connect_response</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when an action widget is clicked.</p>
 <p>The signal is also emitted when the application programmer
-calls <a href="struct.InfoBar.html#method.response" title="Self::response()"><code>response()</code></a>. The <code>response_id</code> depends
+calls <a href="struct.InfoBar.html#method.response" title="Self::response()"><code>response()</code></a>. The @response_id depends
 on which action widget was clicked.</p>
 <h6 id="response_id-5" class="section-header"><a href="#response_id-5"><code>response_id</code></a></h6>
 <p>the response ID</p>

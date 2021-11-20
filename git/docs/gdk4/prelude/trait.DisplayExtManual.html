@@ -82,14 +82,14 @@
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.translate_key" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#101-106" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.translate_key" class="fnname">translate_key</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;state: <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;group: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></div></summary><div class="docblock"><p>Translates the contents of a <code>GdkEventKey</code> into a keyval, effective group,
 and level.</p>
 <p>Modifiers that affected the translation and are thus unavailable for
-application use are returned in <code>consumed_modifiers</code>.</p>
-<p>The <code>effective_group</code> is the group that was actually used for the
+application use are returned in @consumed_modifiers.</p>
+<p>The @effective_group is the group that was actually used for the
 translation; some keys such as Enter are not affected by the active
-keyboard group. The <code>level</code> is derived from <code>state</code>.</p>
-<p><code>consumed_modifiers</code> gives modifiers that should be masked out
-from <code>state</code> when comparing this key press to a keyboard shortcut.
+keyboard group. The @level is derived from @state.</p>
+<p>@consumed_modifiers gives modifiers that should be masked out
+from @state when comparing this key press to a keyboard shortcut.
 For instance, on a US keyboard, the <code>plus</code> symbol is shifted, so
-when comparing a key press to a <code>&lt;Control&gt;`plus` accelerator </code><Shift>``
+when comparing a key press to a <code>&lt;Control&gt;plus</code> accelerator <code>&lt;Shift&gt;</code>
 should be masked out.</p>
 <p>This function should rarely be needed, since <code>GdkEventKey</code> already
 contains the translated keyval. It is exported for the benefit of
@@ -112,16 +112,16 @@ virtualized test environments.</p>
 <p>return location for modifiers that were used
 to determine the group or level</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.get_setting" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#120" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.get_setting" class="fnname">get_setting</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;</h4></div></summary><div class="docblock"><p>Retrieves a desktop-wide setting such as double-click time
-for the <code>self</code>.</p>
+for the @self.</p>
 <h6 id="name" class="section-header"><a href="#name"><code>name</code></a></h6>
 <p>the name of the setting</p>
 <h6 id="value" class="section-header"><a href="#value"><code>value</code></a></h6>
 <p>location to store the value of the setting</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the setting existed and a value was stored
-in <code>value</code>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
+in @value, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.map_keyval" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#148" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.map_keyval" class="fnname">map_keyval</a>(&amp;self, keyval: <a class="struct" href="../keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>&gt;&gt;</h4></div></summary><div class="docblock"><p>Obtains a list of keycode/group/level combinations that will
-generate <code>keyval</code>.</p>
+generate @keyval.</p>
 <p>Groups and levels are two kinds of keyboard mode; in general, the level
 determines whether the top or bottom symbol on a key is used, and the
 group determines whether the left or right symbol is used.</p>
@@ -130,7 +130,7 @@ are no groups. A group switch key might convert a keyboard between
 Hebrew to English modes, for example.</p>
 <p><code>GdkEventKey</code> contains a <code>group</code> field that indicates the active
 keyboard group. The level is computed from the modifier mask.</p>
-<p>The returned array should be freed with <code>g_free()</code>.</p>
+<p>The returned array should be freed with g_free().</p>
 <h6 id="keyval-1" class="section-header"><a href="#keyval-1"><code>keyval</code></a></h6>
 <p>a keyval, such as <code>GDK_KEY_a</code>, <code>GDK_KEY_Up</code>, <code>GDK_KEY_Return</code>, etc.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
@@ -138,12 +138,12 @@ keyboard group. The level is computed from the modifier mask.</p>
 <h6 id="keys" class="section-header"><a href="#keys"><code>keys</code></a></h6>
 <p>return location
 for an array of <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a></p>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.map_keycode" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#174" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.map_keycode" class="fnname">map_keycode</a>(&amp;self, keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>, <a class="struct" href="../keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;&gt;</h4></div></summary><div class="docblock"><p>Returns the keyvals bound to <code>keycode</code>.</p>
-<p>The Nth <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a> in <code>keys</code> is bound to the Nth keyval in <code>keyvals</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.map_keycode" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#174" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.map_keycode" class="fnname">map_keycode</a>(&amp;self, keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>, <a class="struct" href="../keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;&gt;</h4></div></summary><div class="docblock"><p>Returns the keyvals bound to @keycode.</p>
+<p>The Nth <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a> in @keys is bound to the Nth keyval in @keyvals.</p>
 <p>When a keycode is pressed by the user, the keyval from
 this list of entries is selected by considering the effective
 keyboard group and level.</p>
-<p>Free the returned arrays with <code>g_free()</code>.</p>
+<p>Free the returned arrays with g_free().</p>
 <h6 id="keycode-1" class="section-header"><a href="#keycode-1"><code>keycode</code></a></h6>
 <p>a keycode</p>
 <h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
@@ -155,7 +155,7 @@ location for array of <a href="../struct.KeymapKey.html" title="crate::KeymapKey
 <p>return
 location for array of keyvals</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.put_event" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/display.rs.html#184" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.put_event" class="fnname">put_event</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../struct.Event.html" title="struct gdk4::Event">Event</a>&gt;&gt;(&amp;self, event: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</h4></div></summary><div class="docblock"><p>Appends the given event onto the front of the event
-queue for <code>self</code>.</p>
+queue for @self.</p>
 <p>This function is only useful in very special situations
 and should not be used by applications.</p>
 <h6 id="event" class="section-header"><a href="#event"><code>event</code></a></h6>

@@ -86,7 +86,7 @@ and installing the properties on it as normal <code>GObject</code> properties.</
 <p>Each <a href="struct.LayoutChild.html" title="crate::LayoutChild"><code>LayoutChild</code></a> instance storing the layout properties for a
 specific child is created through the <a href="prelude/trait.LayoutManagerExt.html#tymethod.layout_child" title="crate::prelude::LayoutManagerExt::layout_child()"><code>LayoutManagerExt::layout_child()</code></a>
 method; a <a href="struct.LayoutManager.html" title="crate::LayoutManager"><code>LayoutManager</code></a> controls the creation of its <a href="struct.LayoutChild.html" title="crate::LayoutChild"><code>LayoutChild</code></a>
-instances by overriding the <code>GtkLayoutManagerClass.create_layout_child()</code>
+instances by overriding the GtkLayoutManagerClass.create_layout_child()
 virtual function. The typical implementation should look like:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-c"><code>static GtkLayoutChild *

@@ -294,11 +294,11 @@
     <span class="doccomment">/// Possible drop sites get informed about the status of the ongoing drag</span>
     <span class="doccomment">/// operation with events of type [`EventType::DragEnter`][crate::EventType::DragEnter], [`EventType::DragLeave`][crate::EventType::DragLeave],</span>
     <span class="doccomment">/// [`EventType::DragMotion`][crate::EventType::DragMotion] and [`EventType::DropStart`][crate::EventType::DropStart]. The [`Drop`][crate::Drop] object can be obtained</span>
-    <span class="doccomment">/// from these [`Event`][crate::Event] types using [``DNDEvent::drop()``][crate::`DNDEvent::drop()`].</span>
+    <span class="doccomment">/// from these [`Event`][crate::Event] types using [`DNDEvent::drop()`][crate::DNDEvent::drop()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual data transfer is initiated from the target side via an async</span>
     <span class="doccomment">/// read, using one of the [`Drop`][crate::Drop] methods for this purpose:</span>
-    <span class="doccomment">/// [``read_async()``][`Self::read_async()`] or [``read_value_async()``][`Self::read_value_async()`].</span>
+    <span class="doccomment">/// [`read_async()`][Self::read_async()] or [`read_value_async()`][Self::read_value_async()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides a higher level abstraction based on top of these functions,</span>
     <span class="doccomment">/// and so they are not normally needed in GTK applications. See the</span>
@@ -316,8 +316,8 @@
 <span class="kw">impl</span> <span class="ident">Drop</span> {
     <span class="doccomment">/// Ends the drag operation after a drop.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `action` must be a single action selected from the actions</span>
-    <span class="doccomment">/// available via [``actions()``][`Self::actions()`].</span>
+    <span class="doccomment">/// The @action must be a single action selected from the actions</span>
+    <span class="doccomment">/// available via [`actions()`][Self::actions()].</span>
     <span class="doccomment">/// ## `action`</span>
     <span class="doccomment">/// the action performed by the destination or 0 if the drop failed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drop_finish&quot;</span>)]</span>
@@ -330,16 +330,16 @@
     <span class="doccomment">/// Returns the possible actions for this [`Drop`][crate::Drop].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this value contains multiple actions - i.e.</span>
-    <span class="doccomment">/// [``DragAction::is_unique()``][crate::`DragAction::is_unique()`] returns [`false`] for the result -</span>
-    <span class="doccomment">/// [``finish()``][`Self::finish()`] must choose the action to use when</span>
+    <span class="doccomment">/// [`DragAction::is_unique()`][crate::DragAction::is_unique()] returns [`false`] for the result -</span>
+    <span class="doccomment">/// [`finish()`][Self::finish()] must choose the action to use when</span>
     <span class="doccomment">/// accepting the drop. This will only happen if you passed</span>
     <span class="doccomment">/// [`DragAction::ASK`][crate::DragAction::ASK] as one of the possible actions in</span>
-    <span class="doccomment">/// [``status()``][`Self::status()`]. [`DragAction::ASK`][crate::DragAction::ASK] itself will not</span>
+    <span class="doccomment">/// [`status()`][Self::status()]. [`DragAction::ASK`][crate::DragAction::ASK] itself will not</span>
     <span class="doccomment">/// be included in the actions returned by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This value may change over the lifetime of the [`Drop`][crate::Drop]</span>
     <span class="doccomment">/// both as a response to source side actions as well as to calls to</span>
-    <span class="doccomment">/// [``status()``][`Self::status()`] or [``finish()``][`Self::finish()`]. The source</span>
+    <span class="doccomment">/// [`status()`][Self::status()] or [`finish()`][Self::finish()]. The source</span>
     <span class="doccomment">/// side will not change this value anymore once a drop has started.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -362,7 +362,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_drop_get_device</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the [`Display`][crate::Display] that `self` was created for.</span>
+    <span class="doccomment">/// Gets the [`Display`][crate::Display] that @self was created for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -413,10 +413,10 @@
     <span class="doccomment">/// Selects all actions that are potentially supported by the destination.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When calling this function, do not restrict the passed in actions to</span>
-    <span class="doccomment">/// the ones provided by [``actions()``][`Self::actions()`]. Those actions may</span>
+    <span class="doccomment">/// the ones provided by [`actions()`][Self::actions()]. Those actions may</span>
     <span class="doccomment">/// change in the future, even depending on the actions you provide here.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `preferred` action is a hint to the drag-and-drop mechanism about which</span>
+    <span class="doccomment">/// The @preferred action is a hint to the drag-and-drop mechanism about which</span>
     <span class="doccomment">/// action to use when multiple actions are possible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be called by drag destinations in response to</span>
@@ -425,10 +425,10 @@
     <span class="doccomment">/// actions first and then later call this function again.</span>
     <span class="doccomment">/// ## `actions`</span>
     <span class="doccomment">/// Supported actions of the destination, or 0 to indicate</span>
-    <span class="doccomment">///  that a drop will not be accepted</span>
+    <span class="doccomment">///    that a drop will not be accepted</span>
     <span class="doccomment">/// ## `preferred`</span>
-    <span class="doccomment">/// A unique action that&#39;s a member of `actions` indicating the</span>
-    <span class="doccomment">///  preferred action</span>
+    <span class="doccomment">/// A unique action that&#39;s a member of @actions indicating the</span>
+    <span class="doccomment">///    preferred action</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drop_status&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">actions</span>: <span class="ident">DragAction</span>, <span class="ident">preferred</span>: <span class="ident">DragAction</span>) {
         <span class="kw">unsafe</span> {

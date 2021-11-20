@@ -916,12 +916,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// For instance, the built-in GTK input method [`IMContextSimple`][crate::IMContextSimple]</span>
     <span class="doccomment">/// implements the input of arbitrary Unicode code points by holding down the</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Control`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;` keys and then typing `&lt;kbd&gt;`u`&lt;/kbd&gt;`</span>
+    <span class="doccomment">/// &lt;kbd&gt;Control&lt;/kbd&gt; and &lt;kbd&gt;Shift&lt;/kbd&gt; keys and then typing &lt;kbd&gt;u&lt;/kbd&gt;</span>
     <span class="doccomment">/// followed by the hexadecimal digits of the code point. When releasing the</span>
-    <span class="doccomment">/// `&lt;kbd&gt;`Control`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;` keys, preediting ends and the</span>
+    <span class="doccomment">/// &lt;kbd&gt;Control&lt;/kbd&gt; and &lt;kbd&gt;Shift&lt;/kbd&gt; keys, preediting ends and the</span>
     <span class="doccomment">/// character is inserted as text. For example,</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  Ctrl+Shift+u 2 0 A C</span>
+    <span class="doccomment">///     Ctrl+Shift+u 2 0 A C</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// results in the € sign.</span>
     <span class="doccomment">///</span>
@@ -959,11 +959,11 @@
     <span class="doccomment">/// characters around the cursor position by emitting the</span>
     <span class="doccomment">/// `::delete_surrounding` signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `offset` and `n_chars` are in characters not in bytes</span>
+    <span class="doccomment">/// Note that @offset and @n_chars are in characters not in bytes</span>
     <span class="doccomment">/// which differs from the usage other places in [`IMContext`][crate::IMContext].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In order to use this function, you should first call</span>
-    <span class="doccomment">/// [``surrounding()``][`Self::surrounding()`] to get the current context,</span>
+    <span class="doccomment">/// [`surrounding()`][Self::surrounding()] to get the current context,</span>
     <span class="doccomment">/// and call this function immediately afterwards to make sure that you</span>
     <span class="doccomment">/// know what you are deleting. You should also account for the fact</span>
     <span class="doccomment">/// that even if the signal was handled, the input context might not</span>
@@ -974,7 +974,7 @@
     <span class="doccomment">/// It is not useful for applications.</span>
     <span class="doccomment">/// ## `offset`</span>
     <span class="doccomment">/// offset from cursor position in chars;</span>
-    <span class="doccomment">///  a negative value means start before the cursor.</span>
+    <span class="doccomment">///    a negative value means start before the cursor.</span>
     <span class="doccomment">/// ## `n_chars`</span>
     <span class="doccomment">/// number of characters to delete.</span>
     <span class="doccomment">///</span>
@@ -1043,16 +1043,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// location to store the retrieved</span>
-    <span class="doccomment">///  string. The string retrieved must be freed with `g_free()`.</span>
+    <span class="doccomment">///   string. The string retrieved must be freed with g_free().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `attrs`</span>
     <span class="doccomment">/// location to store the retrieved</span>
-    <span class="doccomment">///  attribute list. When you are done with this list, you</span>
-    <span class="doccomment">///  must unreference it with `Pango::`AttrList::unref()``.</span>
+    <span class="doccomment">///   attribute list. When you are done with this list, you</span>
+    <span class="doccomment">///   must unreference it with `Pango::AttrList::unref()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `cursor_pos`</span>
     <span class="doccomment">/// location to store position of cursor</span>
-    <span class="doccomment">///  (in characters) within the preedit string.</span>
+    <span class="doccomment">///   (in characters) within the preedit string.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_preedit_string&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preedit_string&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">glib::GString</span>, <span class="ident">pango::AttrList</span>, <span class="ident">i32</span>);
@@ -1067,7 +1067,7 @@
     <span class="doccomment">/// `signal::IMContext::retrieve-surrounding` signal on the input method;</span>
     <span class="doccomment">/// in response to this signal, a widget should provide as much context as</span>
     <span class="doccomment">/// is available, up to an entire paragraph, by calling</span>
-    <span class="doccomment">/// [``set_surrounding()``][`Self::set_surrounding()`].</span>
+    <span class="doccomment">/// [`set_surrounding()`][Self::set_surrounding()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that there is no obligation for a widget to respond to the</span>
     <span class="doccomment">/// `::retrieve-surrounding` signal, so input methods must be prepared to</span>
@@ -1075,22 +1075,22 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.2</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``surrounding_with_selection()``][`Self::surrounding_with_selection()`] instead.</span>
+    <span class="doccomment">/// Use [`surrounding_with_selection()`][Self::surrounding_with_selection()] instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `TRUE` if surrounding text was provided; in this case</span>
-    <span class="doccomment">///  you must free the result stored in `text`.</span>
+    <span class="doccomment">///    you must free the result stored in `text`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// location to store a UTF-8 encoded</span>
-    <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free()`.</span>
+    <span class="doccomment">///   string of text holding context around the insertion point.</span>
+    <span class="doccomment">///   If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///   stored in this location with g_free().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `cursor_index`</span>
     <span class="doccomment">/// location to store byte index of the insertion</span>
-    <span class="doccomment">///  cursor within `text`.</span>
+    <span class="doccomment">///   cursor within @text.</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_surrounding&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surrounding&quot;</span>)]</span>
@@ -1106,7 +1106,7 @@
     <span class="doccomment">/// `signal::IMContext::retrieve-surrounding` signal on the input method;</span>
     <span class="doccomment">/// in response to this signal, a widget should provide as much context as</span>
     <span class="doccomment">/// is available, up to an entire paragraph, by calling</span>
-    <span class="doccomment">/// [``set_surrounding_with_selection()``][`Self::set_surrounding_with_selection()`].</span>
+    <span class="doccomment">/// [`set_surrounding_with_selection()`][Self::set_surrounding_with_selection()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that there is no obligation for a widget to respond to the</span>
     <span class="doccomment">/// `::retrieve-surrounding` signal, so input methods must be prepared to</span>
@@ -1115,21 +1115,21 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `TRUE` if surrounding text was provided; in this case</span>
-    <span class="doccomment">///  you must free the result stored in `text`.</span>
+    <span class="doccomment">///   you must free the result stored in `text`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// location to store a UTF-8 encoded</span>
-    <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free()`.</span>
+    <span class="doccomment">///   string of text holding context around the insertion point.</span>
+    <span class="doccomment">///   If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///   stored in this location with g_free().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `cursor_index`</span>
     <span class="doccomment">/// location to store byte index of the insertion</span>
-    <span class="doccomment">///  cursor within `text`.</span>
+    <span class="doccomment">///   cursor within @text.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `anchor_index`</span>
     <span class="doccomment">/// location to store byte index of the selection</span>
-    <span class="doccomment">///  bound within `text`</span>
+    <span class="doccomment">///   bound within @text</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_surrounding_with_selection&quot;</span>)]</span>
@@ -1150,7 +1150,7 @@
     <span class="doccomment">/// also be used for purposes internal to the input method.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the client widget. This may be [`None`] to indicate</span>
-    <span class="doccomment">///  that the previous client widget no longer exists.</span>
+    <span class="doccomment">///   that the previous client widget no longer exists.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_set_client_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_client_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
@@ -1172,14 +1172,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Deprecated since 4.2</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``set_surrounding_with_selection()``][`Self::set_surrounding_with_selection()`] instead</span>
+    <span class="doccomment">/// Use [`set_surrounding_with_selection()`][Self::set_surrounding_with_selection()] instead</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text surrounding the insertion point, as UTF-8.</span>
-    <span class="doccomment">///  the preedit string should not be included within `text`</span>
+    <span class="doccomment">///   the preedit string should not be included within @text</span>
     <span class="doccomment">/// ## `len`</span>
-    <span class="doccomment">/// the length of `text`, or -1 if `text` is nul-terminated</span>
+    <span class="doccomment">/// the length of @text, or -1 if @text is nul-terminated</span>
     <span class="doccomment">/// ## `cursor_index`</span>
-    <span class="doccomment">/// the byte index of the insertion cursor within `text`.</span>
+    <span class="doccomment">/// the byte index of the insertion cursor within @text.</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_set_surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>);
@@ -1190,13 +1190,13 @@
     <span class="doccomment">/// have no effect if called at other times.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// text surrounding the insertion point, as UTF-8.</span>
-    <span class="doccomment">///  the preedit string should not be included within `text`</span>
+    <span class="doccomment">///   the preedit string should not be included within @text</span>
     <span class="doccomment">/// ## `len`</span>
-    <span class="doccomment">/// the length of `text`, or -1 if `text` is nul-terminated</span>
+    <span class="doccomment">/// the length of @text, or -1 if @text is nul-terminated</span>
     <span class="doccomment">/// ## `cursor_index`</span>
-    <span class="doccomment">/// the byte index of the insertion cursor within `text`</span>
+    <span class="doccomment">/// the byte index of the insertion cursor within @text</span>
     <span class="doccomment">/// ## `anchor_index`</span>
-    <span class="doccomment">/// the byte index of the selection bound within `text`</span>
+    <span class="doccomment">/// the byte index of the selection bound within @text</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_set_surrounding_with_selection&quot;</span>)]</span>
@@ -1205,7 +1205,7 @@
     <span class="doccomment">/// Sets whether the IM context should use the preedit string</span>
     <span class="doccomment">/// to display feedback.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `use_preedit` is [`false`] (default is [`true`]), then the IM context</span>
+    <span class="doccomment">/// If @use_preedit is [`false`] (default is [`true`]), then the IM context</span>
     <span class="doccomment">/// may use some other method to display feedback, such as displaying</span>
     <span class="doccomment">/// it in a child of the root window.</span>
     <span class="doccomment">/// ## `use_preedit`</span>
@@ -1254,8 +1254,8 @@
     <span class="doccomment">/// needs to delete all or part of the context surrounding the cursor.</span>
     <span class="doccomment">/// ## `offset`</span>
     <span class="doccomment">/// the character offset from the cursor position of the text</span>
-    <span class="doccomment">///  to be deleted. A negative value indicates a position before</span>
-    <span class="doccomment">///  the cursor.</span>
+    <span class="doccomment">///   to be deleted. A negative value indicates a position before</span>
+    <span class="doccomment">///   the cursor.</span>
     <span class="doccomment">/// ## `n_chars`</span>
     <span class="doccomment">/// the number of characters to be deleted</span>
     <span class="doccomment">///</span>
@@ -1272,7 +1272,7 @@
     <span class="doccomment">/// currently being entered has changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is also emitted at the end of a preedit sequence, in which case</span>
-    <span class="doccomment">/// [``preedit_string()``][`Self::preedit_string()`] returns the empty string.</span>
+    <span class="doccomment">/// [`preedit_string()`][Self::preedit_string()] returns the empty string.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;preedit-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span>;
 
@@ -1290,7 +1290,7 @@
     <span class="doccomment">/// requires the context surrounding the cursor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The callback should set the input method surrounding context by</span>
-    <span class="doccomment">/// calling the [``set_surrounding()``][`Self::set_surrounding()`] method.</span>
+    <span class="doccomment">/// calling the [`set_surrounding()`][Self::set_surrounding()] method.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

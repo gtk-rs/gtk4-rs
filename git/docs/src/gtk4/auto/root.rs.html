@@ -192,10 +192,10 @@
     <span class="doccomment">/// The obvious example of a [`Root`][crate::Root] is [`Window`][crate::Window].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To get the display to which a [`Root`][crate::Root] belongs, use</span>
-    <span class="doccomment">/// `Gtk::`Root::get_display()``.</span>
+    <span class="doccomment">/// `Gtk::Root::get_display()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Root`][crate::Root] also maintains the location of keyboard focus inside its widget</span>
-    <span class="doccomment">/// hierarchy, with [``RootExt::set_focus()``][crate::prelude::`RootExt::set_focus()`] and [``RootExt::focus()``][crate::prelude::`RootExt::focus()`].</span>
+    <span class="doccomment">/// hierarchy, with [`RootExt::set_focus()`][crate::prelude::RootExt::set_focus()] and [`RootExt::focus()`][crate::prelude::RootExt::focus()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -232,17 +232,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// If `focus` is not the current focus widget, and is focusable, sets</span>
+    <span class="doccomment">/// If @focus is not the current focus widget, and is focusable, sets</span>
     <span class="doccomment">/// it as the focus widget for the root.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `focus` is [`None`], unsets the focus widget for the root.</span>
+    <span class="doccomment">/// If @focus is [`None`], unsets the focus widget for the root.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To set the focus to a particular widget in the root, it is usually</span>
-    <span class="doccomment">/// more convenient to use [``WidgetExt::grab_focus()``][crate::prelude::`WidgetExt::grab_focus()`] instead of</span>
+    <span class="doccomment">/// more convenient to use [`WidgetExt::grab_focus()`][crate::prelude::WidgetExt::grab_focus()] instead of</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `focus`</span>
     <span class="doccomment">/// widget to be the new focus widget, or [`None`]</span>
-    <span class="doccomment">///  to unset the focus widget</span>
+    <span class="doccomment">///    to unset the focus widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_root_set_focus&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">focus</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 }

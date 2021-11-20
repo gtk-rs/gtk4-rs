@@ -2893,20 +2893,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CROSSING_GTK_UNGRAB&quot;</span>)]</span>
     <span class="ident">GtkUngrab</span>,
     <span class="doccomment">/// crossing because a GTK widget changed</span>
-    <span class="doccomment">///  state (e.g. sensitivity).</span>
+    <span class="doccomment">///   state (e.g. sensitivity).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CROSSING_STATE_CHANGED&quot;</span>)]</span>
     <span class="ident">StateChanged</span>,
     <span class="doccomment">/// crossing because a touch sequence has begun,</span>
-    <span class="doccomment">///  this event is synthetic as the pointer might have not left the surface.</span>
+    <span class="doccomment">///   this event is synthetic as the pointer might have not left the surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CROSSING_TOUCH_BEGIN&quot;</span>)]</span>
     <span class="ident">TouchBegin</span>,
     <span class="doccomment">/// crossing because a touch sequence has ended,</span>
-    <span class="doccomment">///  this event is synthetic as the pointer might have not left the surface.</span>
+    <span class="doccomment">///   this event is synthetic as the pointer might have not left the surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CROSSING_TOUCH_END&quot;</span>)]</span>
     <span class="ident">TouchEnd</span>,
     <span class="doccomment">/// crossing because of a device switch (i.e.</span>
-    <span class="doccomment">///  a mouse taking control of the pointer after a touch device), this event</span>
-    <span class="doccomment">///  is synthetic as the pointer didn’t leave the surface.</span>
+    <span class="doccomment">///   a mouse taking control of the pointer after a touch device), this event</span>
+    <span class="doccomment">///   is synthetic as the pointer didn’t leave the surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CROSSING_DEVICE_SWITCH&quot;</span>)]</span>
     <span class="ident">DeviceSwitch</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -3322,8 +3322,8 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkEventType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">EventType</span> {
     <span class="doccomment">/// the window manager has requested that the toplevel surface be</span>
-    <span class="doccomment">///  hidden or destroyed, usually when the user clicks on a special icon in the</span>
-    <span class="doccomment">///  title bar.</span>
+    <span class="doccomment">///   hidden or destroyed, usually when the user clicks on a special icon in the</span>
+    <span class="doccomment">///   title bar.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_DELETE&quot;</span>)]</span>
     <span class="ident">Delete</span>,
     <span class="doccomment">/// the pointer (usually a mouse) has moved.</span>
@@ -3351,11 +3351,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FOCUS_CHANGE&quot;</span>)]</span>
     <span class="ident">FocusChange</span>,
     <span class="doccomment">/// an input device has moved into contact with a sensing</span>
-    <span class="doccomment">///  surface (e.g. a touchscreen or graphics tablet).</span>
+    <span class="doccomment">///   surface (e.g. a touchscreen or graphics tablet).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PROXIMITY_IN&quot;</span>)]</span>
     <span class="ident">ProximityIn</span>,
     <span class="doccomment">/// an input device has moved out of contact with a sensing</span>
-    <span class="doccomment">///  surface.</span>
+    <span class="doccomment">///   surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PROXIMITY_OUT&quot;</span>)]</span>
     <span class="ident">ProximityOut</span>,
     <span class="doccomment">/// the mouse has entered the surface while a drag is in progress.</span>
@@ -3365,7 +3365,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_DRAG_LEAVE&quot;</span>)]</span>
     <span class="ident">DragLeave</span>,
     <span class="doccomment">/// the mouse has moved in the surface while a drag is in</span>
-    <span class="doccomment">///  progress.</span>
+    <span class="doccomment">///   progress.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_DRAG_MOTION&quot;</span>)]</span>
     <span class="ident">DragMotion</span>,
     <span class="doccomment">/// a drop operation onto the surface has started.</span>
@@ -3390,11 +3390,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCH_CANCEL&quot;</span>)]</span>
     <span class="ident">TouchCancel</span>,
     <span class="doccomment">/// A touchpad swipe gesture event, the current state</span>
-    <span class="doccomment">///  is determined by its phase field.</span>
+    <span class="doccomment">///   is determined by its phase field.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_SWIPE&quot;</span>)]</span>
     <span class="ident">TouchpadSwipe</span>,
     <span class="doccomment">/// A touchpad pinch gesture event, the current state</span>
-    <span class="doccomment">///  is determined by its phase field.</span>
+    <span class="doccomment">///   is determined by its phase field.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_PINCH&quot;</span>)]</span>
     <span class="ident">TouchpadPinch</span>,
     <span class="doccomment">/// A tablet pad button press event.</span>
@@ -3930,7 +3930,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkInputSource&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">InputSource</span> {
     <span class="doccomment">/// the device is a mouse. (This will be reported for the core</span>
-    <span class="doccomment">///  pointer, even if it is something else, such as a trackball.)</span>
+    <span class="doccomment">///   pointer, even if it is something else, such as a trackball.)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_MOUSE&quot;</span>)]</span>
     <span class="ident">Mouse</span>,
     <span class="doccomment">/// the device is a stylus of a graphics tablet or similar device.</span>
@@ -3940,18 +3940,18 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_KEYBOARD&quot;</span>)]</span>
     <span class="ident">Keyboard</span>,
     <span class="doccomment">/// the device is a direct-input touch device, such</span>
-    <span class="doccomment">///  as a touchscreen or tablet</span>
+    <span class="doccomment">///   as a touchscreen or tablet</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_TOUCHSCREEN&quot;</span>)]</span>
     <span class="ident">Touchscreen</span>,
     <span class="doccomment">/// the device is an indirect touch device, such</span>
-    <span class="doccomment">///  as a touchpad</span>
+    <span class="doccomment">///   as a touchpad</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_TOUCHPAD&quot;</span>)]</span>
     <span class="ident">Touchpad</span>,
     <span class="doccomment">/// the device is a trackpoint</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_TRACKPOINT&quot;</span>)]</span>
     <span class="ident">Trackpoint</span>,
     <span class="doccomment">/// the device is a &quot;pad&quot;, a collection of buttons,</span>
-    <span class="doccomment">///  rings and strips found in drawing tablets</span>
+    <span class="doccomment">///   rings and strips found in drawing tablets</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SOURCE_TABLET_PAD&quot;</span>)]</span>
     <span class="ident">TabletPad</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -4047,7 +4047,7 @@
 
 <span class="doccomment">/// Describes how well an event matches a given keyval and modifiers.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`KeyMatch`][crate::KeyMatch] values are returned by [``KeyEvent::matches()``][crate::`KeyEvent::matches()`].</span>
+<span class="doccomment">/// [`KeyMatch`][crate::KeyMatch] values are returned by [`KeyEvent::matches()`][crate::KeyEvent::matches()].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkKeyMatch&quot;</span>)]</span>
@@ -4056,7 +4056,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_KEY_MATCH_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// The key event matches if keyboard state</span>
-    <span class="doccomment">///  (specifically, the currently active group) is ignored</span>
+    <span class="doccomment">///   (specifically, the currently active group) is ignored</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_KEY_MATCH_PARTIAL&quot;</span>)]</span>
     <span class="ident">Partial</span>,
     <span class="doccomment">/// The key event matches</span>
@@ -4150,22 +4150,22 @@
 <span class="doccomment">/// on architectures with different endiannesses.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Its naming is modelled after</span>
-<span class="doccomment">/// [VkFormat](https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html`VkFormat`)</span>
+<span class="doccomment">/// [VkFormat](https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#VkFormat)</span>
 <span class="doccomment">/// for details).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkMemoryFormat&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MemoryFormat</span> {
     <span class="doccomment">/// 4 bytes; for blue, green, red, alpha.</span>
-    <span class="doccomment">///  The color values are premultiplied with the alpha value.</span>
+    <span class="doccomment">///   The color values are premultiplied with the alpha value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_B8G8R8A8_PREMULTIPLIED&quot;</span>)]</span>
     <span class="ident">B8g8r8a8Premultiplied</span>,
     <span class="doccomment">/// 4 bytes; for alpha, red, green, blue.</span>
-    <span class="doccomment">///  The color values are premultiplied with the alpha value.</span>
+    <span class="doccomment">///   The color values are premultiplied with the alpha value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_A8R8G8B8_PREMULTIPLIED&quot;</span>)]</span>
     <span class="ident">A8r8g8b8Premultiplied</span>,
     <span class="doccomment">/// 4 bytes; for red, green, blue, alpha</span>
-    <span class="doccomment">///  The color values are premultiplied with the alpha value.</span>
+    <span class="doccomment">///   The color values are premultiplied with the alpha value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R8G8B8A8_PREMULTIPLIED&quot;</span>)]</span>
     <span class="ident">R8g8b8a8Premultiplied</span>,
     <span class="doccomment">/// 4 bytes; for blue, green, red, alpha.</span>
@@ -4192,7 +4192,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R16G16B16&quot;</span>)]</span>
     <span class="ident">R16g16b16</span>,
     <span class="doccomment">/// 4 guint16 values; for red, green,</span>
-    <span class="doccomment">///  blue, alpha. The color values are premultiplied with the alpha value.</span>
+    <span class="doccomment">///   blue, alpha. The color values are premultiplied with the alpha value.</span>
     <span class="doccomment">///  Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
@@ -4205,20 +4205,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R16G16B16A16&quot;</span>)]</span>
     <span class="ident">R16g16b16a16</span>,
     <span class="doccomment">/// 3 half-float values; for red, green, blue.</span>
-    <span class="doccomment">///  The data is opaque. Since: 4.6</span>
+    <span class="doccomment">///   The data is opaque. Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R16G16B16_FLOAT&quot;</span>)]</span>
     <span class="ident">R16g16b16Float</span>,
     <span class="doccomment">/// 4 half-float values; for</span>
-    <span class="doccomment">///  red, green, blue and alpha. The color values are premultiplied with</span>
-    <span class="doccomment">///  the alpha value. Since: 4.6</span>
+    <span class="doccomment">///   red, green, blue and alpha. The color values are premultiplied with</span>
+    <span class="doccomment">///   the alpha value. Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED&quot;</span>)]</span>
     <span class="ident">R16g16b16a16FloatPremultiplied</span>,
     <span class="doccomment">/// 4 half-float values; for red, green,</span>
-    <span class="doccomment">///  blue and alpha. Since: 4.6</span>
+    <span class="doccomment">///   blue and alpha. Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R16G16B16A16_FLOAT&quot;</span>)]</span>
@@ -4228,14 +4228,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R32G32B32_FLOAT&quot;</span>)]</span>
     <span class="ident">R32g32b32Float</span>,
     <span class="doccomment">/// 4 float values; for</span>
-    <span class="doccomment">///  red, green, blue and alpha. The color values are premultiplied with</span>
-    <span class="doccomment">///  the alpha value. Since: 4.6</span>
+    <span class="doccomment">///   red, green, blue and alpha. The color values are premultiplied with</span>
+    <span class="doccomment">///   the alpha value. Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED&quot;</span>)]</span>
     <span class="ident">R32g32b32a32FloatPremultiplied</span>,
     <span class="doccomment">/// 4 float values; for red, green, blue and</span>
-    <span class="doccomment">///  alpha. Since: 4.6</span>
+    <span class="doccomment">///   alpha. Since: 4.6</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_MEMORY_R32G32B32A32_FLOAT&quot;</span>)]</span>
@@ -4408,25 +4408,25 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkNotifyType&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">NotifyType</span> {
     <span class="doccomment">/// the surface is entered from an ancestor or</span>
-    <span class="doccomment">///  left towards an ancestor.</span>
+    <span class="doccomment">///   left towards an ancestor.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_NOTIFY_ANCESTOR&quot;</span>)]</span>
     <span class="ident">Ancestor</span>,
     <span class="doccomment">/// the pointer moves between an ancestor and an</span>
-    <span class="doccomment">///  inferior of the surface.</span>
+    <span class="doccomment">///   inferior of the surface.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_NOTIFY_VIRTUAL&quot;</span>)]</span>
     <span class="ident">Virtual</span>,
     <span class="doccomment">/// the surface is entered from an inferior or</span>
-    <span class="doccomment">///  left towards an inferior.</span>
+    <span class="doccomment">///   left towards an inferior.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_NOTIFY_INFERIOR&quot;</span>)]</span>
     <span class="ident">Inferior</span>,
     <span class="doccomment">/// the surface is entered from or left towards</span>
-    <span class="doccomment">///  a surface which is neither an ancestor nor an inferior.</span>
+    <span class="doccomment">///   a surface which is neither an ancestor nor an inferior.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_NOTIFY_NONLINEAR&quot;</span>)]</span>
     <span class="ident">Nonlinear</span>,
     <span class="doccomment">/// the pointer moves between two surfaces</span>
-    <span class="doccomment">///  which are not ancestors of each other and the surface is part of</span>
-    <span class="doccomment">///  the ancestor chain between one of these surfaces and their least</span>
-    <span class="doccomment">///  common ancestor.</span>
+    <span class="doccomment">///   which are not ancestors of each other and the surface is part of</span>
+    <span class="doccomment">///   the ancestor chain between one of these surfaces and their least</span>
+    <span class="doccomment">///   common ancestor.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_NOTIFY_NONLINEAR_VIRTUAL&quot;</span>)]</span>
     <span class="ident">NonlinearVirtual</span>,
     <span class="doccomment">/// an unknown type of enter/leave event occurred.</span>
@@ -4538,7 +4538,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_RIGHT&quot;</span>)]</span>
     <span class="ident">Right</span>,
     <span class="doccomment">/// the scrolling is determined by the delta values</span>
-    <span class="doccomment">///  in scroll events. See [`ScrollEvent::deltas()`][crate::ScrollEvent::deltas()]</span>
+    <span class="doccomment">///   in scroll events. See gdk_scroll_event_get_deltas()</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_SMOOTH&quot;</span>)]</span>
     <span class="ident">Smooth</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -4875,7 +4875,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TEXTURE_ERROR_CORRUPT_IMAGE&quot;</span>)]</span>
     <span class="ident">CorruptImage</span>,
     <span class="doccomment">/// The image contains features</span>
-    <span class="doccomment">///  that cannot be loaded</span>
+    <span class="doccomment">///   that cannot be loaded</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT&quot;</span>)]</span>
     <span class="ident">UnsupportedContent</span>,
     <span class="doccomment">/// The image format is not supported</span>
@@ -5136,11 +5136,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_GESTURE_PHASE_UPDATE&quot;</span>)]</span>
     <span class="ident">Update</span>,
     <span class="doccomment">/// The gesture was finished, changes</span>
-    <span class="doccomment">///  should be permanently applied.</span>
+    <span class="doccomment">///   should be permanently applied.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_GESTURE_PHASE_END&quot;</span>)]</span>
     <span class="ident">End</span>,
     <span class="doccomment">/// The gesture was cancelled, all</span>
-    <span class="doccomment">///  changes should be undone.</span>
+    <span class="doccomment">///   changes should be undone.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_GESTURE_PHASE_CANCEL&quot;</span>)]</span>
     <span class="ident">Cancel</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -5231,7 +5231,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkVulkanError&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">VulkanError</span> {
     <span class="doccomment">/// Vulkan is not supported on this backend or has not been</span>
-    <span class="doccomment">///  compiled in.</span>
+    <span class="doccomment">///   compiled in.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_VULKAN_ERROR_UNSUPPORTED&quot;</span>)]</span>
     <span class="ident">Unsupported</span>,
     <span class="doccomment">/// Vulkan support is not available on this Surface</span>

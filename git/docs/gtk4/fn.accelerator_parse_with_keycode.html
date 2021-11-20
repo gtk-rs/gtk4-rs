@@ -75,16 +75,16 @@
 <p>This is similar to <a href="functions/fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a> but handles keycodes as
 well. This is only useful for system-level components, applications should
 use <a href="functions/fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a> instead.</p>
-<p>If <code>accelerator_codes</code> is given and the result stored in it is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>,
-the result must be freed with <code>g_free()</code>.</p>
-<p>If a keycode is present in the accelerator and no <code>accelerator_codes</code>
+<p>If @accelerator_codes is given and the result stored in it is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>,
+the result must be freed with g_free().</p>
+<p>If a keycode is present in the accelerator and no @accelerator_codes
 is given, the parse will fail.</p>
-<p>If the parse fails, <code>accelerator_key</code>, <code>accelerator_mods</code> and
-<code>accelerator_codes</code> will be set to 0 (zero).</p>
+<p>If the parse fails, @accelerator_key, @accelerator_mods and
+@accelerator_codes will be set to 0 (zero).</p>
 <h3 id="accelerator" class="section-header"><a href="#accelerator"><code>accelerator</code></a></h3>
 <p>string representing an accelerator</p>
 <h3 id="display" class="section-header"><a href="#display"><code>display</code></a></h3>
-<p>the <a href="../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a> to look up <code>accelerator_codes</code> in</p>
+<p>the <a href="../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a> to look up @accelerator_codes in</p>
 <h2 id="returns" class="section-header"><a href="#returns">Returns</a></h2>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if parsing succeeded</p>
 <h3 id="accelerator_key" class="section-header"><a href="#accelerator_key"><code>accelerator_key</code></a></h3>

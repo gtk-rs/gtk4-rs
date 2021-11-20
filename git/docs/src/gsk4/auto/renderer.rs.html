@@ -289,11 +289,11 @@
     <span class="doccomment">/// tree of [`RenderNode`][crate::RenderNode] instances.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typically you will use a [`Renderer`][crate::Renderer] instance to repeatedly call</span>
-    <span class="doccomment">/// [``GskRendererExtManual::render()``][crate::prelude::`GskRendererExtManual::render()`] to update the contents of its associated</span>
+    <span class="doccomment">/// [`GskRendererExtManual::render()`][crate::prelude::GskRendererExtManual::render()] to update the contents of its associated</span>
     <span class="doccomment">/// [`gdk::Surface`][crate::gdk::Surface].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is necessary to realize a [`Renderer`][crate::Renderer] instance using</span>
-    <span class="doccomment">/// [``GskRendererExt::realize()``][crate::prelude::`GskRendererExt::realize()`] before calling [``GskRendererExtManual::render()``][crate::prelude::`GskRendererExtManual::render()`],</span>
+    <span class="doccomment">/// [`GskRendererExt::realize()`][crate::prelude::GskRendererExt::realize()] before calling [`GskRendererExtManual::render()`][crate::prelude::GskRendererExtManual::render()],</span>
     <span class="doccomment">/// in order to create the appropriate windowing system resources needed</span>
     <span class="doccomment">/// to render the scene.</span>
     <span class="doccomment">///</span>
@@ -313,7 +313,7 @@
 <span class="kw">impl</span> <span class="ident">Renderer</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-    <span class="doccomment">/// Creates an appropriate [`Renderer`][crate::Renderer] instance for the given `surface`.</span>
+    <span class="doccomment">/// Creates an appropriate [`Renderer`][crate::Renderer] instance for the given @surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `GSK_RENDERER` environment variable is set, GSK will</span>
     <span class="doccomment">/// try that renderer first, before trying the backend-specific</span>
@@ -340,7 +340,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`BroadwayRenderer`][struct@crate::BroadwayRenderer], [`CairoRenderer`][struct@crate::CairoRenderer], [`GLRenderer`][struct@crate::GLRenderer], [`NglRenderer`][struct@crate::NglRenderer], [`Renderer`][struct@crate::Renderer]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GskRendererExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Retrieves the [`gdk::Surface`][crate::gdk::Surface] set using `gsk_enderer_realize()`.</span>
+    <span class="doccomment">/// Retrieves the [`gdk::Surface`][crate::gdk::Surface] set using gsk_enderer_realize().</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the renderer has not been realized yet, [`None`] will be returned.</span>
     <span class="doccomment">///</span>
@@ -351,7 +351,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Checks whether the `self` is realized or not.</span>
+    <span class="doccomment">/// Checks whether the @self is realized or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -359,7 +359,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_is_realized&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_realized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Creates the resources needed by the `self` to render the scene</span>
+    <span class="doccomment">/// Creates the resources needed by the @self to render the scene</span>
     <span class="doccomment">/// graph.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Since GTK 4.6, the surface may be `NULL`, which allows using</span>
@@ -369,7 +369,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_realize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Releases all the resources created by [`realize()`][Self::realize()].</span>
+    <span class="doccomment">/// Releases all the resources created by gsk_renderer_realize().</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_unrealize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 

@@ -118,12 +118,12 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DrawContextExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves the region that is currently being repainted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// After a call to [``DrawContextExt::begin_frame()``][crate::prelude::`DrawContextExt::begin_frame()`] this function will</span>
+    <span class="doccomment">/// After a call to [`DrawContextExt::begin_frame()`][crate::prelude::DrawContextExt::begin_frame()] this function will</span>
     <span class="doccomment">/// return a union of the region passed to that function and the area of the</span>
-    <span class="doccomment">/// surface that the `self` determined needs to be repainted.</span>
+    <span class="doccomment">/// surface that the @self determined needs to be repainted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is not in between calls to [``DrawContextExt::begin_frame()``][crate::prelude::`DrawContextExt::begin_frame()`]</span>
-    <span class="doccomment">/// and [``DrawContextExt::end_frame()``][crate::prelude::`DrawContextExt::end_frame()`], [`None`] will be returned.</span>
+    <span class="doccomment">/// If @self is not in between calls to [`DrawContextExt::begin_frame()`][crate::prelude::DrawContextExt::begin_frame()]</span>
+    <span class="doccomment">/// and [`DrawContextExt::end_frame()`][crate::prelude::DrawContextExt::end_frame()], [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

@@ -221,9 +221,9 @@
     <span class="doccomment">/// Creates a new [`TextChildAnchor`][crate::TextChildAnchor].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Usually you would then insert it into a [`TextBuffer`][crate::TextBuffer] with</span>
-    <span class="doccomment">/// [``TextBufferExt::insert_child_anchor()``][crate::prelude::`TextBufferExt::insert_child_anchor()`]. To perform the</span>
+    <span class="doccomment">/// [`TextBufferExt::insert_child_anchor()`][crate::prelude::TextBufferExt::insert_child_anchor()]. To perform the</span>
     <span class="doccomment">/// creation and insertion in one step, use the convenience</span>
-    <span class="doccomment">/// function [``TextBufferExt::create_child_anchor()``][crate::prelude::`TextBufferExt::create_child_anchor()`].</span>
+    <span class="doccomment">/// function [`TextBufferExt::create_child_anchor()`][crate::prelude::TextBufferExt::create_child_anchor()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -252,7 +252,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Keep in mind that the child anchor will be unreferenced</span>
     <span class="doccomment">/// when removed from the buffer, so you need to hold your own</span>
-    <span class="doccomment">/// reference (with `g_object_ref()`) if you plan to use this</span>
+    <span class="doccomment">/// reference (with g_object_ref()) if you plan to use this</span>
     <span class="doccomment">/// function — otherwise all deleted child anchors will also</span>
     <span class="doccomment">/// be finalized.</span>
     <span class="doccomment">///</span>
@@ -270,7 +270,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// an</span>
-    <span class="doccomment">///  array of widgets anchored at `self`</span>
+    <span class="doccomment">///   array of widgets anchored at @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_child_anchor_get_widgets&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_widgets&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widgets</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;

@@ -854,12 +854,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if Caps Lock is on for `self`</span>
+    <span class="doccomment">/// [`true`] if Caps Lock is on for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_get_caps_lock_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_caps_lock_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_caps_locked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Retrieves the current tool for `self`.</span>
+    <span class="doccomment">/// Retrieves the current tool for @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -873,18 +873,18 @@
     <span class="doccomment">/// This is only relevant for keyboard devices.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The direction of a layout is the direction of the majority</span>
-    <span class="doccomment">/// of its symbols. See ``unichar_direction()``.</span>
+    <span class="doccomment">/// of its symbols. See `unichar_direction()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`pango::Direction::Ltr`][crate::pango::Direction::Ltr] or [`pango::Direction::Rtl`][crate::pango::Direction::Rtl]</span>
-    <span class="doccomment">///  if it can determine the direction. [`pango::Direction::Neutral`][crate::pango::Direction::Neutral]</span>
-    <span class="doccomment">///  otherwise</span>
+    <span class="doccomment">///   if it can determine the direction. [`pango::Direction::Neutral`][crate::pango::Direction::Neutral]</span>
+    <span class="doccomment">///   otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_get_direction&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_direction&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">direction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">pango::Direction</span>;
 
-    <span class="doccomment">/// Returns the [`Display`][crate::Display] to which `self` pertains.</span>
+    <span class="doccomment">/// Returns the [`Display`][crate::Display] to which @self pertains.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -931,12 +931,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if Num Lock is on for `self`</span>
+    <span class="doccomment">/// [`true`] if Num Lock is on for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_get_num_lock_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_num_lock_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_num_locked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Retrieves the number of touch points associated to `self`.</span>
+    <span class="doccomment">/// Retrieves the number of touch points associated to @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -948,7 +948,7 @@
     <span class="doccomment">/// Returns the product ID of this device.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This ID is retrieved from the device, and does not change.</span>
-    <span class="doccomment">/// See [``vendor_id()``][`Self::vendor_id()`] for more information.</span>
+    <span class="doccomment">/// See [`vendor_id()`][Self::vendor_id()] for more information.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -963,7 +963,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if Scroll Lock is on for `self`</span>
+    <span class="doccomment">/// [`true`] if Scroll Lock is on for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_get_scroll_lock_state&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_scroll_lock_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_scroll_locked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
@@ -986,24 +986,24 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_source&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">InputSource</span>;
 
-    <span class="doccomment">/// Obtains the surface underneath `self`, returning the location of the</span>
-    <span class="doccomment">/// device in `win_x` and `win_y`.</span>
+    <span class="doccomment">/// Obtains the surface underneath @self, returning the location of the</span>
+    <span class="doccomment">/// device in @win_x and @win_y.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns [`None`] if the surface tree under `self` is not known to GDK</span>
+    <span class="doccomment">/// Returns [`None`] if the surface tree under @self is not known to GDK</span>
     <span class="doccomment">/// (for example, belongs to another application).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the [`Surface`][crate::Surface] under the</span>
-    <span class="doccomment">///  device position</span>
+    <span class="doccomment">///   device position</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `win_x`</span>
     <span class="doccomment">/// return location for the X coordinate</span>
-    <span class="doccomment">///  of the device location relative to the surface origin</span>
+    <span class="doccomment">///   of the device location relative to the surface origin</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `win_y`</span>
     <span class="doccomment">/// return location for the Y coordinate</span>
-    <span class="doccomment">///  of the device location relative to the surface origin</span>
+    <span class="doccomment">///   of the device location relative to the surface origin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_device_get_surface_at_position&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface_at_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface_at_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>, <span class="ident">f64</span>, <span class="ident">f64</span>);
@@ -1028,7 +1028,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This ID is retrieved from the device, and does not change.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function, together with [``product_id()``][`Self::product_id()`],</span>
+    <span class="doccomment">/// This function, together with [`product_id()`][Self::product_id()],</span>
     <span class="doccomment">/// can be used to eg. compose `GSettings` paths to store settings</span>
     <span class="doccomment">/// for this device.</span>
     <span class="doccomment">///</span>

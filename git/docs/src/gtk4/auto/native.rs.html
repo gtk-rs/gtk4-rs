@@ -226,15 +226,15 @@
     <span class="doccomment">/// The obvious example of a [`Native`][crate::Native] is [`Window`][crate::Window].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Every widget that is not itself a [`Native`][crate::Native] is contained in one,</span>
-    <span class="doccomment">/// and you can get it with [``WidgetExt::native()``][crate::prelude::`WidgetExt::native()`].</span>
+    <span class="doccomment">/// and you can get it with [`WidgetExt::native()`][crate::prelude::WidgetExt::native()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To get the surface of a [`Native`][crate::Native], use [``NativeExt::surface()``][crate::prelude::`NativeExt::surface()`].</span>
+    <span class="doccomment">/// To get the surface of a [`Native`][crate::Native], use [`NativeExt::surface()`][crate::prelude::NativeExt::surface()].</span>
     <span class="doccomment">/// It is also possible to find the [`Native`][crate::Native] to which a surface</span>
-    <span class="doccomment">/// belongs, with [``for_surface()``][`Self::for_surface()`].</span>
+    <span class="doccomment">/// belongs, with [`for_surface()`][Self::for_surface()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In addition to a [`gdk::Surface`][crate::gdk::Surface], a [`Native`][crate::Native] also provides</span>
     <span class="doccomment">/// a [`gsk::Renderer`][crate::gsk::Renderer] for rendering on that surface. To get the</span>
-    <span class="doccomment">/// renderer, use [``NativeExt::renderer()``][crate::prelude::`NativeExt::renderer()`].</span>
+    <span class="doccomment">/// renderer, use [`NativeExt::renderer()`][crate::prelude::NativeExt::renderer()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -256,7 +256,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`Native`][crate::Native] that is associated with `surface`</span>
+    <span class="doccomment">/// the [`Native`][crate::Native] that is associated with @surface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_get_for_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_for_surface&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_surface</span>(<span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Native</span><span class="op">&gt;</span> {
@@ -279,7 +279,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the renderer for `self`</span>
+    <span class="doccomment">/// the renderer for @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_get_renderer&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_renderer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">renderer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gsk::Renderer</span><span class="op">&gt;</span>;
@@ -288,15 +288,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the surface of `self`</span>
+    <span class="doccomment">/// the surface of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_native_get_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Retrieves the surface transform of `self`.</span>
+    <span class="doccomment">/// Retrieves the surface transform of @self.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the translation from `self`&#39;s surface coordinates into</span>
-    <span class="doccomment">/// `self`&#39;s widget coordinates.</span>
+    <span class="doccomment">/// This is the translation from @self&#39;s surface coordinates into</span>
+    <span class="doccomment">/// @self&#39;s widget coordinates.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

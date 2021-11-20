@@ -790,18 +790,18 @@
     <span class="doccomment">/// Gets the currently-selected font name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this can be a different string than what you set with</span>
-    <span class="doccomment">/// [``set_font()``][`Self::set_font()`], as the font chooser widget may</span>
+    <span class="doccomment">/// [`set_font()`][Self::set_font()], as the font chooser widget may</span>
     <span class="doccomment">/// normalize font names and thus return a string with a different</span>
     <span class="doccomment">/// structure. For example, “Helvetica Italic Bold 12” could be</span>
     <span class="doccomment">/// normalized to “Helvetica Bold Italic 12”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `Pango::`FontDescription::equal()`` if you want to compare two</span>
+    <span class="doccomment">/// Use `Pango::FontDescription::equal()` if you want to compare two</span>
     <span class="doccomment">/// font descriptions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A string with the name</span>
-    <span class="doccomment">///  of the current font</span>
+    <span class="doccomment">///   of the current font</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
@@ -809,18 +809,18 @@
     <span class="doccomment">/// Gets the currently-selected font.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this can be a different string than what you set with</span>
-    <span class="doccomment">/// [``set_font()``][`Self::set_font()`], as the font chooser widget may</span>
+    <span class="doccomment">/// [`set_font()`][Self::set_font()], as the font chooser widget may</span>
     <span class="doccomment">/// normalize font names and thus return a string with a different</span>
     <span class="doccomment">/// structure. For example, “Helvetica Italic Bold 12” could be</span>
     <span class="doccomment">/// normalized to “Helvetica Bold Italic 12”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `Pango::`FontDescription::equal()`` if you want to compare two</span>
+    <span class="doccomment">/// Use `Pango::FontDescription::equal()` if you want to compare two</span>
     <span class="doccomment">/// font descriptions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`pango::FontDescription`][crate::pango::FontDescription] for the</span>
-    <span class="doccomment">///  current font</span>
+    <span class="doccomment">///   current font</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_desc&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_desc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_desc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontDescription</span><span class="op">&gt;</span>;
@@ -833,7 +833,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`pango::FontFace`][crate::pango::FontFace] representing the</span>
-    <span class="doccomment">///  selected font group details</span>
+    <span class="doccomment">///   selected font group details</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_face&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_face&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontFace</span><span class="op">&gt;</span>;
@@ -847,7 +847,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A [`pango::FontFamily`][crate::pango::FontFamily] representing the</span>
-    <span class="doccomment">///  selected font family</span>
+    <span class="doccomment">///   selected font family</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_family&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_family&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontFamily</span><span class="op">&gt;</span>;
@@ -876,7 +876,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A n integer representing the selected font size,</span>
-    <span class="doccomment">///  or -1 if no font size is selected.</span>
+    <span class="doccomment">///   or -1 if no font size is selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_size&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">i32</span>;
@@ -933,7 +933,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_font&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontname</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 
-    <span class="doccomment">/// Sets the currently-selected font from `font_desc`.</span>
+    <span class="doccomment">/// Sets the currently-selected font from @font_desc.</span>
     <span class="doccomment">/// ## `font_desc`</span>
     <span class="doccomment">/// a [`pango::FontDescription`][crate::pango::FontDescription]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_font_desc&quot;</span>)]</span>
@@ -987,7 +987,7 @@
 
     <span class="doccomment">/// Sets the text displayed in the preview area.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `text` is used to show how the selected font looks.</span>
+    <span class="doccomment">/// The @text is used to show how the selected font looks.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// the text to display in the preview area</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_preview_text&quot;</span>)]</span>

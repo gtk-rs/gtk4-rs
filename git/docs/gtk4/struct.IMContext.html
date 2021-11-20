@@ -82,11 +82,12 @@ composition states as preedit text. To do so, the <a href="struct.IMContext.html
 and <code>signal::IMContext::preedit-end</code> signals.</p>
 <p>For instance, the built-in GTK input method <a href="struct.IMContextSimple.html" title="crate::IMContextSimple"><code>IMContextSimple</code></a>
 implements the input of arbitrary Unicode code points by holding down the
-<code>&lt;kbd&gt;</code>Control<code>&lt;/kbd&gt;</code> and <code>&lt;kbd&gt;</code>Shift<code>&lt;/kbd&gt;</code> keys and then typing <code>&lt;kbd&gt;</code>u<code>&lt;/kbd&gt;</code>
+<kbd>Control</kbd> and <kbd>Shift</kbd> keys and then typing <kbd>u</kbd>
 followed by the hexadecimal digits of the code point. When releasing the
-<code>&lt;kbd&gt;</code>Control<code>&lt;/kbd&gt;</code> and <code>&lt;kbd&gt;</code>Shift<code>&lt;/kbd&gt;</code> keys, preediting ends and the
+<kbd>Control</kbd> and <kbd>Shift</kbd> keys, preediting ends and the
 character is inserted as text. For example,</p>
-<p>Ctrl+Shift+u 2 0 A C</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">Ctrl</span><span class="op">+</span><span class="ident">Shift</span><span class="op">+</span><span class="ident">u</span> <span class="number">2</span> <span class="number">0</span> <span class="ident">A</span> <span class="ident">C</span></code></pre></div>
 <p>results in the € sign.</p>
 <p>Additional input methods can be made available for use by GTK widgets as
 loadable modules. An input method module is a small shared library which

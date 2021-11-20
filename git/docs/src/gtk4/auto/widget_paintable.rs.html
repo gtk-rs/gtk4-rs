@@ -220,7 +220,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can use a [`WidgetPaintable`][crate::WidgetPaintable] everywhere a [`gdk::Paintable`][crate::gdk::Paintable] is allowed,</span>
     <span class="doccomment">/// including using it on a [`Picture`][crate::Picture] (or one of its parents) that it was</span>
-    <span class="doccomment">/// set on itself via [`Picture::set_paintable()`][crate::Picture::set_paintable()]. The paintable will take care</span>
+    <span class="doccomment">/// set on itself via gtk_picture_set_paintable(). The paintable will take care</span>
     <span class="doccomment">/// of recursion when this happens. If you do this however, ensure that the</span>
     <span class="doccomment">/// `property::Picture::can-shrink` property is set to [`true`] or you might</span>
     <span class="doccomment">/// end up with an infinitely growing widget.</span>

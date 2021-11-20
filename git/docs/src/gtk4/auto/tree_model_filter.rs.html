@@ -449,19 +449,19 @@
     <span class="doccomment">/// and can do the following things:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Filter specific rows, based on data from a “visible column”, a column</span>
-    <span class="doccomment">///  storing booleans indicating whether the row should be filtered or not,</span>
-    <span class="doccomment">///  or based on the return value of a “visible function”, which gets a</span>
-    <span class="doccomment">///  model, iter and user_data and returns a boolean indicating whether the</span>
-    <span class="doccomment">///  row should be filtered or not.</span>
+    <span class="doccomment">///   storing booleans indicating whether the row should be filtered or not,</span>
+    <span class="doccomment">///   or based on the return value of a “visible function”, which gets a</span>
+    <span class="doccomment">///   model, iter and user_data and returns a boolean indicating whether the</span>
+    <span class="doccomment">///   row should be filtered or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Modify the “appearance” of the model, using a modify function.</span>
-    <span class="doccomment">///  This is extremely powerful and allows for just changing some</span>
-    <span class="doccomment">///  values and also for creating a completely different model based</span>
-    <span class="doccomment">///  on the given child model.</span>
+    <span class="doccomment">///   This is extremely powerful and allows for just changing some</span>
+    <span class="doccomment">///   values and also for creating a completely different model based</span>
+    <span class="doccomment">///   on the given child model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Set a different root node, also known as a “virtual root”. You can pass</span>
-    <span class="doccomment">///  in a [`TreePath`][crate::TreePath] indicating the root node for the filter at construction</span>
-    <span class="doccomment">///  time.</span>
+    <span class="doccomment">///   in a [`TreePath`][crate::TreePath] indicating the root node for the filter at construction</span>
+    <span class="doccomment">///   time.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The basic API is similar to [`TreeModelSort`][crate::TreeModelSort]. For an example on its usage,</span>
     <span class="doccomment">/// see the section on [`TreeModelSort`][crate::TreeModelSort].</span>
@@ -532,24 +532,24 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`TreeModelFilter`][struct@crate::TreeModelFilter]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeModelFilterExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// This function should almost never be called. It clears the `self`</span>
+    <span class="doccomment">/// This function should almost never be called. It clears the @self</span>
     <span class="doccomment">/// of any cached iterators that haven’t been reffed with</span>
-    <span class="doccomment">/// `gtk_tree_model_ref_node()`. This might be useful if the child model</span>
+    <span class="doccomment">/// gtk_tree_model_ref_node(). This might be useful if the child model</span>
     <span class="doccomment">/// being filtered is static (and doesn’t change often) and there has been</span>
     <span class="doccomment">/// a lot of unreffed access to nodes. As a side effect of this function,</span>
     <span class="doccomment">/// all unreffed iters will be invalid.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_clear_cache&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">clear_cache</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets `filter_iter` to point to the row in `self` that corresponds to the</span>
-    <span class="doccomment">/// row pointed at by `child_iter`. If `filter_iter` was not set, [`false`] is</span>
+    <span class="doccomment">/// Sets @filter_iter to point to the row in @self that corresponds to the</span>
+    <span class="doccomment">/// row pointed at by @child_iter.  If @filter_iter was not set, [`false`] is</span>
     <span class="doccomment">/// returned.</span>
     <span class="doccomment">/// ## `child_iter`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter] pointing to a row on the child model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`], if `filter_iter` was set, i.e. if `child_iter` is a</span>
+    <span class="doccomment">/// [`true`], if @filter_iter was set, i.e. if @child_iter is a</span>
     <span class="doccomment">/// valid iterator pointing to a visible row in child model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `filter_iter`</span>
@@ -557,10 +557,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_child_iter_to_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_iter_to_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Converts `child_path` to a path relative to `self`. That is, `child_path`</span>
+    <span class="doccomment">/// Converts @child_path to a path relative to @self. That is, @child_path</span>
     <span class="doccomment">/// points to a path in the child model. The rerturned path will point to the</span>
-    <span class="doccomment">/// same row in the filtered model. If `child_path` isn’t a valid path on the</span>
-    <span class="doccomment">/// child model or points to a row which is not visible in `self`, then [`None`]</span>
+    <span class="doccomment">/// same row in the filtered model. If @child_path isn’t a valid path on the</span>
+    <span class="doccomment">/// child model or points to a row which is not visible in @self, then [`None`]</span>
     <span class="doccomment">/// is returned.</span>
     <span class="doccomment">/// ## `child_path`</span>
     <span class="doccomment">/// A [`TreePath`][crate::TreePath] to convert.</span>
@@ -571,9 +571,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_child_path_to_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_path_to_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets `child_iter` to point to the row pointed to by `filter_iter`.</span>
+    <span class="doccomment">/// Sets @child_iter to point to the row pointed to by @filter_iter.</span>
     <span class="doccomment">/// ## `filter_iter`</span>
-    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter] pointing to a row on `self`.</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter] pointing to a row on @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -583,9 +583,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_iter_to_child_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_iter_to_child_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) -&gt; <span class="ident">TreeIter</span>;
 
-    <span class="doccomment">/// Converts `filter_path` to a path on the child model of `self`. That is,</span>
-    <span class="doccomment">/// `filter_path` points to a location in `self`. The returned path will</span>
-    <span class="doccomment">/// point to the same location in the model not being filtered. If `filter_path`</span>
+    <span class="doccomment">/// Converts @filter_path to a path on the child model of @self. That is,</span>
+    <span class="doccomment">/// @filter_path points to a location in @self. The returned path will</span>
+    <span class="doccomment">/// point to the same location in the model not being filtered. If @filter_path</span>
     <span class="doccomment">/// does not point to a location in the child model, [`None`] is returned.</span>
     <span class="doccomment">/// ## `filter_path`</span>
     <span class="doccomment">/// A [`TreePath`][crate::TreePath] to convert.</span>
@@ -596,7 +596,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_convert_path_to_child_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_path_to_child_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns a pointer to the child model of `self`.</span>
+    <span class="doccomment">/// Returns a pointer to the child model of @self.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -610,29 +610,29 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_refilter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">refilter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets `column` of the child_model to be the column where `self` should</span>
-    <span class="doccomment">/// look for visibility information. `columns` should be a column of type</span>
+    <span class="doccomment">/// Sets @column of the child_model to be the column where @self should</span>
+    <span class="doccomment">/// look for visibility information. @columns should be a column of type</span>
     <span class="doccomment">/// `G_TYPE_BOOLEAN`, where [`true`] means that a row is visible, and [`false`]</span>
     <span class="doccomment">/// if not.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [`set_visible_func()`][Self::set_visible_func()] or</span>
-    <span class="doccomment">/// [`set_visible_column()`][Self::set_visible_column()] can only be called</span>
+    <span class="doccomment">/// Note that gtk_tree_model_filter_set_visible_func() or</span>
+    <span class="doccomment">/// gtk_tree_model_filter_set_visible_column() can only be called</span>
     <span class="doccomment">/// once for a given filter model.</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// A `int` which is the column containing the visible information</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_filter_set_visible_column&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_visible_column</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Sets the visible function used when filtering the `self` to be `func`.</span>
+    <span class="doccomment">/// Sets the visible function used when filtering the @self to be @func.</span>
     <span class="doccomment">/// The function should return [`true`] if the given row should be visible and</span>
     <span class="doccomment">/// [`false`] otherwise.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the condition calculated by the function changes over time (e.g.</span>
     <span class="doccomment">/// because it depends on some global parameters), you must call</span>
-    <span class="doccomment">/// [`refilter()`][Self::refilter()] to keep the visibility information</span>
+    <span class="doccomment">/// gtk_tree_model_filter_refilter() to keep the visibility information</span>
     <span class="doccomment">/// of the model up-to-date.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `func` is called whenever a row is inserted, when it may still</span>
+    <span class="doccomment">/// Note that @func is called whenever a row is inserted, when it may still</span>
     <span class="doccomment">/// be empty. The visible function should therefore take special care of empty</span>
     <span class="doccomment">/// rows, like in the example below.</span>
     <span class="doccomment">///</span>
@@ -659,8 +659,8 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [`set_visible_func()`][Self::set_visible_func()] or</span>
-    <span class="doccomment">/// [`set_visible_column()`][Self::set_visible_column()] can only be called</span>
+    <span class="doccomment">/// Note that gtk_tree_model_filter_set_visible_func() or</span>
+    <span class="doccomment">/// gtk_tree_model_filter_set_visible_column() can only be called</span>
     <span class="doccomment">/// once for a given filter model.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// A `GtkTreeModelFilterVisibleFunc`, the visible function</span>

@@ -1104,8 +1104,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ![An example GtkLevelBar](levelbar.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [``set_value()``][`Self::set_value()`] to set the current value, and</span>
-    <span class="doccomment">/// [``add_offset_value()``][`Self::add_offset_value()`] to set the value offsets at which</span>
+    <span class="doccomment">/// Use [`set_value()`][Self::set_value()] to set the current value, and</span>
+    <span class="doccomment">/// [`add_offset_value()`][Self::add_offset_value()] to set the value offsets at which</span>
     <span class="doccomment">/// the bar will be considered in a different state. GTK will add a few</span>
     <span class="doccomment">/// offsets by default on the level bar: [`LEVEL_BAR_OFFSET_LOW`][crate::LEVEL_BAR_OFFSET_LOW],</span>
     <span class="doccomment">/// [`LEVEL_BAR_OFFSET_HIGH`][crate::LEVEL_BAR_OFFSET_HIGH] and [`LEVEL_BAR_OFFSET_FULL`][crate::LEVEL_BAR_OFFSET_FULL], with</span>
@@ -1152,8 +1152,8 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default interval of values is between zero and one, but it’s possible</span>
-    <span class="doccomment">/// to modify the interval using [``set_min_value()``][`Self::set_min_value()`] and</span>
-    <span class="doccomment">/// [``set_max_value()``][`Self::set_max_value()`]. The value will be always drawn in</span>
+    <span class="doccomment">/// to modify the interval using [`set_min_value()`][Self::set_min_value()] and</span>
+    <span class="doccomment">/// [`set_max_value()`][Self::set_max_value()]. The value will be always drawn in</span>
     <span class="doccomment">/// proportion to the admissible interval, i.e. a value of 15 with a specified</span>
     <span class="doccomment">/// interval between 10 and 20 is equivalent to a value of 0.5 with an interval</span>
     <span class="doccomment">/// between 0 and 1. When [`LevelBarMode::Discrete`][crate::LevelBarMode::Discrete] is used, the bar level</span>
@@ -1168,7 +1168,7 @@
     <span class="doccomment">/// # GtkLevelBar as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`LevelBar`][crate::LevelBar] implementation of the [`Buildable`][crate::Buildable] interface supports a</span>
-    <span class="doccomment">/// custom `&lt;offsets&gt;` element, which can contain any number of `&lt;offset&gt;` elements,</span>
+    <span class="doccomment">/// custom &lt;offsets&gt; element, which can contain any number of &lt;offset&gt; elements,</span>
     <span class="doccomment">/// each of which must have name and value attributes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
@@ -1247,15 +1247,15 @@
         <span class="ident">LevelBarBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Adds a new offset marker on `self` at the position specified by `value`.</span>
+    <span class="doccomment">/// Adds a new offset marker on @self at the position specified by @value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the bar value is in the interval topped by `value` (or between `value`</span>
+    <span class="doccomment">/// When the bar value is in the interval topped by @value (or between @value</span>
     <span class="doccomment">/// and `property::LevelBar::max-value` in case the offset is the last one</span>
-    <span class="doccomment">/// on the bar) a style class named `level-``name` will be applied</span>
+    <span class="doccomment">/// on the bar) a style class named `level-`@name will be applied</span>
     <span class="doccomment">/// when rendering the level bar fill.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If another offset marker named `name` exists, its value will be</span>
-    <span class="doccomment">/// replaced by `value`.</span>
+    <span class="doccomment">/// If another offset marker named @name exists, its value will be</span>
+    <span class="doccomment">/// replaced by @value.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the new offset</span>
     <span class="doccomment">/// ## `value`</span>
@@ -1315,7 +1315,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_level_bar_get_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Fetches the value specified for the offset marker `name` in `self`.</span>
+    <span class="doccomment">/// Fetches the value specified for the offset marker @name in @self.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of an offset in the bar</span>
     <span class="doccomment">///</span>
@@ -1349,7 +1349,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a value in the interval between</span>
-    <span class="doccomment">///  `property::LevelBar::min-value`[ and `property::LevelBar::max-value`</span>
+    <span class="doccomment">///   `property::LevelBar::min-value`[ and `property::LevelBar::max-value`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_get_value&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
@@ -1359,7 +1359,7 @@
     <span class="doccomment">/// Removes an offset marker from a [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The marker must have been previously added with</span>
-    <span class="doccomment">/// [``add_offset_value()``][`Self::add_offset_value()`].</span>
+    <span class="doccomment">/// [`add_offset_value()`][Self::add_offset_value()].</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of an offset in the bar</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_remove_offset_value&quot;</span>)]</span>
@@ -1418,7 +1418,7 @@
     <span class="doccomment">/// Sets the value of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// a value in the interval between</span>
-    <span class="doccomment">///  `property::LevelBar::min-value` and `property::LevelBar::max-value`</span>
+    <span class="doccomment">///   `property::LevelBar::min-value` and `property::LevelBar::max-value`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_set_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">f64</span>) {
         <span class="kw">unsafe</span> {
@@ -1428,7 +1428,7 @@
 
     <span class="doccomment">/// Emitted when an offset specified on the bar changes value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This typically is the result of a [``add_offset_value()``][`Self::add_offset_value()`]</span>
+    <span class="doccomment">/// This typically is the result of a [`add_offset_value()`][Self::add_offset_value()]</span>
     <span class="doccomment">/// call.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal supports detailed connections; you can connect to the</span>
@@ -1833,7 +1833,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The cursor used by `widget`.</span>
+    <span class="doccomment">/// The cursor used by @widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Cursor</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cursor</span>.<span class="ident">clone</span>());
         <span class="self">self</span>
@@ -1859,9 +1859,9 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
+    <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on @widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
+    <span class="doccomment">/// A value of [`true`] indicates that @widget can have a tooltip, in this case</span>
     <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
@@ -1903,7 +1903,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1916,7 +1916,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1929,7 +1929,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1939,7 +1939,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
+    <span class="doccomment">/// [`WidgetExt::set_size_request()`][crate::prelude::WidgetExt::set_size_request()] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1981,7 +1981,7 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_markup()`][crate::Tooltip::set_markup()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
@@ -1998,7 +1998,7 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
+    <span class="doccomment">/// Also see [`Tooltip::set_text()`][crate::Tooltip::set_text()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>

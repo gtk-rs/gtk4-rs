@@ -85,7 +85,7 @@ a <a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code
 such a way that they get the size they request and not more.</p>
 <p><a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code></a> objects are referenced by each widget in the size group,
 so once you have added all widgets to a <a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code></a>, you can drop
-the initial reference to the size group with <code>g_object_unref()</code>. If the
+the initial reference to the size group with g_object_unref(). If the
 widgets in the size group are subsequently destroyed, then they will
 be removed from the size group and drop their references on the size
 group; when all widgets have been removed, the size group will be
@@ -110,10 +110,10 @@ width by way of <code>property::Label::width-chars</code> for instance. Widgets 
 static sizes as well as widgets that grow (such as ellipsizing text) need no
 such considerations.</p>
 <h2 id="gtksizegroup-as-gtkbuildable" class="section-header"><a href="#gtksizegroup-as-gtkbuildable">GtkSizeGroup as GtkBuildable</a></h2>
-<p>Size groups can be specified in a UI definition by placing an <code>&lt;object&gt;</code>
+<p>Size groups can be specified in a UI definition by placing an <object>
 element with <code>class=&quot;GtkSizeGroup&quot;</code> somewhere in the UI definition. The
-widgets that belong to the size group are specified by a <code>&lt;widgets&gt;</code> element
-that may contain multiple <code>&lt;widget&gt;</code> elements, one for each member of the
+widgets that belong to the size group are specified by a <widgets> element
+that may contain multiple <widget> elements, one for each member of the
 size group. The ”name” attribute gives the id of the widget.</p>
 <p>An example of a UI definition fragment with <a href="struct.SizeGroup.html" title="crate::SizeGroup"><code>SizeGroup</code></a>:</p>
 <div class="example-wrap"><pre class="language-xml"><code>&lt;object class=&quot;GtkSizeGroup&quot;&gt;
@@ -143,7 +143,7 @@ will be removed from the size group.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.mode" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/size_group.rs.html#135-137" title="goto source code">[src]</a></div><a href="#method.mode" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.mode" class="fnname">mode</a>(&amp;self) -&gt; <a class="enum" href="enum.SizeGroupMode.html" title="enum gtk4::SizeGroupMode">SizeGroupMode</a></h4></div></summary><div class="docblock"><p>Gets the current mode of the size group.</p>
 <h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
 <p>the current mode of the size group.</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.widgets" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/size_group.rs.html#147-153" title="goto source code">[src]</a></div><a href="#method.widgets" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the list of widgets associated with <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><div id="method.widgets" class="method has-srclink"><div class="rightside"><a class="srclink" href="../src/gtk4/auto/size_group.rs.html#147-153" title="goto source code">[src]</a></div><a href="#method.widgets" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Returns the list of widgets associated with @self.</p>
 <h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
 <p>a <code>GSList</code> of
 widgets. The list is owned by GTK and should not be modified.</p>

@@ -418,11 +418,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">StackPage</span> {
-    <span class="doccomment">/// Returns the stack child to which `self` belongs.</span>
+    <span class="doccomment">/// Returns the stack child to which @self belongs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child to which `self` belongs</span>
+    <span class="doccomment">/// the child to which @self belongs</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_page_get_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Widget</span> {
@@ -456,7 +456,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The value of the `property::StackPage::needs-attention`</span>
-    <span class="doccomment">///  property.</span>
+    <span class="doccomment">///   property.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_page_get_needs_attention&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_needs_attention&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">needs_attention</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
@@ -489,14 +489,14 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_page_get_use_underline</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns whether `page` is visible in its [`Stack`][crate::Stack].</span>
+    <span class="doccomment">/// Returns whether @page is visible in its [`Stack`][crate::Stack].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is independent from the `property::Widget::visible`</span>
     <span class="doccomment">/// property of its widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if `page` is visible</span>
+    <span class="doccomment">/// [`true`] if @page is visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_page_get_visible&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visible&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
@@ -553,7 +553,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether `page` is visible in its [`Stack`][crate::Stack].</span>
+    <span class="doccomment">/// Sets whether @page is visible in its [`Stack`][crate::Stack].</span>
     <span class="doccomment">/// ## `visible`</span>
     <span class="doccomment">/// The new property value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_page_set_visible&quot;</span>)]</span>
