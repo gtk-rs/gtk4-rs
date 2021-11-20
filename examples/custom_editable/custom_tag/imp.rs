@@ -1,6 +1,6 @@
 use glib::clone;
 use glib::subclass::Signal;
-use glib::ParamSpec;
+use glib::{ParamSpec, ParamSpecBoolean, ParamSpecString};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -41,14 +41,14 @@ impl ObjectImpl for CustomTag {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpec::new_string(
+                ParamSpecString::new(
                     "label",
                     "Label",
                     "Label",
                     Some(""),
                     glib::ParamFlags::READWRITE,
                 ),
-                ParamSpec::new_boolean(
+                ParamSpecBoolean::new(
                     "has-close-button",
                     "Has close button",
                     "Whether this tag has a close button",

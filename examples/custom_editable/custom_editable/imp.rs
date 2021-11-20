@@ -1,4 +1,4 @@
-use glib::ParamSpec;
+use glib::{ParamSpec, ParamSpecBoolean};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -39,7 +39,7 @@ impl ObjectSubclass for CustomEditable {
 impl ObjectImpl for CustomEditable {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpec::new_boolean(
+            vec![ParamSpecBoolean::new(
                 "show-spinner",
                 "Spinner shown",
                 "Whether the editable has a visible spinner",
