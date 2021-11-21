@@ -35,6 +35,8 @@ fn build_ui(app: &Application) {
     let button_1 = Button::builder().label("Press me!").build();
     let button_2 = Button::builder().label("Press me!").build();
 
+    button_1.add_css_class("button_1");
+
     // Create `gtk_box` and add buttons
     let gtk_box = gtk::Box::builder()
         .margin_top(12)
@@ -49,6 +51,7 @@ fn build_ui(app: &Application) {
     // Create a new window and show it
     let window = ApplicationWindow::builder()
         .application(app)
+        .title("My GTK App")
         .child(&gtk_box)
         .build();
     window.show();
