@@ -89,7 +89,7 @@ impl ShortcutsWindow {
     }
 
     pub fn emit_close(&self) {
-        let _ = self.emit_by_name("close", &[]);
+        self.emit_by_name::<()>("close", &[]);
     }
 
     #[doc(alias = "search")]
@@ -115,7 +115,7 @@ impl ShortcutsWindow {
     }
 
     pub fn emit_search(&self) {
-        let _ = self.emit_by_name("search", &[]);
+        self.emit_by_name::<()>("search", &[]);
     }
 
     #[doc(alias = "section-name")]

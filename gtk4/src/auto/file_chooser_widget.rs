@@ -90,7 +90,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_desktop_folder(&self) {
-        let _ = self.emit_by_name("desktop-folder", &[]);
+        self.emit_by_name::<()>("desktop-folder", &[]);
     }
 
     #[doc(alias = "down-folder")]
@@ -116,7 +116,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_down_folder(&self) {
-        let _ = self.emit_by_name("down-folder", &[]);
+        self.emit_by_name::<()>("down-folder", &[]);
     }
 
     #[doc(alias = "home-folder")]
@@ -142,7 +142,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_home_folder(&self) {
-        let _ = self.emit_by_name("home-folder", &[]);
+        self.emit_by_name::<()>("home-folder", &[]);
     }
 
     #[doc(alias = "location-popup")]
@@ -174,7 +174,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_popup(&self, path: &str) {
-        let _ = self.emit_by_name("location-popup", &[&path]);
+        self.emit_by_name::<()>("location-popup", &[&path]);
     }
 
     #[doc(alias = "location-popup-on-paste")]
@@ -202,7 +202,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_popup_on_paste(&self) {
-        let _ = self.emit_by_name("location-popup-on-paste", &[]);
+        self.emit_by_name::<()>("location-popup-on-paste", &[]);
     }
 
     #[doc(alias = "location-toggle-popup")]
@@ -230,7 +230,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_location_toggle_popup(&self) {
-        let _ = self.emit_by_name("location-toggle-popup", &[]);
+        self.emit_by_name::<()>("location-toggle-popup", &[]);
     }
 
     #[doc(alias = "places-shortcut")]
@@ -256,7 +256,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_places_shortcut(&self) {
-        let _ = self.emit_by_name("places-shortcut", &[]);
+        self.emit_by_name::<()>("places-shortcut", &[]);
     }
 
     #[doc(alias = "quick-bookmark")]
@@ -283,7 +283,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_quick_bookmark(&self, bookmark_index: i32) {
-        let _ = self.emit_by_name("quick-bookmark", &[&bookmark_index]);
+        self.emit_by_name::<()>("quick-bookmark", &[&bookmark_index]);
     }
 
     #[doc(alias = "recent-shortcut")]
@@ -309,7 +309,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_recent_shortcut(&self) {
-        let _ = self.emit_by_name("recent-shortcut", &[]);
+        self.emit_by_name::<()>("recent-shortcut", &[]);
     }
 
     #[doc(alias = "search-shortcut")]
@@ -335,7 +335,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_search_shortcut(&self) {
-        let _ = self.emit_by_name("search-shortcut", &[]);
+        self.emit_by_name::<()>("search-shortcut", &[]);
     }
 
     #[doc(alias = "show-hidden")]
@@ -361,7 +361,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_show_hidden(&self) {
-        let _ = self.emit_by_name("show-hidden", &[]);
+        self.emit_by_name::<()>("show-hidden", &[]);
     }
 
     #[doc(alias = "up-folder")]
@@ -387,7 +387,7 @@ impl FileChooserWidget {
     }
 
     pub fn emit_up_folder(&self) {
-        let _ = self.emit_by_name("up-folder", &[]);
+        self.emit_by_name::<()>("up-folder", &[]);
     }
 
     #[doc(alias = "search-mode")]

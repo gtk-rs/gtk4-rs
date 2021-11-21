@@ -418,7 +418,7 @@ impl ListBox {
     }
 
     pub fn emit_activate_cursor_row(&self) {
-        let _ = self.emit_by_name("activate-cursor-row", &[]);
+        self.emit_by_name::<()>("activate-cursor-row", &[]);
     }
 
     #[doc(alias = "move-cursor")]
@@ -459,7 +459,7 @@ impl ListBox {
     }
 
     pub fn emit_move_cursor(&self, object: MovementStep, p0: i32, p1: bool, p2: bool) {
-        let _ = self.emit_by_name("move-cursor", &[&object, &p0, &p1, &p2]);
+        self.emit_by_name::<()>("move-cursor", &[&object, &p0, &p1, &p2]);
     }
 
     #[doc(alias = "row-activated")]
@@ -544,7 +544,7 @@ impl ListBox {
     }
 
     pub fn emit_select_all(&self) {
-        let _ = self.emit_by_name("select-all", &[]);
+        self.emit_by_name::<()>("select-all", &[]);
     }
 
     #[doc(alias = "selected-rows-changed")]
@@ -592,7 +592,7 @@ impl ListBox {
     }
 
     pub fn emit_toggle_cursor_row(&self) {
-        let _ = self.emit_by_name("toggle-cursor-row", &[]);
+        self.emit_by_name::<()>("toggle-cursor-row", &[]);
     }
 
     #[doc(alias = "unselect-all")]
@@ -618,7 +618,7 @@ impl ListBox {
     }
 
     pub fn emit_unselect_all(&self) {
-        let _ = self.emit_by_name("unselect-all", &[]);
+        self.emit_by_name::<()>("unselect-all", &[]);
     }
 
     #[doc(alias = "accept-unpaired-release")]

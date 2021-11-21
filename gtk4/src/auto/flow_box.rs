@@ -407,7 +407,7 @@ impl FlowBox {
     }
 
     pub fn emit_activate_cursor_child(&self) {
-        let _ = self.emit_by_name("activate-cursor-child", &[]);
+        self.emit_by_name::<()>("activate-cursor-child", &[]);
     }
 
     #[doc(alias = "child-activated")]
@@ -483,10 +483,7 @@ impl FlowBox {
         extend: bool,
         modify: bool,
     ) -> bool {
-        let res = self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_move_cursor`")
+        self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify])
     }
 
     #[doc(alias = "select-all")]
@@ -512,7 +509,7 @@ impl FlowBox {
     }
 
     pub fn emit_select_all(&self) {
-        let _ = self.emit_by_name("select-all", &[]);
+        self.emit_by_name::<()>("select-all", &[]);
     }
 
     #[doc(alias = "selected-children-changed")]
@@ -563,7 +560,7 @@ impl FlowBox {
     }
 
     pub fn emit_toggle_cursor_child(&self) {
-        let _ = self.emit_by_name("toggle-cursor-child", &[]);
+        self.emit_by_name::<()>("toggle-cursor-child", &[]);
     }
 
     #[doc(alias = "unselect-all")]
@@ -589,7 +586,7 @@ impl FlowBox {
     }
 
     pub fn emit_unselect_all(&self) {
-        let _ = self.emit_by_name("unselect-all", &[]);
+        self.emit_by_name::<()>("unselect-all", &[]);
     }
 
     #[doc(alias = "accept-unpaired-release")]

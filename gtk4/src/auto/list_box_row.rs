@@ -559,7 +559,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

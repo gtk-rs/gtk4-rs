@@ -601,7 +601,7 @@ impl<O: IsA<Button>> ButtonExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -626,7 +626,7 @@ impl<O: IsA<Button>> ButtonExt for O {
     }
 
     fn emit_clicked(&self) {
-        let _ = self.emit_by_name("clicked", &[]);
+        self.emit_by_name::<()>("clicked", &[]);
     }
 
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -538,7 +538,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn emit_popdown(&self) {
-        let _ = self.emit_by_name("popdown", &[]);
+        self.emit_by_name::<()>("popdown", &[]);
     }
 
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -563,7 +563,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
     }
 
     fn emit_popup(&self) {
-        let _ = self.emit_by_name("popup", &[]);
+        self.emit_by_name::<()>("popup", &[]);
     }
 
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {

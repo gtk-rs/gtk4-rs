@@ -307,7 +307,7 @@ impl SpinButton {
     }
 
     pub fn emit_change_value(&self, scroll: ScrollType) {
-        let _ = self.emit_by_name("change-value", &[&scroll]);
+        self.emit_by_name::<()>("change-value", &[&scroll]);
     }
 
     //#[doc(alias = "input")]

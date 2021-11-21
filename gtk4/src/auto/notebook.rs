@@ -366,10 +366,7 @@ impl Notebook {
     }
 
     pub fn emit_change_current_page(&self, object: i32) -> bool {
-        let res = self.emit_by_name("change-current-page", &[&object]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_change_current_page`")
+        self.emit_by_name("change-current-page", &[&object])
     }
 
     #[doc(alias = "create-window")]
@@ -431,10 +428,7 @@ impl Notebook {
     }
 
     pub fn emit_focus_tab(&self, object: NotebookTab) -> bool {
-        let res = self.emit_by_name("focus-tab", &[&object]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_focus_tab`")
+        self.emit_by_name("focus-tab", &[&object])
     }
 
     #[doc(alias = "move-focus-out")]
@@ -466,7 +460,7 @@ impl Notebook {
     }
 
     pub fn emit_move_focus_out(&self, object: DirectionType) {
-        let _ = self.emit_by_name("move-focus-out", &[&object]);
+        self.emit_by_name::<()>("move-focus-out", &[&object]);
     }
 
     #[doc(alias = "page-added")]
@@ -580,10 +574,7 @@ impl Notebook {
     }
 
     pub fn emit_reorder_tab(&self, object: DirectionType, p0: bool) -> bool {
-        let res = self.emit_by_name("reorder-tab", &[&object, &p0]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_reorder_tab`")
+        self.emit_by_name("reorder-tab", &[&object, &p0])
     }
 
     #[doc(alias = "select-page")]
@@ -613,10 +604,7 @@ impl Notebook {
     }
 
     pub fn emit_select_page(&self, object: bool) -> bool {
-        let res = self.emit_by_name("select-page", &[&object]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_select_page`")
+        self.emit_by_name("select-page", &[&object])
     }
 
     #[doc(alias = "switch-page")]

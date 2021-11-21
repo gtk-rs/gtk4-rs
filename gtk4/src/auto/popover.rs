@@ -715,7 +715,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
     }
 
     fn emit_activate_default(&self) {
-        let _ = self.emit_by_name("activate-default", &[]);
+        self.emit_by_name::<()>("activate-default", &[]);
     }
 
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

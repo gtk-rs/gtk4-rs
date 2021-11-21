@@ -192,10 +192,7 @@ impl Paned {
     }
 
     pub fn emit_accept_position(&self) -> bool {
-        let res = self.emit_by_name("accept-position", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_accept_position`")
+        self.emit_by_name("accept-position", &[])
     }
 
     #[doc(alias = "cancel-position")]
@@ -221,10 +218,7 @@ impl Paned {
     }
 
     pub fn emit_cancel_position(&self) -> bool {
-        let res = self.emit_by_name("cancel-position", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_cancel_position`")
+        self.emit_by_name("cancel-position", &[])
     }
 
     #[doc(alias = "cycle-child-focus")]
@@ -254,10 +248,7 @@ impl Paned {
     }
 
     pub fn emit_cycle_child_focus(&self, reversed: bool) -> bool {
-        let res = self.emit_by_name("cycle-child-focus", &[&reversed]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_cycle_child_focus`")
+        self.emit_by_name("cycle-child-focus", &[&reversed])
     }
 
     #[doc(alias = "cycle-handle-focus")]
@@ -289,10 +280,7 @@ impl Paned {
     }
 
     pub fn emit_cycle_handle_focus(&self, reversed: bool) -> bool {
-        let res = self.emit_by_name("cycle-handle-focus", &[&reversed]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_cycle_handle_focus`")
+        self.emit_by_name("cycle-handle-focus", &[&reversed])
     }
 
     #[doc(alias = "move-handle")]
@@ -322,10 +310,7 @@ impl Paned {
     }
 
     pub fn emit_move_handle(&self, scroll_type: ScrollType) -> bool {
-        let res = self.emit_by_name("move-handle", &[&scroll_type]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_move_handle`")
+        self.emit_by_name("move-handle", &[&scroll_type])
     }
 
     #[doc(alias = "toggle-handle-focus")]
@@ -354,10 +339,7 @@ impl Paned {
     }
 
     pub fn emit_toggle_handle_focus(&self) -> bool {
-        let res = self.emit_by_name("toggle-handle-focus", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_toggle_handle_focus`")
+        self.emit_by_name("toggle-handle-focus", &[])
     }
 
     #[doc(alias = "end-child")]

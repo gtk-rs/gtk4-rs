@@ -368,7 +368,7 @@ impl Assistant {
     }
 
     pub fn emit_escape(&self) {
-        let _ = self.emit_by_name("escape", &[]);
+        self.emit_by_name::<()>("escape", &[]);
     }
 
     #[doc(alias = "prepare")]

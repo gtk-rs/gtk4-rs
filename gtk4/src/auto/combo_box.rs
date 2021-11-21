@@ -860,7 +860,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -945,7 +945,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_move_active(&self, scroll_type: ScrollType) {
-        let _ = self.emit_by_name("move-active", &[&scroll_type]);
+        self.emit_by_name::<()>("move-active", &[&scroll_type]);
     }
 
     fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -970,8 +970,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_popdown(&self) -> bool {
-        let res = self.emit_by_name("popdown", &[]);
-        res.unwrap().get().expect("Return Value for `emit_popdown`")
+        self.emit_by_name("popdown", &[])
     }
 
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -996,7 +995,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn emit_popup(&self) {
-        let _ = self.emit_by_name("popup", &[]);
+        self.emit_by_name::<()>("popup", &[]);
     }
 
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

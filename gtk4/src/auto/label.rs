@@ -404,7 +404,7 @@ impl Label {
     }
 
     pub fn emit_activate_current_link(&self) {
-        let _ = self.emit_by_name("activate-current-link", &[]);
+        self.emit_by_name::<()>("activate-current-link", &[]);
     }
 
     #[doc(alias = "activate-link")]
@@ -462,7 +462,7 @@ impl Label {
     }
 
     pub fn emit_copy_clipboard(&self) {
-        let _ = self.emit_by_name("copy-clipboard", &[]);
+        self.emit_by_name::<()>("copy-clipboard", &[]);
     }
 
     #[doc(alias = "move-cursor")]
@@ -501,7 +501,7 @@ impl Label {
     }
 
     pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend_selection: bool) {
-        let _ = self.emit_by_name("move-cursor", &[&step, &count, &extend_selection]);
+        self.emit_by_name::<()>("move-cursor", &[&step, &count, &extend_selection]);
     }
 
     #[doc(alias = "attributes")]
