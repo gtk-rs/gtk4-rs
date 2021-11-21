@@ -349,7 +349,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">        // If `number` reached `MAX_NUMBER`,
 </span><span class="boring">        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
 </span><span class="boring">        if incremented_number == MAX_NUMBER {
-</span><span class="boring">            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+</span><span class="boring">            button.emit_by_name::&lt;()&gt;(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
 </span><span class="boring">            button.set_property(&quot;number&quot;, &amp;0);
 </span><span class="boring">        } else {
 </span><span class="boring">            button.set_property(&quot;number&quot;, &amp;incremented_number);
@@ -468,7 +468,7 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit &quot;max-number-reached&quot; signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button.emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
+            button.emit_by_name::&lt;()&gt;(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
             button.set_property(&quot;number&quot;, &amp;0);
         } else {
             button.set_property(&quot;number&quot;, &amp;incremented_number);
