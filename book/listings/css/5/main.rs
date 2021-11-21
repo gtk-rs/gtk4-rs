@@ -1,7 +1,5 @@
-use gdk::Display;
-use gtk::gdk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button, CssProvider, StyleContext};
+use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application

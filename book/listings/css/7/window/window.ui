@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
+    <property name="title" translatable="yes">My GTK App</property>
+    <child>
+      <object class="GtkButton">
+        <property name="label">Hover over me!</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <style>
+          <class name="button_1"/>
+        </style>
+      </object>
+    </child>
+  </template>
+</interface>
