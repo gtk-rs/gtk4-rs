@@ -3281,7 +3281,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_activate_current_link</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;activate-current-link&quot;</span>, <span class="kw-2">&amp;</span>[]);
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="string">&quot;activate-current-link&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="doccomment">/// Gets emitted to activate a URI.</span>
@@ -3354,7 +3354,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_copy_clipboard</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;copy-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[]);
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="string">&quot;copy-clipboard&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="doccomment">/// Gets emitted when the user initiates a cursor movement.</span>
@@ -3416,7 +3416,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">emit_move_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">step</span>: <span class="ident">MovementStep</span>, <span class="ident">count</span>: <span class="ident">i32</span>, <span class="ident">extend_selection</span>: <span class="ident">bool</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;move-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">step</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>, <span class="kw-2">&amp;</span><span class="ident">extend_selection</span>]);
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="string">&quot;move-cursor&quot;</span>, <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">step</span>, <span class="kw-2">&amp;</span><span class="ident">count</span>, <span class="kw-2">&amp;</span><span class="ident">extend_selection</span>]);
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;attributes&quot;</span>)]</span>

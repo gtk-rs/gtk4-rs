@@ -1938,7 +1938,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">emit_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;activate&quot;</span>, <span class="kw-2">&amp;</span>[]);
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="string">&quot;activate&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">fn</span> <span class="ident">connect_clicked</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
@@ -1963,7 +1963,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">emit_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">emit_by_name</span>(<span class="string">&quot;clicked&quot;</span>, <span class="kw-2">&amp;</span>[]);
+        <span class="self">self</span>.<span class="ident">emit_by_name</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="string">&quot;clicked&quot;</span>, <span class="kw-2">&amp;</span>[]);
     }
 
     <span class="kw">fn</span> <span class="ident">connect_child_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">SignalHandlerId</span> {
