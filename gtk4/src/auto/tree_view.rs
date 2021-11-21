@@ -2275,10 +2275,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_expand_collapse_cursor_row(&self, object: bool, p0: bool, p1: bool) -> bool {
-        let res = self.emit_by_name("expand-collapse-cursor-row", &[&object, &p0, &p1]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_expand_collapse_cursor_row`")
+        self.emit_by_name("expand-collapse-cursor-row", &[&object, &p0, &p1])
     }
 
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
@@ -2326,10 +2323,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         extend: bool,
         modify: bool,
     ) -> bool {
-        let res = self.emit_by_name("move-cursor", &[&step, &direction, &extend, &modify]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_move_cursor`")
+        self.emit_by_name("move-cursor", &[&step, &direction, &extend, &modify])
     }
 
     fn connect_row_activated<F: Fn(&Self, &TreePath, Option<&TreeViewColumn>) + 'static>(
@@ -2368,7 +2362,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>) {
-        let _ = self.emit_by_name("row-activated", &[&path, &column]);
+        self.emit_by_name::<()>("row-activated", &[&path, &column]);
     }
 
     fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
@@ -2462,10 +2456,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_select_all(&self) -> bool {
-        let res = self.emit_by_name("select-all", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_select_all`")
+        self.emit_by_name("select-all", &[])
     }
 
     fn connect_select_cursor_parent<F: Fn(&Self) -> bool + 'static>(
@@ -2496,10 +2487,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_select_cursor_parent(&self) -> bool {
-        let res = self.emit_by_name("select-cursor-parent", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_select_cursor_parent`")
+        self.emit_by_name("select-cursor-parent", &[])
     }
 
     fn connect_select_cursor_row<F: Fn(&Self, bool) -> bool + 'static>(
@@ -2535,10 +2523,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_select_cursor_row(&self, object: bool) -> bool {
-        let res = self.emit_by_name("select-cursor-row", &[&object]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_select_cursor_row`")
+        self.emit_by_name("select-cursor-row", &[&object])
     }
 
     fn connect_start_interactive_search<F: Fn(&Self) -> bool + 'static>(
@@ -2569,10 +2554,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_start_interactive_search(&self) -> bool {
-        let res = self.emit_by_name("start-interactive-search", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_start_interactive_search`")
+        self.emit_by_name("start-interactive-search", &[])
     }
 
     fn connect_test_collapse_row<
@@ -2672,10 +2654,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_toggle_cursor_row(&self) -> bool {
-        let res = self.emit_by_name("toggle-cursor-row", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_toggle_cursor_row`")
+        self.emit_by_name("toggle-cursor-row", &[])
     }
 
     fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
@@ -2703,10 +2682,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn emit_unselect_all(&self) -> bool {
-        let res = self.emit_by_name("unselect-all", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_unselect_all`")
+        self.emit_by_name("unselect-all", &[])
     }
 
     fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(

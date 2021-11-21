@@ -596,7 +596,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

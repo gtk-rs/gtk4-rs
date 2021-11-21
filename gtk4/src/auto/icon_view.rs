@@ -736,10 +736,7 @@ impl IconView {
     }
 
     pub fn emit_activate_cursor_item(&self) -> bool {
-        let res = self.emit_by_name("activate-cursor-item", &[]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_activate_cursor_item`")
+        self.emit_by_name("activate-cursor-item", &[])
     }
 
     #[doc(alias = "item-activated")]
@@ -813,10 +810,7 @@ impl IconView {
         extend: bool,
         modify: bool,
     ) -> bool {
-        let res = self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_move_cursor`")
+        self.emit_by_name("move-cursor", &[&step, &count, &extend, &modify])
     }
 
     #[doc(alias = "select-all")]
@@ -842,7 +836,7 @@ impl IconView {
     }
 
     pub fn emit_select_all(&self) {
-        let _ = self.emit_by_name("select-all", &[]);
+        self.emit_by_name::<()>("select-all", &[]);
     }
 
     #[doc(alias = "select-cursor-item")]
@@ -868,7 +862,7 @@ impl IconView {
     }
 
     pub fn emit_select_cursor_item(&self) {
-        let _ = self.emit_by_name("select-cursor-item", &[]);
+        self.emit_by_name::<()>("select-cursor-item", &[]);
     }
 
     #[doc(alias = "selection-changed")]
@@ -916,7 +910,7 @@ impl IconView {
     }
 
     pub fn emit_toggle_cursor_item(&self) {
-        let _ = self.emit_by_name("toggle-cursor-item", &[]);
+        self.emit_by_name::<()>("toggle-cursor-item", &[]);
     }
 
     #[doc(alias = "unselect-all")]
@@ -942,7 +936,7 @@ impl IconView {
     }
 
     pub fn emit_unselect_all(&self) {
-        let _ = self.emit_by_name("unselect-all", &[]);
+        self.emit_by_name::<()>("unselect-all", &[]);
     }
 
     #[doc(alias = "activate-on-single-click")]

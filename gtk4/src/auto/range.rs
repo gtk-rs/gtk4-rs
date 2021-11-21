@@ -392,7 +392,7 @@ impl<O: IsA<Range>> RangeExt for O {
     }
 
     fn emit_move_slider(&self, step: ScrollType) {
-        let _ = self.emit_by_name("move-slider", &[&step]);
+        self.emit_by_name::<()>("move-slider", &[&step]);
     }
 
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

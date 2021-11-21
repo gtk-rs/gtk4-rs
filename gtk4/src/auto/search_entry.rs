@@ -111,7 +111,7 @@ impl SearchEntry {
     }
 
     pub fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     #[doc(alias = "next-match")]
@@ -137,7 +137,7 @@ impl SearchEntry {
     }
 
     pub fn emit_next_match(&self) {
-        let _ = self.emit_by_name("next-match", &[]);
+        self.emit_by_name::<()>("next-match", &[]);
     }
 
     #[doc(alias = "previous-match")]
@@ -163,7 +163,7 @@ impl SearchEntry {
     }
 
     pub fn emit_previous_match(&self) {
-        let _ = self.emit_by_name("previous-match", &[]);
+        self.emit_by_name::<()>("previous-match", &[]);
     }
 
     #[doc(alias = "search-changed")]
@@ -233,7 +233,7 @@ impl SearchEntry {
     }
 
     pub fn emit_stop_search(&self) {
-        let _ = self.emit_by_name("stop-search", &[]);
+        self.emit_by_name::<()>("stop-search", &[]);
     }
 
     #[doc(alias = "activates-default")]

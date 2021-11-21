@@ -449,7 +449,7 @@ impl ScrolledWindow {
     }
 
     pub fn emit_move_focus_out(&self, direction_type: DirectionType) {
-        let _ = self.emit_by_name("move-focus-out", &[&direction_type]);
+        self.emit_by_name::<()>("move-focus-out", &[&direction_type]);
     }
 
     #[doc(alias = "scroll-child")]
@@ -487,10 +487,7 @@ impl ScrolledWindow {
     }
 
     pub fn emit_scroll_child(&self, scroll: ScrollType, horizontal: bool) -> bool {
-        let res = self.emit_by_name("scroll-child", &[&scroll, &horizontal]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_scroll_child`")
+        self.emit_by_name("scroll-child", &[&scroll, &horizontal])
     }
 
     #[doc(alias = "child")]

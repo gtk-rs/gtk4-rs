@@ -1916,7 +1916,7 @@ impl<O: IsA<Entry>> EntryExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_icon_press<F: Fn(&Self, EntryIconPosition) + 'static>(

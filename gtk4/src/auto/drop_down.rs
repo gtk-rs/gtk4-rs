@@ -187,7 +187,7 @@ impl DropDown {
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     #[doc(alias = "enable-search")]

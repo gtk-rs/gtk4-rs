@@ -2156,7 +2156,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn emit_move_focus(&self, direction: DirectionType) {
-        let _ = self.emit_by_name("move-focus", &[&direction]);
+        self.emit_by_name::<()>("move-focus", &[&direction]);
     }
 
     fn connect_query_tooltip<F: Fn(&Self, i32, i32, bool, &Tooltip) -> bool + 'static>(

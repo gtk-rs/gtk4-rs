@@ -444,7 +444,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
     }
 
     fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -1350,7 +1350,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_activate_default(&self) {
-        let _ = self.emit_by_name("activate-default", &[]);
+        self.emit_by_name::<()>("activate-default", &[]);
     }
 
     fn connect_activate_focus<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -1375,7 +1375,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_activate_focus(&self) {
-        let _ = self.emit_by_name("activate-focus", &[]);
+        self.emit_by_name::<()>("activate-focus", &[]);
     }
 
     fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
@@ -1438,10 +1438,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn emit_enable_debugging(&self, toggle: bool) -> bool {
-        let res = self.emit_by_name("enable-debugging", &[&toggle]);
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_enable_debugging`")
+        self.emit_by_name("enable-debugging", &[&toggle])
     }
 
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

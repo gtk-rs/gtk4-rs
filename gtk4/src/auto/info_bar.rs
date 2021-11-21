@@ -187,7 +187,7 @@ impl InfoBar {
     }
 
     pub fn emit_close(&self) {
-        let _ = self.emit_by_name("close", &[]);
+        self.emit_by_name::<()>("close", &[]);
     }
 
     #[doc(alias = "response")]

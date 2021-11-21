@@ -131,7 +131,7 @@ impl PasswordEntry {
     }
 
     pub fn emit_activate(&self) {
-        let _ = self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     #[doc(alias = "activates-default")]
