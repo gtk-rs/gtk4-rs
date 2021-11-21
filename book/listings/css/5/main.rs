@@ -15,12 +15,14 @@ fn main() {
 }
 
 fn build_ui(app: &Application) {
+    // ANCHOR: buttons
     // Create buttons
-    let button_1 = Button::builder().label("Destructive").build();
-    let button_2 = Button::builder().label("Suggested").build();
+    let button_1 = Button::with_label("Destructive");
+    let button_2 = Button::with_label("Suggested");
 
     button_1.add_css_class("destructive-action");
     button_2.add_css_class("suggested-action");
+    // ANCHOR_END: buttons
 
     // Create `gtk_box` and add buttons
     let gtk_box = gtk::Box::builder()
