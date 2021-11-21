@@ -103,7 +103,7 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button.emit_by_name("max-number-reached", &[&incremented_number]);
+            button.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
             button.set_property("number", &0);
         } else {
             button.set_property("number", &incremented_number);

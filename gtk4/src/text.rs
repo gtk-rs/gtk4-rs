@@ -262,46 +262,46 @@ impl Text {
     }
 
     pub fn emit_activate(&self) {
-        self.emit_by_name("activate", &[]);
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     pub fn emit_backspace(&self) {
-        self.emit_by_name("backspace", &[]);
+        self.emit_by_name::<()>("backspace", &[]);
     }
 
     pub fn emit_copy_clipboard(&self) {
-        self.emit_by_name("copy-clipboard", &[]);
+        self.emit_by_name::<()>("copy-clipboard", &[]);
     }
 
     pub fn emit_cut_clipboard(&self) {
-        self.emit_by_name("cut-clipboard", &[]);
+        self.emit_by_name::<()>("cut-clipboard", &[]);
     }
 
     pub fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32) {
-        self.emit_by_name("delete-from-cursor", &[&type_, &count]);
+        self.emit_by_name::<()>("delete-from-cursor", &[&type_, &count]);
     }
 
     pub fn emit_insert_at_cursor(&self, string: &str) {
-        self.emit_by_name("insert-at-cursor", &[&string]);
+        self.emit_by_name::<()>("insert-at-cursor", &[&string]);
     }
 
     pub fn emit_insert_emoji(&self) {
-        self.emit_by_name("insert-emoji", &[]);
+        self.emit_by_name::<()>("insert-emoji", &[]);
     }
 
     pub fn emit_move_cursor(&self, step: MovementStep, count: i32, extend: bool) {
-        self.emit_by_name("move-cursor", &[&step, &count, &extend]);
+        self.emit_by_name::<()>("move-cursor", &[&step, &count, &extend]);
     }
 
     pub fn emit_paste_clipboard(&self) {
-        self.emit_by_name("paste-clipboard", &[]);
+        self.emit_by_name::<()>("paste-clipboard", &[]);
     }
 
     pub fn emit_preedit_changed(&self, preedit: &str) {
-        self.emit_by_name("preedit-changed", &[&preedit]);
+        self.emit_by_name::<()>("preedit-changed", &[&preedit]);
     }
 
     pub fn emit_toggle_overwrite(&self) {
-        self.emit_by_name("toggle-overwrite", &[]);
+        self.emit_by_name::<()>("toggle-overwrite", &[]);
     }
 }
