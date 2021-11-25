@@ -36,11 +36,11 @@ pub trait BaseButtonExt {
 /// and call the correct implementation of the function.
 impl<O: IsA<BaseButton>> BaseButtonExt for O {
     fn sync_method(&self, extra_text: Option<String>) {
-        unsafe { imp::base_button_sync_method(self.upcast_ref::<BaseButton>(), extra_text) }
+        imp::base_button_sync_method(self.upcast_ref::<BaseButton>(), extra_text)
     }
 
     fn async_method(&self) -> PinnedFuture {
-        unsafe { imp::base_button_async_method(self.upcast_ref::<BaseButton>()) }
+        imp::base_button_async_method(self.upcast_ref::<BaseButton>())
     }
 }
 
@@ -65,24 +65,16 @@ impl<T: BaseButtonImpl> BaseButtonImplExt for T {
     fn parent_sync_method(&self, obj: &BaseButton, extra_text: Option<String>) {
         unsafe {
             let data = Self::type_data();
-            let parent_class = data.as_ref().parent_class() as *mut imp::BaseButtonClass;
-            if let Some(ref f) = (*parent_class).sync_method {
-                f(obj, extra_text)
-            } else {
-                unimplemented!()
-            }
+            let parent_class = &*(data.as_ref().parent_class() as *mut imp::BaseButtonClass);
+            (parent_class.sync_method)(obj, extra_text)
         }
     }
 
     fn parent_async_method(&self, obj: &BaseButton) -> PinnedFuture {
         unsafe {
             let data = Self::type_data();
-            let parent_class = data.as_ref().parent_class() as *mut imp::BaseButtonClass;
-            if let Some(ref f) = (*parent_class).async_method {
-                f(obj)
-            } else {
-                unimplemented!()
-            }
+            let parent_class = &*(data.as_ref().parent_class() as *mut imp::BaseButtonClass);
+            (parent_class.async_method)(obj)
         }
     }
 }
@@ -93,26 +85,24 @@ unsafe impl<T: BaseButtonImpl> IsSubclassable<T> for BaseButton {
         Self::parent_class_init::<T>(class.upcast_ref_mut());
 
         let klass = class.as_mut();
-        klass.sync_method = Some(sync_method_trampoline::<T>);
-        klass.async_method = Some(async_method_trampoline::<T>);
+        klass.sync_method = sync_method_trampoline::<T>;
+        klass.async_method = async_method_trampoline::<T>;
     }
 }
 
 // Virtual method implementation trampolines
-unsafe fn sync_method_trampoline<T>(this: &BaseButton, extra_text: Option<String>)
+fn sync_method_trampoline<T>(this: &BaseButton, extra_text: Option<String>)
 where
     T: ObjectSubclass + BaseButtonImpl,
 {
-    let instance = &*(this as *const _ as *const T::Instance);
-    let imp = instance.impl_();
+    let imp = T::from_instance(this.dynamic_cast_ref::<T::Type>().unwrap());
     imp.sync_method(this, extra_text)
 }
 
-unsafe fn async_method_trampoline<T>(this: &BaseButton) -> PinnedFuture
+fn async_method_trampoline<T>(this: &BaseButton) -> PinnedFuture
 where
     T: ObjectSubclass + BaseButtonImpl,
 {
-    let instance = &*(this as *const _ as *const T::Instance);
-    let imp = instance.impl_();
+    let imp = T::from_instance(this.dynamic_cast_ref::<T::Type>().unwrap());
     imp.async_method(this)
 }

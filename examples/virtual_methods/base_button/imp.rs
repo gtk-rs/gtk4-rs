@@ -15,9 +15,9 @@ pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static
 pub struct BaseButtonClass {
     pub parent_class: gtk::ffi::GtkButtonClass,
     // If these functions are meant to be called from C, you need to make these functions
-    // `extern "C"` & use FFI-safe types (usually raw pointers).
-    pub sync_method: Option<unsafe fn(&BaseButtonInstance, extra_text: Option<String>)>,
-    pub async_method: Option<unsafe fn(&BaseButtonInstance) -> PinnedFuture>,
+    // `unsafe extern "C" fn` & use FFI-safe types (usually raw pointers).
+    pub sync_method: fn(&BaseButtonInstance, extra_text: Option<String>),
+    pub async_method: fn(&BaseButtonInstance) -> PinnedFuture,
 }
 
 unsafe impl ClassStruct for BaseButtonClass {
@@ -36,17 +36,14 @@ fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
     BaseButton::from_instance(this).async_method(this)
 }
 
-pub(super) unsafe fn base_button_sync_method(
-    this: &BaseButtonInstance,
-    extra_text: Option<String>,
-) {
-    let klass = &*(this.class() as *const _ as *const BaseButtonClass);
-    (klass.sync_method.unwrap())(this, extra_text)
+pub(super) fn base_button_sync_method(this: &BaseButtonInstance, extra_text: Option<String>) {
+    let klass = this.class();
+    (klass.as_ref().sync_method)(this, extra_text)
 }
 
-pub(super) unsafe fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
-    let klass = &*(this.class() as *const _ as *const BaseButtonClass);
-    klass.async_method.unwrap()(this)
+pub(super) fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFuture {
+    let klass = this.class();
+    (klass.as_ref().async_method)(this)
 }
 
 /// Default implementations of our sync_method and async_method.
@@ -78,13 +75,14 @@ impl ObjectSubclass for BaseButton {
     type Class = BaseButtonClass;
 
     fn class_init(klass: &mut Self::Class) {
-        klass.sync_method = Some(sync_method_default_trampoline);
-        klass.async_method = Some(async_method_default_trampoline);
+        klass.sync_method = sync_method_default_trampoline;
+        klass.async_method = async_method_default_trampoline;
     }
 }
 
 impl ObjectImpl for BaseButton {
     fn constructed(&self, obj: &Self::Type) {
+        self.parent_constructed(obj);
         // For demo purposes, call the sync_method during construction to set the button label
         obj.sync_method(Some(String::from("Sync extra text")));
     }
