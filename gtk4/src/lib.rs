@@ -58,12 +58,26 @@ pub const TEXT_VIEW_PRIORITY_VALIDATE: u32 = ffi::GTK_TEXT_VIEW_PRIORITY_VALIDAT
 mod rt;
 
 #[cfg(test)]
-fn test_synced(function: impl FnOnce() + Send + 'static) {
+fn test_synced<F, R>(function: F) -> R
+where
+    F: FnOnce() -> R + Send + std::panic::UnwindSafe + 'static,
+    R: Send + 'static,
+{
     skip_assert_initialized!();
+
+    use futures_channel::oneshot;
+    use std::panic;
+
+    let (tx, rx) = oneshot::channel();
     TEST_THREAD_WORKER
-        .push(function)
+        .push(move || {
+            tx.send(panic::catch_unwind(function))
+                .unwrap_or_else(|_| panic!("Failed to return result from thread pool"));
+        })
         .expect("Failed to schedule a test call");
-    while TEST_THREAD_WORKER.unprocessed() > 0 {}
+    futures_executor::block_on(rx)
+        .expect("Failed to receive result from thread pool")
+        .unwrap_or_else(|e| std::panic::resume_unwind(e))
 }
 
 #[cfg(test)]
