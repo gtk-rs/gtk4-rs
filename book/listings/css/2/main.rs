@@ -30,21 +30,29 @@ fn load_css() {
     );
 }
 
+// ANCHOR: build_ui
 fn build_ui(app: &Application) {
-    // Create button
-    let button = Button::builder()
-        .label("Press me!")
+    // Create buttons
+    let button_1 = Button::with_label("Press me!");
+    let button_2 = Button::from_icon_name(Some("edit-find-symbolic"));
+
+    // Create `gtk_box` and add buttons
+    let gtk_box = gtk::Box::builder()
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)
         .margin_end(12)
+        .spacing(12)
         .build();
+    gtk_box.append(&button_1);
+    gtk_box.append(&button_2);
 
     // Create a new window and show it
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
-        .child(&button)
+        .child(&gtk_box)
         .build();
     window.show();
 }
+// ANCHOR_END: build_ui

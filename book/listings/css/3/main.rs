@@ -30,11 +30,14 @@ fn load_css() {
     );
 }
 
-// ANCHOR: build_ui
 fn build_ui(app: &Application) {
+    // ANCHOR: buttons
     // Create buttons
     let button_1 = Button::with_label("Press me!");
     let button_2 = Button::with_label("Press me!");
+
+    button_1.add_css_class("button_1");
+    // ANCHOR_END: buttons
 
     // Create `gtk_box` and add buttons
     let gtk_box = gtk::Box::builder()
@@ -55,4 +58,3 @@ fn build_ui(app: &Application) {
         .build();
     window.show();
 }
-// ANCHOR_END: build_ui

@@ -1,0 +1,6 @@
+button.button_1:hover {
+  color: red;
+  background-color: yellow;
+  background-image: none;
+  transition: 1s;
+}

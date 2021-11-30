@@ -3,28 +3,15 @@
   <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
     <property name="title" translatable="yes">My GTK App</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkButton">
+        <property name="label">Hover over me!</property>
         <property name="margin-top">12</property>
         <property name="margin-bottom">12</property>
         <property name="margin-start">12</property>
         <property name="margin-end">12</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkButton">
-            <property name="label">Destructive</property>
-            <style>
-              <class name="destructive-action"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="label">Suggested</property>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
+        <style>
+          <class name="button_1"/>
+        </style>
       </object>
     </child>
   </template>

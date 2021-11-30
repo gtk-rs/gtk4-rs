@@ -15,7 +15,20 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/1/style.css}}
 ```
 
+<div style="text-align:center"><img src="img/css_1.png"/></div>
+
 ## Classes
+
+### Classes applied by GTK
+
+
+[Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
+
+<span class="filename">Filename: listings/css/2/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/css/2/main.rs:build_ui}}
+```
 
 <span class="filename">Filename: listings/css/2/style.css</span>
 
@@ -23,11 +36,24 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/2/style.css}}
 ```
 
+<div style="text-align:center"><img src="img/css_2.png"/></div>
+
+### Classes applied manually
+
+
 <span class="filename">Filename: listings/css/3/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/3/main.rs:build_ui}}
+{{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
+
+<span class="filename">Filename: listings/css/3/style.css</span>
+
+```css
+{{#rustdoc_include ../listings/css/3/style.css}}
+```
+
+### Classes provided by GTK
 
 <span class="filename">Filename: listings/css/4/main.rs</span>
 
@@ -35,17 +61,18 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
-<span class="filename">Filename: listings/css/4/style.css</span>
+### Interface builder
 
-```css
-{{#rustdoc_include ../listings/css/4/style.css}}
+<span class="filename">Filename: listings/css/5/window/window.ui</span>
+
+```xml
+{{#rustdoc_include ../listings/css/5/window/window.ui}}
 ```
 
-<span class="filename">Filename: listings/css/5/main.rs</span>
 
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/5/main.rs:buttons}}
-```
+[GtkInspector](https://wiki.gnome.org/Projects/GTK/Inspector)
+
+## Pseudo-classes
 
 <span class="filename">Filename: listings/css/6/window/window.ui</span>
 
@@ -53,10 +80,13 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/6/window/window.ui}}
 ```
 
+<span class="filename">Filename: listings/css/6/style.css</span>
 
-[GtkInspector](https://wiki.gnome.org/Projects/GTK/Inspector)
+```css
+{{#rustdoc_include ../listings/css/6/style.css}}
+```
 
-## Pseudo-classes
+## Nodes
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
 
@@ -70,28 +100,13 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/7/style.css}}
 ```
 
-## Nodes
+## Images
 
-<span class="filename">Filename: listings/css/8/window/window.ui</span>
-
-```xml
-{{#rustdoc_include ../listings/css/8/window/window.ui}}
-```
 
 <span class="filename">Filename: listings/css/8/style.css</span>
 
 ```css
 {{#rustdoc_include ../listings/css/8/style.css}}
-```
-
-## Images
-
-[Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
-
-<span class="filename">Filename: listings/css/9/style.css</span>
-
-```css
-{{#rustdoc_include ../listings/css/9/style.css}}
 ```
 
 
