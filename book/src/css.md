@@ -19,7 +19,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 
 ## Classes
 
-### Classes applied by GTK
+### Classes Applied by GTK
 
 
 [Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
@@ -38,7 +38,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 
 <div style="text-align:center"><img src="img/css_2.png"/></div>
 
-### Classes applied manually
+### Classes Applied Manually
 
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
@@ -53,7 +53,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/3/style.css}}
 ```
 
-### Classes provided by GTK
+### Classes Provided by GTK
 
 <span class="filename">Filename: listings/css/4/main.rs</span>
 
@@ -61,7 +61,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
-### Interface builder
+### Interface Builder
 
 <span class="filename">Filename: listings/css/5/window/window.ui</span>
 
