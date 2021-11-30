@@ -3,6 +3,8 @@
 When you want to modify the styling and layout of your GTK app you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
 If you are not already familiar with CSS, now would be a good time to make yourself familiar with its [syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
+[GtkInspector](https://wiki.gnome.org/Projects/GTK/Inspector)
+
 <span class="filename">Filename: listings/css/1/main.rs</span>
 
 ```rust ,no_run,noplayground
@@ -47,11 +49,14 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
+
 <span class="filename">Filename: listings/css/3/style.css</span>
 
 ```css
 {{#rustdoc_include ../listings/css/3/style.css}}
 ```
+
+<div style="text-align:center"><img src="img/css_3.png"/></div>
 
 ### Classes Provided by GTK
 
@@ -61,6 +66,8 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
+<div style="text-align:center"><img src="img/css_4.png"/></div>
+
 ### Interface Builder
 
 <span class="filename">Filename: listings/css/5/window/window.ui</span>
@@ -69,8 +76,6 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/5/window/window.ui}}
 ```
 
-
-[GtkInspector](https://wiki.gnome.org/Projects/GTK/Inspector)
 
 ## Pseudo-classes
 
@@ -85,6 +90,13 @@ If you are not already familiar with CSS, now would be a good time to make yours
 ```css
 {{#rustdoc_include ../listings/css/6/style.css}}
 ```
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/css_6.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 
 ## Nodes
 
