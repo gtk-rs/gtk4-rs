@@ -1,4 +1,4 @@
-# The main event loop
+# The Main Event Loop
 
 We now got comfortable using callbacks, but how do they actually work?
 All of this happens asynchronously, so there must be something managing the events and scheduling the responses.

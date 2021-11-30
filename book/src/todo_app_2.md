@@ -220,6 +220,7 @@ For your own app you might not care about this and go for [`serde_json::to_write
 For this example we like it, because it allows us to see into what a `Vec<TodoData>` will be serialized.
 
 <span class="filename">Filename: data.json</span>
+
 ```json
 [
   {
