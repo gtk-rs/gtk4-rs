@@ -29,9 +29,11 @@
 
 # Useful Libraries
 
+- [Relm4]()
 - [GStreamer]()
 - [Adwaita]()
 - [SourceView]()
+- [Shumate]()
+- [WebKitGTK]()
 - [Zbus and Ashpd]()
 - [Librsvg]()
-- [Relm4]()
