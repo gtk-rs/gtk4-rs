@@ -1,4 +1,4 @@
-# Memory management of GObjects
+# Memory Management
 
 A GObject (or `glib::Object` in Rust terms) is a reference-counted, mutable object.
 Let us see in a set of real life examples which consequences this has.
