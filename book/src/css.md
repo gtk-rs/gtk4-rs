@@ -1,15 +1,18 @@
 # CSS
 
-When you want to modify the styling and layout of your GTK app you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
-If you are not already familiar with CSS, now would be a good time to make yourself familiar with its [syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
+When you want to modify the style of your website you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
+Since so many people are familiar with web development, it makes sense that GTK supports its own variant of CSS.
 
-[GtkInspector](https://wiki.gnome.org/Projects/GTK/Inspector)
+
+
 
 <span class="filename">Filename: listings/css/1/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/1/main.rs}}
+{{#rustdoc_include ../listings/css/1/main.rs:load_css}}
 ```
+
+If you are not already familiar with CSS, now would be a good time to make yourself familiar with its [syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
 <span class="filename">Filename: listings/css/1/style.css</span>
 
@@ -17,7 +20,24 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/1/style.css}}
 ```
 
+<span class="filename">Filename: listings/css/1/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/css/1/main.rs:build_ui}}
+```
+
+
 <div style="text-align:center"><img src="img/css_1.png"/></div>
+
+>The `GtkInspector` is very handy when it comes to, well, inspecting GTK apps.
+>Make sure the window of your app is focused and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.
+> A window will pop up which lets you browse and even manipulate the state of your app.
+> Open the `CSS` view and override the button color with the following snippet.
+>```css
+>button {
+>  color: blue;
+>}
+>```
 
 ## Classes
 
