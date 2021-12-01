@@ -112,6 +112,8 @@ Your browser does not support the video tag.
 {{#rustdoc_include ../listings/css/7/style.css}}
 ```
 
+<div style="text-align:center"><img src="img/css_7.png"/></div>
+
 ## Images
 
 
@@ -121,4 +123,4 @@ Your browser does not support the video tag.
 {{#rustdoc_include ../listings/css/8/style.css}}
 ```
 
-
+<div style="text-align:center"><img src="img/css_8.png"/></div>
