@@ -44,13 +44,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 ### Classes Applied by GTK
 
 
-[Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
 
-<span class="filename">Filename: listings/css/2/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/2/main.rs:build_ui}}
-```
 
 <span class="filename">Filename: listings/css/2/style.css</span>
 
@@ -61,6 +55,13 @@ If you are not already familiar with CSS, now would be a good time to make yours
 <div style="text-align:center"><img src="img/css_2.png"/></div>
 
 ### Classes Applied Manually
+
+<span class="filename">Filename: listings/css/3/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/css/3/main.rs:build_ui}}
+```
+
 
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
@@ -120,6 +121,9 @@ Your browser does not support the video tag.
 
 ## Nodes
 
+[Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
+
+
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
 
 ```xml
@@ -144,3 +148,20 @@ Your browser does not support the video tag.
 ```
 
 <div style="text-align:center"><img src="img/css_8.png"/></div>
+
+
+## To-Do App
+
+<span class="filename">Filename: listings/todo_app/3/todo_row/todo_row.ui</span>
+
+```xml
+{{#rustdoc_include ../listings/todo_app/3/todo_row/todo_row.ui}}
+```
+
+<span class="filename">Filename: listings/todo_app/3/style.css</span>
+
+```css
+{{#rustdoc_include ../listings/todo_app/3/style.css}}
+```
+
+<div style="text-align:center"><img src="img/todo_app_3_border.png"/></div>

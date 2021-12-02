@@ -30,6 +30,7 @@ fn load_css() {
     );
 }
 
+// ANCHOR: build_ui
 fn build_ui(app: &Application) {
     // ANCHOR: buttons
     // Create buttons
@@ -58,3 +59,4 @@ fn build_ui(app: &Application) {
         .build();
     window.show();
 }
+// ANCHOR_END: build_ui
