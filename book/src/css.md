@@ -150,13 +150,15 @@ Your browser does not support the video tag.
 <div style="text-align:center"><img src="img/css_8.png"/></div>
 
 
-## To-Do App
+## Exported Colors
 
 <span class="filename">Filename: listings/todo_app/3/todo_row/todo_row.ui</span>
 
 ```xml
 {{#rustdoc_include ../listings/todo_app/3/todo_row/todo_row.ui}}
 ```
+
+The exported colors are currently only documented directly in the [stylesheet](https://gitlab.gnome.org/GNOME/gtk/-/blob/main/gtk/theme/Default/_colors-public.scss) of GTK.
 
 <span class="filename">Filename: listings/todo_app/3/style.css</span>
 
