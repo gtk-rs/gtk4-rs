@@ -29,7 +29,7 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
     let crate_ident = crate_ident_new();
     let attributed_fields = match parse_fields(fields) {
         Ok(fields) => fields,
-        Err(err) => abort!(err.span(), err.to_string()),
+        Err(err) => abort!(err.span(), err),
     };
 
     let recurse = attributed_fields.iter().map(|field| match field.attr.ty {
