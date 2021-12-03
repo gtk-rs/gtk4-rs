@@ -82,9 +82,20 @@ And we create a CSS rule that applies to `button` nodes with the style class `bu
 {{#rustdoc_include ../listings/css/3/style.css}}
 ```
 
+This way only the first button gets red.
+If you want to make sure that CSS rules only apply to a hand-selected set of nodes, adding your own style classes is your best bet.
+Just make sure that you do not choose a name for your style class that GTK either adds itself or provides CSS rules for.
+Which brings us to the next point.
+
 <div style="text-align:center"><img src="img/css_3.png"/></div>
 
-### Classes Provided by GTK
+### CSS Rules Provided by GTK
+
+Certain styles are common enough that GTK provides its own CSS rules for.
+If you want to indicate that your button leads to a destructive or suggested action, you can add the "destructive-action" or "suggested-action" style class to it.
+You do not have to provide a CSS file here.
+After you have added the style class, the `button` node will match the CSS rule provided by GTK.
+Most widgets will document these rules in their documentation under [CSS nodes](../docs/gtk4/struct.Button.html#css-nodes).
 
 <span class="filename">Filename: listings/css/4/main.rs</span>
 
@@ -95,6 +106,8 @@ And we create a CSS rule that applies to `button` nodes with the style class `bu
 <div style="text-align:center"><img src="img/css_4.png"/></div>
 
 ### Interface Builder
+
+
 
 <span class="filename">Filename: listings/css/5/window/window.ui</span>
 
