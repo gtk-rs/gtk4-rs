@@ -1,18 +1,15 @@
 # CSS
 
 When you want to modify the style of your website you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
-Since so many people are familiar with web development, it makes sense that GTK supports its own variant of CSS.
+Since so many people are already familiar with web development, it makes sense that GTK supports its own variant of CSS.
 
+> We will not explain every piece of CSS syntax used in this chapter.
+> If you are new to it or just need a refresher have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax)
 
-
-
-<span class="filename">Filename: listings/css/1/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/1/main.rs:load_css}}
-```
-
-If you are not already familiar with CSS, now would be a good time to make yourself familiar with its [syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
+Let us say we have a button and we want to make its text color red.
+Every widget has a corresponding CSS node.
+In the case of `gtk::Button` this node is called `button`.
+So we create a `style.css` file with the following content.
 
 <span class="filename">Filename: listings/css/1/style.css</span>
 
@@ -20,16 +17,22 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/1/style.css}}
 ```
 
+Then we load the CSS file in the startup step of the application.
+As usual, the widgets are created during the activate step.
+
 <span class="filename">Filename: listings/css/1/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/1/main.rs:build_ui}}
+{{#rustdoc_include ../listings/css/1/main.rs:main}}
 ```
 
+When we know run the app we notice that our button *and* the close button is red.
+Probably not what we wanted, but that is what we typed.
+We did not specify for which button the rule should apply, so it was applied to both of them.
 
 <div style="text-align:center"><img src="img/css_1.png"/></div>
 
->The `GtkInspector` is very handy when it comes to, well, inspecting GTK apps.
+>The `GtkInspector` comes quite handy (not only) when playing with CSS.
 >Make sure the window of your app is focused and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.
 > A window will pop up which lets you browse and even manipulate the state of your app.
 > Open the `CSS` view and override the button color with the following snippet.
@@ -41,9 +44,15 @@ If you are not already familiar with CSS, now would be a good time to make yours
 
 ## Classes
 
+[Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to limit the amount of elements a CSS rule applies to.
+Let us look at few different scenarios where they are involved.
+
+
 ### Classes Applied by GTK
 
-
+GTK adds style classes to many of its nodes, often depending on a certain condition.
+In the case of the node [`button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes), the style class `.text-button` will be added when the content of the corresponding widget is just a label.
+Which is why we create a new CSS rule which only applies to `button` nodes with the style class `text_button`.
 
 
 <span class="filename">Filename: listings/css/2/style.css</span>
@@ -56,13 +65,8 @@ If you are not already familiar with CSS, now would be a good time to make yours
 
 ### Classes Applied Manually
 
-<span class="filename">Filename: listings/css/3/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/3/main.rs:build_ui}}
-```
-
-
+When want to apply different rules to nodes which got the same style classes added, we will have to think of a different strategy.
+For that we add our own CSS class with [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class).
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
 
@@ -70,6 +74,7 @@ If you are not already familiar with CSS, now would be a good time to make yours
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
+And we create a CSS rule that applies to `button` nodes with the style class `button_1`.
 
 <span class="filename">Filename: listings/css/3/style.css</span>
 

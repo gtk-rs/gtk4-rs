@@ -3,7 +3,7 @@ use gtk::gdk;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button, CssProvider, StyleContext};
 
-// ANCHOR: load_css
+// ANCHOR: main
 fn main() {
     // Create a new application
     let app = Application::builder()
@@ -30,9 +30,7 @@ fn load_css() {
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
     );
 }
-// ANCHOR_END: load_css
 
-// ANCHOR: build_ui
 fn build_ui(app: &Application) {
     // Create button
     let button = Button::builder()
@@ -51,4 +49,4 @@ fn build_ui(app: &Application) {
         .build();
     window.show();
 }
-// ANCHOR_END: build_ui
+// ANCHOR_END: main
