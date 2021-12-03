@@ -38,6 +38,7 @@ cargo run --bin basics
 - [Grid Packing](./grid_packing)
 - [GtkBuilder example](./gtk_builder/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
+- [Rotation Bin](./rotation_bin/)
 - [Scale Bin](./scale_bin/)
 - [Search Bar](./search_bar/)
 - [Squares](./squares/)
