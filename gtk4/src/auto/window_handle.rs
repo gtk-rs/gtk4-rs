@@ -97,6 +97,7 @@ impl Default for WindowHandle {
 /// A [builder-pattern] type to construct [`WindowHandle`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct WindowHandleBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,
@@ -140,7 +141,7 @@ impl WindowHandleBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WindowHandle`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> WindowHandle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

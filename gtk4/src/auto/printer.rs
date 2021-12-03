@@ -398,6 +398,7 @@ impl fmt::Display for Printer {
 /// A [builder-pattern] type to construct [`Printer`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct PrinterBuilder {
     accepts_pdf: Option<bool>,
     accepts_ps: Option<bool>,
@@ -414,7 +415,7 @@ impl PrinterBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Printer`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Printer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accepts_pdf) = self.accepts_pdf {

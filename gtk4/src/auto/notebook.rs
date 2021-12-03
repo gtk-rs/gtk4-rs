@@ -830,6 +830,7 @@ impl Default for Notebook {
 /// A [builder-pattern] type to construct [`Notebook`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct NotebookBuilder {
     enable_popup: Option<bool>,
     group_name: Option<String>,
@@ -879,7 +880,7 @@ impl NotebookBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Notebook`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Notebook {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_popup) = self.enable_popup {

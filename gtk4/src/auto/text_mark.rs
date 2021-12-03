@@ -54,6 +54,7 @@ impl Default for TextMark {
 /// A [builder-pattern] type to construct [`TextMark`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct TextMarkBuilder {
     left_gravity: Option<bool>,
     name: Option<String>,
@@ -68,7 +69,7 @@ impl TextMarkBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TextMark`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TextMark {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref left_gravity) = self.left_gravity {

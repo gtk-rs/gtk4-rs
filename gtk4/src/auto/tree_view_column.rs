@@ -918,6 +918,7 @@ impl Default for TreeViewColumn {
 /// A [builder-pattern] type to construct [`TreeViewColumn`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct TreeViewColumnBuilder {
     alignment: Option<f32>,
     cell_area: Option<CellArea>,
@@ -947,7 +948,7 @@ impl TreeViewColumnBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TreeViewColumn`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TreeViewColumn {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref alignment) = self.alignment {

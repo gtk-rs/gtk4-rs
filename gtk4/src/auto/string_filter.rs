@@ -181,6 +181,7 @@ impl StringFilter {
 /// A [builder-pattern] type to construct [`StringFilter`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct StringFilterBuilder {
     expression: Option<Expression>,
     ignore_case: Option<bool>,
@@ -197,7 +198,7 @@ impl StringFilterBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`StringFilter`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> StringFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

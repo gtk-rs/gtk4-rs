@@ -232,6 +232,7 @@ impl Default for CellRendererToggle {
 /// A [builder-pattern] type to construct [`CellRendererToggle`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct CellRendererToggleBuilder {
     activatable: Option<bool>,
     active: Option<bool>,
@@ -262,7 +263,7 @@ impl CellRendererToggleBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererToggle`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererToggle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable) = self.activatable {

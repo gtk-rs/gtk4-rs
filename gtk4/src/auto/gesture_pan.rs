@@ -120,6 +120,7 @@ impl Default for GesturePan {
 /// A [builder-pattern] type to construct [`GesturePan`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct GesturePanBuilder {
     orientation: Option<Orientation>,
     button: Option<u32>,
@@ -140,7 +141,7 @@ impl GesturePanBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GesturePan`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GesturePan {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref orientation) = self.orientation {

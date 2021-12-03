@@ -54,6 +54,7 @@ impl Default for CellRendererText {
 /// A [builder-pattern] type to construct [`CellRendererText`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct CellRendererTextBuilder {
     align_set: Option<bool>,
     alignment: Option<pango::Alignment>,
@@ -126,7 +127,7 @@ impl CellRendererTextBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererText`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererText {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref align_set) = self.align_set {

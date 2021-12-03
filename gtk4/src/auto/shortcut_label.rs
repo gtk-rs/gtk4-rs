@@ -148,6 +148,7 @@ impl Default for ShortcutLabel {
 /// A [builder-pattern] type to construct [`ShortcutLabel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct ShortcutLabelBuilder {
     accelerator: Option<String>,
     disabled_text: Option<String>,
@@ -192,7 +193,7 @@ impl ShortcutLabelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ShortcutLabel`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ShortcutLabel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accelerator) = self.accelerator {

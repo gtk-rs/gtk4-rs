@@ -56,6 +56,7 @@ impl Default for Fixed {
 /// A [builder-pattern] type to construct [`Fixed`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct FixedBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -98,7 +99,7 @@ impl FixedBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Fixed`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Fixed {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

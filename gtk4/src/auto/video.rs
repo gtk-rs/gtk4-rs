@@ -274,6 +274,7 @@ impl Default for Video {
 /// A [builder-pattern] type to construct [`Video`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct VideoBuilder {
     autoplay: Option<bool>,
     file: Option<gio::File>,
@@ -320,7 +321,7 @@ impl VideoBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Video`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Video {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoplay) = self.autoplay {

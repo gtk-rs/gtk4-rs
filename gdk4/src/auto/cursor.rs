@@ -95,6 +95,7 @@ impl Cursor {
 /// A [builder-pattern] type to construct [`Cursor`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct CursorBuilder {
     fallback: Option<Cursor>,
     hotspot_x: Option<i32>,
@@ -112,7 +113,7 @@ impl CursorBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Cursor`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Cursor {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref fallback) = self.fallback {

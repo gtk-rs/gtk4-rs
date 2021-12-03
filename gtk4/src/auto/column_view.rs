@@ -451,6 +451,7 @@ impl Default for ColumnView {
 /// A [builder-pattern] type to construct [`ColumnView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct ColumnViewBuilder {
     enable_rubberband: Option<bool>,
     model: Option<SelectionModel>,
@@ -503,7 +504,7 @@ impl ColumnViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ColumnView`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColumnView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_rubberband) = self.enable_rubberband {

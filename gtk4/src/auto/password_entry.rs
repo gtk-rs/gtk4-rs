@@ -243,6 +243,7 @@ impl Default for PasswordEntry {
 /// A [builder-pattern] type to construct [`PasswordEntry`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct PasswordEntryBuilder {
     activates_default: Option<bool>,
     extra_menu: Option<gio::MenuModel>,
@@ -295,7 +296,7 @@ impl PasswordEntryBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PasswordEntry`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntry {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

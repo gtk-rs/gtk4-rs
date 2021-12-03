@@ -447,6 +447,7 @@ impl Default for PrintUnixDialog {
 /// A [builder-pattern] type to construct [`PrintUnixDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct PrintUnixDialogBuilder {
     current_page: Option<i32>,
     embed_page_setup: Option<bool>,
@@ -524,7 +525,7 @@ impl PrintUnixDialogBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PrintUnixDialog`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PrintUnixDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref current_page) = self.current_page {

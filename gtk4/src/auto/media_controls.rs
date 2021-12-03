@@ -108,6 +108,7 @@ impl Default for MediaControls {
 /// A [builder-pattern] type to construct [`MediaControls`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct MediaControlsBuilder {
     media_stream: Option<MediaStream>,
     can_focus: Option<bool>,
@@ -151,7 +152,7 @@ impl MediaControlsBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`MediaControls`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> MediaControls {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref media_stream) = self.media_stream {

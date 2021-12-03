@@ -122,6 +122,7 @@ impl PopoverMenuBar {
 /// A [builder-pattern] type to construct [`PopoverMenuBar`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct PopoverMenuBarBuilder {
     menu_model: Option<gio::MenuModel>,
     can_focus: Option<bool>,
@@ -165,7 +166,7 @@ impl PopoverMenuBarBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PopoverMenuBar`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PopoverMenuBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref menu_model) = self.menu_model {

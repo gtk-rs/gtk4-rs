@@ -88,6 +88,7 @@ impl Default for TreeView {
 /// A [builder-pattern] type to construct [`TreeView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct TreeViewBuilder {
     activate_on_single_click: Option<bool>,
     enable_grid_lines: Option<TreeViewGridLines>,
@@ -151,7 +152,7 @@ impl TreeViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TreeView`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TreeView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activate_on_single_click) = self.activate_on_single_click {
