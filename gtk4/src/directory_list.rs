@@ -36,6 +36,7 @@ impl DirectoryList {
 /// A [builder-pattern] type to construct [`DirectoryList`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct DirectoryListBuilder {
     attributes: Option<String>,
     file: Option<gio::File>,
@@ -48,7 +49,7 @@ impl DirectoryListBuilder {
         Self::default()
     }
 
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> DirectoryList {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref attributes) = self.attributes {

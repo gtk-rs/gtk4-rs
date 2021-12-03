@@ -95,6 +95,7 @@ impl Eq for Border {}
 /// A [builder-pattern] type to construct [`Border`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct BorderBuilder {
     left: Option<i16>,
     right: Option<i16>,
@@ -107,14 +108,6 @@ impl BorderBuilder {
     /// Create a new [`BorderBuilder`].
     pub fn new() -> Self {
         Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Border`] objects.
-    ///
-    /// This method returns an instance of [`BorderBuilder`](crate::builders::BorderBuilder) which can be used to create [`Border`] objects.
-    pub fn builder() -> BorderBuilder {
-        BorderBuilder::default()
     }
 
     pub fn left(mut self, left: i16) -> Self {
@@ -139,7 +132,7 @@ impl BorderBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Border`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Border {
         let mut border = Border::default();
         if let Some(left) = self.left {
