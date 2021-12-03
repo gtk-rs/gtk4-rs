@@ -153,6 +153,7 @@ impl Default for AppChooserDialog {
 /// A [builder-pattern] type to construct [`AppChooserDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct AppChooserDialogBuilder {
     gfile: Option<gio::File>,
     heading: Option<String>,
@@ -226,7 +227,7 @@ impl AppChooserDialogBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AppChooserDialog`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AppChooserDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref gfile) = self.gfile {

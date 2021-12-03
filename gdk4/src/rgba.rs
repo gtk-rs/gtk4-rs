@@ -10,6 +10,7 @@ use std::str::FromStr;
 /// A [builder-pattern] type to construct [`RGBA`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct RGBABuilder {
     red: Option<f32>,
     green: Option<f32>,
@@ -46,7 +47,7 @@ impl RGBABuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`RGBA`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "The RGBA returned by this builder should probably be used"]
     pub fn build(self) -> RGBA {
         let mut rgba = RGBA::WHITE;
         if let Some(blue) = self.blue {

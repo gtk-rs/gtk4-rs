@@ -186,6 +186,7 @@ impl Default for ShortcutController {
 /// A [builder-pattern] type to construct [`ShortcutController`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct ShortcutControllerBuilder {
     mnemonic_modifiers: Option<gdk::ModifierType>,
     model: Option<gio::ListModel>,
@@ -204,7 +205,7 @@ impl ShortcutControllerBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ShortcutController`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ShortcutController {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref mnemonic_modifiers) = self.mnemonic_modifiers {

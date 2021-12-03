@@ -82,6 +82,7 @@ impl Default for GestureZoom {
 /// A [builder-pattern] type to construct [`GestureZoom`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct GestureZoomBuilder {
     n_points: Option<u32>,
     name: Option<String>,
@@ -98,7 +99,7 @@ impl GestureZoomBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GestureZoom`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GestureZoom {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref n_points) = self.n_points {

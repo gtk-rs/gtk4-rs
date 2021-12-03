@@ -248,6 +248,7 @@ impl Default for CellRendererAccel {
 /// A [builder-pattern] type to construct [`CellRendererAccel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct CellRendererAccelBuilder {
     accel_key: Option<u32>,
     accel_mode: Option<CellRendererAccelMode>,
@@ -324,7 +325,7 @@ impl CellRendererAccelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererAccel`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererAccel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accel_key) = self.accel_key {

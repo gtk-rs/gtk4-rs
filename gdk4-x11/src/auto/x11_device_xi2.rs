@@ -39,6 +39,7 @@ impl X11DeviceXI2 {
 /// A [builder-pattern] type to construct [`X11DeviceXI2`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct X11DeviceXI2Builder {
     device_id: Option<i32>,
     display: Option<gdk::Display>,
@@ -60,7 +61,7 @@ impl X11DeviceXI2Builder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`X11DeviceXI2`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> X11DeviceXI2 {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref device_id) = self.device_id {

@@ -64,6 +64,7 @@ impl Default for Grid {
 /// A [builder-pattern] type to construct [`Grid`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct GridBuilder {
     baseline_row: Option<i32>,
     column_homogeneous: Option<bool>,
@@ -112,7 +113,7 @@ impl GridBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Grid`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Grid {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_row) = self.baseline_row {

@@ -284,6 +284,7 @@ impl Default for CellRendererPixbuf {
 /// A [builder-pattern] type to construct [`CellRendererPixbuf`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct CellRendererPixbufBuilder {
     gicon: Option<gio::Icon>,
     icon_name: Option<String>,
@@ -317,7 +318,7 @@ impl CellRendererPixbufBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererPixbuf`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererPixbuf {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref gicon) = self.gicon {

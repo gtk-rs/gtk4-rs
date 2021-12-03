@@ -210,6 +210,7 @@ impl Default for FilterListModel {
 /// A [builder-pattern] type to construct [`FilterListModel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct FilterListModelBuilder {
     filter: Option<Filter>,
     incremental: Option<bool>,
@@ -225,7 +226,7 @@ impl FilterListModelBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FilterListModel`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FilterListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref filter) = self.filter {

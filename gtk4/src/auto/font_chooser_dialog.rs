@@ -68,6 +68,7 @@ impl Default for FontChooserDialog {
 /// A [builder-pattern] type to construct [`FontChooserDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct FontChooserDialogBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,
@@ -144,7 +145,7 @@ impl FontChooserDialogBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FontChooserDialog`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FontChooserDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref use_header_bar) = self.use_header_bar {

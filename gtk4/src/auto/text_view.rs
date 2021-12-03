@@ -89,6 +89,7 @@ impl Default for TextView {
 /// A [builder-pattern] type to construct [`TextView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
 pub struct TextViewBuilder {
     accepts_tab: Option<bool>,
     bottom_margin: Option<i32>,
@@ -156,7 +157,7 @@ impl TextViewBuilder {
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TextView`].
-    #[must_use = "The builder must be built to be used"]
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TextView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accepts_tab) = self.accepts_tab {
