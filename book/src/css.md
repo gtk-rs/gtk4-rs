@@ -152,7 +152,11 @@ Your browser does not support the video tag.
 
 ## Nodes
 
-[Icon Library](https://apps.gnome.org/de/app/org.gnome.design.IconLibrary/)
+We already learned that such a thing as CSS nodes exist, but in our examples a widget always corresponded to a single node.
+But what about more complicated widgets such as [`gtk::ComboBoxText`](../docs/gtk4/struct.ComboBoxText.html)?
+Let us say we only want to manipulate its arrow but not the text.
+
+[Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/)
 
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
