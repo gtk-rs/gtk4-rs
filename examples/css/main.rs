@@ -15,7 +15,7 @@ fn main() {
         // We give the CssProvided to the default screen so the CSS rules we added
         // can be applied to our window.
         StyleContext::add_provider_for_display(
-            &Display::default().expect("Error initializing gtk css provider."),
+            &Display::default().expect("Error connecting to a display."),
             &provider,
             STYLE_PROVIDER_PRIORITY_APPLICATION,
         );

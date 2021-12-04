@@ -24,7 +24,7 @@ fn load_css() {
 
     // Add the provider to the default screen
     StyleContext::add_provider_for_display(
-        &Display::default().expect("Error initializing GTK CSS provider."),
+        &Display::default().expect("Error connecting to a display."),
         &provider,
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
     );
