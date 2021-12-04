@@ -140,7 +140,7 @@ We also set the `background-image` to `none` so that it does not overlay the `ba
 {{#rustdoc_include ../listings/css/6/style.css}}
 ```
 
-If we now hover over the button, we see that over the span of one second the button becomes yellow.
+If we now hover over the button, we see that over the span of one second its background becomes yellow and its text becomes red.
 After we removed the cursor the button returns to its original state.
 
 <div style="text-align:center">
