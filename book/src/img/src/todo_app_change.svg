@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="250.29584mm"
+   width="240.77084mm"
    height="132.29167mm"
-   viewBox="0 0 250.29584 132.29167"
+   viewBox="0 0 240.77085 132.29167"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -28,7 +28,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.69130191"
-     inkscape:cx="381.16487"
+     inkscape:cx="363.80632"
      inkscape:cy="254.59209"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -45,8 +45,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid59"
-       originx="25.929167"
-       originy="-44.979159" />
+       originx="21.166662"
+       originy="-44.979158" />
   </sodipodi:namedview>
   <defs
      id="defs2" />
@@ -54,7 +54,7 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(25.929167,-44.97916)">
+     transform="translate(21.166662,-44.97916)">
     <image
        width="102.65833"
        height="132.29167"
