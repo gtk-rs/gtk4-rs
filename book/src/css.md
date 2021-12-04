@@ -184,4 +184,4 @@ The exported colors are currently only documented directly in the [stylesheet](h
 {{#rustdoc_include ../listings/todo_app/3/style.css}}
 ```
 
-<div style="text-align:center"><img src="img/todo_app_3_border.png"/></div>
+<div style="text-align:center"><img src="img/todo_app_change.png"/></div>
