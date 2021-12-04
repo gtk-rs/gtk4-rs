@@ -107,7 +107,9 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 
 ### Interface Builder
 
-
+We can also add style classes with the interface builder.
+Just add the `<style>` element to your widget.
+The `<style>` element is documented [here](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable). 
 
 <span class="filename">Filename: listings/css/5/window/window.ui</span>
 
@@ -118,17 +120,28 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 
 ## Pseudo-classes
 
+Sometimes you want your CSS rules to apply for even more precise conditions than style classes allow.
+That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
+With pseudo classes you can specify a specific state of the CSS node.
+Let us use a single button with the style class `button_1` added to demonstrate this concept.
+
 <span class="filename">Filename: listings/css/6/window/window.ui</span>
 
 ```xml
 {{#rustdoc_include ../listings/css/6/window/window.ui}}
 ```
 
+By adding the pseudo-class `hover` we say that we only want this rule to apply for `button` nodes with style class `button_1` over which we currently hover.
+We also set the `background-image` to `none` so that it does not overlay the `background-color` and add a bit of transition time.
+
 <span class="filename">Filename: listings/css/6/style.css</span>
 
 ```css
 {{#rustdoc_include ../listings/css/6/style.css}}
 ```
+
+If we now hover over the button, we see that over the span of one second the button becomes yellow.
+After we removed the cursor the button returns to its original state.
 
 <div style="text-align:center">
  <video autoplay muted loop>
