@@ -7,7 +7,7 @@ Since so many people are already familiar with web development, it makes sense t
 > If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
 Let us say we have a button and we want to set its font color to red.
-Every widget has a corresponding CSS node.
+Every type of widget has a corresponding CSS node.
 In the case of `gtk::Button`, this node is called `button`.
 Therefore, we create a `style.css` file with the following content:
 
