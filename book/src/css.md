@@ -63,7 +63,7 @@ That is why we create a new CSS rule which only applies to `button` nodes with t
 
 <div style="text-align:center"><img src="img/css_2.png"/></div>
 
-### Classes Applied Manually
+### Applying Your Own Class
 
 If we want to apply different rules to nodes which got the same style classes added, we will have to think of a different strategy.
 For that we add our own CSS class with [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class).
@@ -74,7 +74,7 @@ For that we add our own CSS class with [`add_css_class`](../docs/gtk4/prelude/tr
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
-And we create a CSS rule that applies to `button` nodes with the style class `button_1`.
+Then, create a CSS rule that applies to `button` nodes with the style class `button_1`.
 
 <span class="filename">Filename: listings/css/3/style.css</span>
 
@@ -131,8 +131,8 @@ Let us use a single button with the style class `button_1` added to demonstrate 
 {{#rustdoc_include ../listings/css/6/window/window.ui}}
 ```
 
-By adding the pseudo-class `hover`, we say that we only want this rule to apply for `button` nodes with style class `button_1` over which we currently hover.
-We also set the `background-image` to `none`, so that it does not overlay the `background-color`, and add a bit of transition time.
+By adding the pseudo-class `hover`, we say that we only want this rule to apply for `button` nodes with style class `button_1` over which we currently hover the mouse pointer.
+We also set the `background-image` to `none` and add a bit of transition time.
 
 <span class="filename">Filename: listings/css/6/style.css</span>
 
@@ -152,10 +152,12 @@ Your browser does not support the video tag.
 
 ## Nodes
 
-We already learned that such a thing as CSS nodes exist, but in our examples a widget always corresponded to a single node.
-[`gtk::ComboBoxText`](../docs/gtk4/struct.ComboBoxText.html) does not, so let us see how this widget behaves.
+In the previous examples a widget always corresponded to a single CSS node.
+This is not always the case.
+For example, [`gtk::ComboBoxText`](../docs/gtk4/struct.ComboBoxText.html) has multiple CSS nodes.
+Let us see how it works.
 
-First, we create a `ComboBoxText` as child, populate it with the entries "Factory", "Home" and "Subway" and choose "Factory" as the default entry.
+First, we create a `ComboBoxText`, populate it with the entries "Factory", "Home" and "Subway" and choose "Factory" as the default entry.
 
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
@@ -164,11 +166,11 @@ First, we create a `ComboBoxText` as child, populate it with the entries "Factor
 {{#rustdoc_include ../listings/css/7/window/window.ui}}
 ```
 
-A `ComboBoxText` contains text and a small image of an arrow.
-Let us say we want to give the arrow a different color, but not the text.
+A `ComboBoxText` contains a label and a small image of an arrow.
+Let us say we want to give the arrow a different color, but leave the label as is.
 How would we do that?
 
-We see the answer by checking the CSS nodes of [`gtk::Combobox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ComboBox.html#css-nodes) the more general form of `ComboBoxText`.
+We see the answer by checking the CSS nodes of [`gtk::ComboBox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ComboBox.html#css-nodes), the more general form of `ComboBoxText`.
 
 ```
 combobox
@@ -189,7 +191,7 @@ Now we know that we have to add a CSS rule that applies to the `arrow` node, whi
 {{#rustdoc_include ../listings/css/7/style.css}}
 ```
 
-Indeed, the resulting app features a `ComboBoxText` with a red arrow.
+Indeed, we get a `ComboBoxText` with a red arrow.
 
 <div style="text-align:center"><img src="img/css_7.png"/></div>
 
@@ -198,8 +200,8 @@ Indeed, the resulting app features a `ComboBoxText` with a red arrow.
 Do we really want to settle with an arrow?
 Maybe there are much nicer icons out there you do not even know about yet.
 Fear not, the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/) has you covered there.
-Scroll through the provided icons and choose one from the pre-installed system icons for now.
-In a follow-up chapter, you will learn how GResource can be used to embed the other icons as well.
+Scroll through the provided icons and choose one from the pre-installed system icons section.
+It's possible to embed icons from other sections too, we'll learn about that in a follow-up chapter.
 
 For now, we take the icon with the semantic name "format-justify-fill-symbolic".
 In the screenshot below you see that this corresponds to three parallel lines.
@@ -227,7 +229,7 @@ Now that we know how to use CSS, it is time to update our To-Do app a bit.
 Before, the individual tasks were a bit hard to distinguish.
 Let us change that!
 
-First, we add the style class `todo_row` to our `TodoRow`.
+First, we will add the style class `todo_row` to our `TodoRow`.
 
 <span class="filename">Filename: listings/todo_app/3/todo_row/todo_row.ui</span>
 
@@ -238,10 +240,10 @@ First, we add the style class `todo_row` to our `TodoRow`.
 One way to make the rows set apart a bit is to add borders.
 But which color to use for the borders?
 Our To-Do app should represent a real world app, so we will not be satisfied with choosing yellow and calling it a day.
-Your stylesheet has colors defined for these use cases, so let us have a look.
-As of this writing, the exported colors of the default stylesheet can be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/main/gtk/theme/Default/_colors-public.scss).
+The stylesheet that GTK uses pre-defined colors for various use-cases, so let us have a look.
+As of this writing, the exported colors of the default stylesheet can be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
 
-There we find the color `borders`, which should be used for the widget's main borders color.
+There we find the color `borders`, which should be used for the widgets' border color.
 Perfect!
 We can access pre-defined colors by adding an `@` in front of their names.
 
