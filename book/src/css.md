@@ -27,7 +27,7 @@ As usual, the widgets are created during the activate step.
 ```
 
 When we now run the app, we notice that our button *and* the "close" button are red.
-Probably not what we wanted, but that is what we typed.
+Probably not what we wanted, but that is what our CSS snippet does.
 We did not specify for which button the rule should apply, so it was applied to both of them.
 
 <div style="text-align:center"><img src="img/css_1.png"/></div>
