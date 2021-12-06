@@ -259,6 +259,6 @@ Now our tasks have borders around them, and we are one step further in finishing
 
 We now learned how to use CSS to style our apps.
 We can make our CSS rules as specific as we want them to be.
-Even targeting nodes deep within the inheritance tree is not a problem anymore.
+Even targeting nodes deep within the inheritance tree is not a problem.
 
 In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.
