@@ -4,7 +4,7 @@ When you want to modify the style of your website, you use [CSS](https://de.wiki
 Since so many people are already familiar with web development, it makes sense that GTK supports its own variant of CSS.
 
 > We will not explain every piece of CSS syntax used in this chapter.
-> If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax)
+> If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
 Let us say we have a button and we want to set its font color to red.
 Every widget has a corresponding CSS node.
