@@ -140,12 +140,13 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_recent_manager_move_item(
+            let is_ok = ffi::gtk_recent_manager_move_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 new_uri.to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -170,11 +171,12 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_recent_manager_remove_item(
+            let is_ok = ffi::gtk_recent_manager_remove_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {

@@ -73,11 +73,12 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
     fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gsk_renderer_realize(
+            let is_ok = ffi::gsk_renderer_realize(
                 self.as_ref().to_glib_none().0,
                 surface.to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
