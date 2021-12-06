@@ -91,7 +91,7 @@ This brings us to the next point.
 
 ### CSS Rules Provided by GTK
 
-Certain styles are common enough that GTK provides its own CSS rules for.
+Certain styles are common enough that GTK provides preset CSS rules for them in form of style classes.
 If you want to indicate that your button leads to a destructive or suggested action, you can add the "destructive-action" or "suggested-action" style class to it.
 You do not have to provide a CSS file here.
 After you have added the style class, the `button` node will match the CSS rule provided by GTK.
