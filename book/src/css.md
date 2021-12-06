@@ -203,7 +203,7 @@ Fear not, the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLib
 Scroll through the provided icons and choose one from the pre-installed system icons section.
 It's possible to embed icons from other sections too, we'll learn about that in a follow-up chapter.
 
-For now, we take the icon with the semantic name "format-justify-fill-symbolic".
+For now, we will take the icon with the semantic name "format-justify-fill-symbolic".
 In the screenshot below you see that this corresponds to three parallel lines.
 However, on a different system this icon might look different or not exist at all.
 This is why it is typically better to embed the icons you use.
