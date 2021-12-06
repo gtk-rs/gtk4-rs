@@ -44,7 +44,7 @@ We did not specify for which button the rule should apply, so it was applied to 
 
 ## Classes
 
-[Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to limit the amount of elements a CSS rule applies to.
+[Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to choose which specific elements a CSS rule applies to.
 Let us look at few different scenarios where they are involved.
 
 
