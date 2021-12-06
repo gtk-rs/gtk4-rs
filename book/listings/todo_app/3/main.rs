@@ -39,7 +39,7 @@ fn setup_shortcuts(app: &Application) {
 }
 
 fn load_css() {
-    // Load the css file and add it to the provider
+    // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
     provider.load_from_data(include_bytes!("style.css"));
 
