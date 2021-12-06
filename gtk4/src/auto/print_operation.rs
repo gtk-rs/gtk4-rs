@@ -233,10 +233,6 @@ pub trait PrintOperationExt: 'static {
     #[doc(alias = "get_embed_page_setup")]
     fn embeds_page_setup(&self) -> bool;
 
-    #[doc(alias = "gtk_print_operation_get_error")]
-    #[doc(alias = "get_error")]
-    fn error(&self) -> Result<(), glib::Error>;
-
     #[doc(alias = "gtk_print_operation_get_has_selection")]
     #[doc(alias = "get_has_selection")]
     fn has_selection(&self) -> bool;
@@ -483,18 +479,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             from_glib(ffi::gtk_print_operation_get_embed_page_setup(
                 self.as_ref().to_glib_none().0,
             ))
-        }
-    }
-
-    fn error(&self) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = ffi::gtk_print_operation_get_error(self.as_ref().to_glib_none().0, &mut error);
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
         }
     }
 
