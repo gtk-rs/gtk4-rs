@@ -1735,6 +1735,10 @@ cfg_condition = "target_os = \"linux\""
 name = "Gtk.PrintOperation"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_error"
+    # It quacks like a fallible function, but it isn't.
+    ignore = true
 
 [[object]]
 name = "Gtk.PrintSettings"
