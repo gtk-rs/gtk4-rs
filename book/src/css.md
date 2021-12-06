@@ -17,7 +17,7 @@ Therefore, we create a `style.css` file with the following content:
 {{#rustdoc_include ../listings/css/1/style.css}}
 ```
 
-Next, we load the CSS file in the startup step of the application.
+Next, we need to load the CSS file in the startup step of the application.
 As usual, the widgets are created during the activate step.
 
 <span class="filename">Filename: listings/css/1/main.rs</span>
