@@ -243,7 +243,7 @@ As of this writing, the exported colors of the default stylesheet can be found i
 
 There we find the color `borders`, which should be used for the widget's main borders color.
 Perfect!
-We can access exported colors by adding an `@` in front of their names.
+We can access pre-defined colors by adding an `@` in front of their names.
 
 <span class="filename">Filename: listings/todo_app/3/style.css</span>
 
@@ -261,4 +261,4 @@ We now learned how to use CSS to style our apps.
 We can make our CSS rules as specific as we want them to be.
 Even targeting nodes deep within the inheritance tree is not a problem anymore.
 
-In the following chapter, we will learn how to include CSS files, icons and basically everything that our app needs during runtime in a binary bundle. 
+In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.
