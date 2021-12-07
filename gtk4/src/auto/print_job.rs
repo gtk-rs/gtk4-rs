@@ -241,7 +241,8 @@ impl PrintJob {
     pub fn set_source_fd(&self, fd: i32) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_print_job_set_source_fd(self.to_glib_none().0, fd, &mut error);
+            let is_ok = ffi::gtk_print_job_set_source_fd(self.to_glib_none().0, fd, &mut error);
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -257,11 +258,12 @@ impl PrintJob {
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_print_job_set_source_file(
+            let is_ok = ffi::gtk_print_job_set_source_file(
                 self.to_glib_none().0,
                 filename.as_ref().to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {

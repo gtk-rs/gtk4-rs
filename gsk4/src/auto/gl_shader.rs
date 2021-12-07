@@ -56,11 +56,12 @@ impl GLShader {
     pub fn compile(&self, renderer: &impl IsA<Renderer>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gsk_gl_shader_compile(
+            let is_ok = ffi::gsk_gl_shader_compile(
                 self.to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {

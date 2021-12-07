@@ -303,7 +303,8 @@ impl<O: IsA<Display>> DisplayExt for O {
     fn prepare_gl(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gdk_display_prepare_gl(self.as_ref().to_glib_none().0, &mut error);
+            let is_ok = ffi::gdk_display_prepare_gl(self.as_ref().to_glib_none().0, &mut error);
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {

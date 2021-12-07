@@ -143,11 +143,12 @@ impl PageSetup {
     pub fn load_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_page_setup_load_file(
+            let is_ok = ffi::gtk_page_setup_load_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -164,12 +165,13 @@ impl PageSetup {
     ) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_page_setup_load_key_file(
+            let is_ok = ffi::gtk_page_setup_load_key_file(
                 self.to_glib_none().0,
                 key_file.to_glib_none().0,
                 group_name.to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -237,11 +239,12 @@ impl PageSetup {
     pub fn to_file(&self, file_name: impl AsRef<std::path::Path>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
-            let _ = ffi::gtk_page_setup_to_file(
+            let is_ok = ffi::gtk_page_setup_to_file(
                 self.to_glib_none().0,
                 file_name.as_ref().to_glib_none().0,
                 &mut error,
             );
+            assert_eq!(is_ok == 0, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
