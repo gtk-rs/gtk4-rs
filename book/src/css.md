@@ -1,7 +1,7 @@
 # CSS
 
 When you want to modify the style of your website, you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
-Since so many people are already familiar with web development, it makes sense that GTK supports its own variant of CSS.
+Similarly, GTK supports its own variant of CSS in order to style your app.
 
 > We will not explain every piece of CSS syntax used in this chapter.
 > If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
@@ -35,23 +35,24 @@ We did not specify for which button the rule should apply, so it was applied to 
 >The `GtkInspector` comes in quite handy (not only) when playing with CSS.
 >Make sure that the window of your app is focused and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.
 > A window will pop up which lets you browse and even manipulate the state of your app.
-> Open the `CSS` view and override the button color with the following snippet.
+> Open the CSS view and override the button color with the following snippet.
 >```css
 >button {
 >  color: blue;
 >}
 >```
+> With the pause button you can toggle whether your CSS code is active or not.
 
 ## Classes
 
 [Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to choose which specific elements a CSS rule applies to.
-Let us look at few different scenarios where they are involved.
+Let us look at few different scenarios where CSS classes are involved.
 
 
 ### Classes Applied by GTK
 
-GTK adds style classes to many of its nodes, often depending on a certain condition.
-In the case of the node [`button`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Button.html#css-nodes), the style class `.text-button` will be added when the content of the corresponding widget is just a label.
+GTK adds style classes to many of its widgets, often depending on their content.
+A [`gtk::Button`](../docs/gtk4/struct.Button.html#css-nodes), for example, will get the `.text-button` style class when its content is a label.
 That is why we create a new CSS rule which only applies to `button` nodes with the style class `text_button`.
 
 
@@ -65,8 +66,8 @@ That is why we create a new CSS rule which only applies to `button` nodes with t
 
 ### Applying Your Own Class
 
-If we want to apply different rules to nodes which got the same style classes added, we will have to think of a different strategy.
-For that we add our own CSS class with [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class).
+With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can add our own style classes to widgets.
+One use case for this is when you want a rule to apply to hand-picked set of widgets. 
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
 
@@ -117,6 +118,29 @@ The `<style>` element is documented [here](../docs/gtk4/struct.Widget.html#gtkwi
 {{#rustdoc_include ../listings/css/5/window/window.ui}}
 ```
 
+## Widget Name
+
+Before, we wanted to apply a rule to a single widget.
+In order to achieve that we applied a style class to the widget and then matched this class with our CSS rule.
+This works, but if you want to apply a style to a single widget you should rather give it a name instead of add a class to it.
+Specifying the name in a CSS rule indicates clearly that it applies only to a single widget. 
+
+Specify the name after a `#` symbol.
+
+<span class="filename">Filename: listings/css/6/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/css/6/main.rs:buttons}}
+```
+
+Then, create a CSS rule that applies to `button` nodes with the style class `button_1`.
+
+<span class="filename">Filename: listings/css/6/style.css</span>
+
+```css
+{{#rustdoc_include ../listings/css/6/style.css}}
+```
+
 
 ## Pseudo-classes
 
@@ -125,19 +149,19 @@ That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/
 With pseudo-classes you can specify a specific state of the CSS node.
 Let us use a single button with the style class `button_1` added to demonstrate this concept.
 
-<span class="filename">Filename: listings/css/6/window/window.ui</span>
+<span class="filename">Filename: listings/css/7/window/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/css/6/window/window.ui}}
+{{#rustdoc_include ../listings/css/7/window/window.ui}}
 ```
 
 By adding the pseudo-class `hover`, we say that we only want this rule to apply for `button` nodes with style class `button_1` over which we currently hover the mouse pointer.
 We also set the `background-image` to `none` and add a bit of transition time.
 
-<span class="filename">Filename: listings/css/6/style.css</span>
+<span class="filename">Filename: listings/css/7/style.css</span>
 
 ```css
-{{#rustdoc_include ../listings/css/6/style.css}}
+{{#rustdoc_include ../listings/css/7/style.css}}
 ```
 
 If we now hover over the button, we see that over the span of one second its background turns yellow and its font turns magenta.
@@ -160,10 +184,10 @@ Let us see how it works.
 First, we create a `ComboBoxText`, populate it with the entries "Factory", "Home" and "Subway" and choose "Factory" as the default entry.
 
 
-<span class="filename">Filename: listings/css/7/window/window.ui</span>
+<span class="filename">Filename: listings/css/8/window/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/css/7/window/window.ui}}
+{{#rustdoc_include ../listings/css/8/window/window.ui}}
 ```
 
 A `ComboBoxText` contains a label and a small image of an arrow.
@@ -185,10 +209,10 @@ combobox
 We see that the `combobox` node has children, which themselves can have children and attached style classes.
 Now we know that we have to add a CSS rule that applies to the `arrow` node, which is a descendant of `combobox`.
 
-<span class="filename">Filename: listings/css/7/style.css</span>
+<span class="filename">Filename: listings/css/8/style.css</span>
 
 ```css
-{{#rustdoc_include ../listings/css/7/style.css}}
+{{#rustdoc_include ../listings/css/8/style.css}}
 ```
 
 Indeed, we get a `ComboBoxText` with a magenta arrow.
@@ -212,10 +236,10 @@ GTK provides its own parameter for loading icons in buttons and expanders: `-gtk
 You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
 
 
-<span class="filename">Filename: listings/css/8/style.css</span>
+<span class="filename">Filename: listings/css/9/style.css</span>
 
 ```css
-{{#rustdoc_include ../listings/css/8/style.css}}
+{{#rustdoc_include ../listings/css/9/style.css}}
 ```
 
 Voilà, the arrow is replaced with the one we selected ourselves. 

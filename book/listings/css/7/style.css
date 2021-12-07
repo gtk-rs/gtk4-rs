@@ -1,3 +1,4 @@
-combobox arrow {
+button.button_1:hover {
   color: magenta;
+  background: yellow;
 }

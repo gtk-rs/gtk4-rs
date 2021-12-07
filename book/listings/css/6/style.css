@@ -1,4 +1,3 @@
-button.button_1:hover {
+button#button_1 {
   color: magenta;
-  background: yellow;
 }
