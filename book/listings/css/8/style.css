@@ -1,4 +1,4 @@
 combobox arrow {
-  color: red;
+  color: magenta;
   -gtk-icon-source: -gtk-icontheme('format-justify-fill-symbolic');
 }
