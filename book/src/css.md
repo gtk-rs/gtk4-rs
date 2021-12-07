@@ -6,7 +6,7 @@ Since so many people are already familiar with web development, it makes sense t
 > We will not explain every piece of CSS syntax used in this chapter.
 > If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
-Let us say we have a button and we want to set its font color to red.
+Let us say we have a button and we want to set its font color to magenta.
 Every type of widget has a corresponding CSS node.
 In the case of `gtk::Button`, this node is called `button`.
 Therefore, we create a `style.css` file with the following content:
@@ -26,7 +26,7 @@ As usual, the widgets are created during the activate step.
 {{#rustdoc_include ../listings/css/1/main.rs:main}}
 ```
 
-When we now run the app, we notice that our button *and* the "close" button are red.
+When we now run the app, we notice that our button *and* the "close" button are magenta.
 Probably not what we wanted, but that is what our CSS snippet does.
 We did not specify for which button the rule should apply, so it was applied to both of them.
 
@@ -82,7 +82,7 @@ Then, create a CSS rule that applies to `button` nodes with the style class `but
 {{#rustdoc_include ../listings/css/3/style.css}}
 ```
 
-This way, only the first button gets colored red.
+This way, only the first button gets colored magenta.
 If you want to make sure that CSS rules only apply to a hand-selected set of nodes, adding your own style classes is your best bet.
 Just make sure that you do not choose a name for your style class that GTK either adds itself or provides CSS rules for.
 This brings us to the next point.
@@ -140,7 +140,7 @@ We also set the `background-image` to `none` and add a bit of transition time.
 {{#rustdoc_include ../listings/css/6/style.css}}
 ```
 
-If we now hover over the button, we see that over the span of one second its background turns yellow and its font turns red.
+If we now hover over the button, we see that over the span of one second its background turns yellow and its font turns magenta.
 After we removed the cursor, the button returns to its original state.
 
 <div style="text-align:center">
@@ -191,7 +191,7 @@ Now we know that we have to add a CSS rule that applies to the `arrow` node, whi
 {{#rustdoc_include ../listings/css/7/style.css}}
 ```
 
-Indeed, we get a `ComboBoxText` with a red arrow.
+Indeed, we get a `ComboBoxText` with a magenta arrow.
 
 <div style="text-align:center"><img src="img/css_7.png"/></div>
 
