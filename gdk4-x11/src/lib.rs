@@ -19,5 +19,6 @@ mod auto;
 pub mod builders;
 
 mod x11_display;
+mod x11_screen;
 
 pub use auto::*;
