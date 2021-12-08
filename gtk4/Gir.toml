@@ -2611,7 +2611,9 @@ manual_traits = ["WidgetExtManual"]
     doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "remove_tick_callback"
-    ignore = true # implemented manually in a different type
+    manual = true # implemented manually in a different type
+    doc_struct_name = "TickCallbackId"
+    rename = "remove"
     [[object.function]]
     name = "activate_action_variant"
     rename = "activate_action"
