@@ -136,5 +136,4 @@ name = "GdkX11.X11Screen"
 status = "generate"
     [[object.function]]
     name = "get_xscreen"
-    # TODO: x11 types don't implement glib traits
     manual = true
