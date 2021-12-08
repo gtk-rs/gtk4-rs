@@ -253,11 +253,6 @@ impl X11Display {
             );
         }
     }
-
-    //#[doc(alias = "xevent")]
-    //pub fn connect_xevent<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Unimplemented xevent: *.Pointer
-    //}
 }
 
 impl fmt::Display for X11Display {
