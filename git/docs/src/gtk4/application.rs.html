@@ -126,32 +126,6 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
-<span id="60">60</span>
-<span id="61">61</span>
-<span id="62">62</span>
-<span id="63">63</span>
-<span id="64">64</span>
-<span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
-<span id="69">69</span>
-<span id="70">70</span>
-<span id="71">71</span>
-<span id="72">72</span>
-<span id="73">73</span>
-<span id="74">74</span>
-<span id="75">75</span>
-<span id="76">76</span>
-<span id="77">77</span>
-<span id="78">78</span>
-<span id="79">79</span>
-<span id="80">80</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -165,32 +139,6 @@
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">impl</span> <span class="ident">Application</span> {
-    <span class="doccomment">/// Creates a new [`Application`][crate::Application] instance.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When using [`Application`][crate::Application], it is not necessary to call [`glib::Value::from_type()`][crate::glib::Value::from_type()]</span>
-    <span class="doccomment">/// manually. It is called as soon as the application gets registered as</span>
-    <span class="doccomment">/// the primary instance.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Concretely, [`glib::Value::from_type()`][crate::glib::Value::from_type()] is called in the default handler for the</span>
-    <span class="doccomment">/// `GApplication::startup` signal. Therefore, [`Application`][crate::Application] subclasses should</span>
-    <span class="doccomment">/// always chain up in their `GApplication::startup` handler before using any GTK</span>
-    <span class="doccomment">/// API.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that commandline arguments are not passed to [`glib::Value::from_type()`][crate::glib::Value::from_type()].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If `application_id` is not [`None`], then it must be valid. See</span>
-    <span class="doccomment">/// `g_application_id_is_valid()`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If no application ID is given then some features (most notably application</span>
-    <span class="doccomment">/// uniqueness) will be disabled.</span>
-    <span class="doccomment">/// ## `application_id`</span>
-    <span class="doccomment">/// The application ID</span>
-    <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the application flags</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`Application`][crate::Application] instance</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">application_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">flags</span>: <span class="ident">ApplicationFlags</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -233,5 +181,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0fb1c371d 2021-12-06)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b6f079e4 2021-12-07)" ></div>
 </body></html>

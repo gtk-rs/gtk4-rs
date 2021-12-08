@@ -364,21 +364,6 @@
 <span id="290">290</span>
 <span id="291">291</span>
 <span id="292">292</span>
-<span id="293">293</span>
-<span id="294">294</span>
-<span id="295">295</span>
-<span id="296">296</span>
-<span id="297">297</span>
-<span id="298">298</span>
-<span id="299">299</span>
-<span id="300">300</span>
-<span id="301">301</span>
-<span id="302">302</span>
-<span id="303">303</span>
-<span id="304">304</span>
-<span id="305">305</span>
-<span id="306">306</span>
-<span id="307">307</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">TreeIter</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeStore</span>};
@@ -419,32 +404,17 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new row at @position. @iter will be changed to point to this</span>
-    <span class="doccomment">/// new row. If @position is -1, or larger than the number of rows on the list, then</span>
-    <span class="doccomment">/// the new row will be appended to the list. The row will be filled with</span>
-    <span class="doccomment">/// the values given to this function.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Calling</span>
-    <span class="doccomment">/// `gtk_tree_store_insert_with_values (tree_store, iter, position, ...)`</span>
-    <span class="doccomment">/// has the same effect as calling</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// **⚠️ The following code is in C ⚠️**</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```C</span>
-    <span class="doccomment">/// gtk_tree_store_insert (tree_store, iter, position);</span>
-    <span class="doccomment">/// gtk_tree_store_set (tree_store, iter, ...);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// with the different that the former will only emit a row_inserted signal,</span>
-    <span class="doccomment">/// while the latter will emit row_inserted, row_changed and if the tree store</span>
-    <span class="doccomment">/// is sorted, rows_reordered.  Since emitting the rows_reordered signal</span>
-    <span class="doccomment">/// repeatedly can affect the performance of the program,</span>
-    <span class="doccomment">/// gtk_tree_store_insert_with_values() should generally be preferred when</span>
-    <span class="doccomment">/// inserting rows in a sorted tree store.</span>
+    <span class="doccomment">/// A variant of gtk_tree_store_insert_with_values() which takes</span>
+    <span class="doccomment">/// the columns and values as two arrays, instead of varargs.  This</span>
+    <span class="doccomment">/// function is mainly intended for language bindings.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// position to insert the new row, or -1 to append after existing rows</span>
+    <span class="doccomment">/// position to insert the new row, or -1 for last</span>
+    <span class="doccomment">/// ## `columns`</span>
+    <span class="doccomment">/// an array of column numbers</span>
+    <span class="doccomment">/// ## `values`</span>
+    <span class="doccomment">/// an array of GValues</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -687,5 +657,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0fb1c371d 2021-12-06)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b6f079e4 2021-12-07)" ></div>
 </body></html>

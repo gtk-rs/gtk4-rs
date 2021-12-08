@@ -4732,6 +4732,96 @@
 <span id="4658">4658</span>
 <span id="4659">4659</span>
 <span id="4660">4660</span>
+<span id="4661">4661</span>
+<span id="4662">4662</span>
+<span id="4663">4663</span>
+<span id="4664">4664</span>
+<span id="4665">4665</span>
+<span id="4666">4666</span>
+<span id="4667">4667</span>
+<span id="4668">4668</span>
+<span id="4669">4669</span>
+<span id="4670">4670</span>
+<span id="4671">4671</span>
+<span id="4672">4672</span>
+<span id="4673">4673</span>
+<span id="4674">4674</span>
+<span id="4675">4675</span>
+<span id="4676">4676</span>
+<span id="4677">4677</span>
+<span id="4678">4678</span>
+<span id="4679">4679</span>
+<span id="4680">4680</span>
+<span id="4681">4681</span>
+<span id="4682">4682</span>
+<span id="4683">4683</span>
+<span id="4684">4684</span>
+<span id="4685">4685</span>
+<span id="4686">4686</span>
+<span id="4687">4687</span>
+<span id="4688">4688</span>
+<span id="4689">4689</span>
+<span id="4690">4690</span>
+<span id="4691">4691</span>
+<span id="4692">4692</span>
+<span id="4693">4693</span>
+<span id="4694">4694</span>
+<span id="4695">4695</span>
+<span id="4696">4696</span>
+<span id="4697">4697</span>
+<span id="4698">4698</span>
+<span id="4699">4699</span>
+<span id="4700">4700</span>
+<span id="4701">4701</span>
+<span id="4702">4702</span>
+<span id="4703">4703</span>
+<span id="4704">4704</span>
+<span id="4705">4705</span>
+<span id="4706">4706</span>
+<span id="4707">4707</span>
+<span id="4708">4708</span>
+<span id="4709">4709</span>
+<span id="4710">4710</span>
+<span id="4711">4711</span>
+<span id="4712">4712</span>
+<span id="4713">4713</span>
+<span id="4714">4714</span>
+<span id="4715">4715</span>
+<span id="4716">4716</span>
+<span id="4717">4717</span>
+<span id="4718">4718</span>
+<span id="4719">4719</span>
+<span id="4720">4720</span>
+<span id="4721">4721</span>
+<span id="4722">4722</span>
+<span id="4723">4723</span>
+<span id="4724">4724</span>
+<span id="4725">4725</span>
+<span id="4726">4726</span>
+<span id="4727">4727</span>
+<span id="4728">4728</span>
+<span id="4729">4729</span>
+<span id="4730">4730</span>
+<span id="4731">4731</span>
+<span id="4732">4732</span>
+<span id="4733">4733</span>
+<span id="4734">4734</span>
+<span id="4735">4735</span>
+<span id="4736">4736</span>
+<span id="4737">4737</span>
+<span id="4738">4738</span>
+<span id="4739">4739</span>
+<span id="4740">4740</span>
+<span id="4741">4741</span>
+<span id="4742">4742</span>
+<span id="4743">4743</span>
+<span id="4744">4744</span>
+<span id="4745">4745</span>
+<span id="4746">4746</span>
+<span id="4747">4747</span>
+<span id="4748">4748</span>
+<span id="4749">4749</span>
+<span id="4750">4750</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -4764,12 +4854,45 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Key</span> {
+    <span class="doccomment">/// Converts a key name to a key value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The names are the same as those in the</span>
+    <span class="doccomment">/// `gdk/gdkkeysyms.h` header file</span>
+    <span class="doccomment">/// but without the leading “GDK_KEY_”.</span>
+    <span class="doccomment">/// ## `keyval_name`</span>
+    <span class="doccomment">/// a key name</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the corresponding key value, or `GDK_KEY_VoidSymbol`</span>
+    <span class="doccomment">///   if the key name is not a valid key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_from_name&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_name</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_name</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_from_name</span>(<span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">key</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_from_name</span>(<span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>));
+            <span class="kw">if</span> <span class="ident">key</span> <span class="op">==</span> <span class="ident">constants::VoidSymbol</span> {
+                <span class="prelude-val">None</span>
+            } <span class="kw">else</span> {
+                <span class="prelude-val">Some</span>(<span class="ident">key</span>)
+            }
+        }
     }
 
+    <span class="doccomment">/// Obtains the upper- and lower-case versions of the keyval @symbol.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Examples of keyvals are `GDK_KEY_a`, `GDK_KEY_Enter`, `GDK_KEY_F1`, etc.</span>
+    <span class="doccomment">/// ## `symbol`</span>
+    <span class="doccomment">/// a keyval</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `lower`</span>
+    <span class="doccomment">/// return location for lowercase version of @symbol</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `upper`</span>
+    <span class="doccomment">/// return location for uppercase version of @symbol</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_convert_case&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert_case</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>) {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -4783,6 +4906,19 @@
         }
     }
 
+    <span class="doccomment">/// Convert from a GDK key symbol to the corresponding Unicode</span>
+    <span class="doccomment">/// character.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the conversion does not take the current locale</span>
+    <span class="doccomment">/// into consideration, which might be expected for particular</span>
+    <span class="doccomment">/// keyvals, such as `GDK_KEY_KP_Decimal`.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a GDK key symbol</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the corresponding unicode character, or 0 if there</span>
+    <span class="doccomment">///   is no corresponding character.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_to_unicode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_unicode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -4792,30 +4928,74 @@
         }
     }
 
+    <span class="doccomment">/// Converts a key value into a symbolic name.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The names are the same as those in the</span>
+    <span class="doccomment">/// `gdk/gdkkeysyms.h` header file</span>
+    <span class="doccomment">/// but without the leading “GDK_KEY_”.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a key value</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a string containing the name</span>
+    <span class="doccomment">///   of the key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_keyval_name</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
     }
 
+    <span class="doccomment">/// Returns [`true`] if the given key value is in upper case.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a key value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if @keyval is in upper case, or if @keyval is not subject to</span>
+    <span class="doccomment">///  case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_is_upper&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_upper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_is_upper</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
     }
 
+    <span class="doccomment">/// Returns [`true`] if the given key value is in lower case.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a key value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if @keyval is in lower case, or if @keyval is not</span>
+    <span class="doccomment">///   subject to case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_is_lower&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_lower</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_is_lower</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
     }
 
+    <span class="doccomment">/// Converts a key value to upper case, if applicable.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a key value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the upper case form of @keyval, or @keyval itself if it is already</span>
+    <span class="doccomment">///   in upper case or it is not subject to case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_to_upper&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_upper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_to_upper</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
     }
 
+    <span class="doccomment">/// Converts a key value to lower case, if applicable.</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// a key value.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the lower case form of @keyval, or @keyval itself if it is already</span>
+    <span class="doccomment">///  in lower case or it is not subject to case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_to_lower&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_lower</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -9393,5 +9573,5 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">zstroke</span>: <span class="ident">Key</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="ident">ffi::GDK_KEY_zstroke</span> <span class="kw">as</span> <span class="ident">u32</span>);
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0fb1c371d 2021-12-06)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b6f079e4 2021-12-07)" ></div>
 </body></html>

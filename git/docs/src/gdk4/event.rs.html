@@ -546,6 +546,58 @@
 <span id="472">472</span>
 <span id="473">473</span>
 <span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
@@ -639,6 +691,25 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_event_sequence</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
+    <span class="doccomment">/// Returns the relative angle from @event1 to @event2.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The relative angle is the angle between the X axis and the line</span>
+    <span class="doccomment">/// through both events&#39; positions. The rotation direction for positive</span>
+    <span class="doccomment">/// angles is from the positive X axis towards the positive Y axis.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This assumes that both events have X/Y information.</span>
+    <span class="doccomment">/// If not, this function returns [`false`].</span>
+    <span class="doccomment">/// ## `event1`</span>
+    <span class="doccomment">/// first [`Event`][crate::Event]</span>
+    <span class="doccomment">/// ## `event2`</span>
+    <span class="doccomment">/// second [`Event`][crate::Event]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if the angle could be calculated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `angle`</span>
+    <span class="doccomment">/// return location for the relative angle between both events</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_events_get_angle&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_angle&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">angle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
@@ -659,6 +730,24 @@
         }
     }
 
+    <span class="doccomment">/// Returns the point halfway between the events&#39; positions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This assumes that both events have X/Y information.</span>
+    <span class="doccomment">/// If not, this function returns [`false`].</span>
+    <span class="doccomment">/// ## `event1`</span>
+    <span class="doccomment">/// first [`Event`][crate::Event]</span>
+    <span class="doccomment">/// ## `event2`</span>
+    <span class="doccomment">/// second [`Event`][crate::Event]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if the center could be calculated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `x`</span>
+    <span class="doccomment">/// return location for the X coordinate of the center</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `y`</span>
+    <span class="doccomment">/// return location for the Y coordinate of the center</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_events_get_center&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_center&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
@@ -682,6 +771,21 @@
         }
     }
 
+    <span class="doccomment">/// Returns the distance between the event locations.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This assumes that both events have X/Y information.</span>
+    <span class="doccomment">/// If not, this function returns [`false`].</span>
+    <span class="doccomment">/// ## `event1`</span>
+    <span class="doccomment">/// first [`Event`][crate::Event]</span>
+    <span class="doccomment">/// ## `event2`</span>
+    <span class="doccomment">/// second [`Event`][crate::Event]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if the distance could be calculated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `distance`</span>
+    <span class="doccomment">/// return location for the distance</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_events_get_distance&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_distance&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">distance</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
@@ -1021,5 +1125,5 @@
     };
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0fb1c371d 2021-12-06)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (0b6f079e4 2021-12-07)" ></div>
 </body></html>
