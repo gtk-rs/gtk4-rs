@@ -31,9 +31,16 @@ impl IntoGlib for Key {
 
 impl Key {
     #[doc(alias = "gdk_keyval_from_name")]
-    pub fn from_name(name: &str) -> Self {
+    pub fn from_name(name: &str) -> Option<Self> {
         skip_assert_initialized!();
-        unsafe { from_glib(ffi::gdk_keyval_from_name(name.to_glib_none().0)) }
+        unsafe {
+            let key: Self = from_glib(ffi::gdk_keyval_from_name(name.to_glib_none().0));
+            if key == constants::VoidSymbol {
+                None
+            } else {
+                Some(key)
+            }
+        }
     }
 
     #[doc(alias = "gdk_keyval_convert_case")]
