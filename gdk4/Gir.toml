@@ -107,9 +107,35 @@ status = "generate"
         name = "surface"
         const = true
     [[object.function]]
-    pattern = "cairo_.+"
-    #manual trait
-    ignore = true
+    name = "cairo_region_create_from_surface"
+    manual = true
+    rename = "create_region"
+    doc_trait_name = "GdkCairoSurfaceExt"
+    [[object.function]]
+    name = "cairo_draw_from_gl"
+    manual = true
+    rename = "draw_from_gl"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_set_source_rgba"
+    manual = true
+    rename = "set_source_rgba"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_set_source_pixbuf"
+    manual = true
+    rename = "set_source_pixbuf"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_rectangle"
+    manual = true
+    rename = "add_rectangle"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_region"
+    manual = true
+    rename = "add_region"
+    doc_trait_name = "GdkCairoContextExt"
     [[object.function]]
     name = "pango_layout_get_clip_region"
     manual = true
