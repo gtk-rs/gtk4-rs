@@ -159,36 +159,58 @@ status = "generate"
     [[object.function]]
     name = "events_get_angle"
     manual = true # event is a fundemental type
+    rename = "angle"
+    doc_struct_name = "Event"
     [[object.function]]
     name = "events_get_center"
     manual = true # event is a fundemental type
+    rename = "center"
+    doc_struct_name = "Event"
     [[object.function]]
     name = "events_get_distance"
     manual = true # event is a fundemental type
+    rename = "distance"
+    doc_struct_name = "Event"
     [[object.function]]
     name = "keyval_convert_case"
+    rename = "convert_case"
     manual = true # manually handled by keys::Key
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_from_name"
     manual = true # manually handled by keys::Key
+    rename = "from_name"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_is_lower"
     manual = true # manually handled by keys::Key
+    rename = "is_lower"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_is_upper"
     manual = true # manually handled by keys::Key
+    rename = "is_upper"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_name"
     manual = true # manually handled by keys::Key
+    rename = "name"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_lower"
     manual = true # manually handled by keys::Key
+    rename = "to_lower"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_unicode"
     manual = true # manually handled by keys::Key
+    rename = "to_unicode"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_upper"
     manual = true # manually handled by keys::Key
+    rename = "to_upper"
+    doc_struct_name = "Key"
     [[object.function]]
     name = "toplevel_size_get_type"
     ignore = true # used directly in gdk::ToplevelSize
