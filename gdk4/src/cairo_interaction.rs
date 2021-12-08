@@ -50,9 +50,9 @@ pub trait GdkCairoContextExt {
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64);
 
     #[doc(alias = "gdk_cairo_rectangle")]
-    fn rectangle(&self, rectangle: &Rectangle);
+    fn add_rectangle(&self, rectangle: &Rectangle);
 
-    #[doc(alias = "gdk_cairo_add_region")]
+    #[doc(alias = "gdk_cairo_region")]
     fn add_region(&self, region: &Region);
 }
 
@@ -94,7 +94,7 @@ impl GdkCairoContextExt for Context {
         }
     }
 
-    fn rectangle(&self, rectangle: &Rectangle) {
+    fn add_rectangle(&self, rectangle: &Rectangle) {
         unsafe {
             ffi::gdk_cairo_rectangle(self.to_glib_none().0, rectangle.to_glib_none().0);
         }
