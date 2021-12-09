@@ -1,3 +1,6 @@
+[external_libraries]
+Gio = {min_version = "2.66"}
+
 [options]
 girs_directories = ["../gir-files"]
 library = "Gdk"
@@ -79,6 +82,7 @@ manual = [
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
+    "Gio.Initable",
     "Gio.InputStream",
     "Gio.IOErrorEnum",
     "Gio.ListModel",
