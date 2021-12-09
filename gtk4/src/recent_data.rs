@@ -5,13 +5,43 @@ use libc::c_char;
 
 #[doc(alias = "GtkRecentData")]
 pub struct RecentData {
-    pub display_name: Option<String>,
-    pub description: Option<String>,
-    pub mime_type: String,
-    pub app_name: String,
-    pub app_exec: String,
-    pub groups: Vec<String>,
-    pub is_private: bool,
+    display_name: Option<String>,
+    description: Option<String>,
+    mime_type: String,
+    app_name: String,
+    app_exec: String,
+    groups: Vec<String>,
+    is_private: bool,
+}
+
+impl RecentData {
+    pub fn display_name(&self) -> Option<&str> {
+        self.display_name.as_deref()
+    }
+
+    pub fn description(&self) -> Option<&str> {
+        self.description.as_deref()
+    }
+
+    pub fn mime_type(&self) -> &str {
+        &self.mime_type
+    }
+
+    pub fn app_name(&self) -> &str {
+        &self.app_name
+    }
+
+    pub fn app_exec(&self) -> &str {
+        &self.app_exec
+    }
+
+    pub fn groups(&self) -> &Vec<String> {
+        &self.groups
+    }
+
+    pub fn is_private(&self) -> bool {
+        self.is_private
+    }
 }
 
 #[doc(hidden)]
