@@ -57,7 +57,7 @@ impl Clipboard {
         }
     }
 
-    pub fn read_async_future(
+    pub fn read_future(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
@@ -125,7 +125,7 @@ impl Clipboard {
         }
     }
 
-    pub fn store_async_future(
+    pub fn store_future(
         &self,
         io_priority: glib::Priority,
     ) -> Pin<Box<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
@@ -179,7 +179,7 @@ impl Clipboard {
         }
     }
 
-    pub fn read_value_async_future(
+    pub fn read_value_future(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
@@ -231,7 +231,7 @@ impl Clipboard {
         }
     }
 
-    pub fn read_text_async_future(
+    pub fn read_text_future(
         &self,
     ) -> Pin<
         Box<dyn std::future::Future<Output = Result<Option<glib::GString>, glib::Error>> + 'static>,
@@ -282,7 +282,7 @@ impl Clipboard {
         }
     }
 
-    pub fn read_texture_async_future(
+    pub fn read_texture_future(
         &self,
     ) -> Pin<Box<dyn std::future::Future<Output = Result<Option<Texture>, glib::Error>> + 'static>>
     {

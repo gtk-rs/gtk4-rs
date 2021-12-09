@@ -84,7 +84,7 @@ pub trait ContentProviderExt: 'static {
         callback: P,
     );
 
-    fn write_mime_type_async_future(
+    fn write_mime_type_future(
         &self,
         mime_type: &str,
         stream: &(impl IsA<gio::OutputStream> + Clone + 'static),
@@ -168,7 +168,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn write_mime_type_async_future(
+    fn write_mime_type_future(
         &self,
         mime_type: &str,
         stream: &(impl IsA<gio::OutputStream> + Clone + 'static),

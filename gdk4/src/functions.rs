@@ -99,7 +99,7 @@ pub fn content_deserialize_async<
     }
 }
 
-pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'static>(
+pub fn content_deserialize_future<P: IsA<gio::InputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     type_: glib::types::Type,
@@ -288,7 +288,7 @@ pub fn content_serialize_async<
     }
 }
 
-pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'static>(
+pub fn content_serialize_future<P: IsA<gio::OutputStream> + Clone + 'static>(
     stream: &P,
     mime_type: &str,
     value: &glib::Value,
