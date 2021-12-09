@@ -58,7 +58,7 @@ impl Drop {
         }
     }
 
-    pub fn read_async_future(
+    pub fn read_future(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
@@ -122,7 +122,7 @@ impl Drop {
         }
     }
 
-    pub fn read_value_async_future(
+    pub fn read_value_future(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,

@@ -40,7 +40,7 @@ impl ContentProviderImpl for ContentProvider {
                 ));
             }
             stream
-                .write_bytes_async_future(
+                .write_bytes_future(
                     &glib::Bytes::from_static(b"Hello clipboard!\0"),
                     io_priority,
                 )
