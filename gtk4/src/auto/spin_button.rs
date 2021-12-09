@@ -310,11 +310,6 @@ impl SpinButton {
         self.emit_by_name::<()>("change-value", &[&scroll]);
     }
 
-    //#[doc(alias = "input")]
-    //pub fn connect_input<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Out new_value: *.Double
-    //}
-
     #[doc(alias = "output")]
     pub fn connect_output<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
         &self,

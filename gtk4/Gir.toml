@@ -144,7 +144,6 @@ generate = [
     "Gtk.Orientable",
     "Gtk.Orientation",
     "Gtk.Overflow",
-    "Gtk.Overlay",
     "Gtk.OverlayLayout",
     "Gtk.PackType",
     "Gtk.PadActionType",
@@ -1628,6 +1627,13 @@ status = "generate"
     ignore = true # not useful for Rust, conversion From/Into cmp::Ordering is possible
 
 [[object]]
+name = "Gtk.Overlay"
+status = "generate"
+    [[object.signal]]
+    name = "get-child-position"
+    manual = true
+
+[[object]]
 name = "Gtk.OverlayLayoutChild"
 status = "generate"
 generate_builder = false
@@ -1967,6 +1973,9 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.SpinButton"
 status = "generate"
+    [[object.signal]]
+    name = "input"
+    manual = true
     [[object.signal]]
     name = "output"
     inhibit = true
