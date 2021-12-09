@@ -13,7 +13,7 @@ use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "GdkVulkanContext")]
-    pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext;
+    pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext, @implements gio::Initable;
 
     match fn {
         type_ => || ffi::gdk_vulkan_context_get_type(),
