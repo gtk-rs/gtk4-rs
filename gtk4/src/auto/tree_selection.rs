@@ -37,12 +37,6 @@ impl TreeSelection {
         unsafe { from_glib(ffi::gtk_tree_selection_get_mode(self.to_glib_none().0)) }
     }
 
-    //#[doc(alias = "gtk_tree_selection_get_select_function")]
-    //#[doc(alias = "get_select_function")]
-    //pub fn select_function(&self) -> Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>> {
-    //    unsafe { TODO: call ffi:gtk_tree_selection_get_select_function() }
-    //}
-
     #[doc(alias = "gtk_tree_selection_get_selected")]
     #[doc(alias = "get_selected")]
     pub fn selected(&self) -> Option<(TreeModel, TreeIter)> {

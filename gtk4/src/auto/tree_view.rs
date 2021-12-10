@@ -723,10 +723,6 @@ pub trait TreeViewExt: 'static {
     #[doc(alias = "get_reorderable")]
     fn is_reorderable(&self) -> bool;
 
-    //#[doc(alias = "gtk_tree_view_get_row_separator_func")]
-    //#[doc(alias = "get_row_separator_func")]
-    //fn row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
-
     #[doc(alias = "gtk_tree_view_get_rubber_banding")]
     #[doc(alias = "get_rubber_banding")]
     fn is_rubber_banding(&self) -> bool;
@@ -738,10 +734,6 @@ pub trait TreeViewExt: 'static {
     #[doc(alias = "gtk_tree_view_get_search_entry")]
     #[doc(alias = "get_search_entry")]
     fn search_entry(&self) -> Option<Editable>;
-
-    //#[doc(alias = "gtk_tree_view_get_search_equal_func")]
-    //#[doc(alias = "get_search_equal_func")]
-    //fn search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static;
 
     #[doc(alias = "gtk_tree_view_get_selection")]
     #[doc(alias = "get_selection")]
@@ -1522,10 +1514,6 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    //fn row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static {
-    //    unsafe { TODO: call ffi:gtk_tree_view_get_row_separator_func() }
-    //}
-
     fn is_rubber_banding(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_rubber_banding(
@@ -1545,10 +1533,6 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             ))
         }
     }
-
-    //fn search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static {
-    //    unsafe { TODO: call ffi:gtk_tree_view_get_search_equal_func() }
-    //}
 
     fn selection(&self) -> TreeSelection {
         unsafe {
