@@ -392,6 +392,7 @@ status = "generate"
 name = "Gdk.Cursor"
 status = "generate"
 generate_builder = true
+concurrency = "send"
 
 [[object]]
 name = "Gdk.Device"
