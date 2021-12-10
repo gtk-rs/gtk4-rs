@@ -855,6 +855,10 @@ manual_traits = ["ComboBoxExtManual"]
     manual = true # use Option<u32>
     doc_trait_name = "ComboBoxExtManual"
     [[object.function]]
+    name = "get_row_separator_func"
+    # getting the callbacks that could have been set from C is impossible and the api itself is not that useful
+    ignore = true
+    [[object.function]]
     name = "set_row_separator_func"
         [[object.function.parameter]]
         name = "func"
@@ -2451,6 +2455,10 @@ trust_return_value_nullability = false
         name = "end_path"
         const = true
     [[object.function]]
+    name = "get_select_function"
+    # getting the callbacks that could have been set from C is impossible and the api itself is not that useful
+    ignore = true
+    [[object.function]]
     name = "set_select_function"
         [[object.function.parameter]]
         name = "func"
@@ -2562,6 +2570,10 @@ manual_traits = ["TreeViewExtManual"]
         name = "path"
         const = true
     [[object.function]]
+    name = "get_row_separator_func"
+    # getting the callbacks that could have been set from C is impossible and the api itself is not that useful
+    ignore = true
+    [[object.function]]
     name = "set_row_separator_func"
         [[object.function.parameter]]
         name = "func"
@@ -2580,6 +2592,10 @@ manual_traits = ["TreeViewExtManual"]
     [[object.function]]
     name = "get_hover_expand"
     rename = "hover_expands"
+    [[object.function]]
+    name = "get_search_equal_func"
+    # getting the callbacks that could have been set from C is impossible and the api itself is not that useful
+    ignore = true
     [[object.function]]
     name = "set_search_equal_func"
     doc_ignore_parameters = ["search_user_data", "search_destroy"]
