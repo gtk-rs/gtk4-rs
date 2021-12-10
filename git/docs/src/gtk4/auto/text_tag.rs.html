@@ -4761,7 +4761,7 @@
     <span class="doccomment">/// Tags should be in the [`TextTagTable`][crate::TextTagTable] for a given</span>
     <span class="doccomment">/// [`TextBuffer`][crate::TextBuffer] before using them with that buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `Gtk::TextBuffer::create_tag()` is the best way to create tags.</span>
+    <span class="doccomment">/// [`TextBufferExtManual::create_tag()`][crate::prelude::TextBufferExtManual::create_tag()] is the best way to create tags.</span>
     <span class="doccomment">/// See “gtk4-demo” for numerous examples.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For each property of [`TextTag`][crate::TextTag], there is a “set” property, e.g.</span>
@@ -5809,7 +5809,7 @@
     <span class="doccomment">/// attribute. When adding a tag to a tag table, it will be assigned</span>
     <span class="doccomment">/// the highest priority in the table by default; so normally the</span>
     <span class="doccomment">/// precedence of a set of tags is the order in which they were added</span>
-    <span class="doccomment">/// to the table, or created with `Gtk::TextBuffer::create_tag()`,</span>
+    <span class="doccomment">/// to the table, or created with [`TextBufferExtManual::create_tag()`][crate::prelude::TextBufferExtManual::create_tag()],</span>
     <span class="doccomment">/// which adds the tag to the buffer’s table automatically.</span>
     <span class="doccomment">/// ## `priority`</span>
     <span class="doccomment">/// the new priority</span>
