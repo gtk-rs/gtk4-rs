@@ -18,7 +18,7 @@ Therefore, we create a `style.css` file with the following content:
 ```
 
 Next, we need to load the CSS file in the startup step of the application.
-As usual, the widgets are created during the activate step.
+As usual, the widgets are created during the "activate" step.
 
 <span class="filename">Filename: listings/css/1/main.rs</span>
 
@@ -64,9 +64,9 @@ Now only the font of our button becomes magenta.
 ## Adding Your Own Style Class
 
 With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can also add our own style classes to widgets.
-One use case for this is when you want a rule to apply to a hand-picked set of widgets.
+One use-case for this is when you want a rule to apply to a hand-picked set of widgets.
 For example if we have two buttons, but want only one of them to have magenta font.
-Relying on one of the style classes GTK adds will not help since both will get the same ones.
+Relying on one of the style classes which GTK adds will not help since both will get the same ones.
 Which is why we add the style class `button-1` to the first one.
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
@@ -113,6 +113,10 @@ The name is specified after the `#` symbol.
 {{#rustdoc_include ../listings/css/4/style.css}}
 ```
 
+Again, the style rule only applies to the first button.
+
+<div style="text-align:center"><img src="img/css_4.png"/></div>
+
 
 ## CSS Rules Provided by GTK
 
@@ -121,7 +125,7 @@ For example, if you want to indicate that your button leads to a destructive or 
 All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
 Most widgets will document these rules in their documentation under [CSS nodes](../docs/gtk4/struct.Button.html#css-nodes).
 
-<span class="filename">Filename: listings/css/4/main.rs</span>
+<span class="filename">Filename: listings/css/5/main.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/css/5/main.rs:buttons}}
@@ -133,7 +137,8 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 
 We can also add style classes with the interface builder.
 Just add the `<style>` element to your widget.
-The `<style>` element is documented together with [`gtk::Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable). 
+The `<style>` element is documented together with [`gtk::Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
+Adding again destructive and suggested buttons, would then look like this:
 
 <span class="filename">Filename: listings/css/6/window/window.ui</span>
 
@@ -174,7 +179,7 @@ Your browser does not support the video tag.
 
 ## Nodes
 
-In the previous examples a widget always corresponded to a single CSS node.
+In the previous examples, a widget always corresponded to a single CSS node.
 This is not always the case.
 For example, [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) has multiple CSS nodes.
 Let us see how that works.
@@ -190,7 +195,7 @@ First, we create a single `MenuButton`.
 You can make a `MenuButton` show an icon or a label.
 If you choose to do neither of those, as we currently do, it shows an image displaying an arrow.
 
-An inheritance tree of [CSS nodes](../docs/gtk4/struct.MenuButton.html#css-nodes) displays this situation
+An inheritance tree of [CSS nodes](../docs/gtk4/struct.MenuButton.html#css-nodes) displays this situation:
 
 ```
 menubutton
@@ -240,7 +245,7 @@ Voilà, the arrow is replaced with the icon we selected ourselves.
 
 ## Exported Colors
 
-Now that we know how to use CSS, it is time to update our To-Do app a bit.
+Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
 Let us add that!
@@ -248,8 +253,8 @@ Let us add that!
 The class `TodoRow` inherits from `gtk::Box`, so we could just match for the node `box`.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
-When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name) we change the name of the CSS node of a widget.
-In our case, the widget `TodoRow` now corresponds to the node `todo_row`.
+When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of a widget.
+In our case, the widget `TodoRow` now corresponds to the node `todo-row`.
 
 <span class="filename">Filename: listings/todo_app/3/todo_row/imp.rs</span>
 
@@ -258,10 +263,10 @@ In our case, the widget `TodoRow` now corresponds to the node `todo_row`.
 ```
 
 Now we have to decide which color to use for the borders.
-Luckily the stylesheet that GTK uses provides pre-defined colors for various use-cases.
+Luckily, the stylesheet that GTK uses provides pre-defined colors for various use-cases.
 As of this writing, the exported colors of the default stylesheet can only be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
 
-There we find the color `borders`, which should be used for the widgets' border color.
+There we find the color `borders`, which should be used for the widget's border color.
 We can then access the pre-defined color by adding an `@` in front of its name.
 
 <span class="filename">Filename: listings/todo_app/3/style.css</span>
@@ -275,8 +280,9 @@ Now our tasks have borders around them, and we are one step further in finishing
 <div style="text-align:center"><img src="img/todo_app_change.png"/></div>
 
 This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
-In the end, we find that GTK provides a style class to add borders to a node.
-This seems nicer, so we will use that instead by adding the style class `frame` to our `TodoRow`.
+In the end, we find that GTK provides a style rule to add borders to a node.
+This seems nicer, so we will use that instead.
+We match the style rule by adding the style class `frame` to our `TodoRow`.
 
 <span class="filename">Filename: listings/todo_app/4/todo_row/todo_row.ui</span>
 
@@ -287,9 +293,9 @@ This seems nicer, so we will use that instead by adding the style class `frame` 
 ## Conclusion
 
 There are surely enough ways to define CSS rules.
-Let briefly recap the syntax we learned.
-The following rule matches the node `arrow` which is a descendant of the node `button` with the name `button-1` and the style classes `toggle` and `text-button`.
-To actually apply we then also have to hover over `arrow`.
+Let us briefly recap the syntax we learned.
+The following rule matches the node `arrow`, which is a descendant of the node `button` with the name `button-1` and the style classes `toggle` and `text-button`.
+The rule then actually applies, when we also hover over `arrow`.
 
 ```css
 button#button-1.toggle.text-button arrow:hover {}
