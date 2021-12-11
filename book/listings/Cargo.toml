@@ -40,6 +40,44 @@ path = "actions/6/main.rs"
 name = "actions_7"
 path = "actions/7/main.rs"
 
+# css
+[[bin]]
+name = "css_1"
+path = "css/1/main.rs"
+
+[[bin]]
+name = "css_2"
+path = "css/2/main.rs"
+
+[[bin]]
+name = "css_3"
+path = "css/3/main.rs"
+
+[[bin]]
+name = "css_4"
+path = "css/4/main.rs"
+
+[[bin]]
+name = "css_5"
+path = "css/5/main.rs"
+
+[[bin]]
+name = "css_6"
+path = "css/6/main.rs"
+
+[[bin]]
+name = "css_7"
+path = "css/7/main.rs"
+
+[[bin]]
+name = "css_8"
+path = "css/8/main.rs"
+
+[[bin]]
+name = "css_9"
+path = "css/9/main.rs"
+
+
 # gobject_memory_management
 [[bin]]
 name = "gobject_memory_management_1"
@@ -203,3 +241,9 @@ path = "todo_app/2/main.rs"
 [[bin]]
 name = "todo_app_3"
 path = "todo_app/3/main.rs"
+
+
+[[bin]]
+name = "todo_app_4"
+path = "todo_app/4/main.rs"
+

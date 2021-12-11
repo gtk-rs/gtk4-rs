@@ -68,3 +68,4 @@ jobs:
           check_filenames: true
           path: book
           ignore_words_list: "crate"
+          skip: "*.svg"

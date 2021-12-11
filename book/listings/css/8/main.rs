@@ -1,41 +1,24 @@
-mod todo_object;
-mod todo_row;
-mod utils;
 mod window;
 
 use gdk::Display;
 use gtk::gdk;
 use gtk::prelude::*;
-use gtk::Application;
-use gtk::{CssProvider, StyleContext};
+use gtk::{Application, CssProvider, StyleContext};
 
-use window::Window;
+use crate::window::Window;
 
 fn main() {
-    // Initialize logger
-    pretty_env_logger::init();
-
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.Todo")
+        .application_id("org.gtk-rs.example")
         .build();
 
     // Connect to signals
-    app.connect_startup(|app| {
-        setup_shortcuts(app);
-        load_css()
-    });
+    app.connect_startup(|_| load_css());
     app.connect_activate(build_ui);
 
     // Run the application
     app.run();
-}
-
-fn setup_shortcuts(app: &Application) {
-    app.set_accels_for_action("win.filter('All')", &["<primary>a"]);
-    app.set_accels_for_action("win.filter('Open')", &["<primary>o"]);
-    app.set_accels_for_action("win.filter('Done')", &["<primary>d"]);
-    app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
 }
 
 fn load_css() {
@@ -52,7 +35,7 @@ fn load_css() {
 }
 
 fn build_ui(app: &Application) {
-    // Create a new custom window and show it
+    // Create a new window and show it
     let window = Window::new(app);
-    window.present();
+    window.show();
 }
