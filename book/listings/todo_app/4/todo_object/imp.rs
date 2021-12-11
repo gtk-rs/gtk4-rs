@@ -1,4 +1,4 @@
-use glib::{ParamFlags, ParamSpec, Value};
+use glib::{ParamFlags, ParamSpec, ParamSpecBoolean, ParamSpecString, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
