@@ -241,3 +241,9 @@ path = "todo_app/2/main.rs"
 [[bin]]
 name = "todo_app_3"
 path = "todo_app/3/main.rs"
+
+
+[[bin]]
+name = "todo_app_4"
+path = "todo_app/4/main.rs"
+

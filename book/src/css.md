@@ -146,7 +146,6 @@ Then, create a CSS rule that applies to `button` nodes with the style class `but
 
 Sometimes you want your CSS rules to apply to even more precise conditions than style classes allow.
 That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
-With pseudo-classes you can specify a specific state of the CSS node.
 Let us use a single button with the style class `button_1` added to demonstrate this concept.
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
@@ -255,11 +254,12 @@ Let us change that!
 
 First, we will add the style class `todo_row` to our `TodoRow`.
 
-<span class="filename">Filename: listings/todo_app/3/todo_row/todo_row.ui</span>
+<span class="filename">Filename: listings/todo_app/3/todo_row/imp.rs</span>
 
-```xml
-{{#rustdoc_include ../listings/todo_app/3/todo_row/todo_row.ui}}
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/3/todo_row/imp.rs:object_subclass}}
 ```
+
 
 One way to make the rows set apart a bit is to add borders.
 But which color to use for the borders?
@@ -280,6 +280,13 @@ We can access pre-defined colors by adding an `@` in front of their names.
 Now our tasks have borders around them, and we are one step further in finishing our To-Do app.
 
 <div style="text-align:center"><img src="img/todo_app_change.png"/></div>
+
+
+<span class="filename">Filename: listings/todo_app/4/todo_row/todo_row.ui</span>
+
+```xml
+{{#rustdoc_include ../listings/todo_app/4/todo_row/todo_row.ui}}
+```
 
 ## Conclusion
 

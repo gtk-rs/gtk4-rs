@@ -1,4 +1,4 @@
-combobox arrow {
+menubutton arrow {
   color: magenta;
   -gtk-icon-source: -gtk-icontheme('format-justify-fill-symbolic');
 }
