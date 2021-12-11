@@ -217,15 +217,18 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 
 <div style="text-align:center"><img src="img/css_8.png"/></div>
 
-## Custom GTK properties
+## Images
 
 Now that we know how to access the `arrow` node, we can take this opportunity to change its icon.
 When you need a new icon you will probably want to have a look at the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/) app.
 Scroll through the provided icons and choose one from the pre-installed system icons section. For now, we will take the icon with the semantic name "format-justify-fill-symbolic".
 
-GTK provides its own parameter for loading icons in buttons and expanders: `-gtk-icon-source`.
+In order to replace the arrow we can use a GTK-specific property `-gtk-icon-source`.
 You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
 
+The icon can then be loaded with `-gtk-icontheme`.
+Here, GTK extends CSS syntax for images and icons.
+More can be found [here](https://docs.gtk.org/gtk4/css-properties.html)
 
 <span class="filename">Filename: listings/css/9/style.css</span>
 
