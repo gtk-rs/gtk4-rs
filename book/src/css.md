@@ -67,7 +67,7 @@ With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_cs
 One use case for this is when you want a rule to apply to a hand-picked set of widgets.
 For example if we have two buttons, but want only one of them to have magenta font.
 Relying on one of the style classes GTK adds will not help since both will get the same ones.
-Which is why we add the style class `button_1` to the first one.
+Which is why we add the style class `button-1` to the first one.
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
 
@@ -75,7 +75,7 @@ Which is why we add the style class `button_1` to the first one.
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
-Then, we create a CSS rule that applies to `button` nodes with the style class `button_1`.
+Then, we create a CSS rule that applies to `button` nodes with the style class `button-1`.
 
 <span class="filename">Filename: listings/css/3/style.css</span>
 
@@ -88,7 +88,7 @@ We can see that this way only the first button gets colored magenta.
 <div style="text-align:center"><img src="img/css_3.png"/></div>
 
 
-## Specifying a Widget Name
+## Specifying Name of a Widget
 
 
 If you want that your rule only applies to a single widget, matching with style classes can be fine.
@@ -98,19 +98,19 @@ This way your intentions are more clear, compared to matching with style classes
 Again, we have two buttons but want to color only one of them magenta.
 We set the name of the first one with [`set_widget_name`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name).
 
-<span class="filename">Filename: listings/css/6/main.rs</span>
+<span class="filename">Filename: listings/css/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/6/main.rs:buttons}}
+{{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
-Then, create a CSS rule that applies to `button` nodes with the name `button_1`.
+Then, create a CSS rule that applies to `button` nodes with the name `button-1`.
 The name is specified after the `#` symbol.
 
-<span class="filename">Filename: listings/css/6/style.css</span>
+<span class="filename">Filename: listings/css/4/style.css</span>
 
 ```css
-{{#rustdoc_include ../listings/css/6/style.css}}
+{{#rustdoc_include ../listings/css/4/style.css}}
 ```
 
 
@@ -124,10 +124,10 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 <span class="filename">Filename: listings/css/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/4/main.rs:buttons}}
+{{#rustdoc_include ../listings/css/5/main.rs:buttons}}
 ```
 
-<div style="text-align:center"><img src="img/css_4.png"/></div>
+<div style="text-align:center"><img src="img/css_5.png"/></div>
 
 ## Interface Builder
 
@@ -135,19 +135,18 @@ We can also add style classes with the interface builder.
 Just add the `<style>` element to your widget.
 The `<style>` element is documented together with [`gtk::Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable). 
 
-<span class="filename">Filename: listings/css/5/window/window.ui</span>
+<span class="filename">Filename: listings/css/6/window/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/css/5/window/window.ui}}
+{{#rustdoc_include ../listings/css/6/window/window.ui}}
 ```
-
 
 
 ## Pseudo-classes
 
 Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
 That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
-Let us use a single button with the style class `button_1` added to demonstrate this concept.
+Let us use a single button with name `button-1` to demonstrate this concept.
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
 
@@ -155,8 +154,7 @@ Let us use a single button with the style class `button_1` added to demonstrate 
 {{#rustdoc_include ../listings/css/7/window/window.ui}}
 ```
 
-By adding the pseudo-class `hover`, we say that we only want this rule to apply for `button` nodes with style class `button_1` over which we currently hover the mouse pointer.
-We also set the `background-image` to `none` and add a bit of transition time.
+By adding the pseudo-class `hover`, we say that we want this rule to only apply to a `button` node with name `button-1` when hovering over it with the mouse pointer.
 
 <span class="filename">Filename: listings/css/7/style.css</span>
 
@@ -178,10 +176,10 @@ Your browser does not support the video tag.
 
 In the previous examples a widget always corresponded to a single CSS node.
 This is not always the case.
-For example, [`gtk::ComboBoxText`](../docs/gtk4/struct.ComboBoxText.html) has multiple CSS nodes.
-Let us see how it works.
+For example, [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) has multiple CSS nodes.
+Let us see how that works.
 
-First, we create a `ComboBoxText`, populate it with the entries "Factory", "Home" and "Subway" and choose "Factory" as the default entry.
+First, we create a single `MenuButton`.
 
 
 <span class="filename">Filename: listings/css/8/window/window.ui</span>
@@ -189,12 +187,10 @@ First, we create a `ComboBoxText`, populate it with the entries "Factory", "Home
 ```xml
 {{#rustdoc_include ../listings/css/8/window/window.ui}}
 ```
+You can make a `MenuButton` show an icon or a label.
+If you choose to do neither of those, as we currently do, it shows an image displaying an arrow.
 
-A `ComboBoxText` contains a label and a small image of an arrow.
-Let us say we want to give the arrow a different color, but leave the label as is.
-How would we do that?
-
-We see the answer by checking the CSS nodes of [`gtk::ComboBox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ComboBox.html#css-nodes), the more general form of `ComboBoxText`.
+An inheritance tree of [CSS nodes](../docs/gtk4/struct.MenuButton.html#css-nodes) displays this situation
 
 ```
 menubutton
@@ -203,8 +199,8 @@ menubutton
          ╰── [arrow]
 ```
 
-We see that the `combobox` node has children, which themselves can have children and attached style classes.
-Now we know that we have to add a CSS rule that applies to the `arrow` node, which is a descendant of `combobox`.
+We see that the `menubutton` node has children, which themselves have children and attached style classes.
+Now we know that we have to add a CSS rule that applies to the `arrow` node, which is a descendant of `menubutton`.
 
 <span class="filename">Filename: listings/css/8/style.css</span>
 
@@ -212,22 +208,15 @@ Now we know that we have to add a CSS rule that applies to the `arrow` node, whi
 {{#rustdoc_include ../listings/css/8/style.css}}
 ```
 
-Indeed, we get a `ComboBoxText` with a magenta arrow.
+Indeed, we get a `MenuButton` with a magenta arrow.
 
 <div style="text-align:center"><img src="img/css_8.png"/></div>
 
-## Images
+## Custom GTK properties
 
-Do we really want to settle with an arrow?
-Maybe there are much nicer icons out there you do not even know about yet.
-Fear not, the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/) has you covered there.
-Scroll through the provided icons and choose one from the pre-installed system icons section.
-It's possible to embed icons from other sections too, we'll learn about that in a follow-up chapter.
-
-For now, we will take the icon with the semantic name "format-justify-fill-symbolic".
-In the screenshot below you see that this corresponds to three parallel lines.
-However, on a different system this icon might look different or not exist at all.
-This is why it is typically better to embed the icons you use.
+Now that we know how to access the `arrow` node, we can take this opportunity to change its icon.
+When you need a new icon you will probably want to have a look at the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/) app.
+Scroll through the provided icons and choose one from the pre-installed system icons section. For now, we will take the icon with the semantic name "format-justify-fill-symbolic".
 
 GTK provides its own parameter for loading icons in buttons and expanders: `-gtk-icon-source`.
 You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
@@ -239,18 +228,28 @@ You can find the full list of supported parameters in GTK's [documentation](http
 {{#rustdoc_include ../listings/css/9/style.css}}
 ```
 
-Voilà, the arrow is replaced with the one we selected ourselves. 
+Voilà, the arrow is replaced with the icon we selected ourselves. 
 
 <div style="text-align:center"><img src="img/css_9.png"/></div>
+
+>In the screenshot you see that the icon we chose corresponds to three parallel lines on my system.
+>However, on a different system this icon might look different or not exist at all.
+>This is why it is recommended to embed the icons you use.
+>We will learn how to do this in a follow-up chapter.
 
 
 ## Exported Colors
 
 Now that we know how to use CSS, it is time to update our To-Do app a bit.
 Before, the individual tasks were a bit hard to distinguish.
-Let us change that!
+It would be nice if the todo rows would be surrounded by borders.
+Let us add that!
 
-First, we will add the style class `todo_row` to our `TodoRow`.
+The class `TodoRow` inherits from `gtk::Box`, so we could just match for the node `box`.
+However, if we create a custom widget we might as well give it its own CSS name.
+Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
+When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name) we change the name of the CSS node of a widget.
+In our case, the widget `TodoRow` now corresponds to the node `todo_row`.
 
 <span class="filename">Filename: listings/todo_app/3/todo_row/imp.rs</span>
 
@@ -258,16 +257,12 @@ First, we will add the style class `todo_row` to our `TodoRow`.
 {{#rustdoc_include ../listings/todo_app/3/todo_row/imp.rs:object_subclass}}
 ```
 
-
-One way to make the rows set apart a bit is to add borders.
-But which color to use for the borders?
-Our To-Do app should represent a real world app, so we will not be satisfied with choosing yellow and calling it a day.
-The stylesheet that GTK uses pre-defined colors for various use-cases, so let us have a look.
-As of this writing, the exported colors of the default stylesheet can be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
+Now we have to decide which color to use for the borders.
+Luckily the stylesheet that GTK uses provides pre-defined colors for various use-cases.
+As of this writing, the exported colors of the default stylesheet can only be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
 
 There we find the color `borders`, which should be used for the widgets' border color.
-Perfect!
-We can access pre-defined colors by adding an `@` in front of their names.
+We can then access the pre-defined color by adding an `@` in front of its name.
 
 <span class="filename">Filename: listings/todo_app/3/style.css</span>
 
@@ -279,6 +274,9 @@ Now our tasks have borders around them, and we are one step further in finishing
 
 <div style="text-align:center"><img src="img/todo_app_change.png"/></div>
 
+This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
+In the end, we find that GTK provides a style class to add borders to a node.
+This seems nicer, so we will use that instead by adding the style class `frame` to our `TodoRow`.
 
 <span class="filename">Filename: listings/todo_app/4/todo_row/todo_row.ui</span>
 
@@ -288,8 +286,13 @@ Now our tasks have borders around them, and we are one step further in finishing
 
 ## Conclusion
 
-We now learned how to use CSS to style our apps.
-We can make our CSS rules as specific as we want them to be.
-Even targeting nodes deep within the inheritance tree is not a problem.
+There are surely enough ways to define CSS rules.
+Let briefly recap the syntax we learned.
+The following rule matches the node `arrow` which is a descendant of the node `button` with the name `button-1` and the style classes `toggle` and `text-button`.
+To actually apply we then also have to hover over `arrow`.
+
+```css
+button#button-1.toggle.text-button arrow:hover {}
+```
 
 In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.
