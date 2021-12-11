@@ -3,8 +3,8 @@
 When you want to modify the style of your website, you use [CSS](https://de.wikipedia.org/wiki/Cascading_Style_Sheets).
 Similarly, GTK supports its own variant of CSS in order to style your app.
 
-> We will not explain every piece of CSS syntax used in this chapter.
-> If you are new to it or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
+> We will not explain every piece of syntax used in this chapter.
+> If you are new to CSS or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
 Let us say we have a button and we want to set its font color to magenta.
 Every type of widget has a corresponding CSS node.
@@ -43,16 +43,11 @@ We did not specify for which button the rule should apply, so it was applied to 
 >```
 > With the pause button you can toggle whether your CSS code is active or not.
 
-## Classes
+## Style Classes Applied by GTK
 
 [Class selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors) are one way to choose which specific elements a CSS rule applies to.
-Let us look at few different scenarios where CSS classes are involved.
-
-
-### Classes Applied by GTK
-
 GTK adds style classes to many of its widgets, often depending on their content.
-A [`gtk::Button`](../docs/gtk4/struct.Button.html#css-nodes), for example, will get the `.text-button` style class when its content is a label.
+A [`gtk::Button`](../docs/gtk4/struct.Button.html#css-nodes), for example, will get the `text-button` style class when its content is a label.
 That is why we create a new CSS rule which only applies to `button` nodes with the style class `text_button`.
 
 
@@ -62,12 +57,17 @@ That is why we create a new CSS rule which only applies to `button` nodes with t
 {{#rustdoc_include ../listings/css/2/style.css}}
 ```
 
+Now only the font of our button becomes magenta.
+
 <div style="text-align:center"><img src="img/css_2.png"/></div>
 
-### Applying Your Own Class
+## Adding Your Own Style Class
 
-With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can add our own style classes to widgets.
-One use case for this is when you want a rule to apply to hand-picked set of widgets. 
+With [`add_css_class`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.add_css_class) we can also add our own style classes to widgets.
+One use case for this is when you want a rule to apply to a hand-picked set of widgets.
+For example if we have two buttons, but want only one of them to have magenta font.
+Relying on one of the style classes GTK adds will not help since both will get the same ones.
+Which is why we add the style class `button_1` to the first one.
 
 <span class="filename">Filename: listings/css/3/main.rs</span>
 
@@ -75,7 +75,7 @@ One use case for this is when you want a rule to apply to hand-picked set of wid
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
-Then, create a CSS rule that applies to `button` nodes with the style class `button_1`.
+Then, we create a CSS rule that applies to `button` nodes with the style class `button_1`.
 
 <span class="filename">Filename: listings/css/3/style.css</span>
 
@@ -83,19 +83,42 @@ Then, create a CSS rule that applies to `button` nodes with the style class `but
 {{#rustdoc_include ../listings/css/3/style.css}}
 ```
 
-This way, only the first button gets colored magenta.
-If you want to make sure that CSS rules only apply to a hand-selected set of nodes, adding your own style classes is your best bet.
-Just make sure that you do not choose a name for your style class that GTK either adds itself or provides CSS rules for.
-This brings us to the next point.
+We can see that this way only the first button gets colored magenta.
 
 <div style="text-align:center"><img src="img/css_3.png"/></div>
 
-### CSS Rules Provided by GTK
 
-Certain styles are common enough that GTK provides preset CSS rules for them in form of style classes.
-If you want to indicate that your button leads to a destructive or suggested action, you can add the "destructive-action" or "suggested-action" style class to it.
-You do not have to provide a CSS file here.
-After you have added the style class, the `button` node will match the CSS rule provided by GTK.
+## Specifying a Widget Name
+
+
+If you want that your rule only applies to a single widget, matching with style classes can be fine.
+Ideally however, you would give the widget a name and match with that name instead.
+This way your intentions are more clear, compared to matching with style classes that can apply to multiple widgets. 
+
+Again, we have two buttons but want to color only one of them magenta.
+We set the name of the first one with [`set_widget_name`](../docs/gtk4/prelude/trait.WidgetExt.html#tymethod.set_widget_name).
+
+<span class="filename">Filename: listings/css/6/main.rs</span>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/css/6/main.rs:buttons}}
+```
+
+Then, create a CSS rule that applies to `button` nodes with the name `button_1`.
+The name is specified after the `#` symbol.
+
+<span class="filename">Filename: listings/css/6/style.css</span>
+
+```css
+{{#rustdoc_include ../listings/css/6/style.css}}
+```
+
+
+## CSS Rules Provided by GTK
+
+Certain styles are common enough that GTK provides CSS rules for them.
+For example, if you want to indicate that your button leads to a destructive or suggested action you do not have to provide your own CSS rules.
+All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
 Most widgets will document these rules in their documentation under [CSS nodes](../docs/gtk4/struct.Button.html#css-nodes).
 
 <span class="filename">Filename: listings/css/4/main.rs</span>
@@ -106,11 +129,11 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 
 <div style="text-align:center"><img src="img/css_4.png"/></div>
 
-### Interface Builder
+## Interface Builder
 
 We can also add style classes with the interface builder.
 Just add the `<style>` element to your widget.
-The `<style>` element is documented [here](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable). 
+The `<style>` element is documented together with [`gtk::Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable). 
 
 <span class="filename">Filename: listings/css/5/window/window.ui</span>
 
@@ -118,33 +141,11 @@ The `<style>` element is documented [here](../docs/gtk4/struct.Widget.html#gtkwi
 {{#rustdoc_include ../listings/css/5/window/window.ui}}
 ```
 
-## Widget Name
-
-Before, we wanted to apply a rule to a single widget.
-In order to achieve that we applied a style class to the widget and then matched this class with our CSS rule.
-This works, but if you want to apply a style to a single widget you should rather give it a name instead of add a class to it.
-Specifying the name in a CSS rule indicates clearly that it applies only to a single widget. 
-
-Specify the name after a `#` symbol.
-
-<span class="filename">Filename: listings/css/6/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/css/6/main.rs:buttons}}
-```
-
-Then, create a CSS rule that applies to `button` nodes with the style class `button_1`.
-
-<span class="filename">Filename: listings/css/6/style.css</span>
-
-```css
-{{#rustdoc_include ../listings/css/6/style.css}}
-```
 
 
 ## Pseudo-classes
 
-Sometimes you want your CSS rules to apply to even more precise conditions than style classes allow.
+Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
 That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
 Let us use a single button with the style class `button_1` added to demonstrate this concept.
 
@@ -196,13 +197,10 @@ How would we do that?
 We see the answer by checking the CSS nodes of [`gtk::ComboBox`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ComboBox.html#css-nodes), the more general form of `ComboBoxText`.
 
 ```
-combobox
-├── box.linked
-│   ╰── button.combo
-│       ╰── box
-│           ├── cellview
-│           ╰── arrow
-╰── window.popup
+menubutton
+╰── button.toggle
+    ╰── <content>
+         ╰── [arrow]
 ```
 
 We see that the `combobox` node has children, which themselves can have children and attached style classes.
@@ -216,7 +214,7 @@ Now we know that we have to add a CSS rule that applies to the `arrow` node, whi
 
 Indeed, we get a `ComboBoxText` with a magenta arrow.
 
-<div style="text-align:center"><img src="img/css_7.png"/></div>
+<div style="text-align:center"><img src="img/css_8.png"/></div>
 
 ## Images
 
@@ -243,7 +241,7 @@ You can find the full list of supported parameters in GTK's [documentation](http
 
 Voilà, the arrow is replaced with the one we selected ourselves. 
 
-<div style="text-align:center"><img src="img/css_8.png"/></div>
+<div style="text-align:center"><img src="img/css_9.png"/></div>
 
 
 ## Exported Colors
