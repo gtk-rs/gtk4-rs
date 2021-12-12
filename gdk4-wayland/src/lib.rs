@@ -7,6 +7,8 @@ pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 pub use wayland_client;
 
 #[cfg(any(feature = "v4_4", feature = "dox"))]
