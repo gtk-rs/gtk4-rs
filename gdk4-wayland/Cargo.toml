@@ -14,10 +14,11 @@ version = "0.3.0"
 rust-version = "1.56"
 
 [features]
-v4_4 = ["ffi/v4_4", "xkb"]
-dox = ["ffi/dox", "xkb", "wayland_crate", "egl"]
+v4_4 = ["ffi/v4_4"]
+dox = ["ffi/dox", "xkb_crate", "wayland_crate", "egl"]
 wayland_crate = ["wayland-client"]
 egl = ["khronos-egl"]
+xkb_crate = ["xkb"]
 
 [package.metadata.docs.rs]
 features = ["dox"]

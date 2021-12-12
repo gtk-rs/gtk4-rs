@@ -11,7 +11,12 @@ use wayland_client::{
     sys::client::wl_proxy,
     Proxy,
 };
-#[cfg(any(feature = "v4_4", feature = "dox"))]
+
+#[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), feature = "dox"))]
+#[cfg_attr(
+    feature = "dox",
+    doc(cfg(all(feature = "v4_4", feature = "xkb_crate")))
+)]
 use xkb::Keymap;
 
 impl WaylandDevice {
@@ -48,8 +53,11 @@ impl WaylandDevice {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), feature = "dox"))]
+    #[cfg_attr(
+        feature = "dox",
+        doc(cfg(all(feature = "v4_4", feature = "xkb_crate")))
+    )]
     #[doc(alias = "gdk_wayland_device_get_xkb_keymap")]
     #[doc(alias = "get_xkb_keymap")]
     pub fn xkb_keymap(&self) -> Option<Keymap> {

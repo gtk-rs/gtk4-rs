@@ -11,10 +11,6 @@
 )]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
-mod manual;
-
-pub use manual::*;
-
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
@@ -187,7 +183,7 @@ extern "C" {
     pub fn gdk_wayland_device_get_wl_seat(device: *mut GdkWaylandDevice) -> gpointer;
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-    pub fn gdk_wayland_device_get_xkb_keymap(device: *mut GdkWaylandDevice) -> *mut xkb_keymap;
+    pub fn gdk_wayland_device_get_xkb_keymap(device: *mut GdkWaylandDevice) -> gpointer;
 
     //=========================================================================
     // GdkWaylandDisplay

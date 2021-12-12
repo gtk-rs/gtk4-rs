@@ -25,15 +25,11 @@ features = ["dox"]
 name = "gdk4_wayland_sys"
 
 [features]
-dox = ["xkbcommon-sys"]
-v4_4 = ["xkbcommon-sys"]
+dox = []
+v4_4 = []
 
 [dependencies]
 libc = "0.2"
-
-[dependencies.xkbcommon-sys]
-version = "0.7"
-optional = true
 
 [dependencies.glib]
 package = "glib-sys"
