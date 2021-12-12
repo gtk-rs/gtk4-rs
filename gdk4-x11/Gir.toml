@@ -15,8 +15,6 @@ generate = [
     "GdkX11.X11DeviceType",
     "GdkX11.X11Drag",
     "GdkX11.X11GLContext",
-    "GdkX11.X11Monitor",
-    "GdkX11.X11Surface",
 ]
 
 manual = [
@@ -94,6 +92,9 @@ final_type = false
 name = "GdkX11.*"
 status = "generate"
     [[object.function]]
+    pattern = "(x11_get_xatom_by_name_for_display|x11_get_xatom_name_for_display)"
+    manual = true 
+    [[object.function]]
     name = "x11_free_compound_text"
     ignore = true
     [[object.function]]
@@ -123,20 +124,36 @@ status = "generate"
     name = "get_egl_display"
     manual = true
     [[object.function]]
-    name = "get_xdisplay"
-    manual = true
-    [[object.function]]
-    name = "get_xscreen"
+    pattern = "get_x.*"
     manual = true
     [[object.function]]
     name = "text_property_to_text_list"
     # TODO: requires a manual implementation
     manual = true
 
+[[object]]
+name = "GdkX11.X11Monitor"
+status = "generate"
+    [[object.function]]
+    name = "get_output"
+    manual = true
 
 [[object]]
 name = "GdkX11.X11Screen"
 status = "generate"
     [[object.function]]
     name = "get_xscreen"
+    manual = true
+    [[object.function]]
+    name = "get_monitor_output"
+    manual = true
+
+[[object]]
+name = "GdkX11.X11Surface"
+status = "generate"
+    [[object.function]]
+    name = "get_xid"
+    manual = true
+    [[object.function]]
+    name = "lookup_for_display"
     manual = true

@@ -7,6 +7,8 @@ pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 pub use x11;
 
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
@@ -21,7 +23,12 @@ mod auto;
 
 pub mod builders;
 
+mod functions;
 mod x11_display;
+mod x11_monitor;
 mod x11_screen;
+mod x11_surface;
 
+pub use auto::functions::*;
 pub use auto::*;
+pub use functions::*;

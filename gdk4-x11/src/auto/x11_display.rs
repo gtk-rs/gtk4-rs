@@ -8,7 +8,6 @@ use glib::translate::*;
 use std::fmt;
 use std::mem;
 use std::ptr;
-use x11::xlib;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Display")]
@@ -128,18 +127,6 @@ impl X11Display {
     #[doc(alias = "get_user_time")]
     pub fn user_time(&self) -> u32 {
         unsafe { ffi::gdk_x11_display_get_user_time(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gdk_x11_display_get_xcursor")]
-    #[doc(alias = "get_xcursor")]
-    pub fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
-        unsafe { ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gdk_x11_display_get_xrootwindow")]
-    #[doc(alias = "get_xrootwindow")]
-    pub fn xrootwindow(&self) -> xlib::Window {
-        unsafe { ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_display_grab")]

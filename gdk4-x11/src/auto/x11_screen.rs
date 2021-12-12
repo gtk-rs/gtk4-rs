@@ -9,7 +9,6 @@ use glib::translate::*;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
-use x11::xlib;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Screen")]
@@ -25,12 +24,6 @@ impl X11Screen {
     #[doc(alias = "get_current_desktop")]
     pub fn current_desktop(&self) -> u32 {
         unsafe { ffi::gdk_x11_screen_get_current_desktop(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gdk_x11_screen_get_monitor_output")]
-    #[doc(alias = "get_monitor_output")]
-    pub fn monitor_output(&self, monitor_num: i32) -> xlib::XID {
-        unsafe { ffi::gdk_x11_screen_get_monitor_output(self.to_glib_none().0, monitor_num) }
     }
 
     #[doc(alias = "gdk_x11_screen_get_number_of_desktops")]

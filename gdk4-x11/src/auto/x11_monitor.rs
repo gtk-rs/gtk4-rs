@@ -4,7 +4,6 @@
 
 use glib::translate::*;
 use std::fmt;
-use x11::xlib;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Monitor")]
@@ -16,12 +15,6 @@ glib::wrapper! {
 }
 
 impl X11Monitor {
-    #[doc(alias = "gdk_x11_monitor_get_output")]
-    #[doc(alias = "get_output")]
-    pub fn output(&self) -> xlib::XID {
-        unsafe { ffi::gdk_x11_monitor_get_output(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gdk_x11_monitor_get_workarea")]
     #[doc(alias = "get_workarea")]
     pub fn workarea(&self) -> gdk::Rectangle {
