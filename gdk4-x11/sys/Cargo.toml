@@ -30,7 +30,6 @@ v4_4 = []
 
 [dependencies]
 libc = "0.2"
-x11 = "2.18"
 
 [dependencies.gdk]
 package = "gdk4-sys"
