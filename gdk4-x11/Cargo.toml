@@ -13,8 +13,9 @@ include = ["../LICENSE"]
 version = "0.3.0"
 rust-version = "1.56"
 [features]
-v4_4 = ["ffi/v4_4", "khronos-egl"]
-dox = ["ffi/dox", "khronos-egl"]
+v4_4 = ["ffi/v4_4"]
+dox = ["ffi/dox", "egl"]
+egl = ["khronos-egl"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
