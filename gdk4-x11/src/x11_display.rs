@@ -5,15 +5,16 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::ObjectType;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 use std::boxed::Box as Box_;
 use std::mem::transmute;
 use x11::xlib;
 
 impl X11Display {
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
     #[doc(alias = "gdk_x11_display_get_egl_display")]
     #[doc(alias = "get_egl_display")]
     pub fn egl_display(&self) -> Option<egl::Display> {

@@ -9,6 +9,9 @@ pub use gio;
 pub use glib;
 pub use x11;
 
+#[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
+pub use khronos_egl;
 #[macro_use]
 mod rt;
 
