@@ -15,7 +15,11 @@ pub use wayland_client;
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 pub use khronos_egl;
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), feature = "dox"))]
+#[cfg_attr(
+    feature = "dox",
+    doc(cfg(all(feature = "v4_4", feature = "xkb_crate")))
+)]
 pub use xkb;
 
 mod auto;
