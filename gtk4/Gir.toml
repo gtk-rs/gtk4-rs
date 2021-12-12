@@ -500,6 +500,11 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "accelerator_parse_with_keycode"
     manual = true
+    [[object.function]]
+    pattern = "test_accessible_check_.*"
+    # There's no public API to get the property/state/relations values
+    # And so can't be manually re-implemented for now
+    ignore = true
 
 [[object]]
 name = "Gtk.AboutDialog"
@@ -1729,6 +1734,10 @@ trust_return_value_nullability = false
 name = "Gtk.Printer"
 status = "generate"
 cfg_condition = "target_os = \"linux\""
+    [[object.function]]
+    pattern = "(new|get_backend)"
+    # PrinterBackend is not a public API :/
+    ignore = true
 
 [[object]]
 name = "Gtk.PrintJob"

@@ -27,11 +27,6 @@ glib::wrapper! {
 }
 
 impl Printer {
-    //#[doc(alias = "gtk_printer_new")]
-    //pub fn new(name: &str, backend: /*Ignored*/&mut PrintBackend, virtual_: bool) -> Printer {
-    //    unsafe { TODO: call ffi:gtk_printer_new() }
-    //}
-
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`Printer`] objects.
     ///
@@ -54,12 +49,6 @@ impl Printer {
     pub fn compare(&self, b: &Printer) -> i32 {
         unsafe { ffi::gtk_printer_compare(self.to_glib_none().0, b.to_glib_none().0) }
     }
-
-    //#[doc(alias = "gtk_printer_get_backend")]
-    //#[doc(alias = "get_backend")]
-    //pub fn backend(&self) -> /*Ignored*/PrintBackend {
-    //    unsafe { TODO: call ffi:gtk_printer_get_backend() }
-    //}
 
     #[doc(alias = "gtk_printer_get_capabilities")]
     #[doc(alias = "get_capabilities")]
@@ -376,13 +365,6 @@ impl Printer {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl Default for Printer {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Printer object with default parameters")
     }
 }
 
