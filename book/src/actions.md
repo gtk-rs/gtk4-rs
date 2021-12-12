@@ -229,6 +229,11 @@ Your browser does not support the video tag.
  </video>
 </div>
 
+>We changed the icon of the `MenuButton` by setting its property "icon-name" to "open-menu-symbolic".
+>You can find more icons with the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/).
+>Pre-installed system icons such as "open-menu-symbolic" can be used without additional steps.
+>We will learn in the [resources](resources.html) chapter how to bundle the others.
+
 ## Settings
 
 The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
