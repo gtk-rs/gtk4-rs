@@ -4,7 +4,8 @@ use crate::WaylandDisplay;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use glib::translate::ToGlibPtr;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
+#[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
@@ -16,8 +17,8 @@ use wayland_client::{
 };
 
 impl WaylandDisplay {
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
     #[doc(alias = "gdk_wayland_display_get_egl_display")]
     #[doc(alias = "get_egl_display")]
     pub fn egl_display(&self) -> Option<egl::Display> {
