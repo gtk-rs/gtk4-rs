@@ -217,34 +217,6 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 
 <div style="text-align:center"><img src="img/css_8.png"/></div>
 
-## Images
-
-Now that we know how to access the `arrow` node, we can take this opportunity to change its icon.
-When you need a new icon you will probably want to have a look at the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/) app.
-Scroll through the provided icons and choose one from the pre-installed system icons section. For now, we will take the icon with the semantic name "format-justify-fill-symbolic".
-
-In order to replace the arrow we can use a GTK-specific property `-gtk-icon-source`.
-You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
-
-The icon can then be loaded with `-gtk-icontheme`.
-Here, GTK extends CSS syntax for images and icons.
-More can be found [here](https://docs.gtk.org/gtk4/css-properties.html)
-
-<span class="filename">Filename: listings/css/9/style.css</span>
-
-```css
-{{#rustdoc_include ../listings/css/9/style.css}}
-```
-
-Voilà, the arrow is replaced with the icon we selected ourselves. 
-
-<div style="text-align:center"><img src="img/css_9.png"/></div>
-
->In the screenshot you see that the icon we chose corresponds to three parallel lines on my system.
->However, on a different system this icon might look different or not exist at all.
->This is why it is recommended to embed the icons you use.
->We will learn how to do this in a follow-up chapter.
-
 
 ## Exported Colors
 
@@ -301,7 +273,13 @@ The following rule matches the node `arrow`, which is a descendant of the node `
 The rule then actually applies, when we also hover over `arrow`.
 
 ```css
-button#button-1.toggle.text-button arrow:hover {}
+button#button-1.toggle.text-button arrow:hover {
+  color: magenta;
+}
 ```
+
+When the rule applies, the `color` parameter will be set to magenta.
+You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
+
 
 In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.
