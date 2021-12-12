@@ -616,21 +616,6 @@ pub fn test_accessible_assertion_message_role(
     }
 }
 
-//#[doc(alias = "gtk_test_accessible_check_property")]
-//pub fn test_accessible_check_property(accessible: &impl IsA<Accessible>, property: AccessibleProperty, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
-//    unsafe { TODO: call ffi:gtk_test_accessible_check_property() }
-//}
-
-//#[doc(alias = "gtk_test_accessible_check_relation")]
-//pub fn test_accessible_check_relation(accessible: &impl IsA<Accessible>, relation: AccessibleRelation, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
-//    unsafe { TODO: call ffi:gtk_test_accessible_check_relation() }
-//}
-
-//#[doc(alias = "gtk_test_accessible_check_state")]
-//pub fn test_accessible_check_state(accessible: &impl IsA<Accessible>, state: AccessibleState, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::GString> {
-//    unsafe { TODO: call ffi:gtk_test_accessible_check_state() }
-//}
-
 #[doc(alias = "gtk_test_accessible_has_property")]
 pub fn test_accessible_has_property(
     accessible: &impl IsA<Accessible>,
