@@ -13,7 +13,7 @@ impl X11Surface {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_surface_get_xid")]
     #[doc(alias = "get_xid")]
-    pub unsafe fn xid(&self) -> xlib::Window {
+    pub fn xid(&self) -> xlib::Window {
         ffi::gdk_x11_surface_get_xid(self.to_glib_none().0)
     }
 
