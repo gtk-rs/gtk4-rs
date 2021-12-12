@@ -95,13 +95,19 @@
 <span id="21">21</span>
 <span id="22">22</span>
 <span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::WaylandSeat</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
 <span class="kw">use</span> <span class="ident">glib::translate::ToGlibPtr</span>;
-<span class="kw">use</span> <span class="ident">wayland_client::protocol::wl_seat::WlSeat</span>;
-<span class="kw">use</span> <span class="ident">wayland_client::sys::client::wl_proxy</span>;
-<span class="kw">use</span> <span class="ident">wayland_client::Proxy</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
+<span class="kw">use</span> <span class="ident">wayland_client</span>::{<span class="ident">protocol::wl_seat::WlSeat</span>, <span class="ident">sys::client::wl_proxy</span>, <span class="ident">Proxy</span>};
 
 <span class="kw">impl</span> <span class="ident">WaylandSeat</span> {
     <span class="doccomment">/// Returns the Wayland `wl_seat` of a [`gdk::Seat`][crate::gdk::Seat].</span>
@@ -111,6 +117,8 @@
     <span class="doccomment">/// a Wayland `wl_seat`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_seat_get_wl_seat&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_wl_seat&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlSeat</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_seat_get_wl_seat</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);

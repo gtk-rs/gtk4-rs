@@ -99,6 +99,13 @@
 <span id="25">25</span>
 <span id="26">26</span>
 <span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#![<span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]</span>
@@ -108,12 +115,19 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gio</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">wayland_client</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;egl&quot;</span>), <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;egl&quot;</span>))))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">khronos_egl</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb_crate&quot;</span>), <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(
+    <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>,
+    <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_4&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb_crate&quot;</span>)))
+)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">xkb</span>;
 
 <span class="kw">mod</span> <span class="ident">auto</span>;
