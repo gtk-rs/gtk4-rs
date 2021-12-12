@@ -19,7 +19,7 @@ Note that the screencast also shows a button with label "Clear" which will remov
 This will come in handy when we later make the app preserve the tasks between sessions.
 
 Let us start by adding a menu and a header bar to `window.ui`.
-The code should feel familiar to the one in the former chapter.
+After reading the [actions](actions.html) chapter the added code should feel familiar.
 
 <span class="filename">Filename: listings/todo_app/2/window/window.ui</span>
 
