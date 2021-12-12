@@ -1,16 +1,24 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::WaylandDevice;
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use glib::translate::ToGlibPtr;
-use wayland_client::protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat};
-use wayland_client::sys::client::wl_proxy;
-use wayland_client::Proxy;
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+use wayland_client::{
+    protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat},
+    sys::client::wl_proxy,
+    Proxy,
+};
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 use xkb::Keymap;
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
     #[doc(alias = "get_wl_keyboard")]
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_keyboard(&self) -> WlKeyboard {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
@@ -20,6 +28,8 @@ impl WaylandDevice {
 
     #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
     #[doc(alias = "get_wl_pointer")]
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_pointer(&self) -> WlPointer {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
@@ -29,6 +39,8 @@ impl WaylandDevice {
 
     #[doc(alias = "gdk_wayland_device_get_wl_seat")]
     #[doc(alias = "get_wl_seat")]
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_seat(&self) -> WlSeat {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);

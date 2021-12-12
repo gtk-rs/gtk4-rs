@@ -1,12 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::WaylandDisplay;
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use glib::translate::ToGlibPtr;
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 use khronos_egl as egl;
-use wayland_client::protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay};
-use wayland_client::sys::client::wl_proxy;
-use wayland_client::Proxy;
+
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+use wayland_client::{
+    protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay},
+    sys::client::wl_proxy,
+    Proxy,
+};
 
 impl WaylandDisplay {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
@@ -26,6 +33,8 @@ impl WaylandDisplay {
 
     #[doc(alias = "gdk_wayland_display_get_wl_compositor")]
     #[doc(alias = "get_wl_compositor")]
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_compositor(&self) -> WlCompositor {
         unsafe {
             let ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
@@ -35,6 +44,8 @@ impl WaylandDisplay {
 
     #[doc(alias = "gdk_wayland_display_get_wl_display")]
     #[doc(alias = "get_wl_display")]
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_display(&self) -> WlDisplay {
         unsafe {
             let ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
