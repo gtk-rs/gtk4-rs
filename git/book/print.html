@@ -7598,6 +7598,12 @@ For example, an <code>i32</code> variable with value &quot;5&quot; would corresp
 Your browser does not support the video tag.
  </video>
 </div>
+<blockquote>
+<p>We changed the icon of the <code>MenuButton</code> by setting its property &quot;icon-name&quot; to &quot;open-menu-symbolic&quot;.
+You can find more icons with the <a href="https://apps.gnome.org/app/org.gnome.design.IconLibrary/">Icon Library</a>.
+Pre-installed system icons such as &quot;open-menu-symbolic&quot; can be used without additional steps.
+We will learn in the <a href="resources.html">resources</a> chapter how to bundle the others.</p>
+</blockquote>
 <h2 id="settings-1"><a class="header" href="#settings-1">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
@@ -7981,7 +7987,7 @@ Your browser does not support the video tag.
 <p>Note that the screencast also shows a button with label &quot;Clear&quot; which will remove all done tasks.
 This will come in handy when we later make the app preserve the tasks between sessions.</p>
 <p>Let us start by adding a menu and a header bar to <code>window.ui</code>.
-The code should feel familiar to the one in the former chapter.</p>
+After reading the <a href="actions.html">actions</a> chapter the added code should feel familiar.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/window.ui</span></p>
 <pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  &lt;interface&gt;
@@ -10334,29 +10340,6 @@ Now we know that we have to add a CSS rule that applies to the <code>arrow</code
 </code></pre>
 <p>Indeed, we get a <code>MenuButton</code> with a magenta arrow.</p>
 <div style="text-align:center"><img src="img/css_8.png"/></div>
-<h2 id="images"><a class="header" href="#images">Images</a></h2>
-<p>Now that we know how to access the <code>arrow</code> node, we can take this opportunity to change its icon.
-When you need a new icon you will probably want to have a look at the <a href="https://apps.gnome.org/app/org.gnome.design.IconLibrary/">Icon Library</a> app.
-Scroll through the provided icons and choose one from the pre-installed system icons section. For now, we will take the icon with the semantic name &quot;format-justify-fill-symbolic&quot;.</p>
-<p>In order to replace the arrow we can use a GTK-specific property <code>-gtk-icon-source</code>.
-You can find the full list of supported parameters in GTK's <a href="https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties">documentation</a>.</p>
-<p>The icon can then be loaded with <code>-gtk-icontheme</code>.
-Here, GTK extends CSS syntax for images and icons.
-More can be found <a href="https://docs.gtk.org/gtk4/css-properties.html">here</a></p>
-<p><span class="filename">Filename: listings/css/9/style.css</span></p>
-<pre><code class="language-css">menubutton arrow {
-  color: magenta;
-  -gtk-icon-source: -gtk-icontheme('format-justify-fill-symbolic');
-}
-</code></pre>
-<p>Voilà, the arrow is replaced with the icon we selected ourselves. </p>
-<div style="text-align:center"><img src="img/css_9.png"/></div>
-<blockquote>
-<p>In the screenshot you see that the icon we chose corresponds to three parallel lines on my system.
-However, on a different system this icon might look different or not exist at all.
-This is why it is recommended to embed the icons you use.
-We will learn how to do this in a follow-up chapter.</p>
-</blockquote>
 <h2 id="exported-colors"><a class="header" href="#exported-colors">Exported Colors</a></h2>
 <p>Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
@@ -10460,8 +10443,12 @@ We match the style rule by adding the style class <code>frame</code> to our <cod
 Let us briefly recap the syntax we learned.
 The following rule matches the node <code>arrow</code>, which is a descendant of the node <code>button</code> with the name <code>button-1</code> and the style classes <code>toggle</code> and <code>text-button</code>.
 The rule then actually applies, when we also hover over <code>arrow</code>.</p>
-<pre><code class="language-css">button#button-1.toggle.text-button arrow:hover {}
+<pre><code class="language-css">button#button-1.toggle.text-button arrow:hover {
+  color: magenta;
+}
 </code></pre>
+<p>When the rule applies, the <code>color</code> parameter will be set to magenta.
+You can find the full list of supported parameters in GTK's <a href="https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties">documentation</a>.</p>
 <p>In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="resources"><a class="header" href="#resources">Resources</a></h1>
 
