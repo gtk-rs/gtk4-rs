@@ -13,7 +13,7 @@ impl X11Monitor {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_monitor_get_output")]
     #[doc(alias = "get_output")]
-    pub unsafe fn output(&self) -> xlib::XID {
+    pub fn output(&self) -> xlib::XID {
         ffi::gdk_x11_monitor_get_output(self.to_glib_none().0)
     }
 }

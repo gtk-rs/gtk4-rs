@@ -37,7 +37,7 @@ impl X11Display {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xcursor")]
     #[doc(alias = "get_xcursor")]
-    pub unsafe fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
+    pub fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
         ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0)
     }
 
@@ -45,7 +45,7 @@ impl X11Display {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xrootwindow")]
     #[doc(alias = "get_xrootwindow")]
-    pub unsafe fn xrootwindow(&self) -> xlib::Window {
+    pub fn xrootwindow(&self) -> xlib::Window {
         ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0)
     }
 
