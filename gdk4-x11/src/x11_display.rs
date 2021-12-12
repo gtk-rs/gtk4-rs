@@ -3,7 +3,7 @@
 use crate::X11Display;
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use glib::{signal::connect_raw, signal::SignalHandlerId, translate::*, ObjectType};
+use glib::{signal::connect_raw, signal::SignalHandlerId, ObjectType};
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
@@ -16,6 +16,13 @@ use std::mem::transmute;
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use x11::xlib;
+
+#[cfg(not(feature = "xlib"))]
+use crate::{XCursor, XWindow};
+use glib::translate::*;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+use x11::xlib::{Cursor as XCursor, Window as XWindow};
 
 impl X11Display {
     #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
@@ -33,19 +40,15 @@ impl X11Display {
         }
     }
 
-    #[cfg(any(feature = "xlib", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xcursor")]
     #[doc(alias = "get_xcursor")]
-    pub fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
+    pub fn xcursor(&self, cursor: &gdk::Cursor) -> XCursor {
         unsafe { ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "xlib", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xrootwindow")]
     #[doc(alias = "get_xrootwindow")]
-    pub fn xrootwindow(&self) -> xlib::Window {
+    pub fn xrootwindow(&self) -> XWindow {
         unsafe { ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0) }
     }
 

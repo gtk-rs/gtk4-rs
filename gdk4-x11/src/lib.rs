@@ -32,3 +32,12 @@ mod x11_surface;
 pub use auto::functions::*;
 pub use auto::*;
 pub use functions::*;
+
+#[cfg(not(feature = "xlib"))]
+pub type XID = libc::c_ulong;
+#[cfg(not(feature = "xlib"))]
+pub type XWindow = XID;
+#[cfg(not(feature = "xlib"))]
+pub type XCursor = XID;
+#[cfg(not(feature = "xlib"))]
+pub type XAtom = XID;
