@@ -1,15 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::X11Display;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::ObjectType;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+use glib::{signal::connect_raw, signal::SignalHandlerId, translate::*, ObjectType};
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use std::boxed::Box as Box_;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use std::mem::transmute;
+#[cfg(any(feature = "xlib", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use x11::xlib;
 
 impl X11Display {
@@ -28,18 +33,40 @@ impl X11Display {
         }
     }
 
+    #[cfg(any(feature = "xlib", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+    #[doc(alias = "gdk_x11_display_get_xcursor")]
+    #[doc(alias = "get_xcursor")]
+    pub unsafe fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
+        ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0)
+    }
+
+    #[cfg(any(feature = "xlib", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+    #[doc(alias = "gdk_x11_display_get_xrootwindow")]
+    #[doc(alias = "get_xrootwindow")]
+    pub unsafe fn xrootwindow(&self) -> xlib::Window {
+        ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0)
+    }
+
+    #[cfg(any(feature = "xlib", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xdisplay")]
     #[doc(alias = "get_xdisplay")]
     pub unsafe fn xdisplay(&self) -> *mut xlib::Display {
-        ffi::gdk_x11_display_get_xdisplay(self.to_glib_none().0)
+        ffi::gdk_x11_display_get_xdisplay(self.to_glib_none().0) as *mut xlib::Display
     }
 
+    #[cfg(any(feature = "xlib", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xscreen")]
     #[doc(alias = "get_xscreen")]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
-        ffi::gdk_x11_display_get_xscreen(self.to_glib_none().0)
+        ffi::gdk_x11_display_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
     }
 
+    #[cfg(any(feature = "xlib", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "xevent")]
     pub unsafe fn connect_xevent<F: Fn(&Self, *mut xlib::XEvent) -> glib::Continue + 'static>(
         &self,

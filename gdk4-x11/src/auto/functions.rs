@@ -4,10 +4,8 @@
 
 use crate::X11DeviceManagerXI2;
 use crate::X11DeviceXI2;
-use crate::X11Display;
 use crate::X11Surface;
 use glib::translate::*;
-use x11::xlib;
 
 #[doc(alias = "gdk_x11_device_get_id")]
 pub fn x11_device_get_id(device: &X11DeviceXI2) -> i32 {
@@ -33,31 +31,6 @@ pub fn x11_device_manager_lookup(
 pub fn x11_get_server_time(surface: &X11Surface) -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gdk_x11_get_server_time(surface.to_glib_none().0) }
-}
-
-#[doc(alias = "gdk_x11_get_xatom_by_name_for_display")]
-pub fn x11_get_xatom_by_name_for_display(display: &X11Display, atom_name: &str) -> xlib::Atom {
-    skip_assert_initialized!();
-    unsafe {
-        ffi::gdk_x11_get_xatom_by_name_for_display(
-            display.to_glib_none().0,
-            atom_name.to_glib_none().0,
-        )
-    }
-}
-
-#[doc(alias = "gdk_x11_get_xatom_name_for_display")]
-pub fn x11_get_xatom_name_for_display(
-    display: &X11Display,
-    xatom: xlib::Atom,
-) -> Option<glib::GString> {
-    skip_assert_initialized!();
-    unsafe {
-        from_glib_none(ffi::gdk_x11_get_xatom_name_for_display(
-            display.to_glib_none().0,
-            xatom,
-        ))
-    }
 }
 
 #[doc(alias = "gdk_x11_set_sm_client_id")]

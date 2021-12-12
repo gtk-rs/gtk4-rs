@@ -11,10 +11,6 @@
 )]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
-mod manual;
-
-pub use manual::*;
-
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
@@ -281,10 +277,10 @@ extern "C" {
     pub fn gdk_x11_display_get_xcursor(
         display: *mut GdkX11Display,
         cursor: *mut gdk::GdkCursor,
-    ) -> xlib::Cursor;
-    pub fn gdk_x11_display_get_xdisplay(display: *mut GdkX11Display) -> *mut xlib::Display;
-    pub fn gdk_x11_display_get_xrootwindow(display: *mut GdkX11Display) -> xlib::Window;
-    pub fn gdk_x11_display_get_xscreen(display: *mut GdkX11Display) -> *mut xlib::Screen;
+    ) -> c_ulong;
+    pub fn gdk_x11_display_get_xdisplay(display: *mut GdkX11Display) -> gpointer;
+    pub fn gdk_x11_display_get_xrootwindow(display: *mut GdkX11Display) -> c_ulong;
+    pub fn gdk_x11_display_get_xscreen(display: *mut GdkX11Display) -> gpointer;
     pub fn gdk_x11_display_grab(display: *mut GdkX11Display);
     pub fn gdk_x11_display_set_cursor_theme(
         display: *mut GdkX11Display,
@@ -336,7 +332,7 @@ extern "C" {
     // GdkX11Monitor
     //=========================================================================
     pub fn gdk_x11_monitor_get_type() -> GType;
-    pub fn gdk_x11_monitor_get_output(monitor: *mut GdkX11Monitor) -> xlib::XID;
+    pub fn gdk_x11_monitor_get_output(monitor: *mut GdkX11Monitor) -> c_ulong;
     pub fn gdk_x11_monitor_get_workarea(
         monitor: *mut GdkX11Monitor,
         workarea: *mut gdk::GdkRectangle,
@@ -350,11 +346,11 @@ extern "C" {
     pub fn gdk_x11_screen_get_monitor_output(
         screen: *mut GdkX11Screen,
         monitor_num: c_int,
-    ) -> xlib::XID;
+    ) -> c_ulong;
     pub fn gdk_x11_screen_get_number_of_desktops(screen: *mut GdkX11Screen) -> u32;
     pub fn gdk_x11_screen_get_screen_number(screen: *mut GdkX11Screen) -> c_int;
     pub fn gdk_x11_screen_get_window_manager_name(screen: *mut GdkX11Screen) -> *const c_char;
-    pub fn gdk_x11_screen_get_xscreen(screen: *mut GdkX11Screen) -> *mut xlib::Screen;
+    pub fn gdk_x11_screen_get_xscreen(screen: *mut GdkX11Screen) -> gpointer;
     pub fn gdk_x11_screen_supports_net_wm_hint(
         screen: *mut GdkX11Screen,
         property_name: *const c_char,
@@ -366,11 +362,11 @@ extern "C" {
     pub fn gdk_x11_surface_get_type() -> GType;
     pub fn gdk_x11_surface_lookup_for_display(
         display: *mut GdkX11Display,
-        window: xlib::Window,
+        window: c_ulong,
     ) -> *mut GdkX11Surface;
     pub fn gdk_x11_surface_get_desktop(surface: *mut GdkX11Surface) -> u32;
     pub fn gdk_x11_surface_get_group(surface: *mut GdkX11Surface) -> *mut gdk::GdkSurface;
-    pub fn gdk_x11_surface_get_xid(surface: *mut GdkX11Surface) -> xlib::Window;
+    pub fn gdk_x11_surface_get_xid(surface: *mut GdkX11Surface) -> c_ulong;
     pub fn gdk_x11_surface_move_to_current_desktop(surface: *mut GdkX11Surface);
     pub fn gdk_x11_surface_move_to_desktop(surface: *mut GdkX11Surface, desktop: u32);
     pub fn gdk_x11_surface_set_frame_sync_enabled(
@@ -406,12 +402,12 @@ extern "C" {
     pub fn gdk_x11_get_xatom_by_name_for_display(
         display: *mut GdkX11Display,
         atom_name: *const c_char,
-    ) -> xlib::Atom;
+    ) -> c_ulong;
     pub fn gdk_x11_get_xatom_name_for_display(
         display: *mut GdkX11Display,
-        xatom: xlib::Atom,
+        xatom: c_ulong,
     ) -> *const c_char;
-    pub fn gdk_x11_lookup_xdisplay(xdisplay: *mut xlib::Display) -> *mut GdkX11Display;
+    pub fn gdk_x11_lookup_xdisplay(xdisplay: gpointer) -> *mut GdkX11Display;
     pub fn gdk_x11_set_sm_client_id(sm_client_id: *const c_char);
 
 }

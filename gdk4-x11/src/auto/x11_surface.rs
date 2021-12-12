@@ -2,11 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::X11Display;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
-use x11::xlib;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Surface")]
@@ -28,12 +26,6 @@ impl X11Surface {
     #[doc(alias = "get_group")]
     pub fn group(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gdk_x11_surface_get_group(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_x11_surface_get_xid")]
-    #[doc(alias = "get_xid")]
-    pub fn xid(&self) -> xlib::Window {
-        unsafe { ffi::gdk_x11_surface_get_xid(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_surface_move_to_current_desktop")]
@@ -116,17 +108,6 @@ impl X11Surface {
                 name.to_glib_none().0,
                 value.to_glib_none().0,
             );
-        }
-    }
-
-    #[doc(alias = "gdk_x11_surface_lookup_for_display")]
-    pub fn lookup_for_display(display: &X11Display, window: xlib::Window) -> Option<X11Surface> {
-        skip_assert_initialized!();
-        unsafe {
-            from_glib_none(ffi::gdk_x11_surface_lookup_for_display(
-                display.to_glib_none().0,
-                window,
-            ))
         }
     }
 }
