@@ -500,19 +500,19 @@ However, the general point to avoid strong references whenever possible remains 
 </span><span class="boring">    // Reference-counted object with inner mutability
 </span><span class="boring">    let number = Rc::new(Cell::new(0));
 </span><span class="boring">
-</span><span class="boring">    // Connect callbacks
-</span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
-</span><span class="boring">        move |_| {
-</span><span class="boring">            number.set(number.get() + 1);
-</span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
-</span><span class="boring">    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
-</span><span class="boring">        move |_| {
-</span><span class="boring">            number.set(number.get() - 1);
-</span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
-</span><span class="boring">
+</span>    // Connect callbacks
+    // When a button is clicked, `number` and label of the other button will be changed
+    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
+        move |_| {
+            number.set(number.get() + 1);
+            button_decrease.set_label(&amp;number.get().to_string());
+    }));
+    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
+        move |_| {
+            number.set(number.get() - 1);
+            button_increase.set_label(&amp;number.get().to_string());
+    }));
+<span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
 </span><span class="boring">    let gtk_box = gtk::Box::builder()
 </span><span class="boring">        .orientation(Orientation::Vertical)
