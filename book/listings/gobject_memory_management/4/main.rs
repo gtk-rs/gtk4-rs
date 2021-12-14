@@ -38,6 +38,7 @@ fn build_ui(app: &Application) {
     // Reference-counted object with inner mutability
     let number = Rc::new(Cell::new(0));
 
+    // ANCHOR: callback
     // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
     button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =>
@@ -50,6 +51,7 @@ fn build_ui(app: &Application) {
             number.set(number.get() - 1);
             button_increase.set_label(&number.get().to_string());
     }));
+    // ANCHOR_END: callback
 
     // ANCHOR: box_append
     // Add buttons to `gtk_box`
