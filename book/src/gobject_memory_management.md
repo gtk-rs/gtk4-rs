@@ -15,7 +15,7 @@ fn main() {
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
-    
+
     // Run the application
     app.run();
 }
@@ -56,11 +56,13 @@ fn build_ui(application: &Application) {
     window.present();
 }
 ```
+
 Here we would like to create a simple app with two buttons.
 If we click on one button, an integer number should be increased. If we press the other one, it should be decreased.
 The Rust compiler refuses to compile it though.
 
 For once the borrow checker kicked in:
+
 ```console
 error[E0499]: cannot borrow `number` as mutable more than once at a time
   --> main.rs:27:37
@@ -76,7 +78,9 @@ error[E0499]: cannot borrow `number` as mutable more than once at a time
    |                                     |
    |                                     second mutable borrow occurs here
 ```
+
 Also, the compiler tells us that our closures may outlive `number`:
+
 ```console
 
 error[E0373]: closure may outlive the current function, but it borrows `number`, which is owned by the current function
@@ -97,6 +101,7 @@ help: to force the closure to take ownership of `number` (and any other referenc
 26 |     button_increase.connect_clicked(move |_| number += 1);
    |                                     ^^^^^^^^
 ```
+
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
 The compiler cannot know when the user presses a button, so references must live forever.
 And our `number` gets immediately deallocated after it reaches the end of its scope.
@@ -132,6 +137,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with `n
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/3/main.rs:callback}}
 ```
+
 If we now click on one button, the other button's label gets changed.
 
 But whoops!
@@ -157,14 +163,14 @@ In case the closure expects a different return value or a panic is preferred `@d
 For more information about `glib::clone`, please have a look at the [docs](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html).
 
 Notice that we move `number` in the second closure.
-If we had only moved *weak* reference in both closures, nothing would have kept `number` alive and the closure would have never been called.
+If we had only moved _weak_ reference in both closures, nothing would have kept `number` alive and the closure would have never been called.
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:box_append}}
+{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:callback}}
 ```
 
 When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference to them.
@@ -172,7 +178,7 @@ When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:set_child}}
+{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:box_append}}
 ```
 
 When we set `gtk_box` as child of `window`, `window` keeps a strong reference to it.
@@ -180,7 +186,7 @@ When we set `gtk_box` as child of `window`, `window` keeps a strong reference to
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:window}}
+{{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:window_child}}
 ```
 
 During the creation of our `window`, we pass `application` to it.
@@ -190,11 +196,13 @@ Because of that, `application` holds a strong reference to `window`.
 As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.
 
----------------------------------------------------
+---
 
-[^1]: Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
-For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
-You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
+[^1]:
+    Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
+    For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
+    You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
 
-[^2]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
-However, the general point to avoid strong references whenever possible remains valid.
+[^2]:
+    In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
+    However, the general point to avoid strong references whenever possible remains valid.

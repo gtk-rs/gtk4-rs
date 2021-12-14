@@ -53,19 +53,23 @@ fn build_ui(app: &Application) {
     }));
     // ANCHOR_END: callback
 
+    // ANCHOR: box_append
     // Add buttons to `gtk_box`
     let gtk_box = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .build();
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
+    // ANCHOR_END: box_append
 
+    // ANCHOR: window_child
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
         .child(&gtk_box)
         .build();
+    // ANCHOR_END: window_child
 
     // Present the window
     window.present();
