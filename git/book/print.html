@@ -689,7 +689,12 @@ But is there actually a way that both closures could take ownership of the same 
 The <code>Rc</code> counts the number of strong references created via <code>Clone::clone</code> and released via <code>Drop::drop</code>, and only deallocates it when this number drops to zero.
 We call every object containing a strong reference a shared owner of the value.
 If we want to modify the content of our <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>,
-we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.<sup class="footnote-reference"><a href="#1">1</a></sup></p>
+we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.</p>
+<blockquote>
+<p>The <code>Cell</code> class is only suitable for objects that implement the <a href="https://doc.rust-lang.org/core/marker/trait.Copy.html"><code>Copy</code></a> trait.
+For other objects, <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html"><code>RefCell</code></a> is the way to go.
+You can learn more about the two cell types in this <a href="https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types">section</a> of an older edition of the Rust book.</p>
+</blockquote>
 <p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
@@ -729,8 +734,8 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
     let number = Rc::new(Cell::new(0));
 
     // Connect callbacks, when a button is clicked `number` will be changed
-    let number_copy_1 = number.clone();
-    button_increase.connect_clicked(move |_| number_copy_1.set(number_copy_1.get() + 1));
+    let number_copy = number.clone();
+    button_increase.connect_clicked(move |_| number_copy.set(number_copy.get() + 1));
     button_decrease.connect_clicked(move |_| number.set(number.get() - 1));
 <span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
@@ -751,7 +756,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>It is not very nice though to fill the scope with temporary variables like <code>number_copy_1</code>.
+<p>It is not very nice though to fill the scope with temporary variables like <code>number_copy</code>.
 We can improve that by using the <code>glib::clone!</code> macro.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::clone;
@@ -899,7 +904,11 @@ Yes we did: <a href="https://doc.rust-lang.org/book/ch15-06-reference-cycles.htm
 A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
-Since we want our apps to free unneeded memory, we should use weak references for the buttons instead<sup class="footnote-reference"><a href="#2">2</a></sup>.</p>
+Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.</p>
+<blockquote>
+<p>In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
+However, the general point to avoid strong references whenever possible remains valid.</p>
+</blockquote>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
@@ -941,19 +950,19 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">    // Reference-counted object with inner mutability
 </span><span class="boring">    let number = Rc::new(Cell::new(0));
 </span><span class="boring">
-</span>    // Connect callbacks
-    // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
-        move |_| {
-            number.set(number.get() + 1);
-            button_decrease.set_label(&amp;number.get().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
-        move |_| {
-            number.set(number.get() - 1);
-            button_increase.set_label(&amp;number.get().to_string());
-    }));
-<span class="boring">
+</span><span class="boring">    // Connect callbacks
+</span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
+</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
+</span><span class="boring">        move |_| {
+</span><span class="boring">            number.set(number.get() + 1);
+</span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
+</span><span class="boring">    }));
+</span><span class="boring">    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
+</span><span class="boring">        move |_| {
+</span><span class="boring">            number.set(number.get() - 1);
+</span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
+</span><span class="boring">    }));
+</span><span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
 </span><span class="boring">    let gtk_box = gtk::Box::builder()
 </span><span class="boring">        .orientation(Orientation::Vertical)
@@ -982,79 +991,6 @@ For more information about <code>glib::clone</code>, please have a look at the <
 If we had only moved <em>weak</em> reference in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
-</span><span class="boring">
-</span><span class="boring">use glib::clone;
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
-</span><span class="boring">use gtk::{glib, Application};
-</span><span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::builder()
-</span><span class="boring">        .application_id(&quot;org.gtk-rs.example&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
-</span><span class="boring">    app.connect_activate(build_ui);
-</span><span class="boring">
-</span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">fn build_ui(app: &amp;Application) {
-</span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
-</span><span class="boring">        .margin_top(12)
-</span><span class="boring">        .margin_bottom(12)
-</span><span class="boring">        .margin_start(12)
-</span><span class="boring">        .margin_end(12)
-</span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
-</span><span class="boring">        .margin_top(12)
-</span><span class="boring">        .margin_bottom(12)
-</span><span class="boring">        .margin_start(12)
-</span><span class="boring">        .margin_end(12)
-</span><span class="boring">        .build();
-</span><span class="boring">
-</span><span class="boring">    // Reference-counted object with inner mutability
-</span><span class="boring">    let number = Rc::new(Cell::new(0));
-</span><span class="boring">
-</span>    // Connect callbacks
-    // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
-        move |_| {
-            number.set(number.get() + 1);
-            button_decrease.set_label(&amp;number.get().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
-        move |_| {
-            number.set(number.get() - 1);
-            button_increase.set_label(&amp;number.get().to_string());
-    }));
-<span class="boring">
-</span><span class="boring">    // Add buttons to `gtk_box`
-</span><span class="boring">    let gtk_box = gtk::Box::builder()
-</span><span class="boring">        .orientation(Orientation::Vertical)
-</span><span class="boring">        .build();
-</span><span class="boring">    gtk_box.append(&amp;button_increase);
-</span><span class="boring">    gtk_box.append(&amp;button_decrease);
-</span><span class="boring">
-</span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindow::builder()
-</span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .child(&amp;gtk_box)
-</span><span class="boring">        .build();
-</span><span class="boring">
-</span><span class="boring">    // Present the window
-</span><span class="boring">    window.present();
-</span><span class="boring">}
-</span></code></pre>
-<p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
@@ -1127,7 +1063,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.</p>
+<p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
@@ -1200,23 +1136,12 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>During the creation of our <code>window</code>, we pass <code>application</code> to it.
-Because of that, <code>application</code> holds a strong reference to <code>window</code>.
-<code>application</code> lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.</p>
+<p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.
+We also pass <code>application</code> to <code>window</code>.
+Here, the meaning is different, because this results in <code>application</code> holding a strong reference to <code>window</code>.
+<code>application</code> lives for the whole lifetime of our program, and is therefore capable to keep <code>window</code>, <code>gtk_box</code> and the buttons alive.</p>
 <p>As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
-Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<pre><code>Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
-For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
-You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
-</code></pre>
-<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
-<pre><code>In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
-However, the general point to avoid strong references whenever possible remains valid.
-</code></pre>
-</div>
-</div>
+If that is ensured, you can rely on GTK to properly manage the memory of GObjects you pass to it.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
 <p>GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
