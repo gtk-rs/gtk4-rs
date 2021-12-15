@@ -1,6 +1,6 @@
 mod imp;
 
-use gio::SimpleAction;
+use gio::{PropertyAction, SimpleAction};
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -68,27 +68,9 @@ impl Window {
         // ANCHOR_END: action_quit
 
         // ANCHOR: action_sensitive_button
-        // Add stateful action "sensitive-button" to `window` taking no parameter
+        // Add property action "sensitive-button" to `window`
         let button = imp.button.get();
-        let action_sensitive_button =
-            SimpleAction::new_stateful("sensitive-button", None, &true.to_variant());
-
-        action_sensitive_button.connect_activate(clone!(@weak button =>
-            move |action, _| {
-                // Get state
-                let mut state = action
-                    .state()
-                    .expect("Could not get state.")
-                    .get::<bool>()
-                    .expect("The value needs to be of type `bool`.");
-
-                // Toggle and save state
-                state = !state;
-                action.set_state(&state.to_variant());
-
-                // Set the button's sensitivity in accordance with the current state
-                button.set_sensitive(state);
-        }));
+        let action_sensitive_button = PropertyAction::new("sensitive-button", &button, "sensitive");
         self.add_action(&action_sensitive_button);
         // ANCHOR_END: action_sensitive_button
 
