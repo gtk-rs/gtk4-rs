@@ -133,14 +133,21 @@ For the action without parameter or state, we choose "win.quit" which we are alr
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_quit}}
 ```
 With the action "sensitive-button", we manipulate the "sensitive" property of `button`.
-We need to be careful to follow the established conventions: actions with no parameter and boolean state should behave like toggle actions.
-This means that the caller can expect the boolean state to toggle after activating the action.
+Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
+This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for [`gio::PropertyAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html) with a boolean property.
 
 <span class="filename">Filename: listings/actions/6/window/mod.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_sensitive_button}}
 ```
+
+> A `PropertyAction` is useful when you need an action that manipulates the property of a GObject.
+> The property then acts as the state of the action.
+> As mentioned above, if the property is a boolean the action has no parameter and toggles the property on activation.
+> In all other cases, the action has a parameter of the same type as the property.
+> When activating the action, the property gets set to the same value as the parameter of the action.
+
 
 Finally, we add "win.orientation", an action with string parameter and string state.
 This action can be used to change the orientation of `gtk_box`.
