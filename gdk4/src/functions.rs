@@ -10,27 +10,6 @@ use std::ptr;
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
 
-#[doc(alias = "gdk_pango_layout_line_get_clip_region")]
-pub fn pango_layout_line_get_clip_region(
-    line: &pango::LayoutLine,
-    x_origin: i32,
-    y_origin: i32,
-    index_ranges: &[GRange],
-) -> Option<cairo::Region> {
-    assert_initialized_main_thread!();
-
-    let ptr: *const i32 = index_ranges.as_ptr() as _;
-    unsafe {
-        from_glib_full(ffi::gdk_pango_layout_line_get_clip_region(
-            line.to_glib_none().0,
-            x_origin,
-            y_origin,
-            mut_override(ptr),
-            (index_ranges.len() / 2) as i32,
-        ))
-    }
-}
-
 #[doc(alias = "gdk_pango_layout_get_clip_region")]
 pub fn pango_layout_get_clip_region(
     layout: &pango::Layout,
@@ -311,4 +290,25 @@ pub fn content_serialize_future<P: IsA<gio::OutputStream> + Clone + 'static>(
             },
         );
     }))
+}
+
+#[doc(alias = "gdk_pango_layout_line_get_clip_region")]
+pub fn pango_layout_line_get_clip_region(
+    line: &pango::LayoutLine,
+    x_origin: i32,
+    y_origin: i32,
+    index_ranges: &[GRange],
+) -> Option<cairo::Region> {
+    assert_initialized_main_thread!();
+
+    let ptr: *const i32 = index_ranges.as_ptr() as _;
+    unsafe {
+        from_glib_full(ffi::gdk_pango_layout_line_get_clip_region(
+            line.to_glib_none().0,
+            x_origin,
+            y_origin,
+            mut_override(ptr),
+            (index_ranges.len() / 2) as i32,
+        ))
+    }
 }
