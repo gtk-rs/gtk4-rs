@@ -245,7 +245,16 @@ Your browser does not support the video tag.
 
 The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with `gio::Settings`.
-First we add the settings to `imp::Window` and manually implement the `Default` trait.
+First we create a schema with settings corresponding to the stateful actions we created before.
+
+<span class="filename">Filename: listings/actions/7/org.gtk-rs.example.gschema.xml</span>
+
+```xml
+{{#rustdoc_include ../listings/actions/7/org.gtk-rs.example.gschema.xml}}
+```
+
+Then we add the settings to `imp::Window`.
+Since `gio::Settings` does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
 
 <span class="filename">Filename: listings/actions/7/window/imp.rs</span>
 
