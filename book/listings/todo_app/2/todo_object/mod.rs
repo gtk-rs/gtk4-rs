@@ -9,6 +9,7 @@ glib::wrapper! {
     pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
 }
 
+// ANCHOR: impl
 impl TodoObject {
     pub fn new(completed: bool, content: String) -> Self {
         Object::new(&[("completed", &completed), ("content", &content)])
@@ -25,6 +26,7 @@ impl TodoObject {
         imp.data.borrow().clone()
     }
 }
+// ANCHOR_END: impl
 
 // ANCHOR: serialize
 #[derive(Default, Serialize, Deserialize, Clone)]
