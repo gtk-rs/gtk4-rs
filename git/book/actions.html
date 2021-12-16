@@ -659,7 +659,7 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -723,27 +723,9 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
         }));
         self.add_action(&amp;action_quit);
 <span class="boring">
-</span><span class="boring">        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = imp.button.get();
-</span><span class="boring">        let action_sensitive_button =
-</span><span class="boring">            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-</span><span class="boring">
-</span><span class="boring">        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-</span><span class="boring">            move |action, _| {
-</span><span class="boring">                // Get state
-</span><span class="boring">                let mut state = action
-</span><span class="boring">                    .state()
-</span><span class="boring">                    .expect(&quot;Could not get state.&quot;)
-</span><span class="boring">                    .get::&lt;bool&gt;()
-</span><span class="boring">                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                // Toggle and save state
-</span><span class="boring">                state = !state;
-</span><span class="boring">                action.set_state(&amp;state.to_variant());
-</span><span class="boring">
-</span><span class="boring">                // Set the button's sensitivity in accordance with the current state
-</span><span class="boring">                button.set_sensitive(state);
-</span><span class="boring">        }));
+</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span><span class="boring">
@@ -778,12 +760,12 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
 </span><span class="boring">}
 </span></code></pre>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
-We need to be careful to follow the established conventions: actions with no parameter and boolean state should behave like toggle actions.
-This means that the caller can expect the boolean state to toggle after activating the action.</p>
+Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
+This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -847,27 +829,9 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
-</span>        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span>        // Add property action &quot;sensitive-button&quot; to `window`
         let button = imp.button.get();
-        let action_sensitive_button =
-            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-
-        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-            move |action, _| {
-                // Get state
-                let mut state = action
-                    .state()
-                    .expect(&quot;Could not get state.&quot;)
-                    .get::&lt;bool&gt;()
-                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-
-                // Toggle and save state
-                state = !state;
-                action.set_state(&amp;state.to_variant());
-
-                // Set the button's sensitivity in accordance with the current state
-                button.set_sensitive(state);
-        }));
+        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
         self.add_action(&amp;action_sensitive_button);
 <span class="boring">
 </span><span class="boring">
@@ -901,6 +865,13 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
+<blockquote>
+<p>A <code>PropertyAction</code> is useful when you need an action that manipulates the property of a GObject.
+The property then acts as the state of the action.
+As mentioned above, if the property is a boolean the action has no parameter and toggles the property on activation.
+In all other cases, the action has a parameter of the same type as the property.
+When activating the action, the property gets set to the same value as the parameter of the action.</p>
+</blockquote>
 <p>Finally, we add &quot;win.orientation&quot;, an action with string parameter and string state.
 This action can be used to change the orientation of <code>gtk_box</code>.
 Here the convention is that the state should be set to the given parameter.
@@ -908,7 +879,7 @@ We do not need the action state to implement orientation switching, however it i
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -972,27 +943,9 @@ We do not need the action state to implement orientation switching, however it i
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
-</span><span class="boring">        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = imp.button.get();
-</span><span class="boring">        let action_sensitive_button =
-</span><span class="boring">            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-</span><span class="boring">
-</span><span class="boring">        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-</span><span class="boring">            move |action, _| {
-</span><span class="boring">                // Get state
-</span><span class="boring">                let mut state = action
-</span><span class="boring">                    .state()
-</span><span class="boring">                    .expect(&quot;Could not get state.&quot;)
-</span><span class="boring">                    .get::&lt;bool&gt;()
-</span><span class="boring">                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                // Toggle and save state
-</span><span class="boring">                state = !state;
-</span><span class="boring">                action.set_state(&amp;state.to_variant());
-</span><span class="boring">
-</span><span class="boring">                // Set the button's sensitivity in accordance with the current state
-</span><span class="boring">                button.set_sensitive(state);
-</span><span class="boring">        }));
+</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span>
