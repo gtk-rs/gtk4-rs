@@ -2654,6 +2654,8 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "activate_action_variant"
     rename = "activate_action"
+        [object.function.return]
+        bool_return_is_error = "Action does not exist"
     [[object.function]]
     name = "activate_action"
     ignore = true # we use activate_action_variant instead

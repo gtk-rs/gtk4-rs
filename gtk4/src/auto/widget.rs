@@ -80,7 +80,11 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_activate_action_variant")]
     #[doc(alias = "activate_action_variant")]
-    fn activate_action(&self, name: &str, args: Option<&glib::Variant>) -> bool;
+    fn activate_action(
+        &self,
+        name: &str,
+        args: Option<&glib::Variant>,
+    ) -> Result<(), glib::error::BoolError>;
 
     #[doc(alias = "gtk_widget_activate_default")]
     fn activate_default(&self);
@@ -800,13 +804,20 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { from_glib(ffi::gtk_widget_activate(self.as_ref().to_glib_none().0)) }
     }
 
-    fn activate_action(&self, name: &str, args: Option<&glib::Variant>) -> bool {
+    fn activate_action(
+        &self,
+        name: &str,
+        args: Option<&glib::Variant>,
+    ) -> Result<(), glib::error::BoolError> {
         unsafe {
-            from_glib(ffi::gtk_widget_activate_action_variant(
-                self.as_ref().to_glib_none().0,
-                name.to_glib_none().0,
-                args.to_glib_none().0,
-            ))
+            glib::result_from_gboolean!(
+                ffi::gtk_widget_activate_action_variant(
+                    self.as_ref().to_glib_none().0,
+                    name.to_glib_none().0,
+                    args.to_glib_none().0
+                ),
+                "Action does not exist"
+            )
         }
     }
 
