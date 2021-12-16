@@ -96,6 +96,23 @@ jobs:
       - run: python3 ./generator.py --yes ./
       - run: git diff --exit-code
 
+  docs:
+    name: docs embed check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: cargo install rustdoc-stripper
+      - run: python3 generator.py --embed-docs
+      - run: python3 generator.py --strip-docs
+      - run: git diff --exit-code
+
   checker:
     name: gtk-rs checker
     runs-on: ubuntu-20.04
