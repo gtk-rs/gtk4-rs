@@ -189,9 +189,8 @@ When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference 
 ```
 
 When we set `gtk_box` as child of `window`, `window` keeps a strong reference to it.
-We also pass `application` to `window`.
-Here, the meaning is different, because this results in `application` holding a strong reference to `window`.
-`application` lives for the whole lifetime of our program, and is therefore capable to keep `window`, `gtk_box` and the buttons alive.
+Until we close the `window` it keeps `gtk_box` and with it the buttons alive.
+Since our application has only one window, closing it also means exiting the application.
 
 As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 If that is ensured, you can rely on GTK to properly manage the memory of GObjects you pass to it.
