@@ -10,7 +10,7 @@ name = "gdk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../LICENSE"]
-version = "0.3.0"
+version = "0.4.0"
 rust-version = "1.56"
 [lib]
 name = "gdk4"
@@ -26,13 +26,13 @@ features = ["dox"]
 
 [dependencies]
 bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core"}
-ffi = {package = "gdk4-sys", path = "./sys"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.15"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.4.0"}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.15"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.15", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.15", features = ["v2_66"]}
 libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v1_46"]}
+pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.15", features = ["v1_46"]}
 
 [dev-dependencies]
 gir-format-check = "^0.1"
