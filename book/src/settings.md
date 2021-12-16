@@ -26,15 +26,21 @@ We only want to store a single key with the `name` "is-switch-enabled".
 This is a boolean value so its `type` is "b" (see [GVariant Format Strings](https://docs.gtk.org/glib/gvariant-format-strings.html) for the other options).
 Finally, we define its default value and add a summary.
 
-Now we have to install the `GSchema` by executing the following commands:
+Now we need to copy and compile the schema.
+As of right now, `cargo` is not suitable for that task which is why you will need another build system on top of it.
+You can find an example on how to do this with [`meson`](https://mesonbuild.com/) in the [`gtk-rust-template`](https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template).
 
-```bash
-$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-```
-
-This has to be repeated every time we change the `GSchema`.
-That is why we probably want to use a build system like [Meson](https://mesonbuild.com/) to do it for us.
+>However, we promised that `cargo` alone is enough to follow the book.
+>For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:
+>```bash
+>sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+>sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+>```
+> On Windows run:
+>```powershell
+>cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+>glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+>```
 
 We initialize the `Settings` object by specifying the application id.
 
