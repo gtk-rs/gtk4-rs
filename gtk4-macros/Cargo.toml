@@ -10,7 +10,7 @@ license = "MIT"
 name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../LICENSE"]
-version = "0.3.0"
+version = "0.4.0"
 rust-version = "1.56"
 [lib]
 proc-macro = true
@@ -24,4 +24,4 @@ quote = "1.0"
 syn = {version = "1.0", default-features = false, features = ["full"]}
 
 [dev-dependencies]
-gtk = { path = "../gtk4", package = "gtk4" }
+gtk = { path = "../gtk4", package = "gtk4", version = "0.4.0" }

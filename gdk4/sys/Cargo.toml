@@ -10,7 +10,7 @@ license = "MIT"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../../LICENSE"]
-version = "0.3.0"
+version = "0.4.0"
 rust-version = "1.56"
 [package.metadata.docs.rs]
 features = ["dox"]
@@ -42,26 +42,32 @@ libc = "0.2"
 [dependencies.cairo]
 package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [dependencies.gdk-pixbuf]
 package = "gdk-pixbuf-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [dependencies.gio]
 package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [dependencies.glib]
 package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [dependencies.gobject]
 package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [dependencies.pango]
 package = "pango-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.15"
 
 [build-dependencies]
 system-deps = "6"
