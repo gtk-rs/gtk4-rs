@@ -8,7 +8,7 @@
 1. Install mdbook
 
 ```bash
-$ cargo install mdbook
+cargo install mdbook
 ```
 
 2. Building
@@ -16,7 +16,7 @@ $ cargo install mdbook
 To view the book, execute:
 
 ```bash
-$ mdbook serve
+mdbook serve
 ```
 
 ## Listings
@@ -24,19 +24,19 @@ $ mdbook serve
 Go to the listings folder
 
 ```bash
-$ cd listings
+cd listings
 ```
 
 To check if the examples build, execute:
 
 ```bash
-$ cargo build
+cargo build
 ```
 
 To run a specific listing, execute:
 
 ```bash
-$ cargo run --bin listing_name
+cargo run --bin listing_name
 ```
 
 ## License
