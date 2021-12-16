@@ -73,8 +73,18 @@ After reading the [actions](actions.html) chapter the added code should feel fam
          <property name="orientation">vertical</property>
 ```
 
-We also need to add `settings` and a reference to `clear_button` to `imp::Window`.
-Since `gio::Settings` does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
+We also create a settings schema.
+Again, the settings correspond to the stateful actions called by the menu.
+
+<span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo.gschema.xml</span>
+
+```xml
+{{#rustdoc_include ../listings/todo_app/2/org.gtk-rs.Todo.gschema.xml}}
+```
+
+
+Then we add `settings` and a reference to `clear_button` to `imp::Window`.
+We stop deriving `Default` for `imp::Window` and implement it manually.
 
 <span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
 
