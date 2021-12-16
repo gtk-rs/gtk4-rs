@@ -504,55 +504,6 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GRange</span>(<span class="kw">pub</span> <span class="ident">i32</span>, <span class="kw">pub</span> <span class="ident">i32</span>);
 
-<span class="doccomment">/// Obtains a clip region which contains the areas where the given</span>
-<span class="doccomment">/// ranges of text would be drawn.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// @x_origin and @y_origin are the top left position of the layout.</span>
-<span class="doccomment">/// @index_ranges should contain ranges of bytes in the layout’s text.</span>
-<span class="doccomment">/// The clip region will include space to the left or right of the line</span>
-<span class="doccomment">/// (to the layout bounding box) if you have indexes above or below the</span>
-<span class="doccomment">/// indexes contained inside the line. This is to draw the selection all</span>
-<span class="doccomment">/// the way to the side of the layout. However, the clip region is in line</span>
-<span class="doccomment">/// coordinates, not layout coordinates.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note that the regions returned correspond to logical extents of the text</span>
-<span class="doccomment">/// ranges, not ink extents. So the drawn line may in fact touch areas out of</span>
-<span class="doccomment">/// the clip region.  The clip region is mainly useful for highlightling parts</span>
-<span class="doccomment">/// of text, such as when text is selected.</span>
-<span class="doccomment">/// ## `line`</span>
-<span class="doccomment">/// a [`pango::LayoutLine`][crate::pango::LayoutLine]</span>
-<span class="doccomment">/// ## `x_origin`</span>
-<span class="doccomment">/// X pixel where you intend to draw the layout line with this clip</span>
-<span class="doccomment">/// ## `y_origin`</span>
-<span class="doccomment">/// baseline pixel where you intend to draw the layout line with this clip</span>
-<span class="doccomment">/// ## `index_ranges`</span>
-<span class="doccomment">/// array of byte indexes into the layout, where even</span>
-<span class="doccomment">///   members of array are start indexes and odd elements are end indexes</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Returns</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// a clip region containing the given ranges</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_line_get_clip_region&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_line_get_clip_region</span>(
-    <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">pango::LayoutLine</span>,
-    <span class="ident">x_origin</span>: <span class="ident">i32</span>,
-    <span class="ident">y_origin</span>: <span class="ident">i32</span>,
-    <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
-    <span class="macro">assert_initialized_main_thread!</span>();
-
-    <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;
-    <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pango_layout_line_get_clip_region</span>(
-            <span class="ident">line</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            <span class="ident">x_origin</span>,
-            <span class="ident">y_origin</span>,
-            <span class="ident">mut_override</span>(<span class="ident">ptr</span>),
-            (<span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">i32</span>,
-        ))
-    }
-}
-
 <span class="doccomment">/// Obtains a clip region which contains the areas where the given ranges</span>
 <span class="doccomment">/// of text would be drawn.</span>
 <span class="doccomment">///</span>
@@ -911,6 +862,55 @@
             },
         );
     }))
+}
+
+<span class="doccomment">/// Obtains a clip region which contains the areas where the given</span>
+<span class="doccomment">/// ranges of text would be drawn.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// @x_origin and @y_origin are the top left position of the layout.</span>
+<span class="doccomment">/// @index_ranges should contain ranges of bytes in the layout’s text.</span>
+<span class="doccomment">/// The clip region will include space to the left or right of the line</span>
+<span class="doccomment">/// (to the layout bounding box) if you have indexes above or below the</span>
+<span class="doccomment">/// indexes contained inside the line. This is to draw the selection all</span>
+<span class="doccomment">/// the way to the side of the layout. However, the clip region is in line</span>
+<span class="doccomment">/// coordinates, not layout coordinates.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that the regions returned correspond to logical extents of the text</span>
+<span class="doccomment">/// ranges, not ink extents. So the drawn line may in fact touch areas out of</span>
+<span class="doccomment">/// the clip region.  The clip region is mainly useful for highlightling parts</span>
+<span class="doccomment">/// of text, such as when text is selected.</span>
+<span class="doccomment">/// ## `line`</span>
+<span class="doccomment">/// a [`pango::LayoutLine`][crate::pango::LayoutLine]</span>
+<span class="doccomment">/// ## `x_origin`</span>
+<span class="doccomment">/// X pixel where you intend to draw the layout line with this clip</span>
+<span class="doccomment">/// ## `y_origin`</span>
+<span class="doccomment">/// baseline pixel where you intend to draw the layout line with this clip</span>
+<span class="doccomment">/// ## `index_ranges`</span>
+<span class="doccomment">/// array of byte indexes into the layout, where even</span>
+<span class="doccomment">///   members of array are start indexes and odd elements are end indexes</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Returns</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// a clip region containing the given ranges</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_line_get_clip_region&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_line_get_clip_region</span>(
+    <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">pango::LayoutLine</span>,
+    <span class="ident">x_origin</span>: <span class="ident">i32</span>,
+    <span class="ident">y_origin</span>: <span class="ident">i32</span>,
+    <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
+) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
+    <span class="macro">assert_initialized_main_thread!</span>();
+
+    <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;
+    <span class="kw">unsafe</span> {
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pango_layout_line_get_clip_region</span>(
+            <span class="ident">line</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            <span class="ident">x_origin</span>,
+            <span class="ident">y_origin</span>,
+            <span class="ident">mut_override</span>(<span class="ident">ptr</span>),
+            (<span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">i32</span>,
+        ))
+    }
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c5ecc1570 2021-12-15)" ></div>
