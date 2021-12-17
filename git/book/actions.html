@@ -1050,7 +1050,28 @@ We will learn in the <a href="resources.html">resources</a> chapter how to bundl
 <h2 id="settings"><a class="header" href="#settings">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
-First we add the settings to <code>imp::Window</code> and manually implement the <code>Default</code> trait.</p>
+First we create a schema with settings corresponding to the stateful actions we created before.</p>
+<p><span class="filename">Filename: listings/actions/7/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;sensitive-button&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;true&lt;/default&gt;
+      &lt;summary&gt;Whether the button is sensitive&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;orientation&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='Horizontal'/&gt;
+        &lt;choice value='Vertical'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'Vertical'&lt;/default&gt;
+      &lt;summary&gt;Orientation of GtkBox&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add the settings to <code>imp::Window</code>.
+Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/actions/7/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;

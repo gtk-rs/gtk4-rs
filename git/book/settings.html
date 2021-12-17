@@ -217,12 +217,20 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 <p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
-<p>Now we have to install the <code>GSchema</code> by executing the following commands:</p>
-<pre><code class="language-bash">$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+<p>Now we need to copy and compile the schema.
+As of right now, <code>cargo</code> is not suitable for that task which is why you will need another build system on top of it.
+You can find an example on how to do this with <a href="https://mesonbuild.com/"><code>meson</code></a> in the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template"><code>gtk-rust-template</code></a>.</p>
+<blockquote>
+<p>However, we promised that <code>cargo</code> alone is enough to follow the book.
+For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:</p>
+<pre><code class="language-bash">sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
-<p>This has to be repeated every time we change the <code>GSchema</code>.
-That is why we probably want to use a build system like <a href="https://mesonbuild.com/">Meson</a> to do it for us.</p>
+<p>On Windows run:</p>
+<pre><code class="language-powershell">cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+</code></pre>
+</blockquote>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;

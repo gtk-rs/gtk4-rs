@@ -1137,9 +1137,8 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.
-We also pass <code>application</code> to <code>window</code>.
-Here, the meaning is different, because this results in <code>application</code> holding a strong reference to <code>window</code>.
-<code>application</code> lives for the whole lifetime of our program, and is therefore capable to keep <code>window</code>, <code>gtk_box</code> and the buttons alive.</p>
+Until we close the <code>window</code> it keeps <code>gtk_box</code> and with it the buttons alive.
+Since our application has only one window, closing it also means exiting the application.</p>
 <p>As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 If that is ensured, you can rely on GTK to properly manage the memory of GObjects you pass to it.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
@@ -3027,12 +3026,20 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 <p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
-<p>Now we have to install the <code>GSchema</code> by executing the following commands:</p>
-<pre><code class="language-bash">$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+<p>Now we need to copy and compile the schema.
+As of right now, <code>cargo</code> is not suitable for that task which is why you will need another build system on top of it.
+You can find an example on how to do this with <a href="https://mesonbuild.com/"><code>meson</code></a> in the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template"><code>gtk-rust-template</code></a>.</p>
+<blockquote>
+<p>However, we promised that <code>cargo</code> alone is enough to follow the book.
+For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:</p>
+<pre><code class="language-bash">sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
-<p>This has to be repeated every time we change the <code>GSchema</code>.
-That is why we probably want to use a build system like <a href="https://mesonbuild.com/">Meson</a> to do it for us.</p>
+<p>On Windows run:</p>
+<pre><code class="language-powershell">cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+</code></pre>
+</blockquote>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
@@ -7487,7 +7494,28 @@ We will learn in the <a href="resources.html">resources</a> chapter how to bundl
 <h2 id="settings-1"><a class="header" href="#settings-1">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
-First we add the settings to <code>imp::Window</code> and manually implement the <code>Default</code> trait.</p>
+First we create a schema with settings corresponding to the stateful actions we created before.</p>
+<p><span class="filename">Filename: listings/actions/7/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;sensitive-button&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;true&lt;/default&gt;
+      &lt;summary&gt;Whether the button is sensitive&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;orientation&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='Horizontal'/&gt;
+        &lt;choice value='Vertical'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'Vertical'&lt;/default&gt;
+      &lt;summary&gt;Orientation of GtkBox&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add the settings to <code>imp::Window</code>.
+Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/actions/7/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
@@ -7917,8 +7945,26 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
        &lt;object class=&quot;GtkBox&quot;&gt;
          &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
 </code></pre>
-<p>We also need to add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
-Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
+<p>We also create a settings schema.
+Again, the settings correspond to the stateful actions called by the menu.</p>
+<p><span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.Todo&quot; path=&quot;/org/gtk-rs/Todo/&quot;&gt;
+    &lt;key name=&quot;filter&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='All'/&gt;
+        &lt;choice value='Open'/&gt;
+        &lt;choice value='Done'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'All'&lt;/default&gt;
+      &lt;summary&gt;Filter of the tasks&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
+We stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::fs::File;
 </span><span class="boring">
@@ -8043,23 +8089,23 @@ We will make use of them in the following snippets.</p>
 </span><span class="boring">    pub struct TodoObject(ObjectSubclass&lt;imp::TodoObject&gt;);
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">impl TodoObject {
-</span><span class="boring">    pub fn new(completed: bool, content: String) -&gt; Self {
-</span><span class="boring">        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
-</span><span class="boring">            .expect(&quot;Failed to create `TodoObject`.&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn is_completed(&amp;self) -&gt; bool {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().completed
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TodoData {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().clone()
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
+</span>impl TodoObject {
+    pub fn new(completed: bool, content: String) -&gt; Self {
+        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
+            .expect(&quot;Failed to create `TodoObject`.&quot;)
+    }
+
+    pub fn is_completed(&amp;self) -&gt; bool {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().completed
+    }
+
+    pub fn todo_data(&amp;self) -&gt; TodoData {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().clone()
+    }
+}
+<span class="boring">
 </span><span class="boring">#[derive(Default, Serialize, Deserialize, Clone)]
 </span><span class="boring">pub struct TodoData {
 </span><span class="boring">    pub completed: bool,
