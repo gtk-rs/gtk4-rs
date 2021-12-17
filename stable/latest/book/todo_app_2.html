@@ -203,8 +203,26 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
        &lt;object class=&quot;GtkBox&quot;&gt;
          &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
 </code></pre>
-<p>We also need to add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
-Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
+<p>We also create a settings schema.
+Again, the settings correspond to the stateful actions called by the menu.</p>
+<p><span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.Todo&quot; path=&quot;/org/gtk-rs/Todo/&quot;&gt;
+    &lt;key name=&quot;filter&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='All'/&gt;
+        &lt;choice value='Open'/&gt;
+        &lt;choice value='Done'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'All'&lt;/default&gt;
+      &lt;summary&gt;Filter of the tasks&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
+We stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::fs::File;
 </span><span class="boring">
@@ -329,23 +347,23 @@ We will make use of them in the following snippets.</p>
 </span><span class="boring">    pub struct TodoObject(ObjectSubclass&lt;imp::TodoObject&gt;);
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">impl TodoObject {
-</span><span class="boring">    pub fn new(completed: bool, content: String) -&gt; Self {
-</span><span class="boring">        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
-</span><span class="boring">            .expect(&quot;Failed to create `TodoObject`.&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn is_completed(&amp;self) -&gt; bool {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().completed
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TodoData {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().clone()
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
+</span>impl TodoObject {
+    pub fn new(completed: bool, content: String) -&gt; Self {
+        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
+            .expect(&quot;Failed to create `TodoObject`.&quot;)
+    }
+
+    pub fn is_completed(&amp;self) -&gt; bool {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().completed
+    }
+
+    pub fn todo_data(&amp;self) -&gt; TodoData {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().clone()
+    }
+}
+<span class="boring">
 </span><span class="boring">#[derive(Default, Serialize, Deserialize, Clone)]
 </span><span class="boring">pub struct TodoData {
 </span><span class="boring">    pub completed: bool,

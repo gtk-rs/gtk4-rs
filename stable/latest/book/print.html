@@ -1137,9 +1137,8 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.
-We also pass <code>application</code> to <code>window</code>.
-Here, the meaning is different, because this results in <code>application</code> holding a strong reference to <code>window</code>.
-<code>application</code> lives for the whole lifetime of our program, and is therefore capable to keep <code>window</code>, <code>gtk_box</code> and the buttons alive.</p>
+Until we close the <code>window</code> it keeps <code>gtk_box</code> and with it the buttons alive.
+Since our application has only one window, closing it also means exiting the application.</p>
 <p>As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 If that is ensured, you can rely on GTK to properly manage the memory of GObjects you pass to it.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
@@ -3027,12 +3026,20 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 <p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
-<p>Now we have to install the <code>GSchema</code> by executing the following commands:</p>
-<pre><code class="language-bash">$ sudo install -D org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-$ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+<p>Now we need to copy and compile the schema.
+As of right now, <code>cargo</code> is not suitable for that task which is why you will need another build system on top of it.
+You can find an example on how to do this with <a href="https://mesonbuild.com/"><code>meson</code></a> in the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template"><code>gtk-rust-template</code></a>.</p>
+<blockquote>
+<p>However, we promised that <code>cargo</code> alone is enough to follow the book.
+For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:</p>
+<pre><code class="language-bash">sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
-<p>This has to be repeated every time we change the <code>GSchema</code>.
-That is why we probably want to use a build system like <a href="https://mesonbuild.com/">Meson</a> to do it for us.</p>
+<p>On Windows run:</p>
+<pre><code class="language-powershell">cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+</code></pre>
+</blockquote>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
@@ -7096,7 +7103,7 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -7160,27 +7167,9 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
         }));
         self.add_action(&amp;action_quit);
 <span class="boring">
-</span><span class="boring">        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = imp.button.get();
-</span><span class="boring">        let action_sensitive_button =
-</span><span class="boring">            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-</span><span class="boring">
-</span><span class="boring">        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-</span><span class="boring">            move |action, _| {
-</span><span class="boring">                // Get state
-</span><span class="boring">                let mut state = action
-</span><span class="boring">                    .state()
-</span><span class="boring">                    .expect(&quot;Could not get state.&quot;)
-</span><span class="boring">                    .get::&lt;bool&gt;()
-</span><span class="boring">                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                // Toggle and save state
-</span><span class="boring">                state = !state;
-</span><span class="boring">                action.set_state(&amp;state.to_variant());
-</span><span class="boring">
-</span><span class="boring">                // Set the button's sensitivity in accordance with the current state
-</span><span class="boring">                button.set_sensitive(state);
-</span><span class="boring">        }));
+</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span><span class="boring">
@@ -7215,12 +7204,12 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
 </span><span class="boring">}
 </span></code></pre>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
-We need to be careful to follow the established conventions: actions with no parameter and boolean state should behave like toggle actions.
-This means that the caller can expect the boolean state to toggle after activating the action.</p>
+Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
+This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -7284,27 +7273,9 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
-</span>        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span>        // Add property action &quot;sensitive-button&quot; to `window`
         let button = imp.button.get();
-        let action_sensitive_button =
-            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-
-        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-            move |action, _| {
-                // Get state
-                let mut state = action
-                    .state()
-                    .expect(&quot;Could not get state.&quot;)
-                    .get::&lt;bool&gt;()
-                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-
-                // Toggle and save state
-                state = !state;
-                action.set_state(&amp;state.to_variant());
-
-                // Set the button's sensitivity in accordance with the current state
-                button.set_sensitive(state);
-        }));
+        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
         self.add_action(&amp;action_sensitive_button);
 <span class="boring">
 </span><span class="boring">
@@ -7338,6 +7309,13 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
+<blockquote>
+<p>A <code>PropertyAction</code> is useful when you need an action that manipulates the property of a GObject.
+The property then acts as the state of the action.
+As mentioned above, if the property is a boolean the action has no parameter and toggles the property on activation.
+In all other cases, the action has a parameter of the same type as the property.
+When activating the action, the property gets set to the same value as the parameter of the action.</p>
+</blockquote>
 <p>Finally, we add &quot;win.orientation&quot;, an action with string parameter and string state.
 This action can be used to change the orientation of <code>gtk_box</code>.
 Here the convention is that the state should be set to the given parameter.
@@ -7345,7 +7323,7 @@ We do not need the action state to implement orientation switching, however it i
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -7409,27 +7387,9 @@ We do not need the action state to implement orientation switching, however it i
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
-</span><span class="boring">        // Add stateful action &quot;sensitive-button&quot; to `window` taking no parameter
+</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = imp.button.get();
-</span><span class="boring">        let action_sensitive_button =
-</span><span class="boring">            SimpleAction::new_stateful(&quot;sensitive-button&quot;, None, &amp;true.to_variant());
-</span><span class="boring">
-</span><span class="boring">        action_sensitive_button.connect_activate(clone!(@weak button =&gt;
-</span><span class="boring">            move |action, _| {
-</span><span class="boring">                // Get state
-</span><span class="boring">                let mut state = action
-</span><span class="boring">                    .state()
-</span><span class="boring">                    .expect(&quot;Could not get state.&quot;)
-</span><span class="boring">                    .get::&lt;bool&gt;()
-</span><span class="boring">                    .expect(&quot;The value needs to be of type `bool`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                // Toggle and save state
-</span><span class="boring">                state = !state;
-</span><span class="boring">                action.set_state(&amp;state.to_variant());
-</span><span class="boring">
-</span><span class="boring">                // Set the button's sensitivity in accordance with the current state
-</span><span class="boring">                button.set_sensitive(state);
-</span><span class="boring">        }));
+</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span>
@@ -7534,7 +7494,28 @@ We will learn in the <a href="resources.html">resources</a> chapter how to bundl
 <h2 id="settings-1"><a class="header" href="#settings-1">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
 As usual, we solve this problem with <code>gio::Settings</code>.
-First we add the settings to <code>imp::Window</code> and manually implement the <code>Default</code> trait.</p>
+First we create a schema with settings corresponding to the stateful actions we created before.</p>
+<p><span class="filename">Filename: listings/actions/7/org.gtk-rs.example.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.example&quot; path=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;key name=&quot;sensitive-button&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;true&lt;/default&gt;
+      &lt;summary&gt;Whether the button is sensitive&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;orientation&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='Horizontal'/&gt;
+        &lt;choice value='Vertical'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'Vertical'&lt;/default&gt;
+      &lt;summary&gt;Orientation of GtkBox&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add the settings to <code>imp::Window</code>.
+Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/actions/7/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
 </span><span class="boring">use glib::subclass::InitializingObject;
@@ -7964,8 +7945,26 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
        &lt;object class=&quot;GtkBox&quot;&gt;
          &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
 </code></pre>
-<p>We also need to add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
-Since <code>gio::Settings</code> does not implement <code>Default</code>, we stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
+<p>We also create a settings schema.
+Again, the settings correspond to the stateful actions called by the menu.</p>
+<p><span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo.gschema.xml</span></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk-rs.Todo&quot; path=&quot;/org/gtk-rs/Todo/&quot;&gt;
+    &lt;key name=&quot;filter&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='All'/&gt;
+        &lt;choice value='Open'/&gt;
+        &lt;choice value='Done'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'All'&lt;/default&gt;
+      &lt;summary&gt;Filter of the tasks&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Then we add <code>settings</code> and a reference to <code>clear_button</code> to <code>imp::Window</code>.
+We stop deriving <code>Default</code> for <code>imp::Window</code> and implement it manually.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::fs::File;
 </span><span class="boring">
@@ -8090,23 +8089,23 @@ We will make use of them in the following snippets.</p>
 </span><span class="boring">    pub struct TodoObject(ObjectSubclass&lt;imp::TodoObject&gt;);
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">impl TodoObject {
-</span><span class="boring">    pub fn new(completed: bool, content: String) -&gt; Self {
-</span><span class="boring">        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
-</span><span class="boring">            .expect(&quot;Failed to create `TodoObject`.&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn is_completed(&amp;self) -&gt; bool {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().completed
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TodoData {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
-</span><span class="boring">        imp.data.borrow().clone()
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
+</span>impl TodoObject {
+    pub fn new(completed: bool, content: String) -&gt; Self {
+        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
+            .expect(&quot;Failed to create `TodoObject`.&quot;)
+    }
+
+    pub fn is_completed(&amp;self) -&gt; bool {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().completed
+    }
+
+    pub fn todo_data(&amp;self) -&gt; TodoData {
+        let imp = imp::TodoObject::from_instance(self);
+        imp.data.borrow().clone()
+    }
+}
+<span class="boring">
 </span><span class="boring">#[derive(Default, Serialize, Deserialize, Clone)]
 </span><span class="boring">pub struct TodoData {
 </span><span class="boring">    pub completed: bool,

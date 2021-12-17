@@ -687,9 +687,8 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.
-We also pass <code>application</code> to <code>window</code>.
-Here, the meaning is different, because this results in <code>application</code> holding a strong reference to <code>window</code>.
-<code>application</code> lives for the whole lifetime of our program, and is therefore capable to keep <code>window</code>, <code>gtk_box</code> and the buttons alive.</p>
+Until we close the <code>window</code> it keeps <code>gtk_box</code> and with it the buttons alive.
+Since our application has only one window, closing it also means exiting the application.</p>
 <p>As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 If that is ensured, you can rely on GTK to properly manage the memory of GObjects you pass to it.</p>
 
