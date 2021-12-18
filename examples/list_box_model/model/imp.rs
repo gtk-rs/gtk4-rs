@@ -15,7 +15,6 @@ pub struct Model(pub RefCell<Vec<RowData>>);
 impl ObjectSubclass for Model {
     const NAME: &'static str = "Model";
     type Type = super::Model;
-    type ParentType = glib::Object;
     type Interfaces = (gio::ListModel,);
 }
 

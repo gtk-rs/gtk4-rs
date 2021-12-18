@@ -1,5 +1,8 @@
 use glib::subclass::prelude::*;
-use gtk::{glib, prelude::*};
+use gtk::{
+    glib::{self, ParamSpec, Value},
+    prelude::*,
+};
 use std::cell::RefCell;
 
 // The actual data structure that stores our values. This is not accessible
@@ -15,7 +18,6 @@ pub struct RowData {
 impl ObjectSubclass for RowData {
     const NAME: &'static str = "RowData";
     type Type = super::RowData;
-    type ParentType = glib::Object;
 }
 
 // The ObjectImpl trait provides the setters/getters for GObject properties.
@@ -25,9 +27,9 @@ impl ObjectSubclass for RowData {
 // This maps between the GObject properties and our internal storage of the
 // corresponding values of the properties.
 impl ObjectImpl for RowData {
-    fn properties() -> &'static [glib::ParamSpec] {
+    fn properties() -> &'static [ParamSpec] {
         use once_cell::sync::Lazy;
-        static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
+        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
                 glib::ParamSpecString::new(
                     "name",
@@ -51,31 +53,21 @@ impl ObjectImpl for RowData {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) {
+    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "name" => {
-                let name = value
-                    .get()
-                    .expect("type conformity checked by `Object::set_property`");
+                let name = value.get().unwrap();
                 self.name.replace(name);
             }
             "count" => {
-                let count = value
-                    .get()
-                    .expect("type conformity checked by `Object::set_property`");
+                let count = value.get().unwrap();
                 self.count.replace(count);
             }
             _ => unimplemented!(),
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "name" => self.name.borrow().to_value(),
             "count" => self.count.borrow().to_value(),

@@ -13,13 +13,12 @@ glib::wrapper! {
 
 // Constructor for new instances. This simply calls glib::Object::new()
 impl Model {
-    #[allow(clippy::new_without_default)]
     pub fn new() -> Model {
         glib::Object::new(&[]).expect("Failed to create Model")
     }
 
     pub fn append(&self, obj: &RowData) {
-        let self_ = imp::Model::from_instance(self);
+        let self_ = self.impl_();
         let index = {
             // Borrow the data only once and ensure the borrow guard is dropped
             // before we emit the items_changed signal because the view
@@ -33,9 +32,15 @@ impl Model {
     }
 
     pub fn remove(&self, index: u32) {
-        let self_ = imp::Model::from_instance(self);
+        let self_ = self.impl_();
         self_.0.borrow_mut().remove(index as usize);
         // Emits a signal that 1 item was removed, 0 added at the position index
         self.items_changed(index, 1, 0);
+    }
+}
+
+impl Default for Model {
+    fn default() -> Self {
+        Self::new()
     }
 }
