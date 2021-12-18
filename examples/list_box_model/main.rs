@@ -50,7 +50,6 @@ fn build_ui(application: &gtk::Application) {
             ListBoxRow::new(
                 item.downcast_ref::<RowData>()
                     .expect("RowData is of wrong type"),
-                window.upcast_ref(),
             )
             .upcast::<gtk::Widget>()
         }),

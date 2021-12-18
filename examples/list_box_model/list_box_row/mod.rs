@@ -10,7 +10,7 @@ glib::wrapper! {
 }
 
 impl ListBoxRow {
-    pub fn new(row_data: &RowData, parent_window: &gtk::Window) -> Self {
-        glib::Object::new(&[("rowdata", &row_data), ("parent-window", &parent_window)]).unwrap()
+    pub fn new(row_data: &RowData) -> Self {
+        glib::Object::new(&[("row-data", &row_data)]).unwrap()
     }
 }

@@ -12,7 +12,6 @@ use crate::row_data::RowData;
 #[derive(Default, Debug)]
 pub struct ListBoxRow {
     row_data: RefCell<Option<RowData>>,
-    parent_window: RefCell<Option<gtk::Window>>,
 }
 
 #[glib::object_subclass]
@@ -26,35 +25,22 @@ impl ObjectImpl for ListBoxRow {
     fn properties() -> &'static [ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![
-                ParamSpecObject::new(
-                    "rowdata",
-                    "RowData",
-                    "RowData",
-                    RowData::static_type(),
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
-                ),
-                ParamSpecObject::new(
-                    "parent-window",
-                    "Parent Window",
-                    "Parent Window",
-                    gtk::Window::static_type(),
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
-                ),
-            ]
+            vec![ParamSpecObject::new(
+                "row-data",
+                "Row Data",
+                "Row Data",
+                RowData::static_type(),
+                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT_ONLY,
+            )]
         });
         PROPERTIES.as_ref()
     }
 
     fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
-            "rowdata" => {
+            "row-data" => {
                 let row_data = value.get().unwrap();
                 self.row_data.replace(row_data);
-            }
-            "parent-window" => {
-                let parent_window = value.get().unwrap();
-                self.parent_window.replace(parent_window);
             }
             _ => unimplemented!(),
         }
@@ -62,8 +48,7 @@ impl ObjectImpl for ListBoxRow {
 
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
-            "rowdata" => self.row_data.borrow().to_value(),
-            "parent-window" => self.parent_window.borrow().to_value(),
+            "row-data" => self.row_data.borrow().to_value(),
             _ => unimplemented!(),
         }
     }
@@ -88,7 +73,6 @@ impl ObjectImpl for ListBoxRow {
             .flags(glib::BindingFlags::DEFAULT | glib::BindingFlags::SYNC_CREATE)
             .build();
         hbox.append(&label);
-
         let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
         item.bind_property("count", &spin_button, "value")
             .flags(
@@ -102,14 +86,14 @@ impl ObjectImpl for ListBoxRow {
         // When the edit button is clicked, a new modal dialog is created for editing
         // the corresponding row
         let edit_button = gtk::Button::with_label("Edit");
-        edit_button.connect_clicked(clone!(@strong item, @strong self.parent_window as window => move |_| {
-            let window = window.borrow();
-            let window = window.as_ref().unwrap();
+        edit_button.connect_clicked(clone!(@weak item, @weak obj => move |_| {
+            let parent_window = obj.root().map(|root| root.downcast::<gtk::Window>().unwrap());
             let dialog = gtk::Dialog::with_buttons(
                 Some("Edit Item"),
-                Some(window),
+                parent_window.as_ref(),
                 gtk::DialogFlags::MODAL,
-                &[("Close", ResponseType::Close)]);
+                &[("Close", ResponseType::Close)],
+            );
             dialog.set_default_response(ResponseType::Close);
             dialog.connect_response(|dialog, _| dialog.close());
 
