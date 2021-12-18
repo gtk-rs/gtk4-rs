@@ -76,7 +76,8 @@ fn build_ui(application: &gtk::Application) {
             Some("Add Item"),
             Some(&window),
             gtk::DialogFlags::MODAL,
-            &[("Ok", ResponseType::Ok), ("Cancel", ResponseType::Cancel)]);
+            &[("Ok", ResponseType::Ok), ("Cancel", ResponseType::Cancel)],
+        );
         dialog.set_default_response(ResponseType::Ok);
         let content_area = dialog.content_area();
         let entry = gtk::Entry::new();
