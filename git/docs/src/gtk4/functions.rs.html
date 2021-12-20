@@ -332,7 +332,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`true`] if the accelerator is valid</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_valid&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_valid</span>(<span class="ident">keyval</span>: <span class="ident">gdk::keys::Key</span>, <span class="ident">modifiers</span>: <span class="ident">gdk::ModifierType</span>) -&gt; <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_valid</span>(<span class="ident">keyval</span>: <span class="ident">gdk::Key</span>, <span class="ident">modifiers</span>: <span class="ident">gdk::ModifierType</span>) -&gt; <span class="ident">bool</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_accelerator_valid</span>(
@@ -540,5 +540,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (5531927e8 2021-12-16)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (e95e084a1 2021-12-19)" ></div>
 </body></html>
