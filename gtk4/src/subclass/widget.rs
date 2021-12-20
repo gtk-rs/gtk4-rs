@@ -1051,7 +1051,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             + 'static,
     >(
         &mut self,
-        keyval: gdk::keys::Key,
+        keyval: gdk::Key,
         mods: gdk::ModifierType,
         callback: F,
         arguments: Option<&glib::Variant>,
@@ -1069,7 +1069,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_add_binding_action")]
     fn add_binding_action(
         &mut self,
-        keyval: gdk::keys::Key,
+        keyval: gdk::Key,
         mods: gdk::ModifierType,
         action_name: &str,
         arguments: Option<&glib::Variant>,
@@ -1085,7 +1085,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_add_binding_signal")]
     fn add_binding_signal(
         &mut self,
-        keyval: gdk::keys::Key,
+        keyval: gdk::Key,
         mods: gdk::ModifierType,
         signal_name: &str,
         arguments: Option<&glib::Variant>,

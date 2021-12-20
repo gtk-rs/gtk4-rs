@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::*;
-use crate::{keys::Key, Display, Event, KeymapKey, ModifierType};
+use crate::{Display, Event, Key, KeymapKey, ModifierType};
 use glib::translate::*;
 use glib::IsA;
 use std::{mem, ptr};
