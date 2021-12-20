@@ -178,41 +178,41 @@ status = "generate"
     [[object.function]]
     name = "keyval_convert_case"
     rename = "convert_case"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_from_name"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "from_name"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_is_lower"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "is_lower"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_is_upper"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "is_upper"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_name"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "name"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_lower"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "to_lower"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_unicode"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "to_unicode"
     doc_struct_name = "Key"
     [[object.function]]
     name = "keyval_to_upper"
-    manual = true # manually handled by keys::Key
+    manual = true # manually handled by Key
     rename = "to_upper"
     doc_struct_name = "Key"
     [[object.function]]

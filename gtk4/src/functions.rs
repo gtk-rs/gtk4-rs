@@ -10,7 +10,7 @@ use std::pin::Pin;
 use std::ptr;
 
 #[doc(alias = "gtk_accelerator_valid")]
-pub fn accelerator_valid(keyval: gdk::keys::Key, modifiers: gdk::ModifierType) -> bool {
+pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool {
     assert_initialized_main_thread!();
     unsafe {
         from_glib(ffi::gtk_accelerator_valid(

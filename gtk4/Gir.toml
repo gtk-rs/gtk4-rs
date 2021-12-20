@@ -478,7 +478,7 @@ trust_return_value_nullability = false
     manual = true # the auto-generated code is wrong
     [[object.function]]
     name = "accelerator_valid"
-    manual = true # to make use of gdk::keys::Key
+    manual = true # to make use of gdk::Key
     [[object.function]]
     name = "disable_setlocale"
     assertion = "not-initialized"
@@ -1111,10 +1111,10 @@ status = "generate"
 trust_return_value_nullability = false
     [[object.signal]]
     name = "key-pressed"
-    manual = true # to make use of gdk::keys::Key
+    manual = true # to make use of gdk::Key
     [[object.signal]]
     name = "key-released"
-    manual = true # to make use of gdk::keys::Key
+    manual = true # to make use of gdk::Key
     [[object.signal]]
     name = "modifiers"
     inhibit = true
@@ -1321,7 +1321,7 @@ status = "generate"
 
 [[object]]
 name = "Gtk.KeyvalTrigger"
-status = "manual" # to make use of gdk::keys::Key
+status = "manual" # to make use of gdk::Key
 generate_builder = false
 
 [[object]]
@@ -1337,7 +1337,7 @@ status = "generate"
     inhibit = true
     [[object.function]]
     name = "get_mnemonic_keyval"
-    manual = true # to make use of gdk::keys::Key
+    manual = true # to make use of gdk::Key
 
 [[object]]
 name = "Gtk.LayoutChild"
@@ -1509,7 +1509,7 @@ trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.MnemonicTrigger"
-status = "manual" # to make use of gdk::keys::Key # to make use of gdk::keys::Key
+status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
 
 [[object]]

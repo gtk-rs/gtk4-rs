@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{keys::Key, EventType, KeyMatch, ModifierType};
+use crate::{EventType, Key, KeyMatch, ModifierType};
 use glib::translate::*;
 use std::fmt;
 use std::mem;
