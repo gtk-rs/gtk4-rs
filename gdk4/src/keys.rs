@@ -4636,7 +4636,11 @@ impl Key {
 
 impl ::std::fmt::Display for Key {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        write!(f, "Key({})", self.0)
+        f.debug_struct("Key")
+            .field("name", &self.name())
+            .field("is_lower", &self.is_lower())
+            .field("is_upper", &self.is_upper())
+            .finish()
     }
 }
 
