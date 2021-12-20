@@ -4,6 +4,8 @@ use glib::translate::*;
 use glib::GString;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+// rustdoc-stripper-ignore-next
+/// A wrapper around `GDK_KEY_` constants and keyval methods.
 pub struct Key(u32);
 
 #[allow(non_upper_case_globals)]
