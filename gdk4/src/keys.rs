@@ -6,14 +6,6 @@ use glib::GString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Key(u32);
 
-impl ::std::ops::Deref for Key {
-    type Target = u32;
-
-    fn deref(&self) -> &u32 {
-        &self.0
-    }
-}
-
 impl FromGlib<u32> for Key {
     unsafe fn from_glib(value: u32) -> Self {
         skip_assert_initialized!();
@@ -25,7 +17,7 @@ impl IntoGlib for Key {
     type GlibType = u32;
 
     fn into_glib(self) -> u32 {
-        *self
+        self.0
     }
 }
 
