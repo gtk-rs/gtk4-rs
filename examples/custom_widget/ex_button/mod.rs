@@ -4,7 +4,8 @@ use gtk::glib;
 
 glib::wrapper! {
     pub struct ExButton(ObjectSubclass<imp::ExButton>)
-        @extends gtk::Widget;
+        @extends gtk::Widget,
+        @implements gtk::Accessible;
 }
 
 impl Default for ExButton {
