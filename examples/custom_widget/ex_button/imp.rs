@@ -31,6 +31,9 @@ impl ObjectSubclass for ExButton {
 
         // Make it look like a GTK button.
         klass.set_css_name("button");
+
+        // Make it appear as a button to accessibility tools.
+        klass.set_accessible_role(gtk::AccessibleRole::Button);
     }
 }
 
@@ -39,12 +42,16 @@ impl ObjectImpl for ExButton {
         self.parent_constructed(obj);
 
         // Create the child label.
-        let child = gtk::Label::new(Some("Hello world!"));
+        let label = "Hello world!";
+        let child = gtk::Label::new(Some(label));
         child.set_parent(obj);
         *self.child.borrow_mut() = Some(child.upcast::<gtk::Widget>());
 
         // Make it look like a GTK button with a label (as opposed to an icon).
         obj.add_css_class("text-button");
+
+        // Tell accessibility tools the button has a label.
+        obj.update_property(&[gtk::accessible::Property::Label(label)]);
 
         // Connect a gesture to handle clicks.
         let gesture = gtk::GestureClick::new();

@@ -98,7 +98,7 @@ pub use auto::functions::*;
 pub use auto::*;
 pub use rt::*;
 
-mod accessible;
+pub mod accessible;
 mod actionable;
 mod application;
 mod assistant;
