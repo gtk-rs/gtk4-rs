@@ -21,16 +21,15 @@ impl CustomLayout {
     }
 
     pub fn set_position(&self, position: f64) {
-        let self_ = imp::CustomLayout::from_instance(self);
-        self_.position.set(position);
+        self.imp().position.set(position);
     }
 
     pub fn shuffle(&self) {
-        let self_ = imp::CustomLayout::from_instance(self);
+        let imp = self.imp();
         for i in 0..TOTAL_COLORS {
             let j = glib::random_int_range(0, i + 1);
             {
-                let mut child_pos = self_.child_pos.borrow_mut();
+                let mut child_pos = imp.child_pos.borrow_mut();
                 let tmp = *child_pos.get(i as usize).unwrap();
                 let tmp2 = *child_pos.get(j as usize).unwrap();
                 child_pos[i as usize] = tmp2;

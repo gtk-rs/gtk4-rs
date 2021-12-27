@@ -16,8 +16,8 @@ impl CustomTag {
     }
 
     pub fn set_has_close_button(&self, has_close_button: bool) {
-        let self_ = imp::CustomTag::from_instance(self);
-        if self_.has_close_button.get() == has_close_button {
+        let imp = self.imp();
+        if imp.has_close_button.get() == has_close_button {
             return;
         }
 
@@ -33,11 +33,11 @@ impl CustomTag {
             let icon = gtk::Image::from_icon_name(Some("window-close-symbolic"));
             button.set_child(Some(&icon));
 
-            self_.container.append(&button);
-            self_.button.replace(Some(button));
-        } else if let Some(button) = self_.button.borrow_mut().take() {
-            self_.container.remove(&button);
+            imp.container.append(&button);
+            imp.button.replace(Some(button));
+        } else if let Some(button) = imp.button.borrow_mut().take() {
+            imp.container.remove(&button);
         }
-        self_.has_close_button.set(has_close_button);
+        imp.has_close_button.set(has_close_button);
     }
 }

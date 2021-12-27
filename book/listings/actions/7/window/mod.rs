@@ -22,7 +22,7 @@ impl Window {
 
     fn add_actions(&self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let label = imp.label.get();
 
         // Add stateful action "count" to `window` taking an integer as parameter
@@ -78,7 +78,7 @@ impl Window {
     // ANCHOR: bind_settings
     fn bind_settings(&self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Bind setting "sensitive-button" to "sensitive" property of `button`
         let button = imp.button.get();

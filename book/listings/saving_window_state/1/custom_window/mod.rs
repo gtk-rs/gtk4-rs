@@ -22,7 +22,7 @@ impl Window {
 
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
         // Get `settings` from `imp::Window`
-        let settings = &imp::Window::from_instance(self).settings;
+        let settings = &self.imp().settings;
 
         // Get the size of the window
         let size = self.default_size();
@@ -37,7 +37,7 @@ impl Window {
 
     fn load_window_size(&self) {
         // Get `settings` from `imp::Window`
-        let settings = &imp::Window::from_instance(self).settings;
+        let settings = &self.imp().settings;
 
         // Get the window state from `settings`
         let width = settings.int("window-width");
