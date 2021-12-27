@@ -22,7 +22,7 @@ impl Window {
     }
 
     fn add_actions(&self) {
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let label = imp.label.get();
 
         // Add stateful action "count" to `window` taking an integer as parameter

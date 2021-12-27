@@ -26,7 +26,7 @@ impl TodoRow {
 
     pub fn bind(&self, todo_object: &TodoObject) {
         // Get state
-        let imp = imp::TodoRow::from_instance(self);
+        let imp = self.imp();
         let completed_button = imp.completed_button.get();
         let content_label = imp.content_label.get();
         let mut bindings = imp.bindings.borrow_mut();
@@ -70,7 +70,7 @@ impl TodoRow {
 
     pub fn unbind(&self) {
         // Get state
-        let imp = imp::TodoRow::from_instance(self);
+        let imp = self.imp();
 
         // Unbind all stored bindings
         for binding in imp.bindings.borrow_mut().drain(..) {

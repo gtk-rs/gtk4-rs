@@ -29,8 +29,8 @@ impl CustomEditable {
     }
 
     pub fn set_show_spinner(&self, show_spinner: bool) {
-        let self_ = imp::CustomEditable::from_instance(self);
-        if self_.show_spinner.get() == show_spinner {
+        let imp = self.imp();
+        if imp.show_spinner.get() == show_spinner {
             return;
         }
 
@@ -42,10 +42,10 @@ impl CustomEditable {
             spinner.start();
 
             spinner.set_parent(self);
-            self_.spinner.replace(Some(spinner));
-        } else if let Some(spinner) = self_.spinner.borrow_mut().take() {
+            imp.spinner.replace(Some(spinner));
+        } else if let Some(spinner) = imp.spinner.borrow_mut().take() {
             spinner.unparent();
         }
-        self_.show_spinner.set(show_spinner);
+        imp.show_spinner.set(show_spinner);
     }
 }

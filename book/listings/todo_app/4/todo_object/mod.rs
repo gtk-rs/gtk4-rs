@@ -16,12 +16,12 @@ impl TodoObject {
     }
 
     pub fn is_completed(&self) -> bool {
-        let imp = imp::TodoObject::from_instance(self);
+        let imp = self.imp();
         imp.data.borrow().completed
     }
 
     pub fn todo_data(&self) -> TodoData {
-        let imp = imp::TodoObject::from_instance(self);
+        let imp = self.imp();
         imp.data.borrow().clone()
     }
 }

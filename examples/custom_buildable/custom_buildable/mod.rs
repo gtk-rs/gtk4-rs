@@ -10,14 +10,14 @@ glib::wrapper! {
 
 impl CustomBuildable {
     pub fn add_suffix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
-        let self_ = imp::CustomBuildable::from_instance(self);
-        self_.suffixes.append(widget);
-        self_.suffixes.show();
+        let imp = self.imp();
+        imp.suffixes.append(widget);
+        imp.suffixes.show();
     }
 
     pub fn add_prefix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
-        let self_ = imp::CustomBuildable::from_instance(self);
-        self_.prefixes.append(widget);
-        self_.prefixes.show();
+        let imp = self.imp();
+        imp.prefixes.append(widget);
+        imp.prefixes.show();
     }
 }

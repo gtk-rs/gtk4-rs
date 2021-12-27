@@ -27,14 +27,14 @@ impl Window {
 
     fn model(&self) -> &gio::ListStore {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.model.get().expect("Could not get model")
     }
 
     // ANCHOR: filter
     fn filter(&self) -> Option<CustomFilter> {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Get filter_state from settings
         let filter_state: String = imp.settings.get("filter");
@@ -75,7 +75,7 @@ impl Window {
         let model = gio::ListStore::new(TodoObject::static_type());
 
         // Get state and set model
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.model.set(model).expect("Could not set model");
 
         // Wrap model with filter and selection and pass it to the list view
@@ -117,7 +117,7 @@ impl Window {
     // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let model = self.model();
 
         // Setup callback so that activation
@@ -195,7 +195,7 @@ impl Window {
         });
 
         // Set the factory of the list view
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.list_view.set_factory(Some(&factory));
     }
 
@@ -216,7 +216,7 @@ impl Window {
     // ANCHOR: setup_filter_action
     fn setup_filter_action(&self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Create action from key "filter"
         let filter_action = imp.settings.create_action("filter");
