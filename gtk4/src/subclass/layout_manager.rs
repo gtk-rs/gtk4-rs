@@ -251,7 +251,7 @@ unsafe extern "C" fn layout_manager_allocate<T: LayoutManagerImpl>(
     baseline: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
@@ -265,7 +265,7 @@ unsafe extern "C" fn layout_manager_create_layout_child<T: LayoutManagerImpl>(
     for_childptr: *mut ffi::GtkWidget,
 ) -> *mut ffi::GtkLayoutChild {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let for_child: Borrowed<Widget> = from_glib_borrow(for_childptr);
@@ -279,7 +279,7 @@ unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
     widgetptr: *mut ffi::GtkWidget,
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
@@ -298,7 +298,7 @@ unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
     natural_baseline_ptr: *mut c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
@@ -324,7 +324,7 @@ unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
 
 unsafe extern "C" fn layout_manager_root<T: LayoutManagerImpl>(ptr: *mut ffi::GtkLayoutManager) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
     imp.root(wrap.unsafe_cast_ref())
@@ -332,7 +332,7 @@ unsafe extern "C" fn layout_manager_root<T: LayoutManagerImpl>(ptr: *mut ffi::Gt
 
 unsafe extern "C" fn layout_manager_unroot<T: LayoutManagerImpl>(ptr: *mut ffi::GtkLayoutManager) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
     imp.unroot(wrap.unsafe_cast_ref())

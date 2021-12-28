@@ -155,7 +155,7 @@ unsafe extern "C" fn color_chooser_add_palette<T: ColorChooserImpl>(
     colorsptr: *mut gdk::ffi::GdkRGBA,
 ) {
     let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let colors = std::slice::from_raw_parts(colorsptr as *const RGBA, total as usize);
     imp.add_palette(
@@ -171,7 +171,7 @@ unsafe extern "C" fn color_chooser_color_activated<T: ColorChooserImpl>(
     rgba: *const gdk::ffi::GdkRGBA,
 ) {
     let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.color_activated(
         from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref(),
@@ -184,7 +184,7 @@ unsafe extern "C" fn color_chooser_get_rgba<T: ColorChooserImpl>(
     rgbaptr: *const gdk::ffi::GdkRGBA,
 ) {
     let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let rgba = imp.rgba(from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref());
     *(rgbaptr as *mut gdk::ffi::GdkRGBA) = *rgba.to_glib_none().0;
@@ -195,7 +195,7 @@ unsafe extern "C" fn color_chooser_set_rgba<T: ColorChooserImpl>(
     rgba: *const gdk::ffi::GdkRGBA,
 ) {
     let instance = &*(color_chooser as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.set_rgba(
         from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref(),

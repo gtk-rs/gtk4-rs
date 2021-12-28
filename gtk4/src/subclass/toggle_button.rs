@@ -44,7 +44,7 @@ unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
 
 unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(ptr: *mut ffi::GtkToggleButton) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ToggleButton> = from_glib_borrow(ptr);
 
     imp.toggled(wrap.unsafe_cast_ref())

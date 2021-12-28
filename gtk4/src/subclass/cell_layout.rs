@@ -344,7 +344,7 @@ unsafe extern "C" fn cell_layout_get_area<T: CellLayoutImpl>(
     cell_layout: *mut ffi::GtkCellLayout,
 ) -> *mut ffi::GtkCellArea {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.area(from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref())
         .to_glib_full()
@@ -356,7 +356,7 @@ unsafe extern "C" fn cell_layout_pack_start<T: CellLayoutImpl>(
     expand: glib::ffi::gboolean,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
@@ -373,7 +373,7 @@ unsafe extern "C" fn cell_layout_pack_end<T: CellLayoutImpl>(
     expand: glib::ffi::gboolean,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
@@ -386,7 +386,7 @@ unsafe extern "C" fn cell_layout_pack_end<T: CellLayoutImpl>(
 
 unsafe extern "C" fn cell_layout_clear<T: CellLayoutImpl>(cell_layout: *mut ffi::GtkCellLayout) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.clear(from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref())
 }
@@ -397,7 +397,7 @@ unsafe extern "C" fn cell_layout_reorder<T: CellLayoutImpl>(
     position: i32,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
@@ -415,7 +415,7 @@ unsafe extern "C" fn cell_layout_add_attribute<T: CellLayoutImpl>(
     column: i32,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
     let attribute: Borrowed<glib::GString> = from_glib_borrow(attributeptr);
@@ -433,7 +433,7 @@ unsafe extern "C" fn cell_layout_clear_attributes<T: CellLayoutImpl>(
     cellptr: *mut ffi::GtkCellRenderer,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
@@ -451,7 +451,7 @@ unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
     destroy_notify: glib::ffi::GDestroyNotify,
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
@@ -479,7 +479,7 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
     cell_layout: *mut ffi::GtkCellLayout,
 ) -> *mut glib::ffi::GList {
     let instance = &*(cell_layout as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let wrap = from_glib_borrow::<_, CellLayout>(cell_layout);
 

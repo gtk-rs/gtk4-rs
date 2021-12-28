@@ -121,7 +121,7 @@ unsafe extern "C" fn tree_model_filter_visible<T: TreeModelFilterImpl>(
     iterptr: *mut ffi::GtkTreeIter,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TreeModelFilter> = from_glib_borrow(ptr);
     let child_model: Borrowed<TreeModel> = from_glib_borrow(child_modelptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
@@ -138,7 +138,7 @@ unsafe extern "C" fn tree_model_filter_modify<T: TreeModelFilterImpl>(
     column: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TreeModelFilter> = from_glib_borrow(ptr);
     let child_model: Borrowed<TreeModel> = from_glib_borrow(child_modelptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);

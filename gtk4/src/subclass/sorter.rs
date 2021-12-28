@@ -72,7 +72,7 @@ unsafe extern "C" fn sorter_compare<T: SorterImpl>(
     item2ptr: *mut glib::gobject_ffi::GObject,
 ) -> ffi::GtkOrdering {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
     imp.compare(
@@ -87,7 +87,7 @@ unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
     ptr: *mut ffi::GtkSorter,
 ) -> ffi::GtkSorterOrder {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
     imp.order(wrap.unsafe_cast_ref()).into_glib()

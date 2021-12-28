@@ -50,7 +50,7 @@ unsafe extern "C" fn scale_button_value_changed<T: ScaleButtonImpl>(
     new_value: f64,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ScaleButton> = from_glib_borrow(ptr);
 
     imp.value_changed(wrap.unsafe_cast_ref(), new_value)

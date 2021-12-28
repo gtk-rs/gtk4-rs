@@ -155,7 +155,7 @@ unsafe extern "C" fn cell_area_context_reset<T: CellAreaContextImpl>(
     ptr: *mut ffi::GtkCellAreaContext,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
     imp.reset(wrap.unsafe_cast_ref())
@@ -168,7 +168,7 @@ unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAre
     natural_height: *mut libc::c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
     let (min_height, nat_height) = imp.preferred_height_for_width(wrap.unsafe_cast_ref(), width);
@@ -183,7 +183,7 @@ unsafe extern "C" fn cell_area_context_get_preferred_width_for_height<T: CellAre
     natural_width: *mut libc::c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
     let (min_width, nat_width) = imp.preferred_width_for_height(wrap.unsafe_cast_ref(), height);
@@ -197,7 +197,7 @@ unsafe extern "C" fn cell_area_context_allocate<T: CellAreaContextImpl>(
     height: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
     imp.allocate(wrap.unsafe_cast_ref(), width, height)

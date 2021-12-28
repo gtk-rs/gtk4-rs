@@ -81,7 +81,7 @@ unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
 
 unsafe extern "C" fn combo_box_changed<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
 
     imp.changed(wrap.unsafe_cast_ref())
@@ -92,7 +92,7 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
     pathptr: *const libc::c_char,
 ) -> *mut libc::c_char {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
 
     let path: Borrowed<GString> = from_glib_borrow(pathptr);
@@ -104,7 +104,7 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 unsafe extern "C" fn combo_box_activate<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
 
     imp.activate(wrap.unsafe_cast_ref())

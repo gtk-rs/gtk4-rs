@@ -292,7 +292,7 @@ unsafe impl<T: TextViewImpl> IsSubclassable<T> for TextView {
 
 unsafe extern "C" fn text_view_backspace<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.backspace(wrap.unsafe_cast_ref())
@@ -300,7 +300,7 @@ unsafe extern "C" fn text_view_backspace<T: TextViewImpl>(ptr: *mut ffi::GtkText
 
 unsafe extern "C" fn text_view_copy_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.copy_clipboard(wrap.unsafe_cast_ref())
@@ -308,7 +308,7 @@ unsafe extern "C" fn text_view_copy_clipboard<T: TextViewImpl>(ptr: *mut ffi::Gt
 
 unsafe extern "C" fn text_view_cut_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.cut_clipboard(wrap.unsafe_cast_ref())
@@ -320,7 +320,7 @@ unsafe extern "C" fn text_view_delete_from_cursor<T: TextViewImpl>(
     count: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.delete_from_cursor(wrap.unsafe_cast_ref(), from_glib(type_), count)
@@ -334,7 +334,7 @@ unsafe extern "C" fn text_view_extend_selection<T: TextViewImpl>(
     end: *mut ffi::GtkTextIter,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     let mut start_copy = from_glib_none(start);
@@ -358,7 +358,7 @@ unsafe extern "C" fn text_view_insert_at_cursor<T: TextViewImpl>(
     text_ptr: *const libc::c_char,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
     let text: Borrowed<glib::GString> = from_glib_borrow(text_ptr);
 
@@ -367,7 +367,7 @@ unsafe extern "C" fn text_view_insert_at_cursor<T: TextViewImpl>(
 
 unsafe extern "C" fn text_view_insert_emoji<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.insert_emoji(wrap.unsafe_cast_ref())
@@ -380,7 +380,7 @@ unsafe extern "C" fn text_view_move_cursor<T: TextViewImpl>(
     extend_selection: glib::ffi::gboolean,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.move_cursor(
@@ -393,7 +393,7 @@ unsafe extern "C" fn text_view_move_cursor<T: TextViewImpl>(
 
 unsafe extern "C" fn text_view_paste_clipboard<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.paste_clipboard(wrap.unsafe_cast_ref())
@@ -401,7 +401,7 @@ unsafe extern "C" fn text_view_paste_clipboard<T: TextViewImpl>(ptr: *mut ffi::G
 
 unsafe extern "C" fn text_view_set_anchor<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.set_anchor(wrap.unsafe_cast_ref())
@@ -413,7 +413,7 @@ unsafe extern "C" fn text_view_snapshot_layer<T: TextViewImpl>(
     snapshot: *mut ffi::GtkSnapshot,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.snapshot_layer(
@@ -425,7 +425,7 @@ unsafe extern "C" fn text_view_snapshot_layer<T: TextViewImpl>(
 
 unsafe extern "C" fn text_view_toggle_overwrite<T: TextViewImpl>(ptr: *mut ffi::GtkTextView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<TextView> = from_glib_borrow(ptr);
 
     imp.toggle_overwrite(wrap.unsafe_cast_ref())

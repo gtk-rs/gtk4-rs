@@ -163,7 +163,7 @@ unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
 
 unsafe extern "C" fn media_stream_pause<T: MediaStreamImpl>(ptr: *mut ffi::GtkMediaStream) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.pause(wrap.unsafe_cast_ref())
@@ -173,7 +173,7 @@ unsafe extern "C" fn media_stream_play<T: MediaStreamImpl>(
     ptr: *mut ffi::GtkMediaStream,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.play(wrap.unsafe_cast_ref()).into_glib()
@@ -184,7 +184,7 @@ unsafe extern "C" fn media_stream_realize<T: MediaStreamImpl>(
     surface: *mut gdk::ffi::GdkSurface,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.realize(wrap.unsafe_cast_ref(), from_glib_none(surface))
@@ -195,7 +195,7 @@ unsafe extern "C" fn media_stream_seek<T: MediaStreamImpl>(
     timestamp: i64,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.seek(wrap.unsafe_cast_ref(), timestamp)
@@ -206,7 +206,7 @@ unsafe extern "C" fn media_stream_unrealize<T: MediaStreamImpl>(
     surface: *mut gdk::ffi::GdkSurface,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.unrealize(wrap.unsafe_cast_ref(), from_glib_none(surface))
@@ -218,7 +218,7 @@ unsafe extern "C" fn media_stream_update_audio<T: MediaStreamImpl>(
     volume: f64,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
     imp.update_audio(wrap.unsafe_cast_ref(), from_glib(muted), volume)

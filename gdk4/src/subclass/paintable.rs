@@ -158,7 +158,7 @@ unsafe extern "C" fn paintable_get_current_image<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
 ) -> *mut ffi::GdkPaintable {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.current_image(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
         .to_glib_full()
@@ -168,7 +168,7 @@ unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
 ) -> ffi::GdkPaintableFlags {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.flags(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
         .into_glib()
@@ -178,7 +178,7 @@ unsafe extern "C" fn paintable_get_intrinsic_width<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
 ) -> i32 {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.intrinsic_width(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
 }
@@ -187,7 +187,7 @@ unsafe extern "C" fn paintable_get_intrinsic_height<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
 ) -> i32 {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.intrinsic_height(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
 }
@@ -196,7 +196,7 @@ unsafe extern "C" fn paintable_get_intrinsic_aspect_ratio<T: PaintableImpl>(
     paintable: *mut ffi::GdkPaintable,
 ) -> f64 {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.intrinsic_aspect_ratio(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
 }
@@ -208,7 +208,7 @@ unsafe extern "C" fn paintable_snapshot<T: PaintableImpl>(
     height: f64,
 ) {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.snapshot(
         from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref(),

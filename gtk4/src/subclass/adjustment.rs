@@ -63,7 +63,7 @@ unsafe impl<T: AdjustmentImpl> IsSubclassable<T> for Adjustment {
 
 unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdjustment) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Adjustment> = from_glib_borrow(ptr);
 
     imp.changed(wrap.unsafe_cast_ref())
@@ -71,7 +71,7 @@ unsafe extern "C" fn adjustment_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdj
 
 unsafe extern "C" fn adjustment_value_changed<T: AdjustmentImpl>(ptr: *mut ffi::GtkAdjustment) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Adjustment> = from_glib_borrow(ptr);
 
     imp.value_changed(wrap.unsafe_cast_ref())

@@ -462,7 +462,7 @@ unsafe extern "C" fn cell_renderer_activate<T: CellRendererImpl>(
     flags: ffi::GtkCellRendererState,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
     let evt: Borrowed<Option<gdk::Event>> = from_glib_borrow(evtptr);
@@ -483,7 +483,7 @@ unsafe extern "C" fn cell_renderer_editing_canceled<T: CellRendererImpl>(
     ptr: *mut ffi::GtkCellRenderer,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
 
     imp.editing_canceled(wrap.unsafe_cast_ref());
@@ -495,7 +495,7 @@ unsafe extern "C" fn cell_renderer_editing_started<T: CellRendererImpl>(
     pathptr: *const c_char,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let editable = from_glib_borrow(editableptr);
 
@@ -514,7 +514,7 @@ unsafe extern "C" fn cell_renderer_get_aligned_area<T: CellRendererImpl>(
     alignedptr: *mut gdk::ffi::GdkRectangle,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
@@ -535,7 +535,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_height_for_width<T: CellRendere
     nat_height_ptr: *mut c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
@@ -556,7 +556,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_height<T: CellRendererImpl>(
     natptr: *mut c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
@@ -577,7 +577,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_width_for_height<T: CellRendere
     nat_width_ptr: *mut c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
@@ -598,7 +598,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_width<T: CellRendererImpl>(
     natptr: *mut c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
@@ -615,7 +615,7 @@ unsafe extern "C" fn cell_renderer_get_request_mode<T: CellRendererImpl>(
     ptr: *mut ffi::GtkCellRenderer,
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
 
     imp.request_mode(wrap.unsafe_cast_ref()).into_glib()
@@ -630,7 +630,7 @@ unsafe extern "C" fn cell_renderer_snapshot<T: CellRendererImpl>(
     flags: ffi::GtkCellRendererState,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
     let snapshot: Borrowed<Snapshot> = from_glib_borrow(snapshotptr);
@@ -655,7 +655,7 @@ unsafe extern "C" fn cell_renderer_start_editing<T: CellRendererImpl>(
     flags: ffi::GtkCellRendererState,
 ) -> *mut ffi::GtkCellEditable {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
     let evt: Borrowed<Option<gdk::Event>> = from_glib_borrow(evtptr);

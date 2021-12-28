@@ -86,7 +86,7 @@ unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(
     responseptr: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
     let res: ResponseType = from_glib(responseptr);
 
@@ -95,7 +95,7 @@ unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(
 
 unsafe extern "C" fn dialog_show<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
 
     imp.show(wrap.unsafe_cast_ref())
@@ -103,7 +103,7 @@ unsafe extern "C" fn dialog_show<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDi
 
 unsafe extern "C" fn dialog_hide<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
 
     imp.hide(wrap.unsafe_cast_ref())

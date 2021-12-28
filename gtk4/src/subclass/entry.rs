@@ -41,7 +41,7 @@ unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
 
 unsafe extern "C" fn entry_activate<T: EntryImpl>(ptr: *mut ffi::GtkEntry) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Entry> = from_glib_borrow(ptr);
 
     imp.activate(wrap.unsafe_cast_ref())

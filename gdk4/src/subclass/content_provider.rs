@@ -239,8 +239,10 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         Box::pin(gio::GioFuture::new(
             provider,
             move |obj, cancellable, send| {
-                obj.impl_().parent_write_mime_type_async(
-                    obj,
+                let imp = Self::from_instance(obj);
+
+                imp.parent_write_mime_type_async(
+                    &imp.instance(),
                     &mime_type,
                     &stream,
                     io_priority,
@@ -301,7 +303,7 @@ unsafe extern "C" fn content_provider_content_changed<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
     imp.content_changed(wrap.unsafe_cast_ref())
@@ -312,7 +314,7 @@ unsafe extern "C" fn content_provider_attach_clipboard<T: ContentProviderImpl>(
     clipboard_ptr: *mut ffi::GdkClipboard,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let clipboard = from_glib_borrow(clipboard_ptr);
 
@@ -324,7 +326,7 @@ unsafe extern "C" fn content_provider_detach_clipboard<T: ContentProviderImpl>(
     clipboard_ptr: *mut ffi::GdkClipboard,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let clipboard = from_glib_borrow(clipboard_ptr);
 
@@ -335,7 +337,7 @@ unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) -> *mut ffi::GdkContentFormats {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
     imp.formats(wrap.unsafe_cast_ref()).to_glib_full()
@@ -345,7 +347,7 @@ unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
     ptr: *mut ffi::GdkContentProvider,
 ) -> *mut ffi::GdkContentFormats {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
     imp.storable_formats(wrap.unsafe_cast_ref()).to_glib_full()
@@ -361,7 +363,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     user_data: glib::ffi::gpointer,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: ContentProvider = from_glib_none(ptr);
     let cancellable: Option<gio::Cancellable> = from_glib_none(cancellable_ptr);
     let mime_type: glib::GString = from_glib_none(mime_type_ptr);
@@ -421,7 +423,7 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
     error_ptr: *mut *mut glib::ffi::GError,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let value: Value = from_glib_none(value_ptr);
 

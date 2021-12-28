@@ -52,7 +52,7 @@ unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(
     height: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<DrawingArea> = from_glib_borrow(ptr);
 
     imp.resize(wrap.unsafe_cast_ref(), width, height)
