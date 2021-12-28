@@ -1,1 +1,1 @@
-initSidebarItems({"derive":[["CompositeTemplate","Derive macro for using a composite template in a widget."]]});
+initSidebarItems({"attr":[["template_callbacks","Attribute macro for creating template callbacks from Rust methods."]],"derive":[["CompositeTemplate","Derive macro for using a composite template in a widget."]]});

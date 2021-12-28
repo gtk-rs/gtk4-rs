@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["TemplateChild",""],["WidgetAction",""],["WidgetActionIter",""]],"trait":[["CompositeTemplate",""],["WidgetClassSubclassExt",""],["WidgetImpl",""],["WidgetImplExt",""]]});
+initSidebarItems({"struct":[["TemplateChild",""],["WidgetAction",""],["WidgetActionIter",""]],"trait":[["CompositeTemplate",""],["CompositeTemplateCallbacks",""],["WidgetClassSubclassExt",""],["WidgetImpl",""],["WidgetImplExt",""]],"type":[["TemplateCallback",""]]});
