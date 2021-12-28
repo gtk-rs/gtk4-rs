@@ -632,7 +632,7 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
     vexpand_ptr: *mut glib::ffi::gboolean,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     let widget = wrap.unsafe_cast_ref::<Widget>();
@@ -659,7 +659,7 @@ unsafe extern "C" fn widget_contains<T: WidgetImpl>(
     y: f64,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.contains(wrap.unsafe_cast_ref(), x, y).into_glib()
@@ -670,7 +670,7 @@ unsafe extern "C" fn widget_direction_changed<T: WidgetImpl>(
     direction_ptr: ffi::GtkTextDirection,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_wrap = from_glib(direction_ptr);
 
@@ -682,7 +682,7 @@ unsafe extern "C" fn widget_focus<T: WidgetImpl>(
     direction_type_ptr: ffi::GtkDirectionType,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
@@ -694,7 +694,7 @@ unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
     ptr: *mut ffi::GtkWidget,
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.request_mode(wrap.unsafe_cast_ref()).into_glib()
@@ -704,7 +704,7 @@ unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
     ptr: *mut ffi::GtkWidget,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.grab_focus(wrap.unsafe_cast_ref()).into_glib()
@@ -712,7 +712,7 @@ unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
 
 unsafe extern "C" fn widget_hide<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.hide(wrap.unsafe_cast_ref())
@@ -723,7 +723,7 @@ unsafe extern "C" fn widget_keynav_failed<T: WidgetImpl>(
     direction_type_ptr: ffi::GtkDirectionType,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
@@ -733,7 +733,7 @@ unsafe extern "C" fn widget_keynav_failed<T: WidgetImpl>(
 
 unsafe extern "C" fn widget_map<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.map(wrap.unsafe_cast_ref())
@@ -749,7 +749,7 @@ unsafe extern "C" fn widget_measure<T: WidgetImpl>(
     nat_base_ptr: *mut libc::c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let orientation = from_glib(orientation_ptr);
     let (min, nat, min_base, nat_base) = imp.measure(wrap.unsafe_cast_ref(), orientation, for_size);
@@ -772,7 +772,7 @@ unsafe extern "C" fn widget_mnemonic_activate<T: WidgetImpl>(
     group_cycling_ptr: glib::ffi::gboolean,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let group_cycling: bool = from_glib(group_cycling_ptr);
 
@@ -785,7 +785,7 @@ unsafe extern "C" fn widget_move_focus<T: WidgetImpl>(
     direction_type_ptr: ffi::GtkDirectionType,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
@@ -800,7 +800,7 @@ unsafe extern "C" fn widget_query_tooltip<T: WidgetImpl>(
     tooltip_ptr: *mut ffi::GtkTooltip,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     let keyboard_tooltip: bool = from_glib(keyboard_tooltip_ptr);
@@ -812,7 +812,7 @@ unsafe extern "C" fn widget_query_tooltip<T: WidgetImpl>(
 
 unsafe extern "C" fn widget_realize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.realize(wrap.unsafe_cast_ref())
@@ -820,7 +820,7 @@ unsafe extern "C" fn widget_realize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 
 unsafe extern "C" fn widget_root<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.root(wrap.unsafe_cast_ref())
@@ -831,7 +831,7 @@ unsafe extern "C" fn widget_set_focus_child<T: WidgetImpl>(
     child_ptr: *mut ffi::GtkWidget,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let child: Borrowed<Option<Widget>> = from_glib_borrow(child_ptr);
 
@@ -840,7 +840,7 @@ unsafe extern "C" fn widget_set_focus_child<T: WidgetImpl>(
 
 unsafe extern "C" fn widget_show<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.show(wrap.unsafe_cast_ref())
@@ -853,7 +853,7 @@ unsafe extern "C" fn widget_size_allocate<T: WidgetImpl>(
     baseline: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.size_allocate(wrap.unsafe_cast_ref(), width, height, baseline)
@@ -864,7 +864,7 @@ unsafe extern "C" fn widget_snapshot<T: WidgetImpl>(
     snapshot_ptr: *mut ffi::GtkSnapshot,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let snapshot = from_glib_borrow(snapshot_ptr);
 
@@ -876,7 +876,7 @@ unsafe extern "C" fn widget_state_flags_changed<T: WidgetImpl>(
     state_flags_ptr: ffi::GtkStateFlags,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let state_flags = from_glib(state_flags_ptr);
 
@@ -888,7 +888,7 @@ unsafe extern "C" fn widget_system_setting_changed<T: WidgetImpl>(
     settings_ptr: ffi::GtkSystemSetting,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let settings = from_glib(settings_ptr);
 
@@ -897,7 +897,7 @@ unsafe extern "C" fn widget_system_setting_changed<T: WidgetImpl>(
 
 unsafe extern "C" fn widget_unmap<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.unmap(wrap.unsafe_cast_ref())
@@ -905,7 +905,7 @@ unsafe extern "C" fn widget_unmap<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 
 unsafe extern "C" fn widget_unrealize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.unrealize(wrap.unsafe_cast_ref())
@@ -913,7 +913,7 @@ unsafe extern "C" fn widget_unrealize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 
 unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     imp.unroot(wrap.unsafe_cast_ref())

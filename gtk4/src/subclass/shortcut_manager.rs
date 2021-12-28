@@ -96,7 +96,7 @@ unsafe extern "C" fn shortcut_manager_add_controller<T: ShortcutManagerImpl>(
     controller: *mut ffi::GtkShortcutController,
 ) {
     let instance = &*(shortcut_manager as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.add_controller(
         from_glib_borrow::<_, ShortcutManager>(shortcut_manager).unsafe_cast_ref(),
@@ -109,7 +109,7 @@ unsafe extern "C" fn shortcut_manager_remove_controller<T: ShortcutManagerImpl>(
     controller: *mut ffi::GtkShortcutController,
 ) {
     let instance = &*(shortcut_manager as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.remove_controller(
         from_glib_borrow::<_, ShortcutManager>(shortcut_manager).unsafe_cast_ref(),

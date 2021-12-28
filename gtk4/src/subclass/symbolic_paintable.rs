@@ -85,7 +85,7 @@ unsafe extern "C" fn symbolic_paintable_snapshot_symbolic<T: SymbolicPaintableIm
     n_colors: usize,
 ) {
     let instance = &*(paintable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
 

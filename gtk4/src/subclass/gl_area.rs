@@ -90,7 +90,7 @@ unsafe extern "C" fn gl_area_create_context<T: GLAreaImpl>(
     ptr: *mut ffi::GtkGLArea,
 ) -> *mut gdk::ffi::GdkGLContext {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
     imp.create_context(wrap.unsafe_cast_ref()).to_glib_full()
@@ -101,7 +101,7 @@ unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(
     context: *mut gdk::ffi::GdkGLContext,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
     imp.render(wrap.unsafe_cast_ref(), &from_glib_borrow(context))
@@ -114,7 +114,7 @@ unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(
     height: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
     imp.resize(wrap.unsafe_cast_ref(), width, height)

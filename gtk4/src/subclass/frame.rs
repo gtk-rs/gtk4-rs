@@ -50,7 +50,7 @@ unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(
     allocationptr: *mut ffi::GtkAllocation,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Frame> = from_glib_borrow(ptr);
 
     let allocation = imp.compute_child_allocation(wrap.unsafe_cast_ref());

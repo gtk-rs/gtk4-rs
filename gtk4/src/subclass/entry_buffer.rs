@@ -190,7 +190,7 @@ unsafe extern "C" fn entry_buffer_delete_text<T: EntryBufferImpl>(
     n_chars: u32,
 ) -> u32 {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     let n_chars = if n_chars == u32::MAX {
@@ -208,7 +208,7 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     n_chars: u32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     let n_chars = if n_chars == u32::MAX {
@@ -228,7 +228,7 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     n_bytes: *mut usize,
 ) -> *const libc::c_char {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     let ret = imp.text(wrap.unsafe_cast_ref());
@@ -251,7 +251,7 @@ unsafe extern "C" fn entry_buffer_get_length<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
 ) -> u32 {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     imp.length(wrap.unsafe_cast_ref())
@@ -264,7 +264,7 @@ unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
     n_chars: u32,
 ) -> u32 {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
@@ -279,7 +279,7 @@ unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     length: u32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 

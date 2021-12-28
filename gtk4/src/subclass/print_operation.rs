@@ -335,7 +335,7 @@ unsafe extern "C" fn print_operation_begin_print<T: PrintOperationImpl>(
     contextptr: *mut ffi::GtkPrintContext,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
@@ -346,7 +346,7 @@ unsafe extern "C" fn print_operation_create_custom_widget<T: PrintOperationImpl>
     ptr: *mut ffi::GtkPrintOperation,
 ) -> *mut ffi::GtkWidget {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
     imp.create_custom_widget(wrap.unsafe_cast_ref())
@@ -358,7 +358,7 @@ unsafe extern "C" fn print_operation_custom_widget_apply<T: PrintOperationImpl>(
     widgetptr: *mut ffi::GtkWidget,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
@@ -370,7 +370,7 @@ unsafe extern "C" fn print_operation_done<T: PrintOperationImpl>(
     resultptr: ffi::GtkPrintOperationResult,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
     imp.done(wrap.unsafe_cast_ref(), from_glib(resultptr))
@@ -382,7 +382,7 @@ unsafe extern "C" fn print_operation_draw_page<T: PrintOperationImpl>(
     page_nr: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
@@ -394,7 +394,7 @@ unsafe extern "C" fn print_operation_end_print<T: PrintOperationImpl>(
     contextptr: *mut ffi::GtkPrintContext,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
@@ -408,7 +408,7 @@ unsafe extern "C" fn print_operation_request_page_setup<T: PrintOperationImpl>(
     setupptr: *mut ffi::GtkPageSetup,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
@@ -420,7 +420,7 @@ unsafe extern "C" fn print_operation_status_changed<T: PrintOperationImpl>(
     ptr: *mut ffi::GtkPrintOperation,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
     imp.status_changed(wrap.unsafe_cast_ref())
@@ -433,7 +433,7 @@ unsafe extern "C" fn print_operation_update_custom_widget<T: PrintOperationImpl>
     settingsptr: *mut ffi::GtkPrintSettings,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);

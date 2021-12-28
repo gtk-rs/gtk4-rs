@@ -58,7 +58,7 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
     borderptr: *mut ffi::GtkBorder,
 ) -> glib::ffi::gboolean {
     let instance = &*(scrollable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     if let Some(border) =
         imp.border(from_glib_borrow::<_, Scrollable>(scrollable).unsafe_cast_ref())

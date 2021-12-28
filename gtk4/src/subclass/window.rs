@@ -116,7 +116,7 @@ unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
 
 unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
     imp.activate_focus(wrap.unsafe_cast_ref())
@@ -124,7 +124,7 @@ unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWind
 
 unsafe extern "C" fn window_activate_default<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
     imp.activate_default(wrap.unsafe_cast_ref())
@@ -132,7 +132,7 @@ unsafe extern "C" fn window_activate_default<T: WindowImpl>(ptr: *mut ffi::GtkWi
 
 unsafe extern "C" fn window_keys_changed<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
     imp.keys_changed(wrap.unsafe_cast_ref())
@@ -143,7 +143,7 @@ unsafe extern "C" fn window_enable_debugging<T: WindowImpl>(
     toggleptr: glib::ffi::gboolean,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
     let toggle: bool = from_glib(toggleptr);
 
@@ -155,7 +155,7 @@ unsafe extern "C" fn window_close_request<T: WindowImpl>(
     ptr: *mut ffi::GtkWindow,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
     imp.close_request(wrap.unsafe_cast_ref()).into_glib()

@@ -176,7 +176,7 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
     type_nameptr: *const libc::c_char,
 ) -> glib::ffi::GType {
     let instance = &*(builder_scope as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let type_name: Borrowed<GString> = from_glib_borrow(type_nameptr);
 
@@ -194,7 +194,7 @@ unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
     func_nameptr: *const libc::c_char,
 ) -> glib::ffi::GType {
     let instance = &*(builder_scope as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
 
@@ -215,7 +215,7 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     errorptr: *mut *mut glib::ffi::GError,
 ) -> *mut glib::gobject_ffi::GClosure {
     let instance = &*(builder_scope as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
     let object: Borrowed<Option<glib::Object>> = from_glib_borrow(objectptr);

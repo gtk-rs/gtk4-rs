@@ -49,7 +49,7 @@ unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
 
 unsafe extern "C" fn recent_manager_changed<T: RecentManagerImpl>(ptr: *mut ffi::GtkRecentManager) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<RecentManager> = from_glib_borrow(ptr);
 
     imp.changed(wrap.unsafe_cast_ref())

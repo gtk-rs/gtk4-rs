@@ -129,7 +129,7 @@ unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
 
 unsafe extern "C" fn range_adjust_bounds<T: RangeImpl>(ptr: *mut ffi::GtkRange, new_value: f64) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     imp.adjust_bounds(wrap.unsafe_cast_ref(), new_value)
@@ -141,7 +141,7 @@ unsafe extern "C" fn range_change_value<T: RangeImpl>(
     new_value: f64,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     imp.change_value(wrap.unsafe_cast_ref(), from_glib(scroll_type), new_value)
@@ -153,7 +153,7 @@ unsafe extern "C" fn range_get_range_border<T: RangeImpl>(
     borderptr: *mut ffi::GtkBorder,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     let border = imp.range_border(wrap.unsafe_cast_ref());
@@ -165,7 +165,7 @@ unsafe extern "C" fn range_move_slider<T: RangeImpl>(
     scroll_type: ffi::GtkScrollType,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     imp.move_slider(wrap.unsafe_cast_ref(), from_glib(scroll_type))
@@ -173,7 +173,7 @@ unsafe extern "C" fn range_move_slider<T: RangeImpl>(
 
 unsafe extern "C" fn range_value_changed<T: RangeImpl>(ptr: *mut ffi::GtkRange) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     imp.value_changed(wrap.unsafe_cast_ref())

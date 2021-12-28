@@ -69,7 +69,7 @@ unsafe extern "C" fn filter_get_strictness<T: FilterImpl>(
     ptr: *mut ffi::GtkFilter,
 ) -> ffi::GtkFilterMatch {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Filter> = from_glib_borrow(ptr);
 
     imp.strictness(wrap.unsafe_cast_ref()).into_glib()
@@ -80,7 +80,7 @@ unsafe extern "C" fn filter_match<T: FilterImpl>(
     itemptr: *mut glib::gobject_ffi::GObject,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let wrap: Borrowed<Filter> = from_glib_borrow(ptr);
 
     imp.match_(wrap.unsafe_cast_ref(), &from_glib_borrow(itemptr))

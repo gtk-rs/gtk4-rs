@@ -97,7 +97,7 @@ unsafe extern "C" fn cell_editable_editing_done<T: CellEditableImpl>(
     cell_editable: *mut ffi::GtkCellEditable,
 ) {
     let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.editing_done(from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref())
 }
@@ -106,7 +106,7 @@ unsafe extern "C" fn cell_editable_remove_widget<T: CellEditableImpl>(
     cell_editable: *mut ffi::GtkCellEditable,
 ) {
     let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
 
     imp.remove_widget(from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref())
 }
@@ -116,7 +116,7 @@ unsafe extern "C" fn cell_editable_start_editing<T: CellEditableImpl>(
     eventptr: *mut gdk::ffi::GdkEvent,
 ) {
     let instance = &*(cell_editable as *mut T::Instance);
-    let imp = instance.impl_();
+    let imp = instance.imp();
     let event: Borrowed<Option<gdk::Event>> = from_glib_borrow(eventptr);
     imp.start_editing(
         from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref(),
