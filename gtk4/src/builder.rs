@@ -44,30 +44,6 @@ impl Builder {
         }
     }
 
-    #[doc(alias = "gtk_builder_value_from_string")]
-    pub fn value_from_string(
-        &self,
-        pspec: &glib::ParamSpec,
-        string: &str,
-    ) -> Result<glib::Value, glib::Error> {
-        unsafe {
-            let mut value = glib::Value::uninitialized();
-            let mut error = std::ptr::null_mut();
-            let _ = ffi::gtk_builder_value_from_string(
-                self.to_glib_none().0,
-                pspec.to_glib_none().0,
-                string.to_glib_none().0,
-                value.to_glib_none_mut().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(value)
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
-
     #[doc(alias = "gtk_builder_add_from_file")]
     pub fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error> {
         unsafe {

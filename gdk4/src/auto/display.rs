@@ -5,6 +5,7 @@
 use crate::AppLaunchContext;
 use crate::Clipboard;
 use crate::Device;
+use crate::Event;
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
@@ -126,6 +127,9 @@ pub trait DisplayExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_display_prepare_gl")]
     fn prepare_gl(&self) -> Result<(), glib::Error>;
+
+    #[doc(alias = "gdk_display_put_event")]
+    fn put_event(&self, event: impl AsRef<Event>);
 
     #[doc(alias = "gdk_display_supports_input_shapes")]
     fn supports_input_shapes(&self) -> bool;
@@ -310,6 +314,15 @@ impl<O: IsA<Display>> DisplayExt for O {
             } else {
                 Err(from_glib_full(error))
             }
+        }
+    }
+
+    fn put_event(&self, event: impl AsRef<Event>) {
+        unsafe {
+            ffi::gdk_display_put_event(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+            );
         }
     }
 

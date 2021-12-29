@@ -635,9 +635,6 @@ generate_builder = false
     [[object.function]]
     name = "get_current_object"
     manual = true # don't ref_sink the object
-    [[object.function]]
-    name = "value_from_string"
-    manual = true # ParamSpec is a fundemental type
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"
