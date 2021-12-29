@@ -354,12 +354,12 @@ We will make use of them in the following snippets.</p>
     }
 
     pub fn is_completed(&amp;self) -&gt; bool {
-        let imp = imp::TodoObject::from_instance(self);
+        let imp = self.imp();
         imp.data.borrow().completed
     }
 
     pub fn todo_data(&amp;self) -&gt; TodoData {
-        let imp = imp::TodoObject::from_instance(self);
+        let imp = self.imp();
         imp.data.borrow().clone()
     }
 }
@@ -402,13 +402,13 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Get filter_state from settings
 </span><span class="boring">        let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -447,7 +447,7 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
@@ -485,7 +485,7 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -562,7 +562,7 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -580,7 +580,7 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">
 </span>    fn setup_filter_action(&amp;self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Create action from key &quot;filter&quot;
         let filter_action = imp.settings.create_action(&quot;filter&quot;);
@@ -625,13 +625,13 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span>    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Get filter_state from settings
         let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -670,7 +670,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
@@ -708,7 +708,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -785,7 +785,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -803,7 +803,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_filter_action(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;filter&quot;
 </span><span class="boring">        let filter_action = imp.settings.create_action(&quot;filter&quot;);
@@ -846,13 +846,13 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Get filter_state from settings
 </span><span class="boring">        let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -891,7 +891,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
         let model = gio::ListStore::new(TodoObject::static_type());
 
         // Get state and set model
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.model.set(model).expect(&quot;Could not set model&quot;);
 
         // Wrap model with filter and selection and pass it to the list view
@@ -929,7 +929,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -1006,7 +1006,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1024,7 +1024,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_filter_action(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;filter&quot;
 </span><span class="boring">        let filter_action = imp.settings.create_action(&quot;filter&quot;);
@@ -1065,13 +1065,13 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Get filter_state from settings
 </span><span class="boring">        let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -1110,7 +1110,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
@@ -1148,7 +1148,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span>    fn setup_callbacks(&amp;self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let model = self.model();
 
         // Setup callback so that activation
@@ -1225,7 +1225,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1243,7 +1243,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_filter_action(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;filter&quot;
 </span><span class="boring">        let filter_action = imp.settings.create_action(&quot;filter&quot;);
@@ -1284,13 +1284,13 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Get filter_state from settings
 </span><span class="boring">        let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -1329,7 +1329,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
@@ -1367,7 +1367,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -1444,7 +1444,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1462,7 +1462,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 <span class="boring">
 </span><span class="boring">    fn setup_filter_action(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;filter&quot;
 </span><span class="boring">        let filter_action = imp.settings.create_action(&quot;filter&quot;);
@@ -1605,12 +1605,12 @@ Doing so allows us to derive <code>Serialize</code> and <code>Deserialize</code>
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    pub fn is_completed(&amp;self) -&gt; bool {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.data.borrow().completed
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TodoData {
-</span><span class="boring">        let imp = imp::TodoObject::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.data.borrow().clone()
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -1812,13 +1812,13 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Get filter_state from settings
 </span><span class="boring">        let filter_state: String = imp.settings.get(&quot;filter&quot;);
@@ -1857,7 +1857,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
@@ -1895,7 +1895,7 @@ It might be the first time that we started the app and therefore there is no for
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -1972,7 +1972,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1990,7 +1990,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span><span class="boring">    fn setup_filter_action(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;filter&quot;
 </span><span class="boring">        let filter_action = imp.settings.create_action(&quot;filter&quot;);

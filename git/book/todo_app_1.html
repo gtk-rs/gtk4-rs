@@ -207,7 +207,7 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
@@ -216,7 +216,7 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
@@ -226,7 +226,7 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -284,7 +284,7 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -591,7 +591,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">
 </span><span class="boring">    pub fn bind(&amp;self, todo_object: &amp;TodoObject) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::TodoRow::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let completed_button = imp.completed_button.get();
 </span><span class="boring">        let content_label = imp.content_label.get();
 </span><span class="boring">        let mut bindings = imp.bindings.borrow_mut();
@@ -635,7 +635,7 @@ The row of a task should look like this:</p>
 </span><span class="boring">
 </span><span class="boring">    pub fn unbind(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::TodoRow::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Unbind all stored bindings
 </span><span class="boring">        for binding in imp.bindings.borrow_mut().drain(..) {
@@ -781,7 +781,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">
 </span>    fn model(&amp;self) -&gt; &amp;gio::ListStore {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.model.get().expect(&quot;Could not get model&quot;)
     }
 
@@ -790,7 +790,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
         let model = gio::ListStore::new(TodoObject::static_type());
 
         // Get state and set model
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.model.set(model).expect(&quot;Could not set model&quot;);
 
         // Wrap model with selection and pass it to the list view
@@ -800,7 +800,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -858,7 +858,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -893,7 +893,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
@@ -902,7 +902,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
@@ -912,7 +912,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">
 </span>    fn setup_callbacks(&amp;self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let model = self.model();
 
         // Setup callback so that activation
@@ -970,7 +970,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -1011,7 +1011,7 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">
 </span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1020,7 +1020,7 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        imp.model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
@@ -1030,7 +1030,7 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let model = self.model();
 </span><span class="boring">
 </span><span class="boring">        // Setup callback so that activation
@@ -1088,7 +1088,7 @@ We will need to unbind them manually when they are no longer needed.</p>
         });
 
         // Set the factory of the list view
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         imp.list_view.set_factory(Some(&amp;factory));
     }
 <span class="boring">}
@@ -1127,7 +1127,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
 </span><span class="boring">
 </span>    pub fn bind(&amp;self, todo_object: &amp;TodoObject) {
         // Get state
-        let imp = imp::TodoRow::from_instance(self);
+        let imp = self.imp();
         let completed_button = imp.completed_button.get();
         let content_label = imp.content_label.get();
         let mut bindings = imp.bindings.borrow_mut();
@@ -1171,7 +1171,7 @@ Unbinding will only work if it can access the stored <code>glib::Binding</code>.
 <span class="boring">
 </span><span class="boring">    pub fn unbind(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::TodoRow::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Unbind all stored bindings
 </span><span class="boring">        for binding in imp.bindings.borrow_mut().drain(..) {
@@ -1212,7 +1212,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">
 </span><span class="boring">    pub fn bind(&amp;self, todo_object: &amp;TodoObject) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::TodoRow::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let completed_button = imp.completed_button.get();
 </span><span class="boring">        let content_label = imp.content_label.get();
 </span><span class="boring">        let mut bindings = imp.bindings.borrow_mut();
@@ -1256,7 +1256,7 @@ In the end, it clears the vector.</p>
 </span><span class="boring">
 </span>    pub fn unbind(&amp;self) {
         // Get state
-        let imp = imp::TodoRow::from_instance(self);
+        let imp = self.imp();
 
         // Unbind all stored bindings
         for binding in imp.bindings.borrow_mut().drain(..) {

@@ -554,7 +554,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
     }
 
     fn add_actions(&amp;self) {
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let label = imp.label.get();
 
         // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -681,7 +681,7 @@ For the action without parameter or state, we choose &quot;win.quit&quot; which 
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -787,7 +787,7 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -901,7 +901,7 @@ We do not need the action state to implement orientation switching, however it i
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -1169,7 +1169,7 @@ We create actions with <code>create_actions</code> and then add them to the acti
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -1222,7 +1222,7 @@ We create actions with <code>create_actions</code> and then add them to the acti
 </span><span class="boring">
 </span><span class="boring">    fn bind_settings(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
 </span><span class="boring">        let button = imp.button.get();
@@ -1280,7 +1280,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -1333,7 +1333,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">
 </span>    fn bind_settings(&amp;self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
         let button = imp.button.get();
