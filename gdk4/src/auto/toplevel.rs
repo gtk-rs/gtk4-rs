@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::Device;
+use crate::Event;
 use crate::FullscreenMode;
 use crate::Surface;
 use crate::SurfaceEdge;
@@ -58,6 +59,9 @@ pub trait ToplevelExt: 'static {
     #[doc(alias = "get_state")]
     fn state(&self) -> ToplevelState;
 
+    #[doc(alias = "gdk_toplevel_inhibit_system_shortcuts")]
+    fn inhibit_system_shortcuts(&self, event: Option<impl AsRef<Event>>);
+
     #[doc(alias = "gdk_toplevel_lower")]
     fn lower(&self) -> bool;
 
@@ -90,6 +94,9 @@ pub trait ToplevelExt: 'static {
 
     #[doc(alias = "gdk_toplevel_set_transient_for")]
     fn set_transient_for(&self, parent: &impl IsA<Surface>);
+
+    #[doc(alias = "gdk_toplevel_show_window_menu")]
+    fn show_window_menu(&self, event: impl AsRef<Event>) -> bool;
 
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
@@ -202,6 +209,15 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         unsafe { from_glib(ffi::gdk_toplevel_get_state(self.as_ref().to_glib_none().0)) }
     }
 
+    fn inhibit_system_shortcuts(&self, event: Option<impl AsRef<Event>>) {
+        unsafe {
+            ffi::gdk_toplevel_inhibit_system_shortcuts(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     fn lower(&self) -> bool {
         unsafe { from_glib(ffi::gdk_toplevel_lower(self.as_ref().to_glib_none().0)) }
     }
@@ -270,6 +286,15 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
                 self.as_ref().to_glib_none().0,
                 parent.as_ref().to_glib_none().0,
             );
+        }
+    }
+
+    fn show_window_menu(&self, event: impl AsRef<Event>) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_toplevel_show_window_menu(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+            ))
         }
     }
 

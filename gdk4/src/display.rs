@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::*;
-use crate::{Display, Event, Key, KeymapKey, ModifierType};
+use crate::{Display, Key, KeymapKey, ModifierType};
 use glib::translate::*;
 use glib::IsA;
 use std::{mem, ptr};
@@ -71,9 +71,6 @@ pub trait DisplayExtManual: 'static {
 
     #[doc(alias = "gdk_display_map_keycode")]
     fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>>;
-
-    #[doc(alias = "gdk_display_put_event")]
-    fn put_event<P: AsRef<Event>>(&self, event: &P);
 
     // rustdoc-stripper-ignore-next
     /// Get the currently used display backend
@@ -178,15 +175,6 @@ impl<O: IsA<Display>> DisplayExtManual for O {
             } else {
                 None
             }
-        }
-    }
-
-    fn put_event<P: AsRef<Event>>(&self, event: &P) {
-        unsafe {
-            ffi::gdk_display_put_event(
-                self.as_ref().to_glib_none().0,
-                event.as_ref().to_glib_none().0,
-            );
         }
     }
 

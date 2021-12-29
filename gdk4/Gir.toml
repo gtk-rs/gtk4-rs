@@ -464,9 +464,6 @@ manual_traits = ["DisplayExtManual"]
     [[object.function]]
     pattern = "map_key(code|val)"
     manual = true # make use of Key
-    [[object.function]]
-    name = "put_event"
-    manual = true # event is a fundemental type
 
 [[object]]
 name = "Gdk.DisplayManager"
@@ -681,14 +678,6 @@ manual_traits = ["TextureExtManual"]
 name = "Gdk.Toplevel"
 status = "generate"
 manual_traits = ["ToplevelExtManual"]
-    [[object.function]]
-    name = "inhibit_system_shortcuts"
-    manual = true # event is a fundemental type
-    doc_trait_name = "ToplevelExtManual"
-    [[object.function]]
-    name = "show_window_menu"
-    manual = true # event is a fundemental type
-    doc_trait_name = "ToplevelExtManual"
     [[object.signal]]
     name = "compute-size"
     manual = true
