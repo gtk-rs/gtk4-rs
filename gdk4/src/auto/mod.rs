@@ -5,6 +5,9 @@
 mod app_launch_context;
 pub use self::app_launch_context::AppLaunchContext;
 
+mod button_event;
+pub use self::button_event::ButtonEvent;
+
 mod cairo_context;
 pub use self::cairo_context::CairoContext;
 
@@ -20,8 +23,17 @@ pub use self::content_provider::ContentProvider;
 mod content_serializer;
 pub use self::content_serializer::ContentSerializer;
 
+mod crossing_event;
+pub use self::crossing_event::CrossingEvent;
+
 mod cursor;
 pub use self::cursor::Cursor;
+
+mod dnd_event;
+pub use self::dnd_event::DNDEvent;
+
+mod delete_event;
+pub use self::delete_event::DeleteEvent;
 
 mod device;
 pub use self::device::Device;
@@ -50,6 +62,12 @@ pub use self::draw_context::DrawContext;
 mod drop;
 pub use self::drop::Drop;
 
+mod event;
+pub use self::event::Event;
+
+mod focus_event;
+pub use self::focus_event::FocusEvent;
+
 mod frame_clock;
 pub use self::frame_clock::FrameClock;
 
@@ -59,17 +77,35 @@ pub use self::gl_context::GLContext;
 mod gl_texture;
 pub use self::gl_texture::GLTexture;
 
+mod grab_broken_event;
+pub use self::grab_broken_event::GrabBrokenEvent;
+
+mod key_event;
+pub use self::key_event::KeyEvent;
+
 mod memory_texture;
 pub use self::memory_texture::MemoryTexture;
 
 mod monitor;
 pub use self::monitor::Monitor;
 
+mod motion_event;
+pub use self::motion_event::MotionEvent;
+
+mod pad_event;
+pub use self::pad_event::PadEvent;
+
 mod paintable;
 pub use self::paintable::Paintable;
 
 mod popup;
 pub use self::popup::Popup;
+
+mod proximity_event;
+pub use self::proximity_event::ProximityEvent;
+
+mod scroll_event;
+pub use self::scroll_event::ScrollEvent;
 
 mod seat;
 pub use self::seat::Seat;
@@ -85,6 +121,12 @@ pub use self::texture::Texture;
 
 mod toplevel;
 pub use self::toplevel::Toplevel;
+
+mod touch_event;
+pub use self::touch_event::TouchEvent;
+
+mod touchpad_event;
+pub use self::touchpad_event::TouchpadEvent;
 
 mod vulkan_context;
 pub use self::vulkan_context::VulkanContext;

@@ -61,22 +61,9 @@ manual = [
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
-    "Gdk.ButtonEvent",
-    "Gdk.CrossingEvent",
-    "Gdk.DeleteEvent",
-    "Gdk.DNDEvent",
-    "Gdk.FocusEvent",
-    "Gdk.GrabBrokenEvent",
-    "Gdk.KeyEvent",
     "Gdk.KeymapKey",
-    "Gdk.MotionEvent",
-    "Gdk.PadEvent",
-    "Gdk.ProximityEvent",
-    "Gdk.ScrollEvent",
     "Gdk.TimeCoord",
     "Gdk.ToplevelSize",
-    "Gdk.TouchEvent",
-    "Gdk.TouchpadEvent",
     "GdkPixbuf.Pixbuf",
     "Gio.AppLaunchContext",
     "Gio.Cancellable",
@@ -498,8 +485,92 @@ status = "generate"
 
 [[object]]
 name = "Gdk.Event"
-status = "manual" # fundemental type
-final_type = true # avoids the usage of EventExt trait
+status = "generate" # fundemental type
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.ButtonEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.CrossingEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.DeleteEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+
+[[object]]
+name = "Gdk.DNDEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.FocusEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.GrabBrokenEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.KeyEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+    [[object.function]]
+    name = "get_keyval"
+    manual = true
+    [[object.function]]
+    name = "get_match"
+    manual = true
+    [[object.function]]
+    name = "matches"
+    manual = true
+
+[[object]]
+name = "Gdk.MotionEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+
+[[object]]
+name = "Gdk.PadEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.ProximityEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+
+[[object]]
+name = "Gdk.ScrollEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.TouchEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.TouchpadEvent"
+status = "generate"
+fundemental_trait = "EventKind"
+generate_display_trait = false
 
 [[object]]
 name = "Gdk.FileList"
