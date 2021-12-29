@@ -38,7 +38,6 @@ pub use auto::*;
 
 #[macro_use]
 mod render_node;
-mod renderer;
 mod rounded_rect;
 mod shadow;
 

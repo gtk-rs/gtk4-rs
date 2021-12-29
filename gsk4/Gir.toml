@@ -157,17 +157,6 @@ status = "generate"
 name = "Gsk.Renderer"
 status = "generate"
 trait_name = "GskRendererExt"
-manual_traits = ["GskRendererExtManual"]
-    [[object.function]]
-    name = "render"
-    # uses IsA<RenderNode> but RenderNode is not an Object
-    manual = true
-    doc_trait_name = "GskRendererExtManual"
-    [[object.function]]
-    name = "render_texture"
-    # uses IsA<RenderNode> but RenderNode is not an Object
-    manual = true
-    doc_trait_name = "GskRendererExtManual"
 
 [[object]]
 name = "Gsk.RenderNode"
