@@ -1,23 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{RenderNode, RenderNodeType};
+use crate::{ContainerNode, RenderNode, RenderNodeType};
 use glib::translate::*;
-
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GskContainerNode")]
-    pub struct ContainerNode(Shared<ffi::GskContainerNode>);
-
-    match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
-    }
-}
 
 define_render_node!(
     ContainerNode,
     ffi::GskContainerNode,
-    ffi::gsk_container_node_get_type,
     RenderNodeType::ContainerNode
 );
 
@@ -32,22 +20,5 @@ impl ContainerNode {
                 n_children,
             ))
         }
-    }
-
-    #[doc(alias = "gsk_container_node_get_child")]
-    #[doc(alias = "get_child")]
-    pub fn child(&self, idx: u32) -> Option<RenderNode> {
-        unsafe {
-            from_glib_none(ffi::gsk_container_node_get_child(
-                self.to_glib_none().0,
-                idx,
-            ))
-        }
-    }
-
-    #[doc(alias = "gsk_container_node_get_n_children")]
-    #[doc(alias = "get_n_children")]
-    pub fn n_children(&self) -> u32 {
-        unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
     }
 }

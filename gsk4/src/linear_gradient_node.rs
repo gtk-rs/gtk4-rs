@@ -1,25 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ColorStop, RenderNodeType};
+use crate::{ColorStop, LinearGradientNode, RenderNodeType};
 use glib::translate::*;
 use graphene::{Point, Rect};
-use std::mem;
-
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GskLinearGradientNode")]
-    pub struct LinearGradientNode(Shared<ffi::GskLinearGradientNode>);
-
-    match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
-    }
-}
 
 define_render_node!(
     LinearGradientNode,
     ffi::GskLinearGradientNode,
-    ffi::gsk_linear_gradient_node_get_type,
     RenderNodeType::LinearGradientNode
 );
 
@@ -35,44 +22,6 @@ impl LinearGradientNode {
                 end.to_glib_none().0,
                 color_stops.to_glib_none().0,
                 n_color_stops,
-            ))
-        }
-    }
-
-    #[doc(alias = "gsk_linear_gradient_node_get_color_stops")]
-    #[doc(alias = "get_color_stops")]
-    pub fn color_stops(&self) -> Vec<ColorStop> {
-        unsafe {
-            let mut n_stops = mem::MaybeUninit::uninit();
-            let ret = FromGlibContainer::from_glib_none_num(
-                ffi::gsk_linear_gradient_node_get_color_stops(
-                    self.to_glib_none().0,
-                    n_stops.as_mut_ptr(),
-                ),
-                n_stops.assume_init() as usize,
-            );
-            ret
-        }
-    }
-
-    #[doc(alias = "gsk_linear_gradient_node_get_end")]
-    #[doc(alias = "get_end")]
-    pub fn end(&self) -> graphene::Point {
-        unsafe { from_glib_none(ffi::gsk_linear_gradient_node_get_end(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gsk_linear_gradient_node_get_n_color_stops")]
-    #[doc(alias = "get_n_color_stops")]
-    pub fn n_color_stops(&self) -> usize {
-        unsafe { ffi::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gsk_linear_gradient_node_get_start")]
-    #[doc(alias = "get_start")]
-    pub fn start(&self) -> graphene::Point {
-        unsafe {
-            from_glib_none(ffi::gsk_linear_gradient_node_get_start(
-                self.to_glib_none().0,
             ))
         }
     }

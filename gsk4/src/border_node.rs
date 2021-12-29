@@ -1,25 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{RenderNodeType, RoundedRect};
+use crate::{BorderNode, RenderNodeType, RoundedRect};
 use glib::translate::*;
 
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GskBorderNode")]
-    pub struct BorderNode(Shared<ffi::GskBorderNode>);
-
-    match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
-    }
-}
-
-define_render_node!(
-    BorderNode,
-    ffi::GskBorderNode,
-    ffi::gsk_border_node_get_type,
-    RenderNodeType::BorderNode
-);
+define_render_node!(BorderNode, ffi::GskBorderNode, RenderNodeType::BorderNode);
 
 impl BorderNode {
     #[doc(alias = "gsk_border_node_new")]
@@ -43,12 +27,6 @@ impl BorderNode {
         unsafe {
             &*(ffi::gsk_border_node_get_colors(self.to_glib_none().0) as *const [gdk::RGBA; 4])
         }
-    }
-
-    #[doc(alias = "gsk_border_node_get_outline")]
-    #[doc(alias = "get_outline")]
-    pub fn outline(&self) -> RoundedRect {
-        unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_border_node_get_widths")]
