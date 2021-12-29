@@ -12,30 +12,30 @@ deprecate_by_min_version = true
 
 generate = [
     "Gsk.BlendMode",
-    "Gsk.CairoRenderer",
-    "Gsk.Corner",
-    "Gsk.GLRenderer",
-    "Gsk.GLUniformType",
-    "Gsk.RenderNodeType",
-    "Gsk.ScalingFilter",
-    "Gsk.SerializationError",
-    "Gsk.TransformCategory",
     "Gsk.BlendNode",
     "Gsk.BlurNode",
     "Gsk.CairoNode",
+    "Gsk.CairoRenderer",
     "Gsk.ClipNode",
     "Gsk.ColorMatrixNode",
     "Gsk.ColorNode",
+    "Gsk.Corner",
     "Gsk.CrossFadeNode",
     "Gsk.DebugNode",
+    "Gsk.GLRenderer",
+    "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
+    "Gsk.RenderNodeType",
     "Gsk.RepeatNode",
     "Gsk.RoundedClipNode",
+    "Gsk.ScalingFilter",
+    "Gsk.SerializationError",
     "Gsk.TextNode",
     "Gsk.TextureNode",
-    "Gsk.TransformNode"
+    "Gsk.TransformCategory",
+    "Gsk.TransformNode",
 ]
 
 manual = [
@@ -95,6 +95,20 @@ status = "generate"
 cfg_condition = "feature = \"broadway\""
 
 [[object]]
+name = "Gsk.ConicGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.ContainerNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
 name = "Gsk.GLShader"
 status = "generate"
 generate_builder = true
@@ -117,6 +131,27 @@ generate_builder = true
     [[object.function]]
     name = "get_arg_vec4"
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+
+[[object]]
+name = "Gsk.GLShaderNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.RadialGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Gsk.Renderer"
@@ -147,38 +182,7 @@ status = "generate" # fundemental type
         const = true
 
 [[object]]
-name = "Gsk.ShadowNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # can't work due to &[&CopyType] issue
-    [[object.function]]
-    name = "get_shadow"
-    manual = true # assert that i < n_shadows
-
-[[object]]
-name = "Gsk.ContainerNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
-name = "Gsk.GLShaderNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
 name = "Gsk.RepeatingLinearGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
-name = "Gsk.ConicGradientNode"
 status = "generate"
     [[object.function]]
     name = "new"
@@ -192,25 +196,21 @@ status = "generate"
     manual = true
 
 [[object]]
-name = "Gsk.RadialGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
-name = "Gsk.LinearGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
 name = "Gsk.ShaderArgsBuilder"
 status = "generate"
     [[object.function]]
     name = "free_to_args"
     ignore = true # C convenience functions
+
+[[object]]
+name = "Gsk.ShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true # can't work due to &[&CopyType] issue
+    [[object.function]]
+    name = "get_shadow"
+    manual = true # assert that i < n_shadows
 
 [[object]]
 name = "Gsk.Transform"

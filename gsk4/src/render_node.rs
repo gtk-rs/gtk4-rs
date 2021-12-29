@@ -1,34 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ParseLocation, RenderNodeType};
+use crate::{ParseLocation, RenderNode, RenderNodeType};
 use glib::translate::*;
-use glib::{StaticType, Type};
-use std::fmt;
-use std::path::Path;
-use std::ptr;
-
-// Can't use get_type here as this is not a boxed type but another fundamental type
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GskRenderNode")]
-    pub struct RenderNode(Shared<ffi::GskRenderNode>);
-
-    match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr),
-    }
-}
-
-impl StaticType for RenderNode {
-    #[doc(alias = "gsk_render_node_type_get_type")]
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
-    }
-}
+use glib::StaticType;
 
 impl RenderNode {
-    pub const NONE: Option<&'static RenderNode> = None;
-
     #[doc(alias = "gsk_render_node_deserialize")]
     pub fn deserialize(bytes: &glib::Bytes) -> Option<Self> {
         assert_initialized_main_thread!();
@@ -92,51 +68,6 @@ impl RenderNode {
             }
         }
     }
-
-    #[doc(alias = "gsk_render_node_draw")]
-    pub fn draw(&self, cr: &cairo::Context) {
-        unsafe {
-            ffi::gsk_render_node_draw(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
-        }
-    }
-
-    #[doc(alias = "get_bounds")]
-    #[doc(alias = "gsk_render_node_get_bounds")]
-    pub fn bounds(&self) -> graphene::Rect {
-        unsafe {
-            let mut bounds = graphene::Rect::uninitialized();
-            ffi::gsk_render_node_get_bounds(self.to_glib_none().0, bounds.to_glib_none_mut().0);
-            bounds
-        }
-    }
-
-    #[doc(alias = "get_node_type")]
-    #[doc(alias = "gsk_render_node_get_node_type")]
-    pub fn node_type(&self) -> RenderNodeType {
-        unsafe { from_glib(ffi::gsk_render_node_get_node_type(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gsk_render_node_serialize")]
-    pub fn serialize(&self) -> glib::Bytes {
-        unsafe { from_glib_full(ffi::gsk_render_node_serialize(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gsk_render_node_write_to_file")]
-    pub fn write_to_file<P: AsRef<Path>>(&self, filename: P) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = ffi::gsk_render_node_write_to_file(
-                self.to_glib_none().0,
-                filename.as_ref().to_glib_none().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
 }
 
 // rustdoc-stripper-ignore-next
@@ -156,12 +87,6 @@ pub unsafe trait IsRenderNode:
     fn upcast_ref(&self) -> &RenderNode;
 }
 
-impl fmt::Display for RenderNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RenderNode")
-    }
-}
-
 #[doc(hidden)]
 impl AsRef<RenderNode> for RenderNode {
     fn as_ref(&self) -> &Self {
@@ -170,13 +95,7 @@ impl AsRef<RenderNode> for RenderNode {
 }
 
 macro_rules! define_render_node {
-    ($rust_type:ident, $ffi_type:path, $get_type:path, $node_type:path) => {
-        impl ::glib::StaticType for $rust_type {
-            fn static_type() -> ::glib::Type {
-                unsafe { from_glib($get_type()) }
-            }
-        }
-
+    ($rust_type:ident, $ffi_type:path,  $node_type:path) => {
         impl std::convert::AsRef<crate::RenderNode> for $rust_type {
             fn as_ref(&self) -> &crate::RenderNode {
                 &*self
@@ -195,7 +114,11 @@ macro_rules! define_render_node {
             const NODE_TYPE: RenderNodeType = $node_type;
 
             fn upcast(self) -> crate::RenderNode {
-                unsafe { from_glib_full(self.to_glib_full() as *mut ffi::GskRenderNode) }
+                unsafe {
+                    glib::translate::from_glib_full(
+                        glib::translate::ToGlibPtr::to_glib_full(&self) as *mut ffi::GskRenderNode
+                    )
+                }
             }
 
             fn upcast_ref(&self) -> &crate::RenderNode {
@@ -204,15 +127,9 @@ macro_rules! define_render_node {
         }
 
         #[doc(hidden)]
-        impl FromGlibPtrFull<*mut ffi::GskRenderNode> for $rust_type {
+        impl glib::translate::FromGlibPtrFull<*mut ffi::GskRenderNode> for $rust_type {
             unsafe fn from_glib_full(ptr: *mut ffi::GskRenderNode) -> Self {
-                from_glib_full(ptr as *mut $ffi_type)
-            }
-        }
-
-        impl ::std::fmt::Display for $rust_type {
-            fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                f.write_str(::std::stringify!($rust_type))
+                glib::translate::from_glib_full(ptr as *mut $ffi_type)
             }
         }
 
@@ -229,7 +146,9 @@ macro_rules! define_render_node {
 
             unsafe fn from_value(value: &'a glib::Value) -> Self {
                 skip_assert_initialized!();
-                from_glib_full(ffi::gsk_value_dup_render_node(value.to_glib_none().0))
+                glib::translate::from_glib_full(ffi::gsk_value_dup_render_node(
+                    glib::translate::ToGlibPtr::to_glib_none(value).0,
+                ))
             }
         }
 
@@ -240,8 +159,8 @@ macro_rules! define_render_node {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
                     ffi::gsk_value_set_render_node(
-                        value.to_glib_none_mut().0,
-                        self.to_glib_none().0 as *mut _,
+                        glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
+                        glib::translate::ToGlibPtr::to_glib_none(self).0 as *mut _,
                     )
                 }
                 value
@@ -261,8 +180,8 @@ macro_rules! define_render_node {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
                     ffi::gsk_value_set_render_node(
-                        value.to_glib_none_mut().0,
-                        s.to_glib_none().0 as *mut _,
+                        glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
+                        glib::translate::ToGlibPtr::to_glib_none(&s).0 as *mut _,
                     )
                 }
                 value

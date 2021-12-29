@@ -1,23 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ColorStop, RenderNodeType};
+use crate::{ColorStop, RenderNodeType, RepeatingRadialGradientNode};
 use glib::translate::*;
-
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GskRepeatingRadialGradientNode")]
-    pub struct RepeatingRadialGradientNode(Shared<ffi::GskRepeatingRadialGradientNode>);
-
-    match fn {
-        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
-        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
-    }
-}
 
 define_render_node!(
     RepeatingRadialGradientNode,
     ffi::GskRepeatingRadialGradientNode,
-    ffi::gsk_repeating_radial_gradient_node_get_type,
     RenderNodeType::RepeatingRadialGradientNode
 );
 
