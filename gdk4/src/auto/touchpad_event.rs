@@ -17,6 +17,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
     }
 }
+
 impl glib::StaticType for TouchpadEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touchpad_event_get_type()) }

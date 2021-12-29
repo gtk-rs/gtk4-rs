@@ -16,6 +16,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
     }
 }
+
 impl glib::StaticType for BlurNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blur_node_get_type()) }

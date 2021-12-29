@@ -165,7 +165,7 @@ impl StringSorterBuilder {
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
-        self.expression = Some(expression.clone().upcast());
+        self.expression = Some(expression.as_ref().clone());
         self
     }
 

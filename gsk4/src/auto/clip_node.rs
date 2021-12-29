@@ -16,6 +16,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
     }
 }
+
 impl glib::StaticType for ClipNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_clip_node_get_type()) }

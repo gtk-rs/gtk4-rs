@@ -26,6 +26,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gdk_event_unref(ptr),
     }
 }
+
 impl glib::StaticType for Event {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_event_get_type()) }

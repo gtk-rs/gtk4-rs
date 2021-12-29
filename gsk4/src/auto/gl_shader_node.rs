@@ -17,6 +17,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
     }
 }
+
 impl glib::StaticType for GLShaderNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_shader_node_get_type()) }
