@@ -5,6 +5,7 @@
 use crate::Expression;
 use crate::Filter;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -25,6 +26,16 @@ glib::wrapper! {
 }
 
 impl BoolFilter {
+    #[doc(alias = "gtk_bool_filter_new")]
+    pub fn new(expression: Option<impl AsRef<Expression>>) -> BoolFilter {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gtk_bool_filter_new(
+                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+            ))
+        }
+    }
+
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`BoolFilter`] objects.
     ///
@@ -43,6 +54,16 @@ impl BoolFilter {
     #[doc(alias = "get_invert")]
     pub fn inverts(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gtk_bool_filter_set_expression")]
+    pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
+        unsafe {
+            ffi::gtk_bool_filter_set_expression(
+                self.to_glib_none().0,
+                expression.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
     }
 
     #[doc(alias = "gtk_bool_filter_set_invert")]
@@ -99,6 +120,13 @@ impl BoolFilter {
     }
 }
 
+impl Default for BoolFilter {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct BoolFilter object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`BoolFilter`] objects.
@@ -132,8 +160,8 @@ impl BoolFilterBuilder {
             .expect("Failed to create an instance of BoolFilter")
     }
 
-    pub fn expression(mut self, expression: &Expression) -> Self {
-        self.expression = Some(expression.clone());
+    pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
+        self.expression = Some(expression.clone().upcast());
         self
     }
 

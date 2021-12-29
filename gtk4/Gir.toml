@@ -613,12 +613,6 @@ trust_return_value_nullability = false
 name = "Gtk.BoolFilter"
 status = "generate"
 trust_return_value_nullability = false
-    [[object.function]]
-    name = "new"
-    manual = true # use AsRef<Expression>
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.Buildable"
@@ -973,12 +967,6 @@ manual_traits = ["DrawingAreaExtManual"]
 [[object]]
 name = "Gtk.DropDown"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # use AsRef<Expression>
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.DropTarget"
@@ -1624,12 +1612,6 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.NumericSorter"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # use AsRef<Expression>
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.Ordering"
@@ -1981,10 +1963,6 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
-    [[object.function]]
-    name = "append_node"
-    # use AsRef<RenderNode> instead of IsA<RenderNode>
-    manual = true
 
 [[object]]
 name = "Gtk.SpinButton"
@@ -2015,12 +1993,6 @@ generate_builder = false
 [[object]]
 name = "Gtk.StringFilter"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # use AsRef<Expression>
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.StringList"
@@ -2032,12 +2004,6 @@ status = "generate"
 [[object]]
 name = "Gtk.StringSorter"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # use AsRef<Expression>
-    [[object.function]]
-    name = "set_expression"
-    manual = true # use AsRef<Expression>
 
 [[object]]
 name = "Gtk.StyleContext"
