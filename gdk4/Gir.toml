@@ -19,6 +19,7 @@ generate = [
     "Gdk.AxisUse",
     "Gdk.CairoContext",
     "Gdk.CrossingMode",
+    "Gdk.DeleteEvent",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
@@ -38,10 +39,12 @@ generate = [
     "Gdk.KeyMatch",
     "Gdk.MemoryTexture",
     "Gdk.ModifierType",
+    "Gdk.MotionEvent",
     "Gdk.NotifyType",
     "Gdk.Paintable",
     "Gdk.PaintableFlags",
     "Gdk.Popup",
+    "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
@@ -214,6 +217,11 @@ generate_builder = false
 final_type = false
 
 [[object]]
+name = "Gdk.ButtonEvent"
+status = "generate"
+generate_display_trait = false
+
+[[object]]
 name = "Gdk.Clipboard"
 status = "generate"
 generate_builder = false
@@ -375,6 +383,12 @@ status = "generate"
     name = "return_error"
     manual = true # wrong error mutability
 
+
+[[object]]
+name = "Gdk.CrossingEvent"
+status = "generate"
+generate_display_trait = false
+
 [[object]]
 name = "Gdk.Cursor"
 status = "generate"
@@ -460,6 +474,11 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gdk.DNDEvent"
+status = "generate"
+generate_display_trait = false
+
+[[object]]
 name = "Gdk.Drag"
 status = "generate"
 final_type = false
@@ -489,90 +508,6 @@ status = "generate" # fundemental type
 generate_display_trait = false
 
 [[object]]
-name = "Gdk.ButtonEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.CrossingEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.DeleteEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-
-[[object]]
-name = "Gdk.DNDEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.FocusEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.GrabBrokenEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.KeyEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-    [[object.function]]
-    name = "get_keyval"
-    manual = true
-    [[object.function]]
-    name = "get_match"
-    manual = true
-    [[object.function]]
-    name = "matches"
-    manual = true
-
-[[object]]
-name = "Gdk.MotionEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-
-[[object]]
-name = "Gdk.PadEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.ProximityEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-
-[[object]]
-name = "Gdk.ScrollEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.TouchEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
-name = "Gdk.TouchpadEvent"
-status = "generate"
-fundemental_trait = "EventKind"
-generate_display_trait = false
-
-[[object]]
 name = "Gdk.FileList"
 status = "generate"
     [[object.function]]
@@ -580,6 +515,11 @@ status = "generate"
         [[object.function.parameter]]
         pattern = "*" # work around not being able to target self param (https://github.com/gtk-rs/gir/issues/1246)
         const = true
+
+[[object]]
+name = "Gdk.FocusEvent"
+status = "generate"
+generate_display_trait = false
 
 [[object]]
 name = "Gdk.GLContext"
@@ -591,6 +531,25 @@ name = "Gdk.GLTexture"
 status = "generate"
     [[object.function]]
     name = "new"
+    manual = true
+
+[[object]]
+name = "Gdk.GrabBrokenEvent"
+status = "generate"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.KeyEvent"
+status = "generate"
+generate_display_trait = false
+    [[object.function]]
+    name = "get_keyval"
+    manual = true
+    [[object.function]]
+    name = "get_match"
+    manual = true
+    [[object.function]]
+    name = "matches"
     manual = true
 
 [[object]]
@@ -634,6 +593,11 @@ final_type = false
 generate_builder = false
 
 [[object]]
+name = "Gdk.PadEvent"
+status = "generate"
+generate_display_trait = false
+
+[[object]]
 name = "Gdk.PopupLayout"
 status = "generate"
     [[object.function]]
@@ -653,6 +617,11 @@ boxed_inline = true
     name = "parse"
     # This is a constructor
     manual = true
+
+[[object]]
+name = "Gdk.ScrollEvent"
+status = "generate"
+generate_display_trait = false
 
 [[object]]
 name = "Gdk.Seat"
@@ -724,3 +693,13 @@ manual_traits = ["ToplevelExtManual"]
     name = "compute-size"
     manual = true
     doc_trait_name = "ToplevelExtManual"
+
+[[object]]
+name = "Gdk.TouchEvent"
+status = "generate"
+generate_display_trait = false
+
+[[object]]
+name = "Gdk.TouchpadEvent"
+status = "generate"
+generate_display_trait = false

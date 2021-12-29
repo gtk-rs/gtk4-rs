@@ -146,6 +146,9 @@ pub use self::center_layout::CenterLayout;
 mod check_button;
 pub use self::check_button::CheckButton;
 
+mod closure_expression;
+pub use self::closure_expression::ClosureExpression;
+
 mod color_button;
 pub use self::color_button::ColorButton;
 
@@ -169,6 +172,9 @@ pub use self::combo_box::ComboBox;
 
 mod combo_box_text;
 pub use self::combo_box_text::ComboBoxText;
+
+mod constant_expression;
+pub use self::constant_expression::ConstantExpression;
 
 mod constraint;
 pub use self::constraint::Constraint;
@@ -262,6 +268,9 @@ pub use self::every_filter::EveryFilter;
 
 mod expander;
 pub use self::expander::Expander;
+
+mod expression;
+pub use self::expression::Expression;
 
 mod file_chooser;
 pub use self::file_chooser::FileChooser;
@@ -488,6 +497,9 @@ pub use self::nothing_action::NothingAction;
 mod numeric_sorter;
 pub use self::numeric_sorter::NumericSorter;
 
+mod object_expression;
+pub use self::object_expression::ObjectExpression;
+
 mod orientable;
 pub use self::orientable::Orientable;
 
@@ -573,6 +585,9 @@ pub use self::printer::Printer;
 
 mod progress_bar;
 pub use self::progress_bar::ProgressBar;
+
+mod property_expression;
+pub use self::property_expression::PropertyExpression;
 
 mod range;
 pub use self::range::Range;
