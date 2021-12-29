@@ -19,15 +19,20 @@ generate = [
     "Gsk.ClipNode",
     "Gsk.ColorMatrixNode",
     "Gsk.ColorNode",
+    "Gsk.ConicGradientNode",
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
     "Gsk.DebugNode",
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
+    "Gsk.LinearGradientNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
+    "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
+    "Gsk.RepeatingLinearGradientNode",
+    "Gsk.RepeatingRadialGradientNode",
     "Gsk.RepeatNode",
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
@@ -95,18 +100,8 @@ status = "generate"
 cfg_condition = "feature = \"broadway\""
 
 [[object]]
-name = "Gsk.ConicGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
 name = "Gsk.ContainerNode"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
     [[object.function]]
     name = "get_child"
     manual = true # assert that idx < n_children
@@ -139,25 +134,8 @@ generate_builder = true
 name = "Gsk.GLShaderNode"
 status = "generate"
     [[object.function]]
-    name = "new"
-    manual = true
-    [[object.function]]
     name = "get_child"
     manual = true # assert that idx < n_children
-
-[[object]]
-name = "Gsk.LinearGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
-name = "Gsk.RadialGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
 
 [[object]]
 name = "Gsk.Renderer"
@@ -177,20 +155,6 @@ status = "generate"
         const = true
 
 [[object]]
-name = "Gsk.RepeatingLinearGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
-name = "Gsk.RepeatingRadialGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true
-
-[[object]]
 name = "Gsk.ShaderArgsBuilder"
 status = "generate"
     [[object.function]]
@@ -200,9 +164,6 @@ status = "generate"
 [[object]]
 name = "Gsk.ShadowNode"
 status = "generate"
-    [[object.function]]
-    name = "new"
-    manual = true # can't work due to &[&CopyType] issue
     [[object.function]]
     name = "get_shadow"
     manual = true # assert that i < n_shadows

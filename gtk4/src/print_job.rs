@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{PageRange, PrintJob};
-
+use crate::PrintJob;
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
@@ -33,18 +32,6 @@ impl PrintJob {
                 callback,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,
-            );
-        }
-    }
-
-    #[doc(alias = "gtk_print_job_set_page_ranges")]
-    pub fn set_page_ranges(&self, ranges: &[PageRange]) {
-        let n_ranges = ranges.len() as i32;
-        unsafe {
-            ffi::gtk_print_job_set_page_ranges(
-                self.to_glib_none().0,
-                mut_override(ranges.to_glib_full()),
-                n_ranges,
             );
         }
     }

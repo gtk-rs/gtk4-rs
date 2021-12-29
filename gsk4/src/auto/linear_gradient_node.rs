@@ -26,6 +26,26 @@ impl glib::StaticType for LinearGradientNode {
 }
 
 impl LinearGradientNode {
+    #[doc(alias = "gsk_linear_gradient_node_new")]
+    pub fn new(
+        bounds: &graphene::Rect,
+        start: &graphene::Point,
+        end: &graphene::Point,
+        color_stops: &[ColorStop],
+    ) -> LinearGradientNode {
+        assert_initialized_main_thread!();
+        let n_color_stops = color_stops.len() as usize;
+        unsafe {
+            from_glib_full(ffi::gsk_linear_gradient_node_new(
+                bounds.to_glib_none().0,
+                start.to_glib_none().0,
+                end.to_glib_none().0,
+                color_stops.to_glib_none().0,
+                n_color_stops,
+            ))
+        }
+    }
+
     #[doc(alias = "gsk_linear_gradient_node_get_color_stops")]
     #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {

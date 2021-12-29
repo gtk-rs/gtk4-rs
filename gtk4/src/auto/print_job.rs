@@ -202,6 +202,18 @@ impl PrintJob {
         }
     }
 
+    #[doc(alias = "gtk_print_job_set_page_ranges")]
+    pub fn set_page_ranges(&self, ranges: &[PageRange]) {
+        let n_ranges = ranges.len() as i32;
+        unsafe {
+            ffi::gtk_print_job_set_page_ranges(
+                self.to_glib_none().0,
+                ranges.to_glib_full(),
+                n_ranges,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_print_job_set_page_set")]
     pub fn set_page_set(&self, page_set: PageSet) {
         unsafe {

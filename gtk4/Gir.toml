@@ -216,6 +216,7 @@ generate = [
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SymbolicColor",
+    "Gtk.SymbolicPaintable",
     "Gtk.SystemSetting",
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
@@ -1740,9 +1741,6 @@ name = "Gtk.PrintJob"
 status = "generate"
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
-    name = "set_page_ranges"
-    manual = true # use &[&PageRange] instead of &[PageRange]
-    [[object.function]]
     name = "send"
     manual = true # mis-generated callback_func
 
@@ -1948,30 +1946,6 @@ trust_return_value_nullability = false
     name = "append_border"
     manual = true
     [[object.function]]
-    name = "append_linear_gradient"
-    # use &[ColorStop] instead of &[&ColorStop]
-    manual = true
-    [[object.function]]
-    name = "append_radial_gradient"
-    # use &[ColorStop] instead of &[&ColorStop]
-    manual = true
-    [[object.function]]
-    name = "append_repeating_linear_gradient"
-    # use &[ColorStop] instead of &[&ColorStop]
-    manual = true
-    [[object.function]]
-    name = "append_repeating_radial_gradient"
-    # use &[ColorStop] instead of &[&ColorStop]
-    manual = true
-    [[object.function]]
-    name = "append_conic_gradient"
-    # use &[ColorStop] instead of &[&ColorStop]
-    manual = true
-    [[object.function]]
-    name = "push_shadow"
-    # use &[Shadow] instead of &[&Shadow]
-    manual = true
-    [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
 
@@ -2028,13 +2002,6 @@ status = "generate"
     name = "state-set"
     inhibit = true
 
-[[object]]
-name = "Gtk.SymbolicPaintable"
-status = "generate"
-manual_traits = ["SymbolicPaintableExtManual"]
-    [[object.function]]
-    name = "snapshot_symbolic"
-    manual = true # take a &[RGBA] instead of &[&RGBA]
 
 [[object]]
 name = "Gtk.Text"
