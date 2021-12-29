@@ -20,6 +20,22 @@ generate = [
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.TransformCategory",
+    "Gsk.BlendNode",
+    "Gsk.BlurNode",
+    "Gsk.CairoNode",
+    "Gsk.ClipNode",
+    "Gsk.ColorMatrixNode",
+    "Gsk.ColorNode",
+    "Gsk.CrossFadeNode",
+    "Gsk.DebugNode",
+    "Gsk.InsetShadowNode",
+    "Gsk.OpacityNode",
+    "Gsk.OutsetShadowNode",
+    "Gsk.RepeatNode",
+    "Gsk.RoundedClipNode",
+    "Gsk.TextNode",
+    "Gsk.TextureNode",
+    "Gsk.TransformNode"
 ]
 
 manual = [
@@ -42,36 +58,11 @@ manual = [
     "Graphene.Vec2",
     "Graphene.Vec3",
     "Graphene.Vec4",
-    "Gsk.BlendNode",
-    "Gsk.BlurNode",
-    "Gsk.BorderNode",
-    "Gsk.CairoNode",
-    "Gsk.ClipNode",
-    "Gsk.ColorMatrixNode",
-    "Gsk.ColorNode",
     "Gsk.ColorStop",
-    "Gsk.ConicGradientNode",
-    "Gsk.ContainerNode",
-    "Gsk.CrossFadeNode",
-    "Gsk.DebugNode",
-    "Gsk.GLShaderNode",
-    "Gsk.InsetShadowNode",
-    "Gsk.LinearGradientNode",
     "Gsk.NglRenderer",
-    "Gsk.OpacityNode",
-    "Gsk.OutsetShadowNode",
     "Gsk.ParseLocation",
-    "Gsk.RadialGradientNode",
-    "Gsk.RepeatingLinearGradientNode",
-    "Gsk.RepeatingRadialGradientNode",
-    "Gsk.RepeatNode",
-    "Gsk.RoundedClipNode",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
-    "Gsk.ShadowNode",
-    "Gsk.TextNode",
-    "Gsk.TextureNode",
-    "Gsk.TransformNode",
     "Gtk.Snapshot", # docs specific
     "Pango.Font",
     "Pango.GlyphInfo",
@@ -84,6 +75,19 @@ status = "generate"
     [[object.function]]
     pattern = "value_(dup|get|set|take)_render_node"
     ignore = true # used to implement Value traits manually
+
+[[object]]
+name = "Gsk.BorderNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+    [[object.function]]
+    name = "get_widths"
+    manual = true
+    [[object.function]]
+    name = "get_colors"
+    manual = true
 
 [[object]]
 name = "Gsk.BroadwayRenderer"
@@ -132,8 +136,74 @@ manual_traits = ["GskRendererExtManual"]
 
 [[object]]
 name = "Gsk.RenderNode"
-status = "manual" # fundemental type
-final_type = true # avoids the usage of RenderNodeExt trait
+status = "generate" # fundemental type 
+    [[object.function]]
+    name = "deserialize"
+    manual = true # split between two variants
+    [[object.function]]
+    name = "draw"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+
+[[object]]
+name = "Gsk.ShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true # can't work due to &[&CopyType] issue
+    [[object.function]]
+    name = "get_shadow"
+    manual = true # assert that i < n_shadows
+
+[[object]]
+name = "Gsk.ContainerNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.GLShaderNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.RepeatingLinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.ConicGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.RepeatingRadialGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.RadialGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gsk.LinearGradientNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Gsk.ShaderArgsBuilder"
