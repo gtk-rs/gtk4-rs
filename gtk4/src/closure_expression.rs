@@ -1,25 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Expression;
+use crate::{ClosureExpression, Expression};
 use glib::translate::*;
 use glib::{value::ValueType, StaticType, Value};
 
-glib::wrapper! {
-    #[derive(Debug)]
-    #[doc(alias = "GtkClosureExpression")]
-    pub struct ClosureExpression(Shared<ffi::GtkClosureExpression>);
-
-    match fn {
-        ref => |ptr| ffi::gtk_expression_ref(ptr as *mut ffi::GtkExpression),
-        unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
-    }
-}
-
-define_expression!(
-    ClosureExpression,
-    ffi::GtkClosureExpression,
-    ffi::gtk_closure_expression_get_type
-);
+define_expression!(ClosureExpression, ffi::GtkClosureExpression);
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]

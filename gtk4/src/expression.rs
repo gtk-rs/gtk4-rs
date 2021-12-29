@@ -1,27 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ExpressionWatch;
+use crate::Expression;
 use glib::translate::*;
 use glib::{value::FromValue, IsA, Object, StaticType, Type, Value};
-use std::boxed::Box as Box_;
-
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    #[doc(alias = "GtkExpression")]
-    pub struct Expression(Shared<ffi::GtkExpression>);
-
-    match fn {
-        ref => |ptr| ffi::gtk_expression_ref(ptr),
-        unref => |ptr| ffi::gtk_expression_unref(ptr),
-    }
-}
-
-impl glib::StaticType for Expression {
-    #[doc(alias = "gtk_expression_get_type")]
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_expression_get_type()) }
-    }
-}
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
@@ -42,8 +23,6 @@ pub unsafe trait IsExpression:
 }
 
 impl Expression {
-    pub const NONE: Option<&'static Expression> = None;
-
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
             if self.type_() == E::static_type() {
@@ -63,43 +42,12 @@ impl Expression {
             }
         }
     }
-    #[doc(alias = "get_type")]
+
     pub fn type_(&self) -> Type {
         unsafe {
             let ptr = self.to_glib_none().0;
 
             from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
-        }
-    }
-
-    #[doc(alias = "gtk_expression_get_value_type")]
-    #[doc(alias = "get_value_type")]
-    pub fn value_type(&self) -> Type {
-        assert_initialized_main_thread!();
-        unsafe { from_glib(ffi::gtk_expression_get_value_type(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gtk_expression_is_static")]
-    pub fn is_static(&self) -> bool {
-        assert_initialized_main_thread!();
-        unsafe { from_glib(ffi::gtk_expression_is_static(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gtk_expression_bind")]
-    pub fn bind<T: IsA<Object>, U: IsA<Object>>(
-        &self,
-        target: &T,
-        property_name: &str,
-        this: Option<&U>,
-    ) -> ExpressionWatch {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(ffi::gtk_expression_bind(
-                self.to_glib_full(),
-                target.as_ref().to_glib_none().0,
-                property_name.to_glib_none().0,
-                this.map(|t| t.as_ref()).to_glib_none().0,
-            ))
         }
     }
 
@@ -132,32 +80,6 @@ impl Expression {
             v.get_owned::<V>()
                 .expect("Failed to evaluate to this value type")
         })
-    }
-
-    #[doc(alias = "gtk_expression_watch")]
-    pub fn watch<T: IsA<Object>, F: Fn() + 'static>(
-        &self,
-        this: Option<&T>,
-        notify: F,
-    ) -> ExpressionWatch {
-        assert_initialized_main_thread!();
-        unsafe extern "C" fn notify_trampoline<F: Fn() + 'static>(user_data: glib::ffi::gpointer) {
-            let f: &F = &*(user_data as *const F);
-            f()
-        }
-        unsafe extern "C" fn destroy_func<F: Fn() + 'static>(user_data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<F>>> = Box_::from_raw(user_data as *mut _);
-        }
-        let callback_data: Box_<F> = Box_::new(notify);
-        unsafe {
-            from_glib_none(ffi::gtk_expression_watch(
-                self.to_glib_none().0,
-                this.map(|t| t.as_ref()).to_glib_none().0,
-                Some(notify_trampoline::<F> as _),
-                Box_::into_raw(callback_data) as *mut _,
-                Some(destroy_func::<F> as _),
-            ))
-        }
     }
 
     // rustdoc-stripper-ignore-next
@@ -223,7 +145,7 @@ impl glib::value::ValueType for Expression {
 unsafe impl<'a> glib::value::FromValue<'a> for Expression {
     type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
-    unsafe fn from_value(value: &'a Value) -> Self {
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
     }
@@ -301,7 +223,7 @@ impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
 }
 
 macro_rules! define_expression {
-    ($rust_type:ident, $ffi_type:path, $get_type:path) => {
+    ($rust_type:ident, $ffi_type:path) => {
         impl std::ops::Deref for $rust_type {
             type Target = crate::Expression;
 
@@ -333,12 +255,6 @@ macro_rules! define_expression {
             }
         }
 
-        impl glib::StaticType for $rust_type {
-            fn static_type() -> glib::Type {
-                unsafe { glib::translate::FromGlib::from_glib($get_type()) }
-            }
-        }
-
         unsafe impl crate::expression::IsExpression for $rust_type {}
 
         impl glib::value::ValueType for $rust_type {
@@ -348,7 +264,7 @@ macro_rules! define_expression {
         unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
-            unsafe fn from_value(value: &'a Value) -> Self {
+            unsafe fn from_value(value: &'a glib::Value) -> Self {
                 skip_assert_initialized!();
                 from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
             }

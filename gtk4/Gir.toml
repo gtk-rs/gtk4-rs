@@ -141,6 +141,7 @@ generate = [
     "Gtk.MultiSorter",
     "Gtk.NotebookTab",
     "Gtk.NumberUpLayout",
+    "Gtk.ObjectExpression",
     "Gtk.Orientable",
     "Gtk.Orientation",
     "Gtk.Overflow",
@@ -168,6 +169,7 @@ generate = [
     "Gtk.ProgressBar",
     "Gtk.PropagationLimit",
     "Gtk.PropagationPhase",
+    "Gtk.PropertyExpression",
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
     "Gtk.Revealer",
@@ -309,6 +311,7 @@ manual = [
     "GLib.VariantType",
     "GObject.Closure",
     "GObject.ParamFlags",
+    "GObject.ParamSpec",
     "Graphene.Matrix",
     "Graphene.Point",
     "Graphene.Point3D",
@@ -327,15 +330,11 @@ manual = [
     "Gsk.Transform",
     "Gtk.BitsetIter",
     "Gtk.Border",
-    "Gtk.ClosureExpression",
-    "Gtk.ConstantExpression",
     "Gtk.CssLocation",
-    "Gtk.ExpressionWatch",
-    "Gtk.ObjectExpression",
+    "Gtk.ExpressionWatch", # can't be auto because of get_type being public until v4_2
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
     "Gtk.ParamSpecExpression",
-    "Gtk.PropertyExpression",
     "Gtk.RecentData",
     "Gtk.ResponseType",
     "Pango.Alignment",
@@ -831,6 +830,13 @@ generate_builder = true
         nullable = false
 
 [[object]]
+name = "Gtk.ClosureExpression"
+status = "generate"
+    [[object.function]]
+    name = "new" # make use of RustClosure
+    manual = true
+
+[[object]]
 name = "Gtk.ColorChooser"
 status = "generate"
 manual_traits = ["ColorChooserExtManual"]
@@ -865,6 +871,13 @@ manual_traits = ["ComboBoxExtManual"]
         [[object.function.parameter]]
         name = "func"
         nullable = false # use a separate unset_row_separator_func
+
+[[object]]
+name = "Gtk.ConstantExpression"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
 
 [[object]]
 name = "Gtk.ConstraintGuide"
@@ -1141,9 +1154,10 @@ generate_builder = true
 
 [[object]]
 name = "Gtk.Expression"
-status = "manual"
-# Workaround IsA<Expression> in the generated builders to not rewrite them manually
-final_type = true
+status = "generate"
+    [[object.function]]
+    name = "evaluate"
+    manual = true
 
 [[object]]
 name = "Gtk.FileChooser"
