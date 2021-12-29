@@ -18,6 +18,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
     }
 }
+
 impl glib::StaticType for LinearGradientNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_linear_gradient_node_get_type()) }

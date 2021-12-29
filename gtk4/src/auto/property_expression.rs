@@ -16,6 +16,7 @@ glib::wrapper! {
         unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
     }
 }
+
 impl glib::StaticType for PropertyExpression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_property_expression_get_type()) }
