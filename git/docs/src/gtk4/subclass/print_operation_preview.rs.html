@@ -481,7 +481,7 @@
     <span class="ident">contextptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkPrintContext</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">print_operation_preview</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">ready</span>(
@@ -496,7 +496,7 @@
     <span class="ident">setupptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkPageSetup</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">print_operation_preview</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">setup</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">setupptr</span>);
@@ -513,7 +513,7 @@
     <span class="ident">page_nr</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">print_operation_preview</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">render_page</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>(<span class="ident">print_operation_preview</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -526,7 +526,7 @@
     <span class="ident">page_nr</span>: <span class="ident">i32</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">print_operation_preview</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">is_selected</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>(<span class="ident">print_operation_preview</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -539,12 +539,12 @@
     <span class="ident">print_operation_preview</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkPrintOperationPreview</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">print_operation_preview</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">end_preview</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>(<span class="ident">print_operation_preview</span>).<span class="ident">unsafe_cast_ref</span>(),
     )
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

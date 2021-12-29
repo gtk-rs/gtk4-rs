@@ -190,7 +190,7 @@
     <span class="ident">new_text</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRendererText</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">edited</span>(
@@ -200,5 +200,5 @@
     )
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

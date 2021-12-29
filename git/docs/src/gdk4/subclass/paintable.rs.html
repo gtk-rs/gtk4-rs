@@ -452,7 +452,7 @@
     <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">current_image</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
@@ -462,7 +462,7 @@
     <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">ffi::GdkPaintableFlags</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">flags</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">into_glib</span>()
@@ -472,7 +472,7 @@
     <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_width</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -481,7 +481,7 @@
     <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_height</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -490,7 +490,7 @@
     <span class="ident">paintable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GdkPaintable</span>,
 ) -&gt; <span class="ident">f64</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">intrinsic_aspect_ratio</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -502,7 +502,7 @@
     <span class="ident">height</span>: <span class="ident">f64</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">paintable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">snapshot</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Paintable</span><span class="op">&gt;</span>(<span class="ident">paintable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -512,5 +512,5 @@
     )
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

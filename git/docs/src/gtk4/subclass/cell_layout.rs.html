@@ -911,7 +911,7 @@
     <span class="ident">cell_layout</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellLayout</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellArea</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">area</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellLayout</span><span class="op">&gt;</span>(<span class="ident">cell_layout</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
@@ -923,7 +923,7 @@
     <span class="ident">expand</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
 
@@ -940,7 +940,7 @@
     <span class="ident">expand</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
 
@@ -953,7 +953,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cell_layout_clear</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CellLayoutImpl</span><span class="op">&gt;</span>(<span class="ident">cell_layout</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellLayout</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">clear</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellLayout</span><span class="op">&gt;</span>(<span class="ident">cell_layout</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -964,7 +964,7 @@
     <span class="ident">position</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
 
@@ -982,7 +982,7 @@
     <span class="ident">column</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
     <span class="kw">let</span> <span class="ident">attribute</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">attributeptr</span>);
@@ -1000,7 +1000,7 @@
     <span class="ident">cellptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellRenderer</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
 
@@ -1018,7 +1018,7 @@
     <span class="ident">destroy_notify</span>: <span class="ident">glib::ffi::GDestroyNotify</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">cell</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">cellptr</span>);
 
@@ -1046,7 +1046,7 @@
     <span class="ident">cell_layout</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellLayout</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::ffi::GList</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">cell_layout</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellLayout</span><span class="op">&gt;</span>(<span class="ident">cell_layout</span>);
 
@@ -1058,5 +1058,5 @@
     <span class="ident">cells</span>.<span class="ident">to_glib_container</span>().<span class="number">0</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

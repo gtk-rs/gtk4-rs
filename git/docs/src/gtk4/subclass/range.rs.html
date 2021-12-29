@@ -384,7 +384,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">range_adjust_bounds</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">RangeImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkRange</span>, <span class="ident">new_value</span>: <span class="ident">f64</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">adjust_bounds</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">new_value</span>)
@@ -396,7 +396,7 @@
     <span class="ident">new_value</span>: <span class="ident">f64</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">change_value</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">scroll_type</span>), <span class="ident">new_value</span>)
@@ -408,7 +408,7 @@
     <span class="ident">borderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBorder</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">range_border</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
@@ -420,7 +420,7 @@
     <span class="ident">scroll_type</span>: <span class="ident">ffi::GtkScrollType</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">move_slider</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">scroll_type</span>))
@@ -428,11 +428,11 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">range_value_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">RangeImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkRange</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">value_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

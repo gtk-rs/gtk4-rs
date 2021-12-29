@@ -1927,7 +1927,7 @@
     <span class="ident">pspecptr</span>: <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GParamSpec</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="ident">imp</span>.<span class="ident">set_cell_property</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellArea</span><span class="op">&gt;</span>(<span class="ident">ptr</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellRenderer</span><span class="op">&gt;</span>(<span class="ident">rendererptr</span>),
@@ -1945,7 +1945,7 @@
     <span class="ident">pspecptr</span>: <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GParamSpec</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">cell_property</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">CellArea</span><span class="op">&gt;</span>(<span class="ident">ptr</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -1965,7 +1965,7 @@
     <span class="ident">rendererptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellRenderer</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">renderer</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">rendererptr</span>);
 
@@ -1980,7 +1980,7 @@
     <span class="ident">is_expanded</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">model</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">modelptr</span>);
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
@@ -1999,7 +1999,7 @@
     <span class="ident">rendererptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellRenderer</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">renderer</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">rendererptr</span>);
 
@@ -2010,7 +2010,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellArea</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">is_activatable</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
@@ -2021,7 +2021,7 @@
     <span class="ident">directionptr</span>: <span class="ident">ffi::GtkDirectionType</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">directionptr</span>))
@@ -2032,7 +2032,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellArea</span>,
 ) -&gt; <span class="ident">ffi::GtkSizeRequestMode</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">request_mode</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
@@ -2046,7 +2046,7 @@
     <span class="ident">natptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2068,7 +2068,7 @@
     <span class="ident">natptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2091,7 +2091,7 @@
     <span class="ident">nat_width_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2115,7 +2115,7 @@
     <span class="ident">nat_height_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">libc::c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2139,7 +2139,7 @@
     <span class="ident">edit_only</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2166,7 +2166,7 @@
     <span class="ident">paint_focus</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">wdgtptr</span>);
@@ -2188,7 +2188,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellArea</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellAreaContext</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">create_context</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib_full</span>()
@@ -2199,7 +2199,7 @@
     <span class="ident">contextptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellAreaContext</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellAreaContext</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
 
@@ -2216,7 +2216,7 @@
     <span class="ident">flags</span>: <span class="ident">ffi::GtkCellRendererState</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
@@ -2240,7 +2240,7 @@
     <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="ident">CellCallback</span> {
@@ -2261,7 +2261,7 @@
     <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
@@ -2312,5 +2312,5 @@
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ClassStruct</span><span class="op">&gt;</span> <span class="ident">CellAreaClassSubclassExt</span> <span class="kw">for</span> <span class="ident">T</span> <span class="kw">where</span> <span class="ident">T::Type</span>: <span class="ident">CellAreaImpl</span> {}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

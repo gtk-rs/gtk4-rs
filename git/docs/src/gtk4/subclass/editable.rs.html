@@ -865,7 +865,7 @@
     <span class="ident">position</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">insert_text</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -881,7 +881,7 @@
     <span class="ident">end_position</span>: <span class="ident">c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">delete_text</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -892,7 +892,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">editable_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span>(<span class="ident">editable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkEditable</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">changed</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -901,7 +901,7 @@
     <span class="ident">editable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkEditable</span>,
 ) -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">text</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
@@ -914,7 +914,7 @@
     <span class="ident">editable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkEditable</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">ffi::GtkEditable</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>);
 
@@ -942,7 +942,7 @@
     <span class="ident">position</span>: <span class="kw-2">*mut</span> <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">do_insert_text</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -958,7 +958,7 @@
     <span class="ident">end_position</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">do_delete_text</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -973,7 +973,7 @@
     <span class="ident">end_position</span>: <span class="kw-2">*mut</span> <span class="ident">i32</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">start_pos</span>, <span class="ident">end_pos</span>)) <span class="op">=</span>
         <span class="ident">imp</span>.<span class="ident">selection_bounds</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>())
@@ -999,7 +999,7 @@
     <span class="ident">end_position</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">set_selection_bounds</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -1008,5 +1008,5 @@
     )
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

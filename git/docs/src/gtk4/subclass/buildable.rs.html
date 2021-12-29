@@ -764,7 +764,7 @@
     <span class="ident">id</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">id</span>);
 
     <span class="ident">imp</span>.<span class="ident">set_id</span>(
@@ -777,7 +777,7 @@
     <span class="ident">buildable</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuildable</span>,
 ) -&gt; <span class="kw-2">*const</span> <span class="ident">libc::c_char</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">id</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Buildable</span><span class="op">&gt;</span>(<span class="ident">buildable</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
@@ -790,7 +790,7 @@
     <span class="ident">typeptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">typeptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">add_child</span>(
@@ -808,7 +808,7 @@
     <span class="ident">valueptr</span>: <span class="kw-2">*const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">set_buildable_property</span>(
@@ -825,7 +825,7 @@
     <span class="ident">nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">construct_child</span>(
@@ -841,7 +841,7 @@
     <span class="ident">builderptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkBuilder</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">parser_finished</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Buildable</span><span class="op">&gt;</span>(<span class="ident">buildable</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -857,7 +857,7 @@
     <span class="ident">nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">glib::gobject_ffi::GObject</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">buildable</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Buildable</span><span class="op">&gt;</span>(<span class="ident">buildable</span>);
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">GString</span><span class="op">&gt;</span>(<span class="ident">nameptr</span>);
 
@@ -874,5 +874,5 @@
     <span class="ident">ret</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

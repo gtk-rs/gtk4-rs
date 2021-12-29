@@ -698,7 +698,7 @@
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFamily</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>);
 
     <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">font_family</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
@@ -722,7 +722,7 @@
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFace</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>);
 
     <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">font_face</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
@@ -744,7 +744,7 @@
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="ident">i32</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">font_size</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>).<span class="ident">unsafe_cast_ref</span>())
 }
@@ -754,7 +754,7 @@
     <span class="ident">font_nameptr</span>: <span class="kw-2">*const</span> <span class="ident">libc::c_char</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">font_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">font_nameptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">font_activated</span>(
@@ -768,7 +768,7 @@
     <span class="ident">font_mapptr</span>: <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontMap</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">font_map</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">font_mapptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">set_font_map</span>(
@@ -781,7 +781,7 @@
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontMap</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="ident">imp</span>.<span class="ident">font_map</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">FontChooser</span><span class="op">&gt;</span>(<span class="ident">font_chooser</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
@@ -794,7 +794,7 @@
     <span class="ident">destroy_notify</span>: <span class="ident">glib::ffi::GDestroyNotify</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">font_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
     <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">filter_func</span>.<span class="ident">is_some</span>() {
         <span class="prelude-val">None</span>
@@ -812,5 +812,5 @@
     );
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>

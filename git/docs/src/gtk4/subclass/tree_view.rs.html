@@ -1043,7 +1043,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_columns_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">columns_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -1051,7 +1051,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_cursor_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">cursor_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -1064,7 +1064,7 @@
     <span class="ident">open_all</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">expand_collapse_cursor_row</span>(
@@ -1084,7 +1084,7 @@
     <span class="ident">modify</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">move_cursor</span>(
@@ -1103,7 +1103,7 @@
     <span class="ident">columnptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewColumn</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="kw">let</span> <span class="ident">column</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeViewColumn</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">columnptr</span>);
@@ -1117,7 +1117,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
@@ -1131,7 +1131,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
@@ -1143,7 +1143,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">select_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
@@ -1153,7 +1153,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">select_cursor_parent</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
@@ -1164,7 +1164,7 @@
     <span class="ident">start_editing</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">select_cursor_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">start_editing</span>))
@@ -1175,7 +1175,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">start_interactive_search</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -1188,7 +1188,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
@@ -1203,7 +1203,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
@@ -1216,7 +1216,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">toggle_cursor_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
@@ -1226,11 +1226,11 @@
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeView</span>,
 ) -&gt; <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>
