@@ -37,6 +37,21 @@ glib::wrapper! {
 }
 
 impl DropDown {
+    #[doc(alias = "gtk_drop_down_new")]
+    pub fn new(
+        model: Option<&impl IsA<gio::ListModel>>,
+        expression: Option<impl AsRef<Expression>>,
+    ) -> DropDown {
+        assert_initialized_main_thread!();
+        unsafe {
+            Widget::from_glib_none(ffi::gtk_drop_down_new(
+                model.map(|p| p.as_ref()).to_glib_full(),
+                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+            ))
+            .unsafe_cast()
+        }
+    }
+
     #[doc(alias = "gtk_drop_down_new_from_strings")]
     #[doc(alias = "new_from_strings")]
     pub fn from_strings(strings: &[&str]) -> DropDown {
@@ -111,6 +126,16 @@ impl DropDown {
     pub fn set_enable_search(&self, enable_search: bool) {
         unsafe {
             ffi::gtk_drop_down_set_enable_search(self.to_glib_none().0, enable_search.into_glib());
+        }
+    }
+
+    #[doc(alias = "gtk_drop_down_set_expression")]
+    pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
+        unsafe {
+            ffi::gtk_drop_down_set_expression(
+                self.to_glib_none().0,
+                expression.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -377,6 +402,13 @@ impl DropDown {
     }
 }
 
+impl Default for DropDown {
+    fn default() -> Self {
+        glib::object::Object::new::<Self>(&[])
+            .expect("Can't construct DropDown object with default parameters")
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`DropDown`] objects.
@@ -558,8 +590,8 @@ impl DropDownBuilder {
         self
     }
 
-    pub fn expression(mut self, expression: &Expression) -> Self {
-        self.expression = Some(expression.clone());
+    pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
+        self.expression = Some(expression.clone().upcast());
         self
     }
 
