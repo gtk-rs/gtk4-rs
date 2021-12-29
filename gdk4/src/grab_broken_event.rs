@@ -1,46 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, Surface};
-use glib::translate::*;
+use crate::{EventType, GrabBrokenEvent};
 use std::fmt;
-
-glib::wrapper! {
-    #[doc(alias = "GdkGrabBrokenEvent")]
-    pub struct GrabBrokenEvent(Shared<ffi::GdkGrabBrokenEvent>);
-
-    match fn {
-        ref => |ptr| ffi::gdk_event_ref(ptr as *mut ffi::GdkEvent),
-        unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
-    }
-}
 
 define_event! {
     GrabBrokenEvent,
     ffi::GdkGrabBrokenEvent,
-    ffi::gdk_grab_broken_event_get_type,
     &[EventType::GrabBroken]
-}
-
-impl GrabBrokenEvent {
-    #[doc(alias = "gdk_grab_broken_event_get_grab_surface")]
-    #[doc(alias = "get_grab_surface")]
-    pub fn grab_surface(&self) -> Option<Surface> {
-        unsafe {
-            from_glib_none(ffi::gdk_grab_broken_event_get_grab_surface(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_grab_broken_event_get_implicit")]
-    #[doc(alias = "get_implicit")]
-    pub fn is_implicit(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gdk_grab_broken_event_get_implicit(
-                self.to_glib_none().0,
-            ))
-        }
-    }
 }
 
 impl fmt::Display for GrabBrokenEvent {

@@ -103,22 +103,8 @@ pub use auto::*;
 
 pub use functions::*;
 
-pub use button_event::ButtonEvent;
-pub use crossing_event::CrossingEvent;
-pub use delete_event::DeleteEvent;
 pub use display::Backend;
-pub use dnd_event::DNDEvent;
-pub use event::Event;
-pub use focus_event::FocusEvent;
-pub use grab_broken_event::GrabBrokenEvent;
-pub use key_event::KeyEvent;
 pub use keymap_key::KeymapKey;
 pub use keys::Key;
-pub use motion_event::MotionEvent;
-pub use pad_event::PadEvent;
-pub use proximity_event::ProximityEvent;
-pub use scroll_event::ScrollEvent;
 pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
-pub use touch_event::TouchEvent;
-pub use touchpad_event::TouchpadEvent;

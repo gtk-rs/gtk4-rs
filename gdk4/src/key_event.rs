@@ -1,59 +1,21 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, Key, KeyMatch, ModifierType};
+use crate::{EventType, Key, KeyEvent, KeyMatch, ModifierType};
 use glib::translate::*;
 use std::fmt;
 use std::mem;
 
-glib::wrapper! {
-    #[doc(alias = "GdkKeyEvent")]
-    pub struct KeyEvent(Shared<ffi::GdkKeyEvent>);
-
-    match fn {
-        ref => |ptr| ffi::gdk_event_ref(ptr as *mut ffi::GdkEvent),
-        unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
-    }
-}
-
 define_event! {
     KeyEvent,
     ffi::GdkKeyEvent,
-    ffi::gdk_key_event_get_type,
     &[EventType::KeyPress, EventType::KeyRelease]
 }
 
 impl KeyEvent {
-    #[doc(alias = "gdk_key_event_get_consumed_modifiers")]
-    #[doc(alias = "get_consumed_modifiers")]
-    pub fn consumed_modifiers(&self) -> ModifierType {
-        unsafe {
-            from_glib(ffi::gdk_key_event_get_consumed_modifiers(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_key_event_get_keycode")]
-    #[doc(alias = "get_keycode")]
-    pub fn keycode(&self) -> u32 {
-        unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
-    }
     #[doc(alias = "gdk_key_event_get_keyval")]
     #[doc(alias = "get_keyval")]
     pub fn keyval(&self) -> Key {
         unsafe { from_glib(ffi::gdk_key_event_get_keyval(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_key_event_get_layout")]
-    #[doc(alias = "get_layout")]
-    pub fn layout(&self) -> u32 {
-        unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "gdk_key_event_get_level")]
-    #[doc(alias = "get_level")]
-    pub fn level(&self) -> u32 {
-        unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_key_event_get_match")]
@@ -75,11 +37,6 @@ impl KeyEvent {
                 None
             }
         }
-    }
-
-    #[doc(alias = "gdk_key_event_is_modifier")]
-    pub fn is_modifier(&self) -> bool {
-        unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_key_event_matches")]
