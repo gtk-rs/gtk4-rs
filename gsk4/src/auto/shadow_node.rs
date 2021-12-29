@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
+use crate::Shadow;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;
@@ -24,6 +25,19 @@ impl glib::StaticType for ShadowNode {
 }
 
 impl ShadowNode {
+    #[doc(alias = "gsk_shadow_node_new")]
+    pub fn new(child: impl AsRef<RenderNode>, shadows: &[Shadow]) -> ShadowNode {
+        skip_assert_initialized!();
+        let n_shadows = shadows.len() as usize;
+        unsafe {
+            from_glib_full(ffi::gsk_shadow_node_new(
+                child.as_ref().to_glib_none().0,
+                shadows.to_glib_none().0,
+                n_shadows,
+            ))
+        }
+    }
+
     #[doc(alias = "gsk_shadow_node_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<RenderNode> {

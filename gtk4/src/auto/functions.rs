@@ -141,7 +141,7 @@ pub fn disable_setlocale() {
 }
 
 //#[doc(alias = "gtk_distribute_natural_allocation")]
-//pub fn distribute_natural_allocation(extra_space: i32, sizes: /*Ignored*/&[&RequestedSize]) -> i32 {
+//pub fn distribute_natural_allocation(extra_space: i32, sizes: /*Ignored*/&[RequestedSize]) -> i32 {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 

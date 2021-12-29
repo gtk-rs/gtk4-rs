@@ -188,9 +188,6 @@ mod shortcuts_section;
 mod snapshot;
 mod spin_button;
 mod string_list;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-mod symbolic_paintable;
 mod text;
 mod text_buffer;
 mod text_view;
