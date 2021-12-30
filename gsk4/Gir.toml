@@ -107,6 +107,9 @@ status = "generate"
     [[object.function]]
     name = "new"
     manual = true
+    [[object.function]]
+    name = "get_child"
+    manual = true # assert that idx < n_children
 
 [[object]]
 name = "Gsk.GLShader"
@@ -138,6 +141,9 @@ status = "generate"
     [[object.function]]
     name = "new"
     manual = true
+    [[object.function]]
+    name = "get_child"
+    manual = true # assert that idx < n_children
 
 [[object]]
 name = "Gsk.LinearGradientNode"
