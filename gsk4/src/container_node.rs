@@ -21,4 +21,16 @@ impl ContainerNode {
             ))
         }
     }
+
+    #[doc(alias = "gsk_container_node_get_child")]
+    #[doc(alias = "get_child")]
+    pub fn child(&self, idx: u32) -> Option<RenderNode> {
+        assert!(idx < self.n_children());
+        unsafe {
+            from_glib_none(ffi::gsk_container_node_get_child(
+                self.to_glib_none().0,
+                idx,
+            ))
+        }
+    }
 }
