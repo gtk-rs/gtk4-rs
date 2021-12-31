@@ -40,6 +40,12 @@ impl Extend<String> for StringList {
     }
 }
 
+impl Default for StringList {
+    fn default() -> Self {
+        Self::new(&[])
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::StringList;
