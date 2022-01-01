@@ -17,7 +17,7 @@ glib::wrapper! {
 
 impl MnemonicAction {
     #[doc(alias = "gtk_mnemonic_action_get")]
-    pub fn get() -> Option<MnemonicAction> {
+    pub fn get() -> MnemonicAction {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_mnemonic_action_get()) }
     }

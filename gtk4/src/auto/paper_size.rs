@@ -4,6 +4,7 @@
 
 use crate::Unit;
 use glib::translate::*;
+use std::fmt;
 use std::ptr;
 
 glib::wrapper! {
@@ -150,7 +151,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_display_name")]
     #[doc(alias = "get_display_name")]
-    pub fn display_name(&self) -> Option<glib::GString> {
+    pub fn display_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_display_name(mut_override(
                 self.to_glib_none().0,
@@ -168,7 +169,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_name")]
     #[doc(alias = "get_name")]
-    pub fn name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_name(mut_override(
                 self.to_glib_none().0,
@@ -178,7 +179,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_ppd_name")]
     #[doc(alias = "get_ppd_name")]
-    pub fn ppd_name(&self) -> Option<glib::GString> {
+    pub fn ppd_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_ppd_name(mut_override(
                 self.to_glib_none().0,
@@ -235,7 +236,7 @@ impl PaperSize {
     }
 
     #[doc(alias = "gtk_paper_size_to_gvariant")]
-    pub fn to_gvariant(&mut self) -> Option<glib::Variant> {
+    pub fn to_gvariant(&mut self) -> glib::Variant {
         unsafe { from_glib_none(ffi::gtk_paper_size_to_gvariant(self.to_glib_none_mut().0)) }
     }
 
@@ -252,7 +253,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_default")]
     #[doc(alias = "get_default")]
-    pub fn default() -> Option<glib::GString> {
+    pub fn default() -> glib::GString {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_paper_size_get_default()) }
     }
@@ -277,3 +278,10 @@ impl PartialEq for PaperSize {
 }
 
 impl Eq for PaperSize {}
+
+impl fmt::Display for PaperSize {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&self.name())
+    }
+}
