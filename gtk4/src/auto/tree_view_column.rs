@@ -155,7 +155,7 @@ impl TreeViewColumn {
 
     #[doc(alias = "gtk_tree_view_column_get_button")]
     #[doc(alias = "get_button")]
-    pub fn button(&self) -> Option<Widget> {
+    pub fn button(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_button(self.to_glib_none().0)) }
     }
 
@@ -253,7 +253,7 @@ impl TreeViewColumn {
 
     #[doc(alias = "gtk_tree_view_column_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_title(self.to_glib_none().0)) }
     }
 

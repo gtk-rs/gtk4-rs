@@ -30,7 +30,7 @@ pub trait AppChooserExt: 'static {
 
     #[doc(alias = "gtk_app_chooser_get_content_type")]
     #[doc(alias = "get_content_type")]
-    fn content_type(&self) -> Option<glib::GString>;
+    fn content_type(&self) -> glib::GString;
 
     #[doc(alias = "gtk_app_chooser_refresh")]
     fn refresh(&self);
@@ -45,7 +45,7 @@ impl<O: IsA<AppChooser>> AppChooserExt for O {
         }
     }
 
-    fn content_type(&self) -> Option<glib::GString> {
+    fn content_type(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_app_chooser_get_content_type(
                 self.as_ref().to_glib_none().0,

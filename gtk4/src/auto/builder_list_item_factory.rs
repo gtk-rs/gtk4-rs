@@ -53,7 +53,7 @@ impl BuilderListItemFactory {
 
     #[doc(alias = "gtk_builder_list_item_factory_get_bytes")]
     #[doc(alias = "get_bytes")]
-    pub fn bytes(&self) -> Option<glib::Bytes> {
+    pub fn bytes(&self) -> glib::Bytes {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_bytes(
                 self.to_glib_none().0,

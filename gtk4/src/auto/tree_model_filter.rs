@@ -43,7 +43,7 @@ pub trait TreeModelFilterExt: 'static {
 
     #[doc(alias = "gtk_tree_model_filter_get_model")]
     #[doc(alias = "get_model")]
-    fn model(&self) -> Option<TreeModel>;
+    fn model(&self) -> TreeModel;
 
     #[doc(alias = "gtk_tree_model_filter_refilter")]
     fn refilter(&self);
@@ -111,7 +111,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
-    fn model(&self) -> Option<TreeModel> {
+    fn model(&self) -> TreeModel {
         unsafe {
             from_glib_none(ffi::gtk_tree_model_filter_get_model(
                 self.as_ref().to_glib_none().0,

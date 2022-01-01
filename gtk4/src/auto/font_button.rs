@@ -71,7 +71,7 @@ impl FontButton {
 
     #[doc(alias = "gtk_font_button_get_title")]
     #[doc(alias = "get_title")]
-    pub fn title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_font_button_get_title(self.to_glib_none().0)) }
     }
 
