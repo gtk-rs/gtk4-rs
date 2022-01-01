@@ -7,7 +7,7 @@ define_render_node!(ShadowNode, ffi::GskShadowNode, RenderNodeType::ShadowNode);
 impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_get_shadow")]
     #[doc(alias = "get_shadow")]
-    pub fn shadow(&self, i: usize) -> Option<Shadow> {
+    pub fn shadow(&self, i: usize) -> Shadow {
         assert!(i < self.n_shadows());
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_shadow(self.to_glib_none().0, i)) }
     }

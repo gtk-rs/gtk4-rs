@@ -12,7 +12,7 @@ define_render_node!(
 impl ContainerNode {
     #[doc(alias = "gsk_container_node_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self, idx: u32) -> Option<RenderNode> {
+    pub fn child(&self, idx: u32) -> RenderNode {
         assert!(idx < self.n_children());
         unsafe {
             from_glib_none(ffi::gsk_container_node_get_child(
