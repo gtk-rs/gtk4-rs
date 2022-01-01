@@ -622,17 +622,9 @@ manual_traits = ["TextureExtManual"]
         [object.function.return]
         bool_return_is_error = "Failed to save the texture as png"
     [[object.function]]
-    name = "save_to_png_bytes"
-        [object.function.return]
-        nullable_return_is_error = "Failed to save the texture as png bytes"
-    [[object.function]]
     name = "save_to_tiff"
         [object.function.return]
         bool_return_is_error = "Failed to save the texture as tiff"
-    [[object.function]]
-    name = "save_to_tiff_bytes"
-        [object.function.return]
-        nullable_return_is_error = "Failed to save the texture as tiff bytes"
 
 [[object]]
 name = "Gdk.Toplevel"
