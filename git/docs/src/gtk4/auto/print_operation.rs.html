@@ -2378,7 +2378,7 @@
     <span class="doccomment">/// the default page setup</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_get_default_page_setup&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_page_setup&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PageSetup</span>;
 
     <span class="doccomment">/// Gets whether page setup selection combos are embedded</span>
     <span class="doccomment">///</span>
@@ -2427,7 +2427,7 @@
     <span class="doccomment">/// the current print settings of @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_get_print_settings&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_print_settings&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PrintSettings</span>;
 
     <span class="doccomment">/// Returns the status of the print operation.</span>
     <span class="doccomment">///</span>
@@ -2455,7 +2455,7 @@
     <span class="doccomment">///    of the print operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_get_status_string&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_status_string&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">status_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">status_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span>;
 
     <span class="doccomment">/// Gets whether the application supports print of selection</span>
     <span class="doccomment">///</span>
@@ -2810,7 +2810,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PageSetup</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_print_operation_get_default_page_setup</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2838,7 +2838,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_print_operation_get_n_pages_to_print</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PrintSettings</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_print_operation_get_print_settings</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -2854,7 +2854,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">status_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">status_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_print_operation_get_status_string</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

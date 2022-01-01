@@ -2366,7 +2366,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context copy of @context.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_copy_context&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">copy_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">copy_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>) -&gt; <span class="ident">CellAreaContext</span>;
 
     <span class="doccomment">/// Creates a [`CellArea`][crate::CellArea]Context to be used with @self for</span>
     <span class="doccomment">/// all purposes. [`CellArea`][crate::CellArea]Context stores geometry information</span>
@@ -2379,7 +2379,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [`CellArea`][crate::CellArea]Context which can be used with @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_create_context&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellAreaContext</span>;
 
     <span class="doccomment">/// This should be called by the @self’s owning layout widget</span>
     <span class="doccomment">/// when focus is to be passed to @self, or moved within @self</span>
@@ -2501,7 +2501,7 @@
     <span class="doccomment">/// should not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_current_path_string&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_path_string&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span>;
 
     <span class="doccomment">/// Gets the [`CellEditable`][crate::CellEditable] widget currently used</span>
     <span class="doccomment">/// to edit the currently edited cell.</span>
@@ -2511,7 +2511,7 @@
     <span class="doccomment">/// The currently active [`CellEditable`][crate::CellEditable] widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_edit_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_edit_widget&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellEditable</span>;
 
     <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] in @self that is currently</span>
     <span class="doccomment">/// being edited.</span>
@@ -2521,7 +2521,7 @@
     <span class="doccomment">/// The currently edited [`CellRenderer`][crate::CellRenderer]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_edited_cell&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_edited_cell&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellRenderer</span>;
 
     <span class="doccomment">/// Retrieves the currently focused cell for @self</span>
     <span class="doccomment">///</span>
@@ -2530,7 +2530,7 @@
     <span class="doccomment">/// the currently focused cell in @self.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_get_focus_cell&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_focus_cell&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellRenderer</span>;
 
     <span class="doccomment">/// Gets the [`CellRenderer`][crate::CellRenderer] which is expected to be focusable</span>
     <span class="doccomment">/// for which @renderer is, or may be a sibling.</span>
@@ -3031,7 +3031,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">copy_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">copy_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span>) -&gt; <span class="ident">CellAreaContext</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_cell_area_copy_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -3040,7 +3040,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellAreaContext</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">create_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellAreaContext</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_cell_area_create_context</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -3162,7 +3162,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">current_path_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">glib::GString</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_get_current_path_string</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -3170,7 +3170,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellEditable</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">edit_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellEditable</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_get_edit_widget</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -3178,7 +3178,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">edited_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellRenderer</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_get_edited_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -3186,7 +3186,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">focus_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">CellRenderer</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_cell_area_get_focus_cell</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

@@ -533,7 +533,7 @@
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
     <span class="ident">y_origin</span>: <span class="ident">i32</span>,
     <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">cairo::Region</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;
@@ -899,7 +899,7 @@
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
     <span class="ident">y_origin</span>: <span class="ident">i32</span>,
     <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">cairo::Region</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;

@@ -205,7 +205,7 @@
         <span class="ident">content</span>: <span class="ident">cairo::Content</span>,
         <span class="ident">width</span>: <span class="ident">i32</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Surface</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="ident">cairo::Surface</span>;
 
     <span class="doccomment">/// Translates coordinates between two surfaces.</span>
     <span class="doccomment">///</span>
@@ -231,7 +231,7 @@
         <span class="ident">content</span>: <span class="ident">cairo::Content</span>,
         <span class="ident">width</span>: <span class="ident">i32</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Surface</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="ident">cairo::Surface</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_surface_create_similar_surface</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

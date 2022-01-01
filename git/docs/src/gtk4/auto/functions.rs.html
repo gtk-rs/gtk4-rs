@@ -1486,7 +1486,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_label</span>(
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">glib::GString</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_get_label</span>(
@@ -1523,7 +1523,7 @@
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">glib::GString</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_get_label_with_keycode</span>(
@@ -1555,7 +1555,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_name</span>(
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">glib::GString</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_name</span>(
@@ -1589,7 +1589,7 @@
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">glib::GString</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_name_with_keycode</span>(
@@ -1820,7 +1820,7 @@
 <span class="doccomment">///   [`pango::Language`][crate::pango::Language]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_default_language&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_language&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_language</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::Language</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_language</span>() -&gt; <span class="ident">pango::Language</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_get_default_language</span>()) }
 }
@@ -1992,7 +1992,7 @@
     <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">page_setup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PageSetup</span><span class="op">&gt;</span>,
     <span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">PrintSettings</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">PageSetup</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_print_run_page_setup_dialog</span>(
@@ -2740,7 +2740,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tree_create_row_drag_content</span>(
     <span class="ident">tree_model</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span>,
     <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::ContentProvider</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">gdk::ContentProvider</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_create_row_drag_content</span>(

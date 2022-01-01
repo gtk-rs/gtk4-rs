@@ -1014,7 +1014,7 @@
     <span class="doccomment">/// the default seat.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_default_seat&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_seat&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">default_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Seat</span>;
+    <span class="kw">fn</span> <span class="ident">default_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Seat</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the monitor in which the largest area of @surface</span>
     <span class="doccomment">/// resides.</span>
@@ -1030,7 +1030,7 @@
     <span class="doccomment">///   overlap with @surface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_monitor_at_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_monitor_at_surface&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">monitor_at_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Monitor</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">monitor_at_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>) -&gt; <span class="ident">Monitor</span>;
 
     <span class="doccomment">/// Gets the list of monitors associated with this display.</span>
     <span class="doccomment">///</span>
@@ -1045,7 +1045,7 @@
     <span class="doccomment">/// a `GListModel` of [`Monitor`][crate::Monitor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_monitors&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_monitors&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">monitors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">monitors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gio::ListModel</span>;
 
     <span class="doccomment">/// Gets the name of the display.</span>
     <span class="doccomment">///</span>
@@ -1273,7 +1273,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">default_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Seat</span> {
+    <span class="kw">fn</span> <span class="ident">default_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Seat</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_display_get_default_seat</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1281,7 +1281,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">monitor_at_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Monitor</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">monitor_at_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>) -&gt; <span class="ident">Monitor</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_display_get_monitor_at_surface</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1290,7 +1290,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">monitors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">monitors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gio::ListModel</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_display_get_monitors</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

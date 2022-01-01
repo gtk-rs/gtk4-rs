@@ -588,7 +588,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a [`Paintable`][crate::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_new_empty&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_empty</span>(<span class="ident">intrinsic_width</span>: <span class="ident">i32</span>, <span class="ident">intrinsic_height</span>: <span class="ident">i32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_empty</span>(<span class="ident">intrinsic_width</span>: <span class="ident">i32</span>, <span class="ident">intrinsic_height</span>: <span class="ident">i32</span>) -&gt; <span class="ident">Paintable</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_paintable_new_empty</span>(
@@ -658,7 +658,7 @@
     <span class="doccomment">///   contents of @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_get_current_image&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current_image&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Paintable</span>;
 
     <span class="doccomment">/// Get flags for the paintable.</span>
     <span class="doccomment">///</span>
@@ -821,7 +821,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Paintable</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_paintable_get_current_image</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
