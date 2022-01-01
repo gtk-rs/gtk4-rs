@@ -27,6 +27,13 @@ impl EventController {
     pub const NONE: Option<&'static EventController> = None;
 }
 
+impl fmt::Display for EventController {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&EventControllerExt::name(self))
+    }
+}
+
 pub trait EventControllerExt: 'static {
     #[doc(alias = "gtk_event_controller_get_current_event")]
     #[doc(alias = "get_current_event")]
@@ -46,7 +53,7 @@ pub trait EventControllerExt: 'static {
 
     #[doc(alias = "gtk_event_controller_get_name")]
     #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
+    fn name(&self) -> glib::GString;
 
     #[doc(alias = "gtk_event_controller_get_propagation_limit")]
     #[doc(alias = "get_propagation_limit")]
@@ -58,7 +65,7 @@ pub trait EventControllerExt: 'static {
 
     #[doc(alias = "gtk_event_controller_get_widget")]
     #[doc(alias = "get_widget")]
-    fn widget(&self) -> Option<Widget>;
+    fn widget(&self) -> Widget;
 
     #[doc(alias = "gtk_event_controller_reset")]
     fn reset(&self);
@@ -114,7 +121,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         unsafe { ffi::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0) }
     }
 
-    fn name(&self) -> Option<glib::GString> {
+    fn name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_name(
                 self.as_ref().to_glib_none().0,
@@ -138,7 +145,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn widget(&self) -> Option<Widget> {
+    fn widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_widget(
                 self.as_ref().to_glib_none().0,
@@ -277,11 +284,5 @@ impl<O: IsA<EventController>> EventControllerExt for O {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for EventController {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EventController")
     }
 }

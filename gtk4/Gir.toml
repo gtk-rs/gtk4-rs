@@ -909,7 +909,10 @@ generate_builder = false
 [[object]]
 name = "Gtk.CssSection"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_file"
+        [object.function.return]
+        nullable = true
     [[object.function]]
     name = "print"
     ignore = true # Same as CssSection::to_str
@@ -965,7 +968,6 @@ generate_builder  = false # use glib::Priority
 name = "Gtk.DragIcon"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.DrawingArea"
@@ -1105,12 +1107,10 @@ status = "generate"
 [[object]]
 name = "Gtk.EventController"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.EventControllerKey"
 status = "generate"
-trust_return_value_nullability = false
     [[object.signal]]
     name = "key-pressed"
     manual = true # to make use of gdk::Key
@@ -1719,7 +1719,6 @@ cfg_condition = "target_os = \"linux\""
 [[object]]
 name = "Gtk.PrintContext"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "set_cairo_context"
         [[object.function.parameter]]
@@ -1747,7 +1746,6 @@ cfg_condition = "target_os = \"linux\""
 [[object]]
 name = "Gtk.PrintOperation"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "get_error"
     # It quacks like a fallible function, but it isn't.
@@ -1822,7 +1820,6 @@ status = "generate"
 [[object]]
 name = "Gtk.Scrollable"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Scrollbar"
@@ -1938,7 +1935,6 @@ generate_builder = false
 [[object]]
 name = "Gtk.Snapshot"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     pattern = "free_to_(node|paintable)"
     ignore = true # C convenience functions

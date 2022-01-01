@@ -34,7 +34,7 @@ pub trait ScrollableExt: 'static {
 
     #[doc(alias = "gtk_scrollable_get_hadjustment")]
     #[doc(alias = "get_hadjustment")]
-    fn hadjustment(&self) -> Option<Adjustment>;
+    fn hadjustment(&self) -> Adjustment;
 
     #[doc(alias = "gtk_scrollable_get_hscroll_policy")]
     #[doc(alias = "get_hscroll_policy")]
@@ -42,7 +42,7 @@ pub trait ScrollableExt: 'static {
 
     #[doc(alias = "gtk_scrollable_get_vadjustment")]
     #[doc(alias = "get_vadjustment")]
-    fn vadjustment(&self) -> Option<Adjustment>;
+    fn vadjustment(&self) -> Adjustment;
 
     #[doc(alias = "gtk_scrollable_get_vscroll_policy")]
     #[doc(alias = "get_vscroll_policy")]
@@ -89,7 +89,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
-    fn hadjustment(&self) -> Option<Adjustment> {
+    fn hadjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scrollable_get_hadjustment(
                 self.as_ref().to_glib_none().0,
@@ -105,7 +105,7 @@ impl<O: IsA<Scrollable>> ScrollableExt for O {
         }
     }
 
-    fn vadjustment(&self) -> Option<Adjustment> {
+    fn vadjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scrollable_get_vadjustment(
                 self.as_ref().to_glib_none().0,
