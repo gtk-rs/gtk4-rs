@@ -86,7 +86,7 @@ pub trait DisplayExt: 'static {
 
     #[doc(alias = "gdk_display_get_default_seat")]
     #[doc(alias = "get_default_seat")]
-    fn default_seat(&self) -> Seat;
+    fn default_seat(&self) -> Option<Seat>;
 
     #[doc(alias = "gdk_display_get_monitor_at_surface")]
     #[doc(alias = "get_monitor_at_surface")]
@@ -224,7 +224,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn default_seat(&self) -> Seat {
+    fn default_seat(&self) -> Option<Seat> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_default_seat(
                 self.as_ref().to_glib_none().0,

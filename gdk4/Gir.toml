@@ -244,14 +244,6 @@ generate_builder = false
 name = "Gdk.ContentDeserializer"
 status = "generate"
     [[object.function]]
-    name = "get_input_stream"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_mime_type"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
     name = "get_gtype"
     rename = "type_"
     [[object.function]]
@@ -260,10 +252,6 @@ status = "generate"
     [[object.function]]
     name = "get_user_data"
     ignore = true # unsafe
-    [[object.function]]
-    name = "get_value"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "set_task_data"
     ignore = true # unsafe
@@ -336,13 +324,9 @@ manual_traits = ["ContentProviderExtManual"]
     [[object.function]]
     name = "ref_formats"
     rename = "formats"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "ref_storable_formats"
     rename = "storable_formats"
-        [object.function.return]
-        nullable = false
     [[object.property]]
     name = "formats"
     generate = ["notify"] # ignore get/set
@@ -354,14 +338,6 @@ manual_traits = ["ContentProviderExtManual"]
 name = "Gdk.ContentSerializer"
 status = "generate"
     [[object.function]]
-    name = "get_mime_type"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_output_stream"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
     name = "get_gtype"
     rename = "type_"
     [[object.function]]
@@ -370,10 +346,6 @@ status = "generate"
     [[object.function]]
     name = "get_user_data"
     ignore = true # unsafe
-    [[object.function]]
-    name = "get_value"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "set_task_data"
     ignore = true #unsafe
@@ -427,38 +399,6 @@ manual_traits = ["DisplayExtManual"]
     manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
     # Actually retrieves the setting in the provided argument
     bypass_auto_rename = true
-    [[object.function]]
-    name = "get_app_launch_context"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_clipboard"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_default_group"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_default_seat"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_keymap"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_name"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_primary_clipboard"
-        [object.function.return]
-        nullable = false
-    [[object.function]]
-    name = "get_primary_monitor"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "translate_key"
     manual = true # to return a Key instead of a u32
