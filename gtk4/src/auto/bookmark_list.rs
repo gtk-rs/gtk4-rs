@@ -42,7 +42,7 @@ impl BookmarkList {
 
     #[doc(alias = "gtk_bookmark_list_get_filename")]
     #[doc(alias = "get_filename")]
-    pub fn filename(&self) -> Option<std::path::PathBuf> {
+    pub fn filename(&self) -> std::path::PathBuf {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_filename(self.to_glib_none().0)) }
     }
 

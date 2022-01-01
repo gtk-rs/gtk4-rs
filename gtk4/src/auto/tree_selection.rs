@@ -70,7 +70,7 @@ impl TreeSelection {
 
     #[doc(alias = "gtk_tree_selection_get_tree_view")]
     #[doc(alias = "get_tree_view")]
-    pub fn tree_view(&self) -> Option<TreeView> {
+    pub fn tree_view(&self) -> TreeView {
         unsafe { from_glib_none(ffi::gtk_tree_selection_get_tree_view(self.to_glib_none().0)) }
     }
 

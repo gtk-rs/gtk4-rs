@@ -103,7 +103,7 @@ impl Assistant {
 
     #[doc(alias = "gtk_assistant_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<Widget>) -> Option<AssistantPage> {
+    pub fn page(&self, child: &impl IsA<Widget>) -> AssistantPage {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page(
                 self.to_glib_none().0,
@@ -125,7 +125,7 @@ impl Assistant {
 
     #[doc(alias = "gtk_assistant_get_page_title")]
     #[doc(alias = "get_page_title")]
-    pub fn page_title(&self, page: &impl IsA<Widget>) -> Option<glib::GString> {
+    pub fn page_title(&self, page: &impl IsA<Widget>) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page_title(
                 self.to_glib_none().0,
@@ -147,7 +147,7 @@ impl Assistant {
 
     #[doc(alias = "gtk_assistant_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gio::ListModel> {
+    pub fn pages(&self) -> gio::ListModel {
         unsafe { from_glib_full(ffi::gtk_assistant_get_pages(self.to_glib_none().0)) }
     }
 

@@ -43,7 +43,7 @@ impl ATContext {
 
     #[doc(alias = "gtk_at_context_get_accessible")]
     #[doc(alias = "get_accessible")]
-    pub fn accessible(&self) -> Option<Accessible> {
+    pub fn accessible(&self) -> Accessible {
         unsafe { from_glib_none(ffi::gtk_at_context_get_accessible(self.to_glib_none().0)) }
     }
 

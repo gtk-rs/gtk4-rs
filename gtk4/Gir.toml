@@ -551,12 +551,10 @@ manual_traits = ["ActionableExtManual"]
 [[object]]
 name = "Gtk.ActivateAction"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.AppChooser"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Application"
@@ -571,7 +569,6 @@ trait_name = "GtkApplicationExt"
 [[object]]
 name = "Gtk.Assistant"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "get_page_complete"
     rename = "page_is_complete"
@@ -585,23 +582,19 @@ trust_return_value_nullability = false
 name = "Gtk.AssistantPage"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.ATContext"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Bitset"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.BookmarkList"
 status = "generate"
 generate_builder  = false # use glib::Priority
-trust_return_value_nullability = false
     [[object.function]]
     name = "get_io_priority"
     manual = true # return glib::Priority
@@ -643,7 +636,6 @@ generate_builder = false
 name = "Gtk.BuilderListItemFactory"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Calendar"
@@ -1211,12 +1203,10 @@ status = "generate"
 [[object]]
 name = "Gtk.FontButton"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.FontChooser"
 status = "generate"
-trust_return_value_nullability = false
 manual_traits = ["FontChooserExtManual"]
     [[object.function]]
     name = "set_filter_func"
@@ -1252,7 +1242,10 @@ status = "generate"
 [[object]]
 name = "Gtk.GLArea"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_context"
+        [object.function.return]
+        nullable = true
     [[object.signal]]
     name = "render"
     inhibit = true
@@ -1274,7 +1267,6 @@ generate_builder = false
 [[object]]
 name = "Gtk.IconTheme"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "get_icon_sizes"
     manual = true
@@ -1282,7 +1274,10 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.IconView"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "create_drag_icon"
+        [object.function.return]
+        nullable = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -1311,7 +1306,6 @@ status = "generate"
 [[object]]
 name = "Gtk.IMMulticontext"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.InfoBar"
@@ -1354,7 +1348,6 @@ status = "generate"
 [[object]]
 name = "Gtk.LinkButton"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "new_with_label"
         [[object.function.parameter]]
@@ -1451,7 +1444,10 @@ final_type = true
 [[object]]
 name = "Gtk.LockButton"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_permission"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.MapListModel"
@@ -1487,7 +1483,14 @@ manual_traits = ["MediaStreamExtManual"]
 [[object]]
 name = "Gtk.MenuButton"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_label"
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "get_icon_name"
+        [object.function.return]
+        nullable = true
     [[object.function]]
     name = "set_create_popup_func"
         [[object.function.parameter]]
@@ -1561,7 +1564,6 @@ generate_builder = false
 [[object]]
 name = "Gtk.Notebook"
 status = "generate"
-trust_return_value_nullability = false
     # The following functions need integer type adjustments
     [[object.function]]
     name = "append_page"
@@ -2096,7 +2098,10 @@ boxed_inline = true
 [[object]]
 name = "Gtk.TextMark"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_buffer"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.TextTag"
@@ -2173,7 +2178,6 @@ boxed_inline = true
 [[object]]
 name = "Gtk.TreeListModel"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.TreeListRow"
@@ -2244,7 +2248,6 @@ manual_traits = ["TreeModelExtManual"]
 name = "Gtk.TreeModelFilter"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 manual_traits = ["TreeModelFilterExtManual"]
     [[object.function]]
     name = "set_modify_func"
@@ -2397,7 +2400,6 @@ status = "generate"
 name = "Gtk.TreeSelection"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -2566,7 +2568,6 @@ manual_traits = ["TreeViewExtManual"]
 [[object]]
 name = "Gtk.TreeViewColumn"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "cell_set_cell_data"
         [[object.function.parameter]]

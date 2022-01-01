@@ -98,7 +98,7 @@ impl TreeListModel {
 
     #[doc(alias = "gtk_tree_list_model_get_model")]
     #[doc(alias = "get_model")]
-    pub fn model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_tree_list_model_get_model(self.to_glib_none().0)) }
     }
 

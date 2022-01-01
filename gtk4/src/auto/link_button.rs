@@ -65,7 +65,7 @@ impl LinkButton {
 
     #[doc(alias = "gtk_link_button_get_uri")]
     #[doc(alias = "get_uri")]
-    pub fn uri(&self) -> Option<glib::GString> {
+    pub fn uri(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_link_button_get_uri(self.to_glib_none().0)) }
     }
 

@@ -96,7 +96,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_theme_name")]
     #[doc(alias = "get_theme_name")]
-    pub fn theme_name(&self) -> Option<glib::GString> {
+    pub fn theme_name(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
@@ -130,7 +130,7 @@ impl IconTheme {
         scale: i32,
         direction: TextDirection,
         flags: IconLookupFlags,
-    ) -> Option<IconPaintable> {
+    ) -> IconPaintable {
         unsafe {
             from_glib_full(ffi::gtk_icon_theme_lookup_by_gicon(
                 self.to_glib_none().0,
@@ -152,7 +152,7 @@ impl IconTheme {
         scale: i32,
         direction: TextDirection,
         flags: IconLookupFlags,
-    ) -> Option<IconPaintable> {
+    ) -> IconPaintable {
         unsafe {
             from_glib_full(ffi::gtk_icon_theme_lookup_icon(
                 self.to_glib_none().0,
@@ -193,7 +193,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display(display: &impl IsA<gdk::Display>) -> Option<IconTheme> {
+    pub fn for_display(display: &impl IsA<gdk::Display>) -> IconTheme {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_icon_theme_get_for_display(

@@ -100,7 +100,7 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<Widget>) -> Option<NotebookPage> {
+    pub fn page(&self, child: &impl IsA<Widget>) -> NotebookPage {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_page(
                 self.to_glib_none().0,
@@ -111,7 +111,7 @@ impl Notebook {
 
     #[doc(alias = "gtk_notebook_get_pages")]
     #[doc(alias = "get_pages")]
-    pub fn pages(&self) -> Option<gio::ListModel> {
+    pub fn pages(&self) -> gio::ListModel {
         unsafe { from_glib_full(ffi::gtk_notebook_get_pages(self.to_glib_none().0)) }
     }
 

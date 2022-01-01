@@ -44,7 +44,7 @@ pub trait FontChooserExt: 'static {
 
     #[doc(alias = "gtk_font_chooser_get_font_features")]
     #[doc(alias = "get_font_features")]
-    fn font_features(&self) -> Option<glib::GString>;
+    fn font_features(&self) -> glib::GString;
 
     #[doc(alias = "gtk_font_chooser_get_font_map")]
     #[doc(alias = "get_font_map")]
@@ -56,7 +56,7 @@ pub trait FontChooserExt: 'static {
 
     #[doc(alias = "gtk_font_chooser_get_language")]
     #[doc(alias = "get_language")]
-    fn language(&self) -> Option<glib::GString>;
+    fn language(&self) -> glib::GString;
 
     #[doc(alias = "gtk_font_chooser_get_level")]
     #[doc(alias = "get_level")]
@@ -64,7 +64,7 @@ pub trait FontChooserExt: 'static {
 
     #[doc(alias = "gtk_font_chooser_get_preview_text")]
     #[doc(alias = "get_preview_text")]
-    fn preview_text(&self) -> Option<glib::GString>;
+    fn preview_text(&self) -> glib::GString;
 
     #[doc(alias = "gtk_font_chooser_get_show_preview_entry")]
     #[doc(alias = "get_show_preview_entry")]
@@ -155,7 +155,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn font_features(&self) -> Option<glib::GString> {
+    fn font_features(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_features(
                 self.as_ref().to_glib_none().0,
@@ -175,7 +175,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         unsafe { ffi::gtk_font_chooser_get_font_size(self.as_ref().to_glib_none().0) }
     }
 
-    fn language(&self) -> Option<glib::GString> {
+    fn language(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_language(
                 self.as_ref().to_glib_none().0,
@@ -191,7 +191,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn preview_text(&self) -> Option<glib::GString> {
+    fn preview_text(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_preview_text(
                 self.as_ref().to_glib_none().0,

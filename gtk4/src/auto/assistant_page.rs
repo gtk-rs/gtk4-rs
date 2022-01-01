@@ -26,7 +26,7 @@ glib::wrapper! {
 impl AssistantPage {
     #[doc(alias = "gtk_assistant_page_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_assistant_page_get_child(self.to_glib_none().0)) }
     }
 
