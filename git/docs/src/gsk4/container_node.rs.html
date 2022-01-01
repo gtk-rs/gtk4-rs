@@ -104,27 +104,6 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ContainerNode</span>, <span class="ident">RenderNode</span>, <span class="ident">RenderNodeType</span>};
@@ -137,27 +116,6 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ContainerNode</span> {
-    <span class="doccomment">/// Creates a new [`RenderNode`][crate::RenderNode] instance for holding the given @children.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The new node will acquire a reference to each of the children.</span>
-    <span class="doccomment">/// ## `children`</span>
-    <span class="doccomment">/// The children of the node</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// the new [`RenderNode`][crate::RenderNode]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_container_node_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">children</span>: <span class="kw-2">&amp;</span>[<span class="ident">RenderNode</span>]) -&gt; <span class="self">Self</span> {
-        <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="kw">let</span> <span class="ident">n_children</span> <span class="op">=</span> <span class="ident">children</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_container_node_new</span>(
-                <span class="ident">children</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">n_children</span>,
-            ))
-        }
-    }
-
     <span class="doccomment">/// Gets one of the children of @container.</span>
     <span class="doccomment">/// ## `idx`</span>
     <span class="doccomment">/// the position of the child to get</span>

@@ -94,59 +94,13 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">RenderNode</span>, <span class="ident">RenderNodeType</span>, <span class="ident">Shadow</span>, <span class="ident">ShadowNode</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">RenderNodeType</span>, <span class="ident">Shadow</span>, <span class="ident">ShadowNode</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="macro">define_render_node!</span>(<span class="ident">ShadowNode</span>, <span class="ident">ffi::GskShadowNode</span>, <span class="ident">RenderNodeType::ShadowNode</span>);
 
 <span class="kw">impl</span> <span class="ident">ShadowNode</span> {
-    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will draw a @child with the given</span>
-    <span class="doccomment">/// @shadows below it.</span>
-    <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// The node to draw</span>
-    <span class="doccomment">/// ## `shadows`</span>
-    <span class="doccomment">/// The shadows to apply</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A new [`RenderNode`][crate::RenderNode]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shadow_node_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">shadows</span>: <span class="kw-2">&amp;</span>[<span class="ident">Shadow</span>]) -&gt; <span class="self">Self</span> {
-        <span class="macro">skip_assert_initialized!</span>();
-        <span class="kw">let</span> <span class="ident">n_shadows</span> <span class="op">=</span> <span class="ident">shadows</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shadow_node_new</span>(
-                <span class="ident">child</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">shadows</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">n_shadows</span>,
-            ))
-        }
-    }
-
     <span class="doccomment">/// Retrieves the shadow data at the given index @i.</span>
     <span class="doccomment">/// ## `i`</span>
     <span class="doccomment">/// the given index</span>
