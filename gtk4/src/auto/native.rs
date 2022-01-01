@@ -38,11 +38,11 @@ impl Native {
 pub trait NativeExt: 'static {
     #[doc(alias = "gtk_native_get_renderer")]
     #[doc(alias = "get_renderer")]
-    fn renderer(&self) -> Option<gsk::Renderer>;
+    fn renderer(&self) -> gsk::Renderer;
 
     #[doc(alias = "gtk_native_get_surface")]
     #[doc(alias = "get_surface")]
-    fn surface(&self) -> Option<gdk::Surface>;
+    fn surface(&self) -> gdk::Surface;
 
     #[doc(alias = "gtk_native_get_surface_transform")]
     #[doc(alias = "get_surface_transform")]
@@ -50,11 +50,11 @@ pub trait NativeExt: 'static {
 }
 
 impl<O: IsA<Native>> NativeExt for O {
-    fn renderer(&self) -> Option<gsk::Renderer> {
+    fn renderer(&self) -> gsk::Renderer {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
-    fn surface(&self) -> Option<gdk::Surface> {
+    fn surface(&self) -> gdk::Surface {
         unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 

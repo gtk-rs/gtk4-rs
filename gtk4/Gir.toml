@@ -612,12 +612,14 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.BoolFilter"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Buildable"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_buildable_id"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.Builder"
@@ -1177,7 +1179,6 @@ status = "generate"
 name = "Gtk.FileFilter"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.FixedLayoutChild"
@@ -1345,12 +1346,10 @@ status = "generate"
 [[object]]
 name = "Gtk.LayoutChild"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.LayoutManager"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.LinkButton"
@@ -1508,7 +1507,6 @@ status = "generate"
 [[object]]
 name = "Gtk.MnemonicAction"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.MnemonicTrigger"
@@ -1524,18 +1522,23 @@ trust_return_value_nullability = false
 name = "Gtk.MultiSelection"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_model"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.NamedAction"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Native"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_for_surface"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.NativeDialog"
@@ -1545,13 +1548,15 @@ manual_traits = ["NativeDialogExtManual"]
 [[object]]
 name = "Gtk.NeverTrigger"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.NoSelection"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_model"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.Notebook"
@@ -1614,12 +1619,10 @@ trust_return_value_nullability = false
 name = "Gtk.NotebookPage"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.NothingAction"
 status = "generate"
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.NumericSorter"
@@ -1654,11 +1657,6 @@ status = "generate"
 [[object]]
 name = "Gtk.PageSetup"
 status = "generate"
-trust_return_value_nullability = false
-    [[object.function]]
-    name = "get_paper_size"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     pattern = "set_paper_size.*"
         [[object.function.parameter]]
@@ -1670,7 +1668,6 @@ name = "Gtk.PageSetupUnixDialog"
 status = "generate"
 cfg_condition = "target_os = \"linux\""
 
-
 [[object]]
 name = "Gtk.Paned"
 status = "generate"
@@ -1681,7 +1678,6 @@ status = "generate"
 [[object]]
 name = "Gtk.PaperSize"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     pattern = "(get|is)_.*"
         [[object.function.parameter]]
@@ -1699,17 +1695,26 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.PasswordEntry"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_extra_menu"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.PopoverMenu"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_menu_model"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.PopoverMenuBar"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_menu_model"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.PrintCapabilities"

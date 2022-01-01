@@ -24,15 +24,15 @@ impl LayoutChild {
 pub trait LayoutChildExt: 'static {
     #[doc(alias = "gtk_layout_child_get_child_widget")]
     #[doc(alias = "get_child_widget")]
-    fn child_widget(&self) -> Option<Widget>;
+    fn child_widget(&self) -> Widget;
 
     #[doc(alias = "gtk_layout_child_get_layout_manager")]
     #[doc(alias = "get_layout_manager")]
-    fn layout_manager(&self) -> Option<LayoutManager>;
+    fn layout_manager(&self) -> LayoutManager;
 }
 
 impl<O: IsA<LayoutChild>> LayoutChildExt for O {
-    fn child_widget(&self) -> Option<Widget> {
+    fn child_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_child_widget(
                 self.as_ref().to_glib_none().0,
@@ -40,7 +40,7 @@ impl<O: IsA<LayoutChild>> LayoutChildExt for O {
         }
     }
 
-    fn layout_manager(&self) -> Option<LayoutManager> {
+    fn layout_manager(&self) -> LayoutManager {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_layout_manager(
                 self.as_ref().to_glib_none().0,

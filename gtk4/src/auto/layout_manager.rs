@@ -30,7 +30,7 @@ pub trait LayoutManagerExt: 'static {
 
     #[doc(alias = "gtk_layout_manager_get_layout_child")]
     #[doc(alias = "get_layout_child")]
-    fn layout_child(&self, child: &impl IsA<Widget>) -> Option<LayoutChild>;
+    fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild;
 
     #[doc(alias = "gtk_layout_manager_get_request_mode")]
     #[doc(alias = "get_request_mode")]
@@ -65,7 +65,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn layout_child(&self, child: &impl IsA<Widget>) -> Option<LayoutChild> {
+    fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_layout_child(
                 self.as_ref().to_glib_none().0,

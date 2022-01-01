@@ -17,7 +17,7 @@ glib::wrapper! {
 
 impl NeverTrigger {
     #[doc(alias = "gtk_never_trigger_get")]
-    pub fn get() -> Option<NeverTrigger> {
+    pub fn get() -> NeverTrigger {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_never_trigger_get()) }
     }

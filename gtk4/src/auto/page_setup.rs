@@ -75,7 +75,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_copy")]
-    pub fn copy(&self) -> Option<PageSetup> {
+    pub fn copy(&self) -> PageSetup {
         unsafe { from_glib_full(ffi::gtk_page_setup_copy(self.to_glib_none().0)) }
     }
 
@@ -254,7 +254,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_to_gvariant")]
-    pub fn to_gvariant(&self) -> Option<glib::Variant> {
+    pub fn to_gvariant(&self) -> glib::Variant {
         unsafe { from_glib_none(ffi::gtk_page_setup_to_gvariant(self.to_glib_none().0)) }
     }
 

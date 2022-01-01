@@ -93,7 +93,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_to_gvariant")]
-    pub fn to_gvariant(&self) -> Option<glib::Variant> {
+    pub fn to_gvariant(&self) -> glib::Variant {
         unsafe { from_glib_none(ffi::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
     }
 
