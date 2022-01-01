@@ -113,7 +113,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union")]
-    pub fn union(&self, second: &ContentFormats) -> Option<ContentFormats> {
+    pub fn union(&self, second: &ContentFormats) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union(
                 self.to_glib_full(),
@@ -124,7 +124,7 @@ impl ContentFormats {
 
     #[doc(alias = "gdk_content_formats_union_deserialize_gtypes")]
     #[doc(alias = "union_deserialize_gtypes")]
-    pub fn union_deserialize_types(&self) -> Option<ContentFormats> {
+    pub fn union_deserialize_types(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_gtypes(
                 self.to_glib_full(),
@@ -133,7 +133,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_deserialize_mime_types")]
-    pub fn union_deserialize_mime_types(&self) -> Option<ContentFormats> {
+    pub fn union_deserialize_mime_types(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_mime_types(
                 self.to_glib_full(),
@@ -143,7 +143,7 @@ impl ContentFormats {
 
     #[doc(alias = "gdk_content_formats_union_serialize_gtypes")]
     #[doc(alias = "union_serialize_gtypes")]
-    pub fn union_serialize_types(&self) -> Option<ContentFormats> {
+    pub fn union_serialize_types(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_gtypes(
                 self.to_glib_full(),
@@ -152,7 +152,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_serialize_mime_types")]
-    pub fn union_serialize_mime_types(&self) -> Option<ContentFormats> {
+    pub fn union_serialize_mime_types(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_mime_types(
                 self.to_glib_full(),

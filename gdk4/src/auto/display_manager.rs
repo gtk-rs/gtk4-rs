@@ -62,7 +62,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_get")]
-    pub fn get() -> Option<DisplayManager> {
+    pub fn get() -> DisplayManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_manager_get()) }
     }

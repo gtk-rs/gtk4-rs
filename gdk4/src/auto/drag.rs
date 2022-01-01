@@ -64,15 +64,15 @@ pub trait DragExt: 'static {
 
     #[doc(alias = "gdk_drag_get_content")]
     #[doc(alias = "get_content")]
-    fn content(&self) -> Option<ContentProvider>;
+    fn content(&self) -> ContentProvider;
 
     #[doc(alias = "gdk_drag_get_device")]
     #[doc(alias = "get_device")]
-    fn device(&self) -> Option<Device>;
+    fn device(&self) -> Device;
 
     #[doc(alias = "gdk_drag_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_drag_get_drag_surface")]
     #[doc(alias = "get_drag_surface")]
@@ -80,7 +80,7 @@ pub trait DragExt: 'static {
 
     #[doc(alias = "gdk_drag_get_formats")]
     #[doc(alias = "get_formats")]
-    fn formats(&self) -> Option<ContentFormats>;
+    fn formats(&self) -> ContentFormats;
 
     #[doc(alias = "gdk_drag_get_selected_action")]
     #[doc(alias = "get_selected_action")]
@@ -88,7 +88,7 @@ pub trait DragExt: 'static {
 
     #[doc(alias = "gdk_drag_get_surface")]
     #[doc(alias = "get_surface")]
-    fn surface(&self) -> Option<Surface>;
+    fn surface(&self) -> Surface;
 
     #[doc(alias = "gdk_drag_set_hotspot")]
     fn set_hotspot(&self, hot_x: i32, hot_y: i32);
@@ -128,15 +128,15 @@ impl<O: IsA<Drag>> DragExt for O {
         unsafe { from_glib(ffi::gdk_drag_get_actions(self.as_ref().to_glib_none().0)) }
     }
 
-    fn content(&self) -> Option<ContentProvider> {
+    fn content(&self) -> ContentProvider {
         unsafe { from_glib_none(ffi::gdk_drag_get_content(self.as_ref().to_glib_none().0)) }
     }
 
-    fn device(&self) -> Option<Device> {
+    fn device(&self) -> Device {
         unsafe { from_glib_none(ffi::gdk_drag_get_device(self.as_ref().to_glib_none().0)) }
     }
 
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_drag_get_display(self.as_ref().to_glib_none().0)) }
     }
 
@@ -148,7 +148,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    fn formats(&self) -> Option<ContentFormats> {
+    fn formats(&self) -> ContentFormats {
         unsafe { from_glib_none(ffi::gdk_drag_get_formats(self.as_ref().to_glib_none().0)) }
     }
 
@@ -160,7 +160,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    fn surface(&self) -> Option<Surface> {
+    fn surface(&self) -> Surface {
         unsafe { from_glib_none(ffi::gdk_drag_get_surface(self.as_ref().to_glib_none().0)) }
     }
 

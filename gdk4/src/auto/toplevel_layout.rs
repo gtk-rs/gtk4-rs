@@ -26,7 +26,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_copy")]
-    pub fn copy(&self) -> Option<ToplevelLayout> {
+    pub fn copy(&self) -> ToplevelLayout {
         unsafe { from_glib_full(ffi::gdk_toplevel_layout_copy(self.to_glib_none().0)) }
     }
 

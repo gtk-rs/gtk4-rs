@@ -27,7 +27,7 @@ impl Paintable {
     pub const NONE: Option<&'static Paintable> = None;
 
     #[doc(alias = "gdk_paintable_new_empty")]
-    pub fn new_empty(intrinsic_width: i32, intrinsic_height: i32) -> Option<Paintable> {
+    pub fn new_empty(intrinsic_width: i32, intrinsic_height: i32) -> Paintable {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gdk_paintable_new_empty(
@@ -50,7 +50,7 @@ pub trait PaintableExt: 'static {
 
     #[doc(alias = "gdk_paintable_get_current_image")]
     #[doc(alias = "get_current_image")]
-    fn current_image(&self) -> Option<Paintable>;
+    fn current_image(&self) -> Paintable;
 
     #[doc(alias = "gdk_paintable_get_flags")]
     #[doc(alias = "get_flags")]
@@ -110,7 +110,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    fn current_image(&self) -> Option<Paintable> {
+    fn current_image(&self) -> Paintable {
         unsafe {
             from_glib_full(ffi::gdk_paintable_get_current_image(
                 self.as_ref().to_glib_none().0,

@@ -33,6 +33,13 @@ impl Device {
     pub const NONE: Option<&'static Device> = None;
 }
 
+impl fmt::Display for Device {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&DeviceExt::name(self))
+    }
+}
+
 pub trait DeviceExt: 'static {
     #[doc(alias = "gdk_device_get_caps_lock_state")]
     #[doc(alias = "get_caps_lock_state")]
@@ -40,7 +47,7 @@ pub trait DeviceExt: 'static {
 
     #[doc(alias = "gdk_device_get_device_tool")]
     #[doc(alias = "get_device_tool")]
-    fn device_tool(&self) -> Option<DeviceTool>;
+    fn device_tool(&self) -> DeviceTool;
 
     #[doc(alias = "gdk_device_get_direction")]
     #[doc(alias = "get_direction")]
@@ -48,7 +55,7 @@ pub trait DeviceExt: 'static {
 
     #[doc(alias = "gdk_device_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_device_get_has_cursor")]
     #[doc(alias = "get_has_cursor")]
@@ -60,7 +67,7 @@ pub trait DeviceExt: 'static {
 
     #[doc(alias = "gdk_device_get_name")]
     #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
+    fn name(&self) -> glib::GString;
 
     #[doc(alias = "gdk_device_get_num_lock_state")]
     #[doc(alias = "get_num_lock_state")]
@@ -80,7 +87,7 @@ pub trait DeviceExt: 'static {
 
     #[doc(alias = "gdk_device_get_seat")]
     #[doc(alias = "get_seat")]
-    fn seat(&self) -> Option<Seat>;
+    fn seat(&self) -> Seat;
 
     #[doc(alias = "gdk_device_get_source")]
     #[doc(alias = "get_source")]
@@ -151,7 +158,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    fn device_tool(&self) -> Option<DeviceTool> {
+    fn device_tool(&self) -> DeviceTool {
         unsafe {
             from_glib_none(ffi::gdk_device_get_device_tool(
                 self.as_ref().to_glib_none().0,
@@ -167,7 +174,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_device_get_display(self.as_ref().to_glib_none().0)) }
     }
 
@@ -187,7 +194,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    fn name(&self) -> Option<glib::GString> {
+    fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_device_get_name(self.as_ref().to_glib_none().0)) }
     }
 
@@ -219,7 +226,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    fn seat(&self) -> Option<Seat> {
+    fn seat(&self) -> Seat {
         unsafe { from_glib_none(ffi::gdk_device_get_seat(self.as_ref().to_glib_none().0)) }
     }
 
@@ -532,11 +539,5 @@ impl<O: IsA<Device>> DeviceExt for O {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for Device {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Device")
     }
 }

@@ -12,6 +12,7 @@ use_gi_docgen = true
 generate_safety_asserts = true
 single_version_file = true
 deprecate_by_min_version = true
+trust_return_value_nullability = true
 
 generate = [
     "Gdk.AnchorHints",

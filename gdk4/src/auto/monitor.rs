@@ -34,7 +34,7 @@ pub trait MonitorExt: 'static {
 
     #[doc(alias = "gdk_monitor_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_monitor_get_geometry")]
     #[doc(alias = "get_geometry")]
@@ -114,7 +114,7 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_monitor_get_display(self.as_ref().to_glib_none().0)) }
     }
 

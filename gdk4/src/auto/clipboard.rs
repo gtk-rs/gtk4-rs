@@ -33,13 +33,13 @@ impl Clipboard {
 
     #[doc(alias = "gdk_clipboard_get_display")]
     #[doc(alias = "get_display")]
-    pub fn display(&self) -> Option<Display> {
+    pub fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_clipboard_get_formats")]
     #[doc(alias = "get_formats")]
-    pub fn formats(&self) -> Option<ContentFormats> {
+    pub fn formats(&self) -> ContentFormats {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_formats(self.to_glib_none().0)) }
     }
 

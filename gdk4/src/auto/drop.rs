@@ -41,13 +41,13 @@ impl Drop {
 
     #[doc(alias = "gdk_drop_get_device")]
     #[doc(alias = "get_device")]
-    pub fn device(&self) -> Option<Device> {
+    pub fn device(&self) -> Device {
         unsafe { from_glib_none(ffi::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_display")]
     #[doc(alias = "get_display")]
-    pub fn display(&self) -> Option<Display> {
+    pub fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
@@ -59,13 +59,13 @@ impl Drop {
 
     #[doc(alias = "gdk_drop_get_formats")]
     #[doc(alias = "get_formats")]
-    pub fn formats(&self) -> Option<ContentFormats> {
+    pub fn formats(&self) -> ContentFormats {
         unsafe { from_glib_none(ffi::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_surface")]
     #[doc(alias = "get_surface")]
-    pub fn surface(&self) -> Option<Surface> {
+    pub fn surface(&self) -> Surface {
         unsafe { from_glib_none(ffi::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
 

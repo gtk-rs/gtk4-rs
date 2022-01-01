@@ -23,7 +23,7 @@ impl AppLaunchContext {
 pub trait AppLaunchContextExt: 'static {
     #[doc(alias = "gdk_app_launch_context_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_app_launch_context_set_desktop")]
     fn set_desktop(&self, desktop: i32);
@@ -39,7 +39,7 @@ pub trait AppLaunchContextExt: 'static {
 }
 
 impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe {
             from_glib_none(ffi::gdk_app_launch_context_get_display(
                 self.as_ref().to_glib_none().0,
