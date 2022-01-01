@@ -66,7 +66,7 @@ impl Image {
 
     #[doc(alias = "gtk_image_new_from_icon_name")]
     #[doc(alias = "new_from_icon_name")]
-    pub fn from_icon_name(icon_name: Option<&str>) -> Image {
+    pub fn from_icon_name(icon_name: &str) -> Image {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_image_new_from_icon_name(
