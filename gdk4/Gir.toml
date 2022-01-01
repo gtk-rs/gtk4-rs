@@ -152,17 +152,17 @@ status = "generate"
     manual = true
     [[object.function]]
     name = "events_get_angle"
-    manual = true # event is a fundemental type
+    manual = true # move to GdkEvent
     rename = "angle"
     doc_struct_name = "Event"
     [[object.function]]
     name = "events_get_center"
-    manual = true # event is a fundemental type
+    manual = true # move to GdkEvent
     rename = "center"
     doc_struct_name = "Event"
     [[object.function]]
     name = "events_get_distance"
-    manual = true # event is a fundemental type
+    manual = true # move to GdkEvent
     rename = "distance"
     doc_struct_name = "Event"
     [[object.function]]
@@ -501,7 +501,7 @@ status = "generate"
 
 [[object]]
 name = "Gdk.Event"
-status = "generate" # fundemental type
+status = "generate"
 generate_display_trait = false
 
 [[object]]
