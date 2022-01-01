@@ -40,7 +40,7 @@ impl X11Screen {
 
     #[doc(alias = "gdk_x11_screen_get_window_manager_name")]
     #[doc(alias = "get_window_manager_name")]
-    pub fn window_manager_name(&self) -> Option<glib::GString> {
+    pub fn window_manager_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gdk_x11_screen_get_window_manager_name(
                 self.to_glib_none().0,

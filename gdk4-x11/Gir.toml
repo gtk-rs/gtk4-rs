@@ -9,6 +9,7 @@ use_gi_docgen = true
 single_version_file = true
 generate_safety_asserts = true
 deprecate_by_min_version = true
+trust_return_value_nullability = true
 
 generate = [
     "GdkX11.X11AppLaunchContext",
