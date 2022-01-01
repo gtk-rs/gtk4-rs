@@ -13,7 +13,7 @@ pub trait SurfaceExtManual: 'static {
         content: cairo::Content,
         width: i32,
         height: i32,
-    ) -> Option<cairo::Surface>;
+    ) -> cairo::Surface;
 
     #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool;
@@ -25,7 +25,7 @@ impl<O: IsA<Surface>> SurfaceExtManual for O {
         content: cairo::Content,
         width: i32,
         height: i32,
-    ) -> Option<cairo::Surface> {
+    ) -> cairo::Surface {
         unsafe {
             from_glib_full(ffi::gdk_surface_create_similar_surface(
                 self.as_ref().to_glib_none().0,
