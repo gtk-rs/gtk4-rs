@@ -40,11 +40,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_file")]
     #[doc(alias = "new_for_file")]
-    pub fn for_file(file: Option<&impl IsA<gio::File>>) -> Picture {
+    pub fn for_file(file: &impl IsA<gio::File>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_file(
-                file.map(|p| p.as_ref()).to_glib_none().0,
+                file.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -52,11 +52,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_filename")]
     #[doc(alias = "new_for_filename")]
-    pub fn for_filename(filename: Option<impl AsRef<std::path::Path>>) -> Picture {
+    pub fn for_filename(filename: impl AsRef<std::path::Path>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_filename(
-                filename.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                filename.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -64,11 +64,11 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_paintable")]
     #[doc(alias = "new_for_paintable")]
-    pub fn for_paintable(paintable: Option<&impl IsA<gdk::Paintable>>) -> Picture {
+    pub fn for_paintable(paintable: &impl IsA<gdk::Paintable>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_paintable(
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
+                paintable.as_ref().to_glib_none().0,
             ))
             .unsafe_cast()
         }
@@ -76,7 +76,7 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_pixbuf")]
     #[doc(alias = "new_for_pixbuf")]
-    pub fn for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
+    pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_pixbuf(pixbuf.to_glib_none().0))
@@ -86,7 +86,7 @@ impl Picture {
 
     #[doc(alias = "gtk_picture_new_for_resource")]
     #[doc(alias = "new_for_resource")]
-    pub fn for_resource(resource_path: Option<&str>) -> Picture {
+    pub fn for_resource(resource_path: &str) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_picture_new_for_resource(

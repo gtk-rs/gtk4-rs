@@ -43,7 +43,7 @@ impl Button {
 
     #[doc(alias = "gtk_button_new_from_icon_name")]
     #[doc(alias = "new_from_icon_name")]
-    pub fn from_icon_name(icon_name: Option<&str>) -> Button {
+    pub fn from_icon_name(icon_name: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_button_new_from_icon_name(

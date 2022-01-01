@@ -126,7 +126,7 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_set_displayed_row")]
-    pub fn set_displayed_row(&self, path: &TreePath) {
+    pub fn set_displayed_row(&self, path: Option<&TreePath>) {
         unsafe {
             ffi::gtk_cell_view_set_displayed_row(
                 self.to_glib_none().0,

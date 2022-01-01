@@ -50,7 +50,6 @@ generate = [
     "Gtk.BuilderClosureFlags",
     "Gtk.BuilderError",
     "Gtk.BuilderScope",
-    "Gtk.Button",
     "Gtk.ButtonsType",
     "Gtk.CellAreaBox",
     "Gtk.CellRendererAccelMode",
@@ -127,7 +126,6 @@ generate = [
     "Gtk.IconSize",
     "Gtk.IconThemeError",
     "Gtk.IconViewDropPosition",
-    "Gtk.Image",
     "Gtk.ImageType",
     "Gtk.IMMulticontext",   
     "Gtk.InputHints",
@@ -166,7 +164,6 @@ generate = [
     "Gtk.PanDirection",
     "Gtk.PasswordEntryBuffer",
     "Gtk.PickFlags",
-    "Gtk.Picture",
     "Gtk.PolicyType",
     "Gtk.Popover",
     "Gtk.PopoverMenuFlags",
@@ -641,6 +638,15 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.Button"
+status = "generate"
+    [[object.function]]
+    name = "new_from_icon_name"
+        [[object.function.parameter]]
+        name = "icon_name"
+        nullable = false
+
+[[object]]
 name = "Gtk.Calendar"
 status = "generate"
     [[object.function]]
@@ -804,7 +810,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
-        nullable = false
 
 [[object]]
 name = "Gtk.CheckButton"
@@ -1283,6 +1288,25 @@ status = "generate"
         const = true
 
 [[object]]
+name = "Gtk.Image"
+status = "generate"
+    [[object.function]]
+    name = "new_from_icon_name"
+        [[object.function.parameter]]
+        name = "icon_name"
+        nullable = false
+    [[object.function]]
+    name = "new_for_paintable"
+        [[object.function.parameter]]
+        name = "paintable"
+        nullable = false
+    [[object.function]]
+    name = "new_for_pixbuf"
+        [[object.function.parameter]]
+        name = "pixbuf"
+        nullable = false
+
+[[object]]
 name = "Gtk.IMContext"
 status = "generate"
 manual_traits = ["IMContextExtManual"]
@@ -1677,6 +1701,35 @@ status = "generate"
     name = "get_extra_menu"
         [object.function.return]
         nullable = true
+
+[[object]]
+name = "Gtk.Picture"
+status = "generate"
+    [[object.function]]
+    name = "new_for_file"
+        [[object.function.parameter]]
+        name = "file"
+        nullable = false
+    [[object.function]]
+    name = "new_for_filename"
+        [[object.function.parameter]]
+        name = "filename"
+        nullable = false
+    [[object.function]]
+    name = "new_for_paintable"
+        [[object.function.parameter]]
+        name = "paintable"
+        nullable = false
+    [[object.function]]
+    name = "new_for_pixbuf"
+        [[object.function.parameter]]
+        name = "pixbuf"
+        nullable = false
+    [[object.function]]
+    name = "new_for_resource"
+        [[object.function.parameter]]
+        name = "resource_path"
+        nullable = false
 
 [[object]]
 name = "Gtk.PopoverMenu"
