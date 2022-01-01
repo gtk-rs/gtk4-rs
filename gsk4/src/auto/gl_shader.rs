@@ -137,13 +137,13 @@ impl GLShader {
 
     #[doc(alias = "gsk_gl_shader_get_source")]
     #[doc(alias = "get_source")]
-    pub fn source(&self) -> Option<glib::Bytes> {
+    pub fn source(&self) -> glib::Bytes {
         unsafe { from_glib_none(ffi::gsk_gl_shader_get_source(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_uniform_name")]
     #[doc(alias = "get_uniform_name")]
-    pub fn uniform_name(&self, idx: i32) -> Option<glib::GString> {
+    pub fn uniform_name(&self, idx: i32) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gsk_gl_shader_get_uniform_name(
                 self.to_glib_none().0,

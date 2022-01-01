@@ -52,7 +52,7 @@ pub trait GskRendererExt: 'static {
         &self,
         root: impl AsRef<RenderNode>,
         viewport: Option<&graphene::Rect>,
-    ) -> Option<gdk::Texture>;
+    ) -> gdk::Texture;
 
     #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
@@ -112,7 +112,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         &self,
         root: impl AsRef<RenderNode>,
         viewport: Option<&graphene::Rect>,
-    ) -> Option<gdk::Texture> {
+    ) -> gdk::Texture {
         unsafe {
             from_glib_full(ffi::gsk_renderer_render_texture(
                 self.as_ref().to_glib_none().0,

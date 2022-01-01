@@ -64,7 +64,7 @@ impl LinearGradientNode {
 
     #[doc(alias = "gsk_linear_gradient_node_get_end")]
     #[doc(alias = "get_end")]
-    pub fn end(&self) -> Option<graphene::Point> {
+    pub fn end(&self) -> graphene::Point {
         unsafe { from_glib_none(ffi::gsk_linear_gradient_node_get_end(self.to_glib_none().0)) }
     }
 
@@ -76,7 +76,7 @@ impl LinearGradientNode {
 
     #[doc(alias = "gsk_linear_gradient_node_get_start")]
     #[doc(alias = "get_start")]
-    pub fn start(&self) -> Option<graphene::Point> {
+    pub fn start(&self) -> graphene::Point {
         unsafe {
             from_glib_none(ffi::gsk_linear_gradient_node_get_start(
                 self.to_glib_none().0,

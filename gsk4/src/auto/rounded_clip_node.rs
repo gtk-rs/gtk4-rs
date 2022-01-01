@@ -38,13 +38,13 @@ impl RoundedClipNode {
 
     #[doc(alias = "gsk_rounded_clip_node_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_rounded_clip_node_get_clip")]
     #[doc(alias = "get_clip")]
-    pub fn clip(&self) -> Option<RoundedRect> {
+    pub fn clip(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_rounded_clip_node_get_clip(self.to_glib_none().0)) }
     }
 }
