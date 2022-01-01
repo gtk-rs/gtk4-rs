@@ -27,7 +27,7 @@ impl glib::StaticType for BorderNode {
 impl BorderNode {
     #[doc(alias = "gsk_border_node_get_outline")]
     #[doc(alias = "get_outline")]
-    pub fn outline(&self) -> Option<RoundedRect> {
+    pub fn outline(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
     }
 }

@@ -61,7 +61,7 @@ impl RenderNode {
     }
 
     #[doc(alias = "gsk_render_node_serialize")]
-    pub fn serialize(&self) -> Option<glib::Bytes> {
+    pub fn serialize(&self) -> glib::Bytes {
         unsafe {
             from_glib_full(ffi::gsk_render_node_serialize(
                 self.as_ref().to_glib_none().0,

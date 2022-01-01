@@ -49,13 +49,13 @@ impl BlendNode {
 
     #[doc(alias = "gsk_blend_node_get_bottom_child")]
     #[doc(alias = "get_bottom_child")]
-    pub fn bottom_child(&self) -> Option<RenderNode> {
+    pub fn bottom_child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_blend_node_get_bottom_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_blend_node_get_top_child")]
     #[doc(alias = "get_top_child")]
-    pub fn top_child(&self) -> Option<RenderNode> {
+    pub fn top_child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_blend_node_get_top_child(self.to_glib_none().0)) }
     }
 }

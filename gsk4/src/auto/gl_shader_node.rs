@@ -47,7 +47,7 @@ impl GLShaderNode {
 
     #[doc(alias = "gsk_gl_shader_node_get_args")]
     #[doc(alias = "get_args")]
-    pub fn args(&self) -> Option<glib::Bytes> {
+    pub fn args(&self) -> glib::Bytes {
         unsafe { from_glib_none(ffi::gsk_gl_shader_node_get_args(self.to_glib_none().0)) }
     }
 
@@ -59,7 +59,7 @@ impl GLShaderNode {
 
     #[doc(alias = "gsk_gl_shader_node_get_shader")]
     #[doc(alias = "get_shader")]
-    pub fn shader(&self) -> Option<GLShader> {
+    pub fn shader(&self) -> GLShader {
         unsafe { from_glib_none(ffi::gsk_gl_shader_node_get_shader(self.to_glib_none().0)) }
     }
 }

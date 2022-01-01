@@ -38,7 +38,7 @@ impl TextureNode {
 
     #[doc(alias = "gsk_texture_node_get_texture")]
     #[doc(alias = "get_texture")]
-    pub fn texture(&self) -> Option<gdk::Texture> {
+    pub fn texture(&self) -> gdk::Texture {
         unsafe { from_glib_none(ffi::gsk_texture_node_get_texture(self.to_glib_none().0)) }
     }
 }

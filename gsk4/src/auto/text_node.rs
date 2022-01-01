@@ -46,13 +46,13 @@ impl TextNode {
 
     #[doc(alias = "gsk_text_node_get_color")]
     #[doc(alias = "get_color")]
-    pub fn color(&self) -> Option<gdk::RGBA> {
+    pub fn color(&self) -> gdk::RGBA {
         unsafe { from_glib_none(ffi::gsk_text_node_get_color(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_text_node_get_font")]
     #[doc(alias = "get_font")]
-    pub fn font(&self) -> Option<pango::Font> {
+    pub fn font(&self) -> pango::Font {
         unsafe { from_glib_none(ffi::gsk_text_node_get_font(self.to_glib_none().0)) }
     }
 
@@ -77,7 +77,7 @@ impl TextNode {
 
     #[doc(alias = "gsk_text_node_get_offset")]
     #[doc(alias = "get_offset")]
-    pub fn offset(&self) -> Option<graphene::Point> {
+    pub fn offset(&self) -> graphene::Point {
         unsafe { from_glib_none(ffi::gsk_text_node_get_offset(self.to_glib_none().0)) }
     }
 

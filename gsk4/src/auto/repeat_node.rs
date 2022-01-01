@@ -42,13 +42,13 @@ impl RepeatNode {
 
     #[doc(alias = "gsk_repeat_node_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_repeat_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_repeat_node_get_child_bounds")]
     #[doc(alias = "get_child_bounds")]
-    pub fn child_bounds(&self) -> Option<graphene::Rect> {
+    pub fn child_bounds(&self) -> graphene::Rect {
         unsafe { from_glib_none(ffi::gsk_repeat_node_get_child_bounds(self.to_glib_none().0)) }
     }
 }

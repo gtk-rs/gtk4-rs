@@ -42,13 +42,13 @@ impl ColorMatrixNode {
 
     #[doc(alias = "gsk_color_matrix_node_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_color_matrix_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_color_matrix_node_get_color_matrix")]
     #[doc(alias = "get_color_matrix")]
-    pub fn color_matrix(&self) -> Option<graphene::Matrix> {
+    pub fn color_matrix(&self) -> graphene::Matrix {
         unsafe {
             from_glib_none(ffi::gsk_color_matrix_node_get_color_matrix(
                 self.to_glib_none().0,
@@ -58,7 +58,7 @@ impl ColorMatrixNode {
 
     #[doc(alias = "gsk_color_matrix_node_get_color_offset")]
     #[doc(alias = "get_color_offset")]
-    pub fn color_offset(&self) -> Option<graphene::Vec4> {
+    pub fn color_offset(&self) -> graphene::Vec4 {
         unsafe {
             from_glib_none(ffi::gsk_color_matrix_node_get_color_offset(
                 self.to_glib_none().0,

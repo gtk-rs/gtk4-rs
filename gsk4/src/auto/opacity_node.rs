@@ -37,7 +37,7 @@ impl OpacityNode {
 
     #[doc(alias = "gsk_opacity_node_get_child")]
     #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_opacity_node_get_child(self.to_glib_none().0)) }
     }
 
