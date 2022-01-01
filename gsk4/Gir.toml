@@ -166,7 +166,7 @@ trait_name = "GskRendererExt"
 
 [[object]]
 name = "Gsk.RenderNode"
-status = "generate" # fundemental type 
+status = "generate"
     [[object.function]]
     name = "deserialize"
     manual = true # split between two variants
