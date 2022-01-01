@@ -16,7 +16,7 @@ pub fn pango_layout_get_clip_region(
     x_origin: i32,
     y_origin: i32,
     index_ranges: &[GRange],
-) -> Option<cairo::Region> {
+) -> cairo::Region {
     assert_initialized_main_thread!();
 
     let ptr: *const i32 = index_ranges.as_ptr() as _;
@@ -298,7 +298,7 @@ pub fn pango_layout_line_get_clip_region(
     x_origin: i32,
     y_origin: i32,
     index_ranges: &[GRange],
-) -> Option<cairo::Region> {
+) -> cairo::Region {
     assert_initialized_main_thread!();
 
     let ptr: *const i32 = index_ranges.as_ptr() as _;

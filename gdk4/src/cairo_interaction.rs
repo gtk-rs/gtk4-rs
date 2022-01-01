@@ -9,11 +9,11 @@ use glib::translate::*;
 /// Trait containing integration methods with [`cairo::Surface`].
 pub trait GdkCairoSurfaceExt {
     #[doc(alias = "gdk_cairo_region_create_from_surface")]
-    fn create_region(&self) -> Option<Region>;
+    fn create_region(&self) -> Region;
 }
 
 impl GdkCairoSurfaceExt for cairo::Surface {
-    fn create_region(&self) -> Option<Region> {
+    fn create_region(&self) -> Region {
         unsafe {
             from_glib_full(ffi::gdk_cairo_region_create_from_surface(
                 self.to_glib_none().0,
