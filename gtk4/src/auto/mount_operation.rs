@@ -181,7 +181,7 @@ impl MountOperationBuilder {
 pub trait MountOperationExt: 'static {
     #[doc(alias = "gtk_mount_operation_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<gdk::Display>;
+    fn display(&self) -> gdk::Display;
 
     #[doc(alias = "gtk_mount_operation_get_parent")]
     #[doc(alias = "get_parent")]
@@ -207,7 +207,7 @@ pub trait MountOperationExt: 'static {
 }
 
 impl<O: IsA<MountOperation>> MountOperationExt for O {
-    fn display(&self) -> Option<gdk::Display> {
+    fn display(&self) -> gdk::Display {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_display(
                 self.as_ref().to_glib_none().0,

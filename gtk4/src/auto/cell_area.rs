@@ -79,10 +79,10 @@ pub trait CellAreaExt: 'static {
     fn attribute_get_column(&self, renderer: &impl IsA<CellRenderer>, attribute: &str) -> i32;
 
     #[doc(alias = "gtk_cell_area_copy_context")]
-    fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> Option<CellAreaContext>;
+    fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> CellAreaContext;
 
     #[doc(alias = "gtk_cell_area_create_context")]
-    fn create_context(&self) -> Option<CellAreaContext>;
+    fn create_context(&self) -> CellAreaContext;
 
     #[doc(alias = "gtk_cell_area_focus")]
     fn focus(&self, direction: DirectionType) -> bool;
@@ -123,19 +123,19 @@ pub trait CellAreaExt: 'static {
 
     #[doc(alias = "gtk_cell_area_get_current_path_string")]
     #[doc(alias = "get_current_path_string")]
-    fn current_path_string(&self) -> Option<glib::GString>;
+    fn current_path_string(&self) -> glib::GString;
 
     #[doc(alias = "gtk_cell_area_get_edit_widget")]
     #[doc(alias = "get_edit_widget")]
-    fn edit_widget(&self) -> Option<CellEditable>;
+    fn edit_widget(&self) -> CellEditable;
 
     #[doc(alias = "gtk_cell_area_get_edited_cell")]
     #[doc(alias = "get_edited_cell")]
-    fn edited_cell(&self) -> Option<CellRenderer>;
+    fn edited_cell(&self) -> CellRenderer;
 
     #[doc(alias = "gtk_cell_area_get_focus_cell")]
     #[doc(alias = "get_focus_cell")]
-    fn focus_cell(&self) -> Option<CellRenderer>;
+    fn focus_cell(&self) -> CellRenderer;
 
     #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
     #[doc(alias = "get_focus_from_sibling")]
@@ -369,7 +369,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> Option<CellAreaContext> {
+    fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> CellAreaContext {
         unsafe {
             from_glib_full(ffi::gtk_cell_area_copy_context(
                 self.as_ref().to_glib_none().0,
@@ -378,7 +378,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn create_context(&self) -> Option<CellAreaContext> {
+    fn create_context(&self) -> CellAreaContext {
         unsafe {
             from_glib_full(ffi::gtk_cell_area_create_context(
                 self.as_ref().to_glib_none().0,
@@ -500,7 +500,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn current_path_string(&self) -> Option<glib::GString> {
+    fn current_path_string(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_current_path_string(
                 self.as_ref().to_glib_none().0,
@@ -508,7 +508,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn edit_widget(&self) -> Option<CellEditable> {
+    fn edit_widget(&self) -> CellEditable {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edit_widget(
                 self.as_ref().to_glib_none().0,
@@ -516,7 +516,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn edited_cell(&self) -> Option<CellRenderer> {
+    fn edited_cell(&self) -> CellRenderer {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edited_cell(
                 self.as_ref().to_glib_none().0,
@@ -524,7 +524,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn focus_cell(&self) -> Option<CellRenderer> {
+    fn focus_cell(&self) -> CellRenderer {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_cell(
                 self.as_ref().to_glib_none().0,

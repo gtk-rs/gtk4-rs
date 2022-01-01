@@ -122,7 +122,7 @@ impl ListBox {
 
     #[doc(alias = "gtk_list_box_get_adjustment")]
     #[doc(alias = "get_adjustment")]
-    pub fn adjustment(&self) -> Option<Adjustment> {
+    pub fn adjustment(&self) -> Adjustment {
         unsafe { from_glib_none(ffi::gtk_list_box_get_adjustment(self.to_glib_none().0)) }
     }
 

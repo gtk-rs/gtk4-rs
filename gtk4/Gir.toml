@@ -39,8 +39,11 @@ generate = [
     "Gtk.ArrowType",
     "Gtk.AspectFrame",
     "Gtk.AssistantPageType",
+    "Gtk.ATContext",
     "Gtk.BaselinePosition",
     "Gtk.BinLayout",
+    "Gtk.Bitset",
+    "Gtk.BoolFilter",
     "Gtk.BorderStyle",
     "Gtk.Box",
     "Gtk.BoxLayout",
@@ -81,11 +84,13 @@ generate = [
     "Gtk.DirectionType",
     "Gtk.DragSource",
     "Gtk.DropControllerMotion",
+    "Gtk.DropDown",
     "Gtk.DropTargetAsync",
     "Gtk.EditableLabel",
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
+    "Gtk.EventController",
     "Gtk.EventControllerFocus",
     "Gtk.EventControllerMotion",
     "Gtk.EventControllerScrollFlags",
@@ -102,6 +107,7 @@ generate = [
     "Gtk.Fixed",
     "Gtk.FixedLayout",
     "Gtk.FlowBoxChild",
+    "Gtk.FontButton",
     "Gtk.FontChooserDialog",
     "Gtk.FontChooserLevel",
     "Gtk.FontChooserWidget",
@@ -123,9 +129,12 @@ generate = [
     "Gtk.IconViewDropPosition",
     "Gtk.Image",
     "Gtk.ImageType",
+    "Gtk.IMMulticontext",   
     "Gtk.InputHints",
     "Gtk.InputPurpose",
     "Gtk.Justification",
+    "Gtk.LayoutChild",
+    "Gtk.LayoutManager",
     "Gtk.LevelBar",
     "Gtk.LevelBarMode",
     "Gtk.License",
@@ -136,11 +145,15 @@ generate = [
     "Gtk.MediaControls",
     "Gtk.MediaFile",
     "Gtk.MessageType",
+    "Gtk.MnemonicAction",
     "Gtk.MovementStep",
     "Gtk.MultiFilter",
     "Gtk.MultiSorter",
+    "Gtk.NeverTrigger",
     "Gtk.NotebookTab",
+    "Gtk.NothingAction",
     "Gtk.NumberUpLayout",
+    "Gtk.NumericSorter",
     "Gtk.ObjectExpression",
     "Gtk.Orientable",
     "Gtk.Orientation",
@@ -175,6 +188,8 @@ generate = [
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
+    "Gtk.ScaleButton",
+    "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
@@ -205,12 +220,12 @@ generate = [
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Spinner",
     "Gtk.SpinType",
-    "Gtk.StackSidebar",
-    # implements Orientable since 4.4, not gated
+    "Gtk.StackSidebar", # implements Orientable since 4.4, not gated
     "Gtk.StackSwitcher",
     "Gtk.StackTransitionType",
     "Gtk.StateFlags",
     "Gtk.Statusbar",
+    "Gtk.StringFilter",
     "Gtk.StringFilterMatchMode",
     "Gtk.StringObject",
     "Gtk.StyleContextPrintFlags",
@@ -228,6 +243,7 @@ generate = [
     "Gtk.ToggleButton",
     "Gtk.Tooltip",
     "Gtk.TreeExpander",
+    "Gtk.TreeListModel",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
@@ -433,7 +449,6 @@ status = "manual"
 [[object]]
 name = "Gtk.*"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -584,14 +599,6 @@ status = "generate"
 generate_builder = false
 
 [[object]]
-name = "Gtk.ATContext"
-status = "generate"
-
-[[object]]
-name = "Gtk.Bitset"
-status = "generate"
-
-[[object]]
 name = "Gtk.BookmarkList"
 status = "generate"
 generate_builder  = false # use glib::Priority
@@ -601,10 +608,6 @@ generate_builder  = false # use glib::Priority
     [[object.function]]
     name = "set_io_priority"
     manual = true # return glib::Priority
-
-[[object]]
-name = "Gtk.BoolFilter"
-status = "generate"
 
 [[object]]
 name = "Gtk.Buildable"
@@ -658,7 +661,6 @@ name = "Gtk.CellArea"
 status = "generate"
 generate_builder = false
 manual_traits = ["CellAreaExtManual"]
-trust_return_value_nullability = false
     [[object.function]]
     pattern = "cell_[gs]et"
     ignore = true # we use cell_[gs]et_property
@@ -700,7 +702,6 @@ trust_return_value_nullability = false
 name = "Gtk.CellAreaContext"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.CellEditable"
@@ -747,7 +748,6 @@ manual_traits = ["CellRendererExtManual"]
     [[object.function]]
     name = "render"
     ignore = true # docs only
-    
 
 [[object]]
 name = "Gtk.CellRendererAccel"
@@ -972,10 +972,6 @@ manual_traits = ["DrawingAreaExtManual"]
     manual = true
 
 [[object]]
-name = "Gtk.DropDown"
-status = "generate"
-
-[[object]]
 name = "Gtk.DropTarget"
 status = "generate"
     [[object.signal]]
@@ -1099,10 +1095,6 @@ status = "generate"
     manual = true # upcast to Entry
 
 [[object]]
-name = "Gtk.EventController"
-status = "generate"
-
-[[object]]
 name = "Gtk.EventControllerKey"
 status = "generate"
     [[object.signal]]
@@ -1154,11 +1146,18 @@ status = "generate"
 [[object]]
 name = "Gtk.FileChooser"
 status = "generate"
-trust_return_value_nullability = false
 manual_traits = ["FileChooserExtManual"]
     [[object.function]]
     name = "add_choice"
     manual = true # rust-ify the options param
+    [[object.function]]
+    name = "get_choice"
+        [object.function.return]
+        nullable = true
+    [[object.function]]
+    name = "get_file"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.FileChooserDialog"
@@ -1181,7 +1180,10 @@ generate_builder = false
 name = "Gtk.FlattenListModel"
 status = "generate"
 generate_builder = false
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_model_for_item"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.FlowBox"
@@ -1199,10 +1201,6 @@ status = "generate"
     [[object.function]]
     name = "set_sort_func"
     manual = true # make the sort closure return a Ordering instead of an int
-
-[[object]]
-name = "Gtk.FontButton"
-status = "generate"
 
 [[object]]
 name = "Gtk.FontChooser"
@@ -1304,10 +1302,6 @@ status = "generate"
     ignore = true #TODO: We don't understand API
 
 [[object]]
-name = "Gtk.IMMulticontext"
-status = "generate"
-
-[[object]]
 name = "Gtk.InfoBar"
 status = "generate"
     [[object.function]]
@@ -1338,14 +1332,6 @@ status = "generate"
     manual = true # to make use of gdk::Key
 
 [[object]]
-name = "Gtk.LayoutChild"
-status = "generate"
-
-[[object]]
-name = "Gtk.LayoutManager"
-status = "generate"
-
-[[object]]
 name = "Gtk.LinkButton"
 status = "generate"
     [[object.function]]
@@ -1360,7 +1346,10 @@ status = "generate"
 [[object]]
 name = "Gtk.ListBox"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "set_adjustment"
+        [object.function.return]
+        nullable = true
     [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
@@ -1508,10 +1497,6 @@ status = "generate"
     manual = true
 
 [[object]]
-name = "Gtk.MnemonicAction"
-status = "generate"
-
-[[object]]
 name = "Gtk.MnemonicTrigger"
 status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
@@ -1519,7 +1504,10 @@ generate_builder = false
 [[object]]
 name = "Gtk.MountOperation"
 status = "generate"
-trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_parent"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.MultiSelection"
@@ -1547,10 +1535,6 @@ status = "generate"
 name = "Gtk.NativeDialog"
 status = "generate"
 manual_traits = ["NativeDialogExtManual"]
-
-[[object]]
-name = "Gtk.NeverTrigger"
-status = "generate"
 
 [[object]]
 name = "Gtk.NoSelection"
@@ -1621,14 +1605,6 @@ status = "generate"
 name = "Gtk.NotebookPage"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Gtk.NothingAction"
-status = "generate"
-
-[[object]]
-name = "Gtk.NumericSorter"
-status = "generate"
 
 [[object]]
 name = "Gtk.Ordering"
@@ -1761,15 +1737,10 @@ status = "generate"
 [[object]]
 name = "Gtk.PrintSettings"
 status = "generate"
-trust_return_value_nullability = false
     [[object.function]]
     name = "get_bool"
     # Retrieves the bool value of a setting
     rename = "bool"
-    [[object.function]]
-    name = "get_paper_size"
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "set_page_ranges"
     manual = true
@@ -1778,6 +1749,10 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "paper_size"
         const = true
+    [[object.function]]
+    pattern = "(get|get_default_source|get_dither|get_finishings|get_media_type|get_output_bin|get_printer)"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.PrintUnixDialog"
@@ -1788,10 +1763,6 @@ cfg_condition = "target_os = \"linux\""
 name = "Gtk.Range"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "get_adjustment"
-        [object.function.return]
-        nullable = false
     [[object.signal]]
     name = "change-value"
     inhibit = true
@@ -1815,18 +1786,6 @@ manual_traits = ["ScaleExtManual"]
         [[object.function.parameter]]
         name = "func"
         nullable = false
-
-[[object]]
-name = "Gtk.ScaleButton"
-status = "generate"
-    [[object.function]]
-    name = "get_adjustment"
-        [object.function.return]
-        nullable = false
-
-[[object]]
-name = "Gtk.Scrollable"
-status = "generate"
 
 [[object]]
 name = "Gtk.Scrollbar"
@@ -1979,10 +1938,6 @@ status = "generate"
 generate_builder = false
 
 [[object]]
-name = "Gtk.StringFilter"
-status = "generate"
-
-[[object]]
 name = "Gtk.StringList"
 status = "generate"
     [[object.function]]
@@ -2004,7 +1959,6 @@ status = "generate"
     [[object.signal]]
     name = "state-set"
     inhibit = true
-
 
 [[object]]
 name = "Gtk.Text"
@@ -2174,10 +2128,6 @@ status = "generate"
 name = "Gtk.TreeIter"
 status = "generate"
 boxed_inline = true
-
-[[object]]
-name = "Gtk.TreeListModel"
-status = "generate"
 
 [[object]]
 name = "Gtk.TreeListRow"
