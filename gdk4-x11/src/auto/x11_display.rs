@@ -45,7 +45,7 @@ impl X11Display {
 
     #[doc(alias = "gdk_x11_display_get_default_group")]
     #[doc(alias = "get_default_group")]
-    pub fn default_group(&self) -> Option<gdk::Surface> {
+    pub fn default_group(&self) -> gdk::Surface {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_default_group(
                 self.to_glib_none().0,
@@ -99,7 +99,7 @@ impl X11Display {
 
     #[doc(alias = "gdk_x11_display_get_primary_monitor")]
     #[doc(alias = "get_primary_monitor")]
-    pub fn primary_monitor(&self) -> Option<gdk::Monitor> {
+    pub fn primary_monitor(&self) -> gdk::Monitor {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_primary_monitor(
                 self.to_glib_none().0,
@@ -109,13 +109,13 @@ impl X11Display {
 
     #[doc(alias = "gdk_x11_display_get_screen")]
     #[doc(alias = "get_screen")]
-    pub fn screen(&self) -> Option<X11Screen> {
+    pub fn screen(&self) -> X11Screen {
         unsafe { from_glib_none(ffi::gdk_x11_display_get_screen(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_x11_display_get_startup_notification_id")]
     #[doc(alias = "get_startup_notification_id")]
-    pub fn startup_notification_id(&self) -> Option<glib::GString> {
+    pub fn startup_notification_id(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_startup_notification_id(
                 self.to_glib_none().0,
