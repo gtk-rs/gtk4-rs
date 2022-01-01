@@ -70,7 +70,7 @@ impl WidgetImpl for ScaleBin {
     fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
         let zoom = self.zoom.get() as f32;
 
-        let transform = gsk::Transform::new().scale(zoom, zoom).unwrap();
+        let transform = gsk::Transform::new().scale(zoom, zoom);
 
         widget.first_child().unwrap().allocate(
             (width as f32 / zoom) as i32,
