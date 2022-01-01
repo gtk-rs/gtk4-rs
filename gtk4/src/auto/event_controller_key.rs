@@ -63,7 +63,7 @@ impl EventControllerKey {
 
     #[doc(alias = "gtk_event_controller_key_get_im_context")]
     #[doc(alias = "get_im_context")]
-    pub fn im_context(&self) -> Option<IMContext> {
+    pub fn im_context(&self) -> IMContext {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_key_get_im_context(
                 self.to_glib_none().0,

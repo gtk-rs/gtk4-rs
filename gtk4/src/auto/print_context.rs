@@ -18,7 +18,7 @@ glib::wrapper! {
 
 impl PrintContext {
     #[doc(alias = "gtk_print_context_create_pango_context")]
-    pub fn create_pango_context(&self) -> Option<pango::Context> {
+    pub fn create_pango_context(&self) -> pango::Context {
         unsafe {
             from_glib_full(ffi::gtk_print_context_create_pango_context(
                 self.to_glib_none().0,
@@ -27,7 +27,7 @@ impl PrintContext {
     }
 
     #[doc(alias = "gtk_print_context_create_pango_layout")]
-    pub fn create_pango_layout(&self) -> Option<pango::Layout> {
+    pub fn create_pango_layout(&self) -> pango::Layout {
         unsafe {
             from_glib_full(ffi::gtk_print_context_create_pango_layout(
                 self.to_glib_none().0,
@@ -37,7 +37,7 @@ impl PrintContext {
 
     #[doc(alias = "gtk_print_context_get_cairo_context")]
     #[doc(alias = "get_cairo_context")]
-    pub fn cairo_context(&self) -> Option<cairo::Context> {
+    pub fn cairo_context(&self) -> cairo::Context {
         unsafe {
             from_glib_none(ffi::gtk_print_context_get_cairo_context(
                 self.to_glib_none().0,
@@ -92,13 +92,13 @@ impl PrintContext {
 
     #[doc(alias = "gtk_print_context_get_page_setup")]
     #[doc(alias = "get_page_setup")]
-    pub fn page_setup(&self) -> Option<PageSetup> {
+    pub fn page_setup(&self) -> PageSetup {
         unsafe { from_glib_none(ffi::gtk_print_context_get_page_setup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_context_get_pango_fontmap")]
     #[doc(alias = "get_pango_fontmap")]
-    pub fn pango_fontmap(&self) -> Option<pango::FontMap> {
+    pub fn pango_fontmap(&self) -> pango::FontMap {
         unsafe {
             from_glib_none(ffi::gtk_print_context_get_pango_fontmap(
                 self.to_glib_none().0,

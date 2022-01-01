@@ -37,7 +37,7 @@ impl CssSection {
 
     #[doc(alias = "gtk_css_section_get_end_location")]
     #[doc(alias = "get_end_location")]
-    pub fn end_location(&self) -> Option<CssLocation> {
+    pub fn end_location(&self) -> CssLocation {
         unsafe { from_glib_none(ffi::gtk_css_section_get_end_location(self.to_glib_none().0)) }
     }
 
@@ -55,7 +55,7 @@ impl CssSection {
 
     #[doc(alias = "gtk_css_section_get_start_location")]
     #[doc(alias = "get_start_location")]
-    pub fn start_location(&self) -> Option<CssLocation> {
+    pub fn start_location(&self) -> CssLocation {
         unsafe {
             from_glib_none(ffi::gtk_css_section_get_start_location(
                 self.to_glib_none().0,

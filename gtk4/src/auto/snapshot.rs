@@ -24,7 +24,7 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_append_cairo")]
-    pub fn append_cairo(&self, bounds: &graphene::Rect) -> Option<cairo::Context> {
+    pub fn append_cairo(&self, bounds: &graphene::Rect) -> cairo::Context {
         unsafe {
             from_glib_full(ffi::gtk_snapshot_append_cairo(
                 self.to_glib_none().0,
@@ -502,12 +502,12 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_to_node")]
-    pub fn to_node(&self) -> Option<gsk::RenderNode> {
+    pub fn to_node(&self) -> gsk::RenderNode {
         unsafe { from_glib_full(ffi::gtk_snapshot_to_node(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_snapshot_to_paintable")]
-    pub fn to_paintable(&self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
+    pub fn to_paintable(&self, size: Option<&graphene::Size>) -> gdk::Paintable {
         unsafe {
             from_glib_full(ffi::gtk_snapshot_to_paintable(
                 self.to_glib_none().0,

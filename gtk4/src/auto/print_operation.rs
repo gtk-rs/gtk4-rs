@@ -227,7 +227,7 @@ pub trait PrintOperationExt: 'static {
 
     #[doc(alias = "gtk_print_operation_get_default_page_setup")]
     #[doc(alias = "get_default_page_setup")]
-    fn default_page_setup(&self) -> Option<PageSetup>;
+    fn default_page_setup(&self) -> PageSetup;
 
     #[doc(alias = "gtk_print_operation_get_embed_page_setup")]
     #[doc(alias = "get_embed_page_setup")]
@@ -243,7 +243,7 @@ pub trait PrintOperationExt: 'static {
 
     #[doc(alias = "gtk_print_operation_get_print_settings")]
     #[doc(alias = "get_print_settings")]
-    fn print_settings(&self) -> Option<PrintSettings>;
+    fn print_settings(&self) -> PrintSettings;
 
     #[doc(alias = "gtk_print_operation_get_status")]
     #[doc(alias = "get_status")]
@@ -251,7 +251,7 @@ pub trait PrintOperationExt: 'static {
 
     #[doc(alias = "gtk_print_operation_get_status_string")]
     #[doc(alias = "get_status_string")]
-    fn status_string(&self) -> Option<glib::GString>;
+    fn status_string(&self) -> glib::GString;
 
     #[doc(alias = "gtk_print_operation_get_support_selection")]
     #[doc(alias = "get_support_selection")]
@@ -466,7 +466,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn default_page_setup(&self) -> Option<PageSetup> {
+    fn default_page_setup(&self) -> PageSetup {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_default_page_setup(
                 self.as_ref().to_glib_none().0,
@@ -494,7 +494,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe { ffi::gtk_print_operation_get_n_pages_to_print(self.as_ref().to_glib_none().0) }
     }
 
-    fn print_settings(&self) -> Option<PrintSettings> {
+    fn print_settings(&self) -> PrintSettings {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_print_settings(
                 self.as_ref().to_glib_none().0,
@@ -510,7 +510,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn status_string(&self) -> Option<glib::GString> {
+    fn status_string(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_status_string(
                 self.as_ref().to_glib_none().0,
