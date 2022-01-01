@@ -35,7 +35,7 @@ pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {
 pub fn accelerator_get_label(
     accelerator_key: u32,
     accelerator_mods: gdk::ModifierType,
-) -> Option<glib::GString> {
+) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_get_label(
@@ -51,7 +51,7 @@ pub fn accelerator_get_label_with_keycode(
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
-) -> Option<glib::GString> {
+) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_get_label_with_keycode(
@@ -67,7 +67,7 @@ pub fn accelerator_get_label_with_keycode(
 pub fn accelerator_name(
     accelerator_key: u32,
     accelerator_mods: gdk::ModifierType,
-) -> Option<glib::GString> {
+) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_name(
@@ -83,7 +83,7 @@ pub fn accelerator_name_with_keycode(
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
-) -> Option<glib::GString> {
+) -> glib::GString {
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_name_with_keycode(
@@ -194,7 +194,7 @@ pub fn debug_flags() -> DebugFlags {
 
 #[doc(alias = "gtk_get_default_language")]
 #[doc(alias = "get_default_language")]
-pub fn default_language() -> Option<pango::Language> {
+pub fn default_language() -> pango::Language {
     assert_initialized_main_thread!();
     unsafe { from_glib_none(ffi::gtk_get_default_language()) }
 }
@@ -254,7 +254,7 @@ pub fn print_run_page_setup_dialog(
     parent: Option<&impl IsA<Window>>,
     page_setup: Option<&PageSetup>,
     settings: &PrintSettings,
-) -> Option<PageSetup> {
+) -> PageSetup {
     skip_assert_initialized!();
     unsafe {
         from_glib_full(ffi::gtk_print_run_page_setup_dialog(
@@ -694,7 +694,7 @@ pub fn test_widget_wait_for_draw(widget: &impl IsA<Widget>) {
 pub fn tree_create_row_drag_content(
     tree_model: &impl IsA<TreeModel>,
     path: &TreePath,
-) -> Option<gdk::ContentProvider> {
+) -> gdk::ContentProvider {
     skip_assert_initialized!();
     unsafe {
         from_glib_full(ffi::gtk_tree_create_row_drag_content(

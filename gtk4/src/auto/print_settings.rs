@@ -84,7 +84,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_copy")]
-    pub fn copy(&self) -> Option<PrintSettings> {
+    pub fn copy(&self) -> PrintSettings {
         unsafe { from_glib_full(ffi::gtk_print_settings_copy(self.to_glib_none().0)) }
     }
 
@@ -691,7 +691,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_to_gvariant")]
-    pub fn to_gvariant(&self) -> Option<glib::Variant> {
+    pub fn to_gvariant(&self) -> glib::Variant {
         unsafe { from_glib_none(ffi::gtk_print_settings_to_gvariant(self.to_glib_none().0)) }
     }
 

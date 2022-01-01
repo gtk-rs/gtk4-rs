@@ -37,7 +37,7 @@ pub trait CellAreaContextExt: 'static {
 
     #[doc(alias = "gtk_cell_area_context_get_area")]
     #[doc(alias = "get_area")]
-    fn area(&self) -> Option<CellArea>;
+    fn area(&self) -> CellArea;
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
     #[doc(alias = "get_preferred_height")]
@@ -111,7 +111,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn area(&self) -> Option<CellArea> {
+    fn area(&self) -> CellArea {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_context_get_area(
                 self.as_ref().to_glib_none().0,
