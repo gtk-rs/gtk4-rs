@@ -184,7 +184,7 @@ impl Event {
 
     #[doc(alias = "gdk_event_get_surface")]
     #[doc(alias = "get_surface")]
-    pub fn surface(&self) -> Surface {
+    pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_event_get_surface(self.as_ref().to_glib_none().0)) }
     }
 

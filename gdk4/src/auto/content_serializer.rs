@@ -17,7 +17,7 @@ glib::wrapper! {
 impl ContentSerializer {
     #[doc(alias = "gdk_content_serializer_get_cancellable")]
     #[doc(alias = "get_cancellable")]
-    pub fn cancellable(&self) -> gio::Cancellable {
+    pub fn cancellable(&self) -> Option<gio::Cancellable> {
         unsafe {
             from_glib_none(ffi::gdk_content_serializer_get_cancellable(
                 self.to_glib_none().0,
