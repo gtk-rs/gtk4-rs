@@ -62,7 +62,7 @@ pub trait SurfaceExt: 'static {
     fn beep(&self);
 
     #[doc(alias = "gdk_surface_create_cairo_context")]
-    fn create_cairo_context(&self) -> Option<CairoContext>;
+    fn create_cairo_context(&self) -> CairoContext;
 
     #[doc(alias = "gdk_surface_create_gl_context")]
     fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
@@ -87,11 +87,11 @@ pub trait SurfaceExt: 'static {
 
     #[doc(alias = "gdk_surface_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_surface_get_frame_clock")]
     #[doc(alias = "get_frame_clock")]
-    fn frame_clock(&self) -> Option<FrameClock>;
+    fn frame_clock(&self) -> FrameClock;
 
     #[doc(alias = "gdk_surface_get_height")]
     #[doc(alias = "get_height")]
@@ -174,7 +174,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn create_cairo_context(&self) -> Option<CairoContext> {
+    fn create_cairo_context(&self) -> CairoContext {
         unsafe {
             from_glib_full(ffi::gdk_surface_create_cairo_context(
                 self.as_ref().to_glib_none().0,
@@ -250,11 +250,11 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_surface_get_display(self.as_ref().to_glib_none().0)) }
     }
 
-    fn frame_clock(&self) -> Option<FrameClock> {
+    fn frame_clock(&self) -> FrameClock {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_frame_clock(
                 self.as_ref().to_glib_none().0,

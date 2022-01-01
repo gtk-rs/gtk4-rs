@@ -101,7 +101,7 @@ impl Event {
 
     #[doc(alias = "gdk_event_get_event_sequence")]
     #[doc(alias = "get_event_sequence")]
-    pub fn event_sequence(&self) -> Option<EventSequence> {
+    pub fn event_sequence(&self) -> EventSequence {
         unsafe {
             from_glib_none(ffi::gdk_event_get_event_sequence(
                 self.as_ref().to_glib_none().0,
@@ -184,7 +184,7 @@ impl Event {
 
     #[doc(alias = "gdk_event_get_surface")]
     #[doc(alias = "get_surface")]
-    pub fn surface(&self) -> Option<Surface> {
+    pub fn surface(&self) -> Surface {
         unsafe { from_glib_none(ffi::gdk_event_get_surface(self.as_ref().to_glib_none().0)) }
     }
 

@@ -39,7 +39,7 @@ pub trait SeatExt: 'static {
 
     #[doc(alias = "gdk_seat_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
+    fn display(&self) -> Display;
 
     #[doc(alias = "gdk_seat_get_keyboard")]
     #[doc(alias = "get_keyboard")]
@@ -84,7 +84,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    fn display(&self) -> Option<Display> {
+    fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_seat_get_display(self.as_ref().to_glib_none().0)) }
     }
 

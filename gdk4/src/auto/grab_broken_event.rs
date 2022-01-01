@@ -26,7 +26,7 @@ impl glib::StaticType for GrabBrokenEvent {
 impl GrabBrokenEvent {
     #[doc(alias = "gdk_grab_broken_event_get_grab_surface")]
     #[doc(alias = "get_grab_surface")]
-    pub fn grab_surface(&self) -> Option<Surface> {
+    pub fn grab_surface(&self) -> Surface {
         unsafe {
             from_glib_none(ffi::gdk_grab_broken_event_get_grab_surface(
                 self.to_glib_none().0,

@@ -90,11 +90,11 @@ pub trait DisplayExt: 'static {
 
     #[doc(alias = "gdk_display_get_monitor_at_surface")]
     #[doc(alias = "get_monitor_at_surface")]
-    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor>;
+    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Monitor;
 
     #[doc(alias = "gdk_display_get_monitors")]
     #[doc(alias = "get_monitors")]
-    fn monitors(&self) -> Option<gio::ListModel>;
+    fn monitors(&self) -> gio::ListModel;
 
     #[doc(alias = "gdk_display_get_name")]
     #[doc(alias = "get_name")]
@@ -232,7 +232,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor> {
+    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Monitor {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
                 self.as_ref().to_glib_none().0,
@@ -241,7 +241,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn monitors(&self) -> Option<gio::ListModel> {
+    fn monitors(&self) -> gio::ListModel {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitors(
                 self.as_ref().to_glib_none().0,

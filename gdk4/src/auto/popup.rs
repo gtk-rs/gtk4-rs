@@ -29,7 +29,7 @@ pub trait PopupExt: 'static {
 
     #[doc(alias = "gdk_popup_get_parent")]
     #[doc(alias = "get_parent")]
-    fn parent(&self) -> Option<Surface>;
+    fn parent(&self) -> Surface;
 
     #[doc(alias = "gdk_popup_get_position_x")]
     #[doc(alias = "get_position_x")]
@@ -56,7 +56,7 @@ impl<O: IsA<Popup>> PopupExt for O {
         unsafe { from_glib(ffi::gdk_popup_get_autohide(self.as_ref().to_glib_none().0)) }
     }
 
-    fn parent(&self) -> Option<Surface> {
+    fn parent(&self) -> Surface {
         unsafe { from_glib_none(ffi::gdk_popup_get_parent(self.as_ref().to_glib_none().0)) }
     }
 

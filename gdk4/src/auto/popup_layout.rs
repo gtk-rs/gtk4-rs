@@ -39,7 +39,7 @@ impl PopupLayout {
     }
 
     #[doc(alias = "gdk_popup_layout_copy")]
-    pub fn copy(&self) -> Option<PopupLayout> {
+    pub fn copy(&self) -> PopupLayout {
         unsafe { from_glib_full(ffi::gdk_popup_layout_copy(self.to_glib_none().0)) }
     }
 
@@ -65,7 +65,7 @@ impl PopupLayout {
 
     #[doc(alias = "gdk_popup_layout_get_anchor_rect")]
     #[doc(alias = "get_anchor_rect")]
-    pub fn anchor_rect(&self) -> Option<Rectangle> {
+    pub fn anchor_rect(&self) -> Rectangle {
         unsafe { from_glib_none(ffi::gdk_popup_layout_get_anchor_rect(self.to_glib_none().0)) }
     }
 
