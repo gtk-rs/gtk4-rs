@@ -30,7 +30,7 @@ impl CustomTag {
             button.connect_clicked(clone!(@weak self as tag => move |_btn| {
                 tag.emit_by_name::<()>("closed", &[]);
             }));
-            let icon = gtk::Image::from_icon_name(Some("window-close-symbolic"));
+            let icon = gtk::Image::from_icon_name("window-close-symbolic");
             button.set_child(Some(&icon));
 
             imp.container.append(&button);
