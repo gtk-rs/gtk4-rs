@@ -24,7 +24,7 @@ impl X11Surface {
 
     #[doc(alias = "gdk_x11_surface_get_group")]
     #[doc(alias = "get_group")]
-    pub fn group(&self) -> gdk::Surface {
+    pub fn group(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gdk_x11_surface_get_group(self.to_glib_none().0)) }
     }
 
