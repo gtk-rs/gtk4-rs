@@ -186,52 +186,6 @@
 <span id="111">111</span>
 <span id="112">112</span>
 <span id="113">113</span>
-<span id="114">114</span>
-<span id="115">115</span>
-<span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
-<span id="126">126</span>
-<span id="127">127</span>
-<span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Builder</span>;
@@ -304,52 +258,6 @@
         }
     }
 
-    <span class="doccomment">/// Demarshals a value from a string.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This function calls g_value_init() on the @value argument,</span>
-    <span class="doccomment">/// so it need not be initialised beforehand.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Can handle char, uchar, boolean, int, uint, long,</span>
-    <span class="doccomment">/// ulong, enum, flags, float, double, string, [`gdk::RGBA`][crate::gdk::RGBA] and</span>
-    <span class="doccomment">/// [`Adjustment`][crate::Adjustment] type values.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Upon errors [`false`] will be returned and @error will be</span>
-    <span class="doccomment">/// assigned a `GError` from the `GTK_BUILDER_ERROR` domain.</span>
-    <span class="doccomment">/// ## `pspec`</span>
-    <span class="doccomment">/// the `GParamSpec` for the property</span>
-    <span class="doccomment">/// ## `string`</span>
-    <span class="doccomment">/// the string representation of the value</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] on success</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// the `GValue` to store the result in</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_builder_value_from_string&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_from_string</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">pspec</span>: <span class="kw-2">&amp;</span><span class="ident">glib::ParamSpec</span>,
-        <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::uninitialized</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
-            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi::gtk_builder_value_from_string</span>(
-                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">pspec</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">string</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;mut</span> <span class="ident">error</span>,
-            );
-            <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">from_glib_full</span>(<span class="ident">error</span>))
-            }
-        }
-    }
-
     <span class="doccomment">/// Parses a file containing a UI definition and merges it with</span>
     <span class="doccomment">/// the current contents of @self.</span>
     <span class="doccomment">///</span>
@@ -392,5 +300,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (b60e32c82 2021-12-30)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (cfa3fe5af 2021-12-31)" ></div>
 </body></html>

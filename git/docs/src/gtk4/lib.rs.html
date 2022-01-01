@@ -335,16 +335,6 @@
 <span id="260">260</span>
 <span id="261">261</span>
 <span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
-<span id="270">270</span>
-<span id="271">271</span>
-<span id="272">272</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
@@ -504,7 +494,6 @@
 <span class="kw">mod</span> <span class="ident">assistant</span>;
 <span class="kw">mod</span> <span class="ident">bitset_iter</span>;
 <span class="kw">mod</span> <span class="ident">bookmark_list</span>;
-<span class="kw">mod</span> <span class="ident">bool_filter</span>;
 <span class="kw">mod</span> <span class="ident">border</span>;
 <span class="kw">mod</span> <span class="ident">builder</span>;
 <span class="kw">mod</span> <span class="ident">builder_rust_scope</span>;
@@ -524,7 +513,6 @@
 <span class="kw">mod</span> <span class="ident">dialog</span>;
 <span class="kw">mod</span> <span class="ident">directory_list</span>;
 <span class="kw">mod</span> <span class="ident">drawing_area</span>;
-<span class="kw">mod</span> <span class="ident">drop_down</span>;
 <span class="kw">mod</span> <span class="ident">drop_target</span>;
 <span class="kw">mod</span> <span class="ident">editable</span>;
 <span class="kw">mod</span> <span class="ident">entry</span>;
@@ -554,7 +542,6 @@
 <span class="kw">mod</span> <span class="ident">mnemonic_trigger</span>;
 <span class="kw">mod</span> <span class="ident">native_dialog</span>;
 <span class="kw">mod</span> <span class="ident">notebook</span>;
-<span class="kw">mod</span> <span class="ident">numeric_sorter</span>;
 <span class="kw">mod</span> <span class="ident">object_expression</span>;
 <span class="kw">mod</span> <span class="ident">overlay</span>;
 <span class="kw">mod</span> <span class="ident">pad_action_entry</span>;
@@ -576,9 +563,7 @@
 <span class="kw">mod</span> <span class="ident">shortcuts_section</span>;
 <span class="kw">mod</span> <span class="ident">snapshot</span>;
 <span class="kw">mod</span> <span class="ident">spin_button</span>;
-<span class="kw">mod</span> <span class="ident">string_filter</span>;
 <span class="kw">mod</span> <span class="ident">string_list</span>;
-<span class="kw">mod</span> <span class="ident">string_sorter</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
 <span class="kw">mod</span> <span class="ident">symbolic_paintable</span>;
@@ -599,24 +584,19 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bitset_iter::BitsetIter</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">border::Border</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder_rust_scope::BuilderRustScope</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">closure_expression::ClosureExpression</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">constant_expression::ConstantExpression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">css_location::CssLocation</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression::Expression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression_watch::ExpressionWatch</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib::signal::Inhibit</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">keyval_trigger::KeyvalTrigger</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mnemonic_trigger::MnemonicTrigger</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">object_expression::ObjectExpression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pad_action_entry::PadActionEntry</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">page_range::PageRange</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">param_spec_expression::ParamSpecExpression</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">property_expression::PropertyExpression</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">recent_data::RecentData</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">response_type::ResponseType</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">tree_sortable::SortColumn</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">widget::TickCallbackId</span>;
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (b60e32c82 2021-12-30)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (cfa3fe5af 2021-12-31)" ></div>
 </body></html>

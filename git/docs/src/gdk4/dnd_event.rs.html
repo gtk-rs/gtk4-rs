@@ -91,67 +91,15 @@
 <span id="16">16</span>
 <span id="17">17</span>
 <span id="18">18</span>
-<span id="19">19</span>
-<span id="20">20</span>
-<span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Drop</span>, <span class="ident">EventType</span>};
-<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">DNDEvent</span>, <span class="ident">EventType</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
-
-<span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// An event related to drag and drop operations.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDNDEvent&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DNDEvent</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkDNDEvent</span><span class="op">&gt;</span>);
-
-    <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GdkEvent</span>),
-        <span class="ident">unref</span> =&gt; <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GdkEvent</span>),
-    }
-}
 
 <span class="macro">define_event!</span> {
     <span class="ident">DNDEvent</span>,
     <span class="ident">ffi::GdkDNDEvent</span>,
-    <span class="ident">ffi::gdk_dnd_event_get_type</span>,
     <span class="kw-2">&amp;</span>[<span class="ident">EventType::DragEnter</span>, <span class="ident">EventType::DragLeave</span>, <span class="ident">EventType::DragMotion</span>, <span class="ident">EventType::DropStart</span>]
-}
-
-<span class="kw">impl</span> <span class="ident">DNDEvent</span> {
-    <span class="doccomment">/// Gets the [`Drop`][crate::Drop] object from a DND event.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// the drop</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_dnd_event_get_drop&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_drop&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Drop</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_dnd_event_get_drop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
-    }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">DNDEvent</span> {
@@ -162,5 +110,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (b60e32c82 2021-12-30)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (cfa3fe5af 2021-12-31)" ></div>
 </body></html>
