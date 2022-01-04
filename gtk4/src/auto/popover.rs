@@ -490,7 +490,7 @@ pub trait PopoverExt: 'static {
     fn set_offset(&self, x_offset: i32, y_offset: i32);
 
     #[doc(alias = "gtk_popover_set_pointing_to")]
-    fn set_pointing_to(&self, rect: &gdk::Rectangle);
+    fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>);
 
     #[doc(alias = "gtk_popover_set_position")]
     fn set_position(&self, position: PositionType);
@@ -678,7 +678,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_pointing_to(&self, rect: &gdk::Rectangle) {
+    fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>) {
         unsafe {
             ffi::gtk_popover_set_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none().0);
         }

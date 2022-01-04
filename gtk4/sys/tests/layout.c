@@ -167,6 +167,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkMultiSorterClass", sizeof(GtkMultiSorterClass), alignof(GtkMultiSorterClass));
     printf("%s;%zu;%zu\n", "GtkNativeDialog", sizeof(GtkNativeDialog), alignof(GtkNativeDialog));
     printf("%s;%zu;%zu\n", "GtkNativeDialogClass", sizeof(GtkNativeDialogClass), alignof(GtkNativeDialogClass));
+    printf("%s;%zu;%zu\n", "GtkNaturalWrapMode", sizeof(GtkNaturalWrapMode), alignof(GtkNaturalWrapMode));
     printf("%s;%zu;%zu\n", "GtkNoSelectionClass", sizeof(GtkNoSelectionClass), alignof(GtkNoSelectionClass));
     printf("%s;%zu;%zu\n", "GtkNotebookTab", sizeof(GtkNotebookTab), alignof(GtkNotebookTab));
     printf("%s;%zu;%zu\n", "GtkNumberUpLayout", sizeof(GtkNumberUpLayout), alignof(GtkNumberUpLayout));

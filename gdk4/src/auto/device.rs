@@ -89,6 +89,7 @@ pub trait DeviceExt: 'static {
     #[doc(alias = "get_seat")]
     fn seat(&self) -> Seat;
 
+    #[cfg_attr(feature = "v4_6", deprecated = "Since 4.6")]
     #[doc(alias = "gdk_device_get_source")]
     #[doc(alias = "get_source")]
     fn source(&self) -> InputSource;

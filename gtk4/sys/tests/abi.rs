@@ -1331,6 +1331,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkNaturalWrapMode",
+        Layout {
+            size: size_of::<GtkNaturalWrapMode>(),
+            alignment: align_of::<GtkNaturalWrapMode>(),
+        },
+    ),
+    (
         "GtkNoSelectionClass",
         Layout {
             size: size_of::<GtkNoSelectionClass>(),
@@ -2765,6 +2772,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_MOVEMENT_PARAGRAPH_ENDS", "6"),
     ("(gint) GTK_MOVEMENT_VISUAL_POSITIONS", "1"),
     ("(gint) GTK_MOVEMENT_WORDS", "2"),
+    ("(gint) GTK_NATURAL_WRAP_INHERIT", "0"),
+    ("(gint) GTK_NATURAL_WRAP_NONE", "1"),
+    ("(gint) GTK_NATURAL_WRAP_WORD", "2"),
     ("(gint) GTK_NOTEBOOK_TAB_FIRST", "0"),
     ("(gint) GTK_NOTEBOOK_TAB_LAST", "1"),
     (
