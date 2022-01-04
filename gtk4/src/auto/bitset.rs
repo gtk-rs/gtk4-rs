@@ -60,6 +60,7 @@ impl Bitset {
     }
 
     #[doc(alias = "gtk_bitset_copy")]
+    #[must_use]
     pub fn copy(&self) -> Bitset {
         unsafe { from_glib_full(ffi::gtk_bitset_copy(self.to_glib_none().0)) }
     }

@@ -54,6 +54,7 @@ impl Rectangle {
     }
 
     #[doc(alias = "gdk_rectangle_union")]
+    #[must_use]
     pub fn union(&self, src2: &Rectangle) -> Rectangle {
         unsafe {
             let mut dest = Rectangle::uninitialized();

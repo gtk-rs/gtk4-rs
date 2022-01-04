@@ -39,6 +39,7 @@ impl PopupLayout {
     }
 
     #[doc(alias = "gdk_popup_layout_copy")]
+    #[must_use]
     pub fn copy(&self) -> PopupLayout {
         unsafe { from_glib_full(ffi::gdk_popup_layout_copy(self.to_glib_none().0)) }
     }

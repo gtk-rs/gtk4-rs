@@ -84,6 +84,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_copy")]
+    #[must_use]
     pub fn copy(&self) -> PrintSettings {
         unsafe { from_glib_full(ffi::gtk_print_settings_copy(self.to_glib_none().0)) }
     }

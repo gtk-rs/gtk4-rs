@@ -50,6 +50,7 @@ pub trait PaintableExt: 'static {
 
     #[doc(alias = "gdk_paintable_get_current_image")]
     #[doc(alias = "get_current_image")]
+    #[must_use]
     fn current_image(&self) -> Paintable;
 
     #[doc(alias = "gdk_paintable_get_flags")]

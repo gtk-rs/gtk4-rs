@@ -159,6 +159,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_ancestor")]
     #[doc(alias = "get_ancestor")]
+    #[must_use]
     fn ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_can_focus")]
@@ -199,10 +200,12 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_first_child")]
     #[doc(alias = "get_first_child")]
+    #[must_use]
     fn first_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_focus_child")]
     #[doc(alias = "get_focus_child")]
+    #[must_use]
     fn focus_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_focus_on_click")]
@@ -247,6 +250,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_last_child")]
     #[doc(alias = "get_last_child")]
+    #[must_use]
     fn last_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_layout_manager")]
@@ -283,6 +287,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_next_sibling")]
     #[doc(alias = "get_next_sibling")]
+    #[must_use]
     fn next_sibling(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_opacity")]
@@ -299,6 +304,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_parent")]
     #[doc(alias = "get_parent")]
+    #[must_use]
     fn parent(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_preferred_size")]
@@ -307,6 +313,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_prev_sibling")]
     #[doc(alias = "get_prev_sibling")]
+    #[must_use]
     fn prev_sibling(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_primary_clipboard")]
@@ -457,6 +464,7 @@ pub trait WidgetExt: 'static {
     fn observe_controllers(&self) -> gio::ListModel;
 
     #[doc(alias = "gtk_widget_pick")]
+    #[must_use]
     fn pick(&self, x: f64, y: f64, flags: PickFlags) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_queue_allocate")]

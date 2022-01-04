@@ -51,6 +51,7 @@ pub trait EditableExt: 'static {
 
     #[doc(alias = "gtk_editable_get_delegate")]
     #[doc(alias = "get_delegate")]
+    #[must_use]
     fn delegate(&self) -> Option<Editable>;
 
     #[doc(alias = "gtk_editable_get_editable")]

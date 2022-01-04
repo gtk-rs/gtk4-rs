@@ -83,6 +83,7 @@ pub trait GLContextExt: 'static {
     #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
     #[doc(alias = "gdk_gl_context_get_shared_context")]
     #[doc(alias = "get_shared_context")]
+    #[must_use]
     fn shared_context(&self) -> Option<GLContext>;
 
     #[doc(alias = "gdk_gl_context_get_use_es")]

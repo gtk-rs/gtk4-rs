@@ -702,6 +702,7 @@ pub trait GtkWindowExt: 'static {
 
     #[doc(alias = "gtk_window_get_transient_for")]
     #[doc(alias = "get_transient_for")]
+    #[must_use]
     fn transient_for(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_window_has_group")]
