@@ -90,11 +90,6 @@ impl Texture {
 }
 
 pub trait TextureExt: 'static {
-    //#[cfg(any(feature = "v4_6", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    //#[doc(alias = "gdk_texture_download_float")]
-    //fn download_float(&self, data: &[f32], stride: usize);
-
     #[doc(alias = "gdk_texture_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> i32;
@@ -129,12 +124,6 @@ pub trait TextureExt: 'static {
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
-    //#[cfg(any(feature = "v4_6", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    //fn download_float(&self, data: &[f32], stride: usize) {
-    //    unsafe { TODO: call ffi:gdk_texture_download_float() }
-    //}
-
     fn height(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
     }

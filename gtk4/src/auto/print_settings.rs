@@ -302,7 +302,7 @@ impl PrintSettings {
 
     #[doc(alias = "gtk_print_settings_get_paper_size")]
     #[doc(alias = "get_paper_size")]
-    pub fn paper_size(&self) -> PaperSize {
+    pub fn paper_size(&self) -> Option<PaperSize> {
         unsafe {
             from_glib_full(ffi::gtk_print_settings_get_paper_size(
                 self.to_glib_none().0,

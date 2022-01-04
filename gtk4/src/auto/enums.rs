@@ -4964,6 +4964,111 @@ impl ToValue for MovementStep {
     }
 }
 
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkNaturalWrapMode")]
+pub enum NaturalWrapMode {
+    #[doc(alias = "GTK_NATURAL_WRAP_INHERIT")]
+    Inherit,
+    #[doc(alias = "GTK_NATURAL_WRAP_NONE")]
+    None,
+    #[doc(alias = "GTK_NATURAL_WRAP_WORD")]
+    Word,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl fmt::Display for NaturalWrapMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "NaturalWrapMode::{}",
+            match *self {
+                Self::Inherit => "Inherit",
+                Self::None => "None",
+                Self::Word => "Word",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl IntoGlib for NaturalWrapMode {
+    type GlibType = ffi::GtkNaturalWrapMode;
+
+    fn into_glib(self) -> ffi::GtkNaturalWrapMode {
+        match self {
+            Self::Inherit => ffi::GTK_NATURAL_WRAP_INHERIT,
+            Self::None => ffi::GTK_NATURAL_WRAP_NONE,
+            Self::Word => ffi::GTK_NATURAL_WRAP_WORD,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkNaturalWrapMode> for NaturalWrapMode {
+    unsafe fn from_glib(value: ffi::GtkNaturalWrapMode) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_NATURAL_WRAP_INHERIT => Self::Inherit,
+            ffi::GTK_NATURAL_WRAP_NONE => Self::None,
+            ffi::GTK_NATURAL_WRAP_WORD => Self::Word,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl StaticType for NaturalWrapMode {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_natural_wrap_mode_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl glib::value::ValueType for NaturalWrapMode {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+unsafe impl<'a> FromValue<'a> for NaturalWrapMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl ToValue for NaturalWrapMode {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkNotebookTab")]

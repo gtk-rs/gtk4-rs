@@ -48,6 +48,7 @@ pub struct X11DeviceXI2Builder {
     num_touches: Option<u32>,
     product_id: Option<String>,
     seat: Option<gdk::Seat>,
+    #[cfg_attr(feature = "v4_6", deprecated = "Since 4.6")]
     source: Option<gdk::InputSource>,
     vendor_id: Option<String>,
 }
@@ -130,6 +131,7 @@ impl X11DeviceXI2Builder {
         self
     }
 
+    #[cfg_attr(feature = "v4_6", deprecated = "Since 4.6")]
     pub fn source(mut self, source: gdk::InputSource) -> Self {
         self.source = Some(source);
         self

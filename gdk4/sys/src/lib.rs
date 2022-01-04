@@ -4715,9 +4715,6 @@ extern "C" {
     ) -> *mut GdkTexture;
     pub fn gdk_texture_new_from_resource(resource_path: *const c_char) -> *mut GdkTexture;
     pub fn gdk_texture_download(texture: *mut GdkTexture, data: *mut u8, stride: size_t);
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    pub fn gdk_texture_download_float(texture: *mut GdkTexture, data: *mut c_float, stride: size_t);
     pub fn gdk_texture_get_height(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_get_width(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_save_to_png(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;

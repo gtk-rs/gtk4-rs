@@ -65,7 +65,7 @@ impl SearchBar {
 
     #[doc(alias = "gtk_search_bar_get_key_capture_widget")]
     #[doc(alias = "get_key_capture_widget")]
-    pub fn key_capture_widget(&self) -> Widget {
+    pub fn key_capture_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
                 self.to_glib_none().0,

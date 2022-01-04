@@ -904,6 +904,9 @@ pub use self::enums::LevelBarMode;
 pub use self::enums::License;
 pub use self::enums::MessageType;
 pub use self::enums::MovementStep;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+pub use self::enums::NaturalWrapMode;
 pub use self::enums::NotebookTab;
 pub use self::enums::NumberUpLayout;
 pub use self::enums::Ordering;

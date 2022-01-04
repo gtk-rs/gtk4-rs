@@ -57,7 +57,7 @@ impl PropertyExpression {
 
     #[doc(alias = "gtk_property_expression_get_expression")]
     #[doc(alias = "get_expression")]
-    pub fn expression(&self) -> Expression {
+    pub fn expression(&self) -> Option<Expression> {
         unsafe {
             from_glib_none(ffi::gtk_property_expression_get_expression(
                 self.to_glib_none().0,

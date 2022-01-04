@@ -10,6 +10,9 @@ use crate::ConstraintTarget;
 use crate::Justification;
 use crate::LayoutManager;
 use crate::MovementStep;
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+use crate::NaturalWrapMode;
 use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
@@ -135,6 +138,14 @@ impl Label {
     #[doc(alias = "get_mnemonic_widget")]
     pub fn mnemonic_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_label_get_mnemonic_widget(self.to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_label_get_natural_wrap_mode")]
+    #[doc(alias = "get_natural_wrap_mode")]
+    pub fn natural_wrap_mode(&self) -> NaturalWrapMode {
+        unsafe { from_glib(ffi::gtk_label_get_natural_wrap_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_selectable")]
@@ -298,6 +309,15 @@ impl Label {
                 self.to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_label_set_natural_wrap_mode")]
+    pub fn set_natural_wrap_mode(&self, wrap_mode: NaturalWrapMode) {
+        unsafe {
+            ffi::gtk_label_set_natural_wrap_mode(self.to_glib_none().0, wrap_mode.into_glib());
         }
     }
 
@@ -711,6 +731,34 @@ impl Label {
         }
     }
 
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "natural-wrap-mode")]
+    pub fn connect_natural_wrap_mode_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_natural_wrap_mode_trampoline<F: Fn(&Label) + 'static>(
+            this: *mut ffi::GtkLabel,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::natural-wrap-mode\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_natural_wrap_mode_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "selectable")]
     pub fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<F: Fn(&Label) + 'static>(
@@ -941,6 +989,9 @@ pub struct LabelBuilder {
     lines: Option<i32>,
     max_width_chars: Option<i32>,
     mnemonic_widget: Option<Widget>,
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    natural_wrap_mode: Option<NaturalWrapMode>,
     selectable: Option<bool>,
     single_line_mode: Option<bool>,
     use_markup: Option<bool>,
@@ -1017,6 +1068,10 @@ impl LabelBuilder {
         }
         if let Some(ref mnemonic_widget) = self.mnemonic_widget {
             properties.push(("mnemonic-widget", mnemonic_widget));
+        }
+        #[cfg(any(feature = "v4_6", feature = "dox"))]
+        if let Some(ref natural_wrap_mode) = self.natural_wrap_mode {
+            properties.push(("natural-wrap-mode", natural_wrap_mode));
         }
         if let Some(ref selectable) = self.selectable {
             properties.push(("selectable", selectable));
@@ -1175,6 +1230,13 @@ impl LabelBuilder {
 
     pub fn mnemonic_widget(mut self, mnemonic_widget: &impl IsA<Widget>) -> Self {
         self.mnemonic_widget = Some(mnemonic_widget.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn natural_wrap_mode(mut self, natural_wrap_mode: NaturalWrapMode) -> Self {
+        self.natural_wrap_mode = Some(natural_wrap_mode);
         self
     }
 

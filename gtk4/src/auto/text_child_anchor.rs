@@ -25,6 +25,19 @@ impl TextChildAnchor {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_text_child_anchor_new()) }
     }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[doc(alias = "gtk_text_child_anchor_new_with_replacement")]
+    #[doc(alias = "new_with_replacement")]
+    pub fn with_replacement(character: &str) -> TextChildAnchor {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gtk_text_child_anchor_new_with_replacement(
+                character.to_glib_none().0,
+            ))
+        }
+    }
 }
 
 impl Default for TextChildAnchor {

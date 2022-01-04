@@ -448,6 +448,11 @@ pub const GTK_MOVEMENT_PAGES: GtkMovementStep = 7;
 pub const GTK_MOVEMENT_BUFFER_ENDS: GtkMovementStep = 8;
 pub const GTK_MOVEMENT_HORIZONTAL_PAGES: GtkMovementStep = 9;
 
+pub type GtkNaturalWrapMode = c_int;
+pub const GTK_NATURAL_WRAP_INHERIT: GtkNaturalWrapMode = 0;
+pub const GTK_NATURAL_WRAP_NONE: GtkNaturalWrapMode = 1;
+pub const GTK_NATURAL_WRAP_WORD: GtkNaturalWrapMode = 2;
+
 pub type GtkNotebookTab = c_int;
 pub const GTK_NOTEBOOK_TAB_FIRST: GtkNotebookTab = 0;
 pub const GTK_NOTEBOOK_TAB_LAST: GtkNotebookTab = 1;
@@ -8993,6 +8998,13 @@ extern "C" {
     pub fn gtk_movement_step_get_type() -> GType;
 
     //=========================================================================
+    // GtkNaturalWrapMode
+    //=========================================================================
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_natural_wrap_mode_get_type() -> GType;
+
+    //=========================================================================
     // GtkNotebookTab
     //=========================================================================
     pub fn gtk_notebook_tab_get_type() -> GType;
@@ -9397,6 +9409,7 @@ extern "C" {
     //=========================================================================
     // GtkBitsetIter
     //=========================================================================
+    pub fn gtk_bitset_iter_get_type() -> GType;
     pub fn gtk_bitset_iter_get_value(iter: *const GtkBitsetIter) -> c_uint;
     pub fn gtk_bitset_iter_is_valid(iter: *const GtkBitsetIter) -> gboolean;
     pub fn gtk_bitset_iter_next(iter: *mut GtkBitsetIter, value: *mut c_uint) -> gboolean;
@@ -13254,6 +13267,9 @@ extern "C" {
     pub fn gtk_label_get_max_width_chars(self_: *mut GtkLabel) -> c_int;
     pub fn gtk_label_get_mnemonic_keyval(self_: *mut GtkLabel) -> c_uint;
     pub fn gtk_label_get_mnemonic_widget(self_: *mut GtkLabel) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_label_get_natural_wrap_mode(self_: *mut GtkLabel) -> GtkNaturalWrapMode;
     pub fn gtk_label_get_selectable(self_: *mut GtkLabel) -> gboolean;
     pub fn gtk_label_get_selection_bounds(
         self_: *mut GtkLabel,
@@ -13280,6 +13296,9 @@ extern "C" {
     pub fn gtk_label_set_markup_with_mnemonic(self_: *mut GtkLabel, str: *const c_char);
     pub fn gtk_label_set_max_width_chars(self_: *mut GtkLabel, n_chars: c_int);
     pub fn gtk_label_set_mnemonic_widget(self_: *mut GtkLabel, widget: *mut GtkWidget);
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_label_set_natural_wrap_mode(self_: *mut GtkLabel, wrap_mode: GtkNaturalWrapMode);
     pub fn gtk_label_set_selectable(self_: *mut GtkLabel, setting: gboolean);
     pub fn gtk_label_set_single_line_mode(self_: *mut GtkLabel, single_line_mode: gboolean);
     pub fn gtk_label_set_text(self_: *mut GtkLabel, str: *const c_char);
@@ -16313,6 +16332,11 @@ extern "C" {
     //=========================================================================
     pub fn gtk_text_child_anchor_get_type() -> GType;
     pub fn gtk_text_child_anchor_new() -> *mut GtkTextChildAnchor;
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_text_child_anchor_new_with_replacement(
+        character: *const c_char,
+    ) -> *mut GtkTextChildAnchor;
     pub fn gtk_text_child_anchor_get_deleted(anchor: *mut GtkTextChildAnchor) -> gboolean;
     pub fn gtk_text_child_anchor_get_widgets(
         anchor: *mut GtkTextChildAnchor,

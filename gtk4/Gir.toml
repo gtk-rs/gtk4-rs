@@ -147,6 +147,7 @@ generate = [
     "Gtk.MovementStep",
     "Gtk.MultiFilter",
     "Gtk.MultiSorter",
+    "Gtk.NaturalWrapMode",
     "Gtk.NeverTrigger",
     "Gtk.NotebookTab",
     "Gtk.NothingAction",
