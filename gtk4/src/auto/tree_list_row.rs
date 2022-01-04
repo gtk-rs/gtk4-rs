@@ -22,6 +22,7 @@ glib::wrapper! {
 impl TreeListRow {
     #[doc(alias = "gtk_tree_list_row_get_child_row")]
     #[doc(alias = "get_child_row")]
+    #[must_use]
     pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_row_get_child_row(
@@ -57,6 +58,7 @@ impl TreeListRow {
 
     #[doc(alias = "gtk_tree_list_row_get_parent")]
     #[doc(alias = "get_parent")]
+    #[must_use]
     pub fn parent(&self) -> Option<TreeListRow> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_parent(self.to_glib_none().0)) }
     }

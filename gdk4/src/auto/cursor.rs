@@ -61,6 +61,7 @@ impl Cursor {
 
     #[doc(alias = "gdk_cursor_get_fallback")]
     #[doc(alias = "get_fallback")]
+    #[must_use]
     pub fn fallback(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_fallback(self.to_glib_none().0)) }
     }
