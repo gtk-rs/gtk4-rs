@@ -525,7 +525,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_buffer")]
     #[doc(alias = "get_buffer")]
-    pub fn buffer(&self) -> Option<TextBuffer> {
+    pub fn buffer(&self) -> TextBuffer {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_buffer(self.to_glib_none().0)) }
     }
 
@@ -552,7 +552,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_child_anchor")]
     #[doc(alias = "get_child_anchor")]
-    pub fn child_anchor(&self) -> Option<TextChildAnchor> {
+    pub fn child_anchor(&self) -> TextChildAnchor {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_child_anchor(self.to_glib_none().0)) }
     }
 
@@ -598,13 +598,13 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_paintable")]
     #[doc(alias = "get_paintable")]
-    pub fn paintable(&self) -> Option<gdk::Paintable> {
+    pub fn paintable(&self) -> gdk::Paintable {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_slice")]
     #[doc(alias = "get_slice")]
-    pub fn slice(&self, end: &TextIter) -> Option<glib::GString> {
+    pub fn slice(&self, end: &TextIter) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_slice(
                 self.to_glib_none().0,
@@ -625,7 +625,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_text")]
     #[doc(alias = "get_text")]
-    pub fn text(&self, end: &TextIter) -> Option<glib::GString> {
+    pub fn text(&self, end: &TextIter) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_text(
                 self.to_glib_none().0,
@@ -659,7 +659,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_visible_slice")]
     #[doc(alias = "get_visible_slice")]
-    pub fn visible_slice(&self, end: &TextIter) -> Option<glib::GString> {
+    pub fn visible_slice(&self, end: &TextIter) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_visible_slice(
                 self.to_glib_none().0,
@@ -670,7 +670,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_visible_text")]
     #[doc(alias = "get_visible_text")]
-    pub fn visible_text(&self, end: &TextIter) -> Option<glib::GString> {
+    pub fn visible_text(&self, end: &TextIter) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_visible_text(
                 self.to_glib_none().0,

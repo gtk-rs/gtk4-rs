@@ -658,7 +658,7 @@ pub trait TextViewExt: 'static {
 
     #[doc(alias = "gtk_text_view_get_extra_menu")]
     #[doc(alias = "get_extra_menu")]
-    fn extra_menu(&self) -> Option<gio::MenuModel>;
+    fn extra_menu(&self) -> gio::MenuModel;
 
     #[doc(alias = "gtk_text_view_get_gutter")]
     #[doc(alias = "get_gutter")]
@@ -1163,7 +1163,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn extra_menu(&self) -> Option<gio::MenuModel> {
+    fn extra_menu(&self) -> gio::MenuModel {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_extra_menu(
                 self.as_ref().to_glib_none().0,
