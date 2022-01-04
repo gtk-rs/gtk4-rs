@@ -365,7 +365,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_template_child")]
     #[doc(alias = "get_template_child")]
-    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object>;
+    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> glib::Object;
 
     #[doc(alias = "gtk_widget_get_tooltip_markup")]
     #[doc(alias = "get_tooltip_markup")]
@@ -1344,7 +1344,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object> {
+    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> glib::Object {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_template_child(
                 self.as_ref().to_glib_none().0,

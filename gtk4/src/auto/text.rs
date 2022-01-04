@@ -93,7 +93,7 @@ impl Text {
 
     #[doc(alias = "gtk_text_get_buffer")]
     #[doc(alias = "get_buffer")]
-    pub fn buffer(&self) -> Option<EntryBuffer> {
+    pub fn buffer(&self) -> EntryBuffer {
         unsafe { from_glib_none(ffi::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 

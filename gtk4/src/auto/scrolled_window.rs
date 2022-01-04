@@ -62,7 +62,7 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_get_hadjustment")]
     #[doc(alias = "get_hadjustment")]
-    pub fn hadjustment(&self) -> Option<Adjustment> {
+    pub fn hadjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hadjustment(
                 self.to_glib_none().0,
@@ -82,7 +82,7 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_get_hscrollbar")]
     #[doc(alias = "get_hscrollbar")]
-    pub fn hscrollbar(&self) -> Option<Widget> {
+    pub fn hscrollbar(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hscrollbar(
                 self.to_glib_none().0,
@@ -183,7 +183,7 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_get_vadjustment")]
     #[doc(alias = "get_vadjustment")]
-    pub fn vadjustment(&self) -> Option<Adjustment> {
+    pub fn vadjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vadjustment(
                 self.to_glib_none().0,
@@ -193,7 +193,7 @@ impl ScrolledWindow {
 
     #[doc(alias = "gtk_scrolled_window_get_vscrollbar")]
     #[doc(alias = "get_vscrollbar")]
-    pub fn vscrollbar(&self) -> Option<Widget> {
+    pub fn vscrollbar(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vscrollbar(
                 self.to_glib_none().0,

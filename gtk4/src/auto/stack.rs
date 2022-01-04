@@ -112,7 +112,7 @@ impl Stack {
 
     #[doc(alias = "gtk_stack_get_page")]
     #[doc(alias = "get_page")]
-    pub fn page(&self, child: &impl IsA<Widget>) -> Option<StackPage> {
+    pub fn page(&self, child: &impl IsA<Widget>) -> StackPage {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_page(
                 self.to_glib_none().0,

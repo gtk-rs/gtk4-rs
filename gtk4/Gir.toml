@@ -26,11 +26,13 @@ generate = [
     "Gtk.AccessibleState",
     "Gtk.AccessibleTristate",
     "Gtk.ActionBar",
+    "Gtk.ActivateAction",
     "Gtk.Adjustment",
     "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AlternativeTrigger",
     "Gtk.AnyFilter",
+    "Gtk.AppChooser",
     "Gtk.AppChooserButton",
     "Gtk.AppChooserDialog",
     "Gtk.AppChooserWidget",
@@ -47,6 +49,7 @@ generate = [
     "Gtk.BorderStyle",
     "Gtk.Box",
     "Gtk.BoxLayout",
+    "Gtk.Buildable",
     "Gtk.BuilderClosureFlags",
     "Gtk.BuilderError",
     "Gtk.BuilderScope",
@@ -140,13 +143,16 @@ generate = [
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
     "Gtk.ListView",
+    "Gtk.LockButton",
     "Gtk.MediaControls",
     "Gtk.MediaFile",
     "Gtk.MessageType",
     "Gtk.MnemonicAction",
+    "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.MultiFilter",
     "Gtk.MultiSorter",
+    "Gtk.Native",
     "Gtk.NaturalWrapMode",
     "Gtk.NeverTrigger",
     "Gtk.NotebookTab",
@@ -163,10 +169,13 @@ generate = [
     "Gtk.PageOrientation",
     "Gtk.PageSet",
     "Gtk.PanDirection",
+    "Gtk.PasswordEntry",
     "Gtk.PasswordEntryBuffer",
     "Gtk.PickFlags",
     "Gtk.PolicyType",
     "Gtk.Popover",
+    "Gtk.PopoverMenu",
+    "Gtk.PopoverMenuBar",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
     "Gtk.PrintDuplex",
@@ -189,6 +198,8 @@ generate = [
     "Gtk.ScaleButton",
     "Gtk.Scrollable",
     "Gtk.ScrollablePolicy",
+    "Gtk.Scrollbar",
+    "Gtk.ScrolledWindow",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
     "Gtk.SearchEntry",
@@ -226,6 +237,7 @@ generate = [
     "Gtk.StringFilter",
     "Gtk.StringFilterMatchMode",
     "Gtk.StringObject",
+    "Gtk.StringSorter",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SymbolicColor",
@@ -234,6 +246,7 @@ generate = [
     "Gtk.TextChildAnchor",
     "Gtk.TextDirection",
     "Gtk.TextExtendSelection",
+    "Gtk.TextMark",
     "Gtk.TextSearchFlags",
     "Gtk.TextTagTable",
     "Gtk.TextViewLayer",
@@ -562,14 +575,6 @@ manual_traits = ["ActionableExtManual"]
     doc_trait_name = "ActionableExtManual"
 
 [[object]]
-name = "Gtk.ActivateAction"
-status = "generate"
-
-[[object]]
-name = "Gtk.AppChooser"
-status = "generate"
-
-[[object]]
 name = "Gtk.Application"
 status = "generate"
 generate_builder = true
@@ -606,14 +611,6 @@ generate_builder  = false # use glib::Priority
     [[object.function]]
     name = "set_io_priority"
     manual = true # return glib::Priority
-
-[[object]]
-name = "Gtk.Buildable"
-status = "generate"
-    [[object.function]]
-    name = "get_buildable_id"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Builder"
@@ -910,10 +907,6 @@ generate_builder = false
 name = "Gtk.CssSection"
 status = "generate"
     [[object.function]]
-    name = "get_file"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
     name = "print"
     ignore = true # Same as CssSection::to_str
 
@@ -1156,14 +1149,6 @@ manual_traits = ["FileChooserExtManual"]
     [[object.function]]
     name = "add_choice"
     manual = true # rust-ify the options param
-    [[object.function]]
-    name = "get_choice"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
-    name = "get_file"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.FileChooserDialog"
@@ -1186,10 +1171,6 @@ generate_builder = false
 name = "Gtk.FlattenListModel"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "get_model_for_item"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.FlowBox"
@@ -1246,10 +1227,6 @@ status = "generate"
 [[object]]
 name = "Gtk.GLArea"
 status = "generate"
-    [[object.function]]
-    name = "get_context"
-        [object.function.return]
-        nullable = true
     [[object.signal]]
     name = "render"
     inhibit = true
@@ -1278,10 +1255,6 @@ status = "generate"
 [[object]]
 name = "Gtk.IconView"
 status = "generate"
-    [[object.function]]
-    name = "create_drag_icon"
-        [object.function.return]
-        nullable = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -1372,10 +1345,6 @@ status = "generate"
 name = "Gtk.ListBox"
 status = "generate"
     [[object.function]]
-    name = "set_adjustment"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
     name = "bind_model"
         [[object.function.parameter]]
         name = "create_widget_func"
@@ -1456,14 +1425,6 @@ final_type = true
     manual = true
 
 [[object]]
-name = "Gtk.LockButton"
-status = "generate"
-    [[object.function]]
-    name = "get_permission"
-        [object.function.return]
-        nullable = true
-
-[[object]]
 name = "Gtk.MapListModel"
 status = "generate"
 generate_builder = false
@@ -1498,14 +1459,6 @@ manual_traits = ["MediaStreamExtManual"]
 name = "Gtk.MenuButton"
 status = "generate"
     [[object.function]]
-    name = "get_label"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
-    name = "get_icon_name"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
     name = "set_create_popup_func"
         [[object.function.parameter]]
         name = "func"
@@ -1527,34 +1480,14 @@ status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
 
 [[object]]
-name = "Gtk.MountOperation"
-status = "generate"
-    [[object.function]]
-    name = "get_parent"
-        [object.function.return]
-        nullable = true
-
-[[object]]
 name = "Gtk.MultiSelection"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "get_model"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.NamedAction"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Gtk.Native"
-status = "generate"
-    [[object.function]]
-    name = "get_for_surface"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.NativeDialog"
@@ -1565,10 +1498,6 @@ manual_traits = ["NativeDialogExtManual"]
 name = "Gtk.NoSelection"
 status = "generate"
 generate_builder = false
-    [[object.function]]
-    name = "get_model"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.Notebook"
@@ -1696,14 +1625,6 @@ status = "generate"
         const = true
 
 [[object]]
-name = "Gtk.PasswordEntry"
-status = "generate"
-    [[object.function]]
-    name = "get_extra_menu"
-        [object.function.return]
-        nullable = true
-
-[[object]]
 name = "Gtk.Picture"
 status = "generate"
     [[object.function]]
@@ -1731,22 +1652,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "resource_path"
         nullable = false
-
-[[object]]
-name = "Gtk.PopoverMenu"
-status = "generate"
-    [[object.function]]
-    name = "get_menu_model"
-        [object.function.return]
-        nullable = true
-
-[[object]]
-name = "Gtk.PopoverMenuBar"
-status = "generate"
-    [[object.function]]
-    name = "get_menu_model"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.PrintCapabilities"
@@ -1803,10 +1708,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "paper_size"
         const = true
-    [[object.function]]
-    pattern = "(get|get_default_source|get_dither|get_finishings|get_media_type|get_output_bin|get_printer)"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.PrintUnixDialog"
@@ -1840,39 +1741,6 @@ manual_traits = ["ScaleExtManual"]
         [[object.function.parameter]]
         name = "func"
         nullable = false
-
-[[object]]
-name = "Gtk.Scrollbar"
-status = "generate"
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_adjustment"
-        [object.function.return]
-        nullable = true
-
-[[object]]
-name = "Gtk.ScrolledWindow"
-status = "generate"
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_hadjustment"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_vadjustment"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_hscrollbar"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_vscrollbar"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.SearchBar"
@@ -1979,10 +1847,6 @@ status = "generate"
 name = "Gtk.Stack"
 status = "generate"
     [[object.function]]
-    name = "get_page"
-        [object.function.return]
-        nullable = true
-    [[object.function]]
     name = "get_interpolate_size"
     rename = "interpolates_size"
 
@@ -1997,10 +1861,6 @@ status = "generate"
     [[object.function]]
     name = "take"
     ignore = true # A C helper, bindings should use append instead
-
-[[object]]
-name = "Gtk.StringSorter"
-status = "generate"
 
 [[object]]
 name = "Gtk.StyleContext"
@@ -2020,11 +1880,6 @@ status = "generate"
     [[object.property]]
     pattern = "*-set" # those properties are read only
     generate = ["get", "notify"]
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_buffer"
-        [object.function.return]
-        nullable = true
 
     [[object.signal]]
     pattern = ".+"
@@ -2067,49 +1922,6 @@ manual_traits = ["TextBufferExtManual"]
 name = "Gtk.TextIter"
 status = "generate"
 boxed_inline = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_buffer"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_slice"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_text"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_visible_slice"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_paintable"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_child_anchor"
-        [object.function.return]
-        nullable = true
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_visible_text"
-        [object.function.return]
-        nullable = true
-
-[[object]]
-name = "Gtk.TextMark"
-status = "generate"
-    [[object.function]]
-    name = "get_buffer"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.TextTag"
@@ -2137,11 +1949,6 @@ status = "generate"
 name = "Gtk.TextView"
 status = "generate"
 manual_traits = ["TextViewExtManual"]
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_extra_menu"
-        [object.function.return]
-        nullable = true
     [[object.function]]
     name = "im_context_filter_keypress"
     manual = true # to handle gdk::Event
@@ -2612,11 +2419,6 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "activate_action"
     ignore = true # we use activate_action_variant instead
-    # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/2887
-    [[object.function]]
-    name = "get_template_child"
-        [object.function.return]
-        nullable = true
     [[object.function]]
     name = "input_shape_combine_region"
         [[object.function.parameter]]

@@ -246,10 +246,6 @@ status = "generate"
     name = "get_gtype"
     rename = "type_"
     [[object.function]]
-    name = "get_cancellable"
-        [object.function.return]
-        nullable = true # TODO: fixme upstream
-    [[object.function]]
     name = "get_task_data"
     ignore = true # unsafe
     [[object.function]]
@@ -343,10 +339,6 @@ status = "generate"
     [[object.function]]
     name = "get_gtype"
     rename = "type_"
-    [[object.function]]
-    name = "get_cancellable"
-        [object.function.return]
-        nullable = true # TODO: fixme upstream
     [[object.function]]
     name = "get_task_data"
     ignore = true # unsafe
@@ -451,10 +443,6 @@ status = "generate"
 name = "Gdk.Event"
 status = "generate"
 generate_display_trait = false
-    [[object.function]]
-    name = "get_surface"
-        [object.function.return]
-        nullable = true # TODO: fixme upstream
 
 [[object]]
 name = "Gdk.FileList"
@@ -549,10 +537,6 @@ generate_display_trait = false
 [[object]]
 name = "Gdk.Popup"
 status = "generate"
-    [[object.function]]
-    name = "get_parent"
-        [object.function.return]
-        nullable = true # TODO: fixme upstream
 
 [[object]]
 name = "Gdk.PopupLayout"
