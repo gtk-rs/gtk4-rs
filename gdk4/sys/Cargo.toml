@@ -71,6 +71,7 @@ version = "0.15"
 
 [build-dependencies]
 system-deps = "6"
+pkg-config = "0.3.24"
 
 [dev-dependencies]
 shell-words = "1.0.0"
