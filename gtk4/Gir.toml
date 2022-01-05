@@ -173,7 +173,6 @@ generate = [
     "Gtk.PasswordEntryBuffer",
     "Gtk.PickFlags",
     "Gtk.PolicyType",
-    "Gtk.Popover",
     "Gtk.PopoverMenu",
     "Gtk.PopoverMenuBar",
     "Gtk.PopoverMenuFlags",
@@ -1651,6 +1650,14 @@ status = "generate"
     name = "new_for_resource"
         [[object.function.parameter]]
         name = "resource_path"
+        nullable = false
+
+[[object]]
+name = "Gtk.Popover"
+status = "generate"
+    [[object.function]]
+    name = "get_pointing_to"
+        [object.function.return]
         nullable = false
 
 [[object]]

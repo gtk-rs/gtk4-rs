@@ -453,7 +453,7 @@ pub trait PopoverExt: 'static {
 
     #[doc(alias = "gtk_popover_get_pointing_to")]
     #[doc(alias = "get_pointing_to")]
-    fn pointing_to(&self) -> Option<gdk::Rectangle>;
+    fn pointing_to(&self) -> (bool, gdk::Rectangle);
 
     #[doc(alias = "gtk_popover_get_position")]
     #[doc(alias = "get_position")]
@@ -583,18 +583,14 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn pointing_to(&self) -> Option<gdk::Rectangle> {
+    fn pointing_to(&self) -> (bool, gdk::Rectangle) {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             let ret = from_glib(ffi::gtk_popover_get_pointing_to(
                 self.as_ref().to_glib_none().0,
                 rect.to_glib_none_mut().0,
             ));
-            if ret {
-                Some(rect)
-            } else {
-                None
-            }
+            (ret, rect)
         }
     }
 
