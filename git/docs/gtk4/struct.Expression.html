@@ -144,7 +144,7 @@ to store the <a href="struct.Expression.html" title="crate::Expression"><code>Ex
     break;</code></pre></div><h3 id="gtkexpression-in-ui-files" class="section-header"><a href="#gtkexpression-in-ui-files">GtkExpression in .ui files</a></h3>
 <p><a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a> has support for creating expressions. The syntax here can be used where
 a <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> object is needed like in a <code>&lt;property&gt;</code> tag for an expression
-property, or in a <code>&lt;binding&gt;</code> tag to bind a property to an expression.</p>
+property, or in a <code>&lt;binding name=&quot;property&quot;&gt;</code> tag to bind a property to an expression.</p>
 <p>To create an property expression, use the <code>&lt;lookup&gt;</code> element. It can have a <code>type</code>
 attribute to specify the object type, and a <code>name</code> attribute to specify the property
 to look up. The content of <code>&lt;lookup&gt;</code> can either be an element specfiying the expression

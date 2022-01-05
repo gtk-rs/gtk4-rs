@@ -909,7 +909,7 @@
     <span class="doccomment">/// The following example shows you how to create a more complex search</span>
     <span class="doccomment">/// entry.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [A simple example](https://gitlab.gnome.org/GNOME/gtk/tree/master/examples/search-bar.c)</span>
+    <span class="doccomment">/// [A simple example](https://gitlab.gnome.org/GNOME/gtk/tree/main/examples/search-bar.c)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
@@ -1000,7 +1000,7 @@
     <span class="doccomment">/// The key capture widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_search_bar_get_key_capture_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_key_capture_widget&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_capture_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Widget</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_capture_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_search_bar_get_key_capture_widget</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

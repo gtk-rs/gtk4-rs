@@ -999,7 +999,7 @@
     <span class="doccomment">/// Note: if a sequence is set early to [`EventSequenceState::Claimed`][crate::EventSequenceState::Claimed] on</span>
     <span class="doccomment">/// `GDK_TOUCH_BEGIN`/`GDK_BUTTON_PRESS` (so those events are captured before</span>
     <span class="doccomment">/// reaching the event widget, this implies [`PropagationPhase::Capture`][crate::PropagationPhase::Capture]), one similar</span>
-    <span class="doccomment">/// event will emulated if the sequence changes to [`EventSequenceState::Denied`][crate::EventSequenceState::Denied].</span>
+    <span class="doccomment">/// event will be emulated if the sequence changes to [`EventSequenceState::Denied`][crate::EventSequenceState::Denied].</span>
     <span class="doccomment">/// This way event coherence is preserved before event propagation is unstopped</span>
     <span class="doccomment">/// again.</span>
     <span class="doccomment">///</span>

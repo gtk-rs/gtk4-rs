@@ -6884,7 +6884,7 @@
     <span class="doccomment">///   the id @name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_get_template_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_template_child&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">template_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget_type</span>: <span class="ident">glib::types::Type</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">template_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget_type</span>: <span class="ident">glib::types::Type</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">glib::Object</span>;
 
     <span class="doccomment">/// Gets the contents of the tooltip for @self.</span>
     <span class="doccomment">///</span>
@@ -7298,11 +7298,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `minimum_baseline`</span>
     <span class="doccomment">/// location to store the baseline</span>
-    <span class="doccomment">///   position for the minimum size</span>
+    <span class="doccomment">///   position for the minimum size, or -1 to report no baseline</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `natural_baseline`</span>
     <span class="doccomment">/// location to store the baseline</span>
-    <span class="doccomment">///   position for the natural size</span>
+    <span class="doccomment">///   position for the natural size, or -1 to report no baseline</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_measure&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">measure</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">Orientation</span>, <span class="ident">for_size</span>: <span class="ident">i32</span>) -&gt; (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">i32</span>);
 
@@ -8887,7 +8887,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">template_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget_type</span>: <span class="ident">glib::types::Type</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">template_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget_type</span>: <span class="ident">glib::types::Type</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">glib::Object</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_widget_get_template_child</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,

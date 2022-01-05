@@ -133,7 +133,7 @@ underneath in the propagation chain.</li>
 <p>Note: if a sequence is set early to <a href="enum.EventSequenceState.html#variant.Claimed" title="crate::EventSequenceState::Claimed"><code>EventSequenceState::Claimed</code></a> on
 <code>GDK_TOUCH_BEGIN</code>/<code>GDK_BUTTON_PRESS</code> (so those events are captured before
 reaching the event widget, this implies <a href="enum.PropagationPhase.html#variant.Capture" title="crate::PropagationPhase::Capture"><code>PropagationPhase::Capture</code></a>), one similar
-event will emulated if the sequence changes to <a href="enum.EventSequenceState.html#variant.Denied" title="crate::EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a>.
+event will be emulated if the sequence changes to <a href="enum.EventSequenceState.html#variant.Denied" title="crate::EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a>.
 This way event coherence is preserved before event propagation is unstopped
 again.</p>
 <p>Sequence states can’t be changed freely.
