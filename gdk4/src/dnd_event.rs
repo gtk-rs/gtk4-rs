@@ -9,7 +9,7 @@ define_event! {
     &[EventType::DragEnter, EventType::DragLeave, EventType::DragMotion, EventType::DropStart]
 }
 
-impl fmt::Display for DNDEvent {
+impl fmt::Debug for DNDEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("DNDEvent")
             .field("drop", &self.drop())

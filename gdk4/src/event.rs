@@ -91,7 +91,7 @@ impl Event {
     }
 }
 
-impl fmt::Display for Event {
+impl fmt::Debug for Event {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("Event")
             .field("event_type", &self.event_type())
@@ -102,12 +102,6 @@ impl fmt::Display for Event {
             .field("time", &self.time())
             .field("triggers_context_menu", &self.triggers_context_menu())
             .finish()
-    }
-}
-
-impl fmt::Debug for Event {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_fmt(format_args!("{}", self))
     }
 }
 
@@ -166,12 +160,6 @@ macro_rules! define_event {
 
             pub fn upcast_ref(&self) -> &crate::Event {
                 &*self
-            }
-        }
-
-        impl std::fmt::Debug for $rust_type {
-            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                f.write_fmt(format_args!("{}", self))
             }
         }
     };

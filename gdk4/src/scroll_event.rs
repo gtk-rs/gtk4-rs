@@ -9,7 +9,7 @@ define_event! {
     &[EventType::Scroll]
 }
 
-impl fmt::Display for ScrollEvent {
+impl fmt::Debug for ScrollEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("ScrollEvent")
             .field("deltas", &self.deltas())

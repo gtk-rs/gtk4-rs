@@ -7,3 +7,11 @@ define_render_node!(
     ffi::GskTextureNode,
     RenderNodeType::TextureNode
 );
+
+impl std::fmt::Debug for TextureNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("TextureNode")
+            .field("texture", &self.texture())
+            .finish()
+    }
+}

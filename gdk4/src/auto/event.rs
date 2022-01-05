@@ -14,6 +14,7 @@ use crate::Surface;
 use crate::TimeCoord;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 use std::mem;
 use std::ptr;
 
@@ -201,5 +202,11 @@ impl Event {
                 self.as_ref().to_glib_none().0,
             ))
         }
+    }
+}
+
+impl fmt::Display for Event {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("Event")
     }
 }

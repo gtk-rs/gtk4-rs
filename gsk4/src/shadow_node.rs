@@ -12,3 +12,12 @@ impl ShadowNode {
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_shadow(self.to_glib_none().0, i)) }
     }
 }
+
+impl std::fmt::Debug for ShadowNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("ShadowNode")
+            .field("n_shadows", &self.n_shadows())
+            .field("child", &self.child())
+            .finish()
+    }
+}

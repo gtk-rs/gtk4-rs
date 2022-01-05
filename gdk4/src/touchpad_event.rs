@@ -9,7 +9,7 @@ define_event! {
     &[EventType::TouchpadSwipe, EventType::TouchpadPinch]
 }
 
-impl fmt::Display for TouchpadEvent {
+impl fmt::Debug for TouchpadEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("TouchpadEvent")
             .field("deltas", &self.deltas())

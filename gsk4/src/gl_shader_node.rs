@@ -22,3 +22,13 @@ impl GLShaderNode {
         }
     }
 }
+
+impl std::fmt::Debug for GLShaderNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("GLShaderNode")
+            .field("args", &self.args())
+            .field("n_children", &self.n_children())
+            .field("shader", &self.shader())
+            .finish()
+    }
+}

@@ -9,7 +9,7 @@ define_event! {
     &[EventType::ButtonPress, EventType::ButtonRelease]
 }
 
-impl fmt::Display for ButtonEvent {
+impl fmt::Debug for ButtonEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("ButtonEvent")
             .field("button", &self.button())

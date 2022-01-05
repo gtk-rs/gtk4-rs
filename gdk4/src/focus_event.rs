@@ -9,7 +9,7 @@ define_event! {
     &[EventType::FocusChange]
 }
 
-impl fmt::Display for FocusEvent {
+impl fmt::Debug for FocusEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("FocusEvent")
             .field("in", &self.is_in())

@@ -6,6 +6,7 @@ use crate::Event;
 use crate::ModifierType;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkKeyEvent")]
@@ -55,5 +56,11 @@ impl KeyEvent {
     #[doc(alias = "gdk_key_event_is_modifier")]
     pub fn is_modifier(&self) -> bool {
         unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
+    }
+}
+
+impl fmt::Display for KeyEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("KeyEvent")
     }
 }

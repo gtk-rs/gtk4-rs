@@ -6,6 +6,7 @@ use crate::Event;
 use crate::Surface;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkGrabBrokenEvent")]
@@ -42,5 +43,11 @@ impl GrabBrokenEvent {
                 self.to_glib_none().0,
             ))
         }
+    }
+}
+
+impl fmt::Display for GrabBrokenEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("GrabBrokenEvent")
     }
 }

@@ -5,6 +5,7 @@
 use crate::Event;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkFocusEvent")]
@@ -27,5 +28,11 @@ impl FocusEvent {
     #[doc(alias = "get_in")]
     pub fn is_in(&self) -> bool {
         unsafe { from_glib(ffi::gdk_focus_event_get_in(self.to_glib_none().0)) }
+    }
+}
+
+impl fmt::Display for FocusEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("FocusEvent")
     }
 }
