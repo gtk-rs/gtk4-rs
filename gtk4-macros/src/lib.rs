@@ -18,13 +18,8 @@ use syn::{parse_macro_input, DeriveInput};
 /// The `template` attribute specifies where the template should be loaded
 /// from;  it can be a `file`, a `resource`, or a `string`.
 ///
-/// The `callbacks` attribute specifies this template has bound callbacks.
-/// See [`macro@template_callbacks`] for a description of how to use them.
-///
 /// The `template_child` attribute is used to mark all internal widgets
-/// we need to have programmatic access to.
-///
-/// The `template_child` attribute can take two parameters:
+/// we need to have programmatic access to. It can take two parameters:
 /// - `id` which defaults to the item name if not defined
 /// - `internal_child` whether the child should be accessible as an “internal-child”, defaults to `false`
 ///
