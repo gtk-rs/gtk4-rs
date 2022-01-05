@@ -134,6 +134,16 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ConstantExpression</span>;
@@ -171,6 +181,16 @@
         <span class="ident">value</span>
             .<span class="ident">get_owned</span>::<span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span>()
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to get ConstantExpression value&quot;</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ConstantExpression</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ConstantExpression&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;value_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_type</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;is_static&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">is_static</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value</span>())
+            .<span class="ident">finish</span>()
     }
 }
 

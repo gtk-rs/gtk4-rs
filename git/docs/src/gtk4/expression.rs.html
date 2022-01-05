@@ -378,6 +378,15 @@
 <span id="303">303</span>
 <span id="304">304</span>
 <span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Expression</span>;
@@ -515,6 +524,15 @@
         <span class="ident">R</span>: <span class="ident">glib::value::ValueType</span>,
     {
         <span class="ident"><span class="kw">crate</span>::ClosureExpression::with_callback</span>(<span class="kw-2">&amp;</span>[<span class="self">self</span>], <span class="ident">f</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Expression</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Expression&quot;</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;value_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_type</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;is_static&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">is_static</span>())
+            .<span class="ident">finish</span>()
     }
 }
 
