@@ -9,7 +9,7 @@ define_event! {
     &[EventType::TouchBegin, EventType::TouchUpdate, EventType::TouchEnd, EventType::TouchCancel]
 }
 
-impl fmt::Display for TouchEvent {
+impl fmt::Debug for TouchEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("TouchEvent")
             .field("is_emulating_pointer", &self.is_emulating_pointer())

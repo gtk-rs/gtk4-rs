@@ -9,7 +9,7 @@ define_event! {
     &[EventType::GrabBroken]
 }
 
-impl fmt::Display for GrabBrokenEvent {
+impl fmt::Debug for GrabBrokenEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("GrabBrokenEvent")
             .field("grab_surface", &self.grab_surface())

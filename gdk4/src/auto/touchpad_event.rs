@@ -6,6 +6,7 @@ use crate::Event;
 use crate::TouchpadGesturePhase;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 use std::mem;
 
 glib::wrapper! {
@@ -68,5 +69,11 @@ impl TouchpadEvent {
     #[doc(alias = "get_pinch_scale")]
     pub fn pinch_scale(&self) -> f64 {
         unsafe { ffi::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
+    }
+}
+
+impl fmt::Display for TouchpadEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("TouchpadEvent")
     }
 }

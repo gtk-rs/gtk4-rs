@@ -7,3 +7,12 @@ define_render_node!(
     ffi::GskTransformNode,
     RenderNodeType::TransformNode
 );
+
+impl std::fmt::Debug for TransformNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("TransformNode")
+            .field("child", &self.child())
+            .field("transform", &self.transform())
+            .finish()
+    }
+}

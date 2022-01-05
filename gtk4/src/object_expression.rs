@@ -5,6 +5,16 @@ use glib::translate::*;
 
 define_expression!(ObjectExpression, ffi::GtkObjectExpression);
 
+impl std::fmt::Debug for ObjectExpression {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("ObjectExpression")
+            .field("value_type", &self.value_type())
+            .field("is_static", &self.is_static())
+            .field("object", &self.object())
+            .finish()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

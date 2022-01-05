@@ -51,7 +51,7 @@ impl KeyEvent {
     }
 }
 
-impl fmt::Display for KeyEvent {
+impl fmt::Debug for KeyEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("KeyEvent")
             .field("consumed_modifiers", &self.consumed_modifiers())

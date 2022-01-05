@@ -5,6 +5,7 @@
 use crate::Event;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 use std::mem;
 
 glib::wrapper! {
@@ -62,5 +63,11 @@ impl PadEvent {
             let mode = mode.assume_init();
             (group, mode)
         }
+    }
+}
+
+impl fmt::Display for PadEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("PadEvent")
     }
 }

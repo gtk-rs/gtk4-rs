@@ -7,3 +7,13 @@ define_render_node!(
     ffi::GskCrossFadeNode,
     RenderNodeType::CrossFadeNode
 );
+
+impl std::fmt::Debug for CrossFadeNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("CrossFadeNode")
+            .field("start_child", &self.start_child())
+            .field("end_child", &self.end_child())
+            .field("progress", &self.progress())
+            .finish()
+    }
+}

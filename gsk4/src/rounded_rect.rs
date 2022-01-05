@@ -131,4 +131,27 @@ impl RoundedRect {
             ))
         }
     }
+
+    pub fn bounds(&self) -> &graphene::Rect {
+        unsafe {
+            &*(&self.0.bounds as *const graphene::ffi::graphene_rect_t as *const graphene::Rect)
+        }
+    }
+
+    pub fn corner(&self) -> &[graphene::Size; 4] {
+        unsafe {
+            &*(&self.0.corner as *const [graphene::ffi::graphene_size_t; 4]
+                as *const [graphene::Size; 4])
+        }
+    }
+}
+
+impl std::fmt::Debug for RoundedRect {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("RoundedRect")
+            .field("is_rectilinear", &self.is_rectilinear())
+            .field("bounds", &self.bounds())
+            .field("corner", &self.corner())
+            .finish()
+    }
 }

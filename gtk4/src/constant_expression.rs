@@ -30,6 +30,16 @@ impl ConstantExpression {
     }
 }
 
+impl std::fmt::Debug for ConstantExpression {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("ConstantExpression")
+            .field("value_type", &self.value_type())
+            .field("is_static", &self.is_static())
+            .field("value", &self.value())
+            .finish()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

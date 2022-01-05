@@ -5,6 +5,7 @@
 use crate::Event;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkButtonEvent")]
@@ -27,5 +28,11 @@ impl ButtonEvent {
     #[doc(alias = "get_button")]
     pub fn button(&self) -> u32 {
         unsafe { ffi::gdk_button_event_get_button(self.to_glib_none().0) }
+    }
+}
+
+impl fmt::Display for ButtonEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("ButtonEvent")
     }
 }

@@ -35,3 +35,13 @@ impl BorderNode {
         unsafe { &*ffi::gsk_border_node_get_widths(self.to_glib_none().0) }
     }
 }
+
+impl std::fmt::Debug for BorderNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("BorderNode")
+            .field("colors", &self.colors())
+            .field("widths", &self.widths())
+            .field("outline", &self.outline())
+            .finish()
+    }
+}

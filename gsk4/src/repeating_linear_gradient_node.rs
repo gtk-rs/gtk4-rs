@@ -7,3 +7,9 @@ define_render_node!(
     ffi::GskRepeatingLinearGradientNode,
     RenderNodeType::RepeatingLinearGradientNode
 );
+
+impl std::fmt::Debug for RepeatingLinearGradientNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("RepeatingLinearGradientNode").finish()
+    }
+}

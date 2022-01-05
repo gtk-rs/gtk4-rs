@@ -5,6 +5,17 @@ use glib::translate::*;
 
 define_expression!(PropertyExpression, ffi::GtkPropertyExpression);
 
+impl std::fmt::Debug for PropertyExpression {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("PropertyExpression")
+            .field("value_type", &self.value_type())
+            .field("is_static", &self.is_static())
+            .field("pspec", &self.pspec())
+            .field("expression", &self.expression())
+            .finish()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

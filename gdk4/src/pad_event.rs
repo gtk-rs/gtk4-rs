@@ -9,7 +9,7 @@ define_event! {
     &[EventType::PadButtonPress, EventType::PadButtonRelease, EventType::PadRing, EventType::PadStrip, EventType::PadGroupMode]
 }
 
-impl fmt::Display for PadEvent {
+impl fmt::Debug for PadEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("PadEvent")
             .field("axis_value", &self.axis_value())

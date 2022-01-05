@@ -6,6 +6,7 @@ use crate::Event;
 use crate::ScrollDirection;
 use glib::translate::*;
 use glib::StaticType;
+use std::fmt;
 use std::mem;
 
 glib::wrapper! {
@@ -51,5 +52,11 @@ impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_is_stop")]
     pub fn is_stop(&self) -> bool {
         unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
+    }
+}
+
+impl fmt::Display for ScrollEvent {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("ScrollEvent")
     }
 }

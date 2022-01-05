@@ -70,6 +70,15 @@ impl RenderNode {
     }
 }
 
+impl std::fmt::Debug for RenderNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("RenderNode")
+            .field("bounds", &self.bounds())
+            .field("node_type", &self.node_type())
+            .finish()
+    }
+}
+
 // rustdoc-stripper-ignore-next
 /// A common trait implemented by the various [`RenderNode`](crate::RenderNode) types.
 ///

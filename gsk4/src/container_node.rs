@@ -22,3 +22,11 @@ impl ContainerNode {
         }
     }
 }
+
+impl std::fmt::Debug for ContainerNode {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        f.debug_struct("ContainerNode")
+            .field("n_children", &self.n_children())
+            .finish()
+    }
+}
