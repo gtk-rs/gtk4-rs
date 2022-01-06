@@ -12,18 +12,20 @@ glib::wrapper! {
 impl ColorStop {
     pub fn new(offset: f32, color: RGBA) -> Self {
         assert_initialized_main_thread!();
-        Self(ffi::GskColorStop {
-            offset,
-            color: unsafe { *color.to_glib_none().0 },
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GskColorStop {
+                offset,
+                color: *color.to_glib_none().0,
+            })
+        }
     }
 
     pub fn offset(&self) -> f32 {
-        self.0.offset
+        self.inner.offset
     }
 
-    pub fn color(&self) -> RGBA {
-        unsafe { from_glib_none(&self.0.color as *const _) }
+    pub fn color(&self) -> &RGBA {
+        unsafe { &*(&self.inner.color as *const gdk::ffi::GdkRGBA as *const RGBA) }
     }
 }
 

@@ -12,28 +12,30 @@ glib::wrapper! {
 impl Shadow {
     pub fn new(color: RGBA, dx: f32, dy: f32, radius: f32) -> Self {
         assert_initialized_main_thread!();
-        Self(ffi::GskShadow {
-            color: unsafe { *color.to_glib_none().0 },
-            dx,
-            dy,
-            radius,
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GskShadow {
+                color: *color.to_glib_none().0,
+                dx,
+                dy,
+                radius,
+            })
+        }
     }
 
-    pub fn color(&self) -> RGBA {
-        unsafe { from_glib_none(&self.0.color as *const _) }
+    pub fn color(&self) -> &RGBA {
+        unsafe { &*(&self.inner.color as *const gdk::ffi::GdkRGBA as *const RGBA) }
     }
 
     pub fn dx(&self) -> f32 {
-        self.0.dx
+        self.inner.dx
     }
 
     pub fn dy(&self) -> f32 {
-        self.0.dy
+        self.inner.dy
     }
 
     pub fn radius(&self) -> f32 {
-        self.0.radius
+        self.inner.radius
     }
 }
 

@@ -12,23 +12,25 @@ glib::wrapper! {
 impl TimeCoord {
     pub fn new(time: u32, axes: [f64; 12], flags: AxisFlags) -> Self {
         assert_initialized_main_thread!();
-        Self(ffi::GdkTimeCoord {
-            time,
-            axes,
-            flags: flags.into_glib(),
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GdkTimeCoord {
+                time,
+                axes,
+                flags: flags.into_glib(),
+            })
+        }
     }
 
     pub fn time(&self) -> u32 {
-        self.0.time
+        self.inner.time
     }
 
     pub fn axes(&self) -> &[f64; 12] {
-        &self.0.axes
+        &self.inner.axes
     }
 
     pub fn flags(&self) -> AxisFlags {
-        unsafe { from_glib(self.0.flags) }
+        unsafe { from_glib(self.inner.flags) }
     }
 }
 
