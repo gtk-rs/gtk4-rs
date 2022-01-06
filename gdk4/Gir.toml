@@ -44,7 +44,6 @@ generate = [
     "Gdk.Gravity",
     "Gdk.InputSource",
     "Gdk.KeyMatch",
-    "Gdk.MemoryTexture",
     "Gdk.ModifierType",
     "Gdk.MotionEvent",
     "Gdk.NotifyType",
@@ -451,6 +450,7 @@ final_type = false
 [[object]]
 name = "Gdk.GLTexture"
 status = "generate"
+concurrency = "send+sync"
     [[object.function]]
     name = "new"
     manual = true
@@ -501,6 +501,11 @@ status = "generate"
     [[object.member]]
     name = "n_formats"
     alias = true # not useful
+
+[[object]]
+name = "Gdk.MemoryTexture"
+status = "generate"
+concurrency = "send+sync"
 
 [[object]]
 name = "Gdk.Monitor"
@@ -566,6 +571,7 @@ manual_traits = ["SurfaceExtManual"]
 name = "Gdk.Texture"
 status = "generate"
 manual_traits = ["TextureExtManual"]
+concurrency = "send+sync"
     [[object.function]]
     name = "download"
     doc_trait_name = "TextureExtManual"

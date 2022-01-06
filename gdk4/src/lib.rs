@@ -3,6 +3,7 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::type_complexity)]
 #![allow(clippy::derive_hash_xor_eq)]
+#![allow(clippy::non_send_fields_in_send_ty)]
 #![allow(clippy::too_many_arguments)]
 #![doc = include_str!("../README.md")]
 
