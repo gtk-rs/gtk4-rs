@@ -25,6 +25,9 @@ impl GLTexture {
     }
 }
 
+unsafe impl Send for GLTexture {}
+unsafe impl Sync for GLTexture {}
+
 impl fmt::Display for GLTexture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("GLTexture")

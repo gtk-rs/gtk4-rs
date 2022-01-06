@@ -89,6 +89,9 @@ impl Texture {
     }
 }
 
+unsafe impl Send for Texture {}
+unsafe impl Sync for Texture {}
+
 pub trait TextureExt: 'static {
     #[doc(alias = "gdk_texture_get_height")]
     #[doc(alias = "get_height")]
