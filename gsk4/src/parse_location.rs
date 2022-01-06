@@ -9,23 +9,23 @@ glib::wrapper! {
 
 impl ParseLocation {
     pub fn bytes(&self) -> usize {
-        self.0.bytes
+        self.inner.bytes
     }
 
     pub fn chars(&self) -> usize {
-        self.0.chars
+        self.inner.chars
     }
 
     pub fn lines(&self) -> usize {
-        self.0.lines
+        self.inner.lines
     }
 
     pub fn line_bytes(&self) -> usize {
-        self.0.line_bytes
+        self.inner.line_bytes
     }
 
     pub fn line_chars(&self) -> usize {
-        self.0.line_chars
+        self.inner.line_chars
     }
 }
 

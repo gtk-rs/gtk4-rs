@@ -2,8 +2,8 @@
 
 use crate::RGBA;
 use glib::translate::*;
-use std::fmt;
 use std::str::FromStr;
+use std::{fmt, marker::PhantomData};
 
 #[derive(Debug, Default)]
 // rustdoc-stripper-ignore-next
@@ -69,12 +69,14 @@ impl RGBABuilder {
 impl RGBA {
     pub fn new(red: f32, green: f32, blue: f32, alpha: f32) -> RGBA {
         skip_assert_initialized!();
-        RGBA(ffi::GdkRGBA {
-            red,
-            green,
-            blue,
-            alpha,
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GdkRGBA {
+                red,
+                green,
+                blue,
+                alpha,
+            })
+        }
     }
 
     // rustdoc-stripper-ignore-next
@@ -86,35 +88,35 @@ impl RGBA {
     }
 
     pub fn red(&self) -> f32 {
-        self.0.red
+        self.inner.red
     }
 
     pub fn set_red(&mut self, red: f32) {
-        self.0.red = red;
+        self.inner.red = red;
     }
 
     pub fn green(&self) -> f32 {
-        self.0.green
+        self.inner.green
     }
 
     pub fn set_green(&mut self, green: f32) {
-        self.0.green = green;
+        self.inner.green = green;
     }
 
     pub fn blue(&self) -> f32 {
-        self.0.blue
+        self.inner.blue
     }
 
     pub fn set_blue(&mut self, blue: f32) {
-        self.0.blue = blue;
+        self.inner.blue = blue;
     }
 
     pub fn alpha(&self) -> f32 {
-        self.0.alpha
+        self.inner.alpha
     }
 
     pub fn set_alpha(&mut self, alpha: f32) {
-        self.0.alpha = alpha;
+        self.inner.alpha = alpha;
     }
 
     #[doc(alias = "gdk_rgba_parse")]
@@ -130,40 +132,55 @@ impl RGBA {
         }
     }
 
-    pub const BLACK: RGBA = RGBA(ffi::GdkRGBA {
-        red: 0f32,
-        green: 0f32,
-        blue: 0f32,
-        alpha: 1f32,
-    });
+    pub const BLACK: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 0f32,
+            green: 0f32,
+            blue: 0f32,
+            alpha: 1f32,
+        },
+        phantom: PhantomData,
+    };
 
-    pub const BLUE: RGBA = RGBA(ffi::GdkRGBA {
-        red: 0f32,
-        green: 0f32,
-        blue: 1f32,
-        alpha: 1f32,
-    });
+    pub const BLUE: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 0f32,
+            green: 0f32,
+            blue: 1f32,
+            alpha: 1f32,
+        },
+        phantom: PhantomData,
+    };
 
-    pub const GREEN: RGBA = RGBA(ffi::GdkRGBA {
-        red: 0f32,
-        green: 1f32,
-        blue: 0f32,
-        alpha: 1f32,
-    });
+    pub const GREEN: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 0f32,
+            green: 1f32,
+            blue: 0f32,
+            alpha: 1f32,
+        },
+        phantom: PhantomData,
+    };
 
-    pub const RED: RGBA = RGBA(ffi::GdkRGBA {
-        red: 1f32,
-        green: 0f32,
-        blue: 0f32,
-        alpha: 1f32,
-    });
+    pub const RED: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 1f32,
+            green: 0f32,
+            blue: 0f32,
+            alpha: 1f32,
+        },
+        phantom: PhantomData,
+    };
 
-    pub const WHITE: RGBA = RGBA(ffi::GdkRGBA {
-        red: 1f32,
-        green: 1f32,
-        blue: 1f32,
-        alpha: 1f32,
-    });
+    pub const WHITE: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 1f32,
+            green: 1f32,
+            blue: 1f32,
+            alpha: 1f32,
+        },
+        phantom: PhantomData,
+    };
 }
 
 impl fmt::Debug for RGBA {

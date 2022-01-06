@@ -5,11 +5,11 @@ use std::fmt;
 
 impl Requisition {
     pub fn width(&self) -> i32 {
-        self.0.width
+        self.inner.width
     }
 
     pub fn height(&self) -> i32 {
-        self.0.height
+        self.inner.height
     }
 }
 

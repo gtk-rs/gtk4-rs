@@ -8,7 +8,7 @@ use crate::{Clipboard, ContentFormats, ContentProvider};
 use crate::subclass::prelude::*;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::{Cast, ToValue, Value};
+use glib::{Cast, Value};
 use std::future::Future;
 use std::pin::Pin;
 
@@ -369,13 +369,14 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     let mime_type: glib::GString = from_glib_none(mime_type_ptr);
     let stream: gio::OutputStream = from_glib_none(stream_ptr);
 
-    let closure = move |result: &gio::AsyncResult, source_object: Option<&glib::Object>| {
-        let result: *mut gio::ffi::GAsyncResult = result.to_glib_none().0;
+    let closure = move |task: gio::LocalTask<bool>, source_object: Option<&glib::Object>| {
+        let result: *mut gio::ffi::GAsyncResult =
+            task.upcast_ref::<gio::AsyncResult>().to_glib_none().0;
         let source_object: *mut glib::object::GObject = source_object.to_glib_none().0;
         callback.unwrap()(source_object, result, user_data)
     };
 
-    let t = gio::Task::new(
+    let t = gio::LocalTask::new(
         Some(wrap.upcast_ref::<glib::Object>()),
         cancellable.as_ref(),
         closure,
@@ -390,10 +391,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
                 from_glib(priority),
             )
             .await;
-        match res {
-            Ok(_) => t.return_value(&true.to_value()),
-            Err(e) => t.return_error(e),
-        }
+        t.return_result(res.map(|_t| true));
     });
 }
 
@@ -403,11 +401,11 @@ unsafe extern "C" fn content_provider_write_mime_type_finish<T: ContentProviderI
     error_ptr: *mut *mut glib::ffi::GError,
 ) -> glib::ffi::gboolean {
     let res: gio::AsyncResult = from_glib_none(res_ptr);
-    let t = res.downcast_ref::<gio::Task>().unwrap();
-    let ret = t.propagate_value();
+    let t = res.downcast::<gio::LocalTask<bool>>().unwrap();
+    let ret = t.propagate();
     match ret {
         Ok(v) => {
-            assert!(v.get::<bool>().unwrap());
+            assert!(v);
             true.into_glib()
         }
         Err(e) => {

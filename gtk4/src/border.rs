@@ -30,35 +30,35 @@ impl Border {
     }
 
     pub fn left(&self) -> i16 {
-        self.0.left
+        self.inner.left
     }
 
     pub fn set_left(&mut self, left: i16) {
-        self.0.left = left;
+        self.inner.left = left;
     }
 
     pub fn right(&self) -> i16 {
-        self.0.right
+        self.inner.right
     }
 
     pub fn set_right(&mut self, right: i16) {
-        self.0.right = right;
+        self.inner.right = right;
     }
 
     pub fn top(&self) -> i16 {
-        self.0.top
+        self.inner.top
     }
 
     pub fn set_top(&mut self, top: i16) {
-        self.0.top = top;
+        self.inner.top = top;
     }
 
     pub fn bottom(&self) -> i16 {
-        self.0.bottom
+        self.inner.bottom
     }
 
     pub fn set_bottom(&mut self, bottom: i16) {
-        self.0.bottom = bottom;
+        self.inner.bottom = bottom;
     }
 }
 

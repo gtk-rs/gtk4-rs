@@ -1,5 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
@@ -10,23 +11,25 @@ glib::wrapper! {
 impl KeymapKey {
     pub fn new(keycode: u32, group: i32, level: i32) -> Self {
         assert_initialized_main_thread!();
-        KeymapKey(ffi::GdkKeymapKey {
-            group,
-            keycode,
-            level,
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GdkKeymapKey {
+                group,
+                keycode,
+                level,
+            })
+        }
     }
 
     pub fn keycode(&self) -> u32 {
-        self.0.keycode
+        self.inner.keycode
     }
 
     pub fn group(&self) -> i32 {
-        self.0.group
+        self.inner.group
     }
 
     pub fn level(&self) -> i32 {
-        self.0.level
+        self.inner.level
     }
 }
 

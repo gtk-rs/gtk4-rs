@@ -1,5 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
@@ -16,33 +17,35 @@ impl CssLocation {
         line_chars: usize,
     ) -> Self {
         assert_initialized_main_thread!();
-        Self(ffi::GtkCssLocation {
-            bytes,
-            chars,
-            lines,
-            line_bytes,
-            line_chars,
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GtkCssLocation {
+                bytes,
+                chars,
+                lines,
+                line_bytes,
+                line_chars,
+            })
+        }
     }
 
     pub fn bytes(&self) -> usize {
-        self.0.bytes
+        self.inner.bytes
     }
 
     pub fn chars(&self) -> usize {
-        self.0.chars
+        self.inner.chars
     }
 
     pub fn lines(&self) -> usize {
-        self.0.lines
+        self.inner.lines
     }
 
     pub fn line_bytes(&self) -> usize {
-        self.0.line_bytes
+        self.inner.line_bytes
     }
 
     pub fn line_chars(&self) -> usize {
-        self.0.line_chars
+        self.inner.line_chars
     }
 }
 

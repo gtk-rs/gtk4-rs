@@ -2,34 +2,37 @@
 
 use crate::Rectangle;
 use cairo::RectangleInt;
+use glib::translate::*;
 use std::convert::{AsRef, From};
 use std::fmt;
 
 impl Rectangle {
-    pub fn new(x: i32, y: i32, width: i32, height: i32) -> Rectangle {
+    pub fn new(x: i32, y: i32, width: i32, height: i32) -> Self {
         skip_assert_initialized!();
-        Rectangle(ffi::GdkRectangle {
-            x,
-            y,
-            width,
-            height,
-        })
+        unsafe {
+            Self::unsafe_from(ffi::GdkRectangle {
+                x,
+                y,
+                width,
+                height,
+            })
+        }
     }
 
     pub fn x(&self) -> i32 {
-        self.0.x
+        self.inner.x
     }
 
     pub fn y(&self) -> i32 {
-        self.0.y
+        self.inner.y
     }
 
     pub fn width(&self) -> i32 {
-        self.0.width
+        self.inner.width
     }
 
     pub fn height(&self) -> i32 {
-        self.0.height
+        self.inner.height
     }
 }
 

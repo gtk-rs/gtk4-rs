@@ -29,7 +29,7 @@ impl RoundedRect {
                 bottom_right.to_glib_none().0,
                 bottom_left.to_glib_none().0,
             );
-            Self(rounded_rect.assume_init())
+            Self::unsafe_from(rounded_rect.assume_init())
         }
     }
 
@@ -44,7 +44,7 @@ impl RoundedRect {
                 bounds.to_glib_none().0,
                 radius,
             );
-            Self(rounded_rect.assume_init())
+            Self::unsafe_from(rounded_rect.assume_init())
         }
     }
 
@@ -59,7 +59,7 @@ impl RoundedRect {
     ) {
         unsafe {
             ffi::gsk_rounded_rect_init(
-                &mut self.0,
+                &mut self.inner,
                 bounds.to_glib_none().0,
                 top_left.to_glib_none().0,
                 top_right.to_glib_none().0,
@@ -72,41 +72,41 @@ impl RoundedRect {
     #[doc(alias = "gsk_rounded_rect_init_from_rect")]
     pub fn init_from_rect(&mut self, bounds: Rect, radius: f32) {
         unsafe {
-            ffi::gsk_rounded_rect_init_from_rect(&mut self.0, bounds.to_glib_none().0, radius);
+            ffi::gsk_rounded_rect_init_from_rect(&mut self.inner, bounds.to_glib_none().0, radius);
         }
     }
 
     #[doc(alias = "gsk_rounded_rect_normalize")]
     pub fn normalize(&mut self) {
         unsafe {
-            ffi::gsk_rounded_rect_normalize(&mut self.0);
+            ffi::gsk_rounded_rect_normalize(&mut self.inner);
         }
     }
 
     #[doc(alias = "gsk_rounded_rect_offset")]
     pub fn offset(&mut self, dx: f32, dy: f32) {
         unsafe {
-            ffi::gsk_rounded_rect_offset(&mut self.0, dx, dy);
+            ffi::gsk_rounded_rect_offset(&mut self.inner, dx, dy);
         }
     }
 
     #[doc(alias = "gsk_rounded_rect_shrink")]
     pub fn shrink(&mut self, top: f32, right: f32, bottom: f32, left: f32) {
         unsafe {
-            ffi::gsk_rounded_rect_shrink(&mut self.0, top, right, bottom, left);
+            ffi::gsk_rounded_rect_shrink(&mut self.inner, top, right, bottom, left);
         }
     }
 
     #[doc(alias = "gsk_rounded_rect_is_rectilinear")]
     pub fn is_rectilinear(&self) -> bool {
-        unsafe { from_glib(ffi::gsk_rounded_rect_is_rectilinear(&self.0)) }
+        unsafe { from_glib(ffi::gsk_rounded_rect_is_rectilinear(&self.inner)) }
     }
 
     #[doc(alias = "gsk_rounded_rect_contains_point")]
     pub fn contains_point(&self, point: Point) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_contains_point(
-                &self.0,
+                &self.inner,
                 point.to_glib_none().0,
             ))
         }
@@ -116,7 +116,7 @@ impl RoundedRect {
     pub fn contains_rect(&self, rect: Rect) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_contains_rect(
-                &self.0,
+                &self.inner,
                 rect.to_glib_none().0,
             ))
         }
@@ -126,7 +126,7 @@ impl RoundedRect {
     pub fn intersects_rect(&self, rect: Rect) -> bool {
         unsafe {
             from_glib(ffi::gsk_rounded_rect_intersects_rect(
-                &self.0,
+                &self.inner,
                 rect.to_glib_none().0,
             ))
         }
@@ -134,13 +134,13 @@ impl RoundedRect {
 
     pub fn bounds(&self) -> &graphene::Rect {
         unsafe {
-            &*(&self.0.bounds as *const graphene::ffi::graphene_rect_t as *const graphene::Rect)
+            &*(&self.inner.bounds as *const graphene::ffi::graphene_rect_t as *const graphene::Rect)
         }
     }
 
     pub fn corner(&self) -> &[graphene::Size; 4] {
         unsafe {
-            &*(&self.0.corner as *const [graphene::ffi::graphene_size_t; 4]
+            &*(&self.inner.corner as *const [graphene::ffi::graphene_size_t; 4]
                 as *const [graphene::Size; 4])
         }
     }
