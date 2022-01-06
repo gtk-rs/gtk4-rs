@@ -528,6 +528,9 @@ pub use self::page_setup_unix_dialog::PageSetupUnixDialog;
 mod paned;
 pub use self::paned::Paned;
 
+mod param_spec_expression;
+pub use self::param_spec_expression::ParamSpecExpression;
+
 mod password_entry;
 pub use self::password_entry::PasswordEntry;
 

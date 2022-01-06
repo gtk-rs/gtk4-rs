@@ -361,7 +361,6 @@ manual = [
     "Gtk.ExpressionWatch", # can't be auto because of get_type being public until v4_2
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
-    "Gtk.ParamSpecExpression",
     "Gtk.RecentData",
     "Gtk.ResponseType",
     "Pango.Alignment",
@@ -1622,6 +1621,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "size2"
         const = true
+
+[[object]]
+name = "Gtk.ParamSpecExpression"
+status = "generate"
+concurrency = "send+sync"
 
 [[object]]
 name = "Gtk.Picture"

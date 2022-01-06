@@ -2,6 +2,7 @@
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::derive_hash_xor_eq)]
+#![allow(clippy::non_send_fields_in_send_ty)]
 #![allow(clippy::too_many_arguments)]
 #![allow(clippy::wrong_self_convention)]
 #![doc = include_str!("../README.md")]
@@ -213,7 +214,6 @@ pub use keyval_trigger::KeyvalTrigger;
 pub use mnemonic_trigger::MnemonicTrigger;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
-pub use param_spec_expression::ParamSpecExpression;
 pub use recent_data::RecentData;
 pub use response_type::ResponseType;
 pub use tree_sortable::SortColumn;
