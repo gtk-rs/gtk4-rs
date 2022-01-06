@@ -123,6 +123,8 @@
 <span id="48">48</span>
 <span id="49">49</span>
 <span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">gdk::RGBA</span>;
@@ -138,28 +140,30 @@
 <span class="kw">impl</span> <span class="ident">Shadow</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">color</span>: <span class="ident">RGBA</span>, <span class="ident">dx</span>: <span class="ident">f32</span>, <span class="ident">dy</span>: <span class="ident">f32</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="self">Self</span>(<span class="ident">ffi::GskShadow</span> {
-            <span class="ident">color</span>: <span class="kw">unsafe</span> { <span class="kw-2">*</span><span class="ident">color</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> },
-            <span class="ident">dx</span>,
-            <span class="ident">dy</span>,
-            <span class="ident">radius</span>,
-        })
+        <span class="kw">unsafe</span> {
+            <span class="ident"><span class="self">Self</span>::unsafe_from</span>(<span class="ident">ffi::GskShadow</span> {
+                <span class="ident">color</span>: <span class="kw-2">*</span><span class="ident">color</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">dx</span>,
+                <span class="ident">dy</span>,
+                <span class="ident">radius</span>,
+            })
+        }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RGBA</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">color</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">RGBA</span> {
+        <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">color</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">gdk::ffi::GdkRGBA</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">RGBA</span>) }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">dx</span>
+        <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">dx</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">dy</span>
+        <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">dy</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">radius</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">radius</span>
+        <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">radius</span>
     }
 }
 
@@ -174,5 +178,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (7d6f94817 2022-01-04)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f1ce0e6a0 2022-01-05)" ></div>
 </body></html>
