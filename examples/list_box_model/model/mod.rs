@@ -2,6 +2,8 @@
 
 mod imp;
 
+use gtk::subclass::prelude::*;
+
 use crate::row_data::RowData;
 use gtk::{gio, glib, prelude::*};
 
