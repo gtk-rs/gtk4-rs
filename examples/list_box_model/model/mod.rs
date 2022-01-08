@@ -3,7 +3,6 @@
 mod imp;
 
 use crate::row_data::RowData;
-use glib::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*};
 
 // Public part of the Model type.
@@ -18,12 +17,12 @@ impl Model {
     }
 
     pub fn append(&self, obj: &RowData) {
-        let self_ = self.impl_();
+        let imp = self.imp();
         let index = {
             // Borrow the data only once and ensure the borrow guard is dropped
             // before we emit the items_changed signal because the view
             // could call get_item / get_n_item from the signal handler to update its state
-            let mut data = self_.0.borrow_mut();
+            let mut data = imp.0.borrow_mut();
             data.push(obj.clone());
             data.len() - 1
         };
@@ -32,8 +31,8 @@ impl Model {
     }
 
     pub fn remove(&self, index: u32) {
-        let self_ = self.impl_();
-        self_.0.borrow_mut().remove(index as usize);
+        let imp = self.imp();
+        imp.0.borrow_mut().remove(index as usize);
         // Emits a signal that 1 item was removed, 0 added at the position index
         self.items_changed(index, 1, 0);
     }
