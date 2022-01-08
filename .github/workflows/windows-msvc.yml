@@ -80,15 +80,15 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: build
-        args: --manifest-path ./gtk4/Cargo.toml --features v4_6 # investigate why --workspace builds gdk4-wayland
+        args: --features v4_6
     - name: Clippy
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --manifest-path ./gtk4/Cargo.toml --features v4_6 # investigate why --workspace builds gdk4-wayland
+        args: --features v4_6
     - name: Tests
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --manifest-path ./gtk4/Cargo.toml --features v4_6 # investigate why --workspace builds gdk4-wayland
+        args: --features v4_6
 
