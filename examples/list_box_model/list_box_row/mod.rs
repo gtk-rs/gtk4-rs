@@ -1,6 +1,6 @@
 mod imp;
 
-use gtk::{self, glib};
+use gtk::glib;
 
 use crate::row_data::RowData;
 

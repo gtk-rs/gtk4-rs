@@ -8,7 +8,7 @@ use std::cell::RefCell;
 use crate::row_data::RowData;
 
 #[derive(Debug, Default)]
-pub struct Model(pub RefCell<Vec<RowData>>);
+pub struct Model(pub(super) RefCell<Vec<RowData>>);
 
 /// Basic declaration of our type for the GObject type system
 #[glib::object_subclass]

@@ -3,14 +3,14 @@ use gtk::{
     glib::{self, ParamSpec, Value},
     prelude::*,
 };
-use std::cell::RefCell;
+use std::cell::{Cell, RefCell};
 
 // The actual data structure that stores our values. This is not accessible
 // directly from the outside.
 #[derive(Default)]
 pub struct RowData {
     name: RefCell<Option<String>>,
-    count: RefCell<u32>,
+    count: Cell<u32>,
 }
 
 // Basic declaration of our type for the GObject type system
@@ -70,7 +70,7 @@ impl ObjectImpl for RowData {
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "name" => self.name.borrow().to_value(),
-            "count" => self.count.borrow().to_value(),
+            "count" => self.count.get().to_value(),
             _ => unimplemented!(),
         }
     }
