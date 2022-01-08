@@ -76,7 +76,7 @@ pub trait PaintableExt: 'static {
     fn invalidate_size(&self);
 
     #[doc(alias = "gdk_paintable_snapshot")]
-    fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
+    fn snapshot(&self, snapshot: &impl IsA<Snapshot>, width: f64, height: f64);
 
     #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -145,11 +145,11 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64) {
+    fn snapshot(&self, snapshot: &impl IsA<Snapshot>, width: f64, height: f64) {
         unsafe {
             ffi::gdk_paintable_snapshot(
                 self.as_ref().to_glib_none().0,
-                snapshot.to_glib_none().0,
+                snapshot.as_ref().to_glib_none().0,
                 width,
                 height,
             );

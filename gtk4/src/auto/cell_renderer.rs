@@ -141,7 +141,7 @@ pub trait CellRendererExt: 'static {
     #[doc(alias = "gtk_cell_renderer_snapshot")]
     fn snapshot(
         &self,
-        snapshot: &Snapshot,
+        snapshot: &impl IsA<Snapshot>,
         widget: &impl IsA<Widget>,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
@@ -527,7 +527,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
 
     fn snapshot(
         &self,
-        snapshot: &Snapshot,
+        snapshot: &impl IsA<Snapshot>,
         widget: &impl IsA<Widget>,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
@@ -536,7 +536,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         unsafe {
             ffi::gtk_cell_renderer_snapshot(
                 self.as_ref().to_glib_none().0,
-                snapshot.to_glib_none().0,
+                snapshot.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 background_area.to_glib_none().0,
                 cell_area.to_glib_none().0,

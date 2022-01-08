@@ -609,7 +609,7 @@ pub trait WidgetExt: 'static {
     fn size_allocate(&self, allocation: &Allocation, baseline: i32);
 
     #[doc(alias = "gtk_widget_snapshot_child")]
-    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &Snapshot);
+    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &impl IsA<Snapshot>);
 
     #[doc(alias = "gtk_widget_translate_coordinates")]
     fn translate_coordinates(
@@ -1920,12 +1920,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &Snapshot) {
+    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &impl IsA<Snapshot>) {
         unsafe {
             ffi::gtk_widget_snapshot_child(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                snapshot.to_glib_none().0,
+                snapshot.as_ref().to_glib_none().0,
             );
         }
     }

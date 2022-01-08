@@ -13,7 +13,9 @@ glib::wrapper! {
     }
 }
 
-impl Snapshot {}
+impl Snapshot {
+    pub const NONE: Option<&'static Snapshot> = None;
+}
 
 impl fmt::Display for Snapshot {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
