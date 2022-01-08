@@ -1122,6 +1122,7 @@ pub mod traits {
     pub use super::shortcut_action::ShortcutActionExt;
     pub use super::shortcut_manager::ShortcutManagerExt;
     pub use super::shortcut_trigger::ShortcutTriggerExt;
+    pub use super::snapshot::SnapshotExt;
     pub use super::sorter::SorterExt;
     pub use super::style_context::StyleContextExt;
     pub use super::style_provider::StyleProviderExt;
