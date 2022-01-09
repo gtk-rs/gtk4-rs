@@ -13,7 +13,7 @@ Let us check out the simplest case where we activate an action without a paramet
 {{#rustdoc_include ../listings/actions/1/main.rs:build_ui}}
 ```
 
-First, we created a new [`gio::SimpleAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html) which is named "quit" and takes no parameter.
+First, we created a new [`gio::SimpleAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html) which is named "close" and takes no parameter.
 We also connected a callback which closes the window.
 
 <span class="filename">Filename: listings/actions/1/main.rs</span>
@@ -28,7 +28,7 @@ Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accel
 Here we assigned `<primary>W` which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.
 
 Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
-The "win" part of "win.quit" is the group of the action.
+The "win" part of "win.close" is the group of the action.
 But how does GTK know that "win" is the action group of our window?
 The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:
 - "app" for actions global to the application, and
@@ -42,10 +42,13 @@ If that was not the case, we would have to add the action group manually via [`g
 {{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
 ```
 
-Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.quit".
-And indeed, the "win.quit" will be dispatched to the currently focused window.
+Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.close".
+And indeed, the "win.close" will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
 If we want to have a single globally accessible action instead, we call `add_action` on our application instead.
+
+> Adding "win.close" was useful as a simple example.
+> However, in the future we will use the pre-defined ["window.close"](../docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
 
 ## Parameter and State
 
@@ -124,14 +127,9 @@ Typically, a menu entry has an action fitting one of these three descriptions:
 
 Let us modify our small app to demonstrate these cases.
 First we extend `add_actions`.
-For the action without parameter or state, we choose "win.quit" which we are already familiar with.
+For the action without parameter or state, we can use the pre-defined "window.close" action.
+Therefore we do not have to add anything here.
 
-
-<span class="filename">Filename: listings/actions/6/window/mod.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/6/window/mod.rs:action_quit}}
-```
 With the action "sensitive-button", we manipulate the "sensitive" property of `button`.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for [`gio::PropertyAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html) with a boolean property.
@@ -171,7 +169,7 @@ We do that by adding the menu in front of the template.
 +  <menu id="main-menu">
 +    <item>
 +      <attribute name="label" translatable="yes">_Close window</attribute>
-+      <attribute name="action">win.quit</attribute>
++      <attribute name="action">window.close</attribute>
 +    </item>
 +    <item>
 +      <attribute name="label" translatable="yes">_Sensitive button</attribute>

@@ -57,16 +57,6 @@ impl Window {
         }));
         self.add_action(&action_count);
 
-        // ANCHOR: action_quit
-        // Add action "quit" to `window` taking no parameter
-        let action_quit = SimpleAction::new("quit", None);
-
-        action_quit.connect_activate(clone!(@weak self as window => move |_, _| {
-            window.close();
-        }));
-        self.add_action(&action_quit);
-        // ANCHOR_END: action_quit
-
         // ANCHOR: action_sensitive_button
         // Add property action "sensitive-button" to `window`
         let button = imp.button.get();
