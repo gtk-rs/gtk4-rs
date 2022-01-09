@@ -110,6 +110,10 @@ name = "gtk_builder"
 path = "gtk_builder/main.rs"
 
 [[bin]]
+name = "list_box_model"
+path = "list_box_model/main.rs"
+
+[[bin]]
 name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
 
