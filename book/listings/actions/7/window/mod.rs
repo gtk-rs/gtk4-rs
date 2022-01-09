@@ -56,13 +56,13 @@ impl Window {
         }));
         self.add_action(&action_count);
 
-        // Add action "quit" to `window` taking no parameter
-        let action_quit = SimpleAction::new("quit", None);
+        // Add action "close" to `window` taking no parameter
+        let action_close = SimpleAction::new("close", None);
 
-        action_quit.connect_activate(clone!(@weak self as window => move |_, _| {
+        action_close.connect_activate(clone!(@weak self as window => move |_, _| {
             window.close();
         }));
-        self.add_action(&action_quit);
+        self.add_action(&action_close);
 
         // ANCHOR: settings_create_actions
         // Create action from key "sensitive-button" and add to action group "win"
