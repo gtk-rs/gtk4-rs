@@ -118,8 +118,7 @@ pub fn show_uri_full_future(
     }))
 }
 
-static SHOW_ABOUT_DIALOG_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk-rs-about-dialog"));
+static SHOW_ABOUT_DIALOG_QUARK: Lazy<Quark> = Lazy::new(|| Quark::from_str("gtk-rs-about-dialog"));
 
 #[doc(alias = "gtk_show_about_dialog")]
 pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str, &dyn ToValue)]) {

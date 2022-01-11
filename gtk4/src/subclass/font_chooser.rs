@@ -248,7 +248,7 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
 }
 
 static FONT_CHOOSER_GET_FONT_FAMILY_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk4-rs-subclass-font-chooser-font-family"));
+    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
 
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
@@ -273,7 +273,7 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
 }
 
 static FONT_CHOOSER_GET_FONT_FACE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk4-rs-subclass-font-chooser-font-face"));
+    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFace {

@@ -375,7 +375,7 @@ unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
 }
 
 static BUILDABLE_GET_INTERNAL_CHILD_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk4-rs-subclass-buildable-get-internal-child"));
+    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-buildable-get-internal-child"));
 unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
