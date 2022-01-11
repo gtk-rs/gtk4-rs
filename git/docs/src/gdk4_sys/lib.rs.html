@@ -9581,7 +9581,7 @@
         <span class="ident">height</span>: <span class="ident">c_int</span>,
         <span class="ident">destroy</span>: <span class="ident">glib::GDestroyNotify</span>,
         <span class="ident">data</span>: <span class="ident">gpointer</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkTexture</span>;
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkGLTexture</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gdk_gl_texture_release</span>(<span class="ident">self_</span>: <span class="kw-2">*mut</span> <span class="ident">GdkGLTexture</span>);
 
     <span class="comment">//=========================================================================</span>
@@ -9624,7 +9624,7 @@
         <span class="ident">format</span>: <span class="ident">GdkMemoryFormat</span>,
         <span class="ident">bytes</span>: <span class="kw-2">*mut</span> <span class="ident">glib::GBytes</span>,
         <span class="ident">stride</span>: <span class="ident">size_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkTexture</span>;
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">GdkMemoryTexture</span>;
 
     <span class="comment">//=========================================================================</span>
     <span class="comment">// GdkMonitor</span>

@@ -384,8 +384,8 @@
     <span class="doccomment">/// located) within the hierarchy of a [`ApplicationWindow`][crate::ApplicationWindow].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Names are of the form “win.save” or “app.quit” for actions on the</span>
-    <span class="doccomment">/// containing [`ApplicationWindow`][crate::ApplicationWindow] or its associated [`Application`][crate::Application],</span>
-    <span class="doccomment">/// respectively. This is the same form used for actions in the `GMenu`</span>
+    <span class="doccomment">/// containing [`ApplicationWindow`][crate::ApplicationWindow] or its associated [`gio::Application`][crate::gio::Application],</span>
+    <span class="doccomment">/// respectively. This is the same form used for actions in the [`gio::Menu`][crate::gio::Menu]</span>
     <span class="doccomment">/// associated with the window.</span>
     <span class="doccomment">/// ## `action_name`</span>
     <span class="doccomment">/// an action name</span>
@@ -401,7 +401,7 @@
     <span class="doccomment">/// Second, it is used to determine if the widget should be rendered as</span>
     <span class="doccomment">/// “active” — the widget is active if the state is equal to the given target.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Consider the example of associating a set of buttons with a `GAction`</span>
+    <span class="doccomment">/// Consider the example of associating a set of buttons with a [`gio::Action`][crate::gio::Action]</span>
     <span class="doccomment">/// with string state in a typical “radio button” situation. Each button</span>
     <span class="doccomment">/// will be associated with the same action, but with a different target</span>
     <span class="doccomment">/// value for that action. Clicking on a particular button will activate</span>
@@ -411,7 +411,7 @@
     <span class="doccomment">/// be rendered as active (and the other buttons, with different targets,</span>
     <span class="doccomment">/// rendered inactive).</span>
     <span class="doccomment">/// ## `target_value`</span>
-    <span class="doccomment">/// a `GVariant` to set as the target value</span>
+    <span class="doccomment">/// a [`glib::Variant`][struct@crate::glib::Variant] to set as the target value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">target_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>);
 
@@ -419,7 +419,7 @@
     <span class="doccomment">/// actionable widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// @detailed_action_name is a string in the format accepted by</span>
-    <span class="doccomment">/// g_action_parse_detailed_name().</span>
+    <span class="doccomment">/// [`gio::Action::parse_detailed_name()`][crate::gio::Action::parse_detailed_name()].</span>
     <span class="doccomment">/// ## `detailed_action_name`</span>
     <span class="doccomment">/// the detailed action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_detailed_action_name&quot;</span>)]</span>

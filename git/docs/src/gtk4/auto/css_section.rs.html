@@ -222,7 +222,7 @@
     <span class="doccomment">/// Defines a part of a CSS document.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Because sections are nested into one another, you can use</span>
-    <span class="doccomment">/// gtk_css_section_get_parent() to get the containing region.</span>
+    <span class="doccomment">/// [`parent()`][Self::parent()] to get the containing region.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssSection</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkCssSection</span><span class="op">&gt;</span>);
 

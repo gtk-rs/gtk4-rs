@@ -356,7 +356,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// These buttons and sensors have no implicit meaning, and by default they</span>
     <span class="doccomment">/// perform no action. [`PadController`][crate::PadController] is provided to map those to</span>
-    <span class="doccomment">/// `GAction` objects, thus letting the application give them a more</span>
+    <span class="doccomment">/// [`gio::Action`][crate::gio::Action] objects, thus letting the application give them a more</span>
     <span class="doccomment">/// semantic meaning.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Buttons and sensors are not constrained to triggering a single action,</span>
@@ -369,10 +369,10 @@
     <span class="doccomment">/// different modes. See `Gdk::DevicePad::get_n_groups()` and</span>
     <span class="doccomment">/// `Gdk::DevicePad::get_group_n_modes()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each of the actions that a given button/strip/ring performs for a given</span>
-    <span class="doccomment">/// mode is defined by a [`PadActionEntry`][crate::PadActionEntry]. It contains an action</span>
-    <span class="doccomment">/// name that will be looked up in the given `GActionGroup` and activated</span>
-    <span class="doccomment">/// whenever the specified input element and mode are triggered.</span>
+    <span class="doccomment">/// Each of the actions that a given button/strip/ring performs for a given mode</span>
+    <span class="doccomment">/// is defined by a [`PadActionEntry`][crate::PadActionEntry]. It contains an action name that</span>
+    <span class="doccomment">/// will be looked up in the given [`gio::ActionGroup`][crate::gio::ActionGroup] and activated whenever</span>
+    <span class="doccomment">/// the specified input element and mode are triggered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A simple example of [`PadController`][crate::PadController] usage: Assigning button 1 in all</span>
     <span class="doccomment">/// modes and pad devices to an &quot;invert-selection&quot; action:</span>

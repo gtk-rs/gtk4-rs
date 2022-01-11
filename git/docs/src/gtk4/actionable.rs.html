@@ -120,7 +120,7 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Sets the target of an actionable widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a convenience function that calls g_variant_new() for</span>
+    <span class="doccomment">/// This is a convenience function that calls `GLib::Variant::new()` for</span>
     <span class="doccomment">/// @format_string and uses the result to call</span>
     <span class="doccomment">/// [`ActionableExt::set_action_target_value()`][crate::prelude::ActionableExt::set_action_target_value()].</span>
     <span class="doccomment">///</span>
@@ -128,7 +128,7 @@
     <span class="doccomment">/// the action name at the same time, you can use</span>
     <span class="doccomment">/// [`ActionableExt::set_detailed_action_name()`][crate::prelude::ActionableExt::set_detailed_action_name()].</span>
     <span class="doccomment">/// ## `format_string`</span>
-    <span class="doccomment">/// a GVariant format string</span>
+    <span class="doccomment">/// a [`glib::Variant`][struct@crate::glib::Variant] format string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">target</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">ToVariant</span><span class="op">&gt;</span>);

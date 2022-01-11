@@ -84,7 +84,7 @@ tablets.</p>
 the stylus-sensitive area.</p>
 <p>These buttons and sensors have no implicit meaning, and by default they
 perform no action. <a href="struct.PadController.html" title="crate::PadController"><code>PadController</code></a> is provided to map those to
-<code>GAction</code> objects, thus letting the application give them a more
+<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action/struct.Action.html" title="crate::gio::Action"><code>gio::Action</code></a> objects, thus letting the application give them a more
 semantic meaning.</p>
 <p>Buttons and sensors are not constrained to triggering a single action,
 some <code>GDK_SOURCE_TABLET_PAD</code> devices feature multiple “modes”. All these
@@ -94,10 +94,10 @@ being triggered.</p>
 in a group share the same current mode, but different groups may have
 different modes. See <code>Gdk::DevicePad::get_n_groups()</code> and
 <code>Gdk::DevicePad::get_group_n_modes()</code>.</p>
-<p>Each of the actions that a given button/strip/ring performs for a given
-mode is defined by a <a href="struct.PadActionEntry.html" title="crate::PadActionEntry"><code>PadActionEntry</code></a>. It contains an action
-name that will be looked up in the given <code>GActionGroup</code> and activated
-whenever the specified input element and mode are triggered.</p>
+<p>Each of the actions that a given button/strip/ring performs for a given mode
+is defined by a <a href="struct.PadActionEntry.html" title="crate::PadActionEntry"><code>PadActionEntry</code></a>. It contains an action name that
+will be looked up in the given <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action_group/struct.ActionGroup.html" title="crate::gio::ActionGroup"><code>gio::ActionGroup</code></a> and activated whenever
+the specified input element and mode are triggered.</p>
 <p>A simple example of <a href="struct.PadController.html" title="crate::PadController"><code>PadController</code></a> usage: Assigning button 1 in all
 modes and pad devices to an “invert-selection” action:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>

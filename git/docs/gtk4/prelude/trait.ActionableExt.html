@@ -102,8 +102,8 @@ any previous action.</p>
 <p>Usually this function is used when the widget is located (or will be
 located) within the hierarchy of a <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a>.</p>
 <p>Names are of the form “win.save” or “app.quit” for actions on the
-containing <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a> or its associated <a href="../struct.Application.html" title="crate::Application"><code>Application</code></a>,
-respectively. This is the same form used for actions in the <code>GMenu</code>
+containing <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a> or its associated <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/application/struct.Application.html" title="crate::gio::Application"><code>gio::Application</code></a>,
+respectively. This is the same form used for actions in the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/menu/struct.Menu.html" title="crate::gio::Menu"><code>gio::Menu</code></a>
 associated with the window.</p>
 <h6 id="action_name" class="section-header"><a href="#action_name"><code>action_name</code></a></h6>
 <p>an action name</p>
@@ -113,7 +113,7 @@ associated with the window.</p>
 to activation of the action associated with the <a href="../struct.Actionable.html" title="crate::Actionable"><code>Actionable</code></a> widget.
 Second, it is used to determine if the widget should be rendered as
 “active” — the widget is active if the state is equal to the given target.</p>
-<p>Consider the example of associating a set of buttons with a <code>GAction</code>
+<p>Consider the example of associating a set of buttons with a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action/struct.Action.html" title="crate::gio::Action"><code>gio::Action</code></a>
 with string state in a typical “radio button” situation. Each button
 will be associated with the same action, but with a different target
 value for that action. Clicking on a particular button will activate
@@ -123,11 +123,11 @@ is now equal to the target value of the button, the button will now
 be rendered as active (and the other buttons, with different targets,
 rendered inactive).</p>
 <h6 id="target_value" class="section-header"><a href="#target_value"><code>target_value</code></a></h6>
-<p>a <code>GVariant</code> to set as the target value</p>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="crate::glib::Variant"><code>glib::Variant</code></a> to set as the target value</p>
 </div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_detailed_action_name" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/actionable.rs.html#121" title="goto source code">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_detailed_action_name" class="fnname">set_detailed_action_name</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Sets the action-name and associated string target value of an
 actionable widget.</p>
 <p>@detailed_action_name is a string in the format accepted by
-g_action_parse_detailed_name().</p>
+<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/action/struct.Action.html#method.parse_detailed_name" title="crate::gio::Action::parse_detailed_name()"><code>gio::Action::parse_detailed_name()</code></a>.</p>
 <h6 id="detailed_action_name" class="section-header"><a href="#detailed_action_name"><code>detailed_action_name</code></a></h6>
 <p>the detailed action name</p>
 </div></details><div id="tymethod.connect_action_name_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/actionable.rs.html#124" title="goto source code">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_action_name_notify" class="fnname">connect_action_name_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_action_target_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/actionable.rs.html#127" title="goto source code">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_action_target_notify" class="fnname">connect_action_target_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-ActionableExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/actionable.rs.html#130-223" title="goto source code">source</a></div><a href="#impl-ActionableExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Actionable.html" title="struct gtk4::Actionable">Actionable</a>&gt;&gt; <a class="trait" href="trait.ActionableExt.html" title="trait gtk4::prelude::ActionableExt">ActionableExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.ActionableExt.js" async></script></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (89b9f7b28 2022-01-10)" ></div>
