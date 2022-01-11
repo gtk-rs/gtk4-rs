@@ -233,14 +233,6 @@ impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
 
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path) => {
-        impl std::ops::Deref for $rust_type {
-            type Target = crate::Expression;
-
-            fn deref(&self) -> &Self::Target {
-                unsafe { &*(self as *const $rust_type as *const crate::Expression) }
-            }
-        }
-
         impl AsRef<crate::Expression> for $rust_type {
             fn as_ref(&self) -> &crate::Expression {
                 self.upcast_ref()
@@ -253,7 +245,7 @@ macro_rules! define_expression {
             }
 
             pub fn upcast_ref(&self) -> &crate::Expression {
-                &*self
+                unsafe { &*(self as *const $rust_type as *const crate::Expression) }
             }
         }
 

@@ -111,14 +111,6 @@ macro_rules! define_render_node {
             }
         }
 
-        impl std::ops::Deref for $rust_type {
-            type Target = crate::RenderNode;
-
-            fn deref(&self) -> &Self::Target {
-                unsafe { &*(self as *const $rust_type as *const crate::RenderNode) }
-            }
-        }
-
         unsafe impl crate::render_node::IsRenderNode for $rust_type {
             const NODE_TYPE: RenderNodeType = $node_type;
 
@@ -131,7 +123,7 @@ macro_rules! define_render_node {
             }
 
             fn upcast_ref(&self) -> &crate::RenderNode {
-                &*self
+                unsafe { &*(self as *const $rust_type as *const crate::RenderNode) }
             }
         }
 

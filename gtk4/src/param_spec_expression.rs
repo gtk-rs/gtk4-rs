@@ -12,14 +12,6 @@ impl std::fmt::Debug for ParamSpecExpression {
     }
 }
 
-impl std::ops::Deref for ParamSpecExpression {
-    type Target = ParamSpec;
-
-    fn deref(&self) -> &Self::Target {
-        unsafe { &*(self as *const ParamSpecExpression as *const ParamSpec) }
-    }
-}
-
 unsafe impl glib::ParamSpecType for ParamSpecExpression {}
 
 #[doc(hidden)]
@@ -49,7 +41,7 @@ impl ParamSpecExpression {
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
-        &*self
+        unsafe { &*(self as *const ParamSpecExpression as *const ParamSpec) }
     }
 }
 

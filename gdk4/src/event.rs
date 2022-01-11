@@ -132,14 +132,6 @@ macro_rules! define_event {
             }
         }
 
-        impl std::ops::Deref for $rust_type {
-            type Target = crate::Event;
-
-            fn deref(&self) -> &Self::Target {
-                unsafe { &*(self as *const $rust_type as *const crate::Event) }
-            }
-        }
-
         impl AsRef<crate::Event> for $rust_type {
             fn as_ref(&self) -> &crate::Event {
                 self.upcast_ref()
@@ -159,7 +151,7 @@ macro_rules! define_event {
             }
 
             pub fn upcast_ref(&self) -> &crate::Event {
-                &*self
+                unsafe { &*(self as *const $rust_type as *const crate::Event) }
             }
         }
     };
