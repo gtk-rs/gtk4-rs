@@ -645,7 +645,7 @@
 }
 
 <span class="kw">static</span> <span class="ident">GET_TEXT_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">glib::Quark</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">glib::Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-entry-buffer-text&quot;</span>));
+    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">glib::Quark::from_str</span>(<span class="string">&quot;gtk4-rs-subclass-entry-buffer-text&quot;</span>));
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">entry_buffer_get_text</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EntryBufferImpl</span><span class="op">&gt;</span>(
     <span class="ident">ptr</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkEntryBuffer</span>,
@@ -771,5 +771,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (092e1c9d2 2022-01-09)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (89b9f7b28 2022-01-10)" ></div>
 </body></html>

@@ -1041,7 +1041,7 @@
 }
 
 <span class="kw">static</span> <span class="ident">CELL_LAYOUT_GET_CELLS_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk-rs-subclass-cell-layout-get-cells&quot;</span>));
+    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_str</span>(<span class="string">&quot;gtk-rs-subclass-cell-layout-get-cells&quot;</span>));
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cell_layout_get_cells</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CellLayoutImpl</span><span class="op">&gt;</span>(
     <span class="ident">cell_layout</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkCellLayout</span>,
@@ -1059,5 +1059,5 @@
     <span class="ident">cells</span>.<span class="ident">to_glib_container</span>().<span class="number">0</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (092e1c9d2 2022-01-09)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (89b9f7b28 2022-01-10)" ></div>
 </body></html>

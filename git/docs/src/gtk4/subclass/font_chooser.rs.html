@@ -693,7 +693,7 @@
 }
 
 <span class="kw">static</span> <span class="ident">FONT_CHOOSER_GET_FONT_FAMILY_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-family&quot;</span>));
+    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_str</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-family&quot;</span>));
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_family</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
@@ -718,7 +718,7 @@
 }
 
 <span class="kw">static</span> <span class="ident">FONT_CHOOSER_GET_FONT_FACE_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_string</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-face&quot;</span>));
+    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark::from_str</span>(<span class="string">&quot;gtk4-rs-subclass-font-chooser-font-face&quot;</span>));
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">font_chooser_get_font_face</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FontChooserImpl</span><span class="op">&gt;</span>(
     <span class="ident">font_chooser</span>: <span class="kw-2">*mut</span> <span class="ident">ffi::GtkFontChooser</span>,
 ) -&gt; <span class="kw-2">*mut</span> <span class="ident">pango::ffi::PangoFontFace</span> {
@@ -813,5 +813,5 @@
     );
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (092e1c9d2 2022-01-09)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (89b9f7b28 2022-01-10)" ></div>
 </body></html>
