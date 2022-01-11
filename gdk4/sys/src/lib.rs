@@ -4508,7 +4508,7 @@ extern "C" {
         height: c_int,
         destroy: glib::GDestroyNotify,
         data: gpointer,
-    ) -> *mut GdkTexture;
+    ) -> *mut GdkGLTexture;
     pub fn gdk_gl_texture_release(self_: *mut GdkGLTexture);
 
     //=========================================================================
@@ -4551,7 +4551,7 @@ extern "C" {
         format: GdkMemoryFormat,
         bytes: *mut glib::GBytes,
         stride: size_t,
-    ) -> *mut GdkTexture;
+    ) -> *mut GdkMemoryTexture;
 
     //=========================================================================
     // GdkMonitor

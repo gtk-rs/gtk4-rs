@@ -5,7 +5,6 @@
 use crate::MemoryFormat;
 use crate::Paintable;
 use crate::Texture;
-use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 
@@ -29,14 +28,13 @@ impl MemoryTexture {
     ) -> MemoryTexture {
         assert_initialized_main_thread!();
         unsafe {
-            Texture::from_glib_full(ffi::gdk_memory_texture_new(
+            from_glib_full(ffi::gdk_memory_texture_new(
                 width,
                 height,
                 format.into_glib(),
                 bytes.to_glib_none().0,
                 stride,
             ))
-            .unsafe_cast()
         }
     }
 }
