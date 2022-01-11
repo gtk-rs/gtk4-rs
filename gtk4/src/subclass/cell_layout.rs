@@ -473,7 +473,7 @@ unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
 }
 
 static CELL_LAYOUT_GET_CELLS_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk-rs-subclass-cell-layout-get-cells"));
+    Lazy::new(|| Quark::from_str("gtk-rs-subclass-cell-layout-get-cells"));
 
 unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
     cell_layout: *mut ffi::GtkCellLayout,

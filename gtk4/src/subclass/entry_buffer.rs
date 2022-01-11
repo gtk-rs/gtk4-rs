@@ -221,7 +221,7 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
 }
 
 static GET_TEXT_QUARK: Lazy<glib::Quark> =
-    Lazy::new(|| glib::Quark::from_string("gtk4-rs-subclass-entry-buffer-text"));
+    Lazy::new(|| glib::Quark::from_str("gtk4-rs-subclass-entry-buffer-text"));
 
 unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,

@@ -366,7 +366,7 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
 }
 
 static EDITABLE_GET_DELEGATE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_string("gtk-rs-subclass-editable-get-delegate"));
+    Lazy::new(|| Quark::from_str("gtk-rs-subclass-editable-get-delegate"));
 
 unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
