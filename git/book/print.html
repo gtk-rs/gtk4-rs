@@ -6815,7 +6815,9 @@ Let us see how this works.</p>
     button.connect_clicked(move |button| {
         // Activate &quot;win.count&quot; and pass &quot;1&quot; as parameter
         let parameter = 1;
-        button.activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()));
+        button
+            .activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()))
+            .expect(&quot;The action could not be activated.&quot;);
     });
 
     // Create a `gtk::Box` and add `button` and `label` to it
