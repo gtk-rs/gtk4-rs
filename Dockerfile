@@ -12,7 +12,7 @@ RUN meson _build --prefix=/usr -Dgtk_doc=false -Dintrospection=disabled -Dbuild-
 RUN ninja -C _build
 RUN ninja -C _build install
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
 RUN rustup install stable --allow-downgrade -c clippy -c rustfmt
 RUN rustup install beta --allow-downgrade -c clippy -c rustfmt
 RUN rustup install nightly --allow-downgrade -c clippy -c rustfmt
