@@ -69,7 +69,7 @@ fn build_ui(app: &Application) {
         let parameter = 1;
         button
             .activate_action("win.count", Some(&parameter.to_variant()))
-            .expect("The action could not be activated.");
+            .expect("The action does not exist.");
     });
 
     // Create a `gtk::Box` and add `button` and `label` to it
