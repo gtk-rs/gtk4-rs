@@ -23,15 +23,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: nightly
-          override: true
-          components: rustfmt
       - working-directory: gir
-        run: cargo build --release
-      - run: cargo install rustdoc-stripper
+        run: cargo +nightly build --release
+      - run: cargo +nightly install rustdoc-stripper
       - run: git clone https://gitlab.gnome.org/World/Rust/gir-rustdoc/ # checkout action doesn't support random urls
       - run: python3 ./generator.py --embed-docs --yes ./
       - run: echo "RELEASE=$(echo '${{ github.event.release.tag_name }}' | grep -Po '(\d+)\.(\d+)')" >> ${GITHUB_ENV}
@@ -46,6 +40,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: doc
+          toolchain: nightly
           args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys -p gtk4-macros --features "dox" --no-deps
 
       - name: Fix broken URLs

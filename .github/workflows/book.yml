@@ -17,18 +17,11 @@ jobs:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          components: clippy
-
-      - run: cargo build
+      - run: cargo +stable build
         name: "Build"
         working-directory: book/listings
 
-      - run: cargo clippy
+      - run: cargo +stable clippy
         name: "Clippy"
         working-directory: book/listings
 
@@ -37,12 +30,6 @@ jobs:
     name: build
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
 

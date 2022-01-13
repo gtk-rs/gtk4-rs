@@ -27,23 +27,15 @@ jobs:
           - { name: "gdk4-x11", features: "v4_4", test_sys: false }
           - { name: "gtk4-macros", features: "", test_sys: false }
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.rust }}
-          override: true
-
       - name: "${{ matrix.conf.name }}: tests"
-        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+        run: xvfb-run --auto-servernum cargo +${{matrix.rust}} test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
       - name: "${{ matrix.conf.name }}/sys: tests"
-        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
+        run: xvfb-run --auto-servernum cargo +${{matrix.rust}} test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
         if: matrix.conf.test_sys
       - name: "${{ matrix.conf.name }}: build"
-        run: cargo build --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+        run: cargo +${{matrix.rust}} build --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
 
-      - run: rustup component add clippy
-        if: matrix.rust == 'beta' || matrix.rust == 'stable'
-      - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets -- -D warnings
+      - run: cargo +${{matrix.rust}} clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets -- -D warnings
         if: matrix.rust == 'beta' || matrix.rust == 'stable'
 
       - uses: bcomnes/cleanup-xvfb@v1
@@ -55,12 +47,6 @@ jobs:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          components: clippy
       - name: "examples: build"
         run: cargo build --manifest-path examples/Cargo.toml --bins --examples --all-features
       - name: "examples: clippy"
@@ -69,14 +55,10 @@ jobs:
   fmt:
     name: rustfmt
     runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          components: rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
@@ -85,30 +67,24 @@ jobs:
   regen_check:
     name: regen checker
     runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
       - run: python3 ./generator.py --yes ./
       - run: git diff --exit-code
 
   docs:
     name: docs embed check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest    
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
       - run: cargo install rustdoc-stripper
       - run: python3 generator.py --embed-docs
       - run: python3 generator.py --strip-docs
