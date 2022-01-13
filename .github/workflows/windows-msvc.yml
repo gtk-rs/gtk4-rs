@@ -15,6 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
+      id: cache
       with:
         path: c:/gnome
         key: ${{ runner.os }}-gtk
@@ -38,6 +39,7 @@ jobs:
 
     - name: Clone GTK
       working-directory: /
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         git clone -b 4.6.0 https://gitlab.gnome.org/GNOME/gtk.git --depth 1
         
@@ -63,11 +65,13 @@ jobs:
         
     - name: Prepare GTK build
       working-directory: /gtk
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         meson setup builddir --prefix=C:/gnome -Dbuild-tests=false -Dmedia-gstreamer=disabled -Dbuild-examples=false
         
     - name: Build and install GTK
       working-directory: /gtk
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         meson install -C builddir
 
