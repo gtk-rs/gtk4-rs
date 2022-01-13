@@ -67,7 +67,9 @@ fn build_ui(app: &Application) {
     button.connect_clicked(move |button| {
         // Activate "win.count" and pass "1" as parameter
         let parameter = 1;
-        button.activate_action("win.count", Some(&parameter.to_variant()));
+        button
+            .activate_action("win.count", Some(&parameter.to_variant()))
+            .expect("The action could not be activated.");
     });
 
     // Create a `gtk::Box` and add `button` and `label` to it
