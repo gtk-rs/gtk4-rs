@@ -6817,7 +6817,7 @@ Let us see how this works.</p>
         let parameter = 1;
         button
             .activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()))
-            .expect(&quot;The action could not be activated.&quot;);
+            .expect(&quot;The action does not exist.&quot;);
     });
 
     // Create a `gtk::Box` and add `button` and `label` to it
