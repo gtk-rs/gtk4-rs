@@ -13,6 +13,7 @@ RUN ninja -C _build
 RUN ninja -C _build install
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
+RUN source $HOME/.cargo/env
 RUN rustup install stable --allow-downgrade -c clippy -c rustfmt
 RUN rustup install beta --allow-downgrade -c clippy -c rustfmt
 RUN rustup install nightly --allow-downgrade -c clippy -c rustfmt
