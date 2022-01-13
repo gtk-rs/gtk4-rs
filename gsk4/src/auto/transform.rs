@@ -49,7 +49,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_matrix")]
     #[must_use]
-    pub fn matrix(&self, matrix: &graphene::Matrix) -> Transform {
+    pub fn matrix(&self, matrix: &graphene::Matrix) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_matrix(
                 self.to_glib_full(),
@@ -60,19 +60,19 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_perspective")]
     #[must_use]
-    pub fn perspective(&self, depth: f32) -> Transform {
+    pub fn perspective(&self, depth: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_perspective(self.to_glib_full(), depth)) }
     }
 
     #[doc(alias = "gsk_transform_rotate")]
     #[must_use]
-    pub fn rotate(&self, angle: f32) -> Transform {
+    pub fn rotate(&self, angle: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_rotate(self.to_glib_full(), angle)) }
     }
 
     #[doc(alias = "gsk_transform_rotate_3d")]
     #[must_use]
-    pub fn rotate_3d(&self, angle: f32, axis: &graphene::Vec3) -> Transform {
+    pub fn rotate_3d(&self, angle: f32, axis: &graphene::Vec3) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_rotate_3d(
                 self.to_glib_full(),
@@ -84,7 +84,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_scale")]
     #[must_use]
-    pub fn scale(&self, factor_x: f32, factor_y: f32) -> Transform {
+    pub fn scale(&self, factor_x: f32, factor_y: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_scale(
                 self.to_glib_full(),
@@ -96,7 +96,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_scale_3d")]
     #[must_use]
-    pub fn scale_3d(&self, factor_x: f32, factor_y: f32, factor_z: f32) -> Transform {
+    pub fn scale_3d(&self, factor_x: f32, factor_y: f32, factor_z: f32) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_scale_3d(
                 self.to_glib_full(),
@@ -111,7 +111,7 @@ impl Transform {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gsk_transform_skew")]
     #[must_use]
-    pub fn skew(&self, skew_x: f32, skew_y: f32) -> Transform {
+    pub fn skew(&self, skew_x: f32, skew_y: f32) -> Option<Transform> {
         unsafe { from_glib_full(ffi::gsk_transform_skew(self.to_glib_full(), skew_x, skew_y)) }
     }
 
@@ -239,7 +239,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_transform")]
     #[must_use]
-    pub fn transform(&self, other: Option<&Transform>) -> Transform {
+    pub fn transform(&self, other: Option<&Transform>) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_transform(
                 self.to_glib_full(),
@@ -276,7 +276,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_translate")]
     #[must_use]
-    pub fn translate(&self, point: &graphene::Point) -> Transform {
+    pub fn translate(&self, point: &graphene::Point) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_translate(
                 self.to_glib_full(),
@@ -287,7 +287,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_translate_3d")]
     #[must_use]
-    pub fn translate_3d(&self, point: &graphene::Point3D) -> Transform {
+    pub fn translate_3d(&self, point: &graphene::Point3D) -> Option<Transform> {
         unsafe {
             from_glib_full(ffi::gsk_transform_translate_3d(
                 self.to_glib_full(),
