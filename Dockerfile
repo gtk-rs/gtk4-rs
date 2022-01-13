@@ -8,7 +8,7 @@ RUN dnf builddep gtk4 -y
 ADD https://download.gnome.org/sources/gtk/4.6/gtk-4.6.0.tar.xz /tmp/gtk-4.6.0.tar.xz
 RUN tar -xf /tmp/gtk-4.6.0.tar.xz --directory /tmp
 WORKDIR /tmp/gtk-4.6.0
-RUN meson _build --prefix=/usr
+RUN meson _build --prefix=/usr -Dgtk_doc=false -Dintrospection=false -Dbuild-examples=false -Dbuild-tests=false -Ddemos=false
 RUN ninja -C _build
 RUN ninja -C _build install
 
