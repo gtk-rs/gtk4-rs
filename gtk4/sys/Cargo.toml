@@ -10,7 +10,6 @@ license = "MIT"
 links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-include = ["../../LICENSE"]
 version = "0.4.0"
 rust-version = "1.56"
 
