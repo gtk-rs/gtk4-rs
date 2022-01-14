@@ -4819,6 +4819,8 @@
 <span id="4743">4743</span>
 <span id="4744">4744</span>
 <span id="4745">4745</span>
+<span id="4746">4746</span>
+<span id="4747">4747</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -4960,6 +4962,7 @@
     <span class="doccomment">/// the upper case form of @keyval, or @keyval itself if it is already</span>
     <span class="doccomment">///   in upper case or it is not subject to case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_to_upper&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_upper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_to_upper</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
@@ -4974,6 +4977,7 @@
     <span class="doccomment">/// the lower case form of @keyval, or @keyval itself if it is already</span>
     <span class="doccomment">///  in lower case or it is not subject to case conversion.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_to_lower&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_lower</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_keyval_to_lower</span>(<span class="self">self</span>.<span class="ident">into_glib</span>())) }
