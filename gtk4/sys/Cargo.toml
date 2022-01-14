@@ -13,8 +13,10 @@ repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../../LICENSE"]
 version = "0.4.0"
 rust-version = "1.56"
+
 [package.metadata.docs.rs]
 features = ["dox"]
+
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "4.0.0"
@@ -42,13 +44,11 @@ libc = "0.2"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.gdk-pixbuf]
 package = "gdk-pixbuf-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.gdk]
 package = "gdk4-sys"
@@ -57,23 +57,19 @@ version = "0.4.0"
 
 [dependencies.gio]
 package = "gio-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.glib]
 package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.gobject]
 package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.graphene]
 package = "graphene-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [dependencies.gsk]
 package = "gsk4-sys"
@@ -82,8 +78,7 @@ version = "0.4.0"
 
 [dependencies.pango]
 package = "pango-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.15"
+version = "0.15.0"
 
 [build-dependencies]
 system-deps = "6"

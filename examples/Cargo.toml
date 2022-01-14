@@ -7,7 +7,6 @@ edition = "2021"
 [dependencies]
 chrono = "0.4.19"
 once_cell = "1.5"
-
 glium = { version = "0.31", optional = true, default-features = false }
 epoxy = { version = "0.1.0", optional = true }
 libloading = { version = "0.7.0", optional = true }
@@ -15,6 +14,7 @@ libloading = { version = "0.7.0", optional = true }
 [dependencies.gtk]
 path = "../gtk4"
 package = "gtk4"
+version = "0.4.0"
 
 [features]
 default = []
@@ -144,4 +144,3 @@ path = "video_player/main.rs"
 [[bin]]
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
-

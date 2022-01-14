@@ -12,12 +12,14 @@ repository = "https://github.com/gtk-rs/gtk4-rs"
 include = ["../../LICENSE"]
 version = "0.4.0"
 rust-version = "1.56"
+
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "4.0.0"
 
 [package.metadata.system-deps.gtk4_wayland.v4_4]
 version = "4.3.2"
+
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -33,8 +35,7 @@ libc = "0.2"
 
 [dependencies.glib]
 package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
-version = "0.15"
+version = "0.15.0"
 
 [build-dependencies]
 system-deps = "6"
