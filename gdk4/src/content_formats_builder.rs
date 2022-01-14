@@ -5,6 +5,7 @@ use glib::translate::*;
 
 impl ContentFormatsBuilder {
     #[doc(alias = "gdk_content_formats_builder_add_formats")]
+    #[must_use]
     pub fn add_formats(self, formats: &ContentFormats) -> Self {
         unsafe {
             ffi::gdk_content_formats_builder_add_formats(
@@ -17,6 +18,7 @@ impl ContentFormatsBuilder {
     }
 
     #[doc(alias = "gdk_content_formats_builder_add_gtype")]
+    #[must_use]
     pub fn add_type(self, type_: glib::types::Type) -> Self {
         unsafe {
             ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.into_glib());
@@ -26,6 +28,7 @@ impl ContentFormatsBuilder {
     }
 
     #[doc(alias = "gdk_content_formats_builder_add_mime_type")]
+    #[must_use]
     pub fn add_mime_type(self, mime_type: &str) -> Self {
         unsafe {
             ffi::gdk_content_formats_builder_add_mime_type(

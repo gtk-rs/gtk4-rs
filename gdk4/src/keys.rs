@@ -64,12 +64,14 @@ impl Key {
     }
 
     #[doc(alias = "gdk_keyval_to_upper")]
+    #[must_use]
     pub fn to_upper(&self) -> Self {
         skip_assert_initialized!();
         unsafe { from_glib(ffi::gdk_keyval_to_upper(self.into_glib())) }
     }
 
     #[doc(alias = "gdk_keyval_to_lower")]
+    #[must_use]
     pub fn to_lower(&self) -> Self {
         skip_assert_initialized!();
         unsafe { from_glib(ffi::gdk_keyval_to_lower(self.into_glib())) }
