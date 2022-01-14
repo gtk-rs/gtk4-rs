@@ -12,8 +12,19 @@ RUN meson _build --prefix=/usr -Dgtk_doc=false -Dintrospection=disabled -Dbuild-
 RUN ninja -C _build
 RUN ninja -C _build install
 
+# set up a user
+ARG HOST_USER_ID=5555
+ENV HOST_USER_ID ${HOST_USER_ID}
+RUN useradd -u $HOST_USER_ID -ms /bin/bash user
+
+USER user
+WORKDIR /home/user
+
+# install rust stable/nightly/beta/latest supported version
+
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
-ENV PATH="$HOME/.cargo/bin/:${PATH}"
+ENV PATH="/home/user/.cargo/bin:${PATH}"
+
 RUN rustup toolchain install stable --profile minimal --allow-downgrade -c clippy -c rustfmt
 RUN rustup toolchain install beta --profile minimal --allow-downgrade -c clippy -c rustfmt
 RUN rustup toolchain install nightly --profile minimal --allow-downgrade -c clippy -c rustfmt
