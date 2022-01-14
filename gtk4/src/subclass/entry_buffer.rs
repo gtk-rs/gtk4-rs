@@ -299,7 +299,7 @@ fn text_n_chars(text: &str, n_chars: u32) -> &str {
             .expect(
                 "The passed text to EntryBuffer contains fewer characters than what's passed as a length",
             );
-        let pos_end = iter.next().unwrap_or_else(|| text.len());
+        let pos_end = iter.next().unwrap_or(text.len());
         &text[..pos_end]
     } else if n_chars == 0 {
         // Avoid doing skipping to -1 char
