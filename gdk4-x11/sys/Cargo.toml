@@ -9,7 +9,7 @@ keywords = ["gdk4", "gdk4-x11", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gdk4-x11-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.0"
+version = "0.5.0"
 rust-version = "1.56"
 [package.metadata.system-deps.gtk4_x11]
 name = "gtk4-x11"
@@ -33,12 +33,12 @@ libc = "0.2"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.4.0"
+version = "0.5.0"
 
 [dependencies.glib]
 package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
-version = "0.15"
+version = "0.16"
 
 [build-dependencies]
 system-deps = "6"
