@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4&#x2F;src&#x2F;auto&#x2F;transform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>transform.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/auto/transform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>transform.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
@@ -772,7 +772,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_matrix&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">matrix</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">matrix</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Matrix</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">matrix</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">matrix</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Matrix</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_matrix</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -797,7 +797,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_perspective&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">perspective</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">depth</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">perspective</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">depth</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_perspective</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>(), <span class="ident">depth</span>)) }
     }
 
@@ -810,7 +810,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_rotate&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rotate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">angle</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rotate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">angle</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_rotate</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>(), <span class="ident">angle</span>)) }
     }
 
@@ -827,7 +827,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_rotate_3d&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rotate_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">angle</span>: <span class="ident">f32</span>, <span class="ident">axis</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Vec3</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rotate_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">angle</span>: <span class="ident">f32</span>, <span class="ident">axis</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Vec3</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_rotate_3d</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -850,7 +850,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_scale&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factor_x</span>: <span class="ident">f32</span>, <span class="ident">factor_y</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factor_x</span>: <span class="ident">f32</span>, <span class="ident">factor_y</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_scale</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -873,7 +873,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_scale_3d&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factor_x</span>: <span class="ident">f32</span>, <span class="ident">factor_y</span>: <span class="ident">f32</span>, <span class="ident">factor_z</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scale_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factor_x</span>: <span class="ident">f32</span>, <span class="ident">factor_y</span>: <span class="ident">f32</span>, <span class="ident">factor_z</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_scale_3d</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -897,7 +897,7 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_6&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_skew&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">skew</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">skew_x</span>: <span class="ident">f32</span>, <span class="ident">skew_y</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">skew</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">skew_x</span>: <span class="ident">f32</span>, <span class="ident">skew_y</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_skew</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>(), <span class="ident">skew_x</span>, <span class="ident">skew_y</span>)) }
     }
 
@@ -1189,7 +1189,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_transform&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">transform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Transform</span><span class="op">&gt;</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">transform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Transform</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_transform</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -1255,7 +1255,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_translate&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_translate</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -1273,7 +1273,7 @@
     <span class="doccomment">/// The new transform</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_translate_3d&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point3D</span>) -&gt; <span class="ident">Transform</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate_3d</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point3D</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_translate_3d</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
@@ -1305,5 +1305,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (1bd4fdc94 2022-01-12)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (22e491ac7 2022-01-13)" ></div>
 </body></html>
