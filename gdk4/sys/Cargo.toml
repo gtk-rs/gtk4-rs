@@ -9,7 +9,7 @@ keywords = ["gdk", "gdk4", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gdk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.0"
+version = "0.4.1"
 rust-version = "1.56"
 
 [package.metadata.docs.rs]
@@ -42,27 +42,27 @@ libc = "0.2"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-version = "0.15.0"
+version = "0.15.1"
 
 [dependencies.gdk-pixbuf]
 package = "gdk-pixbuf-sys"
-version = "0.15.0"
+version = "0.15.1"
 
 [dependencies.gio]
 package = "gio-sys"
-version = "0.15.0"
+version = "0.15.1"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.15.0"
+version = "0.15.1"
 
 [dependencies.gobject]
 package = "gobject-sys"
-version = "0.15.0"
+version = "0.15.1"
 
 [dependencies.pango]
 package = "pango-sys"
-version = "0.15.0"
+version = "0.15.1"
 
 [build-dependencies]
 system-deps = "6"

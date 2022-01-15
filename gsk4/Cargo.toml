@@ -9,7 +9,7 @@ license = "MIT"
 name = "gsk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.0"
+version = "0.4.1"
 rust-version = "1.56"
 
 [lib]
@@ -27,13 +27,13 @@ features = ["dox"]
 
 [dependencies]
 bitflags = "1.0"
-cairo-rs = "0.15.0"
-ffi = {package = "gsk4-sys", path = "./sys", version = "0.4.0"}
-gdk = {package = "gdk4", path = "../gdk4", version = "0.4.0"}
-glib = {features = ["v2_66"], version = "0.15.0"}
-graphene = {package = "graphene-rs", version = "0.15.0"}
+cairo-rs = "0.15.1"
+ffi = {package = "gsk4-sys", path = "./sys", version = "0.4.1"}
+gdk = {package = "gdk4", path = "../gdk4", version = "0.4.1"}
+glib = {features = ["v2_66"], version = "0.15.1"}
+graphene = {package = "graphene-rs", version = "0.15.1"}
 libc = "0.2"
-pango = {features = ["v1_46"], version = "0.15.0"}
+pango = {features = ["v1_46"], version = "0.15.1"}
 
 [dev-dependencies]
 gir-format-check = "^0.1"
