@@ -81,6 +81,7 @@ jobs:
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-16.png -O ./target/doc/favicon-16x16.png
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-32.png -O ./target/doc/favicon-32x32.png
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-256.png -O ./target/doc/rust-logo.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/rust-logo.svg
           wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/favicon.svg
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
