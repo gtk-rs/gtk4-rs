@@ -159,8 +159,8 @@ Let us check out the simplest case where we activate an action without a paramet
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
-</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.quit&quot;.
-</span><span class="boring">    app.set_accels_for_action(&quot;win.quit&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
+</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+</span><span class="boring">    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
@@ -174,18 +174,18 @@ Let us check out the simplest case where we activate an action without a paramet
         .width_request(360)
         .build();
 
-    // Add action &quot;quit&quot; to `window` taking no parameter
-    let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-    action_quit.connect_activate(clone!(@weak window =&gt; move |_, _| {
+    // Add action &quot;close&quot; to `window` taking no parameter
+    let action_close = SimpleAction::new(&quot;close&quot;, None);
+    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
         window.close();
     }));
-    window.add_action(&amp;action_quit);
+    window.add_action(&amp;action_close);
 
     // Present window
     window.present();
 }
 </code></pre></pre>
-<p>First, we created a new <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html"><code>gio::SimpleAction</code></a> which is named &quot;quit&quot; and takes no parameter.
+<p>First, we created a new <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html"><code>gio::SimpleAction</code></a> which is named &quot;close&quot; and takes no parameter.
 We also connected a callback which closes the window.</p>
 <p><span class="filename">Filename: listings/actions/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::SimpleAction;
@@ -203,8 +203,8 @@ We also connected a callback which closes the window.</p>
     // Connect to &quot;activate&quot; signal of `app`
     app.connect_activate(build_ui);
 
-    // Set keyboard accelerator to trigger &quot;win.quit&quot;.
-    app.set_accels_for_action(&quot;win.quit&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
+    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
 
     // Run the application
     app.run();
@@ -218,12 +218,12 @@ We also connected a callback which closes the window.</p>
 </span><span class="boring">        .width_request(360)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">    let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-</span><span class="boring">    action_quit.connect_activate(clone!(@weak window =&gt; move |_, _| {
+</span><span class="boring">    // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">    let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
 </span><span class="boring">        window.close();
 </span><span class="boring">    }));
-</span><span class="boring">    window.add_action(&amp;action_quit);
+</span><span class="boring">    window.add_action(&amp;action_close);
 </span><span class="boring">
 </span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
@@ -234,7 +234,7 @@ With <a href="../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_acc
 Check the documentation of <a href="../docs/gtk4/functions/fn.accelerator_parse.html"><code>accelerator_parse</code></a> in order to learn more about its syntax.
 Here we assigned <code>&lt;primary&gt;W</code> which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.</p>
 <p>Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
-The &quot;win&quot; part of &quot;win.quit&quot; is the group of the action.
+The &quot;win&quot; part of &quot;win.close&quot; is the group of the action.
 But how does GTK know that &quot;win&quot; is the action group of our window?
 The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:</p>
 <ul>
@@ -259,8 +259,8 @@ The answer is that it is so common to add actions to windows and applications th
 </span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
-</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.quit&quot;.
-</span><span class="boring">    app.set_accels_for_action(&quot;win.quit&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
+</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+</span><span class="boring">    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;primary&gt;W&quot;]);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
 </span><span class="boring">    app.run();
@@ -274,26 +274,30 @@ The answer is that it is so common to add actions to windows and applications th
 </span><span class="boring">        .width_request(360)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span><span class="boring">    // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">    let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-</span><span class="boring">    action_quit.connect_activate(clone!(@weak window =&gt; move |_, _| {
+</span><span class="boring">    // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">    let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
 </span><span class="boring">        window.close();
 </span><span class="boring">    }));
-</span><span class="boring">    window.add_action(&amp;action_quit);
+</span><span class="boring">    window.add_action(&amp;action_close);
 </span><span class="boring">
 </span>    // Create a new action group and add actions to it
     let actions = SimpleActionGroup::new();
     window.insert_action_group(&quot;win&quot;, Some(&amp;actions));
-    actions.add_action(&amp;action_quit);
+    actions.add_action(&amp;action_close);
 <span class="boring">
 </span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating &quot;win.quit&quot;.
-And indeed, the &quot;win.quit&quot; will be dispatched to the currently focused window.
+<p>Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating &quot;win.close&quot;.
+And indeed, the &quot;win.close&quot; will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
 If we want to have a single globally accessible action instead, we call <code>add_action</code> on our application instead.</p>
+<blockquote>
+<p>Adding &quot;win.close&quot; was useful as a simple example.
+However, in the future we will use the pre-defined <a href="../docs/gtk4/struct.Window.html#actions">&quot;window.close&quot;</a> action which does exactly the same thing.</p>
+</blockquote>
 <h2 id="parameter-and-state"><a class="header" href="#parameter-and-state">Parameter and State</a></h2>
 <p>An action, like most functions, can take a parameter.
 However, unlike most functions it can also be stateful.
@@ -367,7 +371,9 @@ Let us see how this works.</p>
     button.connect_clicked(move |button| {
         // Activate &quot;win.count&quot; and pass &quot;1&quot; as parameter
         let parameter = 1;
-        button.activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()));
+        button
+            .activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()))
+            .expect(&quot;The action does not exist.&quot;);
     });
 
     // Create a `gtk::Box` and add `button` and `label` to it
@@ -554,7 +560,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
     }
 
     fn add_actions(&amp;self) {
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
         let label = imp.label.get();
 
         // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -655,110 +661,8 @@ Typically, a menu entry has an action fitting one of these three descriptions:</
 </ul>
 <p>Let us modify our small app to demonstrate these cases.
 First we extend <code>add_actions</code>.
-For the action without parameter or state, we choose &quot;win.quit&quot; which we are already familiar with.</p>
-<p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
-</span><span class="boring">
-</span><span class="boring">use gio::{PropertyAction, SimpleAction};
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, Orientation};
-</span><span class="boring">
-</span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
-</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
-</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
-</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">impl Window {
-</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
-</span><span class="boring">        // Create new window
-</span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn add_actions(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
-</span><span class="boring">        let label = imp.label.get();
-</span><span class="boring">
-</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
-</span><span class="boring">        let original_state = 0;
-</span><span class="boring">        let action_count = SimpleAction::new_stateful(
-</span><span class="boring">            &quot;count&quot;,
-</span><span class="boring">            Some(&amp;i32::static_variant_type()),
-</span><span class="boring">            &amp;original_state.to_variant(),
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
-</span><span class="boring">            // Get state
-</span><span class="boring">            let mut state = action
-</span><span class="boring">                .state()
-</span><span class="boring">                .expect(&quot;Could not get state.&quot;)
-</span><span class="boring">                .get::&lt;i32&gt;()
-</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            // Get parameter
-</span><span class="boring">            let parameter = parameter
-</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
-</span><span class="boring">                .get::&lt;i32&gt;()
-</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            // Increase state by parameter and save state
-</span><span class="boring">            state += parameter;
-</span><span class="boring">            action.set_state(&amp;state.to_variant());
-</span><span class="boring">
-</span><span class="boring">            // Update label with new state
-</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {}&quot;, state));
-</span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_count);
-</span><span class="boring">
-</span>        // Add action &quot;quit&quot; to `window` taking no parameter
-        let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-
-        action_quit.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
-            window.close();
-        }));
-        self.add_action(&amp;action_quit);
-<span class="boring">
-</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
-</span><span class="boring">        let button = imp.button.get();
-</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
-</span><span class="boring">        self.add_action(&amp;action_sensitive_button);
-</span><span class="boring">
-</span><span class="boring">
-</span><span class="boring">        // Add stateful action &quot;orientation&quot; to `window` taking a string as parameter
-</span><span class="boring">        let gtk_box = imp.gtk_box.get();
-</span><span class="boring">        let action_orientation = SimpleAction::new_stateful(
-</span><span class="boring">            &quot;orientation&quot;,
-</span><span class="boring">            Some(&amp;String::static_variant_type()),
-</span><span class="boring">            &amp;&quot;Vertical&quot;.to_variant(),
-</span><span class="boring">        );
-</span><span class="boring">
-</span><span class="boring">        action_orientation.connect_activate(clone!(@weak gtk_box =&gt;
-</span><span class="boring">            move |action, parameter| {
-</span><span class="boring">                // Get parameter
-</span><span class="boring">                let parameter = parameter
-</span><span class="boring">                    .expect(&quot;Could not get parameter.&quot;)
-</span><span class="boring">                    .get::&lt;String&gt;()
-</span><span class="boring">                    .expect(&quot;The value needs to be of type `String`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                let orientation = match parameter.as_str() {
-</span><span class="boring">                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
-</span><span class="boring">                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
-</span><span class="boring">                    _ =&gt; unreachable!()
-</span><span class="boring">                };
-</span><span class="boring">
-</span><span class="boring">                // Set orientation and save state
-</span><span class="boring">                gtk_box.set_orientation(orientation);
-</span><span class="boring">                action.set_state(&amp;parameter.to_variant());
-</span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_orientation);
-</span><span class="boring">    }
-</span><span class="boring">}
-</span></code></pre>
+For the action without parameter or state, we can use the pre-defined &quot;window.close&quot; action.
+Therefore we do not have to add anything here.</p>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
@@ -787,7 +691,7 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -820,14 +724,6 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {}&quot;, state));
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_count);
-</span><span class="boring">
-</span><span class="boring">        // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">        let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-</span><span class="boring">
-</span><span class="boring">        action_quit.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
-</span><span class="boring">            window.close();
-</span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
 </span>        // Add property action &quot;sensitive-button&quot; to `window`
         let button = imp.button.get();
@@ -901,7 +797,7 @@ We do not need the action state to implement orientation switching, however it i
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -934,14 +830,6 @@ We do not need the action state to implement orientation switching, however it i
 </span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {}&quot;, state));
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_count);
-</span><span class="boring">
-</span><span class="boring">        // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">        let action_quit = SimpleAction::new(&quot;quit&quot;, None);
-</span><span class="boring">
-</span><span class="boring">        action_quit.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
-</span><span class="boring">            window.close();
-</span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_quit);
 </span><span class="boring">
 </span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = imp.button.get();
@@ -987,7 +875,7 @@ We do that by adding the menu in front of the template.</p>
 +  &lt;menu id=&quot;main-menu&quot;&gt;
 +    &lt;item&gt;
 +      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Close window&lt;/attribute&gt;
-+      &lt;attribute name=&quot;action&quot;&gt;win.quit&lt;/attribute&gt;
++      &lt;attribute name=&quot;action&quot;&gt;window.close&lt;/attribute&gt;
 +    &lt;/item&gt;
 +    &lt;item&gt;
 +      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Sensitive button&lt;/attribute&gt;
@@ -1169,7 +1057,7 @@ We create actions with <code>create_actions</code> and then add them to the acti
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -1203,13 +1091,13 @@ We create actions with <code>create_actions</code> and then add them to the acti
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_count);
 </span><span class="boring">
-</span><span class="boring">        // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">        let action_quit = SimpleAction::new(&quot;quit&quot;, None);
+</span><span class="boring">        // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">        let action_close = SimpleAction::new(&quot;close&quot;, None);
 </span><span class="boring">
-</span><span class="boring">        action_quit.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
+</span><span class="boring">        action_close.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
 </span><span class="boring">            window.close();
 </span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_quit);
+</span><span class="boring">        self.add_action(&amp;action_close);
 </span><span class="boring">
 </span>        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
         let action_sensitive_button = imp.settings.create_action(&quot;sensitive-button&quot;);
@@ -1222,7 +1110,7 @@ We create actions with <code>create_actions</code> and then add them to the acti
 </span><span class="boring">
 </span><span class="boring">    fn bind_settings(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">
 </span><span class="boring">        // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
 </span><span class="boring">        let button = imp.button.get();
@@ -1280,7 +1168,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">
 </span><span class="boring">    fn add_actions(&amp;self) {
 </span><span class="boring">        // Get state
-</span><span class="boring">        let imp = imp::Window::from_instance(self);
+</span><span class="boring">        let imp = self.imp();
 </span><span class="boring">        let label = imp.label.get();
 </span><span class="boring">
 </span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -1314,13 +1202,13 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">        }));
 </span><span class="boring">        self.add_action(&amp;action_count);
 </span><span class="boring">
-</span><span class="boring">        // Add action &quot;quit&quot; to `window` taking no parameter
-</span><span class="boring">        let action_quit = SimpleAction::new(&quot;quit&quot;, None);
+</span><span class="boring">        // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">        let action_close = SimpleAction::new(&quot;close&quot;, None);
 </span><span class="boring">
-</span><span class="boring">        action_quit.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
+</span><span class="boring">        action_close.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
 </span><span class="boring">            window.close();
 </span><span class="boring">        }));
-</span><span class="boring">        self.add_action(&amp;action_quit);
+</span><span class="boring">        self.add_action(&amp;action_close);
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
 </span><span class="boring">        let action_sensitive_button = imp.settings.create_action(&quot;sensitive-button&quot;);
@@ -1333,7 +1221,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">
 </span>    fn bind_settings(&amp;self) {
         // Get state
-        let imp = imp::Window::from_instance(self);
+        let imp = self.imp();
 
         // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
         let button = imp.button.get();
