@@ -5,6 +5,7 @@
 use glib::translate::*;
 
 glib::wrapper! {
+    #[derive(Debug)]
     pub struct TreeIter(BoxedInline<ffi::GtkTreeIter>);
 
     match fn {
