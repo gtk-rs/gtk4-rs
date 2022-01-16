@@ -1933,6 +1933,8 @@ manual_traits = ["TextBufferExtManual"]
 name = "Gtk.TextIter"
 status = "generate"
 boxed_inline = true
+    [[object.derive]]
+    name = "Debug"
 
 [[object]]
 name = "Gtk.TextTag"
@@ -2000,6 +2002,8 @@ status = "generate"
 name = "Gtk.TreeIter"
 status = "generate"
 boxed_inline = true
+    [[object.derive]]
+    name = "Debug"
 
 [[object]]
 name = "Gtk.TreeListRow"
