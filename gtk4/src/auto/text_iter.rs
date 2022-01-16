@@ -12,6 +12,7 @@ use glib::translate::*;
 use std::cmp;
 
 glib::wrapper! {
+    #[derive(Debug)]
     pub struct TextIter(BoxedInline<ffi::GtkTextIter>);
 
     match fn {
