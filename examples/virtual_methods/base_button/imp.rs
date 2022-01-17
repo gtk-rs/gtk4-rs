@@ -29,11 +29,11 @@ pub struct BaseButton;
 
 // Virtual method default implementation trampolines
 fn sync_method_default_trampoline(this: &BaseButtonInstance, extra_text: Option<String>) {
-    BaseButton::from_instance(this).sync_method(this, extra_text)
+    this.imp().sync_method(this, extra_text)
 }
 
 fn async_method_default_trampoline(this: &BaseButtonInstance) -> PinnedFuture {
-    BaseButton::from_instance(this).async_method(this)
+    this.imp().async_method(this)
 }
 
 pub(super) fn base_button_sync_method(this: &BaseButtonInstance, extra_text: Option<String>) {
