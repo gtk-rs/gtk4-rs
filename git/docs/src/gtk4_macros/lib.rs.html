@@ -555,8 +555,8 @@
 <span class="doccomment">///     }</span>
 <span class="doccomment">///     #[template_callback]</span>
 <span class="doccomment">///     pub fn print_both_labels(&amp;self) {</span>
-<span class="doccomment">///         let self_ = imp::MyWidget::from_instance(self);</span>
-<span class="doccomment">///         println!(&quot;{} {}&quot;, self_.label.label(), self_.button.label().unwrap().as_str());</span>
+<span class="doccomment">///         let imp = self.imp();</span>
+<span class="doccomment">///         println!(&quot;{} {}&quot;, imp.label.label(), imp.button.label().unwrap().as_str());</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
