@@ -183,21 +183,7 @@ The only exception are the code snippets which are licensed under the <a href="h
 </ul>
 <p>As so often the devil hides in the details, which is why we will list the installation instructions for each operating system in the following chapters.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
-<h2 id="flatpak"><a class="header" href="#flatpak">Flatpak</a></h2>
-<p>If you develop on Linux, using Flatpak is the most convenient option.
-With Flatpak your whole workflow is containerized, and your users get the very same application you develop on including all dependencies. 
-First, assure that Flatpak is installed on your system, check this <a href="https://flatpak.org/setup/">website</a> to see if any steps are necessary on your distribution.
-Download the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template">gtk-rust-template</a> and follow the instructions in its README.</p>
-<p>Then either install</p>
-<ul>
-<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a> or</li>
-<li><a href="https://flathub.org/apps/details/com.vscodium.codium">VSCodium</a> together with the <a href="https://open-vsx.org/extension/matklad/rust-analyzer">rust-analyzer</a> and <a href="https://open-vsx.org/extension/bilelmoussaoui/flatpak-vscode">flatpak</a> extensions.</li>
-</ul>
-<p>That is it.
-The build dependencies can be downloaded by the IDE.
-With GNOME Builder, you only have to press the run button for that.</p>
-<h2 id="host"><a class="header" href="#host">Host</a></h2>
-<p>If you develop on the host, you first have to install rustup.
+<p>You first have to install rustup.
 You can find the up-to-date instructions on <a href="https://rustup.rs">rustup.rs</a>.</p>
 <p>Then install GTK 4 and the build essentials.
 To do this, execute the command belonging to the distribution you are using.</p>
@@ -302,11 +288,6 @@ To switch to <code>stable-gnu</code>, run the following commands from your termi
 <p>Please note that this command might change in the future.
 If it does not work anymore, please open an <a href="https://github.com/gtk-rs/gtk4-rs/issues/new/choose">issue</a> on our repo.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h1>
-<p>There are two recommended ways to set up your workstation in order to develop <code>gtk-rs</code> applications.
-Let us go through them one by one.</p>
-<h2 id="cargo"><a class="header" href="#cargo">Cargo</a></h2>
-<p><a href="https://doc.rust-lang.org/cargo/index.html">Cargo</a> is Rust's build system and package manager.
-If following the book is all you care about, using only Cargo will work fine for you.</p>
 <p>Let us begin by installing all necessary tools.
 First, follow the instructions on the <a href="https://www.gtk.org/docs/installations/">GTK website</a> in order to install GTK 4.
 Then install Rust with <a href="https://rustup.rs/">rustup</a>.</p>
@@ -330,30 +311,6 @@ You can get the version by executing the following command:</p>
 <p>Now, you can run your application by executing:</p>
 <pre><code class="language-bash">cargo run
 </code></pre>
-<h2 id="cargo--meson"><a class="header" href="#cargo--meson">Cargo + Meson</a></h2>
-<p>Cargo is <em>almost</em> enough, but it is not well suited for handling resources such as icons or UI definition files.
-That is why we recommend to use <a href="https://mesonbuild.com/">Meson</a> on top of it.
-It is cross-platform, and its syntax is very readable.
-Meson takes care of</p>
-<ul>
-<li>translations,</li>
-<li>building and installing <a href="resources.html">resources</a> as well as</li>
-<li>installing auxiliary files such as icons and <a href="settings.html">settings schemas</a>.</li>
-</ul>
-<p>Here as well, you first follow the instructions on the <a href="https://www.gtk.org/docs/installations/">GTK website</a> in order to install GTK 4.
-Then install Rust with <a href="https://rustup.rs/">rustup</a>.
-Finally, install Meson by following the instructions on the <a href="https://mesonbuild.com/Getting-meson.html">Meson website</a>.</p>
-<p>You can download a ready-to-use gtk-rust-template <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template">here</a>.
-Follow the instructions in the README to initialize your own application.
-Then configure your project.</p>
-<pre><code class="language-bash">meson setup builddir
-</code></pre>
-<p>In order to compile and install it run the following command.
-You have to execute it every time you modify your application.</p>
-<pre><code class="language-bash">meson install -C builddir
-</code></pre>
-<p>Now, the application should be in a folder included in your system path.
-You can either start it with the application launcher of your choice or from within your terminal.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
 <p>Now that we have got a working installation, let us get right into it!</p>
 <p>At the very least, we need to create an <code>Application</code> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
@@ -3026,12 +2983,8 @@ When creating a <code>path</code>, we advise to take the <code>id</code>, replac
 <p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
 This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
 Finally, we define its default value and add a summary.</p>
-<p>Now we need to copy and compile the schema.
-As of right now, <code>cargo</code> is not suitable for that task which is why you will need another build system on top of it.
-You can find an example on how to do this with <a href="https://mesonbuild.com/"><code>meson</code></a> in the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template"><code>gtk-rust-template</code></a>.</p>
-<blockquote>
-<p>However, we promised that <code>cargo</code> alone is enough to follow the book.
-For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:</p>
+<p>Now we need to copy and compile the schema.</p>
+<p>You can install the schema by executing the following commands on a Linux or macOS machine:</p>
 <pre><code class="language-bash">sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 </code></pre>
@@ -3039,7 +2992,6 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 <pre><code class="language-powershell">cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
 glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </code></pre>
-</blockquote>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
