@@ -9,7 +9,7 @@ keywords = ["gdk4", "gdk4-wayland", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gdk4-wayland-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.1"
+version = "0.4.2"
 rust-version = "1.56"
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
@@ -32,7 +32,7 @@ libc = "0.2"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.15.1"
+version = "0.15.2"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
