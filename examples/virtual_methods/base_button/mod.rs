@@ -95,7 +95,7 @@ fn sync_method_trampoline<T>(this: &BaseButton, extra_text: Option<String>)
 where
     T: ObjectSubclass + BaseButtonImpl,
 {
-    let imp = T::from_instance(this.dynamic_cast_ref::<T::Type>().unwrap());
+    let imp = this.dynamic_cast_ref::<T::Type>().unwrap().imp();
     imp.sync_method(this, extra_text)
 }
 
@@ -103,6 +103,6 @@ fn async_method_trampoline<T>(this: &BaseButton) -> PinnedFuture
 where
     T: ObjectSubclass + BaseButtonImpl,
 {
-    let imp = T::from_instance(this.dynamic_cast_ref::<T::Type>().unwrap());
+    let imp = this.dynamic_cast_ref::<T::Type>().unwrap().imp();
     imp.async_method(this)
 }
