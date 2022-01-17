@@ -221,8 +221,8 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 ///     }
 ///     #[template_callback]
 ///     pub fn print_both_labels(&self) {
-///         let self_ = self.imp();
-///         println!("{} {}", self_.label.label(), self_.button.label().unwrap().as_str());
+///         let imp = self.imp();
+///         println!("{} {}", imp.label.label(), imp.button.label().unwrap().as_str());
 ///     }
 /// }
 ///
