@@ -58,7 +58,7 @@ impl BuilderRustScope {
         name: N,
         callback: F,
     ) {
-        imp::BuilderRustScope::from_instance(self)
+        self.imp()
             .callbacks
             .borrow_mut()
             .insert(name.into(), Rc::new(callback));

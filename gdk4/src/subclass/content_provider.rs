@@ -239,7 +239,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         Box::pin(gio::GioFuture::new(
             provider,
             move |obj, cancellable, send| {
-                let imp = Self::from_instance(obj);
+                let imp = obj.imp();
 
                 imp.parent_write_mime_type_async(
                     &imp.instance(),
