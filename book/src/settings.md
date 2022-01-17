@@ -27,20 +27,18 @@ This is a boolean value so its `type` is "b" (see [GVariant Format Strings](http
 Finally, we define its default value and add a summary.
 
 Now we need to copy and compile the schema.
-As of right now, `cargo` is not suitable for that task which is why you will need another build system on top of it.
-You can find an example on how to do this with [`meson`](https://mesonbuild.com/) in the [`gtk-rust-template`](https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-template).
 
->However, we promised that `cargo` alone is enough to follow the book.
->For local testing, you can install the schema by executing the following commands on a Linux or macOS machine:
->```bash
->sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
->sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
->```
-> On Windows run:
->```powershell
->cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
->glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
->```
+You can install the schema by executing the following commands on a Linux or macOS machine:
+```bash
+sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+```
+
+On Windows run:
+```powershell
+cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+```
 
 We initialize the `Settings` object by specifying the application id.
 
