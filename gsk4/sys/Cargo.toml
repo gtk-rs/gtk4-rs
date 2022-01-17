@@ -40,7 +40,7 @@ libc = "0.2"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-version = "0.15.2"
+version = "0.15.1"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
@@ -51,25 +51,25 @@ version = "0.4.2"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.15.2"
+version = "0.15.1"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
 [dependencies.gobject]
 package = "gobject-sys"
-version = "0.15.2"
+version = "0.15.1"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
 [dependencies.graphene]
 package = "graphene-sys"
-version = "0.15.2"
+version = "0.15.1"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
 [dependencies.pango]
 package = "pango-sys"
-version = "0.15.2"
+version = "0.15.1"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "0.15"
 
