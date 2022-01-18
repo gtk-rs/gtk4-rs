@@ -1,5 +1,10 @@
+mod custom_button;
+
+use custom_button::CustomButton;
+use glib::closure_local;
+use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -13,29 +18,24 @@ fn main() {
     // Run the application
     app.run();
 }
-
+// ANCHOR: activate
 fn build_ui(app: &Application) {
     // Create a button
-    let button = Button::builder()
-        .label("Press me!")
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
+    let button = CustomButton::new();
+    button.set_margin_top(12);
+    button.set_margin_bottom(12);
+    button.set_margin_start(12);
+    button.set_margin_end(12);
 
-    // ANCHOR: callback
-    // Connect callback
-    button.connect_local("clicked", false, move |args| {
-        // Get the button from the arguments
-        let button = args[0]
-            .get::<Button>()
-            .expect("The value needs to be of type `Button`.");
-        // Set the label to "Hello World!" after the button has been clicked on
-        button.set_label("Hello World!");
-        None
-    });
-    // ANCHOR_END: callback
+    // ANCHOR: signal_handling
+    button.connect_closure(
+        "max-number-reached",
+        false,
+        closure_local!(|_button: CustomButton, number: i32| {
+            println!("The maximum number {} has been reached", number);
+        }),
+    );
+    // ANCHOR_END: signal_handling
 
     // Create a window
     let window = ApplicationWindow::builder()
@@ -47,3 +47,4 @@ fn build_ui(app: &Application) {
     // Present window
     window.present();
 }
+// ANCHOR_END: activate
