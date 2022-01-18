@@ -29,11 +29,13 @@ fn build_ui(app: &Application) {
         .margin_end(12)
         .build();
 
+    // ANCHOR: callback
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
     });
+    // ANCHOR_END: callback
     // ANCHOR_END: button
 
     // Create a window

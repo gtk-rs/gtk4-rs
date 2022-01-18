@@ -1,3 +1,5 @@
+use glib::closure_local;
+use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
@@ -26,10 +28,15 @@ fn build_ui(app: &Application) {
 
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |button| {
-        // Set the label to "Hello World!" after the button has been clicked on
-        button.set_label("Hello World!");
-    });
+    button.connect_closure(
+        "clicked",
+        false,
+        closure_local!(|button: Button| {
+            // Set the label to "Hello World!" after the button has been clicked on
+            button.set_label("Hello World!");
+        }),
+    );
+
     // ANCHOR_END: callback
 
     // Create a window
@@ -39,6 +46,6 @@ fn build_ui(app: &Application) {
         .child(&button)
         .build();
 
-    // Present the window
+    // Present window
     window.present();
 }
