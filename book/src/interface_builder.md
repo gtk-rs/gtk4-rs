@@ -142,6 +142,27 @@ The button is easily available thanks to the stored reference in `self`.
 With composite templates, `main.rs` actually became more concise.
 With regard to capabilities, we also get the best of both worlds.
 
+# Template Callbacks
+
+
+<span class="filename">Filename: listings/interface_builder/4/window/window.ui</span>
+```xml
+{{#rustdoc_include ../listings/interface_builder/4/window/window.ui}}
+```
+
+
+<span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span>
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/interface_builder/4/window/imp.rs:template_callbacks}}
+```
+
+
+<span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span>
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/interface_builder/4/window/imp.rs:subclass}}
+```
+
+
 ## Conclusion
 
 Thanks to custom widgets we can

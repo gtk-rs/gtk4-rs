@@ -169,6 +169,10 @@ path = "interface_builder/2/main.rs"
 name = "interface_builder_3"
 path = "interface_builder/3/main.rs"
 
+[[bin]]
+name = "interface_builder_4"
+path = "interface_builder/4/main.rs"
+
 # main_event_loop
 [[bin]]
 name = "main_event_loop_1"
@@ -246,4 +250,3 @@ path = "todo_app/3/main.rs"
 [[bin]]
 name = "todo_app_4"
 path = "todo_app/4/main.rs"
-
