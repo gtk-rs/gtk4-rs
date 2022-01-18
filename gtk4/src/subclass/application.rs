@@ -60,27 +60,49 @@ impl<T: GtkApplicationImpl> GtkApplicationImplExt for T {
 
 unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
     fn class_init(class: &mut ::glib::Class<Self>) {
+        // Override the original `GtkApplication` startup implementation so that
+        // we can set GTK as initialized right afterwards.
+        {
+            use std::sync;
+
+            // Needed because the function pointer is not `Send+Sync` otherwise but has to be to be
+            // stored in a `static mut`.
+            struct WrapFn(unsafe extern "C" fn(*mut gio::ffi::GApplication));
+            unsafe impl Send for WrapFn {}
+            unsafe impl Sync for WrapFn {}
+
+            static ONCE: sync::Once = sync::Once::new();
+            static mut OLD_STARTUP: Option<WrapFn> = None;
+
+            // One the very first call replace the original `GtkApplication` startup with a
+            // function that first calls the original one and then marks gtk-rs as initialized.
+            ONCE.call_once(|| unsafe {
+                let base_klass =
+                    glib::gobject_ffi::g_type_class_ref(ffi::gtk_application_get_type());
+                assert!(!base_klass.is_null());
+
+                let app_klass = &mut *(base_klass as *mut gio::ffi::GApplicationClass);
+                OLD_STARTUP = app_klass.startup.map(WrapFn);
+
+                unsafe extern "C" fn replace_startup(app: *mut gio::ffi::GApplication) {
+                    if let Some(WrapFn(old_startup)) = OLD_STARTUP {
+                        old_startup(app);
+                    }
+                    crate::rt::set_initialized();
+                }
+
+                app_klass.startup = Some(replace_startup);
+
+                glib::gobject_ffi::g_type_class_unref(base_klass);
+            });
+        }
+
         Self::parent_class_init::<T>(class);
 
         let klass = class.as_mut();
         klass.window_added = Some(application_window_added::<T>);
         klass.window_removed = Some(application_window_removed::<T>);
-
-        // Chain our startup handler in here
-        let parent_klass = &mut class.as_mut().parent_class;
-        parent_klass.startup = Some(application_startup::<T>);
     }
-}
-
-unsafe extern "C" fn application_startup<T: ObjectSubclass>(ptr: *mut gio::ffi::GApplication)
-where
-    T: GtkApplicationImpl,
-{
-    let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.imp();
-    let wrap: Borrowed<gio::Application> = from_glib_borrow(ptr);
-    imp.startup(wrap.unsafe_cast_ref());
-    crate::rt::set_initialized();
 }
 
 unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
