@@ -184,8 +184,8 @@ implement <code>FromValue</code>.</p>
     }
     <span class="attribute">#[<span class="ident">template_callback</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_both_labels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">imp</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="ident">imp</span>.<span class="ident">label</span>.<span class="ident">label</span>(), <span class="ident">imp</span>.<span class="ident">button</span>.<span class="ident">label</span>().<span class="ident">unwrap</span>().<span class="ident">as_str</span>());
+        <span class="kw">let</span> <span class="ident">self_</span> <span class="op">=</span> <span class="ident">imp::MyWidget::from_instance</span>(<span class="self">self</span>);
+        <span class="macro">println!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="ident">self_</span>.<span class="ident">label</span>.<span class="ident">label</span>(), <span class="ident">self_</span>.<span class="ident">button</span>.<span class="ident">label</span>().<span class="ident">unwrap</span>().<span class="ident">as_str</span>());
     }
 }
 

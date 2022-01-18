@@ -428,7 +428,7 @@
         <span class="ident">name</span>: <span class="ident">N</span>,
         <span class="ident">callback</span>: <span class="ident">F</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">imp</span>()
+        <span class="ident">imp::BuilderRustScope::from_instance</span>(<span class="self">self</span>)
             .<span class="ident">callbacks</span>
             .<span class="ident">borrow_mut</span>()
             .<span class="ident">insert</span>(<span class="ident">name</span>.<span class="ident">into</span>(), <span class="ident">Rc::new</span>(<span class="ident">callback</span>));
