@@ -653,6 +653,23 @@
 <span id="577">577</span>
 <span id="578">578</span>
 <span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="comment">// rustdoc-stripper-ignore-next</span>
@@ -789,6 +806,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
+            <span class="comment">// columns-changed is a signal</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">columns_changed</span> {
                 <span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -799,6 +817,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
+            <span class="comment">// cursor-changed is a sigal</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">cursor_changed</span> {
                 <span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -815,17 +834,17 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">expand_collapse_cursor_row</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;collapse_cursor_row\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(
-                <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">logical</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">expand</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">open_all</span>.<span class="ident">into_glib</span>(),
-            ))
+            <span class="comment">// expand-collapse-cursor-row is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">expand_collapse_cursor_row</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(
+                    <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                    <span class="ident">logical</span>.<span class="ident">into_glib</span>(),
+                    <span class="ident">expand</span>.<span class="ident">into_glib</span>(),
+                    <span class="ident">open_all</span>.<span class="ident">into_glib</span>(),
+                ))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -840,17 +859,19 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">move_cursor</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;move_cursor\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(
-                <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">step</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">count</span>,
-                <span class="ident">extend</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">modify</span>.<span class="ident">into_glib</span>(),
-            ))
+            <span class="comment">// move-cursor is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">move_cursor</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(
+                    <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                    <span class="ident">step</span>.<span class="ident">into_glib</span>(),
+                    <span class="ident">count</span>,
+                    <span class="ident">extend</span>.<span class="ident">into_glib</span>(),
+                    <span class="ident">modify</span>.<span class="ident">into_glib</span>(),
+                ))
+            } <span class="kw">else</span> {
+                <span class="comment">// return false if step is not supported</span>
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -863,6 +884,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
+            <span class="comment">// row-activated is a signal</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">row_activated</span> {
                 <span class="ident">f</span>(
                     <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -877,6 +899,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
+            <span class="comment">// row-collapsed is a signal</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">row_collapsed</span> {
                 <span class="ident">f</span>(
                     <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -891,6 +914,7 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
+            <span class="comment">// row-expanded is a signal</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">row_expanded</span> {
                 <span class="ident">f</span>(
                     <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -905,11 +929,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">select_all</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;select_all\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            <span class="comment">// select-all is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">select_all</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -917,11 +942,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">select_cursor_parent</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;select_cursor_parent\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            <span class="comment">// select-cursor-parent is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">select_cursor_parent</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -929,14 +955,15 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">select_cursor_row</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;select_cursor_row\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(
-                <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">start_editing</span>.<span class="ident">into_glib</span>(),
-            ))
+            <span class="comment">// select-cursor-row is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">select_cursor_row</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(
+                    <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                    <span class="ident">start_editing</span>.<span class="ident">into_glib</span>(),
+                ))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -944,11 +971,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">start_interactive_search</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;start_interactive_search\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            <span class="comment">// start-interactive-search is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">start_interactive_search</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -961,15 +989,17 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">test_collapse_row</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;test_collapse_row\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(
-                <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-                <span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-            ))
+            <span class="comment">// test-collapse-row is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">test_collapse_row</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(
+                    <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                    <span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                    <span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                ))
+            } <span class="kw">else</span> {
+                <span class="comment">// false to allow collapsing, true to reject it</span>
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -982,15 +1012,17 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">test_expand_row</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;test_expand_row\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(
-                <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-                <span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-            ))
+            <span class="comment">// test-expand-row is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">test_expand_row</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(
+                    <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                    <span class="ident">iter</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                    <span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+                ))
+            } <span class="kw">else</span> {
+                <span class="comment">// false to allow expanding, true to reject it</span>
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -998,11 +1030,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">toggle_cursor_row</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;toggle_cursor_row\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            <span class="comment">// toggle-cursor-row is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">toggle_cursor_row</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -1010,11 +1043,12 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ffi::GtkTreeViewClass</span>;
-            <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
-                .<span class="ident">unselect_all</span>
-                .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;unselect_all\&quot;&quot;</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            <span class="comment">// unselect-all is a signal</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">unselect_all</span> {
+                <span class="ident">from_glib</span>(<span class="ident">f</span>(<span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>))
+            } <span class="kw">else</span> {
+                <span class="bool-val">false</span>
+            }
         }
     }
 }
@@ -1233,5 +1267,5 @@
     <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (ad46af247 2022-01-14)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (ee5d8d37b 2022-01-17)" ></div>
 </body></html>
