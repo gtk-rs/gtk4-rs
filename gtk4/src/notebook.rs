@@ -7,10 +7,10 @@ use libc::c_int;
 
 impl Notebook {
     #[doc(alias = "gtk_notebook_append_page")]
-    pub fn append_page<T: IsA<Widget>, U: IsA<Widget>>(
+    pub fn append_page(
         &self,
-        child: &T,
-        tab_label: Option<&U>,
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
     ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_append_page(
@@ -24,17 +24,12 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_append_page_menu")]
-    pub fn append_page_menu<T, U, V>(
+    pub fn append_page_menu(
         &self,
-        child: &T,
-        tab_label: Option<&U>,
-        menu_label: Option<&V>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>,
-    {
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
+        menu_label: Option<&impl IsA<Widget>>,
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_append_page_menu(
                 self.to_glib_none().0,
@@ -82,11 +77,12 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_insert_page")]
-    pub fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-    {
+    pub fn insert_page(
+        &self,
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
+        position: Option<u32>,
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_insert_page(
                 self.to_glib_none().0,
@@ -100,18 +96,13 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_insert_page_menu")]
-    pub fn insert_page_menu<T, U, V>(
+    pub fn insert_page_menu(
         &self,
-        child: &T,
-        tab_label: Option<&U>,
-        menu_label: Option<&V>,
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
+        menu_label: Option<&impl IsA<Widget>>,
         position: Option<u32>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>,
-    {
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_insert_page_menu(
                 self.to_glib_none().0,
@@ -125,7 +116,7 @@ impl Notebook {
         }
     }
     #[doc(alias = "gtk_notebook_page_num")]
-    pub fn page_num<T: IsA<Widget>>(&self, child: &T) -> Option<u32> {
+    pub fn page_num(&self, child: &impl IsA<Widget>) -> Option<u32> {
         unsafe {
             let ret =
                 ffi::gtk_notebook_page_num(self.to_glib_none().0, child.as_ref().to_glib_none().0);
@@ -137,11 +128,11 @@ impl Notebook {
         }
     }
     #[doc(alias = "gtk_notebook_prepend_page")]
-    pub fn prepend_page<T, U>(&self, child: &T, tab_label: Option<&U>) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-    {
+    pub fn prepend_page(
+        &self,
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_prepend_page(
                 self.to_glib_none().0,
@@ -154,17 +145,12 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_prepend_page_menu")]
-    pub fn prepend_page_menu<T, U, V>(
+    pub fn prepend_page_menu(
         &self,
-        child: &T,
-        tab_label: Option<&U>,
-        menu_label: Option<&V>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>,
-    {
+        child: &impl IsA<Widget>,
+        tab_label: Option<&impl IsA<Widget>>,
+        menu_label: Option<&impl IsA<Widget>>,
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_prepend_page_menu(
                 self.to_glib_none().0,
@@ -188,7 +174,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_reorder_child")]
-    pub fn reorder_child<T: IsA<Widget>>(&self, child: &T, position: Option<u32>) {
+    pub fn reorder_child(&self, child: &impl IsA<Widget>, position: Option<u32>) {
         unsafe {
             ffi::gtk_notebook_reorder_child(
                 self.to_glib_none().0,

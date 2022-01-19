@@ -32,12 +32,11 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_callback<F, R>(
-        params: impl IntoIterator<Item = impl AsRef<Expression>>,
-        callback: F,
-    ) -> Self
+    pub fn with_callback<R, F, I, E>(params: I, callback: F) -> Self
     where
         F: Fn(&[Value]) -> R + 'static,
+        I: IntoIterator<Item = E>,
+        E: AsRef<Expression>,
         R: ValueType,
     {
         assert_initialized_main_thread!();

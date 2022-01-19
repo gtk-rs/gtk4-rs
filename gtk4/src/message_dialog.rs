@@ -9,8 +9,8 @@ use crate::{ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window
 
 impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_new")]
-    pub fn new<T: IsA<Window>>(
-        parent: Option<&T>,
+    pub fn new(
+        parent: Option<&impl IsA<Window>>,
         flags: DialogFlags,
         type_: MessageType,
         buttons: ButtonsType,
@@ -34,8 +34,8 @@ impl MessageDialog {
 
     #[doc(alias = "gtk_message_dialog_new_with_markup")]
     #[doc(alias = "new_with_markup")]
-    pub fn with_markup<P: IsA<Window>>(
-        parent: Option<&P>,
+    pub fn with_markup(
+        parent: Option<&impl IsA<Window>>,
         flags: DialogFlags,
         type_: MessageType,
         buttons: ButtonsType,

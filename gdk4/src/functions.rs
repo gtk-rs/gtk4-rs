@@ -32,16 +32,12 @@ pub fn pango_layout_get_clip_region(
 }
 
 #[doc(alias = "gdk_content_deserialize_async")]
-pub fn content_deserialize_async<
-    P: IsA<gio::InputStream>,
-    Q: IsA<gio::Cancellable>,
-    R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
->(
-    stream: &P,
+pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static>(
+    stream: &impl IsA<gio::InputStream>,
     mime_type: &str,
     type_: glib::types::Type,
     io_priority: glib::Priority,
-    cancellable: Option<&Q>,
+    cancellable: Option<&impl IsA<gio::Cancellable>>,
     callback: R,
 ) {
     assert_initialized_main_thread!();
@@ -78,8 +74,8 @@ pub fn content_deserialize_async<
     }
 }
 
-pub fn content_deserialize_future<P: IsA<gio::InputStream> + Clone + 'static>(
-    stream: &P,
+pub fn content_deserialize_future(
+    stream: &(impl IsA<gio::InputStream> + Clone + 'static),
     mime_type: &str,
     type_: glib::types::Type,
     io_priority: glib::Priority,
@@ -222,16 +218,12 @@ pub fn content_register_serializer<
 }
 
 #[doc(alias = "gdk_content_serialize_async")]
-pub fn content_serialize_async<
-    P: IsA<gio::OutputStream>,
-    Q: IsA<gio::Cancellable>,
-    R: FnOnce(Result<(), glib::Error>) + Send + 'static,
->(
-    stream: &P,
+pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + Send + 'static>(
+    stream: &impl IsA<gio::OutputStream>,
     mime_type: &str,
     value: &glib::Value,
     io_priority: glib::Priority,
-    cancellable: Option<&Q>,
+    cancellable: Option<&impl IsA<gio::Cancellable>>,
     callback: R,
 ) {
     assert_initialized_main_thread!();
@@ -267,8 +259,8 @@ pub fn content_serialize_async<
     }
 }
 
-pub fn content_serialize_future<P: IsA<gio::OutputStream> + Clone + 'static>(
-    stream: &P,
+pub fn content_serialize_future(
+    stream: &(impl IsA<gio::OutputStream> + Clone + 'static),
     mime_type: &str,
     value: &glib::Value,
     io_priority: glib::Priority,
