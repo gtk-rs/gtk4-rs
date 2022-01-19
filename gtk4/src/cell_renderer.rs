@@ -8,10 +8,10 @@ use glib::IsA;
 /// Trait containing manually implemented methods of [`CellRenderer`](crate::CellRenderer).
 pub trait CellRendererExtManual {
     #[doc(alias = "gtk_cell_renderer_activate")]
-    fn activate<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
+    fn activate(
         &self,
-        event: &R,
-        widget: &Q,
+        event: &impl AsRef<gdk::Event>,
+        widget: &impl IsA<Widget>,
         path: &str,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
@@ -19,10 +19,10 @@ pub trait CellRendererExtManual {
     ) -> bool;
 
     #[doc(alias = "gtk_cell_renderer_start_editing")]
-    fn start_editing<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
+    fn start_editing(
         &self,
-        event: Option<&R>,
-        widget: &Q,
+        event: Option<&impl AsRef<gdk::Event>>,
+        widget: &impl IsA<Widget>,
         path: &str,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
@@ -31,10 +31,10 @@ pub trait CellRendererExtManual {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
-    fn activate<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
+    fn activate(
         &self,
-        event: &R,
-        widget: &Q,
+        event: &impl AsRef<gdk::Event>,
+        widget: &impl IsA<Widget>,
         path: &str,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
@@ -53,10 +53,10 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
         }
     }
 
-    fn start_editing<Q: IsA<Widget>, R: AsRef<gdk::Event>>(
+    fn start_editing(
         &self,
-        event: Option<&R>,
-        widget: &Q,
+        event: Option<&impl AsRef<gdk::Event>>,
+        widget: &impl IsA<Widget>,
         path: &str,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,

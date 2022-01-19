@@ -7,9 +7,9 @@ use glib::IsA;
 
 impl TreeRowReference {
     #[doc(alias = "gtk_tree_row_reference_reordered")]
-    pub fn reordered<P: IsA<glib::Object>>(
+    pub fn reordered(
         &self,
-        proxy: &P,
+        proxy: &impl IsA<glib::Object>,
         path: &TreePath,
         iter: &TreeIter,
         new_order: &[i32],

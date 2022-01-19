@@ -17,51 +17,43 @@ pub trait CellAreaExtManual {
     );
 
     #[doc(alias = "gtk_cell_area_activate_cell")]
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: AsRef<Event>>(
+    fn activate_cell(
         &self,
-        widget: &P,
-        renderer: &Q,
-        event: &R,
+        widget: &impl IsA<Widget>,
+        renderer: &impl IsA<CellRenderer>,
+        event: &impl AsRef<Event>,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> bool;
 
     #[doc(alias = "gtk_cell_area_event")]
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: AsRef<Event>>(
+    fn event(
         &self,
-        context: &P,
-        widget: &Q,
-        event: &R,
+        context: &impl IsA<CellAreaContext>,
+        widget: &impl IsA<Widget>,
+        event: &impl AsRef<Event>,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> i32;
 
     #[doc(alias = "gtk_cell_area_cell_get_valist")]
     #[doc(alias = "gtk_cell_area_cell_get_property")]
-    fn cell_get_value<P: IsA<CellRenderer>>(
-        &self,
-        renderer: &P,
-        property_name: &str,
-    ) -> glib::Value;
+    fn cell_get_value(&self, renderer: &impl IsA<CellRenderer>, property_name: &str)
+        -> glib::Value;
 
     // rustdoc-stripper-ignore-next
     /// Similar to [`Self::cell_get_value`] but panics if the value is of a different type.
     #[doc(alias = "gtk_cell_area_cell_get_valist")]
     #[doc(alias = "gtk_cell_area_cell_get_property")]
-    fn cell_get<V: for<'b> FromValue<'b> + 'static, P: IsA<CellRenderer>>(
+    fn cell_get<V: for<'b> FromValue<'b> + 'static>(
         &self,
-        renderer: &P,
+        renderer: &impl IsA<CellRenderer>,
         property_name: &str,
     ) -> V;
 
     #[doc(alias = "gtk_cell_area_cell_set_valist")]
     #[doc(alias = "gtk_cell_area_cell_set_property")]
-    fn cell_set<P: IsA<CellRenderer>>(
-        &self,
-        renderer: &P,
-        property_name: &str,
-        value: &dyn ToValue,
-    );
+    fn cell_set(&self, renderer: &impl IsA<CellRenderer>, property_name: &str, value: &dyn ToValue);
 }
 
 impl<O: IsA<CellArea>> CellAreaExtManual for O {
@@ -75,11 +67,11 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             self.as_ref().cell_set(renderer, property_name, *value);
         });
     }
-    fn activate_cell<P: IsA<Widget>, Q: IsA<CellRenderer>, R: AsRef<Event>>(
+    fn activate_cell(
         &self,
-        widget: &P,
-        renderer: &Q,
-        event: &R,
+        widget: &impl IsA<Widget>,
+        renderer: &impl IsA<CellRenderer>,
+        event: &impl AsRef<Event>,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> bool {
@@ -95,9 +87,9 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 
-    fn cell_get_value<P: IsA<CellRenderer>>(
+    fn cell_get_value(
         &self,
-        renderer: &P,
+        renderer: &impl IsA<CellRenderer>,
         property_name: &str,
     ) -> glib::Value {
         unsafe {
@@ -121,9 +113,9 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 
-    fn cell_get<V: for<'b> FromValue<'b> + 'static, P: IsA<CellRenderer>>(
+    fn cell_get<V: for<'b> FromValue<'b> + 'static>(
         &self,
-        renderer: &P,
+        renderer: &impl IsA<CellRenderer>,
         property_name: &str,
     ) -> V {
         let value = self.cell_get_value(renderer, property_name);
@@ -132,9 +124,9 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             .expect("Failed to get value of renderer")
     }
 
-    fn cell_set<P: IsA<CellRenderer>>(
+    fn cell_set(
         &self,
-        renderer: &P,
+        renderer: &impl IsA<CellRenderer>,
         property_name: &str,
         value: &dyn ToValue,
     ) {
@@ -165,11 +157,11 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 
-    fn event<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: AsRef<Event>>(
+    fn event(
         &self,
-        context: &P,
-        widget: &Q,
-        event: &R,
+        context: &impl IsA<CellAreaContext>,
+        widget: &impl IsA<Widget>,
+        event: &impl AsRef<Event>,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> i32 {

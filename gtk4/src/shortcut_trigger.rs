@@ -8,10 +8,10 @@ use glib::IsA;
 /// Trait containing manually implemented methods of [`ShortcutTrigger`](crate::ShortcutTrigger).
 pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
-    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering;
+    fn compare(&self, trigger2: &impl IsA<ShortcutTrigger>) -> std::cmp::Ordering;
 
     #[doc(alias = "gtk_shortcut_trigger_equal")]
-    fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool;
+    fn equal(&self, trigger2: &impl IsA<ShortcutTrigger>) -> bool;
 
     #[doc(alias = "gtk_shortcut_trigger_hash")]
     fn hash(&self) -> u32;
@@ -21,7 +21,7 @@ pub trait ShortcutTriggerExtManual {
 }
 
 impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExtManual for O {
-    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering {
+    fn compare(&self, trigger2: &impl IsA<ShortcutTrigger>) -> std::cmp::Ordering {
         unsafe {
             from_glib(ffi::gtk_shortcut_trigger_compare(
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0
@@ -32,7 +32,7 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExtManual for O {
         }
     }
 
-    fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool {
+    fn equal(&self, trigger2: &impl IsA<ShortcutTrigger>) -> bool {
         unsafe {
             from_glib(ffi::gtk_shortcut_trigger_equal(
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0

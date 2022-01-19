@@ -6,7 +6,7 @@ use glib::IsA;
 
 impl MapListModel {
     #[doc(alias = "gtk_map_list_model_new")]
-    pub fn without_map_func<P: IsA<gio::ListModel>>(model: Option<&P>) -> Self {
+    pub fn without_map_func(model: Option<&impl IsA<gio::ListModel>>) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_map_list_model_new(

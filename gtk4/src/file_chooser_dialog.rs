@@ -9,9 +9,9 @@ use std::ptr;
 
 impl FileChooserDialog {
     #[doc(alias = "gtk_file_chooser_dialog_new")]
-    pub fn new<T: IsA<Window>>(
+    pub fn new(
         title: Option<&str>,
-        parent: Option<&T>,
+        parent: Option<&impl IsA<Window>>,
         action: FileChooserAction,
         buttons: &[(&str, ResponseType)],
     ) -> Self {
