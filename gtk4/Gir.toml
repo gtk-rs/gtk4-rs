@@ -1935,6 +1935,10 @@ status = "generate"
 boxed_inline = true
     [[object.derive]]
     name = "Debug"
+    [[object.function]]
+    pattern = "(get_child_anchor|get_paintable)"
+        [object.function.return]
+        nullable = true # Drop on next gir-files update, see https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4401/
 
 [[object]]
 name = "Gtk.TextTag"

@@ -553,7 +553,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_child_anchor")]
     #[doc(alias = "get_child_anchor")]
-    pub fn child_anchor(&self) -> TextChildAnchor {
+    pub fn child_anchor(&self) -> Option<TextChildAnchor> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_child_anchor(self.to_glib_none().0)) }
     }
 
@@ -599,7 +599,7 @@ impl TextIter {
 
     #[doc(alias = "gtk_text_iter_get_paintable")]
     #[doc(alias = "get_paintable")]
-    pub fn paintable(&self) -> gdk::Paintable {
+    pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
     }
 
