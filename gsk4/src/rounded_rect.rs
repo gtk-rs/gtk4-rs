@@ -48,34 +48,6 @@ impl RoundedRect {
         }
     }
 
-    #[doc(alias = "gsk_rounded_rect_init")]
-    pub fn init(
-        &mut self,
-        bounds: Rect,
-        top_left: Size,
-        top_right: Size,
-        bottom_right: Size,
-        bottom_left: Size,
-    ) {
-        unsafe {
-            ffi::gsk_rounded_rect_init(
-                &mut self.inner,
-                bounds.to_glib_none().0,
-                top_left.to_glib_none().0,
-                top_right.to_glib_none().0,
-                bottom_right.to_glib_none().0,
-                bottom_left.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gsk_rounded_rect_init_from_rect")]
-    pub fn init_from_rect(&mut self, bounds: Rect, radius: f32) {
-        unsafe {
-            ffi::gsk_rounded_rect_init_from_rect(&mut self.inner, bounds.to_glib_none().0, radius);
-        }
-    }
-
     #[doc(alias = "gsk_rounded_rect_normalize")]
     pub fn normalize(&mut self) {
         unsafe {
