@@ -2987,7 +2987,7 @@
     <span class="doccomment">/// the anchor at @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_get_child_anchor&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_anchor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TextChildAnchor</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextChildAnchor</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_text_iter_get_child_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
@@ -3096,7 +3096,7 @@
     <span class="doccomment">/// the paintable at @self</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_get_paintable&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_paintable&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">gdk::Paintable</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_text_iter_get_paintable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
