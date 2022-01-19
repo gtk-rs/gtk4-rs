@@ -31,14 +31,6 @@ Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to 
 To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](../docs/gtk4/struct.Builder.html).
 All widgets that can be described that way can be found [here](../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1)
 
-> Puh, yet another builder? Let us summarize what we have so far:
-> - [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
-> - [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html), a design pattern used to create objects with many optional parameters and
-> - [`gtk::Builder`](../docs/gtk4/struct.Builder.html), the interface builder which creates widgets from `xml` files.
->
-> That was it with the builders.
-> Promised!
-
 This is how it then looks in practice:
 
 <span class="filename">Filename: listings/interface_builder/1/main.rs</span>
@@ -52,7 +44,8 @@ There are still cases where it is valuable to know of the existence of `gtk::Bui
 We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) is quite a bit easier to instantiate that way.
 
 At least we did not lose any flexibility by using `gtk::Builder`.
-It is for example still possible to refer to custom widgets such as this bare-bones `CustomButton`.
+It is for example still possible to refer to custom widgets.
+Let us test this with `CustomButton` which subclasses from `gtk::Button` without additional modfications. 
 
 <span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span>
 ```rust ,no_run,noplayground
@@ -117,6 +110,9 @@ Template child then:
 - assures that the widget gets registered without doing it manually in `main.rs`, and
 - stores a reference to the widget for later use.
 
+> If we refer to a custom widget in our template, but do not want to add it as template child then we still have to register it.
+> `class_init` is a good place to do so.
+
 We need both for our custom button, so we add it to the struct.
 
 <span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span>
@@ -140,22 +136,30 @@ The button is easily available thanks to the stored reference in `self`.
 {{#rustdoc_include ../listings/interface_builder/3/main.rs:build_ui}}
 ```
 With composite templates, `main.rs` actually became more concise.
-With regard to capabilities, we also get the best of both worlds.
 
 ## Template Callbacks
 
+We can even specify the handlers of signals within composite templates.
+This can be done with `<signal>` tag containing the name of the signal and the handler in our Rust code.
 
 <span class="filename">Filename: listings/interface_builder/4/window/window.ui</span>
 ```xml
 {{#rustdoc_include ../listings/interface_builder/4/window/window.ui}}
 ```
 
+Then we define the `handle_button_clicked` with the [`template_callbacks`](../docs/gtk4_macros/attr.template_callbacks.html) macro applied to it.
+We can determine the function signature by having a look at the `connect_*` method of the signal we want to handle.
+In our case that would be [`connect_clicked`](../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked).
+It takes a function of type `Fn(&Self)`.
+`Self` refers to our button.
+This means that `handle_button_clicked` has a single parameter of type `&CustomButton`
 
 <span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span>
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/4/window/imp.rs:template_callbacks}}
 ```
 
+Then we have to bind the template callbacks with [`bind_template_callbacks`](../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks).
 
 <span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span>
 ```rust ,no_run,noplayground
@@ -175,9 +179,9 @@ With regard to capabilities, we also get the best of both worlds.
 ```
 
 
-<span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span>
+<span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span>
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/interface_builder/4/window/imp.rs:template_callbacks}}
+{{#rustdoc_include ../listings/interface_builder/5/window/imp.rs:template_callbacks}}
 ```
 
 
