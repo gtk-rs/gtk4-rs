@@ -37,6 +37,17 @@ impl CellRenderer {
 }
 
 pub trait CellRendererExt: 'static {
+    #[doc(alias = "gtk_cell_renderer_activate")]
+    fn activate(
+        &self,
+        event: impl AsRef<gdk::Event>,
+        widget: &impl IsA<Widget>,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool;
+
     #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
     #[doc(alias = "get_aligned_area")]
     fn aligned_area(
@@ -136,6 +147,17 @@ pub trait CellRendererExt: 'static {
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     );
+
+    #[doc(alias = "gtk_cell_renderer_start_editing")]
+    fn start_editing(
+        &self,
+        event: Option<impl AsRef<gdk::Event>>,
+        widget: &impl IsA<Widget>,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> Option<CellEditable>;
 
     #[doc(alias = "gtk_cell_renderer_stop_editing")]
     fn stop_editing(&self, canceled: bool);
@@ -238,6 +260,28 @@ pub trait CellRendererExt: 'static {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExt for O {
+    fn activate(
+        &self,
+        event: impl AsRef<gdk::Event>,
+        widget: &impl IsA<Widget>,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_cell_renderer_activate(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                background_area.to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.into_glib(),
+            ))
+        }
+    }
+
     fn aligned_area(
         &self,
         widget: &impl IsA<Widget>,
@@ -512,6 +556,28 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 cell_area.to_glib_none().0,
                 flags.into_glib(),
             );
+        }
+    }
+
+    fn start_editing(
+        &self,
+        event: Option<impl AsRef<gdk::Event>>,
+        widget: &impl IsA<Widget>,
+        path: &str,
+        background_area: &gdk::Rectangle,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> Option<CellEditable> {
+        unsafe {
+            from_glib_none(ffi::gtk_cell_renderer_start_editing(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                background_area.to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.into_glib(),
+            ))
         }
     }
 

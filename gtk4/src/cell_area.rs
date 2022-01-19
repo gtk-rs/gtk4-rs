@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::*;
-use crate::{CellArea, CellAreaContext, CellRenderer, CellRendererState, Widget};
-use gdk::Event;
+use crate::{CellArea, CellRenderer};
 use glib::translate::*;
 use glib::{value::FromValue, IsA, ToValue};
 
@@ -15,26 +14,6 @@ pub trait CellAreaExtManual {
         renderer: &impl IsA<CellRenderer>,
         properties: &[(&str, &dyn ToValue)],
     );
-
-    #[doc(alias = "gtk_cell_area_activate_cell")]
-    fn activate_cell(
-        &self,
-        widget: &impl IsA<Widget>,
-        renderer: &impl IsA<CellRenderer>,
-        event: &impl AsRef<Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
-
-    #[doc(alias = "gtk_cell_area_event")]
-    fn event(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        event: &impl AsRef<Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> i32;
 
     #[doc(alias = "gtk_cell_area_cell_get_valist")]
     #[doc(alias = "gtk_cell_area_cell_get_property")]
@@ -66,25 +45,6 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         properties.iter().for_each(|(property_name, value)| {
             self.as_ref().cell_set(renderer, property_name, *value);
         });
-    }
-    fn activate_cell(
-        &self,
-        widget: &impl IsA<Widget>,
-        renderer: &impl IsA<CellRenderer>,
-        event: &impl AsRef<Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool {
-        unsafe {
-            from_glib(ffi::gtk_cell_area_activate_cell(
-                self.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                renderer.as_ref().to_glib_none().0,
-                event.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.into_glib(),
-            ))
-        }
     }
 
     fn cell_get_value(
@@ -154,26 +114,6 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                 property_name.to_glib_none().0,
                 value.to_value().to_glib_none().0,
             );
-        }
-    }
-
-    fn event(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        event: &impl AsRef<Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> i32 {
-        unsafe {
-            ffi::gtk_cell_area_event(
-                self.as_ref().to_glib_none().0,
-                context.as_ref().to_glib_none().0,
-                widget.as_ref().to_glib_none().0,
-                event.as_ref().to_glib_none().0,
-                cell_area.to_glib_none().0,
-                flags.into_glib(),
-            )
         }
     }
 }

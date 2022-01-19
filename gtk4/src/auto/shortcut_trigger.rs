@@ -43,6 +43,9 @@ pub trait ShortcutTriggerExt: 'static {
     #[doc(alias = "gtk_shortcut_trigger_to_string")]
     #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString;
+
+    #[doc(alias = "gtk_shortcut_trigger_trigger")]
+    fn trigger(&self, event: impl AsRef<gdk::Event>, enable_mnemonics: bool) -> gdk::KeyMatch;
 }
 
 impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
@@ -59,6 +62,16 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_string(
                 self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn trigger(&self, event: impl AsRef<gdk::Event>, enable_mnemonics: bool) -> gdk::KeyMatch {
+        unsafe {
+            from_glib(ffi::gtk_shortcut_trigger_trigger(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+                enable_mnemonics.into_glib(),
             ))
         }
     }

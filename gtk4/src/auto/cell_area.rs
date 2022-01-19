@@ -50,6 +50,16 @@ pub trait CellAreaExt: 'static {
         edit_only: bool,
     ) -> bool;
 
+    #[doc(alias = "gtk_cell_area_activate_cell")]
+    fn activate_cell(
+        &self,
+        widget: &impl IsA<Widget>,
+        renderer: &impl IsA<CellRenderer>,
+        event: impl AsRef<gdk::Event>,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool;
+
     #[doc(alias = "gtk_cell_area_add")]
     fn add(&self, renderer: &impl IsA<CellRenderer>);
 
@@ -83,6 +93,16 @@ pub trait CellAreaExt: 'static {
 
     #[doc(alias = "gtk_cell_area_create_context")]
     fn create_context(&self) -> CellAreaContext;
+
+    #[doc(alias = "gtk_cell_area_event")]
+    fn event(
+        &self,
+        context: &impl IsA<CellAreaContext>,
+        widget: &impl IsA<Widget>,
+        event: impl AsRef<gdk::Event>,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> i32;
 
     #[doc(alias = "gtk_cell_area_focus")]
     fn focus(&self, direction: DirectionType) -> bool;
@@ -297,6 +317,26 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    fn activate_cell(
+        &self,
+        widget: &impl IsA<Widget>,
+        renderer: &impl IsA<CellRenderer>,
+        event: impl AsRef<gdk::Event>,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_cell_area_activate_cell(
+                self.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                renderer.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.into_glib(),
+            ))
+        }
+    }
+
     fn add(&self, renderer: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_cell_area_add(
@@ -383,6 +423,26 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             from_glib_full(ffi::gtk_cell_area_create_context(
                 self.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    fn event(
+        &self,
+        context: &impl IsA<CellAreaContext>,
+        widget: &impl IsA<Widget>,
+        event: impl AsRef<gdk::Event>,
+        cell_area: &gdk::Rectangle,
+        flags: CellRendererState,
+    ) -> i32 {
+        unsafe {
+            ffi::gtk_cell_area_event(
+                self.as_ref().to_glib_none().0,
+                context.as_ref().to_glib_none().0,
+                widget.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+                cell_area.to_glib_none().0,
+                flags.into_glib(),
+            )
         }
     }
 
