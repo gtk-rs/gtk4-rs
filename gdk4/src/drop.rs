@@ -11,14 +11,11 @@ use std::ptr;
 
 impl Drop {
     #[doc(alias = "gdk_drop_read_async")]
-    pub fn read_async<
-        P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static,
-    >(
+    pub fn read_async<Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static>(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
-        cancellable: Option<&P>,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: Q,
     ) {
         let user_data: Box<Q> = Box::new(callback);
@@ -81,14 +78,11 @@ impl Drop {
     }
 
     #[doc(alias = "gdk_drop_read_value_async")]
-    pub fn read_value_async<
-        P: IsA<gio::Cancellable>,
-        Q: FnOnce(Result<glib::Value, glib::Error>) + 'static,
-    >(
+    pub fn read_value_async<Q: FnOnce(Result<glib::Value, glib::Error>) + 'static>(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
-        cancellable: Option<&P>,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: Q,
     ) {
         let user_data: Box<Q> = Box::new(callback);

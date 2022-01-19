@@ -73,7 +73,7 @@ impl DirectoryListBuilder {
         self
     }
 
-    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+    pub fn file(mut self, file: &impl IsA<gio::File>) -> Self {
         self.file = Some(file.clone().upcast());
         self
     }

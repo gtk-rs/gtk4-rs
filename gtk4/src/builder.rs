@@ -9,7 +9,7 @@ use std::path::Path;
 impl Builder {
     #[doc(alias = "gtk_builder_new_from_file")]
     #[doc(alias = "new_from_file")]
-    pub fn from_file<T: AsRef<Path>>(file_path: T) -> Self {
+    pub fn from_file(file_path: impl AsRef<Path>) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_builder_new_from_file(
@@ -45,7 +45,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_add_from_file")]
-    pub fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error> {
+    pub fn add_from_file(&self, file_path: impl AsRef<Path>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ::std::ptr::null_mut();
             ffi::gtk_builder_add_from_file(

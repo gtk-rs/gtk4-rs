@@ -29,7 +29,7 @@ impl Event {
 
     #[doc(alias = "gdk_events_get_angle")]
     #[doc(alias = "get_angle")]
-    pub fn angle<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
+    pub fn angle(&self, event: impl AsRef<Event>) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
             let mut angle = mem::MaybeUninit::uninit();
@@ -49,7 +49,7 @@ impl Event {
 
     #[doc(alias = "gdk_events_get_center")]
     #[doc(alias = "get_center")]
-    pub fn center<P: AsRef<Event>>(&self, event: P) -> Option<(f64, f64)> {
+    pub fn center(&self, event: impl AsRef<Event>) -> Option<(f64, f64)> {
         skip_assert_initialized!();
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -72,7 +72,7 @@ impl Event {
 
     #[doc(alias = "gdk_events_get_distance")]
     #[doc(alias = "get_distance")]
-    pub fn distance<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
+    pub fn distance(&self, event: impl AsRef<Event>) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
             let mut distance = mem::MaybeUninit::uninit();

@@ -52,7 +52,7 @@ impl Expression {
     }
 
     #[doc(alias = "gtk_expression_evaluate")]
-    pub fn evaluate<T: IsA<Object>>(&self, this: Option<&T>) -> Option<Value> {
+    pub fn evaluate(&self, this: Option<&impl IsA<Object>>) -> Option<Value> {
         assert_initialized_main_thread!();
         unsafe {
             let mut value = Value::uninitialized();
