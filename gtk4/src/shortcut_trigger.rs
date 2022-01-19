@@ -15,9 +15,6 @@ pub trait ShortcutTriggerExtManual {
 
     #[doc(alias = "gtk_shortcut_trigger_hash")]
     fn hash(&self) -> u32;
-
-    #[doc(alias = "gtk_shortcut_trigger_trigger")]
-    fn trigger(&self, event: &gdk::Event, enable_mnemonics: bool) -> gdk::KeyMatch;
 }
 
 impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExtManual for O {
@@ -49,16 +46,6 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExtManual for O {
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0
                     as glib::ffi::gconstpointer,
             )
-        }
-    }
-
-    fn trigger(&self, event: &gdk::Event, enable_mnemonics: bool) -> gdk::KeyMatch {
-        unsafe {
-            from_glib(ffi::gtk_shortcut_trigger_trigger(
-                self.as_ref().to_glib_none().0,
-                event.to_glib_none().0,
-                enable_mnemonics.into_glib(),
-            ))
         }
     }
 }

@@ -55,6 +55,7 @@ generate = [
     "Gtk.BuilderScope",
     "Gtk.ButtonsType",
     "Gtk.CellAreaBox",
+    "Gtk.CellEditable",
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
     "Gtk.CellRendererPixbuf",
@@ -130,6 +131,7 @@ generate = [
     "Gtk.IconThemeError",
     "Gtk.IconViewDropPosition",
     "Gtk.ImageType",
+    "Gtk.IMContext",
     "Gtk.IMMulticontext",   
     "Gtk.InputHints",
     "Gtk.InputPurpose",
@@ -671,14 +673,6 @@ manual_traits = ["CellAreaExtManual"]
     pattern = "cell_[gs]et_property"
     manual = true
     [[object.function]]
-    name = "activate_cell"
-    manual = true # to handlndle gdk::Event
-    doc_trait_name = "CellAreaExtManual"
-    [[object.function]]
-    name = "event"
-    manual = true # to handlndle gdk::Event
-    doc_trait_name = "CellAreaExtManual"
-    [[object.function]]
     name = "apply_attributes"
         [[object.function.parameter]]
         name = "iter"
@@ -706,15 +700,6 @@ status = "generate"
 generate_builder = false
 
 [[object]]
-name = "Gtk.CellEditable"
-status = "generate"
-manual_traits = ["CellEditableExtManual"]
-    [[object.function]]
-    name = "start_editing"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "CellEditableExtManual"
-
-[[object]]
 name = "Gtk.CellLayout"
 status = "generate"
 manual_traits = ["CellLayoutExtManual"]
@@ -734,19 +719,11 @@ manual_traits = ["CellRendererExtManual"]
     [[object.property]]
     pattern = "*-set" # those properties are read only
     generate = ["get", "notify"]
-    [[object.function]]
-    name = "activate"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "CellRendererExtManual"
     [[object.signal]]
     name = "editing-started"
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
-    [[object.function]]
-    name = "start_editing"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "CellRendererExtManual"
     [[object.function]]
     name = "render"
     ignore = true # docs only
@@ -1278,14 +1255,6 @@ status = "generate"
         name = "pixbuf"
         nullable = false
 
-[[object]]
-name = "Gtk.IMContext"
-status = "generate"
-manual_traits = ["IMContextExtManual"]
-    [[object.function]]
-    name = "filter_keypress"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "IMContextExtManual"
 
 [[object]]
 name = "Gtk.IMContextSimple"
@@ -1816,10 +1785,6 @@ manual_traits = ["ShortcutTriggerExtManual"]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
     doc_trait_name = "ShortcutTriggerExtManual"
-    [[object.function]]
-    name = "trigger"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "ShortcutTriggerExtManual"
 
 [[object]]
 name = "Gtk.SignalAction"
@@ -1961,11 +1926,6 @@ status = "generate"
 [[object]]
 name = "Gtk.TextView"
 status = "generate"
-manual_traits = ["TextViewExtManual"]
-    [[object.function]]
-    name = "im_context_filter_keypress"
-    manual = true # to handle gdk::Event
-    doc_trait_name = "TextViewExtManual"
     [[object.signal]]
     name = "extend-selection"
     inhibit = true

@@ -47,6 +47,9 @@ pub trait IMContextExt: 'static {
         group: i32,
     ) -> bool;
 
+    #[doc(alias = "gtk_im_context_filter_keypress")]
+    fn filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool;
+
     #[doc(alias = "gtk_im_context_focus_in")]
     fn focus_in(&self);
 
@@ -161,6 +164,15 @@ impl<O: IsA<IMContext>> IMContextExt for O {
                 keycode,
                 state.into_glib(),
                 group,
+            ))
+        }
+    }
+
+    fn filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_im_context_filter_keypress(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
             ))
         }
     }

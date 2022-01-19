@@ -756,6 +756,9 @@ pub trait TextViewExt: 'static {
     #[doc(alias = "get_wrap_mode")]
     fn wrap_mode(&self) -> WrapMode;
 
+    #[doc(alias = "gtk_text_view_im_context_filter_keypress")]
+    fn im_context_filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool;
+
     #[doc(alias = "gtk_text_view_move_mark_onscreen")]
     fn move_mark_onscreen(&self, mark: &impl IsA<TextMark>) -> bool;
 
@@ -1367,6 +1370,15 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe {
             from_glib(ffi::gtk_text_view_get_wrap_mode(
                 self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn im_context_filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_text_view_im_context_filter_keypress(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
             ))
         }
     }
