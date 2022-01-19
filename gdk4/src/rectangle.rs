@@ -54,8 +54,51 @@ impl AsRef<RectangleInt> for Rectangle {
 }
 
 impl From<RectangleInt> for Rectangle {
-    fn from(r: RectangleInt) -> Rectangle {
+    fn from(r: RectangleInt) -> Self {
         skip_assert_initialized!();
         unsafe { *(&r as *const _ as *const _) }
+    }
+}
+
+impl From<Rectangle> for RectangleInt {
+    fn from(r: Rectangle) -> Self {
+        skip_assert_initialized!();
+        unsafe { *(&r as *const _ as *const _) }
+    }
+}
+
+impl From<cairo::Rectangle> for Rectangle {
+    // rustdoc-stripper-ignore-next
+    /// Note that converting between a [`cairo::Rectangle`] and [`Rectangle`]
+    /// will probably lead to precisison errors. Use cautiously.
+    fn from(r: cairo::Rectangle) -> Self {
+        skip_assert_initialized!();
+        Self::new(r.x as i32, r.y as i32, r.width as i32, r.height as i32)
+    }
+}
+
+impl From<Rectangle> for cairo::Rectangle {
+    fn from(r: Rectangle) -> Self {
+        skip_assert_initialized!();
+        Self {
+            x: r.x() as f64,
+            y: r.y() as f64,
+            width: r.width() as f64,
+            height: r.height() as f64,
+        }
+    }
+}
+
+impl From<pango::Rectangle> for Rectangle {
+    fn from(r: pango::Rectangle) -> Self {
+        skip_assert_initialized!();
+        Self::new(r.x(), r.y(), r.width(), r.height())
+    }
+}
+
+impl From<Rectangle> for pango::Rectangle {
+    fn from(r: Rectangle) -> Self {
+        skip_assert_initialized!();
+        Self::new(r.x(), r.y(), r.width(), r.height())
     }
 }
