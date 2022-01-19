@@ -6,7 +6,7 @@ use std::path::Path;
 
 impl IMContextSimple {
     #[doc(alias = "gtk_im_context_simple_add_compose_file")]
-    pub fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P) {
+    pub fn add_compose_file(&self, compose_file: impl AsRef<Path>) {
         unsafe {
             let compose_file = compose_file.as_ref();
             ffi::gtk_im_context_simple_add_compose_file(
