@@ -421,20 +421,6 @@
 <span id="345">345</span>
 <span id="346">346</span>
 <span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Notebook</span>, <span class="ident">Widget</span>};
@@ -455,10 +441,10 @@
     <span class="doccomment">/// the index (starting from 0) of the appended</span>
     <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_append_page&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
-        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>,
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_append_page</span>(
@@ -491,17 +477,12 @@
     <span class="doccomment">/// the index (starting from 0) of the appended</span>
     <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_append_page_menu&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_page_menu</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
-        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>,
-        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">u32</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">V</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    {
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_append_page_menu</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -584,11 +565,12 @@
     <span class="doccomment">/// the index (starting from 0) of the inserted</span>
     <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_insert_page&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) -&gt; <span class="ident">u32</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_insert_page</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -624,18 +606,13 @@
     <span class="doccomment">/// the index (starting from 0) of the inserted</span>
     <span class="doccomment">///   page in the notebook</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_insert_page_menu&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_page_menu</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
-        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>,
-        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span>,
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">u32</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">V</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    {
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_insert_page_menu</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -658,7 +635,7 @@
     <span class="doccomment">/// the index of the page containing @child, or</span>
     <span class="doccomment">///   -1 if @child is not in the notebook</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_page_num&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_num</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_num</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span>
                 <span class="ident">ffi::gtk_notebook_page_num</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">child</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
@@ -681,11 +658,11 @@
     <span class="doccomment">/// the index (starting from 0) of the prepended</span>
     <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_prepend_page&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>) -&gt; <span class="ident">u32</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_prepend_page</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -717,17 +694,12 @@
     <span class="doccomment">/// the index (starting from 0) of the prepended</span>
     <span class="doccomment">///   page in the notebook, or -1 if function fails</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_prepend_page_menu&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page_menu</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">V</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prepend_page_menu</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
-        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">U</span><span class="op">&gt;</span>,
-        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">V</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">u32</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">U</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-        <span class="ident">V</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
-    {
+        <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>,
+        <span class="ident">tab_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">menu_label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">u32</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_notebook_prepend_page_menu</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -765,7 +737,7 @@
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the new position, or -1 to move to the end</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_notebook_reorder_child&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reorder_child</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reorder_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_notebook_reorder_child</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
