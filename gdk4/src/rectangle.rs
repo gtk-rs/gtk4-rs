@@ -23,16 +23,32 @@ impl Rectangle {
         self.inner.x
     }
 
+    pub fn set_x(&mut self, x: i32) {
+        self.inner.x = x;
+    }
+
     pub fn y(&self) -> i32 {
         self.inner.y
+    }
+
+    pub fn set_y(&mut self, y: i32) {
+        self.inner.y = y;
     }
 
     pub fn width(&self) -> i32 {
         self.inner.width
     }
 
+    pub fn set_width(&mut self, width: i32) {
+        self.inner.width = width;
+    }
+
     pub fn height(&self) -> i32 {
         self.inner.height
+    }
+
+    pub fn set_height(&mut self, height: i32) {
+        self.inner.height = height;
     }
 }
 
