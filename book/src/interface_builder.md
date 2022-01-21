@@ -45,7 +45,7 @@ We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWi
 
 At least we did not lose any flexibility by using `gtk::Builder`.
 It is for example still possible to refer to custom widgets.
-Let us test this with `CustomButton` which subclasses from `gtk::Button` without additional modfications. 
+Let us test this with `CustomButton` which subclasses from `gtk::Button` without additional modifications. 
 
 <span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span>
 ```rust ,no_run,noplayground
@@ -166,18 +166,23 @@ Then we have to bind the template callbacks with [`bind_template_callbacks`](../
 {{#rustdoc_include ../listings/interface_builder/4/window/imp.rs:subclass}}
 ```
 
+We can also access the state of our widget.
+Let us say we want to manipulate a `number` stored in `imp::Window`.
+
 <span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span>
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/interface_builder/5/window/imp.rs:object}}
 ```
 
-
+In order to access the widget's state we have to add `swapped="true"` to the `signal` tag.
 
 <span class="filename">Filename: listings/interface_builder/5/window/window.ui</span>
 ```xml
 {{#rustdoc_include ../listings/interface_builder/5/window/window.ui}}
 ```
 
+Now we can add `&self` as first parameter to `handle_button_clicked`.
+This lets us access the state of the window and therefore manipulate `number`.
 
 <span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span>
 ```rust ,no_run,noplayground
@@ -194,8 +199,9 @@ Thanks to custom widgets we can
 - override behavior.
 
 Thanks to composite templates we can
-- describe complex user interfaces concisely, and
-- easily access widgets within the template. 
+- describe complex user interfaces concisely, 
+- easily access widgets within the template as well as
+- specify handler functions for signals. 
 
 The API of the interface builder is extensive so especially at the beginning you will want to check out the documentation.
 The basic syntax is explained with [`Builder`](../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions), syntax specific to widgets with [`Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
