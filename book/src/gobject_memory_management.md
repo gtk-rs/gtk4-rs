@@ -1,7 +1,7 @@
 # Memory Management
 
 A GObject (or `glib::Object` in Rust terms) is a reference-counted, mutable object.
-Let us see in a set of real life examples which consequences this has.
+Let's see in a set of real life examples which consequences this has.
 
 ```rust ,no_run,compile_fail
 use gtk::prelude::*;
@@ -150,7 +150,7 @@ Yes we did: [reference cycles](https://doc.rust-lang.org/book/ch15-06-reference-
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
-With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
+With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.
 
 > In this simple example, GTK actually resolves the reference cycle on its own once you close the window.

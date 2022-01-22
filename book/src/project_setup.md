@@ -1,6 +1,6 @@
 # Project Setup
 
-Let us begin by installing all necessary tools.
+Let's begin by installing all necessary tools.
 First, follow the instructions on the [GTK website](https://www.gtk.org/docs/installations/) in order to install GTK 4.
 Then install Rust with [rustup](https://rustup.rs/).
 

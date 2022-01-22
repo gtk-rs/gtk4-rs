@@ -2,7 +2,7 @@
 
 Properties provide a public API for accessing state of GObjects.
 
-Let us see how this is done by experimenting with the `Switch` widget.
+Let's see how this is done by experimenting with the `Switch` widget.
 One of its properties is the [state](https://docs.gtk.org/gtk4/property.Switch.state.html).
 According to the GTK docs, it can be read and be written to.
 That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/struct.Switch.html#method.set_state) methods.
@@ -26,7 +26,7 @@ This is fine in most situations where these cases are hardcoded within the progr
 If this does not apply for your program you might want to use [`try_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property) and [`try_set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property) instead.
 
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
-Let us see how that would look like for two `Switch` instances.
+Let's see how that would look like for two `Switch` instances.
 
 <span class="filename">Filename: listings/gobject_properties/3/main.rs</span>
 
@@ -80,9 +80,9 @@ The formerly private `number` is now accessible via the `property` and `set_prop
 
 We can immediately take advantage of this new property by binding the "label" property to it.
 It even converts the integer value of "number" to the string of "label".
-Now we do not have to adapt the label in the "clicked" callback anymore.
+Now we don't have to adapt the label in the "clicked" callback anymore.
 
-Let us see what we can do with this by creating two custom buttons.
+Let's see what we can do with this by creating two custom buttons.
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 
@@ -90,7 +90,7 @@ Let us see what we can do with this by creating two custom buttons.
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:buttons}}
 ```
 
-We have already seen that bound properties do not necessarily have to be of the same type.
+We have already seen that bound properties don't necessarily have to be of the same type.
 By leveraging [`transform_to`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to) and [`transform_from`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from), we can assure that `button_2` always displays a number which is 1 higher than the number of `button_1`.
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
@@ -117,5 +117,3 @@ Introducing properties to your custom GObjects is useful if you want to
 - allow consumers to be able to access internal state
 - bind state of (different) GObjects
 - notify consumers whenever a property value changes
-
-

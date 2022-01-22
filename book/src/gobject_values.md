@@ -6,7 +6,7 @@ In these cases [`glib::Value`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/
 
 ## Value
 
-Let us start with `Value`.
+Let's start with `Value`.
 Conceptually, a `Value` is similar to a Rust `enum` defined like this:
 
 ```rust, no_run,noplayground

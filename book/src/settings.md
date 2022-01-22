@@ -2,7 +2,7 @@
 
 We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let us learn how to use `GSettings` by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
+Let's learn how to use `GSettings` by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
@@ -11,7 +11,7 @@ At the very beginning we have to create a `GSchema` xml file in order to describ
 ```xml
 {{#rustdoc_include ../listings/settings/1/org.gtk-rs.example.gschema.xml}}
 ```
-Let us get through it step by step.
+Let's get through it step by step.
 The `id` is the same application id we used when we created our application.
 
 <span class="filename">Filename: listings/settings/1/main.rs</span>
@@ -67,7 +67,7 @@ Finally, we assure that the switch state is stored in the settings whenever we c
 The `Switch` now retains its state even after closing the application.
 But we can make this even better.
 The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
-So let us do exactly that.
+So let's do exactly that.
 
 We can remove the [`boolean`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the `connect_state_set` call.
 We then bind the setting to the property by specifying the key, object and name of the property.

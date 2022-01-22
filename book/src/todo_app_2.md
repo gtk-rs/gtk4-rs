@@ -18,7 +18,7 @@ Your browser does not support the video tag.
 Note that the screencast also shows a button with label "Clear" which will remove all done tasks.
 This will come in handy when we later make the app preserve the tasks between sessions.
 
-Let us start by adding a menu and a header bar to `window.ui`.
+Let's start by adding a menu and a header bar to `window.ui`.
 After reading the [actions](actions.html) chapter the added code should feel familiar.
 
 <span class="filename">Filename: listings/todo_app/2/window/window.ui</span>
@@ -149,7 +149,7 @@ In `setup_shortcut_window`, we add a handy way to let users of our app know whic
 ```
 
 The entries can be organized with [`gtk::ShortcutsSection`](../docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](../docs/gtk4/struct.ShortcutsGroup.html).
-If we specify the action name, we also do not have to repeat the keyboard accelerator.
+If we specify the action name, we also don't have to repeat the keyboard accelerator.
 [`gtk::ShortcutsShortcut`](../docs/gtk4/struct.ShortcutsShortcut.html) looks it up on its own.
 The `shortcuts.ui` file looks like this:
 
@@ -178,7 +178,7 @@ Since this has to be done at the application level, `setup_shortcuts` takes a `g
 
 Since we use `Settings`, our filter state will persist between sessions.
 However, the tasks themselves will not.
-Let us implement that.
+Let's implement that.
 
 We could store our tasks in `Settings`, but it would be inconvenient.
 When it comes to serializing and deserializing nothing beats the crate [`serde`](https://lib.rs/crates/serde).
@@ -257,7 +257,7 @@ For this example we like it, because it allows us to see into what a `Vec<TodoDa
 ```
 
 When we start the app, we will want to restore the saved data.
-Let us add a `restore_data` method for that.
+Let's add a `restore_data` method for that.
 We make sure to handle the case where there is no data file there yet.
 It might be the first time that we started the app and therefore there is no former session to restore.
 

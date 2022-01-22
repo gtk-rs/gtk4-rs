@@ -1,11 +1,11 @@
 # Actions
 
-By now, we have already learned many ways to glue our widgets together.
+By now, we've already learned many ways to glue our widgets together.
 We can send messages through channels, emit signals, share reference-counted state and bind properties.
 Now, we will complete our set by learning about actions.
 
 An action is a piece of functionality bound to a certain GObject.
-Let us check out the simplest case where we activate an action without a parameter.
+Let's check out the simplest case where we activate an action without a parameter.
 
 <span class="filename">Filename: listings/actions/1/main.rs</span>
 
@@ -27,7 +27,7 @@ With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html
 Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
 Here we assigned `<primary>W` which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.
 
-Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
+Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The "win" part of "win.close" is the group of the action.
 But how does GTK know that "win" is the action group of our window?
 The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:
@@ -54,7 +54,7 @@ If we want to have a single globally accessible action instead, we call `add_act
 
 An action, like most functions, can take a parameter.
 However, unlike most functions it can also be stateful.
-Let us see how this works.
+Let's see how this works.
 
 <span class="filename">Filename: listings/actions/3/main.rs</span>
 
@@ -125,10 +125,10 @@ Typically, a menu entry has an action fitting one of these three descriptions:
 - no parameter and boolean state, or
 - string parameter and string state.
 
-Let us modify our small app to demonstrate these cases.
+Let's modify our small app to demonstrate these cases.
 First we extend `add_actions`.
 For the action without parameter or state, we can use the pre-defined "window.close" action.
-Therefore we do not have to add anything here.
+Therefore we don't have to add anything here.
 
 With the action "sensitive-button", we manipulate the "sensitive" property of `button`.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
@@ -150,7 +150,7 @@ This means that the caller can expect the boolean state to toggle after activati
 Finally, we add "win.orientation", an action with string parameter and string state.
 This action can be used to change the orientation of `gtk_box`.
 Here the convention is that the state should be set to the given parameter.
-We do not need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.
+We don't need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.
 
 <span class="filename">Filename: listings/actions/6/window/mod.rs</span>
 

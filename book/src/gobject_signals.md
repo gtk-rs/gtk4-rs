@@ -23,12 +23,12 @@ If we wanted to, we could have connected to it with the generic [`connect_closur
 
 Similar to the generic way of accessing properties, the advantage of `connect_closure` is that it also works with custom signals.
 
-> If you need to clone reference counted objects into your closure you do not have to wrap it within another `clone!` macro.
+> If you need to clone reference counted objects into your closure you don't have to wrap it within another `clone!` macro.
 > `closure_local!` accepts the same syntax for creating strong/weak references, plus a [watch](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching) feature that automatically disconnects the closure once the watched object disappears. 
 
 ## Adding Signals to Custom GObjects
 
-Let us see how we can create our own signals.
+Let's see how we can create our own signals.
 Again we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 

@@ -31,7 +31,7 @@ Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to 
 To instantiate the widgets described by the `xml` files we use [`gtk::Builder`](../docs/gtk4/struct.Builder.html).
 All widgets that can be described that way can be found [here](../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1)
 
-> Puh, yet another builder? Let us summarize what we have so far:
+> Puh, yet another builder? Let's summarize what we have so far:
 > - [GNOME Builder](https://flathub.org/apps/details/org.gnome.Builder), an IDE used to create GNOME apps, 
 > - [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html), a design pattern used to create objects with many optional parameters and
 > - [`gtk::Builder`](../docs/gtk4/struct.Builder.html), the interface builder which creates widgets from `xml` files.
@@ -47,7 +47,7 @@ This is how it then looks in practice:
 ```
 
 This is a bit disappointing.
-Even though we have already described the UI in the markup file, the amount of code is still pretty much the same.
+Even though we've already described the UI in the markup file, the amount of code is still pretty much the same.
 There are still cases where it is valuable to know of the existence of `gtk::Builder`.
 We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) is quite a bit easier to instantiate that way.
 

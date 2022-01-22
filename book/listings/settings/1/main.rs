@@ -46,7 +46,7 @@ fn build_ui(app: &Application) {
         settings
             .set_boolean("is-switch-enabled", is_enabled)
             .expect("Could not set setting.");
-        // Do not inhibit the default handler
+        // Don't inhibit the default handler
         Inhibit(false)
     });
     // ANCHOR_END: connect_state_set
