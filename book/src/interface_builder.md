@@ -167,7 +167,7 @@ Then we have to bind the template callbacks with [`bind_template_callbacks`](../
 ```
 
 We can also access the state of our widget.
-Let us say we want to manipulate a `number` stored in `imp::Window`.
+Let's  say we want to manipulate a `number` stored in `imp::Window`.
 
 <span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span>
 ```rust ,no_run,noplayground
