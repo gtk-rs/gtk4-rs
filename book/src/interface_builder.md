@@ -140,7 +140,7 @@ With composite templates, `main.rs` actually became more concise.
 ## Template Callbacks
 
 We can even specify the handlers of signals within composite templates.
-This can be done with `<signal>` tag containing the name of the signal and the handler in our Rust code.
+This can be done with a `<signal>` tag containing the name of the signal and the handler in our Rust code.
 
 <span class="filename">Filename: listings/interface_builder/4/window/window.ui</span>
 ```xml
