@@ -3,7 +3,7 @@
 use crate::{Clipboard, Texture};
 use glib::object::IsA;
 use glib::translate::*;
-use glib::{GString, ToValue};
+use glib::GString;
 use std::future;
 use std::pin::Pin;
 use std::ptr;
@@ -17,6 +17,16 @@ impl Clipboard {
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: Q,
     ) {
+        let main_context = glib::MainContext::ref_thread_default();
+        let is_main_context_owner = main_context.is_owner();
+        let has_acquired_main_context = (!is_main_context_owner)
+            .then(|| main_context.acquire().ok())
+            .flatten();
+        assert!(
+            is_main_context_owner || has_acquired_main_context.is_some(),
+            "Async operations only allowed if the thread is owning the MainContext"
+        );
+
         let user_data: Box<Q> = Box::new(callback);
         unsafe extern "C" fn read_async_trampoline<
             Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static,
