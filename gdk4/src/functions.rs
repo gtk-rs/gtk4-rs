@@ -41,6 +41,16 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + S
     callback: R,
 ) {
     assert_initialized_main_thread!();
+    let main_context = glib::MainContext::ref_thread_default();
+    let is_main_context_owner = main_context.is_owner();
+    let has_acquired_main_context = (!is_main_context_owner)
+        .then(|| main_context.acquire().ok())
+        .flatten();
+    assert!(
+        is_main_context_owner || has_acquired_main_context.is_some(),
+        "Async operations only allowed if the thread is owning the MainContext"
+    );
+
     let user_data: Box<R> = Box::new(callback);
     unsafe extern "C" fn content_deserialize_async_trampoline<
         R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
@@ -227,6 +237,15 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + Send + 'stat
     callback: R,
 ) {
     assert_initialized_main_thread!();
+    let main_context = glib::MainContext::ref_thread_default();
+    let is_main_context_owner = main_context.is_owner();
+    let has_acquired_main_context = (!is_main_context_owner)
+        .then(|| main_context.acquire().ok())
+        .flatten();
+    assert!(
+        is_main_context_owner || has_acquired_main_context.is_some(),
+        "Async operations only allowed if the thread is owning the MainContext"
+    );
     let user_data: Box<R> = Box::new(callback);
     unsafe extern "C" fn content_serialize_async_trampoline<
         R: FnOnce(Result<(), glib::Error>) + Send + 'static,

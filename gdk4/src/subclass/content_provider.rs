@@ -61,7 +61,7 @@ pub trait ContentProviderImplExt: ObjectSubclass {
 
     fn parent_write_mime_type_async<
         Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + 'static,
     >(
         &self,
         provider: &Self::Type,
@@ -163,7 +163,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_write_mime_type_async<
         Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + 'static,
     >(
         &self,
         provider: &Self::Type,
@@ -174,6 +174,16 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         callback: R,
     ) {
         unsafe {
+            let main_context = glib::MainContext::ref_thread_default();
+            let is_main_context_owner = main_context.is_owner();
+            let has_acquired_main_context = (!is_main_context_owner)
+                .then(|| main_context.acquire().ok())
+                .flatten();
+            assert!(
+                is_main_context_owner || has_acquired_main_context.is_some(),
+                "Async operations only allowed if the thread is owning the MainContext"
+            );
+
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
@@ -186,7 +196,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let user_data: Box<(R, _)> = Box::new((callback, finish));
 
             unsafe extern "C" fn parent_write_mime_type_async_trampoline<
-                R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+                R: FnOnce(Result<(), glib::Error>) + 'static,
             >(
                 source_object_ptr: *mut glib::gobject_ffi::GObject,
                 res: *mut gio::ffi::GAsyncResult,
