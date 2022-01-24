@@ -502,12 +502,12 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_to_node")]
-    pub fn to_node(&self) -> gsk::RenderNode {
+    pub fn to_node(&self) -> Option<gsk::RenderNode> {
         unsafe { from_glib_full(ffi::gtk_snapshot_to_node(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_snapshot_to_paintable")]
-    pub fn to_paintable(&self, size: Option<&graphene::Size>) -> gdk::Paintable {
+    pub fn to_paintable(&self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_full(ffi::gtk_snapshot_to_paintable(
                 self.to_glib_none().0,
