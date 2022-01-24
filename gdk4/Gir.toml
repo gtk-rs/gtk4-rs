@@ -236,8 +236,8 @@ generate_builder = false
     name = "set"
     manual = true # use ToValue
     [[object.function]]
-    pattern = "(read|read_texture|read_text|read_value|store)_async"
-    manual = true # don't enforce Send
+    name = "read_async"
+    manual = true # mime_types are cloned instead of converting them to a Vec<String>
     [[object.function]]
     name = "set_content"
         [object.function.return]
@@ -428,10 +428,7 @@ name = "Gdk.Drop"
 status = "generate"
     [[object.function]]
     name = "read_async"
-    manual = true # don't require Send
-    [[object.function]]
-    name = "read_value_async"
-    manual = true # don't require Send
+    manual = true # mime_types are cloned instead of converting them to a Vec<String>
 
 [[object]]
 name = "Gdk.FileList"
