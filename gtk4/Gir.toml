@@ -1808,6 +1808,12 @@ status = "generate"
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
+    [[object.function]]
+    # Drop once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4413 is merged
+    # on the next gir-files update
+    pattern = "to_(node|paintable)"
+        [object.function.return]
+        nullable = true
 
 [[object]]
 name = "Gtk.SpinButton"
