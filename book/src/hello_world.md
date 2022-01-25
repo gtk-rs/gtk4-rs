@@ -2,7 +2,7 @@
 
 Now that we've got a working installation, let's get right into it!
 
-At the very least, we need to create an `Application` instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
+At the very least, we need to create a [`gtk::Application`](../docs/gtk4/struct.Application.html) instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
 For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
 
 <span class="filename">Filename: listings/hello_world/1/main.rs</span>
@@ -11,9 +11,15 @@ For that we use the [builder pattern](https://rust-unofficial.github.io/patterns
 {{#rustdoc_include ../listings/hello_world/1/main.rs}}
 ```
 
-It builds fine, but nothing appears on our screen.
-GTK warns us that something should be called in its `activate` step.
-So let's create a window there.
+It builds fine, but nothing but a warning in our terminal appears.
+
+```
+GLib-GIO-WARNING: Your application does not implement g_application_activate() and
+has no handlers connected to the 'activate' signal. It should do one of these.
+```
+
+GTK tells us that something should be called in its `activate` step.
+So let's create an [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) there.
 
 <span class="filename">Filename: listings/hello_world/2/main.rs</span>
 

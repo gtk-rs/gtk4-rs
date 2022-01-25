@@ -93,6 +93,9 @@ meson install -C builddir
 
 Install the rust toolchain via [rustup](https://rustup.rs/).
 
+### Remove residues from the MSVC toolchain
+
+If you used the MSVC toolchain before, make sure to revert all changes you made to environment variables during the installation process.
 
 ### MSYS2
 
