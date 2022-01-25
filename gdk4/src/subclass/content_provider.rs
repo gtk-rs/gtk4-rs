@@ -193,7 +193,8 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
                 .write_mime_type_finish
                 .expect("no parent \"write_mime_type_finish\" implementation");
 
-            let user_data: Box<(R, _)> = Box::new((callback, finish));
+            let user_data: Box<(glib::thread_guard::ThreadGuard<R>, _)> =
+                Box::new((glib::thread_guard::ThreadGuard::new(callback), finish));
 
             unsafe extern "C" fn parent_write_mime_type_async_trampoline<
                 R: FnOnce(Result<(), glib::Error>) + 'static,
@@ -204,7 +205,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             ) {
                 let mut error = std::ptr::null_mut();
                 let cb: Box<(
-                    R,
+                    glib::thread_guard::ThreadGuard<R>,
                     fn(
                         *mut ffi::GdkContentProvider,
                         *mut gio::ffi::GAsyncResult,
@@ -217,7 +218,8 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
                 } else {
                     Err(from_glib_full(error))
                 };
-                cb.0(result);
+                let cb = cb.0.into_inner();
+                cb(result);
             }
 
             let cancellable = cancellable.map(|p| p.as_ref());
