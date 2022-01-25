@@ -27,7 +27,8 @@ impl Drop {
             "Async operations only allowed if the thread is owning the MainContext"
         );
 
-        let user_data: Box<Q> = Box::new(callback);
+        let user_data: Box<glib::thread_guard::ThreadGuard<Q>> =
+            Box::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn read_async_trampoline<
             Q: FnOnce(Result<(gio::InputStream, GString), glib::Error>) + 'static,
         >(
@@ -48,7 +49,9 @@ impl Drop {
             } else {
                 Err(from_glib_full(error))
             };
-            let callback: Box<Q> = Box::from_raw(user_data as *mut _);
+            let callback: Box<glib::thread_guard::ThreadGuard<Q>> =
+                Box::from_raw(user_data as *mut _);
+            let callback = callback.into_inner();
             callback(result);
         }
         let callback = read_async_trampoline::<Q>;
