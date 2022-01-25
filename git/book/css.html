@@ -144,7 +144,7 @@ Similarly, GTK supports its own variant of CSS in order to style your app.</p>
 <p>We will not explain every piece of syntax used in this chapter.
 If you are new to CSS or just need a refresher, have a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax">MDN Web Docs</a>.</p>
 </blockquote>
-<p>Let us say we have a button and we want to set its font color to magenta.
+<p>Let's say we have a button and we want to set its font color to magenta.
 Every type of widget has a corresponding CSS node.
 In the case of <code>gtk::Button</code>, this node is called <code>button</code>.
 Therefore, we create a <code>style.css</code> file with the following content:</p>
@@ -385,7 +385,7 @@ The name is specified after the <code>#</code> symbol.</p>
 <div style="text-align:center"><img src="img/css_4.png"/></div>
 <h2 id="css-rules-provided-by-gtk"><a class="header" href="#css-rules-provided-by-gtk">CSS Rules Provided by GTK</a></h2>
 <p>Certain styles are common enough that GTK provides CSS rules for them.
-For example, if you want to indicate that your button leads to a destructive or suggested action you do not have to provide your own CSS rules.
+For example, if you want to indicate that your button leads to a destructive or suggested action you don't have to provide your own CSS rules.
 All you have to do is to add &quot;destructive-action&quot; or &quot;suggested-action&quot; style class to your button.
 Most widgets will document these rules in their documentation under <a href="../docs/gtk4/struct.Button.html#css-nodes">CSS nodes</a>.</p>
 <p><span class="filename">Filename: listings/css/5/main.rs</span></p>
@@ -475,7 +475,7 @@ Adding again destructive and suggested buttons, would then look like this:</p>
 <h2 id="pseudo-classes"><a class="header" href="#pseudo-classes">Pseudo-classes</a></h2>
 <p>Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
 That is where <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a> come in.
-Let us use a single button with name <code>button-1</code> to demonstrate this concept.</p>
+Let's use a single button with name <code>button-1</code> to demonstrate this concept.</p>
 <p><span class="filename">Filename: listings/css/7/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
@@ -513,7 +513,7 @@ Your browser does not support the video tag.
 <p>In the previous examples, a widget always corresponded to a single CSS node.
 This is not always the case.
 For example, <a href="../docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a> has multiple CSS nodes.
-Let us see how that works.</p>
+Let's see how that works.</p>
 <p>First, we create a single <code>MenuButton</code>.</p>
 <p><span class="filename">Filename: listings/css/8/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -552,7 +552,7 @@ Now we know that we have to add a CSS rule that applies to the <code>arrow</code
 <p>Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
-Let us add that!</p>
+Let's add that!</p>
 <p>The class <code>TodoRow</code> inherits from <code>gtk::Box</code>, so we could just match for the node <code>box</code>.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
@@ -648,7 +648,7 @@ We match the style rule by adding the style class <code>frame</code> to our <cod
 </code></pre>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>There are surely enough ways to define CSS rules.
-Let us briefly recap the syntax we learned.
+Let's briefly recap the syntax we learned.
 The following rule matches the node <code>arrow</code>, which is a descendant of the node <code>button</code> with the name <code>button-1</code> and the style classes <code>toggle</code> and <code>text-button</code>.
 The rule then actually applies, when we also hover over <code>arrow</code>.</p>
 <pre><code class="language-css">button#button-1.toggle.text-button arrow:hover {

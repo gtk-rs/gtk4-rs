@@ -139,7 +139,7 @@
                     <main>
                         <h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
 <p>Properties provide a public API for accessing state of GObjects.</p>
-<p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
+<p>Let's see how this is done by experimenting with the <code>Switch</code> widget.
 One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.state.html">state</a>.
 According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
@@ -255,7 +255,7 @@ We use the <a href="https://matematikaadit.github.io/posts/rust-turbofish.html">
 This is fine in most situations where these cases are hardcoded within the program.
 If this does not apply for your program you might want to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property"><code>try_property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property"><code>try_set_property</code></a> instead.</p>
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
-Let us see how that would look like for two <code>Switch</code> instances.</p>
+Let's see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
@@ -475,8 +475,8 @@ impl ObjectImpl for CustomButton {
 </span></code></pre>
 <p>We can immediately take advantage of this new property by binding the &quot;label&quot; property to it.
 It even converts the integer value of &quot;number&quot; to the string of &quot;label&quot;.
-Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
-<p>Let us see what we can do with this by creating two custom buttons.</p>
+Now we don't have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
+<p>Let's see what we can do with this by creating two custom buttons.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
@@ -558,7 +558,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>We have already seen that bound properties do not necessarily have to be of the same type.
+<p>We have already seen that bound properties don't necessarily have to be of the same type.
 By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;

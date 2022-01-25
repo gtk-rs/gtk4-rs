@@ -389,8 +389,8 @@ fn build_ui(app: &amp;Application) {
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
-We have not even set up the list model yet.
-Let us do that!</p>
+We haven't even set up the list model yet.
+Let's do that!</p>
 <div style="text-align:center"><img src="img/todo_app_1_empty.png" /></div>
 <p>As discussed in the <a href="./list_widgets.html">list widgets chapter</a>,
 we start out by creating a custom GObject.
@@ -534,7 +534,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">}
 </span></code></pre>
 <h2 id="to-do-row"><a class="header" href="#to-do-row">To-Do Row</a></h2>
-<p>Let us move on to the individual tasks.
+<p>Let's move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
 <p>Again, we describe the mockup with a composite template.</p>
@@ -976,7 +976,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>The list elements for the <code>gtk::ListView</code> are produced by a factory.
-Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
+Before we move on to the implementation, let's take a step back and think about which behavior we expect here.
 <code>content_label</code> of <code>TodoRow</code> should follow <code>content</code> of <code>TodoObject</code>.
 We also want <code>completed_button</code> of <code>TodoRow</code> follow <code>completed</code> of <code>TodoObject</code>.
 This could be achieved with expressions similar to what we did in the lists chapter.</p>

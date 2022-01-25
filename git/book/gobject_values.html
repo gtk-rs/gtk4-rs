@@ -142,7 +142,7 @@
 Since GObject introspection works through a C interface, these functions cannot rely on any powerful Rust concepts.
 In these cases <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html"><code>glib::Variant</code></a> are used.</p>
 <h2 id="value"><a class="header" href="#value">Value</a></h2>
-<p>Let us start with <code>Value</code>.
+<p>Let's start with <code>Value</code>.
 Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> defined like this:</p>
 <pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
     bool(bool),

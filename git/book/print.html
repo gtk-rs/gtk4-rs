@@ -144,7 +144,7 @@
 Thanks to GObject-Introspection, GTK's API can be easily targeted by various programming languages.
 The API even describes the ownership of its parameters!</p>
 <p>Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with.
-With this combination you do not have to worry about hitting bottlenecks mid-project anymore.
+With this combination you don't have to worry about hitting bottlenecks mid-project anymore.
 Additionally, with Rust you will have nice things such as</p>
 <ul>
 <li>thread safety,</li>
@@ -166,7 +166,7 @@ you might find it useful to just jump into it.</p>
 <p>There are two kinds of chapters in this book: concept chapters and project
 chapters.
 In concept chapters, you will learn about an aspect of GTK development.
-In project chapters, we will build small programs together, applying what you have learned so far.</p>
+In project chapters, we will build small programs together, applying what you've learned so far.</p>
 <p>The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
 If you are interested in contained and useful examples, we refer you to the corresponding <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/examples">section</a> of <code>gtk4-rs</code>' repository.</p>
@@ -288,7 +288,7 @@ To switch to <code>stable-gnu</code>, run the following commands from your termi
 <p>Please note that this command might change in the future.
 If it does not work anymore, please open an <a href="https://github.com/gtk-rs/gtk4-rs/issues/new/choose">issue</a> on our repo.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h1>
-<p>Let us begin by installing all necessary tools.
+<p>Let's begin by installing all necessary tools.
 First, follow the instructions on the <a href="https://www.gtk.org/docs/installations/">GTK website</a> in order to install GTK 4.
 Then install Rust with <a href="https://rustup.rs/">rustup</a>.</p>
 <p>Now, create a new project by executing:</p>
@@ -312,7 +312,7 @@ You can get the version by executing the following command:</p>
 <pre><code class="language-bash">cargo run
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
-<p>Now that we have got a working installation, let us get right into it!</p>
+<p>Now that we've got a working installation, let's get right into it!</p>
 <p>At the very least, we need to create an <code>Application</code> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
 For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.</p>
 <p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
@@ -331,7 +331,7 @@ fn main() {
 </code></pre>
 <p>It builds fine, but nothing appears on our screen.
 GTK warns us that something should be called in its <code>activate</code> step.
-So let us create a window there.</p>
+So let's create a window there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
@@ -416,15 +416,15 @@ Your browser does not support the video tag.
  </video>
 </div>
 <p>Wasn't that hard to create our first <code>gtk-rs</code> app, right?
-Let us now get a better understanding of what we did here.</p>
+Let's now get a better understanding of what we did here.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those do not fit, you can even create custom ones.
+GTK offers many-preexisting ones and if those don't fit, you can even create custom ones.
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.</p>
 <p>The <a href="https://docs.gtk.org/gtk4/visual_index.html">Widget Gallery</a> is useful to find out which widget fits your needs.
-Let us say we want to add a button to our app.
-We have quite a bit of choice here, but let us take the simplest one — a <code>Button</code>.</p>
+Let's say we want to add a button to our app.
+We have quite a bit of choice here, but let's take the simplest one — a <code>Button</code>.</p>
 <div style="text-align:center"><img src="img/widgets_button.png" /></div>
 <p>GTK is an object-oriented framework, so all widgets are part of an inheritance tree with <code>GObject</code> at the top.
 The inheritance tree of a <code>Button</code> looks like this:</p>
@@ -433,7 +433,7 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
     ╰── Button
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
-<p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
+<p>Now let's compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
 The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
@@ -546,7 +546,7 @@ In this chapter we will additionally find out:</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="memory-management"><a class="header" href="#memory-management">Memory Management</a></h1>
 <p>A GObject (or <code>glib::Object</code> in Rust terms) is a reference-counted, mutable object.
-Let us see in a set of real life examples which consequences this has.</p>
+Let's see in a set of real life examples which consequences this has.</p>
 <pre><pre class="playground"><code class="language-rust  no_run compile_fail">use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
@@ -860,7 +860,7 @@ Yes we did: <a href="https://doc.rust-lang.org/book/ch15-06-reference-cycles.htm
 <code>button_increase</code> holds a strong reference to <code>button_decrease</code> and vice-versa.
 A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
-With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
+With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.</p>
 <blockquote>
 <p>In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
@@ -1101,7 +1101,7 @@ If that is ensured, you can rely on GTK to properly manage the memory of GObject
 <div style="break-before: page; page-break-before: always;"></div><h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
 <p>GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
-Let us see how this works by replacing the button in our &quot;Hello World!&quot; app with a custom one.</p>
+Let's see how this works by replacing the button in our &quot;Hello World!&quot; app with a custom one.</p>
 <p>First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.</p>
@@ -1221,7 +1221,7 @@ fn build_ui(app: &amp;Application) {
 <p>We are able to use <code>CustomButton</code> as a drop-in replacement for <code>gtk::Button</code>.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.</p>
-<p>So let us make it a bit more interesting!
+<p>So let's make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::glib;
@@ -1318,7 +1318,7 @@ Every time we click on the button, the number displayed by the label increases b
 Since GObject introspection works through a C interface, these functions cannot rely on any powerful Rust concepts.
 In these cases <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html"><code>glib::Variant</code></a> are used.</p>
 <h2 id="value"><a class="header" href="#value">Value</a></h2>
-<p>Let us start with <code>Value</code>.
+<p>Let's start with <code>Value</code>.
 Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> defined like this:</p>
 <pre><code class="language-rust  no_run noplayground">enum Value &lt;T&gt; {
     bool(bool),
@@ -1532,7 +1532,7 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
 <p>We will use <code>Variant</code> when saving settings using <code>gio::Settings</code> or activating actions via <code>gio::Action</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
 <p>Properties provide a public API for accessing state of GObjects.</p>
-<p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
+<p>Let's see how this is done by experimenting with the <code>Switch</code> widget.
 One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.state.html">state</a>.
 According to the GTK docs, it can be read and be written to.
 That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
@@ -1648,7 +1648,7 @@ We use the <a href="https://matematikaadit.github.io/posts/rust-turbofish.html">
 This is fine in most situations where these cases are hardcoded within the program.
 If this does not apply for your program you might want to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property"><code>try_property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property"><code>try_set_property</code></a> instead.</p>
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
-Let us see how that would look like for two <code>Switch</code> instances.</p>
+Let's see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
@@ -1868,8 +1868,8 @@ impl ObjectImpl for CustomButton {
 </span></code></pre>
 <p>We can immediately take advantage of this new property by binding the &quot;label&quot; property to it.
 It even converts the integer value of &quot;number&quot; to the string of &quot;label&quot;.
-Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
-<p>Let us see what we can do with this by creating two custom buttons.</p>
+Now we don't have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
+<p>Let's see what we can do with this by creating two custom buttons.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
@@ -1951,7 +1951,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre>
-<p>We have already seen that bound properties do not necessarily have to be of the same type.
+<p>We have already seen that bound properties don't necessarily have to be of the same type.
 By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
@@ -2230,11 +2230,11 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span></code></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_closure</code> is that it also works with custom signals.</p>
 <blockquote>
-<p>If you need to clone reference counted objects into your closure you do not have to wrap it within another <code>clone!</code> macro.
+<p>If you need to clone reference counted objects into your closure you don't have to wrap it within another <code>clone!</code> macro.
 <code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object disappears. </p>
 </blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
-<p>Let us see how we can create our own signals.
+<p>Let's see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span></p>
@@ -2530,7 +2530,7 @@ Quickly iterating between all tasks gives the illusion of parallelism.
 That is why you can move the window at the same time as a progress bar is growing.</p>
 <p>However, you surely saw GUIs that became unresponsive, at least for a few seconds.
 That happens when a single task takes too long.
-Let us look at one example.</p>
+Let's look at one example.</p>
 <p><span class="filename">Filename: listings/main_event_loop/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground">use std::time::Duration;
 
@@ -2906,7 +2906,7 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull&lt
 <div style="break-before: page; page-break-before: always;"></div><h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
 <p>We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
+Let's learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
 <p><span class="filename">Filename: listings/settings/1/org.gtk-rs.example.gschema.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -2919,7 +2919,7 @@ Let us learn how to use <code>GSettings</code> by storing the state of a <a href
   &lt;/schema&gt;
 &lt;/schemalist&gt;
 </code></pre>
-<p>Let us get through it step by step.
+<p>Let's get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
 <p><span class="filename">Filename: listings/settings/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
@@ -2963,7 +2963,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the default handler
+</span><span class="boring">        // Don't inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -3035,7 +3035,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the default handler
+</span><span class="boring">        // Don't inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -3093,7 +3093,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">        settings
 </span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
 </span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Do not inhibit the default handler
+</span><span class="boring">        // Don't inhibit the default handler
 </span><span class="boring">        Inhibit(false)
 </span><span class="boring">    });
 </span><span class="boring">
@@ -3151,7 +3151,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
         settings
             .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
             .expect(&quot;Could not set setting.&quot;);
-        // Do not inhibit the default handler
+        // Don't inhibit the default handler
         Inhibit(false)
     });
 <span class="boring">
@@ -3169,7 +3169,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 <p>The <code>Switch</code> now retains its state even after closing the application.
 But we can make this even better.
 The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
-So let us do exactly that.</p>
+So let's do exactly that.</p>
 <p>We can remove the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
 We then bind the setting to the property by specifying the key, object and name of the property.
 Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
@@ -3249,7 +3249,7 @@ We already know how to do this by using <code>Settings</code>.</p>
   &lt;/schema&gt;
 &lt;/schemalist&gt;
 </code></pre>
-<p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
+<p>Since we don't care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
 First, we create one and add methods for getting and setting the window state.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/custom_window/mod.rs</span></p>
@@ -3347,7 +3347,7 @@ impl WindowImpl for Window {
         if let Err(err) = obj.save_window_size() {
             log::error!(&quot;Failed to save window state, {}&quot;, &amp;err);
         }
-        // Do not inhibit the default handler
+        // Don't inhibit the default handler
         Inhibit(false)
     }
 }
@@ -3357,7 +3357,7 @@ impl ApplicationWindowImpl for Window {}
 <p>That is it!
 Now our window retains its state between app sessions.</p>
 <p>Please note how we handle a failure in saving into the settings.
-We do not want to panic for recoverable errors.
+We don't want to panic for recoverable errors.
 We might also not want to present all problems at the GUI.
 In our case we could not even do this, because the window will be immediately closed after the error occurs.
 Logging is the standard way of handling a situation like this.
@@ -3420,7 +3420,7 @@ pretty_env_logger = &quot;0.4&quot;
 <p>Sometimes you want to display a list of elements in a certain arrangement.
 <a href="../docs/gtk4/struct.ListBox.html"><code>ListBox</code></a> and <a href="../docs/gtk4/struct.FlowBox.html"><code>FlowBox</code></a> are two container widgets which allow you to do this.
 <code>ListBox</code> describes a vertical list and <code>FlowBox</code> describes a grid.</p>
-<p>Let us explore this concept by adding labels to a <code>ListBox</code>.
+<p>Let's explore this concept by adding labels to a <code>ListBox</code>.
 Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p><span class="filename">Filename: listings/list_widgets/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
@@ -3530,7 +3530,7 @@ But how could we possibly deal with the infinite amount of posts in a social med
 As we scroll through our elements, the widgets which become invisible will be reused.
 The following figure demonstrates how this works in practice.</p>
 <div style="text-align:center"><img src="img/scalable_lists_concept.png"/></div>
-<p>100 000 elements is something <code>ListBox</code> will struggle with, so let us use this to demonstrate scalable lists.</p>
+<p>100 000 elements is something <code>ListBox</code> will struggle with, so let's use this to demonstrate scalable lists.</p>
 <p>We start by defining and filling up our model.
 The model is an instance of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 The main limitation here is that <code>gio::ListStore</code> only accepts GObjects.
@@ -4054,7 +4054,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_1.png"/></div>
-<p>Let us see what else we can do.
+<p>Let's see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method <code>increase_number</code> to our <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/list_widgets/3/integer_object/mod.rs</span></p>
@@ -4289,7 +4289,7 @@ That also means that in our case, multiple numbers will be bound to the same wid
 <h3 id="expressions"><a class="header" href="#expressions">Expressions</a></h3>
 <p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
 As a first step it allows us to remove the &quot;bind&quot; step.
-Let us see how the &quot;setup&quot; step now works.</p>
+Let's see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/list_widgets/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
@@ -4379,9 +4379,9 @@ This allowed us in the snippet above to bind the property &quot;number&quot; of 
 Here, another power of expressions becomes evident.
 Expressions allow us to describe relationships between objects or properties that might not even exist yet.
 We just had to tell it to change the label whenever the number that belongs to it changes.
-That way, we also do not face the problem that multiple labels are bound to the same number.
+That way, we also don't face the problem that multiple labels are bound to the same number.
 When we now activate a label, only the corresponding number visibly changes.</p>
-<p>Let us extend our app a bit more.
+<p>Let's extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
@@ -4745,7 +4745,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p>Often, all you want is to display a list of strings.
 However, if you either need to filter and sort your displayed data or have too many elements to be displayed by <code>ListBox</code>, you will still want to use a view.
 GTK provides a convenient model for this use case: <a href="../docs/gtk4/struct.StringList.html"><code>gtk::StringList</code></a>.</p>
-<p>Let us see with a small example how to use this API.
+<p>Let's see with a small example how to use this API.
 Filter and sorter is controlled by the factory, so nothing changes here.
 This is why we will skip this topic here.</p>
 <p>First, we add a bunch of strings to our model.</p>
@@ -4813,7 +4813,7 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
-This means we do not have to create a custom GObject for our model anymore.</p>
+This means we don't have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
 Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://docs.gtk.org/gtk4/property.StringObject.string.html">property &quot;string&quot;</a>.</p>
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>
@@ -5008,7 +5008,7 @@ All widgets that can be described that way can be found <a href="../docs/gtk4/pr
 }
 </code></pre>
 <p>This is a bit disappointing.
-Even though we have already described the UI in the markup file, the amount of code is still pretty much the same.
+Even though we've already described the UI in the markup file, the amount of code is still pretty much the same.
 There are still cases where it is valuable to know of the existence of <code>gtk::Builder</code>.
 We will see for example that <a href="../docs/gtk4/struct.ShortcutsWindow.html"><code>ShortcutsWindow</code></a> is quite a bit easier to instantiate that way.</p>
 <p>At least we did not lose any flexibility by using <code>gtk::Builder</code>.
@@ -5925,8 +5925,8 @@ fn build_ui(app: &amp;Application) {
 <p>So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
-We have not even set up the list model yet.
-Let us do that!</p>
+We haven't even set up the list model yet.
+Let's do that!</p>
 <div style="text-align:center"><img src="img/todo_app_1_empty.png" /></div>
 <p>As discussed in the <a href="./list_widgets.html">list widgets chapter</a>,
 we start out by creating a custom GObject.
@@ -6070,7 +6070,7 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">}
 </span></code></pre>
 <h2 id="to-do-row"><a class="header" href="#to-do-row">To-Do Row</a></h2>
-<p>Let us move on to the individual tasks.
+<p>Let's move on to the individual tasks.
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/todo_row.png" /></div>
 <p>Again, we describe the mockup with a composite template.</p>
@@ -6512,7 +6512,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>The list elements for the <code>gtk::ListView</code> are produced by a factory.
-Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
+Before we move on to the implementation, let's take a step back and think about which behavior we expect here.
 <code>content_label</code> of <code>TodoRow</code> should follow <code>content</code> of <code>TodoObject</code>.
 We also want <code>completed_button</code> of <code>TodoRow</code> follow <code>completed</code> of <code>TodoObject</code>.
 This could be achieved with expressions similar to what we did in the lists chapter.</p>
@@ -6810,11 +6810,11 @@ Your browser does not support the video tag.
  </video>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="actions"><a class="header" href="#actions">Actions</a></h1>
-<p>By now, we have already learned many ways to glue our widgets together.
+<p>By now, we've already learned many ways to glue our widgets together.
 We can send messages through channels, emit signals, share reference-counted state and bind properties.
 Now, we will complete our set by learning about actions.</p>
 <p>An action is a piece of functionality bound to a certain GObject.
-Let us check out the simplest case where we activate an action without a parameter.</p>
+Let's check out the simplest case where we activate an action without a parameter.</p>
 <p><span class="filename">Filename: listings/actions/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::SimpleAction;
 </span><span class="boring">use glib::clone;
@@ -6905,7 +6905,7 @@ We also connected a callback which closes the window.</p>
 With <a href="../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action"><code>set_accels_for_action</code></a> one can assign one or more accelerators to a certain action.
 Check the documentation of <a href="../docs/gtk4/functions/fn.accelerator_parse.html"><code>accelerator_parse</code></a> in order to learn more about its syntax.
 Here we assigned <code>&lt;primary&gt;W</code> which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.</p>
-<p>Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
+<p>Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The &quot;win&quot; part of &quot;win.close&quot; is the group of the action.
 But how does GTK know that &quot;win&quot; is the action group of our window?
 The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:</p>
@@ -6973,7 +6973,7 @@ However, in the future we will use the pre-defined <a href="../docs/gtk4/struct.
 <h2 id="parameter-and-state"><a class="header" href="#parameter-and-state">Parameter and State</a></h2>
 <p>An action, like most functions, can take a parameter.
 However, unlike most functions it can also be stateful.
-Let us see how this works.</p>
+Let's see how this works.</p>
 <p><span class="filename">Filename: listings/actions/3/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::SimpleAction;
 </span><span class="boring">use glib::clone;
@@ -7331,10 +7331,10 @@ Typically, a menu entry has an action fitting one of these three descriptions:</
 <li>no parameter and boolean state, or</li>
 <li>string parameter and string state.</li>
 </ul>
-<p>Let us modify our small app to demonstrate these cases.
+<p>Let's modify our small app to demonstrate these cases.
 First we extend <code>add_actions</code>.
 For the action without parameter or state, we can use the pre-defined &quot;window.close&quot; action.
-Therefore we do not have to add anything here.</p>
+Therefore we don't have to add anything here.</p>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
@@ -7443,7 +7443,7 @@ When activating the action, the property gets set to the same value as the param
 <p>Finally, we add &quot;win.orientation&quot;, an action with string parameter and string state.
 This action can be used to change the orientation of <code>gtk_box</code>.
 Here the convention is that the state should be set to the given parameter.
-We do not need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.</p>
+We don't need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.</p>
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
@@ -8010,7 +8010,7 @@ Your browser does not support the video tag.
 </div>
 <p>Note that the screencast also shows a button with label &quot;Clear&quot; which will remove all done tasks.
 This will come in handy when we later make the app preserve the tasks between sessions.</p>
-<p>Let us start by adding a menu and a header bar to <code>window.ui</code>.
+<p>Let's start by adding a menu and a header bar to <code>window.ui</code>.
 After reading the <a href="actions.html">actions</a> chapter the added code should feel familiar.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/window.ui</span></p>
 <pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -9331,7 +9331,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">}
 </span></code></pre>
 <p>The entries can be organized with <a href="../docs/gtk4/struct.ShortcutsSection.html"><code>gtk::ShortcutsSection</code></a> and <a href="../docs/gtk4/struct.ShortcutsGroup.html"><code>gtk::ShortcutsGroup</code></a>.
-If we specify the action name, we also do not have to repeat the keyboard accelerator.
+If we specify the action name, we also don't have to repeat the keyboard accelerator.
 <a href="../docs/gtk4/struct.ShortcutsShortcut.html"><code>gtk::ShortcutsShortcut</code></a> looks it up on its own.
 The <code>shortcuts.ui</code> file looks like this:</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -9430,7 +9430,7 @@ fn setup_shortcuts(app: &amp;Application) {
 <h2 id="saving-and-restoring-tasks"><a class="header" href="#saving-and-restoring-tasks">Saving and Restoring Tasks</a></h2>
 <p>Since we use <code>Settings</code>, our filter state will persist between sessions.
 However, the tasks themselves will not.
-Let us implement that.</p>
+Let's implement that.</p>
 <p>We could store our tasks in <code>Settings</code>, but it would be inconvenient.
 When it comes to serializing and deserializing nothing beats the crate <a href="https://lib.rs/crates/serde"><code>serde</code></a>.
 Combined with <a href="https://lib.rs/crates/serde_json"><code>serde_json</code></a> we can save our tasks as serialized <a href="https://en.wikipedia.org/wiki/JSON">json</a> files
@@ -9637,7 +9637,7 @@ For this example we like it, because it allows us to see into what a <code>Vec&l
 ]
 </code></pre>
 <p>When we start the app, we will want to restore the saved data.
-Let us add a <code>restore_data</code> method for that.
+Let's add a <code>restore_data</code> method for that.
 We make sure to handle the case where there is no data file there yet.
 It might be the first time that we started the app and therefore there is no former session to restore.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
@@ -9978,7 +9978,7 @@ Similarly, GTK supports its own variant of CSS in order to style your app.</p>
 <p>We will not explain every piece of syntax used in this chapter.
 If you are new to CSS or just need a refresher, have a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax">MDN Web Docs</a>.</p>
 </blockquote>
-<p>Let us say we have a button and we want to set its font color to magenta.
+<p>Let's say we have a button and we want to set its font color to magenta.
 Every type of widget has a corresponding CSS node.
 In the case of <code>gtk::Button</code>, this node is called <code>button</code>.
 Therefore, we create a <code>style.css</code> file with the following content:</p>
@@ -10219,7 +10219,7 @@ The name is specified after the <code>#</code> symbol.</p>
 <div style="text-align:center"><img src="img/css_4.png"/></div>
 <h2 id="css-rules-provided-by-gtk"><a class="header" href="#css-rules-provided-by-gtk">CSS Rules Provided by GTK</a></h2>
 <p>Certain styles are common enough that GTK provides CSS rules for them.
-For example, if you want to indicate that your button leads to a destructive or suggested action you do not have to provide your own CSS rules.
+For example, if you want to indicate that your button leads to a destructive or suggested action you don't have to provide your own CSS rules.
 All you have to do is to add &quot;destructive-action&quot; or &quot;suggested-action&quot; style class to your button.
 Most widgets will document these rules in their documentation under <a href="../docs/gtk4/struct.Button.html#css-nodes">CSS nodes</a>.</p>
 <p><span class="filename">Filename: listings/css/5/main.rs</span></p>
@@ -10309,7 +10309,7 @@ Adding again destructive and suggested buttons, would then look like this:</p>
 <h2 id="pseudo-classes"><a class="header" href="#pseudo-classes">Pseudo-classes</a></h2>
 <p>Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
 That is where <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a> come in.
-Let us use a single button with name <code>button-1</code> to demonstrate this concept.</p>
+Let's use a single button with name <code>button-1</code> to demonstrate this concept.</p>
 <p><span class="filename">Filename: listings/css/7/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
@@ -10347,7 +10347,7 @@ Your browser does not support the video tag.
 <p>In the previous examples, a widget always corresponded to a single CSS node.
 This is not always the case.
 For example, <a href="../docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a> has multiple CSS nodes.
-Let us see how that works.</p>
+Let's see how that works.</p>
 <p>First, we create a single <code>MenuButton</code>.</p>
 <p><span class="filename">Filename: listings/css/8/window/window.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -10386,7 +10386,7 @@ Now we know that we have to add a CSS rule that applies to the <code>arrow</code
 <p>Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
-Let us add that!</p>
+Let's add that!</p>
 <p>The class <code>TodoRow</code> inherits from <code>gtk::Box</code>, so we could just match for the node <code>box</code>.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
@@ -10482,7 +10482,7 @@ We match the style rule by adding the style class <code>frame</code> to our <cod
 </code></pre>
 <h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
 <p>There are surely enough ways to define CSS rules.
-Let us briefly recap the syntax we learned.
+Let's briefly recap the syntax we learned.
 The following rule matches the node <code>arrow</code>, which is a descendant of the node <code>button</code> with the name <code>button-1</code> and the style classes <code>toggle</code> and <code>text-button</code>.
 The rule then actually applies, when we also hover over <code>arrow</code>.</p>
 <pre><code class="language-css">button#button-1.toggle.text-button arrow:hover {

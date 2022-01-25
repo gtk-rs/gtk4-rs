@@ -138,11 +138,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="actions"><a class="header" href="#actions">Actions</a></h1>
-<p>By now, we have already learned many ways to glue our widgets together.
+<p>By now, we've already learned many ways to glue our widgets together.
 We can send messages through channels, emit signals, share reference-counted state and bind properties.
 Now, we will complete our set by learning about actions.</p>
 <p>An action is a piece of functionality bound to a certain GObject.
-Let us check out the simplest case where we activate an action without a parameter.</p>
+Let's check out the simplest case where we activate an action without a parameter.</p>
 <p><span class="filename">Filename: listings/actions/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::SimpleAction;
 </span><span class="boring">use glib::clone;
@@ -233,7 +233,7 @@ We also connected a callback which closes the window.</p>
 With <a href="../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action"><code>set_accels_for_action</code></a> one can assign one or more accelerators to a certain action.
 Check the documentation of <a href="../docs/gtk4/functions/fn.accelerator_parse.html"><code>accelerator_parse</code></a> in order to learn more about its syntax.
 Here we assigned <code>&lt;primary&gt;W</code> which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.</p>
-<p>Before we move on to other aspects of actions, let us appreciate a few things that are curious here.
+<p>Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The &quot;win&quot; part of &quot;win.close&quot; is the group of the action.
 But how does GTK know that &quot;win&quot; is the action group of our window?
 The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:</p>
@@ -301,7 +301,7 @@ However, in the future we will use the pre-defined <a href="../docs/gtk4/struct.
 <h2 id="parameter-and-state"><a class="header" href="#parameter-and-state">Parameter and State</a></h2>
 <p>An action, like most functions, can take a parameter.
 However, unlike most functions it can also be stateful.
-Let us see how this works.</p>
+Let's see how this works.</p>
 <p><span class="filename">Filename: listings/actions/3/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::SimpleAction;
 </span><span class="boring">use glib::clone;
@@ -659,10 +659,10 @@ Typically, a menu entry has an action fitting one of these three descriptions:</
 <li>no parameter and boolean state, or</li>
 <li>string parameter and string state.</li>
 </ul>
-<p>Let us modify our small app to demonstrate these cases.
+<p>Let's modify our small app to demonstrate these cases.
 First we extend <code>add_actions</code>.
 For the action without parameter or state, we can use the pre-defined &quot;window.close&quot; action.
-Therefore we do not have to add anything here.</p>
+Therefore we don't have to add anything here.</p>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
@@ -771,7 +771,7 @@ When activating the action, the property gets set to the same value as the param
 <p>Finally, we add &quot;win.orientation&quot;, an action with string parameter and string state.
 This action can be used to change the orientation of <code>gtk_box</code>.
 Here the convention is that the state should be set to the given parameter.
-We do not need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.</p>
+We don't need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.</p>
 <p><span class="filename">Filename: listings/actions/6/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">

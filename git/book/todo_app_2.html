@@ -152,7 +152,7 @@ Your browser does not support the video tag.
 </div>
 <p>Note that the screencast also shows a button with label &quot;Clear&quot; which will remove all done tasks.
 This will come in handy when we later make the app preserve the tasks between sessions.</p>
-<p>Let us start by adding a menu and a header bar to <code>window.ui</code>.
+<p>Let's start by adding a menu and a header bar to <code>window.ui</code>.
 After reading the <a href="actions.html">actions</a> chapter the added code should feel familiar.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/window.ui</span></p>
 <pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1473,7 +1473,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">}
 </span></code></pre>
 <p>The entries can be organized with <a href="../docs/gtk4/struct.ShortcutsSection.html"><code>gtk::ShortcutsSection</code></a> and <a href="../docs/gtk4/struct.ShortcutsGroup.html"><code>gtk::ShortcutsGroup</code></a>.
-If we specify the action name, we also do not have to repeat the keyboard accelerator.
+If we specify the action name, we also don't have to repeat the keyboard accelerator.
 <a href="../docs/gtk4/struct.ShortcutsShortcut.html"><code>gtk::ShortcutsShortcut</code></a> looks it up on its own.
 The <code>shortcuts.ui</code> file looks like this:</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1572,7 +1572,7 @@ fn setup_shortcuts(app: &amp;Application) {
 <h2 id="saving-and-restoring-tasks"><a class="header" href="#saving-and-restoring-tasks">Saving and Restoring Tasks</a></h2>
 <p>Since we use <code>Settings</code>, our filter state will persist between sessions.
 However, the tasks themselves will not.
-Let us implement that.</p>
+Let's implement that.</p>
 <p>We could store our tasks in <code>Settings</code>, but it would be inconvenient.
 When it comes to serializing and deserializing nothing beats the crate <a href="https://lib.rs/crates/serde"><code>serde</code></a>.
 Combined with <a href="https://lib.rs/crates/serde_json"><code>serde_json</code></a> we can save our tasks as serialized <a href="https://en.wikipedia.org/wiki/JSON">json</a> files
@@ -1779,7 +1779,7 @@ For this example we like it, because it allows us to see into what a <code>Vec&l
 ]
 </code></pre>
 <p>When we start the app, we will want to restore the saved data.
-Let us add a <code>restore_data</code> method for that.
+Let's add a <code>restore_data</code> method for that.
 We make sure to handle the case where there is no data file there yet.
 It might be the first time that we started the app and therefore there is no former session to restore.</p>
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>

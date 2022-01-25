@@ -241,11 +241,11 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span></code></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_closure</code> is that it also works with custom signals.</p>
 <blockquote>
-<p>If you need to clone reference counted objects into your closure you do not have to wrap it within another <code>clone!</code> macro.
+<p>If you need to clone reference counted objects into your closure you don't have to wrap it within another <code>clone!</code> macro.
 <code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object disappears. </p>
 </blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
-<p>Let us see how we can create our own signals.
+<p>Let's see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span></p>

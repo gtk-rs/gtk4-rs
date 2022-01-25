@@ -162,7 +162,7 @@ We already know how to do this by using <code>Settings</code>.</p>
   &lt;/schema&gt;
 &lt;/schemalist&gt;
 </code></pre>
-<p>Since we do not care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
+<p>Since we don't care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
 First, we create one and add methods for getting and setting the window state.</p>
 <p><span class="filename">Filename: listings/saving_window_state/1/custom_window/mod.rs</span></p>
@@ -260,7 +260,7 @@ impl WindowImpl for Window {
         if let Err(err) = obj.save_window_size() {
             log::error!(&quot;Failed to save window state, {}&quot;, &amp;err);
         }
-        // Do not inhibit the default handler
+        // Don't inhibit the default handler
         Inhibit(false)
     }
 }
@@ -270,7 +270,7 @@ impl ApplicationWindowImpl for Window {}
 <p>That is it!
 Now our window retains its state between app sessions.</p>
 <p>Please note how we handle a failure in saving into the settings.
-We do not want to panic for recoverable errors.
+We don't want to panic for recoverable errors.
 We might also not want to present all problems at the GUI.
 In our case we could not even do this, because the window will be immediately closed after the error occurs.
 Logging is the standard way of handling a situation like this.

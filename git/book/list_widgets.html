@@ -141,7 +141,7 @@
 <p>Sometimes you want to display a list of elements in a certain arrangement.
 <a href="../docs/gtk4/struct.ListBox.html"><code>ListBox</code></a> and <a href="../docs/gtk4/struct.FlowBox.html"><code>FlowBox</code></a> are two container widgets which allow you to do this.
 <code>ListBox</code> describes a vertical list and <code>FlowBox</code> describes a grid.</p>
-<p>Let us explore this concept by adding labels to a <code>ListBox</code>.
+<p>Let's explore this concept by adding labels to a <code>ListBox</code>.
 Each label will display an integer starting from 0 and ranging up to 100.</p>
 <p><span class="filename">Filename: listings/list_widgets/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
@@ -251,7 +251,7 @@ But how could we possibly deal with the infinite amount of posts in a social med
 As we scroll through our elements, the widgets which become invisible will be reused.
 The following figure demonstrates how this works in practice.</p>
 <div style="text-align:center"><img src="img/scalable_lists_concept.png"/></div>
-<p>100 000 elements is something <code>ListBox</code> will struggle with, so let us use this to demonstrate scalable lists.</p>
+<p>100 000 elements is something <code>ListBox</code> will struggle with, so let's use this to demonstrate scalable lists.</p>
 <p>We start by defining and filling up our model.
 The model is an instance of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 The main limitation here is that <code>gio::ListStore</code> only accepts GObjects.
@@ -775,7 +775,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span></code></pre>
 <p>We can now easily scroll through our long list of integers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_1.png"/></div>
-<p>Let us see what else we can do.
+<p>Let's see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method <code>increase_number</code> to our <code>IntegerObject</code>.</p>
 <p><span class="filename">Filename: listings/list_widgets/3/integer_object/mod.rs</span></p>
@@ -1010,7 +1010,7 @@ That also means that in our case, multiple numbers will be bound to the same wid
 <h3 id="expressions"><a class="header" href="#expressions">Expressions</a></h3>
 <p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
 As a first step it allows us to remove the &quot;bind&quot; step.
-Let us see how the &quot;setup&quot; step now works.</p>
+Let's see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/list_widgets/4/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
 </span><span class="boring">
@@ -1100,9 +1100,9 @@ This allowed us in the snippet above to bind the property &quot;number&quot; of 
 Here, another power of expressions becomes evident.
 Expressions allow us to describe relationships between objects or properties that might not even exist yet.
 We just had to tell it to change the label whenever the number that belongs to it changes.
-That way, we also do not face the problem that multiple labels are bound to the same number.
+That way, we also don't face the problem that multiple labels are bound to the same number.
 When we now activate a label, only the corresponding number visibly changes.</p>
-<p>Let us extend our app a bit more.
+<p>Let's extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.</p>
 <p><span class="filename">Filename: listings/list_widgets/5/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
@@ -1466,7 +1466,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 <p>Often, all you want is to display a list of strings.
 However, if you either need to filter and sort your displayed data or have too many elements to be displayed by <code>ListBox</code>, you will still want to use a view.
 GTK provides a convenient model for this use case: <a href="../docs/gtk4/struct.StringList.html"><code>gtk::StringList</code></a>.</p>
-<p>Let us see with a small example how to use this API.
+<p>Let's see with a small example how to use this API.
 Filter and sorter is controlled by the factory, so nothing changes here.
 This is why we will skip this topic here.</p>
 <p>First, we add a bunch of strings to our model.</p>
@@ -1534,7 +1534,7 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
-This means we do not have to create a custom GObject for our model anymore.</p>
+This means we don't have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
 Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://docs.gtk.org/gtk4/property.StringObject.string.html">property &quot;string&quot;</a>.</p>
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>

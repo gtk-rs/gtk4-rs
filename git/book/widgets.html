@@ -139,12 +139,12 @@
                     <main>
                         <h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those do not fit, you can even create custom ones.
+GTK offers many-preexisting ones and if those don't fit, you can even create custom ones.
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.</p>
 <p>The <a href="https://docs.gtk.org/gtk4/visual_index.html">Widget Gallery</a> is useful to find out which widget fits your needs.
-Let us say we want to add a button to our app.
-We have quite a bit of choice here, but let us take the simplest one — a <code>Button</code>.</p>
+Let's say we want to add a button to our app.
+We have quite a bit of choice here, but let's take the simplest one — a <code>Button</code>.</p>
 <div style="text-align:center"><img src="img/widgets_button.png" /></div>
 <p>GTK is an object-oriented framework, so all widgets are part of an inheritance tree with <code>GObject</code> at the top.
 The inheritance tree of a <code>Button</code> looks like this:</p>
@@ -153,7 +153,7 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
     ╰── Button
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html#implements">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
-<p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
+<p>Now let's compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
 The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
