@@ -218,6 +218,10 @@ We override the `close_request` virtual function to save the tasks when the wind
 To do so, we first iterate through all entries and store them in a `Vec`.
 Then we serialize the `Vec` and store the data as a json file.
 
+```rust
+dbg!(backup_data.to_variant().type_().as_str());
+```
+
 <span class="filename">Filename: listings/todo_app/2/window/imp.rs</span>
 
 ```rust ,no_run,noplayground
