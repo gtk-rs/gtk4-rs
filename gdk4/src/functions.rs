@@ -32,7 +32,7 @@ pub fn pango_layout_get_clip_region(
 }
 
 #[doc(alias = "gdk_content_deserialize_async")]
-pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static>(
+pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + 'static>(
     stream: &impl IsA<gio::InputStream>,
     mime_type: &str,
     type_: glib::types::Type,
@@ -51,9 +51,10 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + S
         "Async operations only allowed if the thread is owning the MainContext"
     );
 
-    let user_data: Box<R> = Box::new(callback);
+    let user_data: Box<glib::thread_guard::ThreadGuard<R>> =
+        Box::new(glib::thread_guard::ThreadGuard::new(callback));
     unsafe extern "C" fn content_deserialize_async_trampoline<
-        R: FnOnce(Result<glib::Value, glib::Error>) + Send + 'static,
+        R: FnOnce(Result<glib::Value, glib::Error>) + 'static,
     >(
         _source_object: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
@@ -67,7 +68,8 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + S
         } else {
             Err(from_glib_full(error))
         };
-        let callback: Box<R> = Box::from_raw(user_data as *mut _);
+        let callback: Box<glib::thread_guard::ThreadGuard<R>> = Box::from_raw(user_data as *mut _);
+        let callback = callback.into_inner();
         callback(result);
     }
     let callback = content_deserialize_async_trampoline::<R>;
@@ -228,7 +230,7 @@ pub fn content_register_serializer<
 }
 
 #[doc(alias = "gdk_content_serialize_async")]
-pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + Send + 'static>(
+pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + 'static>(
     stream: &impl IsA<gio::OutputStream>,
     mime_type: &str,
     value: &glib::Value,
@@ -246,9 +248,10 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + Send + 'stat
         is_main_context_owner || has_acquired_main_context.is_some(),
         "Async operations only allowed if the thread is owning the MainContext"
     );
-    let user_data: Box<R> = Box::new(callback);
+    let user_data: Box<glib::thread_guard::ThreadGuard<R>> =
+        Box::new(glib::thread_guard::ThreadGuard::new(callback));
     unsafe extern "C" fn content_serialize_async_trampoline<
-        R: FnOnce(Result<(), glib::Error>) + Send + 'static,
+        R: FnOnce(Result<(), glib::Error>) + 'static,
     >(
         _source_object: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
@@ -261,7 +264,8 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + Send + 'stat
         } else {
             Err(from_glib_full(error))
         };
-        let callback: Box<R> = Box::from_raw(user_data as *mut _);
+        let callback: Box<glib::thread_guard::ThreadGuard<R>> = Box::from_raw(user_data as *mut _);
+        let callback = callback.into_inner();
         callback(result);
     }
     let callback = content_serialize_async_trampoline::<R>;

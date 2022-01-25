@@ -58,7 +58,7 @@ pub fn accelerator_parse_with_keycode(
 
 #[doc(alias = "gtk_show_uri_full")]
 #[doc(alias = "gtk_show_uri_full_finish")]
-pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
+pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
     parent: Option<&impl IsA<Window>>,
     uri: &str,
     timestamp: u32,
@@ -66,10 +66,19 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
     callback: P,
 ) {
     assert_initialized_main_thread!();
-    let user_data: Box_<P> = Box_::new(callback);
-    unsafe extern "C" fn show_uri_full_trampoline<
-        P: FnOnce(Result<(), glib::Error>) + Send + 'static,
-    >(
+    let main_context = glib::MainContext::ref_thread_default();
+    let is_main_context_owner = main_context.is_owner();
+    let has_acquired_main_context = (!is_main_context_owner)
+        .then(|| main_context.acquire().ok())
+        .flatten();
+    assert!(
+        is_main_context_owner || has_acquired_main_context.is_some(),
+        "Async operations only allowed if the thread is owning the MainContext"
+    );
+
+    let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+        Box_::new(glib::thread_guard::ThreadGuard::new(callback));
+    unsafe extern "C" fn show_uri_full_trampoline<P: FnOnce(Result<(), glib::Error>) + 'static>(
         parent_ptr: *mut glib::gobject_ffi::GObject,
         res: *mut gio::ffi::GAsyncResult,
         user_data: glib::ffi::gpointer,
@@ -81,7 +90,9 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         } else {
             Err(from_glib_full(error))
         };
-        let callback: Box_<P> = Box_::from_raw(user_data as *mut _);
+        let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+            Box_::from_raw(user_data as *mut _);
+        let callback = callback.into_inner();
         callback(result);
     }
     let callback = show_uri_full_trampoline::<P>;
