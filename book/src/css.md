@@ -6,7 +6,7 @@ Similarly, GTK supports its own variant of CSS in order to style your app.
 > We will not explain every piece of syntax used in this chapter.
 > If you are new to CSS or just need a refresher, have a look at the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
 
-Let us say we have a button and we want to set its font color to magenta.
+Let's say we have a button and we want to set its font color to magenta.
 Every type of widget has a corresponding CSS node.
 In the case of `gtk::Button`, this node is called `button`.
 Therefore, we create a `style.css` file with the following content:
@@ -121,7 +121,7 @@ Again, the style rule only applies to the first button.
 ## CSS Rules Provided by GTK
 
 Certain styles are common enough that GTK provides CSS rules for them.
-For example, if you want to indicate that your button leads to a destructive or suggested action you do not have to provide your own CSS rules.
+For example, if you want to indicate that your button leads to a destructive or suggested action you don't have to provide your own CSS rules.
 All you have to do is to add "destructive-action" or "suggested-action" style class to your button.
 Most widgets will document these rules in their documentation under [CSS nodes](../docs/gtk4/struct.Button.html#css-nodes).
 
@@ -151,7 +151,7 @@ Adding again destructive and suggested buttons, would then look like this:
 
 Sometimes you want your CSS rules to apply under even more precise conditions than style classes allow.
 That is where [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) come in.
-Let us use a single button with name `button-1` to demonstrate this concept.
+Let's use a single button with name `button-1` to demonstrate this concept.
 
 <span class="filename">Filename: listings/css/7/window/window.ui</span>
 
@@ -182,7 +182,7 @@ Your browser does not support the video tag.
 In the previous examples, a widget always corresponded to a single CSS node.
 This is not always the case.
 For example, [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) has multiple CSS nodes.
-Let us see how that works.
+Let's see how that works.
 
 First, we create a single `MenuButton`.
 
@@ -223,7 +223,7 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
-Let us add that!
+Let's add that!
 
 The class `TodoRow` inherits from `gtk::Box`, so we could just match for the node `box`.
 However, if we create a custom widget we might as well give it its own CSS name.
@@ -268,7 +268,7 @@ We match the style rule by adding the style class `frame` to our `TodoRow`.
 ## Conclusion
 
 There are surely enough ways to define CSS rules.
-Let us briefly recap the syntax we learned.
+Let's briefly recap the syntax we learned.
 The following rule matches the node `arrow`, which is a descendant of the node `button` with the name `button-1` and the style classes `toggle` and `text-button`.
 The rule then actually applies, when we also hover over `arrow`.
 

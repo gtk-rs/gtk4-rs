@@ -1,13 +1,13 @@
 # Widgets
 
 Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those do not fit, you can even create custom ones.
+GTK offers many-preexisting ones and if those don't fit, you can even create custom ones.
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
 The [Widget Gallery](https://docs.gtk.org/gtk4/visual_index.html) is useful to find out which widget fits your needs.
-Let us say we want to add a button to our app.
-We have quite a bit of choice here, but let us take the simplest one — a `Button`.
+Let's say we want to add a button to our app.
+We have quite a bit of choice here, but let's take the simplest one — a `Button`.
 
 <div style="text-align:center"><img src="img/widgets_button.png" /></div>
 
@@ -22,7 +22,7 @@ GObject
 
 The [GTK documentation](https://docs.gtk.org/gtk4/class.Button.html#implements) also tells us that `Button` implements the interfaces `GtkAccessible`, `GtkActionable`, `GtkBuildable`, `GtkConstraintTarget`.
 
-Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
+Now let's compare that with the corresponding `Button` struct in `gtk-rs`.
 The [gtk-rs documentation](../docs/gtk4/struct.Button.html#implements) tells us which traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the "Hello World" app we wanted to react to a button click.

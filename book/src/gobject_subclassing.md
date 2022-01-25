@@ -2,7 +2,7 @@
 
 GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
-Let us see how this works by replacing the button in our "Hello World!" app with a custom one.
+Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
 
 First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
@@ -45,7 +45,7 @@ We are able to use `CustomButton` as a drop-in replacement for `gtk::Button`.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.
 
-So let us make it a bit more interesting!
+So let's make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
 <span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span>

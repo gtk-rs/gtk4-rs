@@ -14,7 +14,7 @@ That is why you can move the window at the same time as a progress bar is growin
 
 However, you surely saw GUIs that became unresponsive, at least for a few seconds.
 That happens when a single task takes too long.
-Let us look at one example.
+Let's look at one example.
 
 <span class="filename">Filename: listings/main_event_loop/1/main.rs</span>
 
@@ -148,4 +148,3 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 So when should you spawn an `async` block and when should you spawn a thread?
 - If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
 - If your operation is computation-bound or there is no `async` function available, you have to spawn threads.
-

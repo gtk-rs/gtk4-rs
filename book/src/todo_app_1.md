@@ -54,8 +54,8 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
 Also, where would the input go?
-We have not even set up the list model yet.
-Let us do that!
+We haven't even set up the list model yet.
+Let's do that!
 
 <div style="text-align:center"><img src="img/todo_app_1_empty.png" /></div>
 
@@ -91,7 +91,7 @@ If you are curious, you can press on the small eye symbol on the top right of th
 
 ## To-Do Row
 
-Let us move on to the individual tasks.
+Let's move on to the individual tasks.
 The row of a task should look like this:
 
 
@@ -155,7 +155,7 @@ Finally, the entry will be cleared.
 {{#rustdoc_include ../listings/todo_app/1/window/mod.rs:setup_callbacks}}
 ```
 The list elements for the `gtk::ListView` are produced by a factory.
-Before we move on to the implementation, let us take a step back and think about which behavior we expect here.
+Before we move on to the implementation, let's take a step back and think about which behavior we expect here.
 `content_label` of `TodoRow` should follow `content` of `TodoObject`.
 We also want `completed_button` of `TodoRow` follow `completed` of `TodoObject`.
 This could be achieved with expressions similar to what we did in the lists chapter.

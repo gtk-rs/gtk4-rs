@@ -6,7 +6,7 @@ Thanks to GObject-Introspection, GTK's API can be easily targeted by various pro
 The API even describes the ownership of its parameters!
 
 Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with.
-With this combination you do not have to worry about hitting bottlenecks mid-project anymore.
+With this combination you don't have to worry about hitting bottlenecks mid-project anymore.
 Additionally, with Rust you will have nice things such as
  - thread safety,
  - memory safety,
@@ -35,7 +35,7 @@ you might find it useful to just jump into it.
 There are two kinds of chapters in this book: concept chapters and project
 chapters.
 In concept chapters, you will learn about an aspect of GTK development.
-In project chapters, we will build small programs together, applying what you have learned so far.
+In project chapters, we will build small programs together, applying what you've learned so far.
 
 The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.

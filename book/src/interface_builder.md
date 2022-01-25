@@ -39,7 +39,7 @@ This is how it then looks in practice:
 ```
 
 This is a bit disappointing.
-Even though we have already described the UI in the markup file, the amount of code is still pretty much the same.
+Even though we've already described the UI in the markup file, the amount of code is still pretty much the same.
 There are still cases where it is valuable to know of the existence of `gtk::Builder`.
 We will see for example that [`ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) is quite a bit easier to instantiate that way.
 

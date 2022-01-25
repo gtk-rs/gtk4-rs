@@ -1,6 +1,6 @@
 # Hello World!
 
-Now that we have got a working installation, let us get right into it!
+Now that we've got a working installation, let's get right into it!
 
 At the very least, we need to create an `Application` instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
 For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
@@ -13,7 +13,7 @@ For that we use the [builder pattern](https://rust-unofficial.github.io/patterns
 
 It builds fine, but nothing appears on our screen.
 GTK warns us that something should be called in its `activate` step.
-So let us create a window there.
+So let's create a window there.
 
 <span class="filename">Filename: listings/hello_world/2/main.rs</span>
 
@@ -41,4 +41,4 @@ Your browser does not support the video tag.
 </div>
 
 Wasn't that hard to create our first `gtk-rs` app, right?
-Let us now get a better understanding of what we did here.
+Let's now get a better understanding of what we did here.
