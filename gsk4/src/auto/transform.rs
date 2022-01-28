@@ -49,7 +49,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_matrix")]
     #[must_use]
-    pub fn matrix(&self, matrix: &graphene::Matrix) -> Option<Transform> {
+    pub fn matrix(&self, matrix: &graphene::Matrix) -> Transform {
         unsafe {
             from_glib_full(ffi::gsk_transform_matrix(
                 self.to_glib_full(),
@@ -60,7 +60,7 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_perspective")]
     #[must_use]
-    pub fn perspective(&self, depth: f32) -> Option<Transform> {
+    pub fn perspective(&self, depth: f32) -> Transform {
         unsafe { from_glib_full(ffi::gsk_transform_perspective(self.to_glib_full(), depth)) }
     }
 
