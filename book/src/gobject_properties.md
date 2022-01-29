@@ -2,7 +2,7 @@
 
 Properties provide a public API for accessing state of GObjects.
 
-Let's see how this is done by experimenting with the `Switch` widget.
+Let's see how this is done by experimenting with the [`Switch`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html) widget.
 One of its properties is the [state](https://docs.gtk.org/gtk4/property.Switch.state.html).
 According to the GTK docs, it can be read and be written to.
 That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/struct.Switch.html#method.set_state) methods.
@@ -45,7 +45,12 @@ We also want the binding to be bidirectional, so we specify this with the [`Bind
 
 Now when we click on one of the two switches, the other one is toggled as well.
 
-<div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+    <source src="vid/gobject_properties_switches.webm">
+    Your browser does not support the video tag.
+ </video>
+</div>
 
 ## Adding Properties to Custom GObjects
 
@@ -108,10 +113,15 @@ By leveraging [`transform_to`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/
 ```
 Now if we click on one button, the "number" and "label" properties of the other button change as well.
 
-<div style="text-align:center"><img src="img/gobject_properties_buttons.png"/></div>
+<div style="text-align:center">
+ <video autoplay muted loop>
+    <source src="vid/gobject_properties_buttons.webm">
+    Your browser does not support the video tag.
+ </video>
+</div>
 
 The final nice feature of properties is, that you can connect a callback to the event when a property gets changed.
-We can do this like this:
+For example like this:
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 
@@ -119,7 +129,7 @@ We can do this like this:
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:connect_notify}}
 ```
 
-Now, whenever the "number" property gets changed, the closure gets executed and prints the current value of "number".
+Now, whenever the "number" property gets changed, the closure gets executed and prints the current value of "number" to standard output.
 
 Introducing properties to your custom GObjects is useful if you want to
 - allow consumers to be able to access internal state

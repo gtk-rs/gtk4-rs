@@ -42,11 +42,12 @@ Also, the name of the chapter suggests that the phrase "Hello World!" will be in
 
 > If you look closely at the code snippet you will notice that it has a small eye symbol on its top right.
 > After you press on it you can see the full code of the listing.
-> We will use this througout the book to hide details which are not important to bring the message across.
+> We will use this throughout the book to hide details which are not important to bring the message across.
 > If you try to write apps by following the book step-by-step you will want to pay attention to this.
 > Here, we have hidden that we brought `gtk::Button` into scope.
 
 There is now a button and if we click on it, its label becomes "Hello World!".
+
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/hello_world_button.webm" type="video/webm">
