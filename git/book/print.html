@@ -363,7 +363,8 @@ fn build_ui(app: &amp;Application) {
 <p>That is better!</p>
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 <p>Normally we expect to be able to interact with the user interface.
-Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
+Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.
+Note to bring <code>gtk::Button</code> into scope.</p>
 <p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
