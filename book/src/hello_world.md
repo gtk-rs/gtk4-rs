@@ -26,7 +26,7 @@ That is better!
 
 Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase "Hello World!" will be involved.
-(Note to import `Button`)
+Note to bring `gtk::Button` into scope.
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
