@@ -78,9 +78,17 @@ The formerly private `number` is now accessible via the `property` and `set_prop
 {{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:object_impl}}
 ```
 
-We can immediately take advantage of this new property by binding the "label" property to it.
+We could immediately take advantage of this new property by binding the "label" property to it.
 It even converts the integer value of "number" to the string of "label".
 Now we don't have to adapt the label in the "clicked" callback anymore.
+
+We also have to adapt the `clicked` method.
+Before we modified `number` directly, now we do it through `set_property`.
+This way the "notify" signal will be emitted which bindings work as expected.
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:button_impl}}
+```
 
 Let's see what we can do with this by creating two custom buttons.
 

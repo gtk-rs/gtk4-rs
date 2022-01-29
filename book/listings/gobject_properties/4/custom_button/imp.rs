@@ -77,6 +77,7 @@ impl ObjectImpl for CustomButton {
 // Trait shared by all widgets
 impl WidgetImpl for CustomButton {}
 
+// ANCHOR: button_impl
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self, button: &Self::Type) {
@@ -84,3 +85,4 @@ impl ButtonImpl for CustomButton {
         button.set_property("number", &incremented_number);
     }
 }
+// ANCHOR_END: button_impl
