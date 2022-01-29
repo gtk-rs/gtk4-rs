@@ -4,6 +4,7 @@ Now that we've got a working installation, let's get right into it!
 
 At the very least, we need to create a [`gtk::Application`](../docs/gtk4/struct.Application.html) instance with an [application id](https://developer.gnome.org/documentation/tutorials/application-id.html).
 For that we use the [builder pattern](https://rust-unofficial.github.io/patterns/patterns/creational/builder.html) which many `gtk-rs` objects support.
+Note that we also import the prelude to bring the necessary traits into scope.
 
 <span class="filename">Filename: listings/hello_world/1/main.rs</span>
 
@@ -32,13 +33,19 @@ That is better!
 
 Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase "Hello World!" will be involved.
-Note to bring `gtk::Button` into scope.
 
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}
 ```
+
+> If you look closely at the code snippet you will notice that it has a small eye symbol on its top right.
+> After you press on it you can see the full code of the listing.
+> We will use this througout the book to hide details which are not important to bring the message across.
+> If you try to write apps by following the book step-by-step you will want to pay attention to this.
+> Here, we have hidden that we brought `gtk::Button` into scope.
+
 There is now a button and if we click on it, its label becomes "Hello World!".
 <div style="text-align:center">
  <video autoplay muted loop>

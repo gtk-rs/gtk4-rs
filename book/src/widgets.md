@@ -1,8 +1,8 @@
 # Widgets
 
 Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those don't fit, you can even create custom ones.
-There are display widgets, buttons, containers and windows.
+GTK offers many widgets and if those don't fit, you can even create custom ones.
+There are, for example, display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
 The [Widget Gallery](https://docs.gtk.org/gtk4/visual_index.html) is useful to find out which widget fits your needs.
@@ -34,14 +34,3 @@ And indeed, `ButtonExt` includes the method [`connect_clicked`](../docs/gtk4/pre
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:button}}
 ```
-
-Please note that Rust requires bringing traits into scope, before using one of its methods.
-In our example we did that by adding the following line:
-
-<span class="filename">Filename: listings/hello_world/3/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/hello_world/3/main.rs:prelude}}
-```
-With it, we import all necessary traits for dealing with widgets.
-You probably want to bring the prelude into scope in most of your source files.

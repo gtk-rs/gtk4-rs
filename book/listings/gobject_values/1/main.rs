@@ -35,10 +35,10 @@ fn main() {
     // Retrieve `String` from `Value`
     let string_some = string_some_value
         .get::<Option<String>>()
-        .expect("The value needs to be of type `String`.");
+        .expect("The value needs to be of type `Option<String>`.");
     let string_none = string_none_value
         .get::<Option<String>>()
-        .expect("The value needs to be of type `String`.");
+        .expect("The value needs to be of type `Option<String>`.");
 
     // Check if the retrieved value is correct
     assert_eq!(string_some, Some("Hello!".to_string()));

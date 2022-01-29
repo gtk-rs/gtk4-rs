@@ -21,9 +21,6 @@ fn main() {
 }
 
 fn build_ui(application: &Application) {
-    // Create a window
-    let window = ApplicationWindow::new(application);
-
     // Create two buttons
     let button_increase = Button::builder()
         .label("Increase")
@@ -48,12 +45,23 @@ fn build_ui(application: &Application) {
     button_increase.connect_clicked(|_| number += 1);
     button_decrease.connect_clicked(|_| number -= 1);
 
-    // Add buttons
-    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
-    window.set_child(Some(&gtk_box));
+    // Add buttons to `gtk_box`
+    let gtk_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .build();
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("My GTK App")
+        .child(&gtk_box)
+        .build();
+
+    // Present the window
     window.present();
+}
 }
 ```
 
@@ -109,7 +117,7 @@ The error message is also suggesting that we could take ownership of `number`.
 But is there actually a way that both closures could take ownership of the same value?
 
 Yes! That is exactly what the [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
-The `Rc` counts the number of strong references created via `Clone::clone` and released via `Drop::drop`, and only deallocates it when this number drops to zero.
+The `Rc` counts the number of strong references created via [`Clone::clone`](https://doc.rust-lang.org/std/clone/trait.Clone.html#tymethod.clone) and released via [`Drop::drop`](https://doc.rust-lang.org/std/ops/trait.Drop.html#tymethod.drop), and only deallocates it when this number drops to zero.
 We call every object containing a strong reference a shared owner of the value.
 If we want to modify the content of our [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html),
 we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) type.
@@ -125,7 +133,7 @@ we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) typ
 ```
 
 It is not very nice though to fill the scope with temporary variables like `number_copy`.
-We can improve that by using the `glib::clone!` macro.
+We can improve that by using the [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) macro.
 
 <span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span>
 
@@ -153,9 +161,6 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.
 
-> In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
-> However, the general point to avoid strong references whenever possible remains valid.
-
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust ,no_run,noplayground
@@ -166,8 +171,7 @@ The reference cycle is broken.
 Every time the button is clicked, `glib::clone` tries to upgrade the weak reference.
 If we now for example click on one button and the other button is not there anymore, `upgrade` will return `None`.
 Per default, it immediately returns from the closure with `()` as return value.
-In case the closure expects a different return value or a panic is preferred `@default-return` or `@default-panic`.
-For more information about `glib::clone`, please have a look at the [docs](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html).
+In case the closure expects a different return value `@default-return` can be specified.
 
 Notice that we move `number` in the second closure.
 If we had only moved _weak_ reference in both closures, nothing would have kept `number` alive and the closure would have never been called.

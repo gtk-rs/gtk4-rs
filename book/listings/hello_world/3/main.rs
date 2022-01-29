@@ -2,8 +2,9 @@
 // ANCHOR: prelude
 use gtk::prelude::*;
 // ANCHOR_END: prelude
+// ANCHOR: use
 use gtk::{Application, ApplicationWindow, Button};
-
+// ANCHOR_END: use
 fn main() {
     // Create a new application
     let app = Application::builder()
