@@ -34,7 +34,7 @@ futures-channel = "0.3"
 gdk = {package = "gdk4", path = "../gdk4", version = "0.4.2"}
 gdk-pixbuf = {version = "0.15.1", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15" }
 gio = {features = ["v2_66"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
-glib = {features = ["v2_66"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
+glib = {features = ["v2_66"], version = "0.15.3", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 graphene = {package = "graphene-rs", version = "0.15.1", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 gsk = {package = "gsk4", path = "../gsk4", version = "0.4.2"}
 gtk4-macros = {path = "../gtk4-macros", version = "0.4.2"}
