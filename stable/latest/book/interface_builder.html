@@ -215,6 +215,16 @@ Then we can specify properties which are specified <a href="https://docs.gtk.org
 Since <code>ApplicationWindow</code> can contain other widgets we use the <code>&lt;child&gt;</code> tag to add a <code>Button</code>.</p>
 <p>To instantiate the widgets described by the <code>xml</code> files we use <a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>.
 All widgets that can be described that way can be found <a href="../docs/gtk4/prelude/trait.BuildableExt.html#implementors-1">here</a></p>
+<blockquote>
+<p>Puh, yet another builder? Let us summarize what we have so far:</p>
+<ul>
+<li><a href="https://flathub.org/apps/details/org.gnome.Builder">GNOME Builder</a>, an IDE used to create GNOME apps, </li>
+<li><a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>, a design pattern used to create objects with many optional parameters and</li>
+<li><a href="../docs/gtk4/struct.Builder.html"><code>gtk::Builder</code></a>, the interface builder which creates widgets from <code>xml</code> files.</li>
+</ul>
+<p>That was it with the builders.
+Promised!</p>
+</blockquote>
 <p>This is how it then looks in practice:</p>
 <p><span class="filename">Filename: listings/interface_builder/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
@@ -264,8 +274,7 @@ Even though we have already described the UI in the markup file, the amount of c
 There are still cases where it is valuable to know of the existence of <code>gtk::Builder</code>.
 We will see for example that <a href="../docs/gtk4/struct.ShortcutsWindow.html"><code>ShortcutsWindow</code></a> is quite a bit easier to instantiate that way.</p>
 <p>At least we did not lose any flexibility by using <code>gtk::Builder</code>.
-It is for example still possible to refer to custom widgets.
-Let us test this with <code>CustomButton</code> which subclasses from <code>gtk::Button</code> without additional modifications. </p>
+It is for example still possible to refer to custom widgets such as this bare-bones <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/interface_builder/2/custom_button/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -475,10 +484,6 @@ Template child then:</p>
 <li>assures that the widget gets registered without doing it manually in <code>main.rs</code>, and</li>
 <li>stores a reference to the widget for later use.</li>
 </ul>
-<blockquote>
-<p>If we refer to a custom widget in our template, but do not want to add it as template child then we still have to register it.
-<code>class_init</code> is a good place to do so.</p>
-</blockquote>
 <p>We need both for our custom button, so we add it to the struct.</p>
 <p><span class="filename">Filename: listings/interface_builder/3/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
@@ -626,288 +631,8 @@ The button is easily available thanks to the stored reference in <code>self</cod
     window.present();
 }
 </code></pre>
-<p>With composite templates, <code>main.rs</code> actually became more concise.</p>
-<h2 id="template-callbacks"><a class="header" href="#template-callbacks">Template Callbacks</a></h2>
-<p>We can even specify the handlers of signals within composite templates.
-This can be done with a <code>&lt;signal&gt;</code> tag containing the name of the signal and the handler in our Rust code.</p>
-<p><span class="filename">Filename: listings/interface_builder/4/window/window.ui</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
-    &lt;child&gt;
-      &lt;object class=&quot;MyGtkAppCustomButton&quot; id=&quot;button&quot;&gt;
-        &lt;signal name=&quot;clicked&quot; handler=&quot;handle_button_clicked&quot;/&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</code></pre>
-<p>Then we define the <code>handle_button_clicked</code> with the <a href="../docs/gtk4_macros/attr.template_callbacks.html"><code>template_callbacks</code></a> macro applied to it.
-We can determine the function signature by having a look at the <code>connect_*</code> method of the signal we want to handle.
-In our case that would be <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.
-It takes a function of type <code>Fn(&amp;Self)</code>.
-<code>Self</code> refers to our button.
-This means that <code>handle_button_clicked</code> has a single parameter of type <code>&amp;CustomButton</code></p>
-<p><span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
-</span><span class="boring">use gtk::glib;
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::CompositeTemplate;
-</span><span class="boring">
-</span><span class="boring">use crate::custom_button::CustomButton;
-</span><span class="boring">
-</span><span class="boring">// Object holding the state
-</span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(file = &quot;window.ui&quot;)]
-</span><span class="boring">pub struct Window {
-</span><span class="boring">    #[template_child]
-</span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">// The central trait for subclassing a GObject
-</span><span class="boring">#[glib::object_subclass]
-</span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
-</span><span class="boring">    type Type = super::Window;
-</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
-</span><span class="boring">
-</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
-</span><span class="boring">        obj.init_template();
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span>#[gtk::template_callbacks]
-impl Window {
-    #[template_callback]
-    fn handle_button_clicked(button: &amp;CustomButton) {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
-    }
-}
-<span class="boring">
-</span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all widgets
-</span><span class="boring">impl WidgetImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all windows
-</span><span class="boring">impl WindowImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all application
-</span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span></code></pre>
-<p>Then we have to bind the template callbacks with <a href="../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks"><code>bind_template_callbacks</code></a>.</p>
-<p><span class="filename">Filename: listings/interface_builder/4/window/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
-</span><span class="boring">use gtk::glib;
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::CompositeTemplate;
-</span><span class="boring">
-</span><span class="boring">use crate::custom_button::CustomButton;
-</span><span class="boring">
-</span><span class="boring">// Object holding the state
-</span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(file = &quot;window.ui&quot;)]
-</span><span class="boring">pub struct Window {
-</span><span class="boring">    #[template_child]
-</span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
-</span><span class="boring">}
-</span><span class="boring">
-</span>// The central trait for subclassing a GObject
-#[glib::object_subclass]
-impl ObjectSubclass for Window {
-    // `NAME` needs to match `class` attribute of template
-    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
-    type Type = super::Window;
-    type ParentType = gtk::ApplicationWindow;
-
-    fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
-        Self::bind_template_callbacks(klass);
-    }
-
-    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
-        obj.init_template();
-    }
-}
-<span class="boring">
-</span><span class="boring">#[gtk::template_callbacks]
-</span><span class="boring">impl Window {
-</span><span class="boring">    #[template_callback]
-</span><span class="boring">    fn handle_button_clicked(button: &amp;CustomButton) {
-</span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all widgets
-</span><span class="boring">impl WidgetImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all windows
-</span><span class="boring">impl WindowImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all application
-</span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span></code></pre>
-<p>We can also access the state of our widget.
-Let's say we want to manipulate a <code>number</code> stored in <code>imp::Window</code>.</p>
-<p><span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
-</span><span class="boring">
-</span><span class="boring">use glib::subclass::InitializingObject;
-</span><span class="boring">use gtk::glib;
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::CompositeTemplate;
-</span><span class="boring">
-</span><span class="boring">use crate::custom_button::CustomButton;
-</span><span class="boring">
-</span>// Object holding the state
-#[derive(CompositeTemplate, Default)]
-#[template(file = &quot;window.ui&quot;)]
-pub struct Window {
-    #[template_child]
-    pub button: TemplateChild&lt;CustomButton&gt;,
-    pub number: Cell&lt;i32&gt;,
-}
-<span class="boring">
-</span><span class="boring">// The central trait for subclassing a GObject
-</span><span class="boring">#[glib::object_subclass]
-</span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
-</span><span class="boring">    type Type = super::Window;
-</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
-</span><span class="boring">
-</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
-</span><span class="boring">        obj.init_template();
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">#[gtk::template_callbacks]
-</span><span class="boring">impl Window {
-</span><span class="boring">    #[template_callback]
-</span><span class="boring">    fn handle_button_clicked(&amp;self, button: &amp;CustomButton) {
-</span><span class="boring">        self.number.set(self.number.get() + 1);
-</span><span class="boring">        button.set_label(&amp;self.number.get().to_string())
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all widgets
-</span><span class="boring">impl WidgetImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all windows
-</span><span class="boring">impl WindowImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all application
-</span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span></code></pre>
-<p>In order to access the widget's state we have to add <code>swapped=&quot;true&quot;</code> to the <code>signal</code> tag.</p>
-<p><span class="filename">Filename: listings/interface_builder/5/window/window.ui</span></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
-    &lt;child&gt;
-      &lt;object class=&quot;MyGtkAppCustomButton&quot; id=&quot;button&quot;&gt;
-        &lt;signal name=&quot;clicked&quot; handler=&quot;handle_button_clicked&quot; swapped=&quot;true&quot;/&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</code></pre>
-<p>Now we can add <code>&amp;self</code> as first parameter to <code>handle_button_clicked</code>.
-This lets us access the state of the window and therefore manipulate <code>number</code>.</p>
-<p><span class="filename">Filename: listings/interface_builder/5/window/imp.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
-</span><span class="boring">
-</span><span class="boring">use glib::subclass::InitializingObject;
-</span><span class="boring">use gtk::glib;
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::CompositeTemplate;
-</span><span class="boring">
-</span><span class="boring">use crate::custom_button::CustomButton;
-</span><span class="boring">
-</span><span class="boring">// Object holding the state
-</span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(file = &quot;window.ui&quot;)]
-</span><span class="boring">pub struct Window {
-</span><span class="boring">    #[template_child]
-</span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
-</span><span class="boring">    pub number: Cell&lt;i32&gt;,
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">// The central trait for subclassing a GObject
-</span><span class="boring">#[glib::object_subclass]
-</span><span class="boring">impl ObjectSubclass for Window {
-</span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
-</span><span class="boring">    type Type = super::Window;
-</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
-</span><span class="boring">
-</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
-</span><span class="boring">        obj.init_template();
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span>#[gtk::template_callbacks]
-impl Window {
-    #[template_callback]
-    fn handle_button_clicked(&amp;self, button: &amp;CustomButton) {
-        self.number.set(self.number.get() + 1);
-        button.set_label(&amp;self.number.get().to_string())
-    }
-}
-<span class="boring">
-</span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all widgets
-</span><span class="boring">impl WidgetImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all windows
-</span><span class="boring">impl WindowImpl for Window {}
-</span><span class="boring">
-</span><span class="boring">// Trait shared by all application
-</span><span class="boring">impl ApplicationWindowImpl for Window {}
-</span></code></pre>
+<p>With composite templates, <code>main.rs</code> actually became more concise.
+With regard to capabilities, we also get the best of both worlds.</p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>Thanks to custom widgets we can</p>
 <ul>
@@ -917,9 +642,8 @@ impl Window {
 </ul>
 <p>Thanks to composite templates we can</p>
 <ul>
-<li>describe complex user interfaces concisely, </li>
-<li>easily access widgets within the template as well as</li>
-<li>specify handler functions for signals. </li>
+<li>describe complex user interfaces concisely, and</li>
+<li>easily access widgets within the template. </li>
 </ul>
 <p>The API of the interface builder is extensive so especially at the beginning you will want to check out the documentation.
 The basic syntax is explained with <a href="../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions"><code>Builder</code></a>, syntax specific to widgets with <a href="../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>Widget</code></a>.
