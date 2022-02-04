@@ -621,6 +621,8 @@ pub enum EventType {
     PadStrip,
     #[doc(alias = "GDK_PAD_GROUP_MODE")]
     PadGroupMode,
+    #[doc(alias = "GDK_TOUCHPAD_HOLD")]
+    TouchpadHold,
     #[doc(alias = "GDK_EVENT_LAST")]
     EventLast,
     #[doc(hidden)]
@@ -661,6 +663,7 @@ impl fmt::Display for EventType {
                 Self::PadRing => "PadRing",
                 Self::PadStrip => "PadStrip",
                 Self::PadGroupMode => "PadGroupMode",
+                Self::TouchpadHold => "TouchpadHold",
                 Self::EventLast => "EventLast",
                 _ => "Unknown",
             }
@@ -702,6 +705,7 @@ impl IntoGlib for EventType {
             Self::PadRing => ffi::GDK_PAD_RING,
             Self::PadStrip => ffi::GDK_PAD_STRIP,
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
+            Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
             Self::EventLast => ffi::GDK_EVENT_LAST,
             Self::__Unknown(value) => value,
         }
@@ -741,6 +745,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_RING => Self::PadRing,
             ffi::GDK_PAD_STRIP => Self::PadStrip,
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
+            ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
             ffi::GDK_EVENT_LAST => Self::EventLast,
             value => Self::__Unknown(value),
         }
