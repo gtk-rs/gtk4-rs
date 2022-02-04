@@ -96,7 +96,8 @@ pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 24;
 pub const GDK_PAD_RING: GdkEventType = 25;
 pub const GDK_PAD_STRIP: GdkEventType = 26;
 pub const GDK_PAD_GROUP_MODE: GdkEventType = 27;
-pub const GDK_EVENT_LAST: GdkEventType = 28;
+pub const GDK_TOUCHPAD_HOLD: GdkEventType = 28;
+pub const GDK_EVENT_LAST: GdkEventType = 29;
 
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
