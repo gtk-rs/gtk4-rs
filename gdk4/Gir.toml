@@ -17,7 +17,6 @@ trust_return_value_nullability = true
 generate = [
     "Gdk.AnchorHints",
     "Gdk.AxisFlags",
-    "Gdk.AxisUse",
     "Gdk.ButtonEvent",
     "Gdk.CairoContext",
     "Gdk.CrossingEvent",
@@ -223,6 +222,13 @@ name = "Gdk.AppLaunchContext"
 status = "generate"
 generate_builder = false
 final_type = false
+
+[[object]]
+name = "Gdk.AxisUse"
+status = "generate"
+    [[object.member]]
+    name = "last"
+    ignore = true # not useful
 
 [[object]]
 name = "Gdk.Clipboard"

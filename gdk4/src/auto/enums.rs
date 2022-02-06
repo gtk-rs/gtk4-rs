@@ -39,8 +39,6 @@ pub enum AxisUse {
     Rotation,
     #[doc(alias = "GDK_AXIS_SLIDER")]
     Slider,
-    #[doc(alias = "GDK_AXIS_LAST")]
-    Last,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -63,7 +61,6 @@ impl fmt::Display for AxisUse {
                 Self::Distance => "Distance",
                 Self::Rotation => "Rotation",
                 Self::Slider => "Slider",
-                Self::Last => "Last",
                 _ => "Unknown",
             }
         )
@@ -88,7 +85,6 @@ impl IntoGlib for AxisUse {
             Self::Distance => ffi::GDK_AXIS_DISTANCE,
             Self::Rotation => ffi::GDK_AXIS_ROTATION,
             Self::Slider => ffi::GDK_AXIS_SLIDER,
-            Self::Last => ffi::GDK_AXIS_LAST,
             Self::__Unknown(value) => value,
         }
     }
@@ -111,7 +107,6 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
             ffi::GDK_AXIS_DISTANCE => Self::Distance,
             ffi::GDK_AXIS_ROTATION => Self::Rotation,
             ffi::GDK_AXIS_SLIDER => Self::Slider,
-            ffi::GDK_AXIS_LAST => Self::Last,
             value => Self::__Unknown(value),
         }
     }
