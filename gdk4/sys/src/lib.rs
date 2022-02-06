@@ -155,6 +155,7 @@ pub const GDK_MEMORY_R16G16B16A16_FLOAT: GdkMemoryFormat = 14;
 pub const GDK_MEMORY_R32G32B32_FLOAT: GdkMemoryFormat = 15;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 16;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT: GdkMemoryFormat = 17;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 18;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
