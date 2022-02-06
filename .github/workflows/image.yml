@@ -17,7 +17,7 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
-          push: ${{ github.event_name != 'push' }}
+          push: ${{ github.event_name != 'pull_request' }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
