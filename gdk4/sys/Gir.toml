@@ -15,10 +15,3 @@ external_libraries = [
     "Pango",
     "Cairo",
 ]
-
-[[object]]
-name = "Gdk.MemoryFormat"
-status = "generate"
-    [[object.member]]
-    name = "n_formats"
-    alias = true # not useful
