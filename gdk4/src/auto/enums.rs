@@ -625,8 +625,6 @@ pub enum EventType {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
     #[doc(alias = "GDK_TOUCHPAD_HOLD")]
     TouchpadHold,
-    #[doc(alias = "GDK_EVENT_LAST")]
-    EventLast,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -667,7 +665,6 @@ impl fmt::Display for EventType {
                 Self::PadGroupMode => "PadGroupMode",
                 #[cfg(any(feature = "v4_8", feature = "dox"))]
                 Self::TouchpadHold => "TouchpadHold",
-                Self::EventLast => "EventLast",
                 _ => "Unknown",
             }
         )
@@ -710,7 +707,6 @@ impl IntoGlib for EventType {
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
             #[cfg(any(feature = "v4_8", feature = "dox"))]
             Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
-            Self::EventLast => ffi::GDK_EVENT_LAST,
             Self::__Unknown(value) => value,
         }
     }
@@ -751,7 +747,6 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
             #[cfg(any(feature = "v4_8", feature = "dox"))]
             ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
-            ffi::GDK_EVENT_LAST => Self::EventLast,
             value => Self::__Unknown(value),
         }
     }
