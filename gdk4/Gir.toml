@@ -32,7 +32,6 @@ generate = [
     "Gdk.DragSurface",
     "Gdk.Event",
     "Gdk.EventSequence",
-    "Gdk.EventType",
     "Gdk.FocusEvent",
     "Gdk.FrameClock",
     "Gdk.FrameClockPhase",
@@ -429,6 +428,13 @@ status = "generate"
     [[object.function]]
     name = "read_async"
     manual = true # mime_types are cloned instead of converting them to a Vec<String>
+
+[[object]]
+name = "Gdk.EventType"
+status = "generate"
+    [[object.member]]
+    name = "touchpad_hold"
+    version = "4.8"
 
 [[object]]
 name = "Gdk.FileList"
