@@ -6,7 +6,14 @@ use std::fmt;
 define_event! {
     TouchpadEvent,
     ffi::GdkTouchpadEvent,
-    &[EventType::TouchpadSwipe, EventType::TouchpadPinch]
+    &[
+        EventType::TouchpadSwipe,
+        EventType::TouchpadPinch,
+        #[cfg(feature = "v4_8")]
+        {
+            EventType::TouchpadHold
+        },
+    ]
 }
 
 impl fmt::Debug for TouchpadEvent {
