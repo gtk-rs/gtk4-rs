@@ -31,7 +31,7 @@ fn build_ui(app: &Application) {
     button.connect_closure(
         "clicked",
         false,
-        closure_local!(|button: Button| {
+        closure_local!(move |button: Button| {
             // Set the label to "Hello World!" after the button has been clicked on
             button.set_label("Hello World!");
         }),

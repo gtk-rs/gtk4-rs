@@ -41,7 +41,8 @@ First we override the necessary methods in `ObjectImpl`.
 The `signals` method is responsible for defining a set of signals.
 In our case, we only create a single signal named "max-number-reached".
 When naming our signal, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
-When emitted, it sends a single `i32` value and expects nothing in return.
+When emitted, it sends a single `i32` value.
+There emitter could get a return value here but we don't need that here so we specify `()`.
 
 We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
@@ -55,7 +56,7 @@ After we did that, we set `number` back to 0.
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
 Then it emits the "max-number-reached" signal which we can nicely connect to.
-Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to standard output.
+Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to [standard output](https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)).
 
 <span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
 
