@@ -2765,9 +2765,6 @@
     <span class="doccomment">/// the axis is used for pen slider information</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_SLIDER&quot;</span>)]</span>
     <span class="ident">Slider</span>,
-    <span class="doccomment">/// a constant equal to the numerically highest axis value.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_LAST&quot;</span>)]</span>
-    <span class="ident">Last</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="ident">__Unknown</span>(<span class="ident">i32</span>),
 }
@@ -2790,7 +2787,6 @@
                 <span class="ident"><span class="self">Self</span>::Distance</span> =&gt; <span class="string">&quot;Distance&quot;</span>,
                 <span class="ident"><span class="self">Self</span>::Rotation</span> =&gt; <span class="string">&quot;Rotation&quot;</span>,
                 <span class="ident"><span class="self">Self</span>::Slider</span> =&gt; <span class="string">&quot;Slider&quot;</span>,
-                <span class="ident"><span class="self">Self</span>::Last</span> =&gt; <span class="string">&quot;Last&quot;</span>,
                 <span class="kw">_</span> =&gt; <span class="string">&quot;Unknown&quot;</span>,
             }
         )
@@ -2815,7 +2811,6 @@
             <span class="ident"><span class="self">Self</span>::Distance</span> =&gt; <span class="ident">ffi::GDK_AXIS_DISTANCE</span>,
             <span class="ident"><span class="self">Self</span>::Rotation</span> =&gt; <span class="ident">ffi::GDK_AXIS_ROTATION</span>,
             <span class="ident"><span class="self">Self</span>::Slider</span> =&gt; <span class="ident">ffi::GDK_AXIS_SLIDER</span>,
-            <span class="ident"><span class="self">Self</span>::Last</span> =&gt; <span class="ident">ffi::GDK_AXIS_LAST</span>,
             <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
         }
     }
@@ -2838,7 +2833,6 @@
             <span class="ident">ffi::GDK_AXIS_DISTANCE</span> =&gt; <span class="ident"><span class="self">Self</span>::Distance</span>,
             <span class="ident">ffi::GDK_AXIS_ROTATION</span> =&gt; <span class="ident"><span class="self">Self</span>::Rotation</span>,
             <span class="ident">ffi::GDK_AXIS_SLIDER</span> =&gt; <span class="ident"><span class="self">Self</span>::Slider</span>,
-            <span class="ident">ffi::GDK_AXIS_LAST</span> =&gt; <span class="ident"><span class="self">Self</span>::Last</span>,
             <span class="ident">value</span> =&gt; <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3417,9 +3411,12 @@
     <span class="doccomment">/// A tablet pad group mode change.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PAD_GROUP_MODE&quot;</span>)]</span>
     <span class="ident">PadGroupMode</span>,
-    <span class="doccomment">/// marks the end of the GdkEventType enumeration.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_EVENT_LAST&quot;</span>)]</span>
-    <span class="ident">EventLast</span>,
+    <span class="doccomment">/// A touchpad hold gesture event, the current state</span>
+    <span class="doccomment">///   is determined by its phase field. Since: 4.6</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)))]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOUCHPAD_HOLD&quot;</span>)]</span>
+    <span class="ident">TouchpadHold</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="ident">__Unknown</span>(<span class="ident">i32</span>),
 }
@@ -3458,7 +3455,8 @@
                 <span class="ident"><span class="self">Self</span>::PadRing</span> =&gt; <span class="string">&quot;PadRing&quot;</span>,
                 <span class="ident"><span class="self">Self</span>::PadStrip</span> =&gt; <span class="string">&quot;PadStrip&quot;</span>,
                 <span class="ident"><span class="self">Self</span>::PadGroupMode</span> =&gt; <span class="string">&quot;PadGroupMode&quot;</span>,
-                <span class="ident"><span class="self">Self</span>::EventLast</span> =&gt; <span class="string">&quot;EventLast&quot;</span>,
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+                <span class="ident"><span class="self">Self</span>::TouchpadHold</span> =&gt; <span class="string">&quot;TouchpadHold&quot;</span>,
                 <span class="kw">_</span> =&gt; <span class="string">&quot;Unknown&quot;</span>,
             }
         )
@@ -3499,7 +3497,8 @@
             <span class="ident"><span class="self">Self</span>::PadRing</span> =&gt; <span class="ident">ffi::GDK_PAD_RING</span>,
             <span class="ident"><span class="self">Self</span>::PadStrip</span> =&gt; <span class="ident">ffi::GDK_PAD_STRIP</span>,
             <span class="ident"><span class="self">Self</span>::PadGroupMode</span> =&gt; <span class="ident">ffi::GDK_PAD_GROUP_MODE</span>,
-            <span class="ident"><span class="self">Self</span>::EventLast</span> =&gt; <span class="ident">ffi::GDK_EVENT_LAST</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+            <span class="ident"><span class="self">Self</span>::TouchpadHold</span> =&gt; <span class="ident">ffi::GDK_TOUCHPAD_HOLD</span>,
             <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
         }
     }
@@ -3538,7 +3537,8 @@
             <span class="ident">ffi::GDK_PAD_RING</span> =&gt; <span class="ident"><span class="self">Self</span>::PadRing</span>,
             <span class="ident">ffi::GDK_PAD_STRIP</span> =&gt; <span class="ident"><span class="self">Self</span>::PadStrip</span>,
             <span class="ident">ffi::GDK_PAD_GROUP_MODE</span> =&gt; <span class="ident"><span class="self">Self</span>::PadGroupMode</span>,
-            <span class="ident">ffi::GDK_EVENT_LAST</span> =&gt; <span class="ident"><span class="self">Self</span>::EventLast</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+            <span class="ident">ffi::GDK_TOUCHPAD_HOLD</span> =&gt; <span class="ident"><span class="self">Self</span>::TouchpadHold</span>,
             <span class="ident">value</span> =&gt; <span class="ident"><span class="self">Self</span>::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -5339,5 +5339,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (88fb06a1f 2022-02-05)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
 </body></html>

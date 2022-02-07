@@ -98,6 +98,13 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">EventType</span>, <span class="ident">TouchpadEvent</span>};
@@ -106,7 +113,14 @@
 <span class="macro">define_event!</span> {
     <span class="ident">TouchpadEvent</span>,
     <span class="ident">ffi::GdkTouchpadEvent</span>,
-    <span class="kw-2">&amp;</span>[<span class="ident">EventType::TouchpadSwipe</span>, <span class="ident">EventType::TouchpadPinch</span>]
+    <span class="kw-2">&amp;</span>[
+        <span class="ident">EventType::TouchpadSwipe</span>,
+        <span class="ident">EventType::TouchpadPinch</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_8&quot;</span>)]</span>
+        {
+            <span class="ident">EventType::TouchpadHold</span>
+        },
+    ]
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">TouchpadEvent</span> {
@@ -121,5 +135,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (88fb06a1f 2022-02-05)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
 </body></html>
