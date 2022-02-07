@@ -45,7 +45,9 @@ unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'stat
 ) where
     T: IsA<Editable>,
 {
-    let buf = if new_text_length != -1 {
+    let buf = if new_text_length == 0 {
+        &[]
+    } else if new_text_length != -1 {
         slice::from_raw_parts(new_text as *mut c_uchar, new_text_length as usize)
     } else {
         CStr::from_ptr(new_text).to_bytes()
