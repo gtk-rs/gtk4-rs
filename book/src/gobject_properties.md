@@ -22,7 +22,7 @@ We use the [turbofish](https://matematikaadit.github.io/posts/rust-turbofish.htm
 ```
 
 Both `property` and `set_property` panic if the property does not exist, has the wrong type or has the wrong permissions.
-This is fine in most situations where these cases are hardcoded within the program.
+This is fine in most situations where these cases are hard-coded within the program.
 If this does not apply for your program you might want to use [`try_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property) and [`try_set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property) instead.
 
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
@@ -70,12 +70,11 @@ once_cell = "1"
 
 Now we define the "number" property within the `ObjectImpl` implementation.
 The `properties` method describes our set of properties.
-When naming our property, we make sure to do that in [kebab-case](https://wiki.c2.com/?KebabCase).
+When naming our property, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
 Then we describe its type, range and default value.
 We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
 `property` takes care of returning the underlying value.
-The formerly private `number` is now accessible via the `property` and `set_property` methods.
 
 <span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
 
@@ -132,6 +131,8 @@ For example like this:
 Now, whenever the "number" property gets changed, the closure gets executed and prints the current value of "number" to standard output.
 
 Introducing properties to your custom GObjects is useful if you want to
-- allow consumers to be able to access internal state
 - bind state of (different) GObjects
 - notify consumers whenever a property value changes
+
+Note that it has a (computational) cost to send a signal each time the value changes.
+If you only want to expose internal state, adding getter and setter methods is the better option.
