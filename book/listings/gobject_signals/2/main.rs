@@ -31,7 +31,7 @@ fn build_ui(app: &Application) {
     button.connect_closure(
         "max-number-reached",
         false,
-        closure_local!(|_button: CustomButton, number: i32| {
+        closure_local!(move |_button: CustomButton, number: i32| {
             println!("The maximum number {} has been reached", number);
         }),
     );
