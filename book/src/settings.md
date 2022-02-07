@@ -2,7 +2,7 @@
 
 We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let's learn how to use `GSettings` by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
+Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
@@ -28,17 +28,17 @@ Finally, we define its default value and add a summary.
 
 Now we need to copy and compile the schema.
 
-You can install the schema by executing the following commands on a Linux or macOS machine:
-```bash
-sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-```
-
-On Windows run:
-```powershell
-cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
-glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
-```
+> You can install the schema by executing the following commands on a Linux or macOS machine:
+> ```bash
+> sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
+> sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+> ```
+> 
+> On Windows run:
+> ```powershell
+> cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
+> glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
+> ```
 
 We initialize the `Settings` object by specifying the application id.
 
@@ -64,12 +64,19 @@ Finally, we assure that the switch state is stored in the settings whenever we c
 {{#rustdoc_include ../listings/settings/1/main.rs:connect_state_set}}
 ```
 
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/settings_1.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
 The `Switch` now retains its state even after closing the application.
 But we can make this even better.
 The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
 So let's do exactly that.
 
-We can remove the [`boolean`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the `connect_state_set` call.
+We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](../docs/gtk4/struct.Switch.html#method.connect_state_set) call.
 We then bind the setting to the property by specifying the key, object and name of the property.
 Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
