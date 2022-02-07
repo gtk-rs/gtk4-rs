@@ -280,6 +280,10 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="comment">// rustdoc-stripper-ignore-next</span>
@@ -439,7 +443,11 @@
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">color_chooser</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T::Instance</span>);
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">imp</span>();
 
-    <span class="kw">let</span> <span class="ident">colors</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">colorsptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">RGBA</span>, <span class="ident">total</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    <span class="kw">let</span> <span class="ident">colors</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">total</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="kw-2">&amp;</span>[]
+    } <span class="kw">else</span> {
+        <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">colorsptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">RGBA</span>, <span class="ident">total</span> <span class="kw">as</span> <span class="ident">usize</span>)
+    };
     <span class="ident">imp</span>.<span class="ident">add_palette</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">ColorChooser</span><span class="op">&gt;</span>(<span class="ident">color_chooser</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="ident">from_glib</span>(<span class="ident">orientation</span>),

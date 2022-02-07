@@ -136,7 +136,7 @@
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="kw-2">&amp;mut</span> <span class="ident">count</span>,
             );
-            <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
+            <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">count</span> <span class="op">==</span> <span class="number">0</span> {
                 <span class="macro">vec!</span>[]
             } <span class="kw">else</span> {
                 <span class="ident">slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">count</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">to_owned</span>()
