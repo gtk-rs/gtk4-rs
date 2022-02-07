@@ -14,7 +14,7 @@ impl TreePath {
                 mut_override(self.to_glib_none().0),
                 &mut count,
             );
-            if ptr.is_null() {
+            if ptr.is_null() || count == 0 {
                 vec![]
             } else {
                 slice::from_raw_parts(ptr, count as usize).to_owned()

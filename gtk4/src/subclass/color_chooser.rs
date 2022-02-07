@@ -157,7 +157,11 @@ unsafe extern "C" fn color_chooser_add_palette<T: ColorChooserImpl>(
     let instance = &*(color_chooser as *mut T::Instance);
     let imp = instance.imp();
 
-    let colors = std::slice::from_raw_parts(colorsptr as *const RGBA, total as usize);
+    let colors = if total == 0 {
+        &[]
+    } else {
+        std::slice::from_raw_parts(colorsptr as *const RGBA, total as usize)
+    };
     imp.add_palette(
         from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref(),
         from_glib(orientation),

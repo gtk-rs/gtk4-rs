@@ -94,6 +94,10 @@ unsafe extern "C" fn symbolic_paintable_snapshot_symbolic<T: SymbolicPaintableIm
         &snapshot,
         width,
         height,
-        std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors),
+        if n_colors == 0 {
+            &[]
+        } else {
+            std::slice::from_raw_parts(colors as *const gdk::RGBA, n_colors)
+        },
     )
 }
