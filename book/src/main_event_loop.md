@@ -37,8 +37,18 @@ In order to avoid blocking the main loop we can spawn a new thread and let the o
 {{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
 ```
 
-If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
-Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/main_event_loop_2.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
+
+> If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
+> Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
+
+
 
 Normally we want to keep track of the work in the thread.
 In our case, we don't want the user to spawn additional threads while an existing one is still running.
@@ -52,8 +62,21 @@ We want to send a `bool` to inform, whether we want the button to react to click
 {{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
 ```
 
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/main_event_loop_3.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
+
+> Per default, [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) returns `()` when upgrading of a weak reference fails.
+> [`glib::Receiver::attach`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Receiver.html#method.attach) expects a closure with a return value of type [`glib::Continue`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/source/struct.Continue.html).
+> This is why we specify `@default-return` as `Continue(False)` to clarify that the closure not be called anymore as soon as the upgrade of a weak reference fails.
+
+
 Spawning threads is not the only way to run operations asynchronously.
-You can also let the main loop take care of running `async` functions.
+You can also let the main loop take care of running [`async`](https://rust-lang.github.io/async-book/) functions.
 If you do that from the main thread use [`spawn_local`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.
 
