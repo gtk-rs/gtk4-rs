@@ -69,7 +69,7 @@ impl DropTarget {
     #[doc(alias = "gtk_drop_target_get_formats")]
     #[doc(alias = "get_formats")]
     pub fn formats(&self) -> Option<gdk::ContentFormats> {
-        unsafe { from_glib_full(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_target_get_preload")]
