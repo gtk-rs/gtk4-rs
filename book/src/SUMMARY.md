@@ -18,7 +18,7 @@
 - [Settings](settings.md)
 - [Saving Window State](saving_window_state.md)
 - [List Widgets](list_widgets.md)
-- [Interface Builder](interface_builder.md)
+- [Composite Templates](composite_templates.md)
 - [Building a Simple To-Do App](todo_app_1.md)
 - [Actions](actions.md)
 - [Manipulating State of To-Do App](todo_app_2.md)
