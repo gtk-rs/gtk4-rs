@@ -29,7 +29,7 @@ fn build_ui(app: &Application) {
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
 
-    // Add the vector to the model at position 0 and 0 removals
+    // Add the vector to the model at position 0 and remove 0 elements
     model.splice(0, 0, &vector);
 
     let factory = SignalListItemFactory::new();

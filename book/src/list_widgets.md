@@ -1,7 +1,7 @@
 # List Widgets
 
 Sometimes you want to display a list of elements in a certain arrangement.
-[`ListBox`](../docs/gtk4/struct.ListBox.html) and [`FlowBox`](../docs/gtk4/struct.FlowBox.html) are two container widgets which allow you to do this.
+[`gtk::ListBox`](../docs/gtk4/struct.ListBox.html) and [`gtk::FlowBox`](../docs/gtk4/struct.FlowBox.html) are two container widgets which allow you to do this.
 `ListBox` describes a vertical list and `FlowBox` describes a grid.
 
 Let's explore this concept by adding labels to a `ListBox`.
@@ -14,7 +14,7 @@ Each label will display an integer starting from 0 and ranging up to 100.
 ```
 
 We cannot display so many widgets at once.
-Therefore, we add `ListBox` to a [`ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html).
+Therefore, we add `ListBox` to a [`gtk::ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html).
 Now we can scroll through our elements.
 
 <span class="filename">Filename: listings/list_widgets/1/main.rs</span>
@@ -50,9 +50,7 @@ The following figure demonstrates how this works in practice.
 We start by defining and filling up our model.
 The model is an instance of [`gio::ListStore`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
 The main limitation here is that `gio::ListStore` only accepts GObjects.
-What we would need is a GObject which holds an integer and exposes it as property.
-To get that we just have to adapt the `CustomButton` we created in the subclassing [chapter](gobject_subclassing.html).
-We only need to let it inherit from GObject instead of `Button` and let the `new` method accept an integer as parameter.
+So let's create a custom GObject `IntegerObject` that which is initialized with a number.
 
 <span class="filename">Filename: listings/list_widgets/2/integer_object/mod.rs</span>
 
@@ -61,7 +59,7 @@ We only need to let it inherit from GObject instead of `Button` and let the `new
 #
 ```
 
-The `imp` module can stay the same apart from the rename from `CustomButton` to `IntegerObject`.
+This number represents the internal state of `IntegerObject`.
 
 <span class="filename">Filename: listings/list_widgets/2/integer_object/imp.rs</span>
 
@@ -182,6 +180,7 @@ When we now activate a label, only the corresponding number visibly changes.
 
 Let's extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.
+We do that by passing it to a [`gtk::FilterListModel`](../docs/gtk4/struct.FilterListModel.html) together with a [`gtk::CustomFilter`](../docs/gtk4/struct.CustomFilter.html) 
 
 <span class="filename">Filename: listings/list_widgets/5/main.rs</span>
 
@@ -190,6 +189,7 @@ We can, for example, filter our model to only allow even numbers.
 ```
 
 Additionally, we can reverse the order of our model.
+Now we pass the filtered model to [`gtk::SortListModel`](../docs/gtk4/struct.SortListModel.html) together with [`gtk::CustomSorter`](../docs/gtk4/struct.CustomSorter.html).
 
 <span class="filename">Filename: listings/list_widgets/5/main.rs</span>
 
@@ -243,6 +243,6 @@ Here we can use [`StringObject`](../docs/gtk4/struct.StringObject.html), which e
 
 We now know how to display a list of data.
 Small amount of elements can be handled by `ListBox` or `FlowBox`.
-These widgets are easy to use and allow, if necessary, to be bound to a model such as [`gio::ListStore`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
+These widgets are easy to use and can, if necessary, be bound to a model such as [`gio::ListStore`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
 Their data can then be modified, sorted and filtered more easily.
 However, if we need the widgets to be scalable, we still need to use [`ListView`](../docs/gtk4/struct.ListView.html), [`ColumnView`](../docs/gtk4/struct.ColumnView.html) or [`GridView`](../docs/gtk4/struct.GridView.html) instead.
