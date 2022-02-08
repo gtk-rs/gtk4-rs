@@ -23,7 +23,7 @@ fn build_ui(app: &Application) {
     // `StringList` implements FromIterator<String>
     let model: StringList = (0..=100_000)
         .into_iter()
-        .map(|number| format!("Task number {}", number))
+        .map(|number| number.to_string())
         .collect();
     // ANCHOR_END: string_list
 

@@ -3,8 +3,9 @@ mod integer_object;
 use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, CustomSorter, FilterChange, Label, ListView, PolicyType,
-    ScrolledWindow, SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
+    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange, FilterListModel,
+    Label, ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection,
+    SortListModel, SorterChange, Widget,
 };
 use integer_object::IntegerObject;
 
@@ -28,7 +29,7 @@ fn build_ui(app: &Application) {
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
 
-    // Add the vector to the model at position 0 and 0 removals
+    // Add the vector to the model at position 0 and remove 0 elements
     model.splice(0, 0, &vector);
 
     let factory = SignalListItemFactory::new();
@@ -47,7 +48,7 @@ fn build_ui(app: &Application) {
     // ANCHOR_END: factory_setup
 
     // ANCHOR: filter
-    let filter = gtk::CustomFilter::new(move |obj| {
+    let filter = CustomFilter::new(move |obj| {
         // Get `IntegerObject` from `glib::Object`
         let integer_object = obj
             .downcast_ref::<IntegerObject>()
@@ -59,7 +60,7 @@ fn build_ui(app: &Application) {
         // Only allow even numbers
         number % 2 == 0
     });
-    let filter_model = gtk::FilterListModel::new(Some(&model), Some(&filter));
+    let filter_model = FilterListModel::new(Some(&model), Some(&filter));
     // ANCHOR_END: filter
 
     // ANCHOR: sorter
