@@ -9,7 +9,7 @@ Now, create a new project by executing:
 cargo new my-gtk-app
 ```
 
-Add the following lines to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [gtk4 crate](https://crates.io/crates/gtk4).
+Add the following line to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [gtk4 crate](https://crates.io/crates/gtk4).
 
 ```toml
 gtk = { version = "X.X", package = "gtk4" }

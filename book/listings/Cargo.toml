@@ -3,6 +3,7 @@ name = "gtk4-rs-book-listings"
 version = "0.1.0"
 edition = "2021"
 
+
 [dependencies]
 gtk = { path = "../../gtk4", package = "gtk4" }
 log = "0.4"
@@ -10,6 +11,9 @@ once_cell = "1.0"
 pretty_env_logger = "0.4"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+[build-dependencies]
+gtk = { path = "../../gtk4", package = "gtk4" }
 
 # actions
 [[bin]]
@@ -152,27 +156,30 @@ path = "hello_world/2/main.rs"
 name = "hello_world_3"
 path = "hello_world/3/main.rs"
 
-# interface_builder
+# composite_templates
 [[bin]]
-name = "interface_builder_1"
-path = "interface_builder/1/main.rs"
+name = "composite_templates_1"
+path = "composite_templates/1/main.rs"
 
 [[bin]]
-name = "interface_builder_2"
-path = "interface_builder/2/main.rs"
+name = "composite_templates_2"
+path = "composite_templates/2/main.rs"
 
 [[bin]]
-name = "interface_builder_3"
-path = "interface_builder/3/main.rs"
+name = "composite_templates_3"
+path = "composite_templates/3/main.rs"
 
 [[bin]]
-name = "interface_builder_4"
-path = "interface_builder/4/main.rs"
+name = "composite_templates_4"
+path = "composite_templates/4/main.rs"
 
 [[bin]]
-name = "interface_builder_5"
-path = "interface_builder/5/main.rs"
+name = "composite_templates_5"
+path = "composite_templates/5/main.rs"
 
+[[bin]]
+name = "composite_templates_6"
+path = "composite_templates/6/main.rs"
 
 # main_event_loop
 [[bin]]
