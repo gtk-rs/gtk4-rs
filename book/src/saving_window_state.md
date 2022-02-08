@@ -4,7 +4,7 @@ Quite often, we want the window state to persist between sessions.
 If the user resizes or maximizes the window, they might expect to find it in the same state the next time they open the app.
 GTK does not provide this functionality out of the box, but luckily it is not too hard to manually implement it.
 We basically want two integers (`height` & `width`) and a boolean (`is_maximized`) to persist.
-We already know how to do this by using `Settings`.
+We already know how to do this by using [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 
 <span class="filename">Filename: listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</span>
 
@@ -20,8 +20,11 @@ First, we create one and add methods for getting and setting the window state.
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
-
 ```
+
+> We set the property "application" by passing it to [`glib::Object::new`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.Object.html#method.new).
+> You can even set multiple properties that way.
+> When creating new GObjects, this is nicer than calling the setter methods manually.
 
 The implementation struct holds the `settings`.
 We also override the `constructed` and `close_request` methods, where we load or save the window state. 
@@ -30,7 +33,6 @@ We also override the `constructed` and `close_request` methods, where we load or
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}
-
 ```
 
 That is it!
@@ -41,7 +43,7 @@ We don't want to panic for recoverable errors.
 We might also not want to present all problems at the GUI.
 In our case we could not even do this, because the window will be immediately closed after the error occurs.
 Logging is the standard way of handling a situation like this.
-For that, we need to add the `log` crate and one of its front-ends, such as `pretty_env_logger`, to our dependencies.
+For that, we need to add the `log` crate and one of its front-ends, such as [`pretty_env_logger`](https://crates.io/crates/pretty_env_logger), to our dependencies.
 
 <span class="filename">Filename: listings/Cargo.toml</span>
 
@@ -51,12 +53,10 @@ log = "0.4"
 pretty_env_logger = "0.4"
 ```
 
-We then have to initialize `pretty_env_logger` by calling `init` in `main`.
+We then have to initialize `pretty_env_logger` by calling [`init`](https://docs.rs/pretty_env_logger/0.4.0/pretty_env_logger/fn.init.html) in `main`.
 
 <span class="filename">Filename: listings/saving_window_state/1/main.rs</span>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/main.rs:main}}
 ```
-
-We can now modify the log level by setting the `RUST_LOG` environment variable as can be seen [here](https://docs.rs/env_logger/latest/env_logger/)
