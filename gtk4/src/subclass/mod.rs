@@ -19,6 +19,7 @@ pub mod application;
 pub mod application_window;
 pub mod box_;
 pub mod buildable;
+mod buildable_parser;
 pub mod builder_scope;
 pub mod button;
 pub mod cell_area;
@@ -77,6 +78,8 @@ pub mod tree_model_filter;
 pub mod tree_view;
 pub mod widget;
 pub mod window;
+
+pub use buildable_parser::{BuildableParseContext, BuildableParser, BuildableParserImpl};
 
 // rustdoc-stripper-ignore-next
 /// Traits intended for blanket imports.

@@ -10,7 +10,7 @@ use glib::translate::*;
 use glib::{Cast, GString, Object, Quark, Value};
 use once_cell::sync::Lazy;
 
-use super::PtrHolder;
+use super::{BuildableParser, PtrHolder};
 
 pub trait BuildableImpl: ObjectImpl {
     fn set_id(&self, buildable: &Self::Type, id: &str) {
@@ -51,35 +51,36 @@ pub trait BuildableImpl: ObjectImpl {
     fn construct_child(&self, buildable: &Self::Type, builder: &Builder, name: &str) -> Object {
         self.parent_construct_child(buildable, builder, name)
     }
-    /*
-    Only useful for custom tags, not something the application developer has to often implement
-    and needs more thinking in terms of how to handle both BuildableParser & the various ptr you're supposed to pass around
-    fn custom_tag_start(
+    unsafe fn custom_tag_start(
         &self,
         buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
-        tagname: &str,
-        parser: BuildableParser,
-        data: ptr,
-    );
-    fn custom_tag_end(
+        tag_name: &str,
+        parser_data: *mut *mut libc::c_void,
+    ) -> Option<BuildableParser> {
+        self.parent_custom_tag_start(buildable, builder, child, tag_name, parser_data)
+    }
+    unsafe fn custom_tag_end(
         &self,
         buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
-        tagname: &str,
-        data: ptr,
-    );
-    fn custom_finished(
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    ) {
+        self.parent_custom_tag_end(buildable, builder, child, tag_name, parser_data)
+    }
+    unsafe fn custom_finished(
         &self,
         buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
-        tagname: &str,
-        data: ptr,
-    );
-    */
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    ) {
+        self.parent_custom_finished(buildable, builder, child, tag_name, parser_data)
+    }
 }
 
 pub trait BuildableImplExt: ObjectSubclass {
@@ -112,6 +113,30 @@ pub trait BuildableImplExt: ObjectSubclass {
         builder: &Builder,
         name: &str,
     ) -> Object;
+    unsafe fn parent_custom_tag_start(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut *mut libc::c_void,
+    ) -> Option<BuildableParser>;
+    unsafe fn parent_custom_tag_end(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    );
+    unsafe fn parent_custom_finished(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    );
 }
 
 impl<T: BuildableImpl> BuildableImplExt for T {
@@ -263,6 +288,88 @@ impl<T: BuildableImpl> BuildableImplExt for T {
             ))
         }
     }
+
+    unsafe fn parent_custom_tag_start(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut *mut libc::c_void,
+    ) -> Option<BuildableParser> {
+        let type_data = Self::type_data();
+        let parent_iface =
+            type_data.as_ref().parent_interface::<Buildable>() as *const ffi::GtkBuildableIface;
+
+        let func = (*parent_iface)
+            .custom_tag_start
+            .expect("no parent \"custom_tag_start\" implementation");
+
+        let parser = std::ptr::null_mut();
+        let ret = from_glib(func(
+            buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+            builder.to_glib_none().0,
+            child.to_glib_none().0,
+            tag_name.to_glib_none().0,
+            parser,
+            parser_data,
+        ));
+        if ret {
+            Some(BuildableParser::from_raw(parser))
+        } else {
+            None
+        }
+    }
+
+    unsafe fn parent_custom_tag_end(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    ) {
+        let type_data = Self::type_data();
+        let parent_iface =
+            type_data.as_ref().parent_interface::<Buildable>() as *const ffi::GtkBuildableIface;
+
+        let func = (*parent_iface)
+            .custom_tag_end
+            .expect("no parent \"custom_tag_end\" implementation");
+
+        func(
+            buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+            builder.to_glib_none().0,
+            child.to_glib_none().0,
+            tag_name.to_glib_none().0,
+            parser_data,
+        )
+    }
+
+    unsafe fn parent_custom_finished(
+        &self,
+        buildable: &Self::Type,
+        builder: &Builder,
+        child: Option<&Object>,
+        tag_name: &str,
+        parser_data: *mut libc::c_void,
+    ) {
+        let type_data = Self::type_data();
+        let parent_iface =
+            type_data.as_ref().parent_interface::<Buildable>() as *const ffi::GtkBuildableIface;
+
+        let func = (*parent_iface)
+            .custom_finished
+            .expect("no parent \"custom_finished\" implementation");
+
+        func(
+            buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+            builder.to_glib_none().0,
+            child.to_glib_none().0,
+            tag_name.to_glib_none().0,
+            parser_data,
+        )
+    }
 }
 
 unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
@@ -276,11 +383,9 @@ unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
         iface.construct_child = Some(buildable_construct_child::<T>);
         iface.parser_finished = Some(buildable_parser_finished::<T>);
         iface.get_internal_child = Some(buildable_get_internal_child::<T>);
-        /* for the future
         iface.custom_tag_start = Some(buildable_custom_tag_start::<T>);
         iface.custom_tag_end = Some(buildable_custom_tag_end::<T>);
         iface.custom_finished = Some(buildable_custom_finished::<T>);
-        */
     }
 }
 
@@ -397,4 +502,76 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
         }),
     );
     ret
+}
+
+unsafe extern "C" fn buildable_custom_tag_start<T: BuildableImpl>(
+    buildable: *mut ffi::GtkBuildable,
+    builderptr: *mut ffi::GtkBuilder,
+    child: *mut glib::gobject_ffi::GObject,
+    nameptr: *const libc::c_char,
+    parserptr: *mut ffi::GtkBuildableParser,
+    data: *mut glib::ffi::gpointer,
+) -> glib::ffi::gboolean {
+    let instance = &*(buildable as *mut T::Instance);
+    let imp = instance.imp();
+    let wrap = from_glib_borrow::<_, Buildable>(buildable);
+    let name = from_glib_borrow::<_, GString>(nameptr);
+    let child = from_glib_borrow::<_, Option<Object>>(child);
+
+    if let Some(parser) = imp.custom_tag_start(
+        wrap.unsafe_cast_ref(),
+        &from_glib_borrow(builderptr),
+        child.as_ref().as_ref(),
+        &name,
+        data,
+    ) {
+        *parserptr = *parser.as_ptr();
+        true.into_glib()
+    } else {
+        false.into_glib()
+    }
+}
+
+unsafe extern "C" fn buildable_custom_tag_end<T: BuildableImpl>(
+    buildable: *mut ffi::GtkBuildable,
+    builderptr: *mut ffi::GtkBuilder,
+    child: *mut glib::gobject_ffi::GObject,
+    nameptr: *const libc::c_char,
+    data: glib::ffi::gpointer,
+) {
+    let instance = &*(buildable as *mut T::Instance);
+    let imp = instance.imp();
+    let wrap = from_glib_borrow::<_, Buildable>(buildable);
+    let name = from_glib_borrow::<_, GString>(nameptr);
+    let child = from_glib_borrow::<_, Option<Object>>(child);
+
+    imp.custom_tag_end(
+        wrap.unsafe_cast_ref(),
+        &from_glib_borrow(builderptr),
+        child.as_ref().as_ref(),
+        &name,
+        data,
+    )
+}
+
+unsafe extern "C" fn buildable_custom_finished<T: BuildableImpl>(
+    buildable: *mut ffi::GtkBuildable,
+    builderptr: *mut ffi::GtkBuilder,
+    child: *mut glib::gobject_ffi::GObject,
+    nameptr: *const libc::c_char,
+    data: glib::ffi::gpointer,
+) {
+    let instance = &*(buildable as *mut T::Instance);
+    let imp = instance.imp();
+    let wrap = from_glib_borrow::<_, Buildable>(buildable);
+    let name = from_glib_borrow::<_, GString>(nameptr);
+    let child = from_glib_borrow::<_, Option<Object>>(child);
+
+    imp.custom_finished(
+        wrap.unsafe_cast_ref(),
+        &from_glib_borrow(builderptr),
+        child.as_ref().as_ref(),
+        &name,
+        data,
+    )
 }
