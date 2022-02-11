@@ -34,7 +34,6 @@ generate = [
     "Gtk.AnyFilter",
     "Gtk.AppChooser",
     "Gtk.AppChooserButton",
-    "Gtk.AppChooserDialog",
     "Gtk.AppChooserWidget",
     "Gtk.ApplicationInhibitFlags",
     "Gtk.ApplicationWindow",
@@ -573,6 +572,11 @@ manual_traits = ["ActionableExtManual"]
     name = "set_action_target"
     manual = true # the target is defined as str
     doc_trait_name = "ActionableExtManual"
+
+[[object]]
+name = "Gtk.AppChooserDialog"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.Application"
@@ -1651,6 +1655,7 @@ status = "generate"
 [[object]]
 name = "Gtk.Printer"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     pattern = "(new|get_backend)"
@@ -1660,6 +1665,7 @@ cfg_condition = "target_os = \"linux\""
 [[object]]
 name = "Gtk.PrintJob"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "send"

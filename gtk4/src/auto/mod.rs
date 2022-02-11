@@ -1130,7 +1130,6 @@ pub mod builders {
     pub use super::adjustment::AdjustmentBuilder;
     pub use super::alternative_trigger::AlternativeTriggerBuilder;
     pub use super::app_chooser_button::AppChooserButtonBuilder;
-    pub use super::app_chooser_dialog::AppChooserDialogBuilder;
     pub use super::app_chooser_widget::AppChooserWidgetBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
@@ -1237,16 +1236,10 @@ pub mod builders {
     pub use super::popover::PopoverBuilder;
     pub use super::popover_menu::PopoverMenuBuilder;
     pub use super::popover_menu_bar::PopoverMenuBarBuilder;
-    #[cfg(any(target_os = "linux", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-    pub use super::print_job::PrintJobBuilder;
     pub use super::print_operation::PrintOperationBuilder;
     #[cfg(any(target_os = "linux", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
     pub use super::print_unix_dialog::PrintUnixDialogBuilder;
-    #[cfg(any(target_os = "linux", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-    pub use super::printer::PrinterBuilder;
     pub use super::progress_bar::ProgressBarBuilder;
     pub use super::revealer::RevealerBuilder;
     pub use super::scale::ScaleBuilder;
