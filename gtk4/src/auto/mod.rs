@@ -1130,7 +1130,6 @@ pub mod builders {
     pub use super::adjustment::AdjustmentBuilder;
     pub use super::alternative_trigger::AlternativeTriggerBuilder;
     pub use super::app_chooser_button::AppChooserButtonBuilder;
-    pub use super::app_chooser_dialog::AppChooserDialogBuilder;
     pub use super::app_chooser_widget::AppChooserWidgetBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
