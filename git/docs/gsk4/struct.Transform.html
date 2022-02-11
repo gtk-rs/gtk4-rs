@@ -85,7 +85,7 @@ after the way CSS describes transforms.</p>
 This means code can safely expose them as properties of objects without
 having to worry about others changing them.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#30-593">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></h3></section></summary><div class="impl-items"><section id="method.new" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#32-35">source</a></span><a href="#method.new" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></h4></section><details class="rustdoc-toggle method-toggle" open><summary><section id="method.category" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#54-56">source</a></span><a href="#method.category" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.category" class="fnname">category</a>(&amp;self) -&gt; <a class="enum" href="enum.TransformCategory.html" title="enum gsk4::TransformCategory">TransformCategory</a></h4></section></summary><div class="docblock"><p>Returns the category this transform belongs to.</p>
-<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
 <p>The category of the transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.invert" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#71-73">source</a></span><a href="#method.invert" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.invert" class="fnname">invert</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Inverts the given transform.</p>
 <p>If @self is not invertible, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.
@@ -93,60 +93,60 @@ Note that inverting <a href="https://doc.rust-lang.org/nightly/core/option/enum.
 the correct inverse of <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. If you need to differentiate
 between those cases, you should check @self is not <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 before calling this function.</p>
-<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
 <p>The inverted transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.matrix" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#84-91">source</a></span><a href="#method.matrix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.matrix" class="fnname">matrix</a>(&amp;self, matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>) -&gt; <a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></h4></section></summary><div class="docblock"><p>Multiplies @self with the given @matrix.</p>
-<h6 id="matrix" class="section-header"><a href="#matrix"><code>matrix</code></a></h6>
+<h6 id="matrix"><a href="#matrix"><code>matrix</code></a></h6>
 <p>the matrix to multiply @self with</p>
-<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.perspective" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#109-111">source</a></span><a href="#method.perspective" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.perspective" class="fnname">perspective</a>(&amp;self, depth: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></h4></section></summary><div class="docblock"><p>Applies a perspective projection transform.</p>
 <p>This transform scales points in X and Y based on their Z value,
 scaling points with positive Z values away from the origin, and
 those with negative Z values towards the origin. Points
 on the z=0 plane are unchanged.</p>
-<h6 id="depth" class="section-header"><a href="#depth"><code>depth</code></a></h6>
+<h6 id="depth"><a href="#depth"><code>depth</code></a></h6>
 <p>distance of the z=0 plane. Lower values give a more
 flattened pyramid and therefore a more pronounced
 perspective effect.</p>
-<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.rotate" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#122-124">source</a></span><a href="#method.rotate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.rotate" class="fnname">rotate</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Rotates @self @angle degrees in 2D - or in 3D-speak, around the z axis.</p>
-<h6 id="angle" class="section-header"><a href="#angle"><code>angle</code></a></h6>
+<h6 id="angle"><a href="#angle"><code>angle</code></a></h6>
 <p>the rotation angle, in degrees (clockwise)</p>
-<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.rotate_3d" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#139-147">source</a></span><a href="#method.rotate_3d" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.rotate_3d" class="fnname">rotate_3d</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, axis: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/vec3/struct.Vec3.html" title="struct graphene::auto::vec3::Vec3">Vec3</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Rotates @self @angle degrees around @axis.</p>
 <p>For a rotation in 2D space, use <a href="struct.Transform.html#method.rotate" title="Self::rotate()"><code>rotate()</code></a></p>
-<h6 id="angle-1" class="section-header"><a href="#angle-1"><code>angle</code></a></h6>
+<h6 id="angle-1"><a href="#angle-1"><code>angle</code></a></h6>
 <p>the rotation angle, in degrees (clockwise)</p>
-<h6 id="axis" class="section-header"><a href="#axis"><code>axis</code></a></h6>
+<h6 id="axis"><a href="#axis"><code>axis</code></a></h6>
 <p>The rotation axis</p>
-<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.scale" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#162-170">source</a></span><a href="#method.scale" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.scale" class="fnname">scale</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Scales @self in 2-dimensional space by the given factors.</p>
 <p>Use <a href="struct.Transform.html#method.scale_3d" title="Self::scale_3d()"><code>scale_3d()</code></a> to scale in all 3 dimensions.</p>
-<h6 id="factor_x" class="section-header"><a href="#factor_x"><code>factor_x</code></a></h6>
+<h6 id="factor_x"><a href="#factor_x"><code>factor_x</code></a></h6>
 <p>scaling factor on the X axis</p>
-<h6 id="factor_y" class="section-header"><a href="#factor_y"><code>factor_y</code></a></h6>
+<h6 id="factor_y"><a href="#factor_y"><code>factor_y</code></a></h6>
 <p>scaling factor on the Y axis</p>
-<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.scale_3d" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#185-194">source</a></span><a href="#method.scale_3d" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.scale_3d" class="fnname">scale_3d</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;factor_z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Scales @self by the given factors.</p>
-<h6 id="factor_x-1" class="section-header"><a href="#factor_x-1"><code>factor_x</code></a></h6>
+<h6 id="factor_x-1"><a href="#factor_x-1"><code>factor_x</code></a></h6>
 <p>scaling factor on the X axis</p>
-<h6 id="factor_y-1" class="section-header"><a href="#factor_y-1"><code>factor_y</code></a></h6>
+<h6 id="factor_y-1"><a href="#factor_y-1"><code>factor_y</code></a></h6>
 <p>scaling factor on the Y axis</p>
-<h6 id="factor_z" class="section-header"><a href="#factor_z"><code>factor_z</code></a></h6>
+<h6 id="factor_z"><a href="#factor_z"><code>factor_z</code></a></h6>
 <p>scaling factor on the Z axis</p>
-<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.skew" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#209-211">source</a></span><a href="#method.skew" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.skew" class="fnname">skew</a>(&amp;self, skew_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, skew_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_6</code></strong> only.</div></div></summary><div class="docblock"><p>Applies a skew transform.</p>
-<h6 id="skew_x" class="section-header"><a href="#skew_x"><code>skew_x</code></a></h6>
+<h6 id="skew_x"><a href="#skew_x"><code>skew_x</code></a></h6>
 <p>skew factor, in degrees, on the X axis</p>
-<h6 id="skew_y" class="section-header"><a href="#skew_y"><code>skew_y</code></a></h6>
+<h6 id="skew_y"><a href="#skew_y"><code>skew_y</code></a></h6>
 <p>skew factor, in degrees, on the Y axis</p>
-<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_2d" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#252-277">source</a></span><a href="#method.to_2d" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_2d" class="fnname">to_2d</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></section></summary><div class="docblock"><p>Converts a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> to a 2D transformation matrix.</p>
 <p>@self must be a 2D transformation. If you are not
@@ -159,17 +159,17 @@ sure, use gsk_transform_get_category() &gt;=
 <p>This function can be used to convert between a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a>
 and a matrix type from other 2D drawing libraries, in particular
 Cairo.</p>
-<h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5><h6 id="out_xx" class="section-header"><a href="#out_xx"><code>out_xx</code></a></h6>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5><h6 id="out_xx"><a href="#out_xx"><code>out_xx</code></a></h6>
 <p>return location for the xx member</p>
-<h6 id="out_yx" class="section-header"><a href="#out_yx"><code>out_yx</code></a></h6>
+<h6 id="out_yx"><a href="#out_yx"><code>out_yx</code></a></h6>
 <p>return location for the yx member</p>
-<h6 id="out_xy" class="section-header"><a href="#out_xy"><code>out_xy</code></a></h6>
+<h6 id="out_xy"><a href="#out_xy"><code>out_xy</code></a></h6>
 <p>return location for the xy member</p>
-<h6 id="out_yy" class="section-header"><a href="#out_yy"><code>out_yy</code></a></h6>
+<h6 id="out_yy"><a href="#out_yy"><code>out_yy</code></a></h6>
 <p>return location for the yy member</p>
-<h6 id="out_dx" class="section-header"><a href="#out_dx"><code>out_dx</code></a></h6>
+<h6 id="out_dx"><a href="#out_dx"><code>out_dx</code></a></h6>
 <p>return location for the x0 member</p>
-<h6 id="out_dy" class="section-header"><a href="#out_dy"><code>out_dy</code></a></h6>
+<h6 id="out_dy"><a href="#out_dy"><code>out_dy</code></a></h6>
 <p>return location for the y0 member</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_2d_components" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#330-366">source</a></span><a href="#method.to_2d_components" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_2d_components" class="fnname">to_2d_components</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></section><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_6</code></strong> only.</div></div></summary><div class="docblock"><p>Converts a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> to 2D transformation factors.</p>
 <p>To recreate an equivalent transform from the factors returned
@@ -186,24 +186,24 @@ by this function, use</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">gsk_transform_get_category</span>() <span class="op">&gt;</span><span class="op">=</span> [`<span class="ident">TransformCategory::_2d</span>`][<span class="ident"><span class="kw">crate</span>::TransformCategory::_2d</span>]</code></pre></div>
 <p>to check.</p>
-<h5 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h5><h6 id="out_skew_x" class="section-header"><a href="#out_skew_x"><code>out_skew_x</code></a></h6>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5><h6 id="out_skew_x"><a href="#out_skew_x"><code>out_skew_x</code></a></h6>
 <p>return location for the skew factor
 in the  x direction</p>
-<h6 id="out_skew_y" class="section-header"><a href="#out_skew_y"><code>out_skew_y</code></a></h6>
+<h6 id="out_skew_y"><a href="#out_skew_y"><code>out_skew_y</code></a></h6>
 <p>return location for the skew factor
 in the  y direction</p>
-<h6 id="out_scale_x" class="section-header"><a href="#out_scale_x"><code>out_scale_x</code></a></h6>
+<h6 id="out_scale_x"><a href="#out_scale_x"><code>out_scale_x</code></a></h6>
 <p>return location for the scale
 factor in the x direction</p>
-<h6 id="out_scale_y" class="section-header"><a href="#out_scale_y"><code>out_scale_y</code></a></h6>
+<h6 id="out_scale_y"><a href="#out_scale_y"><code>out_scale_y</code></a></h6>
 <p>return location for the scale
 factor in the y direction</p>
-<h6 id="out_angle" class="section-header"><a href="#out_angle"><code>out_angle</code></a></h6>
+<h6 id="out_angle"><a href="#out_angle"><code>out_angle</code></a></h6>
 <p>return location for the rotation angle</p>
-<h6 id="out_dx-1" class="section-header"><a href="#out_dx-1"><code>out_dx</code></a></h6>
+<h6 id="out_dx-1"><a href="#out_dx-1"><code>out_dx</code></a></h6>
 <p>return location for the translation
 in the x direction</p>
-<h6 id="out_dy-1" class="section-header"><a href="#out_dy-1"><code>out_dy</code></a></h6>
+<h6 id="out_dy-1"><a href="#out_dy-1"><code>out_dy</code></a></h6>
 <p>return location for the translation
 in the y direction</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_affine" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#403-422">source</a></span><a href="#method.to_affine" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_affine" class="fnname">to_affine</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></section></summary><div class="docblock"><p>Converts a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> to 2D affine transformation factors.</p>
@@ -218,26 +218,26 @@ sure, use</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">gsk_transform_get_category</span>() <span class="op">&gt;</span><span class="op">=</span> [`<span class="ident">TransformCategory::_2dAffine</span>`][<span class="ident"><span class="kw">crate</span>::TransformCategory::_2dAffine</span>]</code></pre></div>
 <p>to check.</p>
-<h5 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h5><h6 id="out_scale_x-1" class="section-header"><a href="#out_scale_x-1"><code>out_scale_x</code></a></h6>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5><h6 id="out_scale_x-1"><a href="#out_scale_x-1"><code>out_scale_x</code></a></h6>
 <p>return location for the scale
 factor in the x direction</p>
-<h6 id="out_scale_y-1" class="section-header"><a href="#out_scale_y-1"><code>out_scale_y</code></a></h6>
+<h6 id="out_scale_y-1"><a href="#out_scale_y-1"><code>out_scale_y</code></a></h6>
 <p>return location for the scale
 factor in the y direction</p>
-<h6 id="out_dx-2" class="section-header"><a href="#out_dx-2"><code>out_dx</code></a></h6>
+<h6 id="out_dx-2"><a href="#out_dx-2"><code>out_dx</code></a></h6>
 <p>return location for the translation
 in the x direction</p>
-<h6 id="out_dy-2" class="section-header"><a href="#out_dy-2"><code>out_dy</code></a></h6>
+<h6 id="out_dy-2"><a href="#out_dy-2"><code>out_dy</code></a></h6>
 <p>return location for the translation
 in the y direction</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_matrix" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#434-440">source</a></span><a href="#method.to_matrix" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_matrix" class="fnname">to_matrix</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a></h4></section></summary><div class="docblock"><p>Computes the actual value of @self and stores it in @out_matrix.</p>
 <p>The previous value of @out_matrix will be ignored.</p>
-<h5 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h5><h6 id="out_matrix" class="section-header"><a href="#out_matrix"><code>out_matrix</code></a></h6>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5><h6 id="out_matrix"><a href="#out_matrix"><code>out_matrix</code></a></h6>
 <p>The matrix to set</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_str" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#453-455">source</a></span><a href="#method.to_str" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_str" class="fnname">to_str</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Converts a matrix into a string that is suitable for printing.</p>
 <p>The resulting string can be parsed with [<code>parse()</code>][Self::parse()].</p>
 <p>This is a wrapper around <code>Gsk::Transform::print()</code>.</p>
-<h5 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h5>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
 <p>A new string for @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_translate" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#477-490">source</a></span><a href="#method.to_translate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.to_translate" class="fnname">to_translate</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></section></summary><div class="docblock"><p>Converts a <a href="struct.Transform.html" title="crate::Transform"><code>Transform</code></a> to a translation operation.</p>
 <p>@self must be a 2D transformation. If you are not
@@ -245,39 +245,39 @@ sure, use</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">gsk_transform_get_category</span>() <span class="op">&gt;</span><span class="op">=</span> [`<span class="ident">TransformCategory::_2dTranslate</span>`][<span class="ident"><span class="kw">crate</span>::TransformCategory::_2dTranslate</span>]</code></pre></div>
 <p>to check.</p>
-<h5 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h5><h6 id="out_dx-3" class="section-header"><a href="#out_dx-3"><code>out_dx</code></a></h6>
+<h5 id="returns-14"><a href="#returns-14">Returns</a></h5><h6 id="out_dx-3"><a href="#out_dx-3"><code>out_dx</code></a></h6>
 <p>return location for the translation
 in the x direction</p>
-<h6 id="out_dy-3" class="section-header"><a href="#out_dy-3"><code>out_dy</code></a></h6>
+<h6 id="out_dy-3"><a href="#out_dy-3"><code>out_dy</code></a></h6>
 <p>return location for the translation
 in the y direction</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.transform" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#501-508">source</a></span><a href="#method.transform" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.transform" class="fnname">transform</a>(&amp;self, other: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Applies all the operations from @other to @self.</p>
-<h6 id="other" class="section-header"><a href="#other"><code>other</code></a></h6>
+<h6 id="other"><a href="#other"><code>other</code></a></h6>
 <p>Transform to apply</p>
-<h5 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h5>
+<h5 id="returns-15"><a href="#returns-15">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.transform_bounds" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#523-533">source</a></span><a href="#method.transform_bounds" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.transform_bounds" class="fnname">transform_bounds</a>(&amp;self, rect: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a></h4></section></summary><div class="docblock"><p>Transforms a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="crate::graphene::Rect"><code>graphene::Rect</code></a> using the given transform @self.</p>
 <p>The result is the bounding box containing the coplanar quad.</p>
-<h6 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h6>
+<h6 id="rect"><a href="#rect"><code>rect</code></a></h6>
 <p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/rect/struct.Rect.html" title="crate::graphene::Rect"><code>graphene::Rect</code></a></p>
-<h5 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h5><h6 id="out_rect" class="section-header"><a href="#out_rect"><code>out_rect</code></a></h6>
+<h5 id="returns-16"><a href="#returns-16">Returns</a></h5><h6 id="out_rect"><a href="#out_rect"><code>out_rect</code></a></h6>
 <p>return location for the bounds
 of the transformed rectangle</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.transform_point" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#546-556">source</a></span><a href="#method.transform_point" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.transform_point" class="fnname">transform_point</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a></h4></section></summary><div class="docblock"><p>Transforms a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="crate::graphene::Point"><code>graphene::Point</code></a> using the given transform @self.</p>
-<h6 id="point" class="section-header"><a href="#point"><code>point</code></a></h6>
+<h6 id="point"><a href="#point"><code>point</code></a></h6>
 <p>a <a href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="crate::graphene::Point"><code>graphene::Point</code></a></p>
-<h5 id="returns-17" class="section-header"><a href="#returns-17">Returns</a></h5><h6 id="out_point" class="section-header"><a href="#out_point"><code>out_point</code></a></h6>
+<h5 id="returns-17"><a href="#returns-17">Returns</a></h5><h6 id="out_point"><a href="#out_point"><code>out_point</code></a></h6>
 <p>return location for
 the transformed point</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.translate" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#567-574">source</a></span><a href="#method.translate" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.translate" class="fnname">translate</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Translates @self in 2-dimensional space by @point.</p>
-<h6 id="point-1" class="section-header"><a href="#point-1"><code>point</code></a></h6>
+<h6 id="point-1"><a href="#point-1"><code>point</code></a></h6>
 <p>the point to translate the transform by</p>
-<h5 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h5>
+<h5 id="returns-18"><a href="#returns-18">Returns</a></h5>
 <p>The new transform</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.translate_3d" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#585-592">source</a></span><a href="#method.translate_3d" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.translate_3d" class="fnname">translate_3d</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/point3_d/struct.Point3D.html" title="struct graphene::auto::point3_d::Point3D">Point3D</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a>&gt;</h4></section></summary><div class="docblock"><p>Translates @self by @point.</p>
-<h6 id="point-2" class="section-header"><a href="#point-2"><code>point</code></a></h6>
+<h6 id="point-2"><a href="#point-2"><code>point</code></a></h6>
 <p>the point to translate the transform by</p>
-<h5 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h5>
+<h5 id="returns-19"><a href="#returns-19">Returns</a></h5>
 <p>The new transform</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Clone" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#10-28">source</a></span><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gsk4/auto/transform.rs.html#10-28">source</a></span><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; Self</h4></section></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130">source</a></span><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></section></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
@@ -314,5 +314,5 @@ operator. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.h
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#595">source</a></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fnname">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryFromClosureReturnValue" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#372-390">source</a></span><a href="#impl-TryFromClosureReturnValue" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html" title="trait glib::closure::TryFromClosureReturnValue">TryFromClosureReturnValue</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + for&lt;'a&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html" title="trait glib::types::StaticType">StaticType</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><section id="method.try_from_closure_return_value" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#373">source</a></span><a href="#method.try_from_closure_return_value" class="anchor"></a><h4 class="code-header">pub fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html#tymethod.try_from_closure_return_value" class="fnname">try_from_closure_return_value</a>(v: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryInto%3CU%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#574-583">source</a></span><a href="#impl-TryInto%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="type trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#580">source</a></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fnname">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
-</div></details></div></details><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
+</div></details></div></details><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gsk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e646f3d2a 2022-02-10)" ></div>
 </body></html>

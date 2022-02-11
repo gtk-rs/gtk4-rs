@@ -88,47 +88,47 @@ the bitset, such as the minimum or maximum values or its size.</p>
 <p>The main use case for <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> is implementing complex selections for
 <a href="struct.SelectionModel.html" title="crate::SelectionModel"><code>SelectionModel</code></a>.</p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#33-412">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new_empty" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#40-43">source</a></span><a href="#method.new_empty" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new_empty" class="fnname">new_empty</a>() -&gt; <a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h4></section></summary><div class="docblock"><p>Creates a new empty bitset.</p>
-<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
 <p>A new empty bitset</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new_range" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#55-58">source</a></span><a href="#method.new_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new_range" class="fnname">new_range</a>(start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h4></section></summary><div class="docblock"><p>Creates a bitset with the given range set.</p>
-<h6 id="start" class="section-header"><a href="#start"><code>start</code></a></h6>
+<h6 id="start"><a href="#start"><code>start</code></a></h6>
 <p>first value to add</p>
-<h6 id="n_items" class="section-header"><a href="#n_items"><code>n_items</code></a></h6>
+<h6 id="n_items"><a href="#n_items"><code>n_items</code></a></h6>
 <p>number of consecutive values to add</p>
-<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
 <p>A new bitset</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.add" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#69-71">source</a></span><a href="#method.add" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add" class="fnname">add</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Adds @value to @self if it wasn’t part of it before.</p>
-<h6 id="value" class="section-header"><a href="#value"><code>value</code></a></h6>
+<h6 id="value"><a href="#value"><code>value</code></a></h6>
 <p>value to add</p>
-<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @value was not part of @self and @self
 was changed</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.add_range" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#80-84">source</a></span><a href="#method.add_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_range" class="fnname">add_range</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Adds all values from @start (inclusive) to @start + @n_items
 (exclusive) in @self.</p>
-<h6 id="start-1" class="section-header"><a href="#start-1"><code>start</code></a></h6>
+<h6 id="start-1"><a href="#start-1"><code>start</code></a></h6>
 <p>first value to add</p>
-<h6 id="n_items-1" class="section-header"><a href="#n_items-1"><code>n_items</code></a></h6>
+<h6 id="n_items-1"><a href="#n_items-1"><code>n_items</code></a></h6>
 <p>number of consecutive values to add</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.add_range_closed" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#93-97">source</a></span><a href="#method.add_range_closed" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_range_closed" class="fnname">add_range_closed</a>(&amp;self, first: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, last: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Adds the closed range [@first, @last], so @first, @last and all
 values in between. @first must be smaller than @last.</p>
-<h6 id="first" class="section-header"><a href="#first"><code>first</code></a></h6>
+<h6 id="first"><a href="#first"><code>first</code></a></h6>
 <p>first value to add</p>
-<h6 id="last" class="section-header"><a href="#last"><code>last</code></a></h6>
+<h6 id="last"><a href="#last"><code>last</code></a></h6>
 <p>last value to add</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.add_rectangle" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#110-114">source</a></span><a href="#method.add_rectangle" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.add_rectangle" class="fnname">add_rectangle</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, stride: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Interprets the values as a 2-dimensional boolean grid with the given @stride
 and inside that grid, adds a rectangle with the given @width and @height.</p>
-<h6 id="start-2" class="section-header"><a href="#start-2"><code>start</code></a></h6>
+<h6 id="start-2"><a href="#start-2"><code>start</code></a></h6>
 <p>first value to add</p>
-<h6 id="width" class="section-header"><a href="#width"><code>width</code></a></h6>
+<h6 id="width"><a href="#width"><code>width</code></a></h6>
 <p>width of the rectangle</p>
-<h6 id="height" class="section-header"><a href="#height"><code>height</code></a></h6>
+<h6 id="height"><a href="#height"><code>height</code></a></h6>
 <p>height of the rectangle</p>
-<h6 id="stride" class="section-header"><a href="#stride"><code>stride</code></a></h6>
+<h6 id="stride"><a href="#stride"><code>stride</code></a></h6>
 <p>row stride of the grid</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.contains" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#124-126">source</a></span><a href="#method.contains" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.contains" class="fnname">contains</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks if the given @value has been added to @self</p>
-<h6 id="value-1" class="section-header"><a href="#value-1"><code>value</code></a></h6>
+<h6 id="value-1"><a href="#value-1"><code>value</code></a></h6>
 <p>the value to check</p>
-<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self contains @value</p>
 </div></details><section id="method.copy" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#130-132">source</a></span><a href="#method.copy" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.copy" class="fnname">copy</a>(&amp;self) -&gt; <a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h4></section><details class="rustdoc-toggle method-toggle" open><summary><section id="method.difference" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#145-149">source</a></span><a href="#method.difference" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.difference" class="fnname">difference</a>(&amp;self, other: &amp;<a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>)</h4></section></summary><div class="docblock"><p>Sets @self to be the symmetric difference of @self and @other.</p>
 <p>The symmetric difference is set @self to contain all values that
@@ -136,26 +136,26 @@ were either contained in @self or in @other, but not in both.
 This operation is also called an XOR.</p>
 <p>It is allowed for @self and @other to be the same bitset. The bitset
 will be emptied in that case.</p>
-<h6 id="other" class="section-header"><a href="#other"><code>other</code></a></h6>
+<h6 id="other"><a href="#other"><code>other</code></a></h6>
 <p>the <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> to compute the difference from</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.equals" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#159-166">source</a></span><a href="#method.equals" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.equals" class="fnname">equals</a>(&amp;self, other: &amp;<a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self and @other contain the same values.</p>
-<h6 id="other-1" class="section-header"><a href="#other-1"><code>other</code></a></h6>
+<h6 id="other-1"><a href="#other-1"><code>other</code></a></h6>
 <p>another <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a></p>
-<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self and @other contain the same values</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.maximum" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#177-179">source</a></span><a href="#method.maximum" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.maximum" class="fnname">maximum</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the largest value in @self.</p>
 <p>If @self is empty, 0 is returned.</p>
-<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
 <p>The largest value in @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.minimum" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#190-192">source</a></span><a href="#method.minimum" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.minimum" class="fnname">minimum</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the smallest value in @self.</p>
 <p>If @self is empty, <code>G_MAXUINT</code> is returned.</p>
-<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
 <p>The smallest value in @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.nth" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#205-207">source</a></span><a href="#method.nth" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.nth" class="fnname">nth</a>(&amp;self, nth: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the value of the @nth item in self.</p>
 <p>If @nth is &gt;= the size of @self, 0 is returned.</p>
-<h6 id="nth" class="section-header"><a href="#nth"><code>nth</code></a></h6>
+<h6 id="nth"><a href="#nth"><code>nth</code></a></h6>
 <p>index of the item to get</p>
-<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
 <p>the value of the @nth item in @self</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.size" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#223-225">source</a></span><a href="#method.size" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.size" class="fnname">size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></h4></section></summary><div class="docblock"><p>Gets the number of values that were added to the set.</p>
 <p>For example, if the set is empty, 0 is returned.</p>
@@ -163,64 +163,64 @@ will be emptied in that case.</p>
 values are set, the return value is <code>G_MAXUINT + 1</code>. Unless you
 are sure this cannot happen (it can’t with <code>GListModel</code>), be sure
 to use a 64bit type.</p>
-<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
 <p>The number of values in the set.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.size_in_range" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#243-245">source</a></span><a href="#method.size_in_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.size_in_range" class="fnname">size_in_range</a>(&amp;self, first: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, last: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></h4></section></summary><div class="docblock"><p>Gets the number of values that are part of the set from @first to @last
 (inclusive).</p>
 <p>Note that this function returns a <code>guint64</code>, because when all values are
 set, the return value is <code>G_MAXUINT + 1</code>. Unless you are sure this cannot
 happen (it can’t with <code>GListModel</code>), be sure to use a 64bit type.</p>
-<h6 id="first-1" class="section-header"><a href="#first-1"><code>first</code></a></h6>
+<h6 id="first-1"><a href="#first-1"><code>first</code></a></h6>
 <p>the first element to include</p>
-<h6 id="last-1" class="section-header"><a href="#last-1"><code>last</code></a></h6>
+<h6 id="last-1"><a href="#last-1"><code>last</code></a></h6>
 <p>the last element to include</p>
-<h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
 <p>The number of values in the set from @first to @last.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.intersect" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#256-260">source</a></span><a href="#method.intersect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.intersect" class="fnname">intersect</a>(&amp;self, other: &amp;<a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>)</h4></section></summary><div class="docblock"><p>Sets @self to be the intersection of @self and @other.</p>
 <p>In other words, remove all values from @self that are not part of @other.</p>
 <p>It is allowed for @self and @other to be the same bitset. Nothing will
 happen in that case.</p>
-<h6 id="other-2" class="section-header"><a href="#other-2"><code>other</code></a></h6>
+<h6 id="other-2"><a href="#other-2"><code>other</code></a></h6>
 <p>the <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> to intersect with</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.is_empty" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#268-270">source</a></span><a href="#method.is_empty" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_empty" class="fnname">is_empty</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Check if no value is contained in bitset.</p>
-<h5 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h5>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self is empty</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.remove" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#281-283">source</a></span><a href="#method.remove" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove" class="fnname">remove</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Removes @value from @self if it was part of it before.</p>
-<h6 id="value-2" class="section-header"><a href="#value-2"><code>value</code></a></h6>
+<h6 id="value-2"><a href="#value-2"><code>value</code></a></h6>
 <p>value to add</p>
-<h5 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h5>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @value was part of @self and @self
 was changed</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.remove_all" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#287-291">source</a></span><a href="#method.remove_all" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_all" class="fnname">remove_all</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Removes all values from the bitset so that it is empty again.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.remove_range" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#300-304">source</a></span><a href="#method.remove_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_range" class="fnname">remove_range</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Removes all values from @start (inclusive) to @start + @n_items (exclusive)
 in @self.</p>
-<h6 id="start-3" class="section-header"><a href="#start-3"><code>start</code></a></h6>
+<h6 id="start-3"><a href="#start-3"><code>start</code></a></h6>
 <p>first value to remove</p>
-<h6 id="n_items-2" class="section-header"><a href="#n_items-2"><code>n_items</code></a></h6>
+<h6 id="n_items-2"><a href="#n_items-2"><code>n_items</code></a></h6>
 <p>number of consecutive values to remove</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.remove_range_closed" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#313-317">source</a></span><a href="#method.remove_range_closed" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_range_closed" class="fnname">remove_range_closed</a>(&amp;self, first: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, last: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Removes the closed range [@first, @last], so @first, @last and all
 values in between. @first must be smaller than @last.</p>
-<h6 id="first-2" class="section-header"><a href="#first-2"><code>first</code></a></h6>
+<h6 id="first-2"><a href="#first-2"><code>first</code></a></h6>
 <p>first value to remove</p>
-<h6 id="last-2" class="section-header"><a href="#last-2"><code>last</code></a></h6>
+<h6 id="last-2"><a href="#last-2"><code>last</code></a></h6>
 <p>last value to remove</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.remove_rectangle" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#330-334">source</a></span><a href="#method.remove_rectangle" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.remove_rectangle" class="fnname">remove_rectangle</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, stride: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Interprets the values as a 2-dimensional boolean grid with the given @stride
 and inside that grid, removes a rectangle with the given @width and @height.</p>
-<h6 id="start-4" class="section-header"><a href="#start-4"><code>start</code></a></h6>
+<h6 id="start-4"><a href="#start-4"><code>start</code></a></h6>
 <p>first value to remove</p>
-<h6 id="width-1" class="section-header"><a href="#width-1"><code>width</code></a></h6>
+<h6 id="width-1"><a href="#width-1"><code>width</code></a></h6>
 <p>width of the rectangle</p>
-<h6 id="height-1" class="section-header"><a href="#height-1"><code>height</code></a></h6>
+<h6 id="height-1"><a href="#height-1"><code>height</code></a></h6>
 <p>height of the rectangle</p>
-<h6 id="stride-1" class="section-header"><a href="#stride-1"><code>stride</code></a></h6>
+<h6 id="stride-1"><a href="#stride-1"><code>stride</code></a></h6>
 <p>row stride of the grid</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shift_left" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#342-346">source</a></span><a href="#method.shift_left" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shift_left" class="fnname">shift_left</a>(&amp;self, amount: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Shifts all values in @self to the left by @amount.</p>
 <p>Values smaller than @amount are discarded.</p>
-<h6 id="amount" class="section-header"><a href="#amount"><code>amount</code></a></h6>
+<h6 id="amount"><a href="#amount"><code>amount</code></a></h6>
 <p>amount to shift all values to the left</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shift_right" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#354-358">source</a></span><a href="#method.shift_right" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.shift_right" class="fnname">shift_right</a>(&amp;self, amount: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Shifts all values in @self to the right by @amount.</p>
 <p>Values that end up too large to be held in a #guint are discarded.</p>
-<h6 id="amount-1" class="section-header"><a href="#amount-1"><code>amount</code></a></h6>
+<h6 id="amount-1"><a href="#amount-1"><code>amount</code></a></h6>
 <p>amount to shift all values to the right</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.splice" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#377-381">source</a></span><a href="#method.splice" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.splice" class="fnname">splice</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, removed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, added: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>This is a support function for <code>GListModel</code> handling, by mirroring
 the <code>GlistModel::items-changed</code> signal.</p>
@@ -230,23 +230,23 @@ all larger values to the left by @removed places.</p>
 <p>Then, it “pastes” new room into the bitset by shifting all values
 larger than @position by @added spaces to the right. This frees
 up space that can then be filled.</p>
-<h6 id="position" class="section-header"><a href="#position"><code>position</code></a></h6>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
 <p>position at which to slice</p>
-<h6 id="removed" class="section-header"><a href="#removed"><code>removed</code></a></h6>
+<h6 id="removed"><a href="#removed"><code>removed</code></a></h6>
 <p>number of values to remove</p>
-<h6 id="added" class="section-header"><a href="#added"><code>added</code></a></h6>
+<h6 id="added"><a href="#added"><code>added</code></a></h6>
 <p>number of values to add</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.subtract" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#392-396">source</a></span><a href="#method.subtract" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.subtract" class="fnname">subtract</a>(&amp;self, other: &amp;<a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>)</h4></section></summary><div class="docblock"><p>Sets @self to be the subtraction of @other from @self.</p>
 <p>In other words, remove all values from @self that are part of @other.</p>
 <p>It is allowed for @self and @other to be the same bitset. The bitset
 will be emptied in that case.</p>
-<h6 id="other-3" class="section-header"><a href="#other-3"><code>other</code></a></h6>
+<h6 id="other-3"><a href="#other-3"><code>other</code></a></h6>
 <p>the <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> to subtract</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.union" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#407-411">source</a></span><a href="#method.union" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.union" class="fnname">union</a>(&amp;self, other: &amp;<a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>)</h4></section></summary><div class="docblock"><p>Sets @self to be the union of @self and @other.</p>
 <p>That is, add all values from @other into @self that weren’t part of it.</p>
 <p>It is allowed for @self and @other to be the same bitset. Nothing will
 happen in that case.</p>
-<h6 id="other-4" class="section-header"><a href="#other-4"><code>other</code></a></h6>
+<h6 id="other-4"><a href="#other-4"><code>other</code></a></h6>
 <p>the <a href="struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> to union with</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Clone" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#7-31">source</a></span><a href="#impl-Clone" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/bitset.rs.html#7-31">source</a></span><a href="#method.clone" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; Self</h4></section></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130">source</a></span><a href="#method.clone_from" class="anchor"></a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</h4></section></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
@@ -280,5 +280,5 @@ operator. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.h
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#595">source</a></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fnname">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryFromClosureReturnValue" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#372-390">source</a></span><a href="#impl-TryFromClosureReturnValue" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html" title="trait glib::closure::TryFromClosureReturnValue">TryFromClosureReturnValue</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + for&lt;'a&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html" title="trait glib::types::StaticType">StaticType</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><section id="method.try_from_closure_return_value" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#373">source</a></span><a href="#method.try_from_closure_return_value" class="anchor"></a><h4 class="code-header">pub fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html#tymethod.try_from_closure_return_value" class="fnname">try_from_closure_return_value</a>(v: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryInto%3CU%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#574-583">source</a></span><a href="#impl-TryInto%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="type trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#580">source</a></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fnname">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
-</div></details></div></details><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
+</div></details></div></details><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e646f3d2a 2022-02-10)" ></div>
 </body></html>

@@ -88,160 +88,160 @@ rubberband selection, which is controlled by dragging the pointer.</p>
 opposed to a flat list where the mapping to icons is obvious),
 <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> will only display the first level of the tree and
 ignore the tree’s branches.</p>
-<h2 id="css-nodes" class="section-header"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text"><code>iconview.view
+<h2 id="css-nodes"><a href="#css-nodes">CSS nodes</a></h2><div class="example-wrap"><pre class="language-text"><code>iconview.view
 ╰── [rubberband]</code></pre></div>
 <p><a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> has a single CSS node with name iconview and style class .view.
 For rubberband selection, a subnode with name rubberband is used.</p>
-<h2 id="implements" class="section-header"><a href="#implements">Implements</a></h2>
+<h2 id="implements"><a href="#implements">Implements</a></h2>
 <p><a href="prelude/trait.WidgetExt.html" title="crate::prelude::WidgetExt"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html" title="crate::prelude::AccessibleExt"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html" title="crate::prelude::ConstraintTargetExt"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.CellLayoutExt.html" title="crate::prelude::CellLayoutExt"><code>CellLayoutExt</code></a>, <a href="prelude/trait.ScrollableExt.html" title="crate::prelude::ScrollableExt"><code>ScrollableExt</code></a>, <a href="prelude/trait.WidgetExtManual.html" title="crate::prelude::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="accessible/trait.AccessibleExtManual.html" title="crate::prelude::AccessibleExtManual"><code>AccessibleExtManual</code></a>, <a href="prelude/trait.CellLayoutExtManual.html" title="crate::prelude::CellLayoutExtManual"><code>CellLayoutExtManual</code></a></p>
 </div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#78-1895">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.IconView.html" title="struct gtk4::IconView">IconView</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#85-88">source</a></span><a href="#method.new" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.IconView.html" title="struct gtk4::IconView">IconView</a></h4></section></summary><div class="docblock"><p>Creates a new <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget</p>
-<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
 <p>A newly created <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_area" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#100-108">source</a></span><a href="#method.with_area" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.with_area" class="fnname">with_area</a>(area: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;) -&gt; <a class="struct" href="struct.IconView.html" title="struct gtk4::IconView">IconView</a></h4></section></summary><div class="docblock"><p>Creates a new <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget using the
 specified @area to layout cells inside the icons.</p>
-<h6 id="area" class="section-header"><a href="#area"><code>area</code></a></h6>
+<h6 id="area"><a href="#area"><code>area</code></a></h6>
 <p>the <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> to use to layout cells</p>
-<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
 <p>A newly created <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_model" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#119-127">source</a></span><a href="#method.with_model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.with_model" class="fnname">with_model</a>(model: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;) -&gt; <a class="struct" href="struct.IconView.html" title="struct gtk4::IconView">IconView</a></h4></section></summary><div class="docblock"><p>Creates a new <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget with the model @model.</p>
-<h6 id="model" class="section-header"><a href="#model"><code>model</code></a></h6>
+<h6 id="model"><a href="#model"><code>model</code></a></h6>
 <p>The model.</p>
-<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
 <p>A newly created <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> widget.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.builder" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#133-135">source</a></span><a href="#method.builder" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.builder" class="fnname">builder</a>() -&gt; <a class="struct" href="builders/struct.IconViewBuilder.html" title="struct gtk4::builders::IconViewBuilder">IconViewBuilder</a></h4></section></summary><div class="docblock"><p>Creates a new builder-pattern struct instance to construct <a href="struct.IconView.html" title="IconView"><code>IconView</code></a> objects.</p>
 <p>This method returns an instance of <a href="builders/struct.IconViewBuilder.html"><code>IconViewBuilder</code></a> which can be used to create <a href="struct.IconView.html" title="IconView"><code>IconView</code></a> objects.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.create_drag_icon" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#146-153">source</a></span><a href="#method.create_drag_icon" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.create_drag_icon" class="fnname">create_drag_icon</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</h4></section></summary><div class="docblock"><p>Creates a <a href="../gdk4/auto/paintable/struct.Paintable.html" title="crate::gdk::Paintable"><code>gdk::Paintable</code></a> representation of the item at @path.
 This image is used for a drag icon.</p>
-<h6 id="path" class="section-header"><a href="#path"><code>path</code></a></h6>
+<h6 id="path"><a href="#path"><code>path</code></a></h6>
 <p>a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> in @self</p>
-<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
 <p>a newly-allocated <a href="../gdk4/auto/paintable/struct.Paintable.html" title="crate::gdk::Paintable"><code>gdk::Paintable</code></a> of the drag icon.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.enable_model_drag_dest" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#163-171">source</a></span><a href="#method.enable_model_drag_dest" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.enable_model_drag_dest" class="fnname">enable_model_drag_dest</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;formats: &amp;<a class="struct" href="../gdk4/auto/content_formats/struct.ContentFormats.html" title="struct gdk4::auto::content_formats::ContentFormats">ContentFormats</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;actions: <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a><br>)</h4></section></summary><div class="docblock"><p>Turns @self into a drop destination for automatic DND. Calling this
 method sets <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>:reorderable to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
-<h6 id="formats" class="section-header"><a href="#formats"><code>formats</code></a></h6>
+<h6 id="formats"><a href="#formats"><code>formats</code></a></h6>
 <p>the formats that the drag will support</p>
-<h6 id="actions" class="section-header"><a href="#actions"><code>actions</code></a></h6>
+<h6 id="actions"><a href="#actions"><code>actions</code></a></h6>
 <p>the bitmask of possible actions for a drag to this
 widget</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.enable_model_drag_source" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#183-197">source</a></span><a href="#method.enable_model_drag_source" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.enable_model_drag_source" class="fnname">enable_model_drag_source</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start_button_mask: <a class="struct" href="../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;formats: &amp;<a class="struct" href="../gdk4/auto/content_formats/struct.ContentFormats.html" title="struct gdk4::auto::content_formats::ContentFormats">ContentFormats</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;actions: <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a><br>)</h4></section></summary><div class="docblock"><p>Turns @self into a drag source for automatic DND. Calling this
 method sets <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>:reorderable to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
-<h6 id="start_button_mask" class="section-header"><a href="#start_button_mask"><code>start_button_mask</code></a></h6>
+<h6 id="start_button_mask"><a href="#start_button_mask"><code>start_button_mask</code></a></h6>
 <p>Mask of allowed buttons to start drag</p>
-<h6 id="formats-1" class="section-header"><a href="#formats-1"><code>formats</code></a></h6>
+<h6 id="formats-1"><a href="#formats-1"><code>formats</code></a></h6>
 <p>the formats that the drag will support</p>
-<h6 id="actions-1" class="section-header"><a href="#actions-1"><code>actions</code></a></h6>
+<h6 id="actions-1"><a href="#actions-1"><code>actions</code></a></h6>
 <p>the bitmask of possible actions for a drag from this
 widget</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.activates_on_single_click" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#206-212">source</a></span><a href="#method.activates_on_single_click" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.activates_on_single_click" class="fnname">activates_on_single_click</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets the setting set by gtk_icon_view_set_activate_on_single_click().</p>
-<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if item-activated will be emitted on a single click</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.cell_rect" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#231-250">source</a></span><a href="#method.cell_rect" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.cell_rect" class="fnname">cell_rect</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;cell: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>&gt;</h4></section></summary><div class="docblock"><p>Fills the bounding rectangle in widget coordinates for the cell specified by
 @path and @cell. If @cell is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> the main cell area is used.</p>
 <p>This function is only valid if @self is realized.</p>
-<h6 id="path-1" class="section-header"><a href="#path-1"><code>path</code></a></h6>
+<h6 id="path-1"><a href="#path-1"><code>path</code></a></h6>
 <p>a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
-<h6 id="cell" class="section-header"><a href="#cell"><code>cell</code></a></h6>
+<h6 id="cell"><a href="#cell"><code>cell</code></a></h6>
 <p>a <a href="struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a></p>
-<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if there is no such item, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> otherwise</p>
-<h6 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h6>
+<h6 id="rect"><a href="#rect"><code>rect</code></a></h6>
 <p>rectangle to fill with cell rect</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.column_spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#259-261">source</a></span><a href="#method.column_spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.column_spacing" class="fnname">column_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::column-spacing property.</p>
-<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
 <p>the space between columns</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.columns" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#270-272">source</a></span><a href="#method.columns" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.columns" class="fnname">columns</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::columns property.</p>
-<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
 <p>the number of columns, or -1</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.cursor" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#293-308">source</a></span><a href="#method.cursor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.cursor" class="fnname">cursor</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="struct" href="struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></section></summary><div class="docblock"><p>Fills in @path and @cell with the current cursor path and cell.
 If the cursor isn’t currently set, then *@path will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.
 If no cell currently has focus, then *@cell will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <p>The returned <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> must be freed with gtk_tree_path_free().</p>
-<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the cursor is set.</p>
-<h6 id="path-2" class="section-header"><a href="#path-2"><code>path</code></a></h6>
+<h6 id="path-2"><a href="#path-2"><code>path</code></a></h6>
 <p>Return location for the current
 cursor path</p>
-<h6 id="cell-1" class="section-header"><a href="#cell-1"><code>cell</code></a></h6>
+<h6 id="cell-1"><a href="#cell-1"><code>cell</code></a></h6>
 <p>Return location the current
 focus cell</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.dest_item_at_pos" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#327-349">source</a></span><a href="#method.dest_item_at_pos" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.dest_item_at_pos" class="fnname">dest_item_at_pos</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;drag_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;drag_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="enum" href="enum.IconViewDropPosition.html" title="enum gtk4::IconViewDropPosition">IconViewDropPosition</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></section></summary><div class="docblock"><p>Determines the destination item for a given position.</p>
-<h6 id="drag_x" class="section-header"><a href="#drag_x"><code>drag_x</code></a></h6>
+<h6 id="drag_x"><a href="#drag_x"><code>drag_x</code></a></h6>
 <p>the position to determine the destination item for</p>
-<h6 id="drag_y" class="section-header"><a href="#drag_y"><code>drag_y</code></a></h6>
+<h6 id="drag_y"><a href="#drag_y"><code>drag_y</code></a></h6>
 <p>the position to determine the destination item for</p>
-<h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
 <p>whether there is an item at the given position.</p>
-<h6 id="path-3" class="section-header"><a href="#path-3"><code>path</code></a></h6>
+<h6 id="path-3"><a href="#path-3"><code>path</code></a></h6>
 <p>Return location for the path of the item</p>
-<h6 id="pos" class="section-header"><a href="#pos"><code>pos</code></a></h6>
+<h6 id="pos"><a href="#pos"><code>pos</code></a></h6>
 <p>Return location for the drop position</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.drag_dest_item" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#364-376">source</a></span><a href="#method.drag_dest_item" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.drag_dest_item" class="fnname">drag_dest_item</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="enum" href="enum.IconViewDropPosition.html" title="enum gtk4::IconViewDropPosition">IconViewDropPosition</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></section></summary><div class="docblock"><p>Gets information about the item that is highlighted for feedback.</p>
-<h5 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h5><h6 id="path-4" class="section-header"><a href="#path-4"><code>path</code></a></h6>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5><h6 id="path-4"><a href="#path-4"><code>path</code></a></h6>
 <p>Return location for the path of
 the highlighted item</p>
-<h6 id="pos-1" class="section-header"><a href="#pos-1"><code>pos</code></a></h6>
+<h6 id="pos-1"><a href="#pos-1"><code>pos</code></a></h6>
 <p>Return location for the drop position</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_at_pos" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#396-413">source</a></span><a href="#method.item_at_pos" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_at_pos" class="fnname">item_at_pos</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="struct" href="struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the path and cell for the icon at the given position.</p>
-<h6 id="x" class="section-header"><a href="#x"><code>x</code></a></h6>
+<h6 id="x"><a href="#x"><code>x</code></a></h6>
 <p>The x position to be identified</p>
-<h6 id="y" class="section-header"><a href="#y"><code>y</code></a></h6>
+<h6 id="y"><a href="#y"><code>y</code></a></h6>
 <p>The y position to be identified</p>
-<h5 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h5>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if an item exists at the specified position</p>
-<h6 id="path-5" class="section-header"><a href="#path-5"><code>path</code></a></h6>
+<h6 id="path-5"><a href="#path-5"><code>path</code></a></h6>
 <p>Return location for the path</p>
-<h6 id="cell-2" class="section-header"><a href="#cell-2"><code>cell</code></a></h6>
+<h6 id="cell-2"><a href="#cell-2"><code>cell</code></a></h6>
 <p>Return location for the renderer
 responsible for the cell at (@x, @y)</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#425-432">source</a></span><a href="#method.item_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_column" class="fnname">item_column</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the column in which the item @path is currently
 displayed. Column numbers start at 0.</p>
-<h6 id="path-6" class="section-header"><a href="#path-6"><code>path</code></a></h6>
+<h6 id="path-6"><a href="#path-6"><code>path</code></a></h6>
 <p>the <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> of the item</p>
-<h5 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h5>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
 <p>The column in which the item is displayed</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_orientation" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#442-448">source</a></span><a href="#method.item_orientation" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_orientation" class="fnname">item_orientation</a>(&amp;self) -&gt; <a class="enum" href="enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::item-orientation property which determines
 whether the labels are drawn beside the icons instead of below.</p>
-<h5 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h5>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
 <p>the relative position of texts and icons</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_padding" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#457-459">source</a></span><a href="#method.item_padding" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_padding" class="fnname">item_padding</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::item-padding property.</p>
-<h5 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h5>
+<h5 id="returns-14"><a href="#returns-14">Returns</a></h5>
 <p>the padding around items</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_row" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#471-478">source</a></span><a href="#method.item_row" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_row" class="fnname">item_row</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the row in which the item @path is currently
 displayed. Row numbers start at 0.</p>
-<h6 id="path-7" class="section-header"><a href="#path-7"><code>path</code></a></h6>
+<h6 id="path-7"><a href="#path-7"><code>path</code></a></h6>
 <p>the <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> of the item</p>
-<h5 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h5>
+<h5 id="returns-15"><a href="#returns-15">Returns</a></h5>
 <p>The row in which the item is displayed</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_width" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#487-489">source</a></span><a href="#method.item_width" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_width" class="fnname">item_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::item-width property.</p>
-<h5 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h5>
+<h5 id="returns-16"><a href="#returns-16">Returns</a></h5>
 <p>the width of a single item, or -1</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.margin" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#498-500">source</a></span><a href="#method.margin" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.margin" class="fnname">margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::margin property.</p>
-<h5 id="returns-17" class="section-header"><a href="#returns-17">Returns</a></h5>
+<h5 id="returns-17"><a href="#returns-17">Returns</a></h5>
 <p>the space at the borders</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.markup_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#509-511">source</a></span><a href="#method.markup_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.markup_column" class="fnname">markup_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the column with markup text for @self.</p>
-<h5 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h5>
+<h5 id="returns-18"><a href="#returns-18">Returns</a></h5>
 <p>the markup column, or -1 if it’s unset.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.model" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#521-523">source</a></span><a href="#method.model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.model" class="fnname">model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the model the <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> is based on.  Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the
 model is unset.</p>
-<h5 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h5>
+<h5 id="returns-19"><a href="#returns-19">Returns</a></h5>
 <p>The currently used <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.path_at_pos" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#537-545">source</a></span><a href="#method.path_at_pos" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.path_at_pos" class="fnname">path_at_pos</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the path for the icon at the given position.</p>
-<h6 id="x-1" class="section-header"><a href="#x-1"><code>x</code></a></h6>
+<h6 id="x-1"><a href="#x-1"><code>x</code></a></h6>
 <p>The x position to be identified</p>
-<h6 id="y-1" class="section-header"><a href="#y-1"><code>y</code></a></h6>
+<h6 id="y-1"><a href="#y-1"><code>y</code></a></h6>
 <p>The y position to be identified</p>
-<h5 id="returns-20" class="section-header"><a href="#returns-20">Returns</a></h5>
+<h5 id="returns-20"><a href="#returns-20">Returns</a></h5>
 <p>The <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> corresponding
 to the icon or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no icon exists at that position.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.pixbuf_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#554-556">source</a></span><a href="#method.pixbuf_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.pixbuf_column" class="fnname">pixbuf_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the column with pixbufs for @self.</p>
-<h5 id="returns-21" class="section-header"><a href="#returns-21">Returns</a></h5>
+<h5 id="returns-21"><a href="#returns-21">Returns</a></h5>
 <p>the pixbuf column, or -1 if it’s unset.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.is_reorderable" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#566-568">source</a></span><a href="#method.is_reorderable" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.is_reorderable" class="fnname">is_reorderable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the user can reorder the list via drag-and-drop.
 See gtk_icon_view_set_reorderable().</p>
-<h5 id="returns-22" class="section-header"><a href="#returns-22">Returns</a></h5>
+<h5 id="returns-22"><a href="#returns-22">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the list can be reordered.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.row_spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#577-579">source</a></span><a href="#method.row_spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.row_spacing" class="fnname">row_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::row-spacing property.</p>
-<h5 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h5>
+<h5 id="returns-23"><a href="#returns-23">Returns</a></h5>
 <p>the space between rows</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.selected_items" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#607-613">source</a></span><a href="#method.selected_items" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.selected_items" class="fnname">selected_items</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section></summary><div class="docblock"><p>Creates a list of paths of all selected items. Additionally, if you are
 planning on modifying the model after calling this function, you may
@@ -256,20 +256,20 @@ GList *list = gtk_icon_view_get_selected_items (GTK_ICON_VIEW (icon_view));
 
 // use list
 
-g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</code></pre></div><h5 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h5>
+g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);</code></pre></div><h5 id="returns-24"><a href="#returns-24">Returns</a></h5>
 <p>A <code>GList</code> containing a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> for each selected row.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.selection_mode" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#622-624">source</a></span><a href="#method.selection_mode" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.selection_mode" class="fnname">selection_mode</a>(&amp;self) -&gt; <a class="enum" href="enum.SelectionMode.html" title="enum gtk4::SelectionMode">SelectionMode</a></h4></section></summary><div class="docblock"><p>Gets the selection mode of the @self.</p>
-<h5 id="returns-25" class="section-header"><a href="#returns-25">Returns</a></h5>
+<h5 id="returns-25"><a href="#returns-25">Returns</a></h5>
 <p>the current selection mode</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#633-635">source</a></span><a href="#method.spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.spacing" class="fnname">spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the value of the ::spacing property.</p>
-<h5 id="returns-26" class="section-header"><a href="#returns-26">Returns</a></h5>
+<h5 id="returns-26"><a href="#returns-26">Returns</a></h5>
 <p>the space between cells</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.text_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#644-646">source</a></span><a href="#method.text_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.text_column" class="fnname">text_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the column with text for @self.</p>
-<h5 id="returns-27" class="section-header"><a href="#returns-27">Returns</a></h5>
+<h5 id="returns-27"><a href="#returns-27">Returns</a></h5>
 <p>the text column, or -1 if it’s unset.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.tooltip_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#657-659">source</a></span><a href="#method.tooltip_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.tooltip_column" class="fnname">tooltip_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the column of @self’s model which is being used for
 displaying tooltips on @self’s rows.</p>
-<h5 id="returns-28" class="section-header"><a href="#returns-28">Returns</a></h5>
+<h5 id="returns-28"><a href="#returns-28">Returns</a></h5>
 <p>the index of the tooltip column that is currently being
 used, or -1 if this is disabled.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.tooltip_context" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#692-717">source</a></span><a href="#method.tooltip_context" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.tooltip_context" class="fnname">tooltip_context</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;keyboard_tip: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, <a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="struct" href="struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></section></summary><div class="docblock"><p>This function is supposed to be used in a <code>GtkWidget::query-tooltip</code>
@@ -281,37 +281,37 @@ coordinates (<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html"
 tooltips the item returned will be the cursor item. When <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then any of
 @model, @path and @iter which have been provided will be set to point to
 that row and the corresponding model.</p>
-<h6 id="x-2" class="section-header"><a href="#x-2"><code>x</code></a></h6>
+<h6 id="x-2"><a href="#x-2"><code>x</code></a></h6>
 <p>the x coordinate (relative to widget coordinates)</p>
-<h6 id="y-2" class="section-header"><a href="#y-2"><code>y</code></a></h6>
+<h6 id="y-2"><a href="#y-2"><code>y</code></a></h6>
 <p>the y coordinate (relative to widget coordinates)</p>
-<h6 id="keyboard_tip" class="section-header"><a href="#keyboard_tip"><code>keyboard_tip</code></a></h6>
+<h6 id="keyboard_tip"><a href="#keyboard_tip"><code>keyboard_tip</code></a></h6>
 <p>whether this is a keyboard tooltip or not</p>
-<h5 id="returns-29" class="section-header"><a href="#returns-29">Returns</a></h5>
+<h5 id="returns-29"><a href="#returns-29">Returns</a></h5>
 <p>whether or not the given tooltip context points to an item</p>
-<h6 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h6>
+<h6 id="model-1"><a href="#model-1"><code>model</code></a></h6>
 <p>a pointer to receive a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a></p>
-<h6 id="path-8" class="section-header"><a href="#path-8"><code>path</code></a></h6>
+<h6 id="path-8"><a href="#path-8"><code>path</code></a></h6>
 <p>a pointer to receive a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
-<h6 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h6>
+<h6 id="iter"><a href="#iter"><code>iter</code></a></h6>
 <p>a pointer to receive a <a href="struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.visible_range" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#735-750">source</a></span><a href="#method.visible_range" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.visible_range" class="fnname">visible_range</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @start_path and @end_path to be the first and last visible path.
 Note that there may be invisible paths in between.</p>
 <p>Both paths should be freed with gtk_tree_path_free() after use.</p>
-<h5 id="returns-30" class="section-header"><a href="#returns-30">Returns</a></h5>
+<h5 id="returns-30"><a href="#returns-30">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if valid paths were placed in @start_path and @end_path</p>
-<h6 id="start_path" class="section-header"><a href="#start_path"><code>start_path</code></a></h6>
+<h6 id="start_path"><a href="#start_path"><code>start_path</code></a></h6>
 <p>Return location for start of region</p>
-<h6 id="end_path" class="section-header"><a href="#end_path"><code>end_path</code></a></h6>
+<h6 id="end_path"><a href="#end_path"><code>end_path</code></a></h6>
 <p>Return location for end of region</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.item_activated" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#756-763">source</a></span><a href="#method.item_activated" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.item_activated" class="fnname">item_activated</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section></summary><div class="docblock"><p>Activates the item determined by @path.</p>
-<h6 id="path-9" class="section-header"><a href="#path-9"><code>path</code></a></h6>
+<h6 id="path-9"><a href="#path-9"><code>path</code></a></h6>
 <p>The <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to be activated</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.path_is_selected" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#774-781">source</a></span><a href="#method.path_is_selected" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.path_is_selected" class="fnname">path_is_selected</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the icon pointed to by @path is currently
 selected. If @path does not point to a valid location, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned.</p>
-<h6 id="path-10" class="section-header"><a href="#path-10"><code>path</code></a></h6>
+<h6 id="path-10"><a href="#path-10"><code>path</code></a></h6>
 <p>A <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to check selection on.</p>
-<h5 id="returns-31" class="section-header"><a href="#returns-31">Returns</a></h5>
+<h5 id="returns-31"><a href="#returns-31">Returns</a></h5>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @path is selected.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.scroll_to_path" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#806-816">source</a></span><a href="#method.scroll_to_path" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.scroll_to_path" class="fnname">scroll_to_path</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;use_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;row_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;col_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a><br>)</h4></section></summary><div class="docblock"><p>Moves the alignments of @self to the position specified by @path.
 @row_align determines where the row is placed, and @col_align determines
@@ -325,36 +325,36 @@ position.  If the item is currently visible on the screen, nothing is done.</p>
 <p>This function only works if the model is set, and @path is a valid row on
 the model. If the model changes before the @self is realized, the
 centered path will be modified to reflect this change.</p>
-<h6 id="path-11" class="section-header"><a href="#path-11"><code>path</code></a></h6>
+<h6 id="path-11"><a href="#path-11"><code>path</code></a></h6>
 <p>The path of the item to move to.</p>
-<h6 id="use_align" class="section-header"><a href="#use_align"><code>use_align</code></a></h6>
+<h6 id="use_align"><a href="#use_align"><code>use_align</code></a></h6>
 <p>whether to use alignment arguments, or <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
-<h6 id="row_align" class="section-header"><a href="#row_align"><code>row_align</code></a></h6>
+<h6 id="row_align"><a href="#row_align"><code>row_align</code></a></h6>
 <p>The vertical alignment of the item specified by @path.</p>
-<h6 id="col_align" class="section-header"><a href="#col_align"><code>col_align</code></a></h6>
+<h6 id="col_align"><a href="#col_align"><code>col_align</code></a></h6>
 <p>The horizontal alignment of the item specified by @path.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.select_all" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#821-825">source</a></span><a href="#method.select_all" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.select_all" class="fnname">select_all</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Selects all the icons. @self must has its selection mode set
 to <a href="enum.SelectionMode.html#variant.Multiple" title="crate::SelectionMode::Multiple"><code>SelectionMode::Multiple</code></a>.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.select_path" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#831-838">source</a></span><a href="#method.select_path" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.select_path" class="fnname">select_path</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section></summary><div class="docblock"><p>Selects the row at @path.</p>
-<h6 id="path-12" class="section-header"><a href="#path-12"><code>path</code></a></h6>
+<h6 id="path-12"><a href="#path-12"><code>path</code></a></h6>
 <p>The <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to be selected.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.selected_foreach" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#845-866">source</a></span><a href="#method.selected_foreach" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.selected_foreach" class="fnname">selected_foreach</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;<a class="struct" href="struct.IconView.html" title="struct gtk4::IconView">IconView</a>, &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)&gt;(&amp;self, func: P)</h4></section></summary><div class="docblock"><p>Calls a function for each selected icon. Note that the model or
 selection cannot be modified from within this function.</p>
-<h6 id="func" class="section-header"><a href="#func"><code>func</code></a></h6>
+<h6 id="func"><a href="#func"><code>func</code></a></h6>
 <p>The function to call for each selected icon.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_activate_on_single_click" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#873-880">source</a></span><a href="#method.set_activate_on_single_click" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_activate_on_single_click" class="fnname">set_activate_on_single_click</a>(&amp;self, single: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Causes the <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>::item-activated signal to be emitted on
 a single click instead of a double click.</p>
-<h6 id="single" class="section-header"><a href="#single"><code>single</code></a></h6>
+<h6 id="single"><a href="#single"><code>single</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to emit item-activated on a single click</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_column_spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#887-891">source</a></span><a href="#method.set_column_spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_column_spacing" class="fnname">set_column_spacing</a>(&amp;self, column_spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::column-spacing property which specifies the space
 which is inserted between the columns of the icon view.</p>
-<h6 id="column_spacing" class="section-header"><a href="#column_spacing"><code>column_spacing</code></a></h6>
+<h6 id="column_spacing"><a href="#column_spacing"><code>column_spacing</code></a></h6>
 <p>the column spacing</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_columns" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#900-904">source</a></span><a href="#method.set_columns" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_columns" class="fnname">set_columns</a>(&amp;self, columns: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::columns property which determines in how
 many columns the icons are arranged. If @columns is
 -1, the number of columns will be chosen automatically
 to fill the available area.</p>
-<h6 id="columns" class="section-header"><a href="#columns"><code>columns</code></a></h6>
+<h6 id="columns"><a href="#columns"><code>columns</code></a></h6>
 <p>the number of columns</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_cursor" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#922-936">source</a></span><a href="#method.set_cursor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_cursor" class="fnname">set_cursor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;cell: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;start_editing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</h4></section></summary><div class="docblock"><p>Sets the current keyboard focus to be at @path, and selects it.  This is
 useful when you want to focus the user’s attention on a particular item.
@@ -363,50 +363,50 @@ it. Additionally, if @start_editing is <a href="https://doc.rust-lang.org/nightl
 started in the specified cell.</p>
 <p>This function is often followed by <code>gtk_widget_grab_focus (icon_view)</code> in order to give keyboard focus to the widget.
 Please note that editing can only happen when the widget is realized.</p>
-<h6 id="path-13" class="section-header"><a href="#path-13"><code>path</code></a></h6>
+<h6 id="path-13"><a href="#path-13"><code>path</code></a></h6>
 <p>A <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
-<h6 id="cell-3" class="section-header"><a href="#cell-3"><code>cell</code></a></h6>
+<h6 id="cell-3"><a href="#cell-3"><code>cell</code></a></h6>
 <p>One of the cell renderers of @self</p>
-<h6 id="start_editing" class="section-header"><a href="#start_editing"><code>start_editing</code></a></h6>
+<h6 id="start_editing"><a href="#start_editing"><code>start_editing</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the specified cell should start being edited.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_drag_dest_item" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#944-952">source</a></span><a href="#method.set_drag_dest_item" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_drag_dest_item" class="fnname">set_drag_dest_item</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;pos: <a class="enum" href="enum.IconViewDropPosition.html" title="enum gtk4::IconViewDropPosition">IconViewDropPosition</a><br>)</h4></section></summary><div class="docblock"><p>Sets the item that is highlighted for feedback.</p>
-<h6 id="path-14" class="section-header"><a href="#path-14"><code>path</code></a></h6>
+<h6 id="path-14"><a href="#path-14"><code>path</code></a></h6>
 <p>The path of the item to highlight</p>
-<h6 id="pos-2" class="section-header"><a href="#pos-2"><code>pos</code></a></h6>
+<h6 id="pos-2"><a href="#pos-2"><code>pos</code></a></h6>
 <p>Specifies where to drop, relative to the item</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_item_orientation" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#959-963">source</a></span><a href="#method.set_item_orientation" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_item_orientation" class="fnname">set_item_orientation</a>(&amp;self, orientation: <a class="enum" href="enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>)</h4></section></summary><div class="docblock"><p>Sets the ::item-orientation property which determines whether the labels
 are drawn beside the icons instead of below.</p>
-<h6 id="orientation" class="section-header"><a href="#orientation"><code>orientation</code></a></h6>
+<h6 id="orientation"><a href="#orientation"><code>orientation</code></a></h6>
 <p>the relative position of texts and icons</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_item_padding" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#970-974">source</a></span><a href="#method.set_item_padding" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_item_padding" class="fnname">set_item_padding</a>(&amp;self, item_padding: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>:item-padding property which specifies the padding
 around each of the icon view’s items.</p>
-<h6 id="item_padding" class="section-header"><a href="#item_padding"><code>item_padding</code></a></h6>
+<h6 id="item_padding"><a href="#item_padding"><code>item_padding</code></a></h6>
 <p>the item padding</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_item_width" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#982-986">source</a></span><a href="#method.set_item_width" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_item_width" class="fnname">set_item_width</a>(&amp;self, item_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::item-width property which specifies the width
 to use for each item. If it is set to -1, the icon view will
 automatically determine a suitable item size.</p>
-<h6 id="item_width" class="section-header"><a href="#item_width"><code>item_width</code></a></h6>
+<h6 id="item_width"><a href="#item_width"><code>item_width</code></a></h6>
 <p>the width for each item</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_margin" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#994-998">source</a></span><a href="#method.set_margin" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_margin" class="fnname">set_margin</a>(&amp;self, margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::margin property which specifies the space
 which is inserted at the top, bottom, left and right
 of the icon view.</p>
-<h6 id="margin" class="section-header"><a href="#margin"><code>margin</code></a></h6>
+<h6 id="margin"><a href="#margin"><code>margin</code></a></h6>
 <p>the margin</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_markup_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1007-1011">source</a></span><a href="#method.set_markup_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_markup_column" class="fnname">set_markup_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the column with markup information for @self to be
 @column. The markup column must be of type <code>G_TYPE_STRING</code>.
 If the markup column is set to something, it overrides
 the text column set by gtk_icon_view_set_text_column().</p>
-<h6 id="column" class="section-header"><a href="#column"><code>column</code></a></h6>
+<h6 id="column"><a href="#column"><code>column</code></a></h6>
 <p>A column in the currently used model, or -1 to display no text</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_model" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1020-1027">source</a></span><a href="#method.set_model" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_model" class="fnname">set_model</a>(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the model for a <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>.
 If the @self already has a model set, it will remove
 it before setting the new model.  If @model is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then
 it will unset the old model.</p>
-<h6 id="model-2" class="section-header"><a href="#model-2"><code>model</code></a></h6>
+<h6 id="model-2"><a href="#model-2"><code>model</code></a></h6>
 <p>The model.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_pixbuf_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1034-1038">source</a></span><a href="#method.set_pixbuf_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_pixbuf_column" class="fnname">set_pixbuf_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the column with pixbufs for @self to be @column. The pixbuf
 column must be of type <code>GDK_TYPE_PIXBUF</code></p>
-<h6 id="column-1" class="section-header"><a href="#column-1"><code>column</code></a></h6>
+<h6 id="column-1"><a href="#column-1"><code>column</code></a></h6>
 <p>A column in the currently used model, or -1 to disable</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_reorderable" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1055-1059">source</a></span><a href="#method.set_reorderable" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_reorderable" class="fnname">set_reorderable</a>(&amp;self, reorderable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>This function is a convenience function to allow you to reorder models that
 support the <code>GtkTreeDragSourceIface</code> and the <code>GtkTreeDragDestIface</code>. Both
@@ -419,32 +419,32 @@ drop can not be used in a reorderable view for any other purpose.</p>
 <p>This function does not give you any degree of control over the order – any
 reordering is allowed.  If more control is needed, you should probably
 handle drag and drop manually.</p>
-<h6 id="reorderable" class="section-header"><a href="#reorderable"><code>reorderable</code></a></h6>
+<h6 id="reorderable"><a href="#reorderable"><code>reorderable</code></a></h6>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if the list of items can be reordered.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_row_spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1066-1070">source</a></span><a href="#method.set_row_spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_row_spacing" class="fnname">set_row_spacing</a>(&amp;self, row_spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::row-spacing property which specifies the space
 which is inserted between the rows of the icon view.</p>
-<h6 id="row_spacing" class="section-header"><a href="#row_spacing"><code>row_spacing</code></a></h6>
+<h6 id="row_spacing"><a href="#row_spacing"><code>row_spacing</code></a></h6>
 <p>the row spacing</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_selection_mode" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1076-1080">source</a></span><a href="#method.set_selection_mode" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_selection_mode" class="fnname">set_selection_mode</a>(&amp;self, mode: <a class="enum" href="enum.SelectionMode.html" title="enum gtk4::SelectionMode">SelectionMode</a>)</h4></section></summary><div class="docblock"><p>Sets the selection mode of the @self.</p>
-<h6 id="mode" class="section-header"><a href="#mode"><code>mode</code></a></h6>
+<h6 id="mode"><a href="#mode"><code>mode</code></a></h6>
 <p>The selection mode</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_spacing" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1088-1092">source</a></span><a href="#method.set_spacing" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_spacing" class="fnname">set_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the ::spacing property which specifies the space
 which is inserted between the cells (i.e. the icon and
 the text) of an item.</p>
-<h6 id="spacing" class="section-header"><a href="#spacing"><code>spacing</code></a></h6>
+<h6 id="spacing"><a href="#spacing"><code>spacing</code></a></h6>
 <p>the spacing</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_text_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1099-1103">source</a></span><a href="#method.set_text_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_text_column" class="fnname">set_text_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the column with text for @self to be @column. The text
 column must be of type <code>G_TYPE_STRING</code>.</p>
-<h6 id="column-2" class="section-header"><a href="#column-2"><code>column</code></a></h6>
+<h6 id="column-2"><a href="#column-2"><code>column</code></a></h6>
 <p>A column in the currently used model, or -1 to display no text</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_tooltip_cell" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1116-1130">source</a></span><a href="#method.set_tooltip_cell" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_tooltip_cell" class="fnname">set_tooltip_cell</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;tooltip: &amp;<a class="struct" href="struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;cell: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;<br>)</h4></section></summary><div class="docblock"><p>Sets the tip area of @tooltip to the area which @cell occupies in
 the item pointed to by @path. See also gtk_tooltip_set_tip_area().</p>
 <p>See also gtk_icon_view_set_tooltip_column() for a simpler alternative.</p>
-<h6 id="tooltip" class="section-header"><a href="#tooltip"><code>tooltip</code></a></h6>
+<h6 id="tooltip"><a href="#tooltip"><code>tooltip</code></a></h6>
 <p>a <a href="struct.Tooltip.html" title="crate::Tooltip"><code>Tooltip</code></a></p>
-<h6 id="path-15" class="section-header"><a href="#path-15"><code>path</code></a></h6>
+<h6 id="path-15"><a href="#path-15"><code>path</code></a></h6>
 <p>a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
-<h6 id="cell-4" class="section-header"><a href="#cell-4"><code>cell</code></a></h6>
+<h6 id="cell-4"><a href="#cell-4"><code>cell</code></a></h6>
 <p>a <a href="struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_tooltip_column" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1145-1149">source</a></span><a href="#method.set_tooltip_column" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_tooltip_column" class="fnname">set_tooltip_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>If you only plan to have simple (text-only) tooltips on full items, you
 can use this function to have <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a> handle these automatically
@@ -454,18 +454,18 @@ containing the tooltip texts, or -1 to disable this feature.</p>
 @self will connect a <code>GtkWidget::query-tooltip</code> signal handler.</p>
 <p>Note that the signal handler sets the text with gtk_tooltip_set_markup(),
 so &amp;, &lt;, etc have to be escaped in the text.</p>
-<h6 id="column-3" class="section-header"><a href="#column-3"><code>column</code></a></h6>
+<h6 id="column-3"><a href="#column-3"><code>column</code></a></h6>
 <p>an integer, which is a valid column number for @self’s model</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.set_tooltip_item" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1159-1167">source</a></span><a href="#method.set_tooltip_item" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.set_tooltip_item" class="fnname">set_tooltip_item</a>(&amp;self, tooltip: &amp;<a class="struct" href="struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section></summary><div class="docblock"><p>Sets the tip area of @tooltip to be the area covered by the item at @path.
 See also gtk_icon_view_set_tooltip_column() for a simpler alternative.
 See also gtk_tooltip_set_tip_area().</p>
-<h6 id="tooltip-1" class="section-header"><a href="#tooltip-1"><code>tooltip</code></a></h6>
+<h6 id="tooltip-1"><a href="#tooltip-1"><code>tooltip</code></a></h6>
 <p>a <a href="struct.Tooltip.html" title="crate::Tooltip"><code>Tooltip</code></a></p>
-<h6 id="path-16" class="section-header"><a href="#path-16"><code>path</code></a></h6>
+<h6 id="path-16"><a href="#path-16"><code>path</code></a></h6>
 <p>a <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.unselect_all" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1171-1175">source</a></span><a href="#method.unselect_all" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.unselect_all" class="fnname">unselect_all</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Unselects all the icons.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.unselect_path" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1181-1188">source</a></span><a href="#method.unselect_path" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.unselect_path" class="fnname">unselect_path</a>(&amp;self, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section></summary><div class="docblock"><p>Unselects the row at @path.</p>
-<h6 id="path-17" class="section-header"><a href="#path-17"><code>path</code></a></h6>
+<h6 id="path-17"><a href="#path-17"><code>path</code></a></h6>
 <p>The <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to be unselected.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.unset_model_drag_dest" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1193-1197">source</a></span><a href="#method.unset_model_drag_dest" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.unset_model_drag_dest" class="fnname">unset_model_drag_dest</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Undoes the effect of gtk_icon_view_enable_model_drag_dest(). Calling this
 method sets <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>:reorderable to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
@@ -488,7 +488,7 @@ to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="fa
 “activate-on-single-click” property set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. It is also
 emitted when a non-editable item is selected and one of the keys:
 Space, Return or Enter is pressed.</p>
-<h6 id="path-18" class="section-header"><a href="#path-18"><code>path</code></a></h6>
+<h6 id="path-18"><a href="#path-18"><code>path</code></a></h6>
 <p>the <a href="struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> for the activated item</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.connect_move_cursor" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1313-1348">source</a></span><a href="#method.connect_move_cursor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_move_cursor" class="fnname">connect_move_cursor</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>The ::move-cursor signal is a
 [keybinding signal]<a href="struct.SignalAction.html" title="crate::SignalAction"><code>SignalAction</code></a>
@@ -504,13 +504,13 @@ programmatically.</p>
 All of these will extend the selection when combined with
 the Shift modifier.</li>
 </ul>
-<h6 id="step" class="section-header"><a href="#step"><code>step</code></a></h6>
+<h6 id="step"><a href="#step"><code>step</code></a></h6>
 <p>the granularity of the move, as a <a href="enum.MovementStep.html" title="crate::MovementStep"><code>MovementStep</code></a></p>
-<h6 id="count" class="section-header"><a href="#count"><code>count</code></a></h6>
+<h6 id="count"><a href="#count"><code>count</code></a></h6>
 <p>the number of @step units to move</p>
-<h6 id="extend" class="section-header"><a href="#extend"><code>extend</code></a></h6>
+<h6 id="extend"><a href="#extend"><code>extend</code></a></h6>
 <p>whether to extend the selection</p>
-<h6 id="modify" class="section-header"><a href="#modify"><code>modify</code></a></h6>
+<h6 id="modify"><a href="#modify"><code>modify</code></a></h6>
 <p>whether to modify the selection</p>
 </div></details><section id="method.emit_move_cursor" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1350-1358">source</a></span><a href="#method.emit_move_cursor" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.emit_move_cursor" class="fnname">emit_move_cursor</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;step: <a class="enum" href="enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;extend: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;modify: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><details class="rustdoc-toggle method-toggle" open><summary><section id="method.connect_select_all" class="method has-srclink"><span class="rightside"><a class="srclink" href="../src/gtk4/auto/icon_view.rs.html#1369-1388">source</a></span><a href="#method.connect_select_all" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.connect_select_all" class="fnname">connect_select_all</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>A [keybinding signal]<a href="struct.SignalAction.html" title="crate::SignalAction"><code>SignalAction</code></a>
 which gets emitted when the user selects all items.</p>
@@ -666,5 +666,5 @@ invalidated. An invalidated closure will ignore any calls to
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#595">source</a></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fnname">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryFromClosureReturnValue" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#372-390">source</a></span><a href="#impl-TryFromClosureReturnValue" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html" title="trait glib::closure::TryFromClosureReturnValue">TryFromClosureReturnValue</a> for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + for&lt;'a&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/trait.StaticType.html" title="trait glib::types::StaticType">StaticType</a>,&nbsp;</span></h3></section></summary><div class="impl-items"><section id="method.try_from_closure_return_value" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/closure.rs.html#373">source</a></span><a href="#method.try_from_closure_return_value" class="anchor"></a><h4 class="code-header">pub fn <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/closure/trait.TryFromClosureReturnValue.html#tymethod.try_from_closure_return_value" class="fnname">try_from_closure_return_value</a>(v: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-TryInto%3CU%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#574-583">source</a></span><a href="#impl-TryInto%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="type trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#580">source</a></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">pub fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fnname">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
-</div></details></div></details><section id="impl-CanDowncast%3CSub%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#295">source</a></span><a href="#impl-CanDowncast%3CSub%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;Super, Sub&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.CanDowncast.html" title="trait glib::object::CanDowncast">CanDowncast</a>&lt;Sub&gt; for Super <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;Super: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;Super&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;Super&gt;,&nbsp;</span></h3></section><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (f624427f8 2022-02-06)" ></div>
+</div></details></div></details><section id="impl-CanDowncast%3CSub%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/object.rs.html#295">source</a></span><a href="#impl-CanDowncast%3CSub%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;Super, Sub&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.CanDowncast.html" title="trait glib::object::CanDowncast">CanDowncast</a>&lt;Sub&gt; for Super <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;Super: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;Super&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;Super&gt;,&nbsp;</span></h3></section><section id="impl-FromValueOptional%3C%27a%3E" class="impl has-srclink"><span class="rightside"><a class="srclink" href="https://gtk-rs.org/gtk-rs-core/git/docs/src/glib/value.rs.html#239-244">source</a></span><a href="#impl-FromValueOptional%3C%27a%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;'a, T, C&gt; <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValueOptional.html" title="trait glib::value::FromValueOptional">FromValueOptional</a>&lt;'a&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.FromValue.html" title="trait glib::value::FromValue">FromValue</a>&lt;'a, Checker = C&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;C: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/trait.ValueTypeChecker.html" title="trait glib::value::ValueTypeChecker">ValueTypeChecker</a>&lt;Error = <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/enum.ValueTypeMismatchOrNoneError.html" title="enum glib::value::ValueTypeMismatchOrNoneError">ValueTypeMismatchOrNoneError</a>&gt;,&nbsp;</span></h3></section></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0-nightly (e646f3d2a 2022-02-10)" ></div>
 </body></html>
