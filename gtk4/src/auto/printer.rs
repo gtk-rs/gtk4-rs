@@ -5,13 +5,10 @@
 use crate::PageSetup;
 use crate::PaperSize;
 use crate::PrintCapabilities;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -27,14 +24,6 @@ glib::wrapper! {
 }
 
 impl Printer {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Printer`] objects.
-    ///
-    /// This method returns an instance of [`PrinterBuilder`](crate::builders::PrinterBuilder) which can be used to create [`Printer`] objects.
-    pub fn builder() -> PrinterBuilder {
-        PrinterBuilder::default()
-    }
-
     #[doc(alias = "gtk_printer_accepts_pdf")]
     pub fn accepts_pdf(&self) -> bool {
         unsafe { from_glib(ffi::gtk_printer_accepts_pdf(self.to_glib_none().0)) }
@@ -372,66 +361,5 @@ impl fmt::Display for Printer {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(&self.name())
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Printer`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct PrinterBuilder {
-    accepts_pdf: Option<bool>,
-    accepts_ps: Option<bool>,
-    is_virtual: Option<bool>,
-    name: Option<String>,
-}
-
-impl PrinterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`PrinterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Printer`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Printer {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref accepts_pdf) = self.accepts_pdf {
-            properties.push(("accepts-pdf", accepts_pdf));
-        }
-        if let Some(ref accepts_ps) = self.accepts_ps {
-            properties.push(("accepts-ps", accepts_ps));
-        }
-        if let Some(ref is_virtual) = self.is_virtual {
-            properties.push(("is-virtual", is_virtual));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        glib::Object::new::<Printer>(&properties).expect("Failed to create an instance of Printer")
-    }
-
-    pub fn accepts_pdf(mut self, accepts_pdf: bool) -> Self {
-        self.accepts_pdf = Some(accepts_pdf);
-        self
-    }
-
-    pub fn accepts_ps(mut self, accepts_ps: bool) -> Self {
-        self.accepts_ps = Some(accepts_ps);
-        self
-    }
-
-    pub fn is_virtual(mut self, is_virtual: bool) -> Self {
-        self.is_virtual = Some(is_virtual);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
     }
 }

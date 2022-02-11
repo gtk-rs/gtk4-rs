@@ -1682,6 +1682,7 @@ status = "generate"
 [[object]]
 name = "Gtk.Printer"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     pattern = "(new|get_backend)"

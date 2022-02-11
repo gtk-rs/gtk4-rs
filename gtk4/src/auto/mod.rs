@@ -1244,9 +1244,6 @@ pub mod builders {
     #[cfg(any(target_os = "linux", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
     pub use super::print_unix_dialog::PrintUnixDialogBuilder;
-    #[cfg(any(target_os = "linux", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-    pub use super::printer::PrinterBuilder;
     pub use super::progress_bar::ProgressBarBuilder;
     pub use super::revealer::RevealerBuilder;
     pub use super::scale::ScaleBuilder;
