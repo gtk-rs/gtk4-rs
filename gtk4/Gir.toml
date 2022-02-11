@@ -1661,6 +1661,7 @@ cfg_condition = "target_os = \"linux\""
 [[object]]
 name = "Gtk.PrintJob"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "send"
