@@ -27,13 +27,6 @@ impl EventController {
     pub const NONE: Option<&'static EventController> = None;
 }
 
-impl fmt::Display for EventController {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&EventControllerExt::name(self))
-    }
-}
-
 pub trait EventControllerExt: 'static {
     #[doc(alias = "gtk_event_controller_get_current_event")]
     #[doc(alias = "get_current_event")]
@@ -53,7 +46,7 @@ pub trait EventControllerExt: 'static {
 
     #[doc(alias = "gtk_event_controller_get_name")]
     #[doc(alias = "get_name")]
-    fn name(&self) -> glib::GString;
+    fn name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_event_controller_get_propagation_limit")]
     #[doc(alias = "get_propagation_limit")]
@@ -71,7 +64,7 @@ pub trait EventControllerExt: 'static {
     fn reset(&self);
 
     #[doc(alias = "gtk_event_controller_set_name")]
-    fn set_name(&self, name: &str);
+    fn set_name(&self, name: Option<&str>);
 
     #[doc(alias = "gtk_event_controller_set_propagation_limit")]
     fn set_propagation_limit(&self, limit: PropagationLimit);
@@ -121,7 +114,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         unsafe { ffi::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0) }
     }
 
-    fn name(&self) -> glib::GString {
+    fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_name(
                 self.as_ref().to_glib_none().0,
@@ -159,7 +152,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn set_name(&self, name: &str) {
+    fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_event_controller_set_name(
                 self.as_ref().to_glib_none().0,
@@ -284,5 +277,11 @@ impl<O: IsA<EventController>> EventControllerExt for O {
                 Box_::into_raw(f),
             )
         }
+    }
+}
+
+impl fmt::Display for EventController {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str("EventController")
     }
 }

@@ -48,11 +48,11 @@ pub trait FileChooserExt: 'static {
 
     #[doc(alias = "gtk_file_chooser_get_current_folder")]
     #[doc(alias = "get_current_folder")]
-    fn current_folder(&self) -> gio::File;
+    fn current_folder(&self) -> Option<gio::File>;
 
     #[doc(alias = "gtk_file_chooser_get_current_name")]
     #[doc(alias = "get_current_name")]
-    fn current_name(&self) -> glib::GString;
+    fn current_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_file_chooser_get_file")]
     #[doc(alias = "get_file")]
@@ -97,7 +97,7 @@ pub trait FileChooserExt: 'static {
     fn set_create_folders(&self, create_folders: bool);
 
     #[doc(alias = "gtk_file_chooser_set_current_folder")]
-    fn set_current_folder(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error>;
+    fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_set_current_name")]
     fn set_current_name(&self, name: &str);
@@ -182,7 +182,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn current_folder(&self) -> gio::File {
+    fn current_folder(&self) -> Option<gio::File> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_folder(
                 self.as_ref().to_glib_none().0,
@@ -190,7 +190,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn current_name(&self) -> glib::GString {
+    fn current_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_name(
                 self.as_ref().to_glib_none().0,
@@ -306,12 +306,12 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn set_current_folder(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error> {
+    fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let is_ok = ffi::gtk_file_chooser_set_current_folder(
                 self.as_ref().to_glib_none().0,
-                file.as_ref().to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
                 &mut error,
             );
             assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());

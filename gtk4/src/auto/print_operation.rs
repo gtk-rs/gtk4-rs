@@ -243,7 +243,7 @@ pub trait PrintOperationExt: 'static {
 
     #[doc(alias = "gtk_print_operation_get_print_settings")]
     #[doc(alias = "get_print_settings")]
-    fn print_settings(&self) -> PrintSettings;
+    fn print_settings(&self) -> Option<PrintSettings>;
 
     #[doc(alias = "gtk_print_operation_get_status")]
     #[doc(alias = "get_status")]
@@ -494,7 +494,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe { ffi::gtk_print_operation_get_n_pages_to_print(self.as_ref().to_glib_none().0) }
     }
 
-    fn print_settings(&self) -> PrintSettings {
+    fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_print_settings(
                 self.as_ref().to_glib_none().0,
