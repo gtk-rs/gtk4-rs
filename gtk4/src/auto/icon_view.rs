@@ -217,7 +217,7 @@ impl IconView {
 
     #[doc(alias = "gtk_icon_view_get_drag_dest_item")]
     #[doc(alias = "get_drag_dest_item")]
-    pub fn drag_dest_item(&self) -> (TreePath, IconViewDropPosition) {
+    pub fn drag_dest_item(&self) -> (Option<TreePath>, IconViewDropPosition) {
         unsafe {
             let mut path = ptr::null_mut();
             let mut pos = mem::MaybeUninit::uninit();

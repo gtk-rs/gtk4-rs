@@ -47,7 +47,7 @@ pub trait DeviceExt: 'static {
 
     #[doc(alias = "gdk_device_get_device_tool")]
     #[doc(alias = "get_device_tool")]
-    fn device_tool(&self) -> DeviceTool;
+    fn device_tool(&self) -> Option<DeviceTool>;
 
     #[doc(alias = "gdk_device_get_direction")]
     #[doc(alias = "get_direction")]
@@ -89,7 +89,6 @@ pub trait DeviceExt: 'static {
     #[doc(alias = "get_seat")]
     fn seat(&self) -> Seat;
 
-    #[cfg_attr(feature = "v4_6", deprecated = "Since 4.6")]
     #[doc(alias = "gdk_device_get_source")]
     #[doc(alias = "get_source")]
     fn source(&self) -> InputSource;
@@ -159,7 +158,7 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    fn device_tool(&self) -> DeviceTool {
+    fn device_tool(&self) -> Option<DeviceTool> {
         unsafe {
             from_glib_none(ffi::gdk_device_get_device_tool(
                 self.as_ref().to_glib_none().0,
