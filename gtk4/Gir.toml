@@ -254,7 +254,6 @@ generate = [
     "Gtk.ToggleButton",
     "Gtk.Tooltip",
     "Gtk.TreeExpander",
-    "Gtk.TreeListModel",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
@@ -1970,6 +1969,11 @@ status = "generate"
 boxed_inline = true
     [[object.derive]]
     name = "Debug"
+
+[[object]]
+name = "Gtk.TreeListModel"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.TreeListRow"
