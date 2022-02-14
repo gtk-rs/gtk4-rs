@@ -1276,7 +1276,6 @@ pub mod builders {
     pub use super::text_view::TextViewBuilder;
     pub use super::toggle_button::ToggleButtonBuilder;
     pub use super::tree_expander::TreeExpanderBuilder;
-    pub use super::tree_list_model::TreeListModelBuilder;
     pub use super::tree_view::TreeViewBuilder;
     pub use super::tree_view_column::TreeViewColumnBuilder;
     pub use super::video::VideoBuilder;
