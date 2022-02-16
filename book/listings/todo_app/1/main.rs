@@ -2,6 +2,7 @@ mod todo_object;
 mod todo_row;
 mod window;
 
+use gtk::gio;
 use gtk::prelude::*;
 use gtk::Application;
 
@@ -11,6 +12,10 @@ use window::Window;
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
+
+    // Register and include resources
+    gio::resources_register_include!("todo_app_1.gresource")
+        .expect("Failed to register resources.");
 
     // Create a new application
     let app = Application::builder()

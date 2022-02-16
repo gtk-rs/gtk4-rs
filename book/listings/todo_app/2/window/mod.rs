@@ -199,20 +199,6 @@ impl Window {
         imp.list_view.set_factory(Some(&factory));
     }
 
-    // ANCHOR: setup_shortcut_window
-    fn setup_shortcut_window(&self) {
-        // Get `ShortcutsWindow` via `gtk::Builder`
-        let builder = gtk::Builder::from_string(include_str!("shortcuts.ui"));
-        let shortcuts = builder
-            .object("shortcuts")
-            .expect("Could not get object `shortcuts` from builder.");
-
-        // After calling this method,
-        // calling the action "win.show-help-overlay" will show the shortcut window
-        self.set_help_overlay(Some(&shortcuts));
-    }
-    // ANCHOR_END: setup_shortcut_window
-
     // ANCHOR: setup_filter_action
     fn setup_filter_action(&self) {
         // Get state

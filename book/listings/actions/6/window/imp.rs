@@ -6,7 +6,7 @@ use gtk::{Button, CompositeTemplate, Label};
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(file = "window.ui")]
+#[template(resource = "/org/gtk-rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub gtk_box: TemplateChild<gtk::Box>,

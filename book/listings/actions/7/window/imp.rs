@@ -8,7 +8,7 @@ use gtk::{Button, CompositeTemplate, Label};
 // ANCHOR: imp_struct
 // Object holding the state
 #[derive(CompositeTemplate)]
-#[template(file = "window.ui")]
+#[template(resource = "/org/gtk-rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub gtk_box: TemplateChild<gtk::Box>,

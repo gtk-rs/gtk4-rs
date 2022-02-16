@@ -36,6 +36,7 @@ Now we need to copy and compile the schema.
 > 
 > On Windows run:
 > ```powershell
+> mkdir C:/ProgramData/glib-2.0/schemas/
 > cp org.gtk-rs.example.gschema.xml C:/ProgramData/glib-2.0/schemas/
 > glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 > ```
