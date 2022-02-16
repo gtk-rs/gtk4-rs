@@ -1,11 +1,15 @@
 mod window;
 
+use gtk::gio;
 use gtk::prelude::*;
 use gtk::Application;
 
 use window::Window;
 
 fn main() {
+    // Register and include resources
+    gio::resources_register_include!("actions_5.gresource").expect("Failed to register resources.");
+
     // Create a new application
     let app = Application::builder()
         .application_id("org.gtk-rs.example")

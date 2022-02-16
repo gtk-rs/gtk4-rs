@@ -14,7 +14,7 @@ use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
-#[template(file = "window.ui")]
+#[template(resource = "/org/gtk-rs/Todo/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
@@ -69,7 +69,6 @@ impl ObjectImpl for Window {
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_factory();
-        obj.setup_shortcut_window();
         obj.setup_filter_action();
     }
 }

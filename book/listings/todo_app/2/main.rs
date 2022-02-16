@@ -3,6 +3,7 @@ mod todo_row;
 mod utils;
 mod window;
 
+use gtk::gio;
 use gtk::prelude::*;
 use gtk::Application;
 
@@ -12,6 +13,10 @@ use window::Window;
 fn main() {
     // Initialize logger
     pretty_env_logger::init();
+
+    // Register and include resources
+    gio::resources_register_include!("todo_app_2.gresource")
+        .expect("Failed to register resources.");
 
     // Create a new application
     let app = Application::builder()
@@ -27,10 +32,9 @@ fn main() {
 }
 
 fn setup_shortcuts(app: &Application) {
-    app.set_accels_for_action("win.filter('All')", &["<primary>a"]);
-    app.set_accels_for_action("win.filter('Open')", &["<primary>o"]);
-    app.set_accels_for_action("win.filter('Done')", &["<primary>d"]);
-    app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
+    app.set_accels_for_action("win.filter('All')", &["<Ctrl>a"]);
+    app.set_accels_for_action("win.filter('Open')", &["<Ctrl>o"]);
+    app.set_accels_for_action("win.filter('Done')", &["<Ctrl>d"]);
 }
 // ANCHOR_END: main
 
