@@ -34,7 +34,7 @@ The answer is that it is so common to add actions to windows and applications th
 - "app" for actions global to the application, and
 - "win" for actions tied to an application window.
 
-If that was not the case, we would have to add the action group manually via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
+If that had not been the case, we would have to add the action group manually via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
 
 <span class="filename">Filename: listings/actions/2/main.rs</span>
 
@@ -92,10 +92,10 @@ Actionable widgets are also easily accessible through the interface builder.
 As usual, we build up the window via a composite template.
 Within the template we can then set the "action-name" and "action-target" properties.
 
-<span class="filename">Filename: listings/actions/5/window/window.ui</span>
+<span class="filename">Filename: listings/actions/5/resources/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/actions/5/window/window.ui}}
+{{#rustdoc_include ../listings/actions/5/resources/window.ui}}
 ```
 
 We will connect the actions and add them to the window in the `Window::add_actions` method.
@@ -161,7 +161,7 @@ We don't need the action state to implement orientation switching, however it is
 Even though [`gio::Menu`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html) can also be created with the bindings, the most convenient way is to use the interface builder for that.
 We do that by adding the menu in front of the template.
 
-<span class="filename">Filename: listings/actions/6/window/window.ui</span>
+<span class="filename">Filename: listings/actions/6/resources/window.ui</span>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -208,7 +208,7 @@ We do that by adding the menu in front of the template.
 ```
 
 Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
-The documentation for `PopoverMenu` also explains its `xml` syntax for the interface builder.
+The [documentation](../docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
 
 Also note how we specified the target:
 
@@ -236,8 +236,7 @@ Your browser does not support the video tag.
 
 >We changed the icon of the `MenuButton` by setting its property "icon-name" to "open-menu-symbolic".
 >You can find more icons with the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/).
->Pre-installed system icons such as "open-menu-symbolic" can be used without additional steps.
->We will learn in the [resources](resources.html) chapter how to bundle the others.
+>They can be embedded with [`gio::Resource`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html) and then references within the composite templates (or other places).
 
 ## Settings
 
@@ -251,8 +250,9 @@ First we create a schema with settings corresponding to the stateful actions we 
 {{#rustdoc_include ../listings/actions/7/org.gtk-rs.example.gschema.xml}}
 ```
 
+Again, we install the schema as described in the [settings chapter](./settings.html).
 Then we add the settings to `imp::Window`.
-Since `gio::Settings` does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
+Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
 
 <span class="filename">Filename: listings/actions/7/window/imp.rs</span>
 
@@ -261,7 +261,7 @@ Since `gio::Settings` does not implement `Default`, we stop deriving `Default` f
 ```
 
 Creating stateful actions from setting entries is so common that `Settings` provides a method for that exact purpose.
-We create actions with `create_actions` and then add them to the action group of our window.
+We create actions with the[ `create_action`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.create_action) method and then add them to the action group of our window.
 
 <span class="filename">Filename: listings/actions/7/window/mod.rs</span>
 
@@ -269,7 +269,7 @@ We create actions with `create_actions` and then add them to the action group of
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings_create_actions}}
 ```
 
-Since actions from `create_actions` follow the aforementioned conventions, we can keep further changes to a minimum.
+Since actions from `create_action` follow the aforementioned conventions, we can keep further changes to a minimum.
 The action "win.sensitive-button" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
 
 We still have to specify what should happen when the actions are activated though.
