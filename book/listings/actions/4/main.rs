@@ -19,16 +19,38 @@ fn main() {
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {
+    let original_state = 0;
+    let label = Label::builder()
+        .label(&format!("Counter: {original_state}"))
+        .build();
+    // ANCHOR: button_builder
+    // Create a button with label and action
+    let button = Button::builder()
+        .label("Press me!")
+        .action_name("win.count")
+        .action_target(&1.to_variant())
+        .build();
+    // ANCHOR_END: button_builder
+
+    // Create `gtk_box` and add `button` and `label` to it
+    let gtk_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .spacing(12)
+        .halign(Align::Center)
+        .build();
+    gtk_box.append(&button);
+    gtk_box.append(&label);
+
     // Create a window and set the title
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
         .width_request(360)
-        .build();
-
-    let original_state = 0;
-    let label = Label::builder()
-        .label(&format!("Counter: {}", original_state))
+        .child(&gtk_box)
         .build();
 
     // Add action "count" to `window` taking an integer as parameter
@@ -56,35 +78,10 @@ fn build_ui(app: &Application) {
         action.set_state(&state.to_variant());
 
         // Update label with new state
-        label.set_label(&format!("Counter: {}", state));
+        label.set_label(&format!("Counter: {state}"));
     }));
 
     window.add_action(&action_count);
-
-    // ANCHOR: button_builder
-    // Create a button with label and action
-    let button = Button::builder()
-        .label("Press me!")
-        .action_name("win.count")
-        .action_target(&1.to_variant())
-        .build();
-    // ANCHOR_END: button_builder
-
-    // Create `gtk_box` and add `button` and `label` to it
-    let gtk_box = gtk::Box::builder()
-        .orientation(Orientation::Vertical)
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .spacing(12)
-        .halign(Align::Center)
-        .build();
-    gtk_box.append(&button);
-    gtk_box.append(&label);
-
-    // Add button
-    window.set_child(Some(&gtk_box));
 
     // Present window
     window.present();

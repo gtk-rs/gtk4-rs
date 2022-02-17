@@ -19,16 +19,42 @@ fn main() {
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {
-    // Create a window and set the title
+    let original_state = 0;
+    let label = Label::builder()
+        .label(&format!("Counter: {original_state}"))
+        .build();
+
+    // Create a button with label
+    let button = Button::builder().label("Press me!").build();
+
+    // Connect to "clicked" signal of `button`
+    button.connect_clicked(move |button| {
+        // Activate "win.count" and pass "1" as parameter
+        let parameter = 1;
+        button
+            .activate_action("win.count", Some(&parameter.to_variant()))
+            .expect("The action does not exist.");
+    });
+
+    // Create a `gtk::Box` and add `button` and `label` to it
+    let gtk_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .spacing(12)
+        .halign(Align::Center)
+        .build();
+    gtk_box.append(&button);
+    gtk_box.append(&label);
+
+    // Create a window, set the title and add `gtk_box` to it
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
         .width_request(360)
-        .build();
-
-    let original_state = 0;
-    let label = Label::builder()
-        .label(&format!("Counter: {}", original_state))
+        .child(&gtk_box)
         .build();
 
     // Add action "count" to `window` taking an integer as parameter
@@ -56,37 +82,9 @@ fn build_ui(app: &Application) {
         action.set_state(&state.to_variant());
 
         // Update label with new state
-        label.set_label(&format!("Counter: {}", state));
+        label.set_label(&format!("Counter: {state}"));
     }));
     window.add_action(&action_count);
-
-    // Create a button with label
-    let button = Button::builder().label("Press me!").build();
-
-    // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |button| {
-        // Activate "win.count" and pass "1" as parameter
-        let parameter = 1;
-        button
-            .activate_action("win.count", Some(&parameter.to_variant()))
-            .expect("The action does not exist.");
-    });
-
-    // Create a `gtk::Box` and add `button` and `label` to it
-    let gtk_box = gtk::Box::builder()
-        .orientation(Orientation::Vertical)
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .spacing(12)
-        .halign(Align::Center)
-        .build();
-    gtk_box.append(&button);
-    gtk_box.append(&label);
-
-    // Add `gtk_box` to the window
-    window.set_child(Some(&gtk_box));
 
     // Present window
     window.present();

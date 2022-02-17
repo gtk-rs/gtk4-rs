@@ -51,7 +51,7 @@ impl Window {
             action.set_state(&state.to_variant());
 
             // Update label with new state
-            label.set_label(&format!("Counter: {}", state));
+            label.set_label(&format!("Counter: {state}"));
         }));
         self.add_action(&action_count);
 
