@@ -280,6 +280,3 @@ button#button-1.toggle.text-button arrow:hover {
 
 When the rule applies, the `color` parameter will be set to magenta.
 You can find the full list of supported parameters in GTK's [documentation](https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties).
-
-
-In the following chapter we will learn how to make a binary bundle with CSS files, icons and any other resources that our app might need at runtime.
