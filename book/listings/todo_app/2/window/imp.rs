@@ -1,5 +1,3 @@
-use std::fs::File;
-
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
@@ -10,7 +8,6 @@ use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
 
 use crate::todo_object::TodoObject;
-use crate::utils::data_path;
 
 // ANCHOR: struct_default
 // Object holding the state
@@ -85,7 +82,7 @@ impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Store todo data in vector
-        let mut backup_data = Vec::new();
+        let mut tasks = Vec::new();
         let mut position = 0;
         while let Some(item) = window.model().item(position) {
             // Get `TodoObject` from `glib::Object`
@@ -94,14 +91,13 @@ impl WindowImpl for Window {
                 .expect("The object needs to be of type `TodoObject`.")
                 .todo_data();
             // Add todo data to vector and increase position
-            backup_data.push(todo_data);
+            tasks.push(todo_data);
             position += 1;
         }
 
-        // Save state in file
-        let file = File::create(data_path()).expect("Could not create json file.");
-        serde_json::to_writer_pretty(file, &backup_data)
-            .expect("Could not write data to json file");
+        self.settings
+            .set("tasks", &tasks)
+            .expect("Could not save data in settings.");
 
         // Pass close request on to the parent
         self.parent_close_request(window)

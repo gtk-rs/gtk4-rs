@@ -3,7 +3,6 @@ mod imp;
 use glib::Object;
 use gtk::glib;
 use gtk::subclass::prelude::*;
-use serde::{Deserialize, Serialize};
 
 glib::wrapper! {
     pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
@@ -24,7 +23,7 @@ impl TodoObject {
     }
 }
 
-#[derive(Default, Serialize, Deserialize, Clone)]
+#[derive(Default, glib::Variant, Clone)]
 pub struct TodoData {
     pub completed: bool,
     pub content: String,

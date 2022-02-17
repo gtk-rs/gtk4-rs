@@ -10,9 +10,6 @@ use window::Window;
 
 // ANCHOR: main
 fn main() {
-    // Initialize logger
-    pretty_env_logger::init();
-
     // Register and include resources
     gio::resources_register_include!("todo_app_1.gresource")
         .expect("Failed to register resources.");

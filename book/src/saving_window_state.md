@@ -37,26 +37,3 @@ We also override the `constructed` and `close_request` methods, where we load or
 
 That is it!
 Now our window retains its state between app sessions.
-
-Please note how we handle a failure in saving into the settings.
-We don't want to panic for recoverable errors.
-We might also not want to present all problems at the GUI.
-In our case we could not even do this, because the window will be immediately closed after the error occurs.
-Logging is the standard way of handling a situation like this.
-For that, we need to add the `log` crate and one of its front-ends, such as [`pretty_env_logger`](https://crates.io/crates/pretty_env_logger), to our dependencies.
-
-<span class="filename">Filename: listings/Cargo.toml</span>
-
-```toml
-[dependencies]
-log = "0.4"
-pretty_env_logger = "0.4"
-```
-
-We then have to initialize `pretty_env_logger` by calling [`init`](https://docs.rs/pretty_env_logger/0.4.0/pretty_env_logger/fn.init.html) in `main`.
-
-<span class="filename">Filename: listings/saving_window_state/1/main.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/saving_window_state/1/main.rs:main}}
-```
