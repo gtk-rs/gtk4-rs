@@ -31,9 +31,9 @@ impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     // Save window state right before the window will be closed
     fn close_request(&self, obj: &Self::Type) -> Inhibit {
-        if let Err(err) = obj.save_window_size() {
-            log::error!("Failed to save window state, {}", &err);
-        }
+        // Save window size
+        obj.save_window_size().expect("Failed to save window state");
+
         // Don't inhibit the default handler
         Inhibit(false)
     }

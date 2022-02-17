@@ -1,16 +1,12 @@
 mod imp;
 
-use std::fs::File;
-
 use crate::todo_object::{TodoData, TodoObject};
 use crate::todo_row::TodoRow;
-use crate::utils::data_path;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
-use log::info;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -84,22 +80,17 @@ impl Window {
     }
 
     fn restore_data(&self) {
-        if let Ok(file) = File::open(data_path()) {
-            // Deserialize data from file to vector
-            let backup_data: Vec<TodoData> =
-                serde_json::from_reader(file).expect("Could not get backup data from json file.");
+        // Deserialize data from file to vector
+        let tasks: Vec<TodoData> = self.imp().settings.get("tasks");
 
-            // Convert `Vec<TodoData>` to `Vec<TodoObject>`
-            let todo_objects: Vec<TodoObject> = backup_data
-                .into_iter()
-                .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-                .collect();
+        // Convert `Vec<TodoData>` to `Vec<TodoObject>`
+        let todo_objects: Vec<TodoObject> = tasks
+            .into_iter()
+            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+            .collect();
 
-            // Insert restored objects into model
-            self.model().splice(0, 0, &todo_objects);
-        } else {
-            info!("Backup file does not exist yet {:?}", data_path());
-        }
+        // Insert restored objects into model
+        self.model().splice(0, 0, &todo_objects);
     }
 
     fn setup_callbacks(&self) {
@@ -111,11 +102,11 @@ impl Window {
         self.imp()
             .entry
             .connect_activate(clone!(@weak model => move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(false, content);
-                model.append(&todo_object);
-                buffer.set_text("");
+                    let buffer = entry.buffer();
+                    let content = buffer.text();
+                    let todo_object = TodoObject::new(false, content);
+                    model.append(&todo_object);
+                    buffer.set_text("");
             }));
 
         // Setup callback so that click on the clear_button
@@ -123,19 +114,19 @@ impl Window {
         self.imp()
             .clear_button
             .connect_clicked(clone!(@weak model => move |_| {
-                let mut position = 0;
-                while let Some(item) = model.item(position) {
-                    // Get `TodoObject` from `glib::Object`
-                    let todo_object = item
-                        .downcast_ref::<TodoObject>()
-                        .expect("The object needs to be of type `TodoObject`.");
+                    let mut position = 0;
+                    while let Some(item) = model.item(position) {
+                        // Get `TodoObject` from `glib::Object`
+                        let todo_object = item
+                            .downcast_ref::<TodoObject>()
+                            .expect("The object needs to be of type `TodoObject`.");
 
-                    if todo_object.is_completed() {
-                        model.remove(position);
-                    } else {
-                        position += 1;
+                        if todo_object.is_completed() {
+                            model.remove(position);
+                        } else {
+                            position += 1;
+                        }
                     }
-                }
             }));
     }
 

@@ -1,6 +1,5 @@
 mod todo_object;
 mod todo_row;
-mod utils;
 mod window;
 
 use gtk::gio;
@@ -11,9 +10,6 @@ use window::Window;
 
 // ANCHOR: main
 fn main() {
-    // Initialize logger
-    pretty_env_logger::init();
-
     // Register and include resources
     gio::resources_register_include!("todo_app_2.gresource")
         .expect("Failed to register resources.");

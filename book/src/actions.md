@@ -25,7 +25,6 @@ We also connected a callback which closes the window.
 One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
 With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
 Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
-Here we assigned `<primary>W` which translates to <kbd>Ctrl</kbd> + <kbd>W</kbd> on Linux and Windows and ⌘ + <kbd>W</kbd> on macOS.
 
 Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The "win" part of "win.close" is the group of the action.
@@ -241,7 +240,7 @@ Your browser does not support the video tag.
 ## Settings
 
 The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
-As usual, we solve this problem with `gio::Settings`.
+As usual, we solve this problem with [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 First we create a schema with settings corresponding to the stateful actions we created before.
 
 <span class="filename">Filename: listings/actions/7/org.gtk-rs.example.gschema.xml</span>
@@ -250,7 +249,7 @@ First we create a schema with settings corresponding to the stateful actions we 
 {{#rustdoc_include ../listings/actions/7/org.gtk-rs.example.gschema.xml}}
 ```
 
-Again, we install the schema as described in the [settings chapter](./settings.html).
+Again, we install the schema as described in the settings [chapter](./settings.html).
 Then we add the settings to `imp::Window`.
 Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
 

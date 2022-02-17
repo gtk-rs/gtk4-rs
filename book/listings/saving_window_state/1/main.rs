@@ -6,9 +6,6 @@ use gtk::{Application, Button};
 
 // ANCHOR: main
 fn main() {
-    // Initialize logger
-    pretty_env_logger::init();
-
     // Create a new application
     let app = Application::builder()
         .application_id("org.gtk-rs.example")
