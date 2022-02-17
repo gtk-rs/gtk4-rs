@@ -17,13 +17,11 @@ impl TodoObject {
     }
 
     pub fn is_completed(&self) -> bool {
-        let imp = self.imp();
-        imp.data.borrow().completed
+        self.imp().data.borrow().completed
     }
 
     pub fn todo_data(&self) -> TodoData {
-        let imp = self.imp();
-        imp.data.borrow().clone()
+        self.imp().data.borrow().clone()
     }
 }
 // ANCHOR_END: impl

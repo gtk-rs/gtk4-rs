@@ -26,17 +26,12 @@ impl Window {
     }
 
     fn model(&self) -> &gio::ListStore {
-        // Get state
-        let imp = self.imp();
-        imp.model.get().expect("Could not get model")
+        self.imp().model.get().expect("Could not get model")
     }
 
     fn filter(&self) -> Option<CustomFilter> {
-        // Get state
-        let imp = self.imp();
-
         // Get filter state from settings
-        let filter_state: String = imp.settings.get("filter");
+        let filter_state: String = self.imp().settings.get("filter");
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj| {
@@ -72,16 +67,15 @@ impl Window {
         let model = gio::ListStore::new(TodoObject::static_type());
 
         // Get state and set model
-        let imp = self.imp();
-        imp.model.set(model).expect("Could not set model");
+        self.imp().model.set(model).expect("Could not set model");
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
-        imp.list_view.set_model(Some(&selection_model));
+        self.imp().list_view.set_model(Some(&selection_model));
 
         // Filter model whenever the value of the key "filter" changes
-        imp.settings.connect_changed(
+        self.imp().settings.connect_changed(
             Some("filter"),
             clone!(@weak self as window, @weak filter_model => move |_, _| {
                 filter_model.set_filter(window.filter().as_ref());
@@ -110,12 +104,12 @@ impl Window {
 
     fn setup_callbacks(&self) {
         // Get state
-        let imp = self.imp();
         let model = self.model();
 
         // Setup callback so that activation
         // creates a new todo object and clears the entry
-        imp.entry
+        self.imp()
+            .entry
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
                 let content = buffer.text();
@@ -126,7 +120,8 @@ impl Window {
 
         // Setup callback so that click on the clear_button
         // removes all done tasks
-        imp.clear_button
+        self.imp()
+            .clear_button
             .connect_clicked(clone!(@weak model => move |_| {
                 let mut position = 0;
                 while let Some(item) = model.item(position) {
@@ -187,16 +182,12 @@ impl Window {
         });
 
         // Set the factory of the list view
-        let imp = self.imp();
-        imp.list_view.set_factory(Some(&factory));
+        self.imp().list_view.set_factory(Some(&factory));
     }
 
     fn setup_filter_action(&self) {
-        // Get state
-        let imp = self.imp();
-
         // Create action from key "filter"
-        let filter_action = imp.settings.create_action("filter");
+        let filter_action = self.imp().settings.create_action("filter");
 
         // Add action "filter" to action group "win"
         self.add_action(&filter_action);
