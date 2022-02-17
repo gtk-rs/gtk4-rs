@@ -89,19 +89,24 @@ impl From<cairo::Rectangle> for Rectangle {
     /// will probably lead to precisison errors. Use cautiously.
     fn from(r: cairo::Rectangle) -> Self {
         skip_assert_initialized!();
-        Self::new(r.x as i32, r.y as i32, r.width as i32, r.height as i32)
+        Self::new(
+            r.x() as i32,
+            r.y() as i32,
+            r.width() as i32,
+            r.height() as i32,
+        )
     }
 }
 
 impl From<Rectangle> for cairo::Rectangle {
     fn from(r: Rectangle) -> Self {
         skip_assert_initialized!();
-        Self {
-            x: r.x() as f64,
-            y: r.y() as f64,
-            width: r.width() as f64,
-            height: r.height() as f64,
-        }
+        cairo::Rectangle::new(
+            r.x() as f64,
+            r.y() as f64,
+            r.width() as f64,
+            r.height() as f64,
+        )
     }
 }
 
