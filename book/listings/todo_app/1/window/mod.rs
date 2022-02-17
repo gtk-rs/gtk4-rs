@@ -26,8 +26,7 @@ impl Window {
     // ANCHOR: model
     fn model(&self) -> &gio::ListStore {
         // Get state
-        let imp = self.imp();
-        imp.model.get().expect("Could not get model")
+        self.imp().model.get().expect("Could not get model")
     }
 
     fn setup_model(&self) {
@@ -35,24 +34,23 @@ impl Window {
         let model = gio::ListStore::new(TodoObject::static_type());
 
         // Get state and set model
-        let imp = self.imp();
-        imp.model.set(model).expect("Could not set model");
+        self.imp().model.set(model).expect("Could not set model");
 
         // Wrap model with selection and pass it to the list view
         let selection_model = NoSelection::new(Some(self.model()));
-        imp.list_view.set_model(Some(&selection_model));
+        self.imp().list_view.set_model(Some(&selection_model));
     }
     // ANCHOR_END: model
 
     // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
         // Get state
-        let imp = self.imp();
         let model = self.model();
 
         // Setup callback so that activation
         // creates a new todo object and clears the entry
-        imp.entry
+        self.imp()
+            .entry
             .connect_activate(clone!(@weak model => move |entry| {
                 let buffer = entry.buffer();
                 let content = buffer.text();
@@ -107,8 +105,7 @@ impl Window {
         });
 
         // Set the factory of the list view
-        let imp = self.imp();
-        imp.list_view.set_factory(Some(&factory));
+        self.imp().list_view.set_factory(Some(&factory));
     }
     // ANCHOR_END: setup_factory
 }

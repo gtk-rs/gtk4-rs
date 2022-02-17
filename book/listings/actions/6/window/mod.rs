@@ -23,8 +23,7 @@ impl Window {
     // ANCHOR: add_actions
     fn add_actions(&self) {
         // Get state
-        let imp = self.imp();
-        let label = imp.label.get();
+        let label = self.imp().label.get();
 
         // Add stateful action "count" to `window` taking an integer as parameter
         let original_state = 0;
@@ -59,7 +58,7 @@ impl Window {
 
         // ANCHOR: action_sensitive_button
         // Add property action "sensitive-button" to `window`
-        let button = imp.button.get();
+        let button = self.imp().button.get();
         let action_sensitive_button = PropertyAction::new("sensitive-button", &button, "sensitive");
         self.add_action(&action_sensitive_button);
         // ANCHOR_END: action_sensitive_button
@@ -67,7 +66,7 @@ impl Window {
         // ANCHOR: action_orientation
 
         // Add stateful action "orientation" to `window` taking a string as parameter
-        let gtk_box = imp.gtk_box.get();
+        let gtk_box = self.imp().gtk_box.get();
         let action_orientation = SimpleAction::new_stateful(
             "orientation",
             Some(&String::static_variant_type()),

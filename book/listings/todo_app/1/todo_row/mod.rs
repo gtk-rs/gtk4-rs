@@ -29,10 +29,9 @@ impl TodoRow {
     // ANCHOR: bind
     pub fn bind(&self, todo_object: &TodoObject) {
         // Get state
-        let imp = self.imp();
-        let completed_button = imp.completed_button.get();
-        let content_label = imp.content_label.get();
-        let mut bindings = imp.bindings.borrow_mut();
+        let completed_button = self.imp().completed_button.get();
+        let content_label = self.imp().content_label.get();
+        let mut bindings = self.imp().bindings.borrow_mut();
 
         // Bind `todo_object.completed` to `todo_row.completed_button.active`
         let completed_button_binding = todo_object
@@ -74,11 +73,8 @@ impl TodoRow {
 
     // ANCHOR: unbind
     pub fn unbind(&self) {
-        // Get state
-        let imp = self.imp();
-
         // Unbind all stored bindings
-        for binding in imp.bindings.borrow_mut().drain(..) {
+        for binding in self.imp().bindings.borrow_mut().drain(..) {
             binding.unbind();
         }
     }

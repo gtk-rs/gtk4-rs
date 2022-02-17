@@ -13,11 +13,12 @@ Something like this:
 
 This mockup can be described by the following composite template.
 
-<span class="filename">Filename: listings/todo_app/1/window/window.ui</span>
+<span class="filename">Filename: listings/todo_app/1/resources/window.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/1/window/window.ui}}
+{{#rustdoc_include ../listings/todo_app/1/resources/window.ui}}
 ```
+
 
 In order to use the composite template, we create a custom widget.
 The `parent` is `gtk::ApplicationWindow`, so we inherit from it.
@@ -48,6 +49,16 @@ We only have to assure that the `class` attribute of the template in `window.ui`
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/1/main.rs:main}}
 ```
+
+Finally, we specify our resources.
+Here, they already include `todo_row.ui` which we will handle later in this chapter.
+
+<span class="filename">Filename: listings/todo_app/1/resources/resources.gresource.xml</span>
+
+```xml
+{{#rustdoc_include ../listings/todo_app/1/resources/resources.gresource.xml}}
+```
+
 
 ## To-Do Object
 
@@ -100,10 +111,10 @@ The row of a task should look like this:
 Again, we describe the mockup with a composite template.
 
 
-<span class="filename">Filename: listings/todo_app/1/todo_row/todo_row.ui</span>
+<span class="filename">Filename: listings/todo_app/1/resources/todo_row.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/1/todo_row/todo_row.ui}}
+{{#rustdoc_include ../listings/todo_app/1/resources/todo_row.ui}}
 ```
 
 In the code, we [derive](https://docs.gtk.org/gtk4/class.Box.html#hierarchy) `TodoRow` from `gtk:Box`:
@@ -177,7 +188,7 @@ Binding properties in `TodoRow::bind` works just like in former chapters.
 The only difference is that we store the bindings in a vector.
 This is necessary because a `TodoRow` will be reused as you scroll through the list.
 That means that over time a `TodoRow` will need to bound to a new `TodoObject` and has to be unbound from the old one.
-Unbinding will only work if it can access the stored `glib::Binding`.
+Unbinding will only work if it can access the stored [`glib::Binding`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Binding.html).
 
 <span class="filename">Filename: listings/todo_app/1/todo_row/mod.rs</span>
 

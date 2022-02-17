@@ -22,8 +22,7 @@ impl Window {
 
     fn add_actions(&self) {
         // Get state
-        let imp = self.imp();
-        let label = imp.label.get();
+        let label = self.imp().label.get();
 
         // Add stateful action "count" to `window` taking an integer as parameter
         let original_state = 0;
@@ -66,11 +65,11 @@ impl Window {
 
         // ANCHOR: settings_create_actions
         // Create action from key "sensitive-button" and add to action group "win"
-        let action_sensitive_button = imp.settings.create_action("sensitive-button");
+        let action_sensitive_button = self.imp().settings.create_action("sensitive-button");
         self.add_action(&action_sensitive_button);
 
         // Create action from key "orientation" and add to action group "win"
-        let action_orientation = imp.settings.create_action("orientation");
+        let action_orientation = self.imp().settings.create_action("orientation");
         self.add_action(&action_orientation);
         // ANCHOR_END: settings_create_actions
     }
@@ -78,17 +77,18 @@ impl Window {
     // ANCHOR: bind_settings
     fn bind_settings(&self) {
         // Get state
-        let imp = self.imp();
 
         // Bind setting "sensitive-button" to "sensitive" property of `button`
-        let button = imp.button.get();
-        imp.settings
+        let button = self.imp().button.get();
+        self.imp()
+            .settings
             .bind("sensitive-button", &button, "sensitive")
             .build();
 
         // Bind setting "orientation" to "orientation" property of `button`
-        let gtk_box = imp.gtk_box.get();
-        imp.settings
+        let gtk_box = self.imp().gtk_box.get();
+        self.imp()
+            .settings
             .bind("orientation", &gtk_box, "orientation")
             .mapping(|variant, _| {
                 let orientation = variant
