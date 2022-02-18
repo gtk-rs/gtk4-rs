@@ -235,7 +235,7 @@ Your browser does not support the video tag.
 
 >We changed the icon of the `MenuButton` by setting its property "icon-name" to "open-menu-symbolic".
 >You can find more icons with the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/).
->They can be embedded with [`gio::Resource`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html) and then references within the composite templates (or other places).
+>They can be embedded with [`gio::Resource`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html) and then be referenced within the composite templates (or other places).
 
 ## Settings
 

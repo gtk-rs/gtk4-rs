@@ -27,10 +27,9 @@ Next, we describe the public interface our custom GObject.
 ```
 
 [`glib::wrapper!`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) implements the same traits that our `ParentType` implements.
-Theoretically that would mean that we `ParentType` is also the only thing we have to specify here.
+Theoretically that would mean that the `ParentType` is also the only thing we have to specify here.
 Unfortunately, nobody found yet a good way to do that.
-Which why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from `GObject` and `GInitiallyUnowned`.
-You could mention only the ones you actively use, however there is no benefit to gain here apart from cutting down the boilerplate a bit.
+Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from `GObject` and `GInitiallyUnowned`.
 For `gtk::Button`, we can look up the ancestors and interfaces in the corresponding [doc page](https://docs.gtk.org/gtk4/class.Button.html#hierarchy) of GTK4.
 
 After these steps, nothing is stopping us from replacing `gtk::Button` with our `CustomButton`.
@@ -41,7 +40,7 @@ After these steps, nothing is stopping us from replacing `gtk::Button` with our 
 {{#rustdoc_include ../listings/gobject_subclassing/1/main.rs}}
 ```
 
-> Describing objects with two structs is an implementation detail that leaks here through.
+> Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
 > `imp::CustomButton` handles the state of the GObject and the overridden virtual methods.
 > `CustomButton` determines the exposed methods be determining the implemented traits and adding methods itself. 
 
