@@ -205,7 +205,7 @@ Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> define
 <p>Also note that in the <code>enum</code> above boxed types such as <code>String</code> or <code>glib::Object</code> are wrapped in an <code>Option</code>.
 This comes from C, where every boxed type can potentially be <code>None</code> (or <code>NULL</code> in C terms).
 You can still access it the same way as with the <code>i32</code> above.
-<code>get</code> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
+<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get"><code>get</code></a> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
@@ -349,7 +349,7 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
     assert_eq!(vec[0], &quot;Hello&quot;);
 <span class="boring">}
 </span></code></pre>
-<p>We will use <code>Variant</code> when saving settings using <code>gio::Settings</code> or activating actions via <code>gio::Action</code>.</p>
+<p>We will use <code>Variant</code> when saving settings using <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> or activating actions via <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html"><code>gio::Action</code></a>.</p>
 
                     </main>
 

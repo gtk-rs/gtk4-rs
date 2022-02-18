@@ -157,11 +157,11 @@ fn main() {
 }
 </code></pre>
 <p>It builds fine, but nothing but a warning in our terminal appears.</p>
-<pre><code>GLib-GIO-WARNING: Your application does not implement g_application_activate() and
-has no handlers connected to the 'activate' signal. It should do one of these.
+<pre><code>GLib-GIO-WARNING: Your application does not implement g_application_activate()
+and has no handlers connected to the 'activate' signal. It should do one of these.
 </code></pre>
 <p>GTK tells us that something should be called in its <code>activate</code> step.
-So let's create an <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
+So let's create a <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
@@ -241,8 +241,8 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 <p>If you look closely at the code snippet you will notice that it has a small eye symbol on its top right.
 After you press on it you can see the full code of the listing.
 We will use this throughout the book to hide details which are not important to bring the message across.
-If you try to write apps by following the book step-by-step you will want to pay attention to this.
-Here, we have hidden that we brought <code>gtk::Button</code> into scope.</p>
+Pay attention to this if you want to write apps by following the book step-by-step.
+Here, we've hidden that we brought <code>gtk::Button</code> into scope.</p>
 </blockquote>
 <p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
 <div style="text-align:center">

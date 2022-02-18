@@ -206,10 +206,9 @@ impl CustomButton {
 </span><span class="boring">}
 </span></code></pre>
 <p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> implements the same traits that our <code>ParentType</code> implements.
-Theoretically that would mean that we <code>ParentType</code> is also the only thing we have to specify here.
+Theoretically that would mean that the <code>ParentType</code> is also the only thing we have to specify here.
 Unfortunately, nobody found yet a good way to do that.
-Which why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
-You could mention only the ones you actively use, however there is no benefit to gain here apart from cutting down the boilerplate a bit.
+Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
 For <code>gtk::Button</code>, we can look up the ancestors and interfaces in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span></p>
@@ -258,7 +257,7 @@ fn build_ui(app: &amp;Application) {
 }
 </code></pre>
 <blockquote>
-<p>Describing objects with two structs is an implementation detail that leaks here through.
+<p>Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
 <code>imp::CustomButton</code> handles the state of the GObject and the overridden virtual methods.
 <code>CustomButton</code> determines the exposed methods be determining the implemented traits and adding methods itself. </p>
 </blockquote>
