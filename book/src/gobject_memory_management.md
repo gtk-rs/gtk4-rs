@@ -1,6 +1,6 @@
 # Memory Management
 
-A GObject (or `glib::Object` in Rust terms) is a reference-counted, mutable object.
+A GObject (or [`glib::Object`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.Object.html) in Rust terms) is a reference-counted, mutable object.
 Let's see in a set of real life examples which consequences this has.
 
 ```rust ,no_run,compile_fail
@@ -174,7 +174,7 @@ Per default, it immediately returns from the closure with `()` as return value.
 In case the closure expects a different return value `@default-return` can be specified.
 
 Notice that we move `number` in the second closure.
-If we had only moved _weak_ reference in both closures, nothing would have kept `number` alive and the closure would have never been called.
+If we had moved weak references in both closures, nothing would have kept `number` alive and the closure would have never been called.
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 

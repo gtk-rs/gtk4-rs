@@ -36,7 +36,7 @@ For example, this is how you would use a `Value` representing an `i32`.
 Also note that in the `enum` above boxed types such as `String` or `glib::Object` are wrapped in an `Option`.
 This comes from C, where every boxed type can potentially be `None` (or `NULL` in C terms).
 You can still access it the same way as with the `i32` above.
-`get` will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
+[`get`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get) will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
@@ -79,4 +79,4 @@ More examples can be found in the [docs](https://gtk-rs.org/gtk-rs-core/stable/l
 {{#rustdoc_include ../listings/gobject_values/2/main.rs:vec}}
 ```
 
-We will use `Variant` when saving settings using `gio::Settings` or activating actions via `gio::Action`.
+We will use `Variant` when saving settings using [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) or activating actions via [`gio::Action`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html).

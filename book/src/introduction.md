@@ -13,7 +13,7 @@ Additionally, with Rust you will have nice things such as
  - sensible dependency management as well as
  - excellent third party libraries.
 
-The `gtk-rs` project provides bindings to many GTK-related libraries which we will be using throughout this book.
+The [`gtk-rs`](https://gtk-rs.org/) project provides bindings to many GTK-related libraries which we will be using throughout this book.
 
 
 ## Who this book is for

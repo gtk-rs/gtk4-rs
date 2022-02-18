@@ -220,7 +220,7 @@ Gtk-CRITICAL **: Error building template class 'MyGtkAppWindow' for an instance 
 
 Turns out adding a template child not only gives a convenient reference to a widget within the template.
 It also ensures that the widget type is registered.
-Luckily we also do that by ourselves.
+Luckily we can also do that by ourselves.
 
 <span class="filename">Filename: listings/composite_templates/6/window/imp.rs</span>
 ```rust ,no_run,noplayground
