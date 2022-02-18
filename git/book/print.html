@@ -152,7 +152,7 @@ Additionally, with Rust you will have nice things such as</p>
 <li>sensible dependency management as well as</li>
 <li>excellent third party libraries.</li>
 </ul>
-<p>The <code>gtk-rs</code> project provides bindings to many GTK-related libraries which we will be using throughout this book.</p>
+<p>The <a href="https://gtk-rs.org/"><code>gtk-rs</code></a> project provides bindings to many GTK-related libraries which we will be using throughout this book.</p>
 <h2 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who this book is for</a></h2>
 <p>This book assumes that you know your way around Rust code.
 If this is not already the case, reading <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Language</a> is an enjoyable way to get you to that stage.
@@ -333,11 +333,11 @@ fn main() {
 }
 </code></pre>
 <p>It builds fine, but nothing but a warning in our terminal appears.</p>
-<pre><code>GLib-GIO-WARNING: Your application does not implement g_application_activate() and
-has no handlers connected to the 'activate' signal. It should do one of these.
+<pre><code>GLib-GIO-WARNING: Your application does not implement g_application_activate()
+and has no handlers connected to the 'activate' signal. It should do one of these.
 </code></pre>
 <p>GTK tells us that something should be called in its <code>activate</code> step.
-So let's create an <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
+So let's create a <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
 <p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
@@ -417,8 +417,8 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 <p>If you look closely at the code snippet you will notice that it has a small eye symbol on its top right.
 After you press on it you can see the full code of the listing.
 We will use this throughout the book to hide details which are not important to bring the message across.
-If you try to write apps by following the book step-by-step you will want to pay attention to this.
-Here, we have hidden that we brought <code>gtk::Button</code> into scope.</p>
+Pay attention to this if you want to write apps by following the book step-by-step.
+Here, we've hidden that we brought <code>gtk::Button</code> into scope.</p>
 </blockquote>
 <p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
 <div style="text-align:center">
@@ -508,7 +508,7 @@ In this chapter we will additionally find out:</p>
 <li>How to emit and receive signals.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="memory-management"><a class="header" href="#memory-management">Memory Management</a></h1>
-<p>A GObject (or <code>glib::Object</code> in Rust terms) is a reference-counted, mutable object.
+<p>A GObject (or <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.Object.html"><code>glib::Object</code></a> in Rust terms) is a reference-counted, mutable object.
 Let's see in a set of real life examples which consequences this has.</p>
 <pre><pre class="playground"><code class="language-rust  no_run compile_fail">use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
@@ -911,7 +911,7 @@ If we now for example click on one button and the other button is not there anym
 Per default, it immediately returns from the closure with <code>()</code> as return value.
 In case the closure expects a different return value <code>@default-return</code> can be specified.</p>
 <p>Notice that we move <code>number</code> in the second closure.
-If we had only moved <em>weak</em> reference in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
+If we had moved weak references in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
@@ -1133,10 +1133,9 @@ impl CustomButton {
 </span><span class="boring">}
 </span></code></pre>
 <p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> implements the same traits that our <code>ParentType</code> implements.
-Theoretically that would mean that we <code>ParentType</code> is also the only thing we have to specify here.
+Theoretically that would mean that the <code>ParentType</code> is also the only thing we have to specify here.
 Unfortunately, nobody found yet a good way to do that.
-Which why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
-You could mention only the ones you actively use, however there is no benefit to gain here apart from cutting down the boilerplate a bit.
+Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
 For <code>gtk::Button</code>, we can look up the ancestors and interfaces in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
 <p><span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span></p>
@@ -1185,7 +1184,7 @@ fn build_ui(app: &amp;Application) {
 }
 </code></pre>
 <blockquote>
-<p>Describing objects with two structs is an implementation detail that leaks here through.
+<p>Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
 <code>imp::CustomButton</code> handles the state of the GObject and the overridden virtual methods.
 <code>CustomButton</code> determines the exposed methods be determining the implemented traits and adding methods itself. </p>
 </blockquote>
@@ -1358,7 +1357,7 @@ Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> define
 <p>Also note that in the <code>enum</code> above boxed types such as <code>String</code> or <code>glib::Object</code> are wrapped in an <code>Option</code>.
 This comes from C, where every boxed type can potentially be <code>None</code> (or <code>NULL</code> in C terms).
 You can still access it the same way as with the <code>i32</code> above.
-<code>get</code> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
+<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get"><code>get</code></a> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
 <p><span class="filename">Filename: listings/gobject_values/1/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
@@ -1502,7 +1501,7 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
     assert_eq!(vec[0], &quot;Hello&quot;);
 <span class="boring">}
 </span></code></pre>
-<p>We will use <code>Variant</code> when saving settings using <code>gio::Settings</code> or activating actions via <code>gio::Action</code>.</p>
+<p>We will use <code>Variant</code> when saving settings using <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> or activating actions via <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html"><code>gio::Action</code></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
 <p>Properties provide a public API for accessing state of GObjects.</p>
 <p>Let's see how this is done by experimenting with the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html"><code>Switch</code></a> widget.
@@ -2301,7 +2300,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_closure</code> is that it also works with custom signals.</p>
 <blockquote>
 <p>If you need to clone reference counted objects into your closure you don't have to wrap it within another <code>clone!</code> macro.
-<code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object disappears. </p>
+<code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object is dropped. </p>
 </blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
 <p>Let's see how we can create our own signals.
@@ -5756,7 +5755,7 @@ So what happened here?</p>
 </code></pre>
 <p>Turns out adding a template child not only gives a convenient reference to a widget within the template.
 It also ensures that the widget type is registered.
-Luckily we also do that by ourselves.</p>
+Luckily we can also do that by ourselves.</p>
 <p><span class="filename">Filename: listings/composite_templates/6/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
@@ -7747,7 +7746,7 @@ Your browser does not support the video tag.
 <blockquote>
 <p>We changed the icon of the <code>MenuButton</code> by setting its property &quot;icon-name&quot; to &quot;open-menu-symbolic&quot;.
 You can find more icons with the <a href="https://apps.gnome.org/app/org.gnome.design.IconLibrary/">Icon Library</a>.
-They can be embedded with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html"><code>gio::Resource</code></a> and then references within the composite templates (or other places).</p>
+They can be embedded with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html"><code>gio::Resource</code></a> and then be referenced within the composite templates (or other places).</p>
 </blockquote>
 <h2 id="settings-1"><a class="header" href="#settings-1">Settings</a></h2>
 <p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
@@ -9254,12 +9253,12 @@ Detailed names look like this: <code>action_group.action_name(target)</code>.
 Formatting of the target depends on its type and is documented <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html#method.parse_detailed_name">here</a>.
 In particular, strings have to be enclosed single quotes as you can see in this example.</p>
 </blockquote>
-<p><span class="filename">Filename: listings/todo_app/2/resources/resources.gresource.xml</span></p>
 <p>Finally, we have to add the <code>shortcuts.ui</code> to our resources.
 Note that we give it the alias <code>gtk/help-overlay.ui</code>.
 We do that to take advantage of a convenience functionality documented <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html#automatic-resources">here</a>.
 It will look for a resource at <code>gtk/help-overlay.ui</code> which defines a <code>ShortcutsWindow</code> with id <code>help_overlay</code>.
 If it can find one it will create a action <code>win.show-help-overlay</code> which will show the window and associate the shortcut <kbd>Ctrl</kbd> + <kbd>?</kbd> with this action.</p>
+<p><span class="filename">Filename: listings/todo_app/2/resources/resources.gresource.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
     &lt;gresource prefix=&quot;/org/gtk-rs/Todo/&quot;&gt;

@@ -1253,12 +1253,12 @@ Detailed names look like this: <code>action_group.action_name(target)</code>.
 Formatting of the target depends on its type and is documented <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html#method.parse_detailed_name">here</a>.
 In particular, strings have to be enclosed single quotes as you can see in this example.</p>
 </blockquote>
-<p><span class="filename">Filename: listings/todo_app/2/resources/resources.gresource.xml</span></p>
 <p>Finally, we have to add the <code>shortcuts.ui</code> to our resources.
 Note that we give it the alias <code>gtk/help-overlay.ui</code>.
 We do that to take advantage of a convenience functionality documented <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html#automatic-resources">here</a>.
 It will look for a resource at <code>gtk/help-overlay.ui</code> which defines a <code>ShortcutsWindow</code> with id <code>help_overlay</code>.
 If it can find one it will create a action <code>win.show-help-overlay</code> which will show the window and associate the shortcut <kbd>Ctrl</kbd> + <kbd>?</kbd> with this action.</p>
+<p><span class="filename">Filename: listings/todo_app/2/resources/resources.gresource.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
     &lt;gresource prefix=&quot;/org/gtk-rs/Todo/&quot;&gt;
