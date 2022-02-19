@@ -72,7 +72,7 @@ fn main() {
 ```
 
 Finally, we register and include the resources by calling the macro [`gio::resources_register_include!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/macro.resources_register_include.html).
-
+In your own apps take care to register the resources before creating the `gtk::Application`.
 
 <span class="filename">Filename: listings/composite_templates/1/main.rs</span>
 ```rust ,no_run,noplayground
