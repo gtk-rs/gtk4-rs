@@ -244,10 +244,10 @@ As of this writing, the exported colors of the default stylesheet can only be fo
 There we find the color `borders`, which should be used for the widget's border color.
 We can then access the pre-defined color by adding an `@` in front of its name.
 
-<span class="filename">Filename: listings/todo_app/3/style.css</span>
+<span class="filename">Filename: listings/todo_app/3/resources/style.css</span>
 
 ```css
-{{#rustdoc_include ../listings/todo_app/3/style.css}}
+{{#rustdoc_include ../listings/todo_app/3/resources/style.css}}
 ```
 
 Now our tasks have borders around them, and we are one step further in finishing our To-Do app.
@@ -259,10 +259,10 @@ In the end, we find that GTK provides a style rule to add borders to a node.
 This seems nicer, so we will use that instead.
 We match the style rule by adding the style class `frame` to our `TodoRow`.
 
-<span class="filename">Filename: listings/todo_app/4/todo_row/todo_row.ui</span>
+<span class="filename">Filename: listings/todo_app/4/resources/todo_row.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/4/todo_row/todo_row.ui}}
+{{#rustdoc_include ../listings/todo_app/4/resources/todo_row.ui}}
 ```
 
 ## Conclusion
