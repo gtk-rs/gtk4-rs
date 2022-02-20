@@ -1297,17 +1297,11 @@ where
 {
     type Target = T;
 
-    // rustdoc-stripper-ignore-next
-    /// # Safety
-    ///
-    /// Since the template child may not be properly bound,
-    /// this cast is potentially dangerous if, for example,
-    /// the template child isn't bound or is of the wrong type.
-    /// The caller is responsible for ensuring that the template
-    /// child is bound and of the right type.
     fn deref(&self) -> &Self::Target {
         unsafe {
-            assert!(!self.ptr.is_null());
+            if !self.is_bound() {
+                panic!("Failed to retrieve template child. Please check that it has been bound and has a #[template_child] attribute.");
+            }
             &*(&self.ptr as *const _ as *const T)
         }
     }
@@ -1320,7 +1314,7 @@ where
     #[track_caller]
     pub fn get(&self) -> T {
         self.try_get()
-            .expect("Failed to retrieve template child. Please check that it has been bound.")
+            .expect("Failed to retrieve template child. Please check that it has been bound and has a #[template_child] attribute.")
     }
 
     // rustdoc-stripper-ignore-next
@@ -1339,6 +1333,7 @@ where
 
 pub trait CompositeTemplate: WidgetImpl {
     fn bind_template(klass: &mut Self::Class);
+    fn check_template_children(widget: &<Self as ObjectSubclass>::Type);
 }
 
 pub type TemplateCallback = (&'static str, fn(&[glib::Value]) -> Option<glib::Value>);

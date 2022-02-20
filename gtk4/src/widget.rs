@@ -94,10 +94,17 @@ pub trait InitializingWidgetExt {
     fn init_template(&self);
 }
 
-impl<T: WidgetImpl> InitializingWidgetExt for glib::subclass::InitializingObject<T> {
+impl<T> InitializingWidgetExt for glib::subclass::InitializingObject<T>
+where
+    T: WidgetImpl + CompositeTemplate,
+    <T as ObjectSubclass>::Type: IsA<Widget>,
+{
     fn init_template(&self) {
-        unsafe {
-            self.as_ref().unsafe_cast_ref::<Widget>().init_template();
-        }
+        let widget = unsafe {
+            self.as_ref()
+                .unsafe_cast_ref::<<T as ObjectSubclass>::Type>()
+        };
+        widget.init_template();
+        <T as CompositeTemplate>::check_template_children(widget);
     }
 }
