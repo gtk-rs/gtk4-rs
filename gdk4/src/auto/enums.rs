@@ -39,8 +39,6 @@ pub enum AxisUse {
     Rotation,
     #[doc(alias = "GDK_AXIS_SLIDER")]
     Slider,
-    #[doc(alias = "GDK_AXIS_LAST")]
-    Last,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -63,7 +61,6 @@ impl fmt::Display for AxisUse {
                 Self::Distance => "Distance",
                 Self::Rotation => "Rotation",
                 Self::Slider => "Slider",
-                Self::Last => "Last",
                 _ => "Unknown",
             }
         )
@@ -88,7 +85,6 @@ impl IntoGlib for AxisUse {
             Self::Distance => ffi::GDK_AXIS_DISTANCE,
             Self::Rotation => ffi::GDK_AXIS_ROTATION,
             Self::Slider => ffi::GDK_AXIS_SLIDER,
-            Self::Last => ffi::GDK_AXIS_LAST,
             Self::__Unknown(value) => value,
         }
     }
@@ -111,7 +107,6 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
             ffi::GDK_AXIS_DISTANCE => Self::Distance,
             ffi::GDK_AXIS_ROTATION => Self::Rotation,
             ffi::GDK_AXIS_SLIDER => Self::Slider,
-            ffi::GDK_AXIS_LAST => Self::Last,
             value => Self::__Unknown(value),
         }
     }
@@ -621,8 +616,10 @@ pub enum EventType {
     PadStrip,
     #[doc(alias = "GDK_PAD_GROUP_MODE")]
     PadGroupMode,
-    #[doc(alias = "GDK_EVENT_LAST")]
-    EventLast,
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "GDK_TOUCHPAD_HOLD")]
+    TouchpadHold,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -661,7 +658,8 @@ impl fmt::Display for EventType {
                 Self::PadRing => "PadRing",
                 Self::PadStrip => "PadStrip",
                 Self::PadGroupMode => "PadGroupMode",
-                Self::EventLast => "EventLast",
+                #[cfg(any(feature = "v4_8", feature = "dox"))]
+                Self::TouchpadHold => "TouchpadHold",
                 _ => "Unknown",
             }
         )
@@ -702,7 +700,8 @@ impl IntoGlib for EventType {
             Self::PadRing => ffi::GDK_PAD_RING,
             Self::PadStrip => ffi::GDK_PAD_STRIP,
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
-            Self::EventLast => ffi::GDK_EVENT_LAST,
+            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
             Self::__Unknown(value) => value,
         }
     }
@@ -741,7 +740,8 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_RING => Self::PadRing,
             ffi::GDK_PAD_STRIP => Self::PadStrip,
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
-            ffi::GDK_EVENT_LAST => Self::EventLast,
+            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
             value => Self::__Unknown(value),
         }
     }

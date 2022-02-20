@@ -96,7 +96,8 @@ pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 24;
 pub const GDK_PAD_RING: GdkEventType = 25;
 pub const GDK_PAD_STRIP: GdkEventType = 26;
 pub const GDK_PAD_GROUP_MODE: GdkEventType = 27;
-pub const GDK_EVENT_LAST: GdkEventType = 28;
+pub const GDK_TOUCHPAD_HOLD: GdkEventType = 28;
+pub const GDK_EVENT_LAST: GdkEventType = 29;
 
 pub type GdkFullscreenMode = c_int;
 pub const GDK_FULLSCREEN_ON_CURRENT_MONITOR: GdkFullscreenMode = 0;
@@ -154,6 +155,7 @@ pub const GDK_MEMORY_R16G16B16A16_FLOAT: GdkMemoryFormat = 14;
 pub const GDK_MEMORY_R32G32B32_FLOAT: GdkMemoryFormat = 15;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 16;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT: GdkMemoryFormat = 17;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 18;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;

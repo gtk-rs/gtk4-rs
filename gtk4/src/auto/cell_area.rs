@@ -127,15 +127,15 @@ pub trait CellAreaExt: 'static {
 
     #[doc(alias = "gtk_cell_area_get_edit_widget")]
     #[doc(alias = "get_edit_widget")]
-    fn edit_widget(&self) -> CellEditable;
+    fn edit_widget(&self) -> Option<CellEditable>;
 
     #[doc(alias = "gtk_cell_area_get_edited_cell")]
     #[doc(alias = "get_edited_cell")]
-    fn edited_cell(&self) -> CellRenderer;
+    fn edited_cell(&self) -> Option<CellRenderer>;
 
     #[doc(alias = "gtk_cell_area_get_focus_cell")]
     #[doc(alias = "get_focus_cell")]
-    fn focus_cell(&self) -> CellRenderer;
+    fn focus_cell(&self) -> Option<CellRenderer>;
 
     #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
     #[doc(alias = "get_focus_from_sibling")]
@@ -223,7 +223,7 @@ pub trait CellAreaExt: 'static {
     ) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_set_focus_cell")]
-    fn set_focus_cell(&self, renderer: &impl IsA<CellRenderer>);
+    fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>);
 
     #[doc(alias = "gtk_cell_area_snapshot")]
     fn snapshot(
@@ -508,7 +508,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn edit_widget(&self) -> CellEditable {
+    fn edit_widget(&self) -> Option<CellEditable> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edit_widget(
                 self.as_ref().to_glib_none().0,
@@ -516,7 +516,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn edited_cell(&self) -> CellRenderer {
+    fn edited_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edited_cell(
                 self.as_ref().to_glib_none().0,
@@ -524,7 +524,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn focus_cell(&self) -> CellRenderer {
+    fn focus_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_cell(
                 self.as_ref().to_glib_none().0,
@@ -742,11 +742,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn set_focus_cell(&self, renderer: &impl IsA<CellRenderer>) {
+    fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>) {
         unsafe {
             ffi::gtk_cell_area_set_focus_cell(
                 self.as_ref().to_glib_none().0,
-                renderer.as_ref().to_glib_none().0,
+                renderer.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

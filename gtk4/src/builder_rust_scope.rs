@@ -112,14 +112,14 @@ mod imp {
                     let swapped = flags.contains(BuilderClosureFlags::SWAPPED);
                     let object = object.cloned().or_else(|| builder.current_object());
                     if let Some(object) = object {
-                        let object_weak = object.downgrade();
+                        // passing a pointer here is safe as `watch_closure` ensures we have a ref
+                        let object_ptr = object.as_ptr();
                         let closure = if swapped {
                             RustClosure::new_local(move |args| {
                                 let mut args = args.to_owned();
-                                let object = object_weak.upgrade().expect(
-                                    "Internal error: Object destroyed before closure invalidated",
-                                );
                                 let obj_v = unsafe {
+                                    let object: Borrowed<glib::Object> =
+                                        from_glib_borrow(object_ptr);
                                     let mut v = glib::Value::uninitialized();
                                     glib::gobject_ffi::g_value_init(
                                         v.to_glib_none_mut().0,
@@ -139,10 +139,9 @@ mod imp {
                         } else {
                             RustClosure::new_local(move |args| {
                                 let mut args = args.to_owned();
-                                let object = object_weak
-                                    .upgrade()
-                                    .expect("Object destroyed before closure invalidated");
                                 let obj_v = unsafe {
+                                    let object: Borrowed<glib::Object> =
+                                        from_glib_borrow(object_ptr);
                                     let mut v = glib::Value::uninitialized();
                                     glib::gobject_ffi::g_value_init(
                                         v.to_glib_none_mut().0,
@@ -289,6 +288,67 @@ mod tests {
             builder.add_from_string(CLOSURE_XML).unwrap();
             let entry_a = builder.object::<Entry>("entry_a").unwrap();
             entry_a.set_text("Hello World");
+        });
+    }
+
+    const DISPOSE_XML: &str = r##"
+    <?xml version="1.0" encoding="UTF-8"?>
+    <interface>
+      <object class="MyObject" id="obj">
+        <signal name="destroyed" handler="my_object_destroyed" object="obj" swapped="true" />
+      </object>
+    </interface>
+    "##;
+
+    #[test]
+    fn test_rust_builder_scope_object_during_dispose() {
+        use glib::subclass::Signal;
+        use once_cell::sync::Lazy;
+        use std::{cell::Cell, rc::Rc};
+
+        #[derive(Debug, Default)]
+        pub struct MyObjectPrivate {
+            counter: Rc<Cell<u64>>,
+        }
+        #[glib::object_subclass]
+        impl ObjectSubclass for MyObjectPrivate {
+            const NAME: &'static str = "MyObject";
+            type Type = MyObject;
+        }
+        impl ObjectImpl for MyObjectPrivate {
+            fn signals() -> &'static [Signal] {
+                static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+                    vec![Signal::builder("destroyed", &[], <()>::static_type().into()).build()]
+                });
+                SIGNALS.as_ref()
+            }
+            fn dispose(&self, obj: &Self::Type) {
+                obj.emit_by_name::<()>("destroyed", &[]);
+            }
+        }
+        glib::wrapper! {
+            pub struct MyObject(ObjectSubclass<MyObjectPrivate>);
+        }
+        #[template_callbacks]
+        impl MyObject {
+            #[template_callback]
+            fn my_object_destroyed(&self) {
+                self.imp().counter.set(self.imp().counter.get() + 1);
+            }
+        }
+
+        test_synced(move || {
+            let counter = {
+                MyObject::static_type();
+                let builder = Builder::new();
+                let scope = BuilderRustScope::new();
+                MyObject::add_callbacks_to_scope(&scope);
+                builder.set_scope(Some(&scope));
+                builder.add_from_string(DISPOSE_XML).unwrap();
+                let obj = builder.object::<MyObject>("obj").unwrap();
+                obj.imp().counter.clone()
+            };
+            assert_eq!(counter.get(), 1);
         });
     }
 }

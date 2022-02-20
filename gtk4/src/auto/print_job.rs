@@ -10,13 +10,11 @@ use crate::PrintPages;
 use crate::PrintSettings;
 use crate::PrintStatus;
 use crate::Printer;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -49,14 +47,6 @@ impl PrintJob {
                 page_setup.to_glib_none().0,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`PrintJob`] objects.
-    ///
-    /// This method returns an instance of [`PrintJobBuilder`](crate::builders::PrintJobBuilder) which can be used to create [`PrintJob`] objects.
-    pub fn builder() -> PrintJobBuilder {
-        PrintJobBuilder::default()
     }
 
     #[doc(alias = "gtk_print_job_get_collate")]
@@ -345,84 +335,6 @@ impl PrintJob {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl Default for PrintJob {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct PrintJob object with default parameters")
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`PrintJob`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct PrintJobBuilder {
-    page_setup: Option<PageSetup>,
-    printer: Option<Printer>,
-    settings: Option<PrintSettings>,
-    title: Option<String>,
-    track_print_status: Option<bool>,
-}
-
-impl PrintJobBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`PrintJobBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`PrintJob`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> PrintJob {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref page_setup) = self.page_setup {
-            properties.push(("page-setup", page_setup));
-        }
-        if let Some(ref printer) = self.printer {
-            properties.push(("printer", printer));
-        }
-        if let Some(ref settings) = self.settings {
-            properties.push(("settings", settings));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref track_print_status) = self.track_print_status {
-            properties.push(("track-print-status", track_print_status));
-        }
-        glib::Object::new::<PrintJob>(&properties)
-            .expect("Failed to create an instance of PrintJob")
-    }
-
-    pub fn page_setup(mut self, page_setup: &PageSetup) -> Self {
-        self.page_setup = Some(page_setup.clone());
-        self
-    }
-
-    pub fn printer(mut self, printer: &Printer) -> Self {
-        self.printer = Some(printer.clone());
-        self
-    }
-
-    pub fn settings(mut self, settings: &PrintSettings) -> Self {
-        self.settings = Some(settings.clone());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn track_print_status(mut self, track_print_status: bool) -> Self {
-        self.track_print_status = Some(track_print_status);
-        self
     }
 }
 

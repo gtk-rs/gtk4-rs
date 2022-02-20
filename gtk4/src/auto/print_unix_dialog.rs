@@ -131,7 +131,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "gtk_print_unix_dialog_get_selected_printer")]
     #[doc(alias = "get_selected_printer")]
-    pub fn selected_printer(&self) -> Printer {
+    pub fn selected_printer(&self) -> Option<Printer> {
         unsafe {
             from_glib_none(ffi::gtk_print_unix_dialog_get_selected_printer(
                 self.to_glib_none().0,

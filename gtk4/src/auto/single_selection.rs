@@ -65,7 +65,7 @@ impl SingleSelection {
 
     #[doc(alias = "gtk_single_selection_get_model")]
     #[doc(alias = "get_model")]
-    pub fn model(&self) -> gio::ListModel {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_single_selection_get_model(self.to_glib_none().0)) }
     }
 

@@ -34,7 +34,6 @@ generate = [
     "Gtk.AnyFilter",
     "Gtk.AppChooser",
     "Gtk.AppChooserButton",
-    "Gtk.AppChooserDialog",
     "Gtk.AppChooserWidget",
     "Gtk.ApplicationInhibitFlags",
     "Gtk.ApplicationWindow",
@@ -253,7 +252,6 @@ generate = [
     "Gtk.ToggleButton",
     "Gtk.Tooltip",
     "Gtk.TreeExpander",
-    "Gtk.TreeListModel",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
@@ -571,6 +569,11 @@ manual_traits = ["ActionableExtManual"]
     name = "set_action_target"
     manual = true # the target is defined as str
     doc_trait_name = "ActionableExtManual"
+
+[[object]]
+name = "Gtk.AppChooserDialog"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.Application"
@@ -1682,6 +1685,7 @@ status = "generate"
 [[object]]
 name = "Gtk.Printer"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     pattern = "(new|get_backend)"
@@ -1691,6 +1695,7 @@ cfg_condition = "target_os = \"linux\""
 [[object]]
 name = "Gtk.PrintJob"
 status = "generate"
+generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "send"
@@ -1843,12 +1848,6 @@ status = "generate"
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
-    [[object.function]]
-    # Drop once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4413 is merged
-    # on the next gir-files update
-    pattern = "to_(node|paintable)"
-        [object.function.return]
-        nullable = true
 
 [[object]]
 name = "Gtk.SpinButton"
@@ -1941,10 +1940,6 @@ status = "generate"
 boxed_inline = true
     [[object.derive]]
     name = "Debug"
-    [[object.function]]
-    pattern = "(get_child_anchor|get_paintable)"
-        [object.function.return]
-        nullable = true # Drop on next gir-files update, see https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4401/
 
 [[object]]
 name = "Gtk.TextTag"
@@ -2014,6 +2009,11 @@ status = "generate"
 boxed_inline = true
     [[object.derive]]
     name = "Debug"
+
+[[object]]
+name = "Gtk.TreeListModel"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.TreeListRow"

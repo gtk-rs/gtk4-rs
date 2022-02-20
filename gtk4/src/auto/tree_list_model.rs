@@ -3,14 +3,11 @@
 // DO NOT EDIT
 
 use crate::TreeListRow;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -65,14 +62,6 @@ impl TreeListModel {
                 destroy_call5,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`TreeListModel`] objects.
-    ///
-    /// This method returns an instance of [`TreeListModelBuilder`](crate::builders::TreeListModelBuilder) which can be used to create [`TreeListModel`] objects.
-    pub fn builder() -> TreeListModelBuilder {
-        TreeListModelBuilder::default()
     }
 
     #[doc(alias = "gtk_tree_list_model_get_autoexpand")]
@@ -174,57 +163,6 @@ impl TreeListModel {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl Default for TreeListModel {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct TreeListModel object with default parameters")
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`TreeListModel`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct TreeListModelBuilder {
-    autoexpand: Option<bool>,
-    passthrough: Option<bool>,
-}
-
-impl TreeListModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeListModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeListModel`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> TreeListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref autoexpand) = self.autoexpand {
-            properties.push(("autoexpand", autoexpand));
-        }
-        if let Some(ref passthrough) = self.passthrough {
-            properties.push(("passthrough", passthrough));
-        }
-        glib::Object::new::<TreeListModel>(&properties)
-            .expect("Failed to create an instance of TreeListModel")
-    }
-
-    pub fn autoexpand(mut self, autoexpand: bool) -> Self {
-        self.autoexpand = Some(autoexpand);
-        self
-    }
-
-    pub fn passthrough(mut self, passthrough: bool) -> Self {
-        self.passthrough = Some(passthrough);
-        self
     }
 }
 

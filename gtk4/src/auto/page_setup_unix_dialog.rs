@@ -67,7 +67,7 @@ impl PageSetupUnixDialog {
 
     #[doc(alias = "gtk_page_setup_unix_dialog_get_print_settings")]
     #[doc(alias = "get_print_settings")]
-    pub fn print_settings(&self) -> PrintSettings {
+    pub fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_page_setup_unix_dialog_get_print_settings(
                 self.to_glib_none().0,
@@ -86,7 +86,7 @@ impl PageSetupUnixDialog {
     }
 
     #[doc(alias = "gtk_page_setup_unix_dialog_set_print_settings")]
-    pub fn set_print_settings(&self, print_settings: &PrintSettings) {
+    pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
         unsafe {
             ffi::gtk_page_setup_unix_dialog_set_print_settings(
                 self.to_glib_none().0,

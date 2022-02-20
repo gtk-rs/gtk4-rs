@@ -52,9 +52,12 @@ impl CssProvider {
     }
 
     #[doc(alias = "gtk_css_provider_load_from_path")]
-    pub fn load_from_path(&self, path: &str) {
+    pub fn load_from_path(&self, path: impl AsRef<std::path::Path>) {
         unsafe {
-            ffi::gtk_css_provider_load_from_path(self.to_glib_none().0, path.to_glib_none().0);
+            ffi::gtk_css_provider_load_from_path(
+                self.to_glib_none().0,
+                path.as_ref().to_glib_none().0,
+            );
         }
     }
 

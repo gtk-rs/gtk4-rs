@@ -63,7 +63,7 @@ impl EventControllerKey {
 
     #[doc(alias = "gtk_event_controller_key_get_im_context")]
     #[doc(alias = "get_im_context")]
-    pub fn im_context(&self) -> IMContext {
+    pub fn im_context(&self) -> Option<IMContext> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_key_get_im_context(
                 self.to_glib_none().0,
@@ -72,11 +72,11 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "gtk_event_controller_key_set_im_context")]
-    pub fn set_im_context(&self, im_context: &impl IsA<IMContext>) {
+    pub fn set_im_context(&self, im_context: Option<&impl IsA<IMContext>>) {
         unsafe {
             ffi::gtk_event_controller_key_set_im_context(
                 self.to_glib_none().0,
-                im_context.as_ref().to_glib_none().0,
+                im_context.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
