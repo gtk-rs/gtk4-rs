@@ -32,11 +32,11 @@ use syn::{parse_macro_input, DeriveInput};
 /// [`bind_template`] in the [`class_init`] function, and [`init_template`] in
 /// [`instance_init`] function.
 ///
-/// [`ObjectSubclass`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html
-/// [`bind_template`]: https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.CompositeTemplate.html#tymethod.bind_template
-/// [`class_init`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html#method.class_init
-/// [`init_template`]: https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.InitializingWidgetExt.html#tymethod.init_template
-/// [`instance_init`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html#method.instance_init
+/// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html
+/// [`bind_template`]: ../gtk4/subclass/widget/trait.CompositeTemplate.html#tymethod.bind_template
+/// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init
+/// [`init_template`]: ../gtk4/prelude/trait.InitializingWidgetExt.html#tymethod.init_template
+/// [`instance_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.instance_init
 ///
 /// ```no_run
 /// # fn main() {}
@@ -141,14 +141,14 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// This can also be used if you need custom unboxing, such as if the target type does not
 /// implement `FromValue`.
 ///
-/// [`glib::closure`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html
-/// [`glib::wrapper`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html
-/// [`ObjectSubclass`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html
-/// [`class_init`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html#method.class_init
-/// [`bind_template_callbacks`]: https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#tymethod.bind_template_callbacks
-/// [`glib::FromValue`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/trait.FromValue.html
-/// [`glib::ToValue`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/trait.ToValue.html
-/// [`&glib::Value`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html
+/// [`glib::closure`]: ../glib/macro.closure.html
+/// [`glib::wrapper`]: ../glib/macro.wrapper.html
+/// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html
+/// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init
+/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#tymethod.bind_template_callbacks
+/// [`glib::FromValue`]: ../glib/value/trait.FromValue.html
+/// [`glib::ToValue`]: ../glib/value/trait.ToValue.html
+/// [`&glib::Value`]: ../glib/value/struct.Value.html
 ///
 /// # Example
 ///
