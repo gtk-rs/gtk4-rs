@@ -25,14 +25,10 @@ fn gen_set_template(source: TemplateSource) -> TokenStream {
     }
 }
 
-fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
+fn gen_template_child_bindings(fields: &[AttributedField]) -> TokenStream {
     let crate_ident = crate_ident_new();
-    let attributed_fields = match parse_fields(fields) {
-        Ok(fields) => fields,
-        Err(err) => abort!(err.span(), err),
-    };
 
-    let recurse = attributed_fields.iter().map(|field| match field.attr.ty {
+    let recurse = fields.iter().map(|field| match field.attr.ty {
         FieldAttributeType::TemplateChild => {
             let mut value_id = &field.ident.to_string();
             let ident = &field.ident;
@@ -61,6 +57,29 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
     }
 }
 
+fn gen_template_child_type_checks(fields: &[AttributedField]) -> TokenStream {
+    let crate_ident = crate_ident_new();
+
+    let recurse = fields.iter().map(|field| match field.attr.ty {
+        FieldAttributeType::TemplateChild => {
+            let ty = &field.ty;
+            let ident = &field.ident;
+            let type_err = format!("Template child with id `{}` has incompatible type. XML has {{:?}}, struct has {{:?}}", field.id());
+            quote! {
+                let ty = <<#ty as ::std::ops::Deref>::Target as #crate_ident::glib::StaticType>::static_type();
+                let child_ty = #crate_ident::glib::object::ObjectExt::type_(::std::ops::Deref::deref(&imp.#ident));
+                if !child_ty.is_a(ty) {
+                    panic!(#type_err, child_ty, ty);
+                }
+            }
+        }
+    });
+
+    quote! {
+        #(#recurse)*
+    }
+}
+
 pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let name = &input.ident;
     let crate_ident = crate_ident_new();
@@ -80,7 +99,13 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         _ => abort_call_site!("derive(CompositeTemplate) only supports structs"),
     };
 
-    let template_children = gen_template_child_bindings(fields);
+    let attributed_fields = match parse_fields(fields) {
+        Ok(fields) => fields,
+        Err(err) => abort!(err.span(), err),
+    };
+
+    let template_children = gen_template_child_bindings(&attributed_fields);
+    let checks = gen_template_child_type_checks(&attributed_fields);
 
     quote! {
         impl #crate_ident::subclass::widget::CompositeTemplate for #name {
@@ -90,6 +115,10 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
                 unsafe {
                     #template_children
                 }
+            }
+            fn check_template_children(widget: &<Self as ObjectSubclass>::Type) {
+                let imp = widget.imp();
+                #checks
             }
         }
     }
