@@ -13,14 +13,13 @@ use crate::util::*;
 fn gen_set_template(source: TemplateSource) -> TokenStream {
     match source {
         TemplateSource::File(file) => quote! {
-            let t = include_bytes!(#file);
-            klass.set_template(t);
+            klass.set_template_static(include_bytes!(#file));
         },
         TemplateSource::Resource(resource) => quote! {
             klass.set_template_from_resource(&#resource);
         },
         TemplateSource::String(template) => quote! {
-            klass.set_template(&#template);
+            klass.set_template_static(#template.as_bytes());
         },
     }
 }
