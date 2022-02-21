@@ -152,6 +152,9 @@ pub mod prelude {
     pub use super::tree_view::{TreeViewImpl, TreeViewImplExt};
     pub use super::widget::CompositeTemplate;
     pub use super::widget::CompositeTemplateCallbacks;
+    pub use super::widget::CompositeTemplateCallbacksClass;
+    pub use super::widget::CompositeTemplateClass;
+    pub use super::widget::CompositeTemplateInstanceCallbacksClass;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::{WidgetImpl, WidgetImplExt};

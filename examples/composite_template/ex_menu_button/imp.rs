@@ -18,8 +18,8 @@ impl ObjectSubclass for ExMenuButton {
     type ParentType = gtk::Widget;
 
     fn class_init(klass: &mut Self::Class) {
-        Self::bind_template(klass);
-        Self::bind_template_callbacks(klass);
+        klass.bind_template();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
