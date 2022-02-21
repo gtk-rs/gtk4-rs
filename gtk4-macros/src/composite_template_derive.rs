@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use proc_macro2::TokenStream;
-use proc_macro_error::{abort, abort_call_site};
+use proc_macro_error::{emit_call_site_error, emit_error};
 use quote::quote;
 use syn::Data;
 
@@ -10,7 +10,7 @@ use std::string::ToString;
 use crate::attribute_parser::*;
 use crate::util::*;
 
-fn gen_set_template(source: TemplateSource) -> TokenStream {
+fn gen_set_template(source: &TemplateSource) -> TokenStream {
     match source {
         TemplateSource::File(file) => quote! {
             klass.set_template_static(include_bytes!(#file));
@@ -84,23 +84,33 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let crate_ident = crate_ident_new();
 
     let source = match parse_template_source(input) {
-        Ok(v) => v,
-        Err(e) => abort_call_site!(
-            "{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
-            e
-        ),
+        Ok(v) => Some(v),
+        Err(e) => {
+            emit_call_site_error!(
+                "{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
+                e
+            );
+            None
+        }
     };
 
-    let set_template = gen_set_template(source);
+    let set_template = source.as_ref().map(gen_set_template);
 
     let fields = match input.data {
-        Data::Struct(ref s) => &s.fields,
-        _ => abort_call_site!("derive(CompositeTemplate) only supports structs"),
+        Data::Struct(ref s) => Some(&s.fields),
+        _ => {
+            emit_call_site_error!("derive(CompositeTemplate) only supports structs");
+            None
+        }
     };
 
-    let attributed_fields = match parse_fields(fields) {
-        Ok(fields) => fields,
-        Err(err) => abort!(err.span(), err),
+    let attributed_fields = match fields.map(parse_fields) {
+        Some(Ok(fields)) => fields,
+        Some(Err(err)) => {
+            emit_error!(err.span(), err);
+            vec![]
+        }
+        None => vec![],
     };
 
     let template_children = gen_template_child_bindings(&attributed_fields);
