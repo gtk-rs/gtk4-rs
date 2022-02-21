@@ -615,7 +615,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -992,7 +992,7 @@ impl Default for Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -1283,7 +1283,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {

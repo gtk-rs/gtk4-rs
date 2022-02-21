@@ -586,7 +586,7 @@ impl ObjectSubclass for TodoRow {
     type ParentType = gtk::Box;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
         klass.set_css_name(&quot;todo-row&quot;);
     }
 

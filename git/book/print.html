@@ -5127,7 +5127,7 @@ pub struct Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5184,7 +5184,7 @@ impl ObjectSubclass for Window {
     type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5241,7 +5241,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5355,7 +5355,7 @@ pub struct Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5458,8 +5458,8 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">        klass.bind_template_callbacks();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5488,7 +5488,7 @@ impl Window {
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
 </span></code></pre>
-<p>Then we have to bind the template callbacks with <a href="../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks"><code>bind_template_callbacks</code></a>.</p>
+<p>Then we have to bind the template callbacks with <a href="../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks"><code>bind_template_callbacks</code></a>.</p>
 <p><span class="filename">Filename: listings/composite_templates/3/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::glib;
@@ -5515,8 +5515,8 @@ impl ObjectSubclass for Window {
     type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
-        Self::bind_template_callbacks(klass);
+        klass.bind_template();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5576,8 +5576,8 @@ pub struct Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">        klass.bind_template_callbacks();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5657,8 +5657,8 @@ This lets us access the state of the window and therefore manipulate <code>numbe
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">        klass.bind_template_callbacks();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5718,8 +5718,8 @@ pub struct Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
-</span><span class="boring">        Self::bind_template_callbacks(klass);
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">        klass.bind_template_callbacks();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -5787,8 +5787,8 @@ impl ObjectSubclass for Window {
         // Register `CustomButton`
         CustomButton::ensure_type();
 
-        Self::bind_template(klass);
-        Self::bind_template_callbacks(klass);
+        klass.bind_template();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -6018,7 +6018,7 @@ impl ObjectSubclass for Window {
     type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -6380,7 +6380,7 @@ impl ObjectSubclass for TodoRow {
     type ParentType = gtk::Box;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &amp;glib::subclass::InitializingObject&lt;Self&gt;) {
@@ -6427,7 +6427,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -7439,7 +7439,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -7816,7 +7816,7 @@ impl Default for Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -8107,7 +8107,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -8281,7 +8281,7 @@ impl Default for Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -9363,7 +9363,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -9672,7 +9672,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -10178,7 +10178,7 @@ impl ObjectSubclass for TodoRow {
     type ParentType = gtk::Box;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
         klass.set_css_name(&quot;todo-row&quot;);
     }
 

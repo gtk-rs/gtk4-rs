@@ -280,7 +280,7 @@ impl Default for Window {
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -1362,7 +1362,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -1671,7 +1671,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {

@@ -319,7 +319,7 @@ impl ObjectSubclass for Window {
     type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
@@ -681,7 +681,7 @@ impl ObjectSubclass for TodoRow {
     type ParentType = gtk::Box;
 
     fn class_init(klass: &amp;mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &amp;glib::subclass::InitializingObject&lt;Self&gt;) {
@@ -728,7 +728,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
 </span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
-</span><span class="boring">        Self::bind_template(klass);
+</span><span class="boring">        klass.bind_template();
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
