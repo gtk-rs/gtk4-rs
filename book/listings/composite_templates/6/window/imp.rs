@@ -30,8 +30,8 @@ impl ObjectSubclass for Window {
         // Register `CustomButton`
         CustomButton::ensure_type();
 
-        Self::bind_template(klass);
-        Self::bind_template_callbacks(klass);
+        klass.bind_template();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {

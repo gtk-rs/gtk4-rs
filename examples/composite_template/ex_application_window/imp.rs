@@ -32,7 +32,7 @@ impl ObjectSubclass for ExApplicationWindow {
     // The CompositeTemplate derive macro provides a convenience function
     // bind_template() to set the template and bind all children at once.
     fn class_init(klass: &mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
         UtilityCallbacks::bind_template_callbacks(klass);
     }
 

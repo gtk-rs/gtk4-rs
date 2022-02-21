@@ -170,7 +170,7 @@ This means that `handle_button_clicked` has a single parameter of type `&CustomB
 {{#rustdoc_include ../listings/composite_templates/3/window/imp.rs:template_callbacks}}
 ```
 
-Then we have to bind the template callbacks with [`bind_template_callbacks`](../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks).
+Then we have to bind the template callbacks with [`bind_template_callbacks`](../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks).
 
 <span class="filename">Filename: listings/composite_templates/3/window/imp.rs</span>
 ```rust ,no_run,noplayground

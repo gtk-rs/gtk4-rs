@@ -64,7 +64,7 @@ use syn::{parse_macro_input, DeriveInput};
 ///         type ParentType = gtk::Box;
 ///
 ///         fn class_init(klass: &mut Self::Class) {
-///             Self::bind_template(klass);
+///             klass.bind_template();
 ///         }
 ///
 ///         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -100,12 +100,15 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// Widgets with [`CompositeTemplate`] can then make use of these callbacks from within their
 /// template XML definition. The attribute must be applied to an `impl` statement of a struct.
 /// Functions marked as callbacks within the `impl` will be stored in a static array. Then, in the
-/// [`ObjectSubclass`] implementation you will need to call [`bind_template_callbacks`] in the
-/// [`class_init`] function.
+/// [`ObjectSubclass`] implementation you will need to call [`bind_template_callbacks`] and/or
+/// [`bind_template_instance_callbacks`] in the [`class_init`] function.
 ///
-/// Template callbacks can be specified on both a widget's public `impl` or on its private `impl`.
-/// Template callbacks from other types can also be used. Care must be taken to call
-/// `bind_template_callbacks` on each type in order to use its callbacks.
+/// Template callbacks can be specified on both a widget's public wrapper `impl` or on its private
+/// subclass `impl`, or from external types. If callbacks are specified on the public wrapper, then
+/// `bind_template_instance_callbacks` must be called in `class_init`. If callbacks are specified
+/// on the private subclass, then `bind_template_callbacks` must be called in `class_init`. To use
+/// the callbacks from an external type, call [`T::bind_template_callbacks`] in `class_init`, where
+/// `T` is the other type. See the example below for usage of all three.
 ///
 /// These callbacks can be bound using the `<signal>` or `<closure>` tags in the template file.
 /// Note that the arguments and return type will only be checked at run time when the method is
@@ -145,7 +148,9 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// [`glib::wrapper`]: ../glib/macro.wrapper.html
 /// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html
 /// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init
-/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#tymethod.bind_template_callbacks
+/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks
+/// [`bind_template_instance_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateInstanceCallbacksClass.html#tymethod.bind_template_instance_callbacks
+/// [`T::bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks
 /// [`glib::FromValue`]: ../glib/value/trait.FromValue.html
 /// [`glib::ToValue`]: ../glib/value/trait.ToValue.html
 /// [`&glib::Value`]: ../glib/value/struct.Value.html
@@ -178,11 +183,11 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 ///         type ParentType = gtk::Box;
 ///
 ///         fn class_init(klass: &mut Self::Class) {
-///             Self::bind_template(klass);
+///             klass.bind_template();
 ///             // Bind the private callbacks
-///             Self::bind_template_callbacks(klass);
+///             klass.bind_template_callbacks();
 ///             // Bind the public callbacks
-///             Self::Type::bind_template_callbacks(klass);
+///             klass.bind_template_instance_callbacks();
 ///             // Bind callbacks from another struct
 ///             super::Utility::bind_template_callbacks(klass);
 ///         }
