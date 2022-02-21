@@ -10,7 +10,7 @@ license = "MIT"
 name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.5.0"
-rust-version = "1.56"
+rust-version = "1.57"
 [lib]
 proc-macro = true
 

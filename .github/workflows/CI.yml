@@ -18,7 +18,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.56.0"
+          - "1.57.0"
         conf:
           - { name: "gtk4", features: "v4_6", test_sys: false }
           - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
