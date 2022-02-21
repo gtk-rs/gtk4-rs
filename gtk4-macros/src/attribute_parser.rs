@@ -78,7 +78,7 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
 }
 
 pub enum FieldAttributeArg {
-    Id(String),
+    Id(String, Span),
     Internal(bool),
 }
 
@@ -104,11 +104,19 @@ impl AttributedField {
     pub fn id(&self) -> String {
         let mut name = None;
         for arg in &self.attr.args {
-            if let FieldAttributeArg::Id(value) = arg {
+            if let FieldAttributeArg::Id(value, _) = arg {
                 name = Some(value)
             }
         }
         name.cloned().unwrap_or_else(|| self.ident.to_string())
+    }
+    pub fn id_span(&self) -> Span {
+        for arg in &self.attr.args {
+            if let FieldAttributeArg::Id(_, span) = arg {
+                return *span;
+            }
+        }
+        self.ident.span()
     }
 }
 
@@ -166,7 +174,10 @@ fn parse_field_attr_meta(
     ));
     let value = match ty {
         FieldAttributeType::TemplateChild => match ident_str.as_str() {
-            "id" => FieldAttributeArg::Id(parse_field_attr_value_str(name_value)?),
+            "id" => FieldAttributeArg::Id(
+                parse_field_attr_value_str(name_value)?,
+                name_value.lit.span(),
+            ),
             "internal" => FieldAttributeArg::Internal(parse_field_attr_value_bool(name_value)?),
             _ => return unknown_err,
         },
