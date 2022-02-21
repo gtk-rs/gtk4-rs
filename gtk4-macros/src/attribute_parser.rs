@@ -100,6 +100,18 @@ pub struct AttributedField {
     pub attr: FieldAttribute,
 }
 
+impl AttributedField {
+    pub fn id(&self) -> String {
+        let mut name = None;
+        for arg in &self.attr.args {
+            if let FieldAttributeArg::Id(value) = arg {
+                name = Some(value)
+            }
+        }
+        name.cloned().unwrap_or_else(|| self.ident.to_string())
+    }
+}
+
 fn parse_field_attr_value_str(name_value: &MetaNameValue) -> Result<String, Error> {
     match &name_value.lit {
         Lit::Str(s) => Ok(s.value()),
