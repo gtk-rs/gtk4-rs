@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::util::*;
-use proc_macro2::{Ident, Span, TokenStream};
-use proc_macro_error::{abort, abort_call_site};
+use proc_macro2::TokenStream;
+use proc_macro_error::{emit_call_site_error, emit_error};
 use quote::{quote, ToTokens, TokenStreamExt};
 use syn::{parse::Parse, Token};
 
@@ -38,6 +38,7 @@ impl Parse for Args {
     }
 }
 
+#[derive(Default)]
 pub struct CallbackArgs {
     name: Option<String>,
     function: Option<bool>,
@@ -112,7 +113,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
         ..
     } = &mut input;
     if trait_.is_some() {
-        abort_call_site!(WRONG_PLACE_MSG);
+        emit_call_site_error!(WRONG_PLACE_MSG);
     }
     let crate_ident = crate_ident_new();
 
@@ -123,10 +124,12 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             let mut attr = None;
             while i < method.attrs.len() {
                 if method.attrs[i].path.is_ident("template_callback") {
+                    let callback = method.attrs.remove(i);
                     if attr.is_some() {
-                        abort!(method.attrs[i], "Duplicate `template_callback` attribute");
+                        emit_error!(callback, "Duplicate `template_callback` attribute");
+                    } else {
+                        attr.replace(callback);
                     }
-                    attr.replace(method.attrs.remove(i));
                 } else {
                     i += 1;
                 }
@@ -138,8 +141,10 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             };
 
             let ident = &method.sig.ident;
-            let callback_args =
-                syn::parse2::<CallbackArgs>(attr.tokens).unwrap_or_else(|e| abort!(e));
+            let callback_args = syn::parse2::<CallbackArgs>(attr.tokens).unwrap_or_else(|e| {
+                emit_error!(e);
+                Default::default()
+            });
             let name = callback_args
                 .name
                 .as_ref()
@@ -147,15 +152,14 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 .unwrap_or_else(|| ident.to_string());
             let start = callback_args.start(&args);
 
-            let call_site = Span::call_site();
             let mut arg_names = vec![];
             let mut has_rest = false;
             let value_unpacks = method.sig.inputs.iter_mut().enumerate().map(|(index, arg)| {
                 if has_rest {
-                    abort!(arg, "Arguments past argument with `rest` attribute");
+                    emit_error!(arg, "Arguments past argument with `rest` attribute");
                 }
                 let index = index + start;
-                let name = Ident::new(&format!("value{}", index), call_site);
+                let name = quote::format_ident!("value{}", index);
                 arg_names.push(name.clone());
                 let unwrap_value = |ty, err_msg| {
                     let index_err_msg = format!(
@@ -173,46 +177,51 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 match arg {
                     syn::FnArg::Receiver(receiver) => {
                         if receiver.reference.is_none() || receiver.mutability.is_some() {
-                            abort!(receiver, "Receiver must be &self");
+                            emit_error!(receiver, "Receiver must be `&self`");
+                            None
+                        } else {
+                            let err_msg = format!(
+                                "Wrong type for `self` in template callback `{}`: {{:?}}",
+                                ident
+                            );
+                            let self_value_ty = quote! {
+                                &<#self_ty as #crate_ident::glib::subclass::types::FromObject>::FromObjectType
+                            };
+                            let mut unwrap = unwrap_value(self_value_ty, err_msg);
+                            unwrap.append_all(quote! {
+                                let #name = <#self_ty as #crate_ident::glib::subclass::types::FromObject>::from_object(#name);
+                            });
+                            Some(unwrap)
                         }
-                        let err_msg = format!(
-                            "Wrong type for `self` in template callback `{}`: {{:?}}",
-                            ident
-                        );
-                        let self_value_ty = quote! {
-                            &<#self_ty as #crate_ident::glib::subclass::types::FromObject>::FromObjectType
-                        };
-                        let mut unwrap = unwrap_value(self_value_ty, err_msg);
-                        unwrap.append_all(quote! {
-                            let #name = <#self_ty as #crate_ident::glib::subclass::types::FromObject>::from_object(#name);
-                        });
-                        unwrap
                     },
                     syn::FnArg::Typed(typed) => {
                         let mut i = 0;
+                        let mut cur_is_rest = false;
                         while i < typed.attrs.len() {
                             if typed.attrs[i].path.is_ident("rest") {
                                 let rest = typed.attrs.remove(i);
-                                if has_rest {
-                                    abort!(rest, "Duplicate `rest` attribute");
+                                if cur_is_rest {
+                                    emit_error!(rest, "Duplicate `rest` attribute");
+                                } else if !rest.tokens.is_empty() {
+                                    emit_error!(rest, "Tokens after `rest` attribute");
                                 }
-                                if !rest.tokens.is_empty() {
-                                    abort!(rest, "Tokens after `rest` attribute");
-                                }
-                                has_rest = true;
+                                cur_is_rest = true;
                             } else {
                                 i += 1;
                             }
                         }
-                        if has_rest {
+                        if cur_is_rest {
+                            has_rest = true;
+                        }
+                        if cur_is_rest {
                             let end = if callback_args.is_function(&args) {
                                 quote! { (values.len() - #start) }
                             } else {
                                 quote! { values.len() }
                             };
-                            quote! {
+                            Some(quote! {
                                 let #name = &values[#index..#end];
-                            }
+                            })
                         } else {
                             let ty = typed.ty.as_ref();
                             let err_msg = format!(
@@ -220,28 +229,35 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                                 index,
                                 ident
                             );
-                            unwrap_value(ty.to_token_stream(), err_msg)
+                            Some(unwrap_value(ty.to_token_stream(), err_msg))
                         }
                     }
                 }
-            }).collect::<Vec<_>>();
+            }).collect::<Option<Vec<_>>>();
 
-            let call = quote! { #self_ty::#ident(#(#arg_names),*) };
-            let call = match method.sig.output {
-                syn::ReturnType::Default => quote! {
-                    #call;
-                    None
-                },
-                syn::ReturnType::Type(_, _) => quote! {
-                    let ret = #call;
-                    Some(#crate_ident::glib::value::ToValue::to_value(&ret))
-                },
-            };
+            let body = value_unpacks
+                .map(|value_unpacks| {
+                    let call = quote! { #self_ty::#ident(#(#arg_names),*) };
+                    let call = match method.sig.output {
+                        syn::ReturnType::Default => quote! {
+                            #call;
+                            None
+                        },
+                        syn::ReturnType::Type(_, _) => quote! {
+                            let ret = #call;
+                            Some(#crate_ident::glib::value::ToValue::to_value(&ret))
+                        },
+                    };
+                    quote! {
+                        #(#value_unpacks)*
+                        #call
+                    }
+                })
+                .unwrap_or_else(|| quote! { ::std::option::Option::None });
 
             callbacks.push(quote! {
                 (#name, |values| {
-                    #(#value_unpacks)*
-                    #call
+                    #body
                 })
             });
         }
