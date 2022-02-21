@@ -20,7 +20,7 @@ fn gen_set_template(source: TemplateSource) -> TokenStream {
             klass.set_template_from_resource(&#resource);
         },
         TemplateSource::String(template) => quote! {
-            klass.set_template(&#template);
+            klass.set_template_static(#template.as_bytes());
         },
     }
 }
