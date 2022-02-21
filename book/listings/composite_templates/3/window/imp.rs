@@ -9,7 +9,7 @@ use crate::custom_button::CustomButton;
 // ANCHOR: object
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(file = "window.ui")]
+#[template(resource = "/org/gtk-rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub button: TemplateChild<CustomButton>,
@@ -27,6 +27,7 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -35,21 +36,19 @@ impl ObjectSubclass for Window {
 }
 // ANCHOR_END: subclass
 
-// ANCHOR: object_impl
-// Trait shared by all GObjects
-impl ObjectImpl for Window {
-    fn constructed(&self, obj: &Self::Type) {
-        // Call "constructed" on parent
-        self.parent_constructed(obj);
-
-        // Connect to "clicked" signal of `button`
-        self.button.connect_clicked(move |button| {
-            // Set the label to "Hello World!" after the button has been clicked on
-            button.set_label("Hello World!");
-        });
+// ANCHOR: template_callbacks
+#[gtk::template_callbacks]
+impl Window {
+    #[template_callback]
+    fn handle_button_clicked(button: &CustomButton) {
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
     }
 }
-// ANCHOR_END: object_impl
+// ANCHOR_END: template_callbacks
+
+// Trait shared by all GObjects
+impl ObjectImpl for Window {}
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
