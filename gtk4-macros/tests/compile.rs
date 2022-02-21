@@ -4,8 +4,16 @@
 fn failures() {
     let t = trybuild2::TestCases::new();
     t.compile_fail_check_sub(
+        "tests/compile-fail/composite-template-bad-xml.rs",
+        "error: Failed reading template XML",
+    );
+    t.compile_fail_check_sub(
         "tests/compile-fail/composite-template-duplicate-id-attr.rs",
         "error: two instances of the same attribute argument, each argument must be specified only once",
+    );
+    t.compile_fail_check_sub(
+        "tests/compile-fail/composite-template-missing-id.rs",
+        "error: Template child with id `label` not found in template XML",
     );
     t.compile_fail_check_sub(
         "tests/compile-fail/template-callback-async-ret-value.rs",

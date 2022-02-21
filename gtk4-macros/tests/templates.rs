@@ -16,12 +16,19 @@ mod imp {
             <property name="label">foobar</property>
           </object>
         </child>
+        <child>
+          <object class="GtkLabel" id="my_label2">
+            <property name="label">foobaz</property>
+          </object>
+        </child>
       </template>
     </interface>
     "#)]
     pub struct MyWidget {
         #[template_child]
         pub label: TemplateChild<gtk::Label>,
+        #[template_child(id = "my_label2")]
+        pub label2: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -39,7 +46,7 @@ mod imp {
 
     impl ObjectImpl for MyWidget {
         fn dispose(&self, obj: &Self::Type) {
-            if let Some(child) = obj.first_child() {
+            while let Some(child) = obj.first_child() {
                 child.unparent();
             }
         }
@@ -55,6 +62,7 @@ glib::wrapper! {
 fn template_string() {
     let widget: MyWidget = glib::Object::new(&[]).unwrap();
     assert_eq!(widget.imp().label.label(), "foobar");
+    assert_eq!(widget.imp().label2.label(), "foobaz");
 }
 
 mod imp2 {
