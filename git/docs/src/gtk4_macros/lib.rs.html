@@ -334,6 +334,11 @@
 <span id="256">256</span>
 <span id="257">257</span>
 <span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="doccomment">//! # GTK 4 Macros</span>
@@ -400,7 +405,7 @@
 <span class="doccomment">///         type ParentType = gtk::Box;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///         fn class_init(klass: &amp;mut Self::Class) {</span>
-<span class="doccomment">///             Self::bind_template(klass);</span>
+<span class="doccomment">///             klass.bind_template();</span>
 <span class="doccomment">///         }</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///         fn instance_init(obj: &amp;glib::subclass::InitializingObject&lt;Self&gt;) {</span>
@@ -436,12 +441,15 @@
 <span class="doccomment">/// Widgets with [`CompositeTemplate`] can then make use of these callbacks from within their</span>
 <span class="doccomment">/// template XML definition. The attribute must be applied to an `impl` statement of a struct.</span>
 <span class="doccomment">/// Functions marked as callbacks within the `impl` will be stored in a static array. Then, in the</span>
-<span class="doccomment">/// [`ObjectSubclass`] implementation you will need to call [`bind_template_callbacks`] in the</span>
-<span class="doccomment">/// [`class_init`] function.</span>
+<span class="doccomment">/// [`ObjectSubclass`] implementation you will need to call [`bind_template_callbacks`] and/or</span>
+<span class="doccomment">/// [`bind_template_instance_callbacks`] in the [`class_init`] function.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Template callbacks can be specified on both a widget&#39;s public `impl` or on its private `impl`.</span>
-<span class="doccomment">/// Template callbacks from other types can also be used. Care must be taken to call</span>
-<span class="doccomment">/// `bind_template_callbacks` on each type in order to use its callbacks.</span>
+<span class="doccomment">/// Template callbacks can be specified on both a widget&#39;s public wrapper `impl` or on its private</span>
+<span class="doccomment">/// subclass `impl`, or from external types. If callbacks are specified on the public wrapper, then</span>
+<span class="doccomment">/// `bind_template_instance_callbacks` must be called in `class_init`. If callbacks are specified</span>
+<span class="doccomment">/// on the private subclass, then `bind_template_callbacks` must be called in `class_init`. To use</span>
+<span class="doccomment">/// the callbacks from an external type, call [`T::bind_template_callbacks`] in `class_init`, where</span>
+<span class="doccomment">/// `T` is the other type. See the example below for usage of all three.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// These callbacks can be bound using the `&lt;signal&gt;` or `&lt;closure&gt;` tags in the template file.</span>
 <span class="doccomment">/// Note that the arguments and return type will only be checked at run time when the method is</span>
@@ -481,7 +489,9 @@
 <span class="doccomment">/// [`glib::wrapper`]: ../glib/macro.wrapper.html</span>
 <span class="doccomment">/// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html</span>
 <span class="doccomment">/// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init</span>
-<span class="doccomment">/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#tymethod.bind_template_callbacks</span>
+<span class="doccomment">/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks</span>
+<span class="doccomment">/// [`bind_template_instance_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateInstanceCallbacksClass.html#tymethod.bind_template_instance_callbacks</span>
+<span class="doccomment">/// [`T::bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks</span>
 <span class="doccomment">/// [`glib::FromValue`]: ../glib/value/trait.FromValue.html</span>
 <span class="doccomment">/// [`glib::ToValue`]: ../glib/value/trait.ToValue.html</span>
 <span class="doccomment">/// [`&amp;glib::Value`]: ../glib/value/struct.Value.html</span>
@@ -514,11 +524,11 @@
 <span class="doccomment">///         type ParentType = gtk::Box;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///         fn class_init(klass: &amp;mut Self::Class) {</span>
-<span class="doccomment">///             Self::bind_template(klass);</span>
+<span class="doccomment">///             klass.bind_template();</span>
 <span class="doccomment">///             // Bind the private callbacks</span>
-<span class="doccomment">///             Self::bind_template_callbacks(klass);</span>
+<span class="doccomment">///             klass.bind_template_callbacks();</span>
 <span class="doccomment">///             // Bind the public callbacks</span>
-<span class="doccomment">///             Self::Type::bind_template_callbacks(klass);</span>
+<span class="doccomment">///             klass.bind_template_instance_callbacks();</span>
 <span class="doccomment">///             // Bind callbacks from another struct</span>
 <span class="doccomment">///             super::Utility::bind_template_callbacks(klass);</span>
 <span class="doccomment">///         }</span>
