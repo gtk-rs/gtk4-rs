@@ -2,8 +2,8 @@
 
 use crate::RGBA;
 use glib::translate::*;
+use std::fmt;
 use std::str::FromStr;
-use std::{fmt, marker::PhantomData};
 
 #[derive(Debug, Default)]
 // rustdoc-stripper-ignore-next
@@ -139,7 +139,6 @@ impl RGBA {
             blue: 0f32,
             alpha: 1f32,
         },
-        phantom: PhantomData,
     };
 
     pub const BLUE: RGBA = Self {
@@ -149,7 +148,6 @@ impl RGBA {
             blue: 1f32,
             alpha: 1f32,
         },
-        phantom: PhantomData,
     };
 
     pub const GREEN: RGBA = Self {
@@ -159,7 +157,6 @@ impl RGBA {
             blue: 0f32,
             alpha: 1f32,
         },
-        phantom: PhantomData,
     };
 
     pub const RED: RGBA = Self {
@@ -169,7 +166,6 @@ impl RGBA {
             blue: 0f32,
             alpha: 1f32,
         },
-        phantom: PhantomData,
     };
 
     pub const WHITE: RGBA = Self {
@@ -179,7 +175,6 @@ impl RGBA {
             blue: 1f32,
             alpha: 1f32,
         },
-        phantom: PhantomData,
     };
 }
 
