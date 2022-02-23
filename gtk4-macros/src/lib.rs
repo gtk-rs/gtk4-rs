@@ -114,9 +114,21 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// Note that the arguments and return type will only be checked at run time when the method is
 /// invoked.
 ///
-/// Methods can optionally take `&self` as a first parameter. In this case, the attribute
-/// `swapped="true"` will usually have to be set on the `<signal>` or `<closure>` tag in order to
-/// invoke the function correctly.
+/// Template callbacks can optionally take `self` or `&self` as a first parameter. In this case,
+/// the attribute `swapped="true"` will usually have to be set on the `<signal>` or `<closure>` tag
+/// in order to invoke the function correctly. Note that by-value `self` will only work with
+/// template callbacks on the wrapper type.
+///
+/// Template callbacks that have no return value can also be `async`, in which case the callback
+/// will be spawned as new future on the default main context using
+/// [`glib::MainContext::spawn_local`]. Invoking the callback multiple times will spawn an
+/// additional future each time it is invoked. This means that multiple futures for an async
+/// callback can be active at any given time, so care must be taken to avoid any kind of data
+/// races. Async callbacks may prefer communicating back to the caller or widget over channels
+/// instead of mutating internal widget state, or may want to make use of a locking flag to ensure
+/// only one future can be active at once. Widgets may also want to show a visual indicator such as
+/// a [`Spinner`] while the future is active to communicate to the user that a background task is
+/// running.
 ///
 /// The following options are supported on the attribute:
 /// - `functions` makes all callbacks use the `function` attribute by default. (see below)
@@ -154,6 +166,8 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// [`glib::FromValue`]: ../glib/value/trait.FromValue.html
 /// [`glib::ToValue`]: ../glib/value/trait.ToValue.html
 /// [`&glib::Value`]: ../glib/value/struct.Value.html
+/// [`glib::MainContext::spawn_local`]: ../glib/struct.MainContext.html#method.spawn_local
+/// [`Spinner`]: ../gtk4/struct.Spinner.html
 ///
 /// # Example
 ///

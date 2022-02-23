@@ -8,6 +8,10 @@ fn failures() {
         "error: two instances of the same attribute argument, each argument must be specified only once",
     );
     t.compile_fail_check_sub(
+        "tests/compile-fail/template-callback-async-ret-value.rs",
+        "`async` only allowed on template callbacks without a return value",
+    );
+    t.compile_fail_check_sub(
         "tests/compile-fail/template-callback-arg-after-rest.rs",
         "error: Arguments past argument with `rest` attribute",
     );
@@ -21,6 +25,6 @@ fn failures() {
     );
     t.compile_fail_check_sub(
         "tests/compile-fail/template-callback-mut-self.rs",
-        "error: Receiver must be `&self`",
+        "error: Receiver cannot be a mutable reference",
     );
 }
