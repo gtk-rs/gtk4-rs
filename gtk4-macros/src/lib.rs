@@ -111,9 +111,21 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// Note that the arguments and return type will only be checked at run time when the method is
 /// invoked.
 ///
-/// Methods can optionally take `&self` as a first parameter. In this case, the attribute
-/// `swapped="true"` will usually have to be set on the `<signal>` or `<closure>` tag in order to
-/// invoke the function correctly.
+/// Template callbacks can optionally take `self` or `&self` as a first parameter. In this case,
+/// the attribute `swapped="true"` will usually have to be set on the `<signal>` or `<closure>` tag
+/// in order to invoke the function correctly. Note that by-value `self` will only work with
+/// template callbacks on the wrapper type.
+///
+/// Template callbacks that have no return value can also be `async`, in which case the callback
+/// will be spawned as new future on the default main context using
+/// [`glib::MainContext::spawn_local`]. Invoking the callback multiple times will spawn an
+/// additional future each time it is invoked. This means that multiple futures for an async
+/// callback can be active at any given time, so care must be taken to avoid any kind of data
+/// races. Async callbacks may prefer communicating back to the caller or widget over channels
+/// instead of mutating internal widget state, or may want to make use of a locking flag to ensure
+/// only one future can be active at once. Widgets may also want to show a visual indicator such as
+/// a [`Spinner`] while the future is active to communicate to the user that a background task is
+/// running.
 ///
 /// The following options are supported on the attribute:
 /// - `functions` makes all callbacks use the `function` attribute by default. (see below)
@@ -141,14 +153,18 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// This can also be used if you need custom unboxing, such as if the target type does not
 /// implement `FromValue`.
 ///
-/// [`glib::closure`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html
-/// [`glib::wrapper`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html
-/// [`ObjectSubclass`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html
-/// [`class_init`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/subclass/types/trait.ObjectSubclass.html#method.class_init
-/// [`bind_template_callbacks`]: https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#tymethod.bind_template_callbacks
-/// [`glib::FromValue`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/trait.FromValue.html
-/// [`glib::ToValue`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/trait.ToValue.html
-/// [`&glib::Value`]: https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html
+/// [`glib::closure`]: ../glib/macro.closure.html
+/// [`glib::wrapper`]: ../glib/macro.wrapper.html
+/// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html
+/// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init
+/// [`bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks
+/// [`bind_template_instance_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateInstanceCallbacksClass.html#tymethod.bind_template_instance_callbacks
+/// [`T::bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks
+/// [`glib::FromValue`]: ../glib/value/trait.FromValue.html
+/// [`glib::ToValue`]: ../glib/value/trait.ToValue.html
+/// [`&glib::Value`]: ../glib/value/struct.Value.html
+/// [`glib::MainContext::spawn_local`]: ../glib/struct.MainContext.html#method.spawn_local
+/// [`Spinner`]: ../gtk4/struct.Spinner.html
 ///
 /// # Example
 ///

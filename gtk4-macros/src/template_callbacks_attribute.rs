@@ -176,14 +176,17 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 };
                 match arg {
                     syn::FnArg::Receiver(receiver) => {
-                        if receiver.reference.is_none() || receiver.mutability.is_some() {
-                            emit_error!(receiver, "Receiver must be `&self`");
-                            None
+                        let err_msg = format!(
+                            "Wrong type for `self` in template callback `{}`: {{:?}}",
+                            ident
+                        );
+                        if receiver.reference.is_none() {
+                            Some(unwrap_value(quote! { #self_ty }, err_msg))
                         } else {
-                            let err_msg = format!(
-                                "Wrong type for `self` in template callback `{}`: {{:?}}",
-                                ident
-                            );
+                            if receiver.mutability.is_some() {
+                                emit_error!(receiver, "Receiver cannot be a mutable reference");
+                                return None;
+                            }
                             let self_value_ty = quote! {
                                 &<#self_ty as #crate_ident::glib::subclass::types::FromObject>::FromObjectType
                             };
@@ -212,8 +215,6 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                         }
                         if cur_is_rest {
                             has_rest = true;
-                        }
-                        if cur_is_rest {
                             let end = if callback_args.is_function(&args) {
                                 quote! { (values.len() - #start) }
                             } else {
@@ -238,19 +239,34 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             let body = value_unpacks
                 .map(|value_unpacks| {
                     let call = quote! { #self_ty::#ident(#(#arg_names),*) };
-                    let call = match method.sig.output {
-                        syn::ReturnType::Default => quote! {
+                    match (&method.sig.asyncness, &method.sig.output) {
+                        (None, syn::ReturnType::Default) => quote! {
+                            #(#value_unpacks)*
                             #call;
-                            None
+                            ::std::option::Option::None
                         },
-                        syn::ReturnType::Type(_, _) => quote! {
+                        (None, syn::ReturnType::Type(_, _)) => quote! {
+                            #(#value_unpacks)*
                             let ret = #call;
-                            Some(#crate_ident::glib::value::ToValue::to_value(&ret))
+                            ::std::option::Option::Some(
+                                #crate_ident::glib::value::ToValue::to_value(&ret)
+                            )
                         },
-                    };
-                    quote! {
-                        #(#value_unpacks)*
-                        #call
+                        (Some(_), syn::ReturnType::Default) => quote! {
+                            let values = values.to_vec();
+                            #crate_ident::glib::MainContext::default().spawn_local(async move {
+                                #(#value_unpacks)*
+                                #call.await
+                            });
+                            ::std::option::Option::None
+                        },
+                        (Some(async_), syn::ReturnType::Type(_, _)) => {
+                            emit_error!(
+                                async_,
+                                "`async` only allowed on template callbacks without a return value"
+                            );
+                            quote! { ::std::option::Option::None }
+                        }
                     }
                 })
                 .unwrap_or_else(|| quote! { ::std::option::Option::None });
