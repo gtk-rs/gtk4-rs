@@ -43,5 +43,4 @@ once_cell = "1.0"
 pango = {features = ["v1_46"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 
 [dev-dependencies]
-futures-executor = "0.3"
 gir-format-check = "^0.1"
