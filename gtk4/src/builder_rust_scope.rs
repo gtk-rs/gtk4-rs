@@ -183,7 +183,7 @@ mod imp {
 #[cfg(test)]
 mod tests {
     use super::BuilderRustScope;
-    use crate::{self as gtk4, prelude::*, subclass::prelude::*, test_synced, Builder};
+    use crate::{self as gtk4, prelude::*, subclass::prelude::*, Builder};
 
     const SIGNAL_XML: &str = r##"
     <?xml version="1.0" encoding="UTF-8"?>
@@ -195,31 +195,29 @@ mod tests {
     </interface>
     "##;
 
-    #[test]
+    #[crate::test]
     fn test_rust_builder_scope_signal_handler() {
-        test_synced(move || {
-            use crate::Button;
+        use crate::Button;
 
-            pub struct Callbacks {}
-            #[template_callbacks]
-            impl Callbacks {
-                #[template_callback]
-                fn button_clicked(button: &Button) {
-                    skip_assert_initialized!();
-                    assert_eq!(button.label().unwrap().as_str(), "Hello World");
-                    button.set_label("Clicked");
-                }
+        pub struct Callbacks {}
+        #[template_callbacks]
+        impl Callbacks {
+            #[template_callback]
+            fn button_clicked(button: &Button) {
+                skip_assert_initialized!();
+                assert_eq!(button.label().unwrap().as_str(), "Hello World");
+                button.set_label("Clicked");
             }
+        }
 
-            let builder = Builder::new();
-            let scope = BuilderRustScope::new();
-            Callbacks::add_callbacks_to_scope(&scope);
-            builder.set_scope(Some(&scope));
-            builder.add_from_string(SIGNAL_XML).unwrap();
-            let button = builder.object::<Button>("button").unwrap();
-            button.emit_clicked();
-            assert_eq!(button.label().unwrap().as_str(), "Clicked");
-        });
+        let builder = Builder::new();
+        let scope = BuilderRustScope::new();
+        Callbacks::add_callbacks_to_scope(&scope);
+        builder.set_scope(Some(&scope));
+        builder.add_from_string(SIGNAL_XML).unwrap();
+        let button = builder.object::<Button>("button").unwrap();
+        button.emit_clicked();
+        assert_eq!(button.label().unwrap().as_str(), "Clicked");
     }
 
     const CLOSURE_XML: &str = r##"
@@ -236,59 +234,55 @@ mod tests {
     </interface>
     "##;
 
-    #[test]
+    #[crate::test]
     fn test_rust_builder_scope_closure() {
-        test_synced(move || {
-            use crate::Entry;
+        use crate::Entry;
 
-            pub struct StringCallbacks {}
-            #[template_callbacks]
-            impl StringCallbacks {
-                #[template_callback(function)]
-                fn uppercase(s: &str) -> String {
-                    skip_assert_initialized!();
-                    s.to_uppercase()
-                }
+        pub struct StringCallbacks {}
+        #[template_callbacks]
+        impl StringCallbacks {
+            #[template_callback(function)]
+            fn uppercase(s: &str) -> String {
+                skip_assert_initialized!();
+                s.to_uppercase()
             }
+        }
 
-            let builder = Builder::new();
-            let scope = BuilderRustScope::new();
-            StringCallbacks::add_callbacks_to_scope_prefixed(&scope, "string_");
-            builder.set_scope(Some(&scope));
-            builder.add_from_string(CLOSURE_XML).unwrap();
-            let entry_a = builder.object::<Entry>("entry_a").unwrap();
-            let entry_b = builder.object::<Entry>("entry_b").unwrap();
-            entry_a.set_text("Hello World");
-            assert_eq!(entry_b.text().as_str(), "HELLO WORLD");
-        });
+        let builder = Builder::new();
+        let scope = BuilderRustScope::new();
+        StringCallbacks::add_callbacks_to_scope_prefixed(&scope, "string_");
+        builder.set_scope(Some(&scope));
+        builder.add_from_string(CLOSURE_XML).unwrap();
+        let entry_a = builder.object::<Entry>("entry_a").unwrap();
+        let entry_b = builder.object::<Entry>("entry_b").unwrap();
+        entry_a.set_text("Hello World");
+        assert_eq!(entry_b.text().as_str(), "HELLO WORLD");
     }
 
-    #[test]
+    #[crate::test]
     #[should_panic(
         expected = "Closure returned a value of type guint64 but caller expected gchararray"
     )]
     fn test_rust_builder_scope_closure_return_mismatch() {
-        test_synced(move || {
-            use crate::Entry;
+        use crate::Entry;
 
-            pub struct StringCallbacks {}
-            #[template_callbacks]
-            impl StringCallbacks {
-                #[template_callback(function, name = "uppercase")]
-                fn to_u64(s: &str) -> u64 {
-                    skip_assert_initialized!();
-                    s.parse().unwrap_or(0)
-                }
+        pub struct StringCallbacks {}
+        #[template_callbacks]
+        impl StringCallbacks {
+            #[template_callback(function, name = "uppercase")]
+            fn to_u64(s: &str) -> u64 {
+                skip_assert_initialized!();
+                s.parse().unwrap_or(0)
             }
+        }
 
-            let builder = Builder::new();
-            let scope = BuilderRustScope::new();
-            StringCallbacks::add_callbacks_to_scope_prefixed(&scope, "string_");
-            builder.set_scope(Some(&scope));
-            builder.add_from_string(CLOSURE_XML).unwrap();
-            let entry_a = builder.object::<Entry>("entry_a").unwrap();
-            entry_a.set_text("Hello World");
-        });
+        let builder = Builder::new();
+        let scope = BuilderRustScope::new();
+        StringCallbacks::add_callbacks_to_scope_prefixed(&scope, "string_");
+        builder.set_scope(Some(&scope));
+        builder.add_from_string(CLOSURE_XML).unwrap();
+        let entry_a = builder.object::<Entry>("entry_a").unwrap();
+        entry_a.set_text("Hello World");
     }
 
     const DISPOSE_XML: &str = r##"
@@ -300,7 +294,7 @@ mod tests {
     </interface>
     "##;
 
-    #[test]
+    #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {
         use glib::subclass::Signal;
         use once_cell::sync::Lazy;
@@ -337,18 +331,16 @@ mod tests {
             }
         }
 
-        test_synced(move || {
-            let counter = {
-                MyObject::static_type();
-                let builder = Builder::new();
-                let scope = BuilderRustScope::new();
-                MyObject::add_callbacks_to_scope(&scope);
-                builder.set_scope(Some(&scope));
-                builder.add_from_string(DISPOSE_XML).unwrap();
-                let obj = builder.object::<MyObject>("obj").unwrap();
-                obj.imp().counter.clone()
-            };
-            assert_eq!(counter.get(), 1);
-        });
+        let counter = {
+            MyObject::static_type();
+            let builder = Builder::new();
+            let scope = BuilderRustScope::new();
+            MyObject::add_callbacks_to_scope(&scope);
+            builder.set_scope(Some(&scope));
+            builder.add_from_string(DISPOSE_XML).unwrap();
+            let obj = builder.object::<MyObject>("obj").unwrap();
+            obj.imp().counter.clone()
+        };
+        assert_eq!(counter.get(), 1);
     }
 }

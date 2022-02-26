@@ -118,7 +118,10 @@ pub fn init() -> Result<(), glib::BoolError> {
     if is_initialized_main_thread() {
         return Ok(());
     } else if is_initialized() {
+        #[cfg(not(test))]
         panic!("Attempted to initialize GTK from two different threads.");
+        #[cfg(test)]
+        panic!("Use #[gtk::test] instead of #[test]");
     }
 
     unsafe {
@@ -146,13 +149,11 @@ pub fn init() -> Result<(), glib::BoolError> {
 
 #[cfg(test)]
 mod tests {
-    use crate::test_synced;
+    use crate as gtk4;
 
     #[test]
     fn init_should_acquire_default_main_context() {
-        test_synced(move || {
-            let context = glib::MainContext::ref_thread_default();
-            assert!(context.is_owner());
-        });
+        let context = glib::MainContext::ref_thread_default();
+        assert!(context.is_owner());
     }
 }

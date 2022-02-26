@@ -261,3 +261,67 @@ pub fn template_callbacks(attr: TokenStream, item: TokenStream) -> TokenStream {
         Err(_) => abort_call_site!(template_callbacks_attribute::WRONG_PLACE_MSG),
     }
 }
+
+/// Attribute macro for declaring GTK tests.
+///
+/// Wraps the standard Rust [`test`] attribute with setup logic for GTK. All tests that call
+/// into GTK must use this attribute. This attribute can also be used on asynchronous functions;
+/// the asynchronous test will be run on the main thread context.
+///
+/// # Technical Details
+///
+/// GTK is a single-threaded library, so Rust's normal multi-threaded test behavior cannot be used.
+/// The `#[gtk::test]` attribute creates a main thread for GTK and runs all tests on that thread.
+/// This has the side effect of making all tests run serially, not in parallel.
+///
+/// [`test`]: <https://doc.rust-lang.org/std/prelude/v1/macro.test.html>
+///
+/// # Example
+///
+/// ```no_run
+/// use gtk::prelude::*;
+///
+/// #[gtk::test]
+/// fn test_button() {
+///     let button = gtk::Button::new();
+///     button.activate();
+/// }
+/// ```
+#[proc_macro_attribute]
+#[proc_macro_error]
+pub fn test(_attr: TokenStream, item: TokenStream) -> TokenStream {
+    use proc_macro_error::abort_call_site;
+    use quote::quote;
+
+    match syn::parse::<syn::ItemFn>(item) {
+        Ok(mut input) => {
+            let crate_ident = util::crate_ident_new();
+            let block = &input.block;
+            let block = if input.sig.asyncness.is_some() {
+                quote! {
+                    #crate_ident::glib::MainContext::default().block_on(async move {
+                        #block
+                    })
+                }
+            } else {
+                quote! { #block }
+            };
+            input.sig.asyncness.take();
+
+            let attrs = &input.attrs;
+            let vis = &input.vis;
+            let sig = &input.sig;
+            quote! {
+                #(#attrs)*
+                #[::std::prelude::v1::test]
+                #vis #sig {
+                    #crate_ident::test_synced(move || {
+                        #block
+                    })
+                }
+            }
+            .into()
+        }
+        Err(_) => abort_call_site!("This macro should be used on a function definition"),
+    }
+}

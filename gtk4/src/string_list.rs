@@ -49,32 +49,28 @@ impl Default for StringList {
 #[cfg(test)]
 mod tests {
     use super::StringList;
-    use crate::test_synced;
+    use crate as gtk4;
 
     #[test]
     fn test_from_iter() {
-        test_synced(move || {
-            let strings = vec!["hello", "world", "stuff"]
-                .into_iter()
-                .collect::<StringList>();
-            assert_eq!(strings.string(1).unwrap(), "world");
+        let strings = vec!["hello", "world", "stuff"]
+            .into_iter()
+            .collect::<StringList>();
+        assert_eq!(strings.string(1).unwrap(), "world");
 
-            let strings2 = vec!["hello".to_string(), "world".to_string()]
-                .into_iter()
-                .collect::<StringList>();
+        let strings2 = vec!["hello".to_string(), "world".to_string()]
+            .into_iter()
+            .collect::<StringList>();
 
-            assert_eq!(strings2.string(1).unwrap(), "world");
-        });
+        assert_eq!(strings2.string(1).unwrap(), "world");
     }
 
     #[test]
     fn test_extend() {
-        test_synced(move || {
-            let mut strings = vec!["hello", "world", "stuff"]
-                .into_iter()
-                .collect::<StringList>();
-            strings.extend(["gtk-rs", "gtk4", "gnome"]);
-            assert_eq!(strings.string(4).unwrap(), "gtk4");
-        });
+        let mut strings = vec!["hello", "world", "stuff"]
+            .into_iter()
+            .collect::<StringList>();
+        strings.extend(["gtk-rs", "gtk4", "gnome"]);
+        assert_eq!(strings.string(4).unwrap(), "gtk4");
     }
 }
