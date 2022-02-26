@@ -43,21 +43,19 @@ impl std::fmt::Debug for ConstantExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_synced;
+    use crate as gtk4;
 
     #[test]
     fn test_expressions() {
-        test_synced(move || {
-            let expr1 = ConstantExpression::new(&23);
-            assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-            let expr2 = ConstantExpression::for_value(&"hello".to_value());
-            assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-            let expr1 = ConstantExpression::new(&23);
-            assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-            assert_eq!(expr1.value_as::<i32>(), 23);
-            let expr2 = ConstantExpression::for_value(&"hello".to_value());
-            assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-            assert_eq!(expr2.value_as::<String>(), "hello");
-        });
+        let expr1 = ConstantExpression::new(&23);
+        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+        let expr2 = ConstantExpression::for_value(&"hello".to_value());
+        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+        let expr1 = ConstantExpression::new(&23);
+        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+        assert_eq!(expr1.value_as::<i32>(), 23);
+        let expr2 = ConstantExpression::for_value(&"hello".to_value());
+        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+        assert_eq!(expr2.value_as::<String>(), "hello");
     }
 }

@@ -19,17 +19,15 @@ impl std::fmt::Debug for PropertyExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_synced;
+    use crate as gtk4;
     use glib::StaticType;
 
     #[test]
     fn test_property_expression() {
-        test_synced(move || {
-            let _prop_expr = PropertyExpression::new(
-                crate::StringObject::static_type(),
-                crate::Expression::NONE,
-                "string",
-            );
-        });
+        let _prop_expr = PropertyExpression::new(
+            crate::StringObject::static_type(),
+            crate::Expression::NONE,
+            "string",
+        );
     }
 }

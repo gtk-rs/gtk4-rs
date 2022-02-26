@@ -106,20 +106,18 @@ impl glib::value::ToValueOptional for ParamSpecExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_synced;
+    use crate as gtk4;
 
     #[test]
     fn test_paramspec_expression() {
-        test_synced(move || {
-            let pspec = ParamSpecExpression::new(
-                "expression",
-                "Expression",
-                "Some Expression",
-                glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
-            );
+        let pspec = ParamSpecExpression::new(
+            "expression",
+            "Expression",
+            "Some Expression",
+            glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
+        );
 
-            let expr_pspec = pspec.downcast::<ParamSpecExpression>();
-            assert!(expr_pspec.is_ok());
-        });
+        let expr_pspec = pspec.downcast::<ParamSpecExpression>();
+        assert!(expr_pspec.is_ok());
     }
 }

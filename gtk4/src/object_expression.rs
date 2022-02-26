@@ -18,14 +18,12 @@ impl std::fmt::Debug for ObjectExpression {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_synced;
+    use crate as gtk4;
 
     #[test]
     fn test_object_expression() {
-        test_synced(move || {
-            let obj = crate::IconTheme::new();
-            let expr = ObjectExpression::new(&obj);
-            assert_eq!(expr.object().unwrap(), obj);
-        });
+        let obj = crate::IconTheme::new();
+        let expr = ObjectExpression::new(&obj);
+        assert_eq!(expr.object().unwrap(), obj);
     }
 }
