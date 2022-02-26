@@ -139,3 +139,19 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
         self.show();
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate as gtk4;
+
+    #[test]
+    async fn dialog_future() {
+        let dialog = Dialog::new();
+        glib::idle_add_local_once(glib::clone!(@strong dialog => move || {
+            dialog.response(ResponseType::Ok);
+        }));
+        let response = dialog.run_future().await;
+        assert_eq!(response, ResponseType::Ok);
+    }
+}
