@@ -152,10 +152,6 @@
 <span id="74">74</span>
 <span id="75">75</span>
 <span id="76">76</span>
-<span id="77">77</span>
-<span id="78">78</span>
-<span id="79">79</span>
-<span id="80">80</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::prelude</span>::<span class="kw-2">*</span>;
@@ -207,35 +203,31 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::StringList</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::test_synced</span>;
+    <span class="kw">use</span> <span class="kw">crate</span> <span class="kw">as</span> <span class="ident">gtk4</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_from_iter</span>() {
-        <span class="ident">test_synced</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">strings</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;stuff&quot;</span>]
-                .<span class="ident">into_iter</span>()
-                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
-            <span class="macro">assert_eq!</span>(<span class="ident">strings</span>.<span class="ident">string</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;world&quot;</span>);
+        <span class="kw">let</span> <span class="ident">strings</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;stuff&quot;</span>]
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
+        <span class="macro">assert_eq!</span>(<span class="ident">strings</span>.<span class="ident">string</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;world&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">strings2</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;world&quot;</span>.<span class="ident">to_string</span>()]
-                .<span class="ident">into_iter</span>()
-                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> <span class="ident">strings2</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;world&quot;</span>.<span class="ident">to_string</span>()]
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
 
-            <span class="macro">assert_eq!</span>(<span class="ident">strings2</span>.<span class="ident">string</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;world&quot;</span>);
-        });
+        <span class="macro">assert_eq!</span>(<span class="ident">strings2</span>.<span class="ident">string</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;world&quot;</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_extend</span>() {
-        <span class="ident">test_synced</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">strings</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;stuff&quot;</span>]
-                .<span class="ident">into_iter</span>()
-                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
-            <span class="ident">strings</span>.<span class="ident">extend</span>([<span class="string">&quot;gtk-rs&quot;</span>, <span class="string">&quot;gtk4&quot;</span>, <span class="string">&quot;gnome&quot;</span>]);
-            <span class="macro">assert_eq!</span>(<span class="ident">strings</span>.<span class="ident">string</span>(<span class="number">4</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;gtk4&quot;</span>);
-        });
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">strings</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;stuff&quot;</span>]
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">StringList</span><span class="op">&gt;</span>();
+        <span class="ident">strings</span>.<span class="ident">extend</span>([<span class="string">&quot;gtk-rs&quot;</span>, <span class="string">&quot;gtk4&quot;</span>, <span class="string">&quot;gnome&quot;</span>]);
+        <span class="macro">assert_eq!</span>(<span class="ident">strings</span>.<span class="ident">string</span>(<span class="number">4</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;gtk4&quot;</span>);
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (03a8cc7df 2022-02-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (10cc7a6d0 2022-02-26)" ></div>
 </body></html>

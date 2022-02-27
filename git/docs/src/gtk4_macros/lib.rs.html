@@ -339,6 +339,70 @@
 <span id="261">261</span>
 <span id="262">262</span>
 <span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
 </pre><pre class="rust"><code><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="doccomment">//! # GTK 4 Macros</span>
@@ -602,6 +666,70 @@
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="macro">abort_call_site!</span>(<span class="ident">template_callbacks_attribute::WRONG_PLACE_MSG</span>),
     }
 }
+
+<span class="doccomment">/// Attribute macro for declaring GTK tests.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Wraps the standard Rust [`test`] attribute with setup logic for GTK. All tests that call</span>
+<span class="doccomment">/// into GTK must use this attribute. This attribute can also be used on asynchronous functions;</span>
+<span class="doccomment">/// the asynchronous test will be run on the main thread context.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Technical Details</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// GTK is a single-threaded library, so Rust&#39;s normal multi-threaded test behavior cannot be used.</span>
+<span class="doccomment">/// The `#[gtk::test]` attribute creates a main thread for GTK and runs all tests on that thread.</span>
+<span class="doccomment">/// This has the side effect of making all tests run serially, not in parallel.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [`test`]: &lt;https://doc.rust-lang.org/std/prelude/v1/macro.test.html&gt;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// use gtk::prelude::*;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #[gtk::test]</span>
+<span class="doccomment">/// fn test_button() {</span>
+<span class="doccomment">///     let button = gtk::Button::new();</span>
+<span class="doccomment">///     button.activate();</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
+<span class="attribute">#[<span class="ident">proc_macro_error</span>]</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test</span>(<span class="ident">_attr</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
+    <span class="kw">use</span> <span class="ident">proc_macro_error::abort_call_site</span>;
+    <span class="kw">use</span> <span class="ident">quote::quote</span>;
+
+    <span class="kw">match</span> <span class="ident">syn::parse</span>::<span class="op">&lt;</span><span class="ident">syn::ItemFn</span><span class="op">&gt;</span>(<span class="ident">item</span>) {
+        <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">input</span>) =&gt; {
+            <span class="kw">let</span> <span class="ident">crate_ident</span> <span class="op">=</span> <span class="ident">util::crate_ident_new</span>();
+            <span class="kw">let</span> <span class="ident">block</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">block</span>;
+            <span class="kw">let</span> <span class="ident">block</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">sig</span>.<span class="ident">asyncness</span>.<span class="ident">is_some</span>() {
+                <span class="macro">quote!</span> {
+                    #<span class="ident">crate_ident::glib::MainContext::default</span>().<span class="ident">block_on</span>(<span class="kw">async</span> <span class="kw">move</span> {
+                        #<span class="ident">block</span>
+                    })
+                }
+            } <span class="kw">else</span> {
+                <span class="macro">quote!</span> { #<span class="ident">block</span> }
+            };
+            <span class="ident">input</span>.<span class="ident">sig</span>.<span class="ident">asyncness</span>.<span class="ident">take</span>();
+
+            <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">attrs</span>;
+            <span class="kw">let</span> <span class="ident">vis</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">vis</span>;
+            <span class="kw">let</span> <span class="ident">sig</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">sig</span>;
+            <span class="macro">quote!</span> {
+                #(#<span class="ident">attrs</span>)<span class="op">*</span>
+                <span class="attribute">#[<span class="ident">::std::prelude::v1::test</span>]</span>
+                #<span class="ident">vis</span> #<span class="ident">sig</span> {
+                    #<span class="ident">crate_ident::test_synced</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+                        #<span class="ident">block</span>
+                    })
+                }
+            }
+            .<span class="ident">into</span>()
+        }
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="macro">abort_call_site!</span>(<span class="string">&quot;This macro should be used on a function definition&quot;</span>),
+    }
+}
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (03a8cc7df 2022-02-21)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (10cc7a6d0 2022-02-26)" ></div>
 </body></html>
