@@ -26,6 +26,7 @@ mod imp {
     impl ObjectSubclass for MyWidget {
         const NAME: &'static str = "MyWidget";
         type Type = super::MyWidget;
+        type ParentType = gtk::Widget;
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
         }
@@ -42,7 +43,7 @@ glib::wrapper! {
     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget;
 }
 
-fn main() {
-    gtk::init().unwrap();
+#[gtk::test]
+fn template_string() {
     let _: MyWidget = glib::Object::new(&[]).unwrap();
 }

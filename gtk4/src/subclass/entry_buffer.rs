@@ -312,19 +312,19 @@ fn text_n_chars(text: &str, n_chars: u32) -> &str {
 #[cfg(test)]
 mod test {
     use super::text_n_chars;
-    #[test]
+    #[std::prelude::v1::test]
     fn n_chars_max_length_ascii() {
         assert_eq!(text_n_chars("gtk-rs bindings", 6), "gtk-rs");
         assert_eq!(text_n_chars("gtk-rs bindings", u32::MAX), "gtk-rs bindings");
     }
 
-    #[test]
+    #[std::prelude::v1::test]
     #[should_panic]
     fn n_chars_max_length_ascii_panic() {
         assert_eq!(text_n_chars("gtk-rs", 7), "gtk-rs");
     }
 
-    #[test]
+    #[std::prelude::v1::test]
     fn n_chars_max_length_utf8() {
         assert_eq!(text_n_chars("👨👩👧👦", 2), "👨👩");
         assert_eq!(text_n_chars("👨👩👧👦", 0), "");
@@ -333,14 +333,14 @@ mod test {
         assert_eq!(text_n_chars("كتاب", 2), "كت");
     }
 
-    #[test]
+    #[std::prelude::v1::test]
     fn n_chars_max_length_utf8_ascii() {
         assert_eq!(text_n_chars("👨g👩t👧k👦", 2), "👨g");
         assert_eq!(text_n_chars("👨g👩t👧k👦", 5), "👨g👩t👧");
         assert_eq!(text_n_chars("كaتاب", 3), "كaت");
     }
 
-    #[test]
+    #[std::prelude::v1::test]
     #[should_panic]
     fn n_chars_max_length_utf8_panic() {
         assert_eq!(text_n_chars("👨👩👧👦", 5), "👨👩");

@@ -261,81 +261,75 @@ impl State {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{test_synced, Button};
+    use crate::{self as gtk4, Button};
 
     #[test]
     fn test_accessible_update_property() {
-        test_synced(move || {
-            let widget = glib::Object::new::<Button>(&[]).unwrap();
-            widget.update_property(&[
-                Property::Autocomplete(AccessibleAutocomplete::Inline),
-                Property::Description("Test"),
-                Property::HasPopup(true),
-                Property::KeyShortcuts("Test"),
-                Property::Label("Test"),
-                Property::Level(123),
-                Property::Modal(true),
-                Property::MultiLine(true),
-                Property::MultiSelectable(true),
-                Property::Orientation(Orientation::Horizontal),
-                Property::Placeholder("Test"),
-                Property::ReadOnly(true),
-                Property::Required(true),
-                Property::RoleDescription("Test"),
-                Property::Sort(AccessibleSort::Ascending),
-                Property::ValueMax(1.0),
-                Property::ValueMin(1.0),
-                Property::ValueNow(1.0),
-                Property::ValueText("Test"),
-            ]);
-        });
+        let widget = glib::Object::new::<Button>(&[]).unwrap();
+        widget.update_property(&[
+            Property::Autocomplete(AccessibleAutocomplete::Inline),
+            Property::Description("Test"),
+            Property::HasPopup(true),
+            Property::KeyShortcuts("Test"),
+            Property::Label("Test"),
+            Property::Level(123),
+            Property::Modal(true),
+            Property::MultiLine(true),
+            Property::MultiSelectable(true),
+            Property::Orientation(Orientation::Horizontal),
+            Property::Placeholder("Test"),
+            Property::ReadOnly(true),
+            Property::Required(true),
+            Property::RoleDescription("Test"),
+            Property::Sort(AccessibleSort::Ascending),
+            Property::ValueMax(1.0),
+            Property::ValueMin(1.0),
+            Property::ValueNow(1.0),
+            Property::ValueText("Test"),
+        ]);
     }
 
     #[test]
     fn test_accessible_update_relation() {
-        test_synced(move || {
-            use crate::prelude::*;
+        use crate::prelude::*;
 
-            let widget = glib::Object::new::<Button>(&[]).unwrap();
-            let other1 = glib::Object::new::<Button>(&[]).unwrap();
-            let other2 = glib::Object::new::<Button>(&[]).unwrap();
-            widget.update_relation(&[
-                Relation::ActiveDescendant(other1.upcast_ref()),
-                Relation::ColCount(123),
-                Relation::ColIndex(123),
-                Relation::ColIndexText("Test"),
-                Relation::ColSpan(123),
-                Relation::Controls(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::DescribedBy(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::Details(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::ErrorMessage(other1.upcast_ref()),
-                Relation::FlowTo(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::LabelledBy(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::Owns(&[other1.upcast_ref(), other2.upcast_ref()]),
-                Relation::PosInSet(123),
-                Relation::RowCount(123),
-                Relation::RowIndex(123),
-                Relation::RowIndexText("Test"),
-                Relation::RowSpan(123),
-                Relation::SetSize(123),
-            ]);
-        });
+        let widget = glib::Object::new::<Button>(&[]).unwrap();
+        let other1 = glib::Object::new::<Button>(&[]).unwrap();
+        let other2 = glib::Object::new::<Button>(&[]).unwrap();
+        widget.update_relation(&[
+            Relation::ActiveDescendant(other1.upcast_ref()),
+            Relation::ColCount(123),
+            Relation::ColIndex(123),
+            Relation::ColIndexText("Test"),
+            Relation::ColSpan(123),
+            Relation::Controls(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::DescribedBy(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::Details(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::ErrorMessage(other1.upcast_ref()),
+            Relation::FlowTo(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::LabelledBy(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::Owns(&[other1.upcast_ref(), other2.upcast_ref()]),
+            Relation::PosInSet(123),
+            Relation::RowCount(123),
+            Relation::RowIndex(123),
+            Relation::RowIndexText("Test"),
+            Relation::RowSpan(123),
+            Relation::SetSize(123),
+        ]);
     }
 
     #[test]
     fn test_accessible_update_state() {
-        test_synced(move || {
-            let widget = glib::Object::new::<Button>(&[]).unwrap();
-            widget.update_state(&[
-                State::Busy(true),
-                State::Checked(AccessibleTristate::Mixed),
-                State::Disabled(true),
-                State::Expanded(Some(true)),
-                State::Hidden(true),
-                State::Invalid(AccessibleInvalidState::Grammar),
-                State::Pressed(AccessibleTristate::Mixed),
-                State::Selected(Some(true)),
-            ]);
-        });
+        let widget = glib::Object::new::<Button>(&[]).unwrap();
+        widget.update_state(&[
+            State::Busy(true),
+            State::Checked(AccessibleTristate::Mixed),
+            State::Disabled(true),
+            State::Expanded(Some(true)),
+            State::Hidden(true),
+            State::Invalid(AccessibleInvalidState::Grammar),
+            State::Pressed(AccessibleTristate::Mixed),
+            State::Selected(Some(true)),
+        ]);
     }
 }
