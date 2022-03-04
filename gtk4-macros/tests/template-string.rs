@@ -35,7 +35,13 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for MyWidget {}
+    impl ObjectImpl for MyWidget {
+        fn dispose(&self, obj: &Self::Type) {
+            if let Some(child) = obj.first_child() {
+                child.unparent();
+            }
+        }
+    }
     impl WidgetImpl for MyWidget {}
 }
 
