@@ -152,7 +152,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let name = &input.ident;
     let crate_ident = crate_ident_new();
 
-    let source = match parse_template_source(input) {
+    let template = match parse_template_source(input) {
         Ok(v) => Some(v),
         Err(e) => {
             emit_call_site_error!(
@@ -163,7 +163,13 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         }
     };
 
-    let set_template = source.as_ref().map(|s| gen_set_template(s, &crate_ident));
+    let allow_without_attribute = template
+        .as_ref()
+        .map(|t| t.allow_template_child_without_attribute)
+        .unwrap_or(false);
+    let source = template.as_ref().map(|t| &t.source);
+
+    let set_template = source.map(|s| gen_set_template(s, &crate_ident));
 
     let fields = match input.data {
         Data::Struct(ref s) => Some(&s.fields),
@@ -173,7 +179,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         }
     };
 
-    let attributed_fields = match fields.map(parse_fields) {
+    let attributed_fields = match fields.map(|f| parse_fields(f, allow_without_attribute)) {
         Some(Ok(fields)) => fields,
         Some(Err(err)) => {
             emit_error!(err.span(), err);
@@ -182,7 +188,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         None => vec![],
     };
 
-    if let Some(source) = &source {
+    if let Some(source) = source {
         check_template_fields(source, &attributed_fields);
     }
 

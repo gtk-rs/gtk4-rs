@@ -12,6 +12,14 @@ fn failures() {
         "error: two instances of the same attribute argument, each argument must be specified only once",
     );
     t.compile_fail_check_sub(
+        "tests/compile-fail/composite-template-missing-child-attr.rs",
+        "error: field `label` with type `TemplateChild` possibly missing #[template_child] attribute",
+    );
+    t.compile_fail_check_sub(
+        "tests/compile-fail/composite-template-missing-fq-child-attr.rs",
+        "error: field `label` with type `TemplateChild` possibly missing #[template_child] attribute",
+    );
+    t.compile_fail_check_sub(
         "tests/compile-fail/composite-template-missing-id.rs",
         "error: Template child with id `label` not found in template XML",
     );
