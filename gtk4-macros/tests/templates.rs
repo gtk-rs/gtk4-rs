@@ -28,7 +28,7 @@ mod imp {
         #[template_child]
         pub label: TemplateChild<gtk::Label>,
         #[template_child(id = "my_label2")]
-        pub label2: TemplateChild<gtk::Label>,
+        pub label2: gtk::TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -37,7 +37,7 @@ mod imp {
         type Type = super::MyWidget;
         type ParentType = gtk::Widget;
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
         }
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
             obj.init_template();
@@ -132,8 +132,10 @@ mod imp2 {
     }
 
     impl ObjectImpl for MyWidget2 {
-        fn dispose(&self, _obj: &Self::Type) {
-            self.button.unparent();
+        fn dispose(&self, obj: &Self::Type) {
+            while let Some(child) = obj.first_child() {
+                child.unparent();
+            }
         }
     }
     impl WidgetImpl for MyWidget2 {}
@@ -147,4 +149,51 @@ glib::wrapper! {
 async fn async_callbacks() {
     let widget: MyWidget2 = glib::Object::new(&[]).unwrap();
     assert_eq!(widget.click_button().await, 42);
+}
+
+mod imp3 {
+    use gtk::glib;
+
+    #[derive(Debug, Default)]
+    struct TemplateChild<T>(T);
+
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(
+        string = r#"
+    <interface>
+      <template class="MyWidget3" parent="GtkWidget"/>
+    </interface>
+    "#,
+        allow_template_child_without_attribute
+    )]
+    pub struct MyWidget3 {
+        _not_a_widget: TemplateChild<u32>,
+    }
+
+    #[glib::object_subclass]
+    impl glib::subclass::prelude::ObjectSubclass for MyWidget3 {
+        const NAME: &'static str = "MyWidget3";
+        type Type = super::MyWidget3;
+        type ParentType = gtk::Widget;
+        fn class_init(klass: &mut Self::Class) {
+            use gtk::subclass::widget::CompositeTemplateClass;
+            klass.bind_template();
+        }
+        fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+            use gtk::prelude::InitializingWidgetExt;
+            obj.init_template();
+        }
+    }
+
+    impl glib::subclass::prelude::ObjectImpl for MyWidget3 {}
+    impl gtk::subclass::prelude::WidgetImpl for MyWidget3 {}
+}
+
+glib::wrapper! {
+    pub struct MyWidget3(ObjectSubclass<imp3::MyWidget3>) @extends gtk::Widget;
+}
+
+#[gtk::test]
+fn template_child_without_attribute() {
+    let _: MyWidget3 = glib::Object::new(&[]).unwrap();
 }
