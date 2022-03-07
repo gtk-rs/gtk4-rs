@@ -11,16 +11,25 @@ use std::string::ToString;
 use crate::attribute_parser::*;
 use crate::util::*;
 
-fn gen_set_template(source: &TemplateSource) -> TokenStream {
+fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {
         TemplateSource::File(file) => quote! {
-            klass.set_template_static(include_bytes!(#file));
+            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                klass,
+                include_bytes!(#file),
+            );
         },
         TemplateSource::Resource(resource) => quote! {
-            klass.set_template_from_resource(&#resource);
+            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_from_resource(
+                klass,
+                &#resource,
+            );
         },
         TemplateSource::String(template) => quote! {
-            klass.set_template_static(#template.as_bytes());
+            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                klass,
+                #template.as_bytes(),
+            );
         },
     }
 }
@@ -154,7 +163,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         }
     };
 
-    let set_template = source.as_ref().map(gen_set_template);
+    let set_template = source.as_ref().map(|s| gen_set_template(s, &crate_ident));
 
     let fields = match input.data {
         Data::Struct(ref s) => Some(&s.fields),
@@ -189,8 +198,8 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
                     #template_children
                 }
             }
-            fn check_template_children(widget: &<Self as ObjectSubclass>::Type) {
-                let imp = widget.imp();
+            fn check_template_children(widget: &<Self as #crate_ident::glib::subclass::prelude::ObjectSubclass>::Type) {
+                let imp = #crate_ident::subclass::prelude::ObjectSubclassIsExt::imp(widget);
                 #checks
             }
         }
