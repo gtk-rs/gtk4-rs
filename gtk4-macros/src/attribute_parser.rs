@@ -9,37 +9,74 @@ use syn::{
     Type,
 };
 
+pub struct Template {
+    pub source: TemplateSource,
+    pub allow_template_child_without_attribute: bool,
+}
+
 pub enum TemplateSource {
     File(String),
     Resource(String),
     String(String),
 }
 
-pub fn parse_template_source(input: &DeriveInput) -> Result<TemplateSource> {
+pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
     let meta = match find_attribute_meta(&input.attrs, "template")? {
         Some(meta) => meta,
         _ => bail!("Missing 'template' attribute"),
     };
 
-    let meta = match meta.nested.iter().find(|n| match n {
-        NestedMeta::Meta(m) => {
+    let mut allow_template_child_without_attribute = false;
+    let mut source = None;
+
+    for n in meta.nested.iter() {
+        if let NestedMeta::Meta(m) = n {
             let p = m.path();
-            p.is_ident("file") || p.is_ident("resource") || p.is_ident("string")
+            if p.is_ident("file") || p.is_ident("resource") || p.is_ident("string") {
+                if source.is_some() {
+                    bail!(Error::new_spanned(
+                        &p,
+                        "Specify only one of 'file', 'resource', or 'string'"
+                    ));
+                }
+                source.replace(n);
+            }
+            if p.is_ident("allow_template_child_without_attribute") {
+                if !matches!(m, Meta::Path(_)) {
+                    bail!(Error::new_spanned(&m, "Wrong meta"));
+                }
+                if allow_template_child_without_attribute {
+                    bail!(Error::new_spanned(
+                        &p,
+                        "Duplicate 'allow_template_child_without_attribute'"
+                    ));
+                }
+                allow_template_child_without_attribute = true;
+            }
+        } else {
+            bail!(Error::new_spanned(&n, "wrong meta type"));
         }
-        _ => false,
-    }) {
-        Some(meta) => meta,
-        _ => bail!("Invalid meta, specify one of 'file', 'resource', or 'string'"),
+    }
+    let source = match source {
+        Some(source) => source,
+        None => bail!(Error::new_spanned(
+            &meta,
+            "Invalid meta, specify one of 'file', 'resource', or 'string'"
+        )),
     };
 
-    let (ident, v) = parse_attribute(meta)?;
+    let (ident, v) = parse_attribute(source)?;
 
-    match ident.as_ref() {
-        "file" => Ok(TemplateSource::File(v)),
-        "resource" => Ok(TemplateSource::Resource(v)),
-        "string" => Ok(TemplateSource::String(v)),
+    let source = match ident.as_ref() {
+        "file" => TemplateSource::File(v),
+        "resource" => TemplateSource::Resource(v),
+        "string" => TemplateSource::String(v),
         s => bail!("Unknown enum meta {}", s),
-    }
+    };
+    Ok(Template {
+        source,
+        allow_template_child_without_attribute,
+    })
 }
 
 // find the #[@attr_name] attribute in @attrs
@@ -78,7 +115,7 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
 }
 
 pub enum FieldAttributeArg {
-    Id(String),
+    Id(String, Span),
     Internal(bool),
 }
 
@@ -104,11 +141,19 @@ impl AttributedField {
     pub fn id(&self) -> String {
         let mut name = None;
         for arg in &self.attr.args {
-            if let FieldAttributeArg::Id(value) = arg {
+            if let FieldAttributeArg::Id(value, _) = arg {
                 name = Some(value)
             }
         }
         name.cloned().unwrap_or_else(|| self.ident.to_string())
+    }
+    pub fn id_span(&self) -> Span {
+        for arg in &self.attr.args {
+            if let FieldAttributeArg::Id(_, span) = arg {
+                return *span;
+            }
+        }
+        self.ident.span()
     }
 }
 
@@ -166,7 +211,10 @@ fn parse_field_attr_meta(
     ));
     let value = match ty {
         FieldAttributeType::TemplateChild => match ident_str.as_str() {
-            "id" => FieldAttributeArg::Id(parse_field_attr_value_str(name_value)?),
+            "id" => FieldAttributeArg::Id(
+                parse_field_attr_value_str(name_value)?,
+                name_value.lit.span(),
+            ),
             "internal" => FieldAttributeArg::Internal(parse_field_attr_value_bool(name_value)?),
             _ => return unknown_err,
         },
@@ -258,13 +306,53 @@ fn parse_field(field: &Field) -> Result<Option<AttributedField>, Error> {
     }
 }
 
-pub fn parse_fields(fields: &Fields) -> Result<Vec<AttributedField>, Error> {
+fn path_is_template_child(path: &syn::Path) -> bool {
+    if path.leading_colon.is_none()
+        && path.segments.len() == 1
+        && matches!(
+            &path.segments[0].arguments,
+            syn::PathArguments::AngleBracketed(_)
+        )
+        && path.segments[0].ident == "TemplateChild"
+    {
+        return true;
+    }
+    if path.segments.len() == 2
+        && (path.segments[0].ident == "gtk" || path.segments[0].ident == "gtk4")
+        && matches!(
+            &path.segments[1].arguments,
+            syn::PathArguments::AngleBracketed(_)
+        )
+        && path.segments[1].ident == "TemplateChild"
+    {
+        return true;
+    }
+    false
+}
+
+pub fn parse_fields(
+    fields: &Fields,
+    allow_missing_attribute: bool,
+) -> Result<Vec<AttributedField>, Error> {
     let mut attributed_fields = Vec::new();
 
     for field in fields {
+        let mut has_attr = false;
         if !field.attrs.is_empty() {
             if let Some(attributed_field) = parse_field(field)? {
-                attributed_fields.push(attributed_field)
+                attributed_fields.push(attributed_field);
+                has_attr = true;
+            }
+        }
+        if !has_attr && !allow_missing_attribute {
+            if let syn::Type::Path(syn::TypePath { path, .. }) = &field.ty {
+                if path_is_template_child(path) {
+                    proc_macro_error::emit_error!(
+                        field,
+                        "field `{}` with type `TemplateChild` possibly missing #[template_child] attribute. Use a meta attribute on the struct to suppress this error: '#[template(string|file|resource = \"...\", allow_template_child_without_attribute)]'",
+                        field.ident.as_ref().unwrap().to_string(),
+                    );
+                }
             }
         }
     }

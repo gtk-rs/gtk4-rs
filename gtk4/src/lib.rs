@@ -211,5 +211,6 @@ pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
 pub use recent_data::RecentData;
 pub use response_type::ResponseType;
+pub use subclass::widget::TemplateChild;
 pub use tree_sortable::SortColumn;
 pub use widget::TickCallbackId;
