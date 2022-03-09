@@ -24,10 +24,11 @@ mod tests {
 
     #[test]
     fn test_property_expression() {
-        let _prop_expr = PropertyExpression::new(
+        let prop_expr = PropertyExpression::new(
             crate::StringObject::static_type(),
             crate::Expression::NONE,
             "string",
         );
+        assert!(prop_expr.is::<PropertyExpression>());
     }
 }

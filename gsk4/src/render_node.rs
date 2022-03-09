@@ -5,6 +5,10 @@ use glib::translate::*;
 use glib::StaticType;
 
 impl RenderNode {
+    pub fn is<T: IsRenderNode>(&self) -> bool {
+        T::NODE_TYPE == self.node_type()
+    }
+
     #[doc(alias = "gsk_render_node_deserialize")]
     pub fn deserialize(bytes: &glib::Bytes) -> Option<Self> {
         assert_initialized_main_thread!();
@@ -51,7 +55,7 @@ impl RenderNode {
 
     pub fn downcast<T: IsRenderNode>(self) -> Result<T, Self> {
         unsafe {
-            if self.node_type() == T::NODE_TYPE {
+            if self.is::<T>() {
                 Ok(from_glib_full(self.to_glib_full()))
             } else {
                 Err(self)
@@ -61,7 +65,7 @@ impl RenderNode {
 
     pub fn downcast_ref<T: IsRenderNode>(&self) -> Option<&T> {
         unsafe {
-            if self.node_type() == T::NODE_TYPE {
+            if self.is::<T>() {
                 Some(&*(self as *const RenderNode as *const T))
             } else {
                 None

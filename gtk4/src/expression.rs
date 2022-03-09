@@ -23,9 +23,13 @@ pub unsafe trait IsExpression:
 }
 
 impl Expression {
+    pub fn is<E: IsExpression>(&self) -> bool {
+        self.type_().is_a(E::static_type())
+    }
+
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
-            if self.type_() == E::static_type() {
+            if self.is::<E>() {
                 Ok(from_glib_full(self.to_glib_full()))
             } else {
                 Err(self)
@@ -35,7 +39,7 @@ impl Expression {
 
     pub fn downcast_ref<E: IsExpression>(&self) -> Option<&E> {
         unsafe {
-            if self.type_() == E::static_type() {
+            if self.is::<E>() {
                 Some(&*(self as *const Expression as *const E))
             } else {
                 None
