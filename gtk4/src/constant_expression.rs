@@ -57,5 +57,7 @@ mod tests {
         let expr2 = ConstantExpression::for_value(&"hello".to_value());
         assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
         assert_eq!(expr2.value_as::<String>(), "hello");
+
+        assert!(expr1.is::<ConstantExpression>());
     }
 }

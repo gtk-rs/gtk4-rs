@@ -25,5 +25,6 @@ mod tests {
         let obj = crate::IconTheme::new();
         let expr = ObjectExpression::new(&obj);
         assert_eq!(expr.object().unwrap(), obj);
+        assert!(expr.is::<ObjectExpression>());
     }
 }

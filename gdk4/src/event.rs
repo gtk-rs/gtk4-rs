@@ -7,9 +7,13 @@ use std::fmt;
 use std::mem;
 
 impl Event {
+    pub fn is<T: EventKind>(&self) -> bool {
+        T::event_types().contains(&self.event_type())
+    }
+
     pub fn downcast<T: EventKind>(self) -> Result<T, Event> {
         unsafe {
-            if T::event_types().contains(&self.event_type()) {
+            if self.is::<T>() {
                 Ok(from_glib_full(self.to_glib_full()))
             } else {
                 Err(self)
@@ -19,7 +23,7 @@ impl Event {
 
     pub fn downcast_ref<T: EventKind>(&self) -> Option<&T> {
         unsafe {
-            if T::event_types().contains(&self.event_type()) {
+            if self.is::<T>() {
                 Some(&*(self as *const Event as *const T))
             } else {
                 None
