@@ -23,3 +23,9 @@ Arch and derivatives:
 ```
 sudo pacman -S gtk4 base-devel
 ```
+
+Nix (with nix-command)
+
+```
+nix shell nixpkgs#{gtk4, gcc}
+```
