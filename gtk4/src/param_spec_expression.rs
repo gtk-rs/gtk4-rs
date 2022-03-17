@@ -47,7 +47,7 @@ impl ParamSpecExpression {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`ParamSpecExpression`] objects.
     ///
-    /// This method returns an instance of [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder) which can be used to create [`Button`] objects.
+    /// This method returns an instance of [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder) which can be used to create [`ParamSpecExpression`] objects.
     pub fn builder(name: &str) -> ParamSpecExpressionBuilder {
         assert_initialized_main_thread!();
         ParamSpecExpressionBuilder::new(name)
