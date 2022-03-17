@@ -11,6 +11,13 @@ impl Event {
         T::event_types().contains(&self.event_type())
     }
 
+    pub fn type_(&self) -> glib::Type {
+        unsafe {
+            let ptr = self.to_glib_none().0;
+            from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
+        }
+    }
+
     pub fn downcast<T: EventKind>(self) -> Result<T, Event> {
         unsafe {
             if self.is::<T>() {
