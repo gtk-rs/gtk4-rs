@@ -28,12 +28,6 @@ macro_rules! skip_assert_initialized {
 mod auto;
 
 pub mod prelude;
-// rustdoc-stripper-ignore-next
-/// Builder pattern types.
-pub mod builders {
-    pub use crate::ShaderArgsBuilder;
-}
-
 pub use auto::*;
 
 #[macro_use]
