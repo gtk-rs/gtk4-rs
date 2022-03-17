@@ -9,6 +9,13 @@ impl RenderNode {
         T::NODE_TYPE == self.node_type()
     }
 
+    pub fn type_(&self) -> glib::Type {
+        unsafe {
+            let ptr = self.to_glib_none().0;
+            from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
+        }
+    }
+
     #[doc(alias = "gsk_render_node_deserialize")]
     pub fn deserialize(bytes: &glib::Bytes) -> Option<Self> {
         assert_initialized_main_thread!();
