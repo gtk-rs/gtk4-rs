@@ -44,12 +44,71 @@ impl ParamSpecExpression {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`ParamSpecExpression`] objects.
+    ///
+    /// This method returns an instance of [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder) which can be used to create [`Button`] objects.
+    pub fn builder(name: &str) -> ParamSpecExpressionBuilder {
+        assert_initialized_main_thread!();
+        ParamSpecExpressionBuilder::new(name)
+    }
+
     pub fn upcast(self) -> ParamSpec {
         unsafe { from_glib_full(self.to_glib_full() as *mut gobject_ffi::GParamSpec) }
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
         &*self
+    }
+}
+
+#[derive(Default)]
+#[must_use]
+pub struct ParamSpecExpressionBuilder<'a> {
+    name: &'a str,
+    nick: Option<&'a str>,
+    blurb: Option<&'a str>,
+    flags: glib::ParamFlags,
+}
+
+impl<'a> ParamSpecExpressionBuilder<'a> {
+    fn new(name: &'a str) -> Self {
+        assert_initialized_main_thread!();
+        Self {
+            name,
+            ..Default::default()
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Default: `self.name`
+    pub fn nick(mut self, nick: &'a str) -> Self {
+        self.nick = Some(nick);
+        self
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Default: `self.name`
+    pub fn blurb(mut self, blurb: &'a str) -> Self {
+        self.blurb = Some(blurb);
+        self
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Default: `glib::ParamFlags::READWRITE`
+    pub fn flags(mut self, flags: glib::ParamFlags) -> Self {
+        self.flags = flags;
+        self
+    }
+
+    #[must_use]
+    pub fn build(self) -> ParamSpec {
+        ParamSpecExpression::new(
+            self.name,
+            self.nick.unwrap_or(self.name),
+            self.blurb.unwrap_or(self.name),
+            self.flags,
+        )
     }
 }
 
