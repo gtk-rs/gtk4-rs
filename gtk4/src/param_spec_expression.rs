@@ -64,6 +64,10 @@ impl ParamSpecExpression {
 
 #[derive(Default)]
 #[must_use]
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`ParamSpecExpression`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ParamSpecExpressionBuilder<'a> {
     name: &'a str,
     nick: Option<&'a str>,
@@ -102,6 +106,8 @@ impl<'a> ParamSpecExpressionBuilder<'a> {
     }
 
     #[must_use]
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ParamSpecExpression`].
     pub fn build(self) -> ParamSpec {
         ParamSpecExpression::new(
             self.name,
