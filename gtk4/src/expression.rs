@@ -50,7 +50,6 @@ impl Expression {
     pub fn type_(&self) -> Type {
         unsafe {
             let ptr = self.to_glib_none().0;
-
             from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
         }
     }
