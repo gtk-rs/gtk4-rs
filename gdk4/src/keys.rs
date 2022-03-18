@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
-use glib::GString;
+use glib::{value::*, GString, Type, Value};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 // rustdoc-stripper-ignore-next
@@ -4660,5 +4660,56 @@ impl IntoGlib for Key {
 
     fn into_glib(self) -> u32 {
         self.0
+    }
+}
+
+impl ValueType for Key {
+    type Type = u32;
+}
+
+unsafe impl<'a> FromValue<'a> for Key {
+    type Checker = glib::value::GenericValueTypeChecker<Key>;
+
+    unsafe fn from_value(value: &'a Value) -> Self {
+        let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
+        // As most of gdk_keyval_ apis don't really do any check for the input value (the key number)
+        // other than gdk_keyval_from_name, it is safe to not do any checks and assume people will not mis-use it
+        Key::from_glib(res)
+    }
+}
+
+impl ToValue for Key {
+    fn to_value(&self) -> Value {
+        let value = Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_uint(value.to_glib_none().0 as *mut _, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> Type {
+        Type::U32
+    }
+}
+
+// TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
+impl glib::StaticType for Key {
+    fn static_type() -> Type {
+        Type::U32
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[std::prelude::v1::test]
+    fn test_key_value() {
+        let key = Key::KP_Enter;
+        let value = key.to_value();
+
+        assert_eq!(value.get::<u32>(), Ok(Key::KP_Enter.into_glib()));
+        assert_eq!(unsafe { Key::from_value(&value) }, key);
+        assert_eq!(unsafe { Key::from_glib(value.get::<u32>().unwrap()) }, key);
     }
 }
