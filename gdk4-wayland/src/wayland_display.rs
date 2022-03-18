@@ -11,8 +11,8 @@ use khronos_egl as egl;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
-    protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay},
-    sys::client::wl_proxy,
+    protocol::wl_compositor::WlCompositor,
+    sys::client::{wl_display, wl_proxy},
     Proxy,
 };
 
@@ -47,10 +47,10 @@ impl WaylandDisplay {
     #[doc(alias = "get_wl_display")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_display(&self) -> WlDisplay {
+    pub fn wl_display(&self) -> wayland_client::Display {
         unsafe {
             let ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
-            Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+            wayland_client::Display::from_external_display(ptr as *mut wl_display)
         }
     }
 }
