@@ -160,8 +160,8 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
 <span class="kw">use</span> <span class="ident">wayland_client</span>::{
-    <span class="ident">protocol</span>::{<span class="ident">wl_compositor::WlCompositor</span>, <span class="ident">wl_display::WlDisplay</span>},
-    <span class="ident">sys::client::wl_proxy</span>,
+    <span class="ident">protocol::wl_compositor::WlCompositor</span>,
+    <span class="ident">sys::client</span>::{<span class="ident">wl_display</span>, <span class="ident">wl_proxy</span>},
     <span class="ident">Proxy</span>,
 };
 
@@ -211,10 +211,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_wl_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland_crate&quot;</span>)))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">WlDisplay</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wl_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">wayland_client::Display</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_wayland_display_get_wl_display</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>);
-            <span class="ident">Proxy::from_c_ptr</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">wl_proxy</span>).<span class="ident">into</span>()
+            <span class="ident">wayland_client::Display::from_external_display</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">wl_display</span>)
         }
     }
 }
