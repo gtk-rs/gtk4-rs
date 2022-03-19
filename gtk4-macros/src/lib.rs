@@ -325,7 +325,7 @@ pub fn test(_attr: TokenStream, item: TokenStream) -> TokenStream {
             let attrs = &input.attrs;
             let vis = &input.vis;
             let sig = &input.sig;
-            quote! {
+            let test = quote! {
                 #(#attrs)*
                 #[::std::prelude::v1::test]
                 #vis #sig {
@@ -333,8 +333,8 @@ pub fn test(_attr: TokenStream, item: TokenStream) -> TokenStream {
                         #block
                     })
                 }
-            }
-            .into()
+            };
+            test.into()
         }
         Err(_) => abort_call_site!("This macro should be used on a function definition"),
     }
