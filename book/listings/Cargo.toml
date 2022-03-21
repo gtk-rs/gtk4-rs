@@ -5,11 +5,12 @@ edition = "2021"
 
 
 [dependencies]
-gtk = { path = "../../gtk4", package = "gtk4" }
+gtk = { version = "*", package = "gtk4" }
+adw = { version = "*", package = "libadwaita" }
 once_cell = "1.0"
 
 [build-dependencies]
-gtk = { path = "../../gtk4", package = "gtk4" }
+gtk = { version = "*", package = "gtk4" }
 
 # actions
 [[bin]]
@@ -249,7 +250,6 @@ path = "todo_app/2/main.rs"
 [[bin]]
 name = "todo_app_3"
 path = "todo_app/3/main.rs"
-
 
 [[bin]]
 name = "todo_app_4"

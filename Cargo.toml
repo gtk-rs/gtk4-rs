@@ -1,7 +1,6 @@
 [workspace]
 
 default-members = [
-  "book/listings",
   "examples",
   "gdk4",
   "gdk4/sys",
@@ -14,7 +13,6 @@ default-members = [
 
 
 members = [
-  "book/listings",
   "examples",
   "gdk4",
   "gdk4/sys",
@@ -29,4 +27,4 @@ members = [
   "gtk4-macros",
 ]
 
-exclude = ["checker", "gir"]
+exclude = ["checker", "gir", "book/listings"]
