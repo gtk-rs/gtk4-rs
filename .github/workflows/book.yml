@@ -52,7 +52,7 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
-      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ] || [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then echo 'stable/latest'; else echo 'git'; fi)" >> ${GITHUB_ENV}
+      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then echo 'git'; else echo 'stable/latest'; fi)" >> ${GITHUB_ENV}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
