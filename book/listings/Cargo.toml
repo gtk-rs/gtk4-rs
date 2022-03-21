@@ -6,7 +6,6 @@ edition = "2021"
 
 [dependencies]
 gtk = { version = "*", package = "gtk4" }
-adw = { version = "*", package = "libadwaita" }
 once_cell = "1.0"
 
 [build-dependencies]
