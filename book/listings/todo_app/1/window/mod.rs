@@ -44,22 +44,34 @@ impl Window {
 
     // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
-        // Get state
-        let model = self.model();
-
-        // Setup callback so that activation
-        // creates a new todo object and clears the entry
+        // Setup callback for activation of the entry
         self.imp()
             .entry
-            .connect_activate(clone!(@weak model => move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(false, content);
-                model.append(&todo_object);
-                buffer.set_text("");
+            .connect_activate(clone!(@weak self as window => move |_| {
+                window.new_task();
+            }));
+
+        // Setup callback for clicking (and the releasing) the icon of the entry
+        self.imp()
+            .entry
+            .connect_icon_release(clone!(@weak self as window => move |_,_| {
+                window.new_task();
             }));
     }
     // ANCHOR_END: setup_callbacks
+
+    // ANCHOR: new_task
+    fn new_task(&self) {
+        // Get content from entry and clear it
+        let buffer = self.imp().entry.buffer();
+        let content = buffer.text();
+        buffer.set_text("");
+
+        // Add new task to model
+        let task = TodoObject::new(false, content);
+        self.model().append(&task);
+    }
+    // ANCHOR_END: new_task
 
     // ANCHOR: setup_factory
     fn setup_factory(&self) {

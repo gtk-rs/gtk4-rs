@@ -12,7 +12,10 @@
         <property name="margin-end">12</property>
         <property name="spacing">6</property>
         <child>
-          <object class="GtkEntry" id="entry"/>
+          <object class="GtkEntry" id="entry">
+            <property name="placeholder-text" translatable="yes">Enter a Task…</property>
+            <property name="secondary-icon-name">list-add-symbolic</property>
+          </object>
         </child>
         <child>
           <object class="GtkScrolledWindow">
@@ -20,7 +23,7 @@
             <property name="min-content-height">360</property>
             <property name="vexpand">true</property>
             <child>
-              <object class="GtkListView" id="list_view"/>
+              <object class="GtkListView" id="list_view" />
             </child>
           </object>
         </child>
