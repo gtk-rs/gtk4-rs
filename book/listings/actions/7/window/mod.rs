@@ -65,7 +65,8 @@ impl Window {
 
         // ANCHOR: settings_create_actions
         // Create action from key "sensitive-button" and add to action group "win"
-        let action_sensitive_button = self.imp().settings.create_action("sensitive-button");
+        let action_sensitive_button =
+            self.imp().settings.create_action("sensitive-button");
         self.add_action(&action_sensitive_button);
 
         // Create action from key "orientation" and add to action group "win"
