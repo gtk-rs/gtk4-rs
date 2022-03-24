@@ -32,6 +32,10 @@ jobs:
         name: "Clippy"
         working-directory: book/listings
 
+      - run: cargo fmt --check
+        name: "Format"
+        working-directory: book/listings
+
   build-deploy:
     runs-on: ubuntu-20.04
     name: build
