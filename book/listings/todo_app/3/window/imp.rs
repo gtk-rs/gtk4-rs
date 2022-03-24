@@ -4,7 +4,7 @@ use glib::subclass::InitializingObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
-use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
+use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
 
 use crate::todo_object::TodoObject;

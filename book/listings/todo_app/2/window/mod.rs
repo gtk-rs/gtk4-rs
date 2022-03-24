@@ -104,9 +104,6 @@ impl Window {
 
     // ANCHOR: setup_callbacks
     fn setup_callbacks(&self) {
-        // Get state
-        let model = self.model();
-
         // Setup callback for activation of the entry
         self.imp()
             .entry
