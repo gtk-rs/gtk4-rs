@@ -31,8 +31,9 @@ Now we need to copy and compile the schema.
 
 > You can install the schema by executing the following commands on a Linux or macOS machine:
 > ```bash
-> sudo cp org.gtk-rs.example.gschema.xml /usr/share/glib-2.0/schemas/
-> sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+> mkdir -p $HOME/.local/share/glib-2.0/schemas
+> cp org.gtk-rs.example.gschema.xml $HOME/.local/share/glib-2.0/schemas/
+> glib-compile-schemas $HOME/.local/share/glib-2.0/schemas/
 > ```
 > 
 > On Windows run:
