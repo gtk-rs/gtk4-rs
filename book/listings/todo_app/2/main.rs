@@ -16,7 +16,7 @@ fn main() {
 
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.Todo")
+        .application_id("org.gtk-rs.Todo2")
         .build();
 
     // Connect to signals
