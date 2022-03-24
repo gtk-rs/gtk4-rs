@@ -6,7 +6,9 @@ use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
-use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+use gtk::{
+    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -69,7 +71,8 @@ impl Window {
         self.imp().model.set(model).expect("Could not set model");
 
         // Wrap model with filter and selection and pass it to the list view
-        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+        let filter_model =
+            FilterListModel::new(Some(self.model()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().list_view.set_model(Some(&selection_model));
 
@@ -105,11 +108,11 @@ impl Window {
             }));
 
         // Setup callback for clicking (and the releasing) the icon of the entry
-        self.imp()
-            .entry
-            .connect_icon_release(clone!(@weak self as window => move |_,_| {
+        self.imp().entry.connect_icon_release(
+            clone!(@weak self as window => move |_,_| {
                 window.new_task();
-            }));
+            }),
+        );
     }
 
     fn new_task(&self) {
@@ -178,7 +181,8 @@ impl Window {
         let model = self.model();
 
         // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks = gio::SimpleAction::new("remove-done-tasks", None);
+        let action_remove_done_tasks =
+            gio::SimpleAction::new("remove-done-tasks", None);
         action_remove_done_tasks.connect_activate(clone!(@weak model => move |_, _| {
             let mut position = 0;
             while let Some(item) = model.item(position) {

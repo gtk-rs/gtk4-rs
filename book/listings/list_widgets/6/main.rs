@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
-    SignalListItemFactory, StringList, StringObject, Widget,
+    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
+    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 };
 
 fn main() {

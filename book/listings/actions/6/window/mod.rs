@@ -59,7 +59,8 @@ impl Window {
         // ANCHOR: action_sensitive_button
         // Add property action "sensitive-button" to `window`
         let button = self.imp().button.get();
-        let action_sensitive_button = PropertyAction::new("sensitive-button", &button, "sensitive");
+        let action_sensitive_button =
+            PropertyAction::new("sensitive-button", &button, "sensitive");
         self.add_action(&action_sensitive_button);
         // ANCHOR_END: action_sensitive_button
 

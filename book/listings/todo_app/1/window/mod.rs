@@ -52,11 +52,11 @@ impl Window {
             }));
 
         // Setup callback for clicking (and the releasing) the icon of the entry
-        self.imp()
-            .entry
-            .connect_icon_release(clone!(@weak self as window => move |_,_| {
+        self.imp().entry.connect_icon_release(
+            clone!(@weak self as window => move |_,_| {
                 window.new_task();
-            }));
+            }),
+        );
     }
     // ANCHOR_END: setup_callbacks
 
