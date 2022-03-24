@@ -97,7 +97,7 @@ Within the template we can then set the "action-name" and "action-target" proper
 {{#rustdoc_include ../listings/actions/5/resources/window.ui}}
 ```
 
-We will connect the actions and add them to the window in the `Window::add_actions` method.
+We will connect the actions and add them to the window in the `Window::setup_actions` method.
 
 <span class="filename">Filename: listings/actions/5/window/mod.rs</span>
 
@@ -105,7 +105,7 @@ We will connect the actions and add them to the window in the `Window::add_actio
 {{#rustdoc_include ../listings/actions/5/window/mod.rs:impl_window}}
 ```
 
-Finally, `add_actions` will be called within `constructed`.
+Finally, `setup_actions` will be called within `constructed`.
 
 <span class="filename">Filename: listings/actions/5/window/imp.rs</span>
 
@@ -125,7 +125,7 @@ Typically, a menu entry has an action fitting one of these three descriptions:
 - string parameter and string state.
 
 Let's modify our small app to demonstrate these cases.
-First we extend `add_actions`.
+First we extend `setup_actions`.
 For the action without parameter or state, we can use the pre-defined "window.close" action.
 Therefore we don't have to add anything here.
 

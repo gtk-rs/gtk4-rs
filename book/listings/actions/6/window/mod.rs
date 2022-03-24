@@ -20,8 +20,8 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create Window")
     }
 
-    // ANCHOR: add_actions
-    fn add_actions(&self) {
+    // ANCHOR: setup_actions
+    fn setup_actions(&self) {
         // Get state
         let label = self.imp().label.get();
 
@@ -94,5 +94,5 @@ impl Window {
         self.add_action(&action_orientation);
         //ANCHOR_END: action_orientation
     }
-    // ANCHOR_END: add_actions
+    // ANCHOR_END: setup_actions
 }

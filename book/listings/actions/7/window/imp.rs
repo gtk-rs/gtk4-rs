@@ -56,7 +56,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.add_actions();
+        obj.setup_actions();
         obj.bind_settings();
     }
 }

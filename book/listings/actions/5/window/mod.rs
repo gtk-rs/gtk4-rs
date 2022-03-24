@@ -21,7 +21,7 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create Window")
     }
 
-    fn add_actions(&self) {
+    fn setup_actions(&self) {
         let label = self.imp().label.get();
 
         // Add stateful action "count" to `window` taking an integer as parameter
