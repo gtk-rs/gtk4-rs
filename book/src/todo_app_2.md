@@ -21,14 +21,14 @@ This will come in handy when we later make the app preserve the tasks between se
 Let's start by adding a menu and a header bar to `window.ui`.
 After reading the [actions](actions.html) chapter the added code should feel familiar.
 
-<span class="filename">Filename: listings/todo_app/2/window/window.ui</span>
+<span class="filename">Filename: listings/todo_app/2/resources/window.ui</span>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
  <interface>
 +  <menu id="main-menu">
 +    <submenu>
-+      <attribute name="label" translatable="yes">_Filtering</attribute>
++      <attribute name="label" translatable="yes">_Filter</attribute>
 +      <item>
 +        <attribute name="label" translatable="yes">_All</attribute>
 +        <attribute name="action">win.filter</attribute>
@@ -46,6 +46,10 @@ After reading the [actions](actions.html) chapter the added code should feel fam
 +      </item>
 +    </submenu>
 +    <item>
++      <attribute name="label" translatable="yes">_Remove Done Tasks</attribute>
++      <attribute name="action">win.remove-done-tasks</attribute>
++    </item>
++    <item>
 +      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
 +      <attribute name="action">win.show-help-overlay</attribute>
 +    </item>
@@ -55,12 +59,7 @@ After reading the [actions](actions.html) chapter the added code should feel fam
      <property name="title" translatable="yes">To-Do</property>
 +    <child type="titlebar">
 +      <object class="GtkHeaderBar">
-+        <child type="start">
-+          <object class="GtkButton" id="clear_button">
-+            <property name="label">Clear</property>
-+          </object>
-+        </child>
-+        <child type ="end">
++        <child type="end">
 +          <object class="GtkMenuButton" id="menu_button">
 +            <property name="icon-name">open-menu-symbolic</property>
 +            <property name="menu-model">main-menu</property>
@@ -68,9 +67,6 @@ After reading the [actions](actions.html) chapter the added code should feel fam
 +        </child>
 +      </object>
 +    </child>
-     <child>
-       <object class="GtkBox">
-         <property name="orientation">vertical</property>
 ```
 
 Then, we create a settings schema.
@@ -105,6 +101,7 @@ We will make use of them in the following snippets.
 
 Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
+We also add an action which allows us to remove done tasks. 
 
 <span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
 
@@ -133,15 +130,6 @@ Whenever the state of the key "filter" changes, we call the method `filter` agai
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
 ```
-
-In `setup_callbacks`, we add a signal handler to `clear_button`, which removes all completed tasks when activated.
-
-<span class="filename">Filename: listings/todo_app/2/window/mod.rs</span>
-
-```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_callbacks}}
-```
-
 
 Then, we bind the shortcuts to their actions with `set_accels_for_action`.
 Here as well, a detailed action name is used.

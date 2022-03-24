@@ -33,11 +33,6 @@
     <property name="title" translatable="yes">To-Do</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
-        <child type="start">
-          <object class="GtkButton" id="clear_button">
-            <property name="label">Clear</property>
-          </object>
-        </child>
         <child type="end">
           <object class="GtkMenuButton" id="menu_button">
             <property name="icon-name">open-menu-symbolic</property>
